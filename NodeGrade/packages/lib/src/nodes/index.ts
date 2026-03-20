@@ -10,6 +10,8 @@ import { ImageNode } from './ImageNode'
 import { KeywordCheckNode } from './KeywordCheckNode'
 import { ConceptExtractorNode } from './ConceptExtractorNode'
 import { KnowledgeGraphCompareNode } from './KnowledgeGraphCompareNode'
+import { CognitiveDepthNode } from './CognitiveDepthNode'
+import { MisconceptionDetectorNode } from './MisconceptionDetectorNode'
 import { LGraphRegisterCustomNodes } from './LGraphRegisterCustomNodes'
 import { LiteGraph } from './litegraph-extensions'
 import { LLMNode } from './LLMNode'
@@ -69,7 +71,9 @@ export {
   StringArrayToString,
   StringsToArray,
   ConceptExtractorNode,
-  KnowledgeGraphCompareNode
+  KnowledgeGraphCompareNode,
+  CognitiveDepthNode,
+  MisconceptionDetectorNode
 }
 
 export { LGraphNode } from './litegraph-extensions/LGraphNode'

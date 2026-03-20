@@ -28,6 +28,8 @@ import { CountNode } from './utils/CountNode'
 import { KeywordCheckNode } from './KeywordCheckNode'
 import { ConceptExtractorNode } from './ConceptExtractorNode'
 import { KnowledgeGraphCompareNode } from './KnowledgeGraphCompareNode'
+import { CognitiveDepthNode } from './CognitiveDepthNode'
+import { MisconceptionDetectorNode } from './MisconceptionDetectorNode'
 import { Watch } from './Watch'
 
 export function LGraphRegisterCustomNodes() {
@@ -61,6 +63,8 @@ export function LGraphRegisterCustomNodes() {
   LiteGraph.registerNodeType(KeywordCheckNode.getPath(), KeywordCheckNode)
   LiteGraph.registerNodeType(ConceptExtractorNode.getPath(), ConceptExtractorNode)
   LiteGraph.registerNodeType(KnowledgeGraphCompareNode.getPath(), KnowledgeGraphCompareNode)
+  LiteGraph.registerNodeType(CognitiveDepthNode.getPath(), CognitiveDepthNode)
+  LiteGraph.registerNodeType(MisconceptionDetectorNode.getPath(), MisconceptionDetectorNode)
 
   // Styling
   LiteGraph.NODE_DEFAULT_BGCOLOR = '#272727'

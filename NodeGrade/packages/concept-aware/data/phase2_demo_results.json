@@ -1,0 +1,1229 @@
+{
+  "meta": {
+    "phase": 2,
+    "timestamp": "2026-03-20T14:28:26.646433",
+    "question": "Compare linked lists and arrays. Explain when you would use each, and discuss the trade-offs in terms of time complexity for common operations.",
+    "llm_model": "llama-3.3-70b-versatile",
+    "modules": [
+      "ConceptExtractor",
+      "KnowledgeGraphComparator",
+      "BloomsClassifier",
+      "SOLOClassifier",
+      "MisconceptionDetector"
+    ]
+  },
+  "results": {
+    "student_A_excellent": {
+      "label": "Student A \u2014 Excellent (Expected: Bloom's 5-6, SOLO 5)",
+      "answer_preview": "Arrays and linked lists are both linear data structures, but they differ fundamentally in memory lay...",
+      "concept_graph": {
+        "question": "Compare linked lists and arrays. Explain when you would use each, and discuss the trade-offs in terms of time complexity for common operations.",
+        "student_answer": "Arrays and linked lists are both linear data structures, but they differ fundamentally in memory layout and performance characteristics. Arrays store elements in contiguous memory, enabling O(1) random access via index arithmetic, whereas linked lists use dynamically allocated nodes connected by pointers, requiring O(n) traversal for access. For insertion and deletion, linked lists excel at the head with O(1) operations, but inserting at an arbitrary position still requires O(n) traversal to find the location. Arrays require O(n) shifting for mid-array insertions but offer O(1) amortized append with dynamic arrays. The trade-off extends beyond asymptotic complexity: arrays benefit from spatial locality and CPU cache prefetching, making them significantly faster in practice for sequential access patterns on modern hardware. This is why Java's ArrayList outperforms LinkedList in most benchmarks despite theoretically worse insertion complexity. I would use arrays (or dynamic arrays) for random access-heavy workloads and when the dataset size is relatively stable. Linked lists are preferable when frequent insertions/deletions at known positions are needed, such as implementing an LRU cache with a doubly linked list combined with a hash map for O(1) lookup and eviction.",
+        "concepts": [
+          {
+            "concept_id": "array",
+            "confidence": 0.9,
+            "evidence": "Arrays store elements in contiguous memory, enabling O(1) random access via index arithmetic",
+            "is_correct_usage": true
+          },
+          {
+            "concept_id": "linked_list",
+            "confidence": 0.9,
+            "evidence": "linked lists use dynamically allocated nodes connected by pointers, requiring O(n) traversal for access",
+            "is_correct_usage": true
+          },
+          {
+            "concept_id": "dynamic_array",
+            "confidence": 0.8,
+            "evidence": "Arrays require O(n) shifting for mid-array insertions but offer O(1) amortized append with dynamic arrays",
+            "is_correct_usage": true
+          },
+          {
+            "concept_id": "o_1",
+            "confidence": 0.9,
+            "evidence": "enabling O(1) random access via index arithmetic",
+            "is_correct_usage": true
+          },
+          {
+            "concept_id": "o_n",
+            "confidence": 0.9,
+            "evidence": "requiring O(n) traversal for access",
+            "is_correct_usage": true
+          },
+          {
+            "concept_id": "time_complexity",
+            "confidence": 0.8,
+            "evidence": "The trade-off extends beyond asymptotic complexity",
+            "is_correct_usage": true
+          },
+          {
+            "concept_id": "insertion",
+            "confidence": 0.8,
+            "evidence": "For insertion and deletion, linked lists excel at the head with O(1) operations",
+            "is_correct_usage": true
+          },
+          {
+            "concept_id": "deletion",
+            "confidence": 0.8,
+            "evidence": "For insertion and deletion, linked lists excel at the head with O(1) operations",
+            "is_correct_usage": true
+          },
+          {
+            "concept_id": "doubly_linked_list",
+            "confidence": 0.7,
+            "evidence": "implementing an LRU cache with a doubly linked list combined with a hash map for O(1) lookup and eviction",
+            "is_correct_usage": true
+          },
+          {
+            "concept_id": "hash_table",
+            "confidence": 0.7,
+            "evidence": "implementing an LRU cache with a doubly linked list combined with a hash map for O(1) lookup and eviction",
+            "is_correct_usage": true
+          }
+        ],
+        "relationships": [
+          {
+            "source_id": "array",
+            "target_id": "o_1",
+            "relation_type": "has_property",
+            "confidence": 0.9,
+            "evidence": "Arrays store elements in contiguous memory, enabling O(1) random access via index arithmetic",
+            "is_correct": true,
+            "misconception_note": ""
+          },
+          {
+            "source_id": "linked_list",
+            "target_id": "o_n",
+            "relation_type": "has_property",
+            "confidence": 0.9,
+            "evidence": "linked lists use dynamically allocated nodes connected by pointers, requiring O(n) traversal for access",
+            "is_correct": true,
+            "misconception_note": ""
+          },
+          {
+            "source_id": "linked_list",
+            "target_id": "o_1",
+            "relation_type": "has_property",
+            "confidence": 0.8,
+            "evidence": "For insertion and deletion, linked lists excel at the head with O(1) operations",
+            "is_correct": true,
+            "misconception_note": ""
+          },
+          {
+            "source_id": "array",
+            "target_id": "dynamic_array",
+            "relation_type": "variant_of",
+            "confidence": 0.8,
+            "evidence": "Arrays require O(n) shifting for mid-array insertions but offer O(1) amortized append with dynamic arrays",
+            "is_correct": true,
+            "misconception_note": ""
+          },
+          {
+            "source_id": "doubly_linked_list",
+            "target_id": "hash_table",
+            "relation_type": "uses",
+            "confidence": 0.7,
+            "evidence": "implementing an LRU cache with a doubly linked list combined with a hash map for O(1) lookup and eviction",
+            "is_correct": true,
+            "misconception_note": ""
+          }
+        ],
+        "unmapped_terms": [
+          "Java's ArrayList",
+          "LRU cache",
+          "CPU cache prefetching",
+          "spatial locality"
+        ],
+        "overall_depth": "moderate",
+        "stats": {
+          "num_concepts": 10,
+          "num_relationships": 5,
+          "num_correct_concepts": 10,
+          "num_misconceptions": 0
+        }
+      },
+      "comparison": {
+        "scores": {
+          "concept_coverage": 1.0,
+          "relationship_accuracy": 0.2,
+          "integration_quality": 0.4918,
+          "overall": 0.6075
+        },
+        "analysis": {
+          "matched_concepts": [
+            "o_1",
+            "hash_table",
+            "o_n",
+            "array",
+            "deletion",
+            "insertion",
+            "dynamic_array",
+            "doubly_linked_list",
+            "linked_list",
+            "time_complexity"
+          ],
+          "missing_concepts": [],
+          "extra_concepts": [],
+          "correct_relationships": [
+            {
+              "source": "doubly_linked_list",
+              "target": "hash_table",
+              "type": "uses",
+              "confidence": 0.48999999999999994,
+              "note": "Not in expert graph but plausible"
+            }
+          ],
+          "incorrect_relationships": [
+            {
+              "source": "array",
+              "target": "o_1",
+              "student_relation": "has_property",
+              "correct_relation": "has_complexity",
+              "explanation": "Student used 'has_property' but the correct relationship is 'has_complexity'",
+              "severity": "moderate"
+            },
+            {
+              "source": "linked_list",
+              "target": "o_n",
+              "student_relation": "has_property",
+              "correct_relation": "has_complexity",
+              "explanation": "Student used 'has_property' but the correct relationship is 'has_complexity'",
+              "severity": "moderate"
+            },
+            {
+              "source": "linked_list",
+              "target": "o_1",
+              "student_relation": "has_property",
+              "correct_relation": "has_complexity",
+              "explanation": "Student used 'has_property' but the correct relationship is 'has_complexity'",
+              "severity": "moderate"
+            },
+            {
+              "source": "array",
+              "target": "dynamic_array",
+              "student_relation": "variant_of",
+              "correct_relation": "prerequisite_for",
+              "explanation": "Student used 'variant_of' but the correct relationship is 'prerequisite_for'",
+              "severity": "moderate"
+            }
+          ],
+          "missing_relationships": [
+            {
+              "source": "hash_table",
+              "target": "o_1",
+              "type": "has_complexity",
+              "note": "Expected connection not demonstrated"
+            },
+            {
+              "source": "hash_table",
+              "target": "array",
+              "type": "uses",
+              "note": "Expected connection not demonstrated"
+            },
+            {
+              "source": "hash_table",
+              "target": "linked_list",
+              "type": "uses",
+              "note": "Expected connection not demonstrated"
+            },
+            {
+              "source": "array",
+              "target": "hash_table",
+              "type": "prerequisite_for",
+              "note": "Expected connection not demonstrated"
+            },
+            {
+              "source": "hash_table",
+              "target": "o_1",
+              "type": "has_complexity",
+              "note": "Expected connection not demonstrated"
+            },
+            {
+              "source": "hash_table",
+              "target": "array",
+              "type": "uses",
+              "note": "Expected connection not demonstrated"
+            },
+            {
+              "source": "array",
+              "target": "hash_table",
+              "type": "prerequisite_for",
+              "note": "Expected connection not demonstrated"
+            },
+            {
+              "source": "array",
+              "target": "linked_list",
+              "type": "contrasts_with",
+              "note": "Expected connection not demonstrated"
+            },
+            {
+              "source": "doubly_linked_list",
+              "target": "linked_list",
+              "type": "variant_of",
+              "note": "Expected connection not demonstrated"
+            },
+            {
+              "source": "doubly_linked_list",
+              "target": "linked_list",
+              "type": "variant_of",
+              "note": "Expected connection not demonstrated"
+            }
+          ]
+        },
+        "diagnostic": {
+          "depth_assessment": "moderate",
+          "feedback_points": [
+            "Review the relationship between 'array' and 'o_1': Student used 'has_property' but the correct relationship is 'has_complexity'",
+            "Review the relationship between 'linked_list' and 'o_n': Student used 'has_property' but the correct relationship is 'has_complexity'",
+            "Review the relationship between 'linked_list' and 'o_1': Student used 'has_property' but the correct relationship is 'has_complexity'"
+          ],
+          "strengths": [
+            "Good concept coverage",
+            "Identified 10 relevant concepts"
+          ],
+          "weaknesses": [
+            "4 misconception(s) detected"
+          ]
+        }
+      },
+      "blooms": {
+        "level": 5,
+        "label": "Evaluate",
+        "description": "Justify decisions, critique, compare approaches, assess trade-offs",
+        "confidence": 0.8,
+        "justification": "The student's response demonstrates a strong ability to evaluate the trade-offs between arrays and linked lists, considering factors such as time complexity, memory layout, and performance characteristics, which aligns with the Evaluate level of Bloom's Revised Taxonomy.",
+        "reasoning_steps": [
+          "Step 1: The student demonstrates cognitive verbs such as comparing, contrasting, explaining, and justifying, indicating a deeper level of understanding beyond mere recall.",
+          "Step 2: The student not only recalls facts about arrays and linked lists but also explains their differences, applies this knowledge to specific scenarios, analyzes the trade-offs in terms of time complexity, and evaluates when to use each data structure.",
+          "Step 3: The concept graph evidence shows that the student has identified several key concepts and relationships, although with some misconceptions regarding the relationships between data structures and their complexities. The integration quality is moderate, suggesting a reasonable but not exceptional depth of understanding.",
+          "Step 4: Considering the student's ability to compare, contrast, explain, apply, analyze, and evaluate the information about arrays and linked lists, the highest Bloom's level clearly demonstrated is Evaluate, as the student makes judgments based on criteria and standards (e.g., time complexity, performance characteristics) to defend the choice of one data structure over the other in different scenarios."
+        ],
+        "evidence": {
+          "cognitive_verbs": [
+            "compare",
+            "contrast",
+            "explain",
+            "apply",
+            "analyze",
+            "evaluate",
+            "justify"
+          ],
+          "surface_indicators": [
+            "recalls facts about arrays and linked lists"
+          ],
+          "depth_indicators": [
+            "explains differences",
+            "applies knowledge to scenarios",
+            "analyzes trade-offs",
+            "evaluates data structures based on criteria"
+          ]
+        }
+      },
+      "solo": {
+        "level": 5,
+        "label": "Extended Abstract",
+        "description": "Generalizes to new domains; extends beyond the immediate question; shows abstract thinking",
+        "confidence": 0.81,
+        "justification": "The student's response demonstrates a high capacity for understanding, integrates concepts into a coherent argument, and extends beyond the immediate topic, justifying an Extended Abstract classification.",
+        "reasoning_steps": [
+          "Step 1 (Capacity): The student demonstrates a large number of relevant concepts (10), indicating a high capacity for understanding the topic.",
+          "Step 2 (Relating): The student shows how concepts connect, explaining the trade-offs between arrays and linked lists in terms of time complexity and memory layout, demonstrating a relating operation.",
+          "Step 3 (Integration): The student's response forms a coherent structure, integrating concepts into a connected argument, but with some isolated concepts (3) and a moderate integration quality score (49%).",
+          "Step 4 (Extension): The student goes beyond the immediate question, applying concepts to novel situations (e.g., implementing an LRU cache) and connecting to broader principles (e.g., CPU cache prefetching), demonstrating extension beyond the topic."
+        ],
+        "capacity": "many",
+        "relating_operation": "generalize"
+      },
+      "misconceptions": {
+        "total_misconceptions": 4,
+        "by_severity": {
+          "critical": 0,
+          "moderate": 0,
+          "minor": 4
+        },
+        "misconceptions": [
+          {
+            "misconception_id": "MISCONCEPTION_1",
+            "taxonomy_category": "novel",
+            "type": "conflation",
+            "severity": "minor",
+            "source_concept": "array",
+            "target_concept": "complexity",
+            "student_claim": "Arrays have a property of O(1) access",
+            "correct_understanding": "Arrays have a complexity of O(1) for random access",
+            "explanation": "The student is confusing the concept of a property with the concept of complexity. In data structures, complexity refers to the time or space required for an operation, whereas a property is a characteristic of an object. Arrays do have a complexity of O(1) for random access, meaning that accessing an element at a specific index takes constant time.",
+            "remediation_hint": "Review the definitions of property and complexity in the context of data structures, and practice identifying the correct relationships between concepts.",
+            "confidence": 0.8
+          },
+          {
+            "misconception_id": "MISCONCEPTION_2",
+            "taxonomy_category": "novel",
+            "type": "conflation",
+            "severity": "minor",
+            "source_concept": "linked_list",
+            "target_concept": "complexity",
+            "student_claim": "Linked lists have a property of O(n) access",
+            "correct_understanding": "Linked lists have a complexity of O(n) for access",
+            "explanation": "Similar to the previous misconception, the student is confusing the concept of a property with the concept of complexity. Linked lists do have a complexity of O(n) for access, meaning that accessing an element at a specific position requires traversing the list, which takes linear time.",
+            "remediation_hint": "Review the definitions of property and complexity in the context of data structures, and practice identifying the correct relationships between concepts.",
+            "confidence": 0.8
+          },
+          {
+            "misconception_id": "MISCONCEPTION_3",
+            "taxonomy_category": "novel",
+            "type": "conflation",
+            "severity": "minor",
+            "source_concept": "linked_list",
+            "target_concept": "complexity",
+            "student_claim": "Linked lists have a property of O(1) insertion",
+            "correct_understanding": "Linked lists have a complexity of O(1) for insertion at the head",
+            "explanation": "The student is again confusing the concept of a property with the concept of complexity. Linked lists do have a complexity of O(1) for insertion at the head, meaning that adding a new element at the beginning of the list takes constant time.",
+            "remediation_hint": "Review the definitions of property and complexity in the context of data structures, and practice identifying the correct relationships between concepts.",
+            "confidence": 0.8
+          },
+          {
+            "misconception_id": "MISCONCEPTION_4",
+            "taxonomy_category": "novel",
+            "type": "conflation",
+            "severity": "minor",
+            "source_concept": "array",
+            "target_concept": "dynamic_array",
+            "student_claim": "Arrays are a variant of dynamic arrays",
+            "correct_understanding": "Arrays are a prerequisite for dynamic arrays",
+            "explanation": "The student is confusing the relationship between arrays and dynamic arrays. Arrays are a fundamental data structure, and dynamic arrays are a type of array that can resize itself. Therefore, arrays are a prerequisite for dynamic arrays, not a variant.",
+            "remediation_hint": "Review the definitions of arrays and dynamic arrays, and practice identifying the correct relationships between concepts.",
+            "confidence": 0.8
+          }
+        ],
+        "summary": "The student has a good understanding of the trade-offs between arrays and linked lists, but confuses the concepts of property and complexity, and the relationships between arrays, linked lists, and dynamic arrays. Remediation is needed to clarify these concepts and relationships.",
+        "overall_accuracy": 0.8
+      }
+    },
+    "student_B_good": {
+      "label": "Student B \u2014 Good (Expected: Bloom's 4, SOLO 4)",
+      "answer_preview": "Arrays use contiguous memory, so accessing an element by index is O(1). Linked lists use pointers to...",
+      "concept_graph": {
+        "question": "Compare linked lists and arrays. Explain when you would use each, and discuss the trade-offs in terms of time complexity for common operations.",
+        "student_answer": "Arrays use contiguous memory, so accessing an element by index is O(1). Linked lists use pointers to connect nodes, so you have to traverse from the head, which takes O(n). For insertion, linked lists are O(1) at the head because you just update pointers, but arrays need to shift elements which is O(n). However, arrays are better when you need fast lookups, and linked lists are better when you need frequent insertions and deletions. Arrays also have a fixed size unless you use dynamic arrays, which can waste memory due to over-allocation.",
+        "concepts": [
+          {
+            "concept_id": "array",
+            "confidence": 0.9,
+            "evidence": "Arrays use contiguous memory, so accessing an element by index is O(1).",
+            "is_correct_usage": true
+          },
+          {
+            "concept_id": "linked_list",
+            "confidence": 0.9,
+            "evidence": "Linked lists use pointers to connect nodes, so you have to traverse from the head, which takes O(n).",
+            "is_correct_usage": true
+          },
+          {
+            "concept_id": "time_complexity",
+            "confidence": 0.8,
+            "evidence": "accessing an element by index is O(1)",
+            "is_correct_usage": true
+          },
+          {
+            "concept_id": "o_1",
+            "confidence": 0.8,
+            "evidence": "accessing an element by index is O(1)",
+            "is_correct_usage": true
+          },
+          {
+            "concept_id": "o_n",
+            "confidence": 0.8,
+            "evidence": "you have to traverse from the head, which takes O(n)",
+            "is_correct_usage": true
+          },
+          {
+            "concept_id": "insertion",
+            "confidence": 0.7,
+            "evidence": "For insertion, linked lists are O(1) at the head because you just update pointers",
+            "is_correct_usage": true
+          },
+          {
+            "concept_id": "dynamic_array",
+            "confidence": 0.6,
+            "evidence": "unless you use dynamic arrays, which can waste memory due to over-allocation",
+            "is_correct_usage": true
+          },
+          {
+            "concept_id": "memory_allocation",
+            "confidence": 0.5,
+            "evidence": "unless you use dynamic arrays, which can waste memory due to over-allocation",
+            "is_correct_usage": true
+          }
+        ],
+        "relationships": [
+          {
+            "source_id": "array",
+            "target_id": "o_1",
+            "relation_type": "has_property",
+            "confidence": 0.8,
+            "evidence": "Arrays use contiguous memory, so accessing an element by index is O(1).",
+            "is_correct": true,
+            "misconception_note": ""
+          },
+          {
+            "source_id": "linked_list",
+            "target_id": "o_n",
+            "relation_type": "has_property",
+            "confidence": 0.8,
+            "evidence": "Linked lists use pointers to connect nodes, so you have to traverse from the head, which takes O(n).",
+            "is_correct": true,
+            "misconception_note": ""
+          },
+          {
+            "source_id": "linked_list",
+            "target_id": "o_1",
+            "relation_type": "has_property",
+            "confidence": 0.7,
+            "evidence": "For insertion, linked lists are O(1) at the head because you just update pointers",
+            "is_correct": true,
+            "misconception_note": ""
+          },
+          {
+            "source_id": "array",
+            "target_id": "linked_list",
+            "relation_type": "contrasts_with",
+            "confidence": 0.7,
+            "evidence": "Arrays are better when you need fast lookups, and linked lists are better when you need frequent insertions and deletions",
+            "is_correct": true,
+            "misconception_note": ""
+          }
+        ],
+        "unmapped_terms": [],
+        "overall_depth": "moderate",
+        "stats": {
+          "num_concepts": 8,
+          "num_relationships": 4,
+          "num_correct_concepts": 8,
+          "num_misconceptions": 0
+        }
+      },
+      "comparison": {
+        "scores": {
+          "concept_coverage": 1.0,
+          "relationship_accuracy": 0.25,
+          "integration_quality": 0.5452,
+          "overall": 0.6386
+        },
+        "analysis": {
+          "matched_concepts": [
+            "o_1",
+            "o_n",
+            "array",
+            "insertion",
+            "memory_allocation",
+            "dynamic_array",
+            "linked_list",
+            "time_complexity"
+          ],
+          "missing_concepts": [],
+          "extra_concepts": [],
+          "correct_relationships": [
+            {
+              "source": "array",
+              "target": "linked_list",
+              "type": "contrasts_with",
+              "confidence": 0.7
+            }
+          ],
+          "incorrect_relationships": [
+            {
+              "source": "array",
+              "target": "o_1",
+              "student_relation": "has_property",
+              "correct_relation": "has_complexity",
+              "explanation": "Student used 'has_property' but the correct relationship is 'has_complexity'",
+              "severity": "moderate"
+            },
+            {
+              "source": "linked_list",
+              "target": "o_n",
+              "student_relation": "has_property",
+              "correct_relation": "has_complexity",
+              "explanation": "Student used 'has_property' but the correct relationship is 'has_complexity'",
+              "severity": "moderate"
+            },
+            {
+              "source": "linked_list",
+              "target": "o_1",
+              "student_relation": "has_property",
+              "correct_relation": "has_complexity",
+              "explanation": "Student used 'has_property' but the correct relationship is 'has_complexity'",
+              "severity": "moderate"
+            }
+          ],
+          "missing_relationships": [
+            {
+              "source": "dynamic_array",
+              "target": "array",
+              "type": "is_a",
+              "note": "Expected connection not demonstrated"
+            },
+            {
+              "source": "array",
+              "target": "dynamic_array",
+              "type": "prerequisite_for",
+              "note": "Expected connection not demonstrated"
+            },
+            {
+              "source": "dynamic_array",
+              "target": "array",
+              "type": "is_a",
+              "note": "Expected connection not demonstrated"
+            },
+            {
+              "source": "array",
+              "target": "dynamic_array",
+              "type": "prerequisite_for",
+              "note": "Expected connection not demonstrated"
+            }
+          ]
+        },
+        "diagnostic": {
+          "depth_assessment": "moderate",
+          "feedback_points": [
+            "Review the relationship between 'array' and 'o_1': Student used 'has_property' but the correct relationship is 'has_complexity'",
+            "Review the relationship between 'linked_list' and 'o_n': Student used 'has_property' but the correct relationship is 'has_complexity'",
+            "Review the relationship between 'linked_list' and 'o_1': Student used 'has_property' but the correct relationship is 'has_complexity'"
+          ],
+          "strengths": [
+            "Good concept coverage",
+            "Identified 8 relevant concepts"
+          ],
+          "weaknesses": [
+            "3 misconception(s) detected"
+          ]
+        }
+      },
+      "blooms": {
+        "level": 4,
+        "label": "Analyze",
+        "description": "Break information into parts, identify relationships and patterns",
+        "confidence": 0.8,
+        "justification": "The student demonstrates an ability to break down the material into constituent parts and detect relationships, but the moderate integration quality and presence of misconceptions prevent a higher classification.",
+        "reasoning_steps": [
+          "Step 1: The student demonstrates cognitive verbs such as comparing, explaining, and discussing, which indicate a level of understanding and analysis of the subject matter.",
+          "Step 2: The student goes beyond mere recall of facts by explaining the trade-offs between linked lists and arrays in terms of time complexity for common operations, indicating an ability to apply and analyze the information.",
+          "Step 3: The concept graph evidence shows that the student has identified several key concepts and relationships, but the integration quality is moderate and there are some misconceptions about the relationships between concepts, suggesting a moderate level of depth.",
+          "Step 4: Considering the student's ability to compare, explain, and discuss the trade-offs between linked lists and arrays, the highest Bloom's level clearly demonstrated is Analyze, as the student is breaking down the material into constituent parts and detecting relationships."
+        ],
+        "evidence": {
+          "cognitive_verbs": [
+            "comparing",
+            "explaining",
+            "discussing",
+            "analyzing"
+          ],
+          "surface_indicators": [
+            "recalling facts about arrays and linked lists"
+          ],
+          "depth_indicators": [
+            "explaining trade-offs",
+            "comparing time complexities",
+            "identifying relationships between concepts"
+          ]
+        }
+      },
+      "solo": {
+        "level": 4,
+        "label": "Relational",
+        "description": "Integrates multiple aspects into a coherent whole; shows how concepts relate",
+        "confidence": 0.95,
+        "justification": "The student's ability to integrate concepts into a coherent comparison of linked lists and arrays, including discussions on time complexity and use cases, indicates a relational understanding of the topic.",
+        "reasoning_steps": [
+          "Step 1 (Capacity): The student demonstrates 8 relevant concepts, indicating a high capacity for understanding the topic.",
+          "Step 2 (Relating): The student shows how concepts connect, such as explaining how the use of pointers in linked lists affects time complexity and how arrays' contiguous memory impacts access times.",
+          "Step 3 (Integration): While the student demonstrates an integration quality score of 55% and has 4 isolated concepts, they manage to form a coherent argument comparing linked lists and arrays, including trade-offs and appropriate use cases.",
+          "Step 4 (Extension): The student stays within the bounds of the question, discussing the trade-offs and appropriate use cases for linked lists and arrays without extending to broader principles or novel situations beyond the immediate topic."
+        ],
+        "capacity": "many",
+        "relating_operation": "relate"
+      },
+      "misconceptions": {
+        "total_misconceptions": 3,
+        "by_severity": {
+          "critical": 1,
+          "moderate": 2,
+          "minor": 0
+        },
+        "misconceptions": [
+          {
+            "misconception_id": "MISCONCEPTION_1",
+            "taxonomy_category": "novel",
+            "type": "conflation",
+            "severity": "moderate",
+            "source_concept": "array",
+            "target_concept": "linked_list",
+            "student_claim": "Arrays and linked lists have similar time complexities for certain operations",
+            "correct_understanding": "Arrays and linked lists have different time complexities for operations like access, insertion, and deletion due to their underlying structures",
+            "explanation": "Arrays store elements in contiguous memory locations, allowing for O(1) access by index. Linked lists, on the other hand, use pointers to connect nodes, resulting in O(n) access time. Understanding these differences is crucial for choosing the right data structure for a problem.",
+            "remediation_hint": "Review the definitions and characteristics of arrays and linked lists, and practice analyzing their time complexities for various operations.",
+            "confidence": 0.8
+          },
+          {
+            "misconception_id": "MISCONCEPTION_2",
+            "taxonomy_category": "DS-LINK-01",
+            "type": "systematic",
+            "severity": "critical",
+            "source_concept": "linked_list",
+            "target_concept": "access_time",
+            "student_claim": "Linked lists can access elements in O(1) time",
+            "correct_understanding": "Linked lists require O(n) time to access an element, as they need to traverse the list from the head",
+            "explanation": "Linked lists are designed for efficient insertion and deletion, but accessing an element at a specific position requires traversing the list, which takes linear time. This is in contrast to arrays, which can access elements directly by their index.",
+            "remediation_hint": "Study the implementation of linked lists and analyze the time complexity of their operations, focusing on access, insertion, and deletion.",
+            "confidence": 0.9
+          },
+          {
+            "misconception_id": "MISCONCEPTION_3",
+            "taxonomy_category": "DS-LINK-03",
+            "type": "overgeneralization",
+            "severity": "moderate",
+            "source_concept": "linked_list",
+            "target_concept": "insertion_time",
+            "student_claim": "Insertion in linked lists is always O(1)",
+            "correct_understanding": "Insertion at the head of a linked list is O(1), but insertion at a specific position requires O(n) traversal first",
+            "explanation": "While inserting at the head of a linked list is efficient, inserting at other positions requires finding the correct location, which can take linear time. This distinction is important for understanding the trade-offs between linked lists and other data structures.",
+            "remediation_hint": "Practice implementing linked list operations, including insertion at different positions, to understand the time complexities involved.",
+            "confidence": 0.7
+          }
+        ],
+        "summary": "The student demonstrates a mix of systematic and overgeneralized misconceptions about linked lists and arrays, particularly regarding their time complexities for access, insertion, and deletion. Remediation should focus on reviewing the fundamental characteristics of these data structures and practicing analysis of their operations.",
+        "overall_accuracy": 0.4
+      }
+    },
+    "student_C_basic": {
+      "label": "Student C \u2014 Basic (Expected: Bloom's 2, SOLO 2-3)",
+      "answer_preview": "A linked list is a data structure where each node points to the next one. An array stores elements i...",
+      "concept_graph": {
+        "question": "Compare linked lists and arrays. Explain when you would use each, and discuss the trade-offs in terms of time complexity for common operations.",
+        "student_answer": "A linked list is a data structure where each node points to the next one. An array stores elements in a row. You can access array elements quickly.",
+        "concepts": [
+          {
+            "concept_id": "linked_list",
+            "confidence": 0.9,
+            "evidence": "A linked list is a data structure where each node points to the next one.",
+            "is_correct_usage": true
+          },
+          {
+            "concept_id": "array",
+            "confidence": 0.9,
+            "evidence": "An array stores elements in a row.",
+            "is_correct_usage": true
+          },
+          {
+            "concept_id": "node",
+            "confidence": 0.8,
+            "evidence": "each node points to the next one",
+            "is_correct_usage": true
+          },
+          {
+            "concept_id": "data_structure",
+            "confidence": 0.7,
+            "evidence": "A linked list is a data structure",
+            "is_correct_usage": true
+          },
+          {
+            "concept_id": "time_complexity",
+            "confidence": 0.6,
+            "evidence": "You can access array elements quickly",
+            "is_correct_usage": true
+          }
+        ],
+        "relationships": [
+          {
+            "source_id": "linked_list",
+            "target_id": "node",
+            "relation_type": "has_part",
+            "confidence": 0.8,
+            "evidence": "A linked list is a data structure where each node points to the next one.",
+            "is_correct": true,
+            "misconception_note": null
+          },
+          {
+            "source_id": "array",
+            "target_id": "data_structure",
+            "relation_type": "is_a",
+            "confidence": 0.7,
+            "evidence": "An array stores elements in a row.",
+            "is_correct": true,
+            "misconception_note": null
+          },
+          {
+            "source_id": "linked_list",
+            "target_id": "data_structure",
+            "relation_type": "is_a",
+            "confidence": 0.7,
+            "evidence": "A linked list is a data structure",
+            "is_correct": true,
+            "misconception_note": null
+          },
+          {
+            "source_id": "array",
+            "target_id": "time_complexity",
+            "relation_type": "has_property",
+            "confidence": 0.6,
+            "evidence": "You can access array elements quickly",
+            "is_correct": true,
+            "misconception_note": null
+          }
+        ],
+        "unmapped_terms": [
+          "quickly"
+        ],
+        "overall_depth": "surface",
+        "stats": {
+          "num_concepts": 5,
+          "num_relationships": 4,
+          "num_correct_concepts": 5,
+          "num_misconceptions": 0
+        }
+      },
+      "comparison": {
+        "scores": {
+          "concept_coverage": 1.0,
+          "relationship_accuracy": 1.0,
+          "integration_quality": 0.92,
+          "overall": 0.976
+        },
+        "analysis": {
+          "matched_concepts": [
+            "array",
+            "linked_list",
+            "node",
+            "data_structure",
+            "time_complexity"
+          ],
+          "missing_concepts": [],
+          "extra_concepts": [],
+          "correct_relationships": [
+            {
+              "source": "linked_list",
+              "target": "node",
+              "type": "has_part",
+              "confidence": 0.8
+            },
+            {
+              "source": "array",
+              "target": "data_structure",
+              "type": "is_a",
+              "confidence": 0.7
+            },
+            {
+              "source": "linked_list",
+              "target": "data_structure",
+              "type": "is_a",
+              "confidence": 0.7
+            },
+            {
+              "source": "array",
+              "target": "time_complexity",
+              "type": "has_property",
+              "confidence": 0.42,
+              "note": "Not in expert graph but plausible"
+            }
+          ],
+          "incorrect_relationships": [],
+          "missing_relationships": [
+            {
+              "source": "array",
+              "target": "linked_list",
+              "type": "contrasts_with",
+              "note": "Expected connection not demonstrated"
+            },
+            {
+              "source": "array",
+              "target": "linked_list",
+              "type": "contrasts_with",
+              "note": "Expected connection not demonstrated"
+            }
+          ]
+        },
+        "diagnostic": {
+          "depth_assessment": "deep",
+          "feedback_points": [],
+          "strengths": [
+            "Good concept coverage",
+            "Accurate understanding of concept relationships",
+            "Well-integrated knowledge showing connections between concepts",
+            "Identified 5 relevant concepts"
+          ],
+          "weaknesses": []
+        }
+      },
+      "blooms": {
+        "level": 2,
+        "label": "Understand",
+        "description": "Explain ideas, paraphrase, interpret, or summarize",
+        "confidence": 0.8,
+        "justification": "Although the student's response is primarily descriptive and lacks in-depth analysis or application, it does demonstrate an understanding of the basic concepts of linked lists and arrays, thus warranting a classification of 'Understand' over 'Remember'.",
+        "reasoning_steps": [
+          "Step 1: The student demonstrates cognitive verbs such as defining and describing data structures like linked lists and arrays.",
+          "Step 2: The student's response primarily involves recalling basic facts about linked lists and arrays, without explaining how or why they are used, or analyzing their trade-offs in depth.",
+          "Step 3: The concept graph evidence indicates a surface-level understanding with a limited number of concepts and relationships identified, despite being correct, suggesting a lack of depth in the student's response.",
+          "Step 4: Given the student's focus on recalling basic definitions and the absence of deeper analysis, application, evaluation, or creation, the highest Bloom's level clearly demonstrated is Remember."
+        ],
+        "evidence": {
+          "cognitive_verbs": [
+            "define",
+            "describe"
+          ],
+          "surface_indicators": [
+            "lack of explanation",
+            "limited concept integration",
+            "surface-level description"
+          ],
+          "depth_indicators": [
+            "correct relationships between concepts",
+            "some integration of concepts"
+          ]
+        }
+      },
+      "solo": {
+        "level": 4,
+        "label": "Relational",
+        "description": "Integrates multiple aspects into a coherent whole; shows how concepts relate",
+        "confidence": 0.5,
+        "justification": "The student demonstrates several relevant concepts and shows good integration quality without isolated concepts. However, they fail to relate these concepts deeply, especially in terms of the trade-offs and time complexities as requested, which prevents the response from reaching the relational level.",
+        "reasoning_steps": [
+          "Step 1 (Capacity): The student demonstrates 5 relevant concepts (linked_list, array, node, data_structure, time_complexity), indicating a high capacity for recalling concepts.",
+          "Step 2 (Relating): Although the student mentions multiple concepts, they do not effectively show how these concepts connect or relate to each other in terms of trade-offs and time complexity for common operations, which is a critical aspect of the question.",
+          "Step 3 (Integration): The integration quality score is 92%, and there are no isolated concepts, suggesting a good level of integration. However, the depth from the knowledge graph comparison is described as 'surface', indicating that while concepts are connected, the discussion lacks depth.",
+          "Step 4 (Extension): The student does not go beyond what was asked, failing to discuss trade-offs in terms of time complexity for common operations or provide examples of when to use each data structure based on these trade-offs."
+        ],
+        "capacity": "several",
+        "relating_operation": "enumerate"
+      },
+      "misconceptions": {
+        "total_misconceptions": 0,
+        "by_severity": {
+          "critical": 0,
+          "moderate": 0,
+          "minor": 0
+        },
+        "misconceptions": [],
+        "summary": "No misconceptions detected. All demonstrated relationships appear correct.",
+        "overall_accuracy": 1.0
+      }
+    },
+    "student_D_misconceptions": {
+      "label": "Student D \u2014 Misconceptions (Expected: Bloom's 2-3, SOLO 3, multiple misconceptions)",
+      "answer_preview": "Arrays and linked lists are both used to store data. Linked lists let you access elements by index i...",
+      "concept_graph": {
+        "question": "Compare linked lists and arrays. Explain when you would use each, and discuss the trade-offs in terms of time complexity for common operations.",
+        "student_answer": "Arrays and linked lists are both used to store data. Linked lists let you access elements by index in O(1) time because each node has a number. Insertion in a linked list is always O(1) no matter where you insert. Arrays are slower because they use pointers like linked lists. I think linked lists are always better than arrays because they use dynamic memory.",
+        "concepts": [
+          {
+            "concept_id": "array",
+            "confidence": 0.9,
+            "evidence": "Arrays and linked lists are both used to store data.",
+            "is_correct_usage": true
+          },
+          {
+            "concept_id": "linked_list",
+            "confidence": 0.9,
+            "evidence": "Linked lists let you access elements by index in O(1) time because each node has a number.",
+            "is_correct_usage": false
+          },
+          {
+            "concept_id": "node",
+            "confidence": 0.8,
+            "evidence": "each node has a number",
+            "is_correct_usage": true
+          },
+          {
+            "concept_id": "o_1",
+            "confidence": 0.8,
+            "evidence": "Linked lists let you access elements by index in O(1) time",
+            "is_correct_usage": false
+          },
+          {
+            "concept_id": "insertion",
+            "confidence": 0.8,
+            "evidence": "Insertion in a linked list is always O(1) no matter where you insert.",
+            "is_correct_usage": false
+          },
+          {
+            "concept_id": "dynamic_memory",
+            "confidence": 0.7,
+            "evidence": "they use dynamic memory",
+            "is_correct_usage": true
+          },
+          {
+            "concept_id": "pointer",
+            "confidence": 0.7,
+            "evidence": "Arrays are slower because they use pointers like linked lists.",
+            "is_correct_usage": true
+          }
+        ],
+        "relationships": [
+          {
+            "source_id": "linked_list",
+            "target_id": "node",
+            "relation_type": "has_part",
+            "confidence": 0.8,
+            "evidence": "each node has a number",
+            "is_correct": true,
+            "misconception_note": ""
+          },
+          {
+            "source_id": "linked_list",
+            "target_id": "o_1",
+            "relation_type": "has_property",
+            "confidence": 0.7,
+            "evidence": "Linked lists let you access elements by index in O(1) time",
+            "is_correct": false,
+            "misconception_note": "Linked lists do not support O(1) access by index, they support O(1) insertion/deletion at the head/tail"
+          },
+          {
+            "source_id": "array",
+            "target_id": "pointer",
+            "relation_type": "uses",
+            "confidence": 0.7,
+            "evidence": "Arrays are slower because they use pointers like linked lists.",
+            "is_correct": true,
+            "misconception_note": ""
+          },
+          {
+            "source_id": "linked_list",
+            "target_id": "dynamic_memory",
+            "relation_type": "uses",
+            "confidence": 0.7,
+            "evidence": "they use dynamic memory",
+            "is_correct": true,
+            "misconception_note": ""
+          }
+        ],
+        "unmapped_terms": [
+          "number"
+        ],
+        "overall_depth": "surface",
+        "stats": {
+          "num_concepts": 7,
+          "num_relationships": 4,
+          "num_correct_concepts": 4,
+          "num_misconceptions": 1
+        }
+      },
+      "comparison": {
+        "scores": {
+          "concept_coverage": 1.0,
+          "relationship_accuracy": 0.75,
+          "integration_quality": 0.6,
+          "overall": 0.805
+        },
+        "analysis": {
+          "matched_concepts": [
+            "o_1",
+            "dynamic_memory",
+            "array",
+            "insertion",
+            "pointer",
+            "linked_list",
+            "node"
+          ],
+          "missing_concepts": [],
+          "extra_concepts": [],
+          "correct_relationships": [
+            {
+              "source": "linked_list",
+              "target": "node",
+              "type": "has_part",
+              "confidence": 0.8
+            },
+            {
+              "source": "array",
+              "target": "pointer",
+              "type": "uses",
+              "confidence": 0.48999999999999994,
+              "note": "Not in expert graph but plausible"
+            },
+            {
+              "source": "linked_list",
+              "target": "dynamic_memory",
+              "type": "uses",
+              "confidence": 0.48999999999999994,
+              "note": "Not in expert graph but plausible"
+            }
+          ],
+          "incorrect_relationships": [
+            {
+              "source": "linked_list",
+              "target": "o_1",
+              "student_relation": "has_property",
+              "correct_relation": "has_complexity",
+              "explanation": "Linked lists do not support O(1) access by index, they support O(1) insertion/deletion at the head/tail",
+              "severity": "moderate"
+            },
+            {
+              "source": "linked_list",
+              "target": "o_1",
+              "student_relation": "has_property",
+              "note": "Linked lists do not support O(1) access by index, they support O(1) insertion/deletion at the head/tail"
+            }
+          ],
+          "missing_relationships": [
+            {
+              "source": "array",
+              "target": "o_1",
+              "type": "has_complexity",
+              "note": "Expected connection not demonstrated"
+            },
+            {
+              "source": "array",
+              "target": "o_1",
+              "type": "has_complexity",
+              "note": "Expected connection not demonstrated"
+            },
+            {
+              "source": "array",
+              "target": "linked_list",
+              "type": "contrasts_with",
+              "note": "Expected connection not demonstrated"
+            },
+            {
+              "source": "linked_list",
+              "target": "pointer",
+              "type": "has_part",
+              "note": "Expected connection not demonstrated"
+            },
+            {
+              "source": "pointer",
+              "target": "linked_list",
+              "type": "prerequisite_for",
+              "note": "Expected connection not demonstrated"
+            },
+            {
+              "source": "linked_list",
+              "target": "pointer",
+              "type": "has_part",
+              "note": "Expected connection not demonstrated"
+            },
+            {
+              "source": "pointer",
+              "target": "linked_list",
+              "type": "prerequisite_for",
+              "note": "Expected connection not demonstrated"
+            },
+            {
+              "source": "array",
+              "target": "linked_list",
+              "type": "contrasts_with",
+              "note": "Expected connection not demonstrated"
+            }
+          ]
+        },
+        "diagnostic": {
+          "depth_assessment": "moderate",
+          "feedback_points": [
+            "Review the relationship between 'linked_list' and 'o_1': Linked lists do not support O(1) access by index, they support O(1) insertion/deletion at the head/tail"
+          ],
+          "strengths": [
+            "Good concept coverage",
+            "Well-integrated knowledge showing connections between concepts",
+            "Identified 7 relevant concepts"
+          ],
+          "weaknesses": [
+            "1 misconception(s) detected"
+          ]
+        }
+      },
+      "blooms": {
+        "level": 2,
+        "label": "Understand",
+        "description": "Explain ideas, paraphrase, interpret, or summarize",
+        "confidence": 0.8,
+        "justification": "The student attempts to explain and compare linked lists and arrays but demonstrates significant misconceptions and a lack of depth in understanding the trade-offs, particularly regarding time complexity, which aligns most closely with the 'Understand' level of Bloom's Revised Taxonomy.",
+        "reasoning_steps": [
+          "Step 1: The student demonstrates cognitive verbs such as 'compare', 'explain', and 'discuss', indicating an attempt to go beyond mere recall of facts.",
+          "Step 2: The student tries to explain the differences between linked lists and arrays and when to use each, but the explanation is flawed, particularly regarding the time complexity of accessing elements in a linked list by index.",
+          "Step 3: The concept graph evidence shows that the student has identified several relevant concepts and some correct relationships, but there are misconceptions, such as the O(1) access time for linked lists by index, and the integration quality is only 60%, indicating a surface-level understanding.",
+          "Step 4: Despite the attempt to compare and explain, the highest level clearly demonstrated is 'Understand' because the student fails to accurately analyze the trade-offs and evaluate the implications of using linked lists versus arrays, especially in terms of time complexity for common operations."
+        ],
+        "evidence": {
+          "cognitive_verbs": [
+            "compare",
+            "explain",
+            "discuss"
+          ],
+          "surface_indicators": [
+            "misconceptions about linked list access time",
+            "low integration quality of 60%"
+          ],
+          "depth_indicators": [
+            "attempt to explain differences and trade-offs"
+          ]
+        }
+      },
+      "solo": {
+        "level": 3,
+        "label": "Multistructural",
+        "description": "Addresses several relevant aspects independently; concepts listed but not connected",
+        "confidence": 0.72,
+        "justification": "The student's response is classified as Multistructural because it demonstrates several relevant concepts and attempts to relate them, but the integration of these concepts into a coherent whole is incomplete, and the student does not demonstrate a deep understanding of how the concepts interconnect or extend beyond the immediate question.",
+        "reasoning_steps": [
+          "Step 1 (Capacity): The student demonstrates 7 relevant concepts, indicating a high capacity for recalling concepts related to the topic.",
+          "Step 2 (Relating): The student attempts to show how concepts connect, with 4 demonstrated relationships, but the connections are not entirely accurate or comprehensive.",
+          "Step 3 (Integration): The integration quality score is 60%, and there is 1 isolated concept, suggesting that while the student tries to integrate concepts, the structure is not entirely coherent, with some concepts not fully connected.",
+          "Step 4 (Extension): The student does not extend beyond the immediate topic or generalize the concepts to novel situations; instead, they make a simplistic comparison without fully addressing trade-offs or the nuances of when to use each data structure."
+        ],
+        "capacity": "several",
+        "relating_operation": "enumerate"
+      },
+      "misconceptions": {
+        "total_misconceptions": 3,
+        "by_severity": {
+          "critical": 1,
+          "moderate": 2,
+          "minor": 0
+        },
+        "misconceptions": [
+          {
+            "misconception_id": "M1",
+            "taxonomy_category": "DS-LINK-01",
+            "type": "systematic",
+            "severity": "critical",
+            "source_concept": "linked lists",
+            "target_concept": "array indices",
+            "student_claim": "Linked lists let you access elements by index in O(1) time",
+            "correct_understanding": "Linked lists do not support O(1) access by index; only arrays support O(1) index access",
+            "explanation": "In linked lists, each node only points to the next node, so to access a specific element, you need to traverse the list from the beginning, which takes O(n) time. Arrays, on the other hand, store elements in contiguous memory locations, allowing for O(1) access by index.",
+            "remediation_hint": "Review the implementation of linked lists and arrays, and practice accessing elements in both data structures to understand the time complexity differences.",
+            "confidence": 0.9
+          },
+          {
+            "misconception_id": "M2",
+            "taxonomy_category": "DS-LINK-03",
+            "type": "isolated",
+            "severity": "moderate",
+            "source_concept": "linked lists",
+            "target_concept": "insertion operations",
+            "student_claim": "Insertion in a linked list is always O(1)",
+            "correct_understanding": "Insertion at the head of a linked list is O(1), but insertion at a specific position requires O(n) traversal first",
+            "explanation": "While inserting at the head of a linked list is indeed O(1), inserting at a specific position requires traversing the list to find that position, which takes O(n) time. This is because linked lists do not have random access like arrays.",
+            "remediation_hint": "Implement insertion operations in linked lists at different positions to understand the time complexity implications.",
+            "confidence": 0.8
+          },
+          {
+            "misconception_id": "M3",
+            "taxonomy_category": "novel",
+            "type": "conflation",
+            "severity": "moderate",
+            "source_concept": "linked lists",
+            "target_concept": "dynamic memory",
+            "student_claim": "Linked lists are always better than arrays because they use dynamic memory",
+            "correct_understanding": "Linked lists use dynamic memory allocation, but this does not inherently make them better than arrays. The choice between linked lists and arrays depends on the specific use case and performance requirements.",
+            "explanation": "While it's true that linked lists use dynamic memory allocation, which can be beneficial for certain scenarios, arrays have their own advantages, such as faster access times and less memory overhead for pointers. The choice between the two data structures should be based on the specific requirements of the problem you're trying to solve.",
+            "remediation_hint": "Research and compare the use cases and trade-offs of linked lists and arrays to understand when to use each.",
+            "confidence": 0.7
+          }
+        ],
+        "summary": "The student has critical misconceptions about linked lists, including the belief that they support O(1) access by index and that insertion is always O(1). Additionally, the student confuses the advantages of dynamic memory allocation in linked lists. Remediation should focus on clarifying these concepts and providing practice in implementing and analyzing both linked lists and arrays.",
+        "overall_accuracy": 0.4
+      }
+    }
+  }
+}
