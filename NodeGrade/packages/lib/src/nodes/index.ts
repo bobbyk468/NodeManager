@@ -8,6 +8,8 @@ import { DocumentLoader } from './DocumentLoader'
 import { ExtractNumberNode } from './ExtractNumberNode'
 import { ImageNode } from './ImageNode'
 import { KeywordCheckNode } from './KeywordCheckNode'
+import { ConceptExtractorNode } from './ConceptExtractorNode'
+import { KnowledgeGraphCompareNode } from './KnowledgeGraphCompareNode'
 import { LGraphRegisterCustomNodes } from './LGraphRegisterCustomNodes'
 import { LiteGraph } from './litegraph-extensions'
 import { LLMNode } from './LLMNode'
@@ -65,7 +67,9 @@ export {
   ExtractNumberNode,
   MathOperationNode,
   StringArrayToString,
-  StringsToArray
+  StringsToArray,
+  ConceptExtractorNode,
+  KnowledgeGraphCompareNode
 }
 
 export { LGraphNode } from './litegraph-extensions/LGraphNode'

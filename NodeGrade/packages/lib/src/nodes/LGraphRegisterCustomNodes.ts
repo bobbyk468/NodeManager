@@ -26,6 +26,8 @@ import { Textfield } from './Textfield'
 import { TFIDF } from './TF-IDF'
 import { CountNode } from './utils/CountNode'
 import { KeywordCheckNode } from './KeywordCheckNode'
+import { ConceptExtractorNode } from './ConceptExtractorNode'
+import { KnowledgeGraphCompareNode } from './KnowledgeGraphCompareNode'
 import { Watch } from './Watch'
 
 export function LGraphRegisterCustomNodes() {
@@ -57,6 +59,8 @@ export function LGraphRegisterCustomNodes() {
   LiteGraph.registerNodeType(Route.getPath(), Route)
   LiteGraph.registerNodeType(ImageNode.getPath(), ImageNode)
   LiteGraph.registerNodeType(KeywordCheckNode.getPath(), KeywordCheckNode)
+  LiteGraph.registerNodeType(ConceptExtractorNode.getPath(), ConceptExtractorNode)
+  LiteGraph.registerNodeType(KnowledgeGraphCompareNode.getPath(), KnowledgeGraphCompareNode)
 
   // Styling
   LiteGraph.NODE_DEFAULT_BGCOLOR = '#272727'
