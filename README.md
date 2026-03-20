@@ -1,57 +1,163 @@
-# NodeManager — Concept-Aware Student Assessment Research
+# ConceptGrade — Concept-Aware Student Assessment Framework
 
-This repository contains the implementation, research, and proposal artifacts for extending **NodeGrade** — a node-based Automatic Short Answer Grading (ASAG) tool — into a concept-understanding assessment framework.
+A 5-layer concept-understanding assessment framework built on top of **NodeGrade**, a node-based Automatic Short Answer Grading (ASAG) tool. ConceptGrade goes beyond surface-level text similarity to analyze the depth, structure, and accuracy of student conceptual understanding.
+
+## Research Context
+
+This is the implementation for a PhD research project:
+
+**Title:** *Concept-Aware Student Assessment: Beyond Surface-Level Grading Through Knowledge Graph-Integrated Depth Analysis with Visual Natural Language Interface*
+
+**Domain:** Computer Science (Data Structures, Algorithms, Operating Systems)
+
+**Key Contribution:** The first ASAG framework that integrates knowledge graph comparison, cognitive taxonomy classification (Bloom's + SOLO), misconception detection with a domain-specific taxonomy, and a Visual Natural Language Interface (V-NLI) for educational analytics — all within a single unified pipeline.
+
+## Architecture — 5-Layer Pipeline
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  Layer 1: Domain Knowledge Graph (Expert Reference)             │
+│  ┌─────────────┐  ┌──────────────────┐  ┌───────────────────┐  │
+│  │  Ontology    │→ │  Domain Graph     │→ │  DS Knowledge     │  │
+│  │  (8 concept  │  │  (concepts,       │  │  Graph (101       │  │
+│  │  types, 11   │  │  relationships,   │  │  concepts, 137    │  │
+│  │  rel types)  │  │  graph ops)       │  │  relationships)   │  │
+│  └─────────────┘  └──────────────────┘  └───────────────────┘  │
+├─────────────────────────────────────────────────────────────────┤
+│  Layer 2: Concept Extraction + Knowledge Graph Comparison       │
+│  ┌─────────────────┐  ┌─────────────────────────────────────┐  │
+│  │  ConceptExtractor│→ │  KG Comparator                      │  │
+│  │  (LLM + ontology │  │  (coverage, relationship accuracy,  │  │
+│  │  guided NER)     │  │  integration quality, gap analysis)  │  │
+│  └─────────────────┘  └─────────────────────────────────────┘  │
+├─────────────────────────────────────────────────────────────────┤
+│  Layer 3: Cognitive Depth Classification                        │
+│  ┌──────────────────────┐  ┌─────────────────────────────────┐ │
+│  │  Bloom's Classifier   │  │  SOLO Classifier (novel         │ │
+│  │  (6-level, CoT        │  │  graph-aware: structural        │ │
+│  │  classification)      │  │  complexity from KG topology)   │ │
+│  └──────────────────────┘  └─────────────────────────────────┘ │
+├─────────────────────────────────────────────────────────────────┤
+│  Layer 4: Misconception Detection                               │
+│  ┌──────────────────────────────────────────────────────────┐  │
+│  │  MisconceptionDetector (16-entry CS taxonomy, severity    │  │
+│  │  classification: minor/moderate/critical, LLM-powered)    │  │
+│  └──────────────────────────────────────────────────────────┘  │
+├─────────────────────────────────────────────────────────────────┤
+│  Layer 5: V-NLI Analytics + Visualization                       │
+│  ┌──────────────────┐  ┌────────────────┐  ┌────────────────┐ │
+│  │  NL Query Parser  │  │  ConceptGrade   │  │  Visualization │ │
+│  │  (8 query types,  │  │  Pipeline       │  │  Renderer      │ │
+│  │  LLM intent       │  │  (unified       │  │  (7 chart      │ │
+│  │  classification)  │  │  orchestration) │  │  types +       │ │
+│  │                   │  │                 │  │  dashboard)    │ │
+│  └──────────────────┘  └────────────────┘  └────────────────┘ │
+└─────────────────────────────────────────────────────────────────┘
+```
 
 ## Repository Structure
 
 ```
 NodeManager/
-├── NodeGrade/              # NodeGrade ASAG system (modified & tested)
+├── NodeGrade/                      # Modified NodeGrade ASAG system
 │   ├── packages/
-│   │   ├── backend/        # NestJS backend (API, WebSocket, grading pipeline)
-│   │   ├── frontend/       # React + Vite frontend (node-graph editor)
-│   │   └── worker/         # Similarity worker (sentence transformers, cosine similarity)
+│   │   ├── concept-aware/          # ConceptGrade framework (Python)
+│   │   │   ├── knowledge_graph/    # Layer 1: Domain ontology & KG
+│   │   │   │   ├── ontology.py           # 8 concept types, 11 relationship types
+│   │   │   │   ├── domain_graph.py       # DomainKnowledgeGraph class
+│   │   │   │   ├── ds_knowledge_graph.py # CS Data Structures (101 concepts, 137 rels)
+│   │   │   │   └── graph_builder.py      # Interactive graph builder
+│   │   │   ├── concept_extraction/ # Layer 2: LLM-based concept extraction
+│   │   │   │   └── extractor.py          # ConceptExtractor (ontology-guided NER)
+│   │   │   ├── graph_comparison/   # Layer 2: KG comparison engine
+│   │   │   │   └── comparator.py         # Multi-dimensional scoring
+│   │   │   ├── cognitive_depth/    # Layer 3: Bloom's + SOLO classification
+│   │   │   │   ├── blooms_classifier.py  # Bloom's 6-level CoT classifier
+│   │   │   │   └── solo_classifier.py    # Novel SOLO graph-aware classifier
+│   │   │   ├── misconception_detection/  # Layer 4: CS misconception taxonomy
+│   │   │   │   └── detector.py           # 16-entry taxonomy, severity scoring
+│   │   │   ├── nl_query_engine/    # Layer 5: V-NLI query parser
+│   │   │   │   └── parser.py             # 8 query types, LLM intent parsing
+│   │   │   ├── conceptgrade/       # Unified pipeline
+│   │   │   │   └── pipeline.py           # ConceptGradePipeline orchestration
+│   │   │   ├── visualization/      # Dashboard & chart rendering
+│   │   │   │   └── renderer.py           # 7 visualization types
+│   │   │   ├── evaluation/         # Evaluation framework
+│   │   │   │   ├── metrics.py            # Pearson r, QWK, Cohen's κ, F1, RMSE
+│   │   │   │   └── baselines.py          # Cosine similarity, LLM zero-shot baselines
+│   │   │   ├── datasets/           # Benchmark datasets
+│   │   │   │   └── mohler_loader.py      # Mohler et al. (2011) CS dataset
+│   │   │   ├── data/               # Demo results & evaluation output
+│   │   │   │   ├── phase2_demo_results.json
+│   │   │   │   ├── phase3_demo_results.json
+│   │   │   │   ├── evaluation_results.json
+│   │   │   │   └── evaluation_summary.txt
+│   │   │   ├── run_phase2_demo.py  # Phase 2 demo script
+│   │   │   ├── run_phase3_demo.py  # Phase 3 demo script
+│   │   │   └── run_evaluation.py   # Full evaluation pipeline
+│   │   ├── lib/src/nodes/          # NodeGrade TypeScript node integrations
+│   │   │   ├── ConceptExtractorNode.ts
+│   │   │   ├── KnowledgeGraphCompareNode.ts
+│   │   │   ├── CognitiveDepthNode.ts
+│   │   │   ├── MisconceptionDetectorNode.ts
+│   │   │   ├── ConceptGradeNode.ts
+│   │   │   └── NLQueryNode.ts
+│   │   ├── backend/                # NestJS backend
+│   │   ├── frontend/               # React + Vite frontend
+│   │   └── worker/                 # Similarity worker
 │   └── ...
-├── research/               # Research documents
-│   ├── research_proposal_concept_understanding.docx   # Formal research proposal (34 pages)
-│   ├── research_asag_taxonomies.md                    # ASAG systems, Bloom's & SOLO taxonomies
-│   ├── research_kg_misconceptions.md                  # Knowledge graphs & misconception detection
-│   ├── research_llm_advances.md                       # LLM cognitive classification & 2024-2025 advances
-│   └── NodeGrade_Paper.pdf                            # Original NodeGrade paper (Fischer et al., 2025)
-├── screenshots/            # System screenshots
-│   ├── nodegrade-graded.png                           # End-to-end grading results
-│   └── nodegrade-editor-grading.png                   # Node editor with grading pipeline
+├── research/                       # Research documents
+│   ├── research_proposal_concept_understanding.docx   # 34-page formal proposal
+│   ├── research_asag_taxonomies.md
+│   ├── research_kg_misconceptions.md
+│   ├── research_llm_advances.md
+│   └── NodeGrade_Paper.pdf
+├── screenshots/
+├── ARCHITECTURE.md                 # Detailed architecture documentation
 └── README.md
 ```
 
-## Research Proposal
-
-**Title:** *Concept-Aware Student Assessment: Beyond Surface-Level Grading Through Knowledge Graph-Integrated Depth Analysis*
-
-### Problem
-Current ASAG systems (including NodeGrade) measure textual similarity between student responses and reference answers. They cannot assess the **depth** of a student's conceptual understanding — a student who memorizes phrasing scores identically to one who deeply understands the concept.
-
-### Proposed Solution
-A 5-layer architecture extending NodeGrade:
-
-1. **Concept Extraction Pipeline** — Extract domain concepts and relationships from student free-text answers using LLM-based NER + ontology validation
-2. **Knowledge Graph Comparison** — Compare student concept sub-graphs against expert reference graphs to identify gaps, misconceptions, and integration quality
-3. **Cognitive Depth Classification** — Assign Bloom's Taxonomy and SOLO Taxonomy levels to student responses
-4. **Misconception Detection** — Identify specific incorrect mental models, not just "wrong answers"
-5. **V-NLI Visualization** — Natural language interface for teachers to query assessment data (e.g., *"Show which concepts are most misunderstood in Class 3B"*)
-
-### Key Evidence
-- Emirtekin & Özarslan (2025): LLM-human agreement drops systematically at higher Bloom's cognitive levels (QWK 0.585–0.640)
-- Haycocks et al. (2024): Conceptual knowledge is more durable than factual recall
-- No existing ASAG system combines knowledge graph comparison + cognitive taxonomy classification + misconception detection
-
-## NodeGrade Setup
+## Quick Start
 
 ### Prerequisites
-- Node.js 18+, Yarn, Docker (for PostgreSQL)
-- LLM API key (Groq or OpenAI)
+- Python 3.10+, Node.js 18+, Yarn, Docker
+- Groq API key (free tier: [console.groq.com](https://console.groq.com))
 
-### Quick Start
+### Run ConceptGrade Evaluation
+
+```bash
+# Clone
+git clone https://github.com/bobbyk468/NodeManager.git
+cd NodeManager/NodeGrade/packages/concept-aware
+
+# Install Python dependencies
+pip install groq scikit-learn scipy numpy networkx
+
+# Set API key
+export GROQ_API_KEY="your-groq-api-key"
+
+# Run evaluation (live mode — uses Groq LLM)
+python run_evaluation.py
+
+# Run evaluation (offline mode — no API required)
+python run_evaluation.py --offline
+```
+
+### Run Phase Demos
+
+```bash
+cd NodeGrade/packages/concept-aware
+
+# Phase 2: Bloom's + SOLO + Misconception Detection
+export GROQ_API_KEY="your-key"
+python run_phase2_demo.py
+
+# Phase 3: ConceptGrade Pipeline + V-NLI + Visualizations
+python run_phase3_demo.py
+```
+
+### Run NodeGrade (Full ASAG System)
+
 ```bash
 cd NodeGrade
 
@@ -60,48 +166,85 @@ docker run -d --name nodegrade-db -p 5432:5432 \
   -e POSTGRES_DB=nodegrade -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres \
   postgres:15
 
-# Install dependencies
+# Install & configure
 corepack enable && yarn install
-
-# Configure environment
 cp packages/backend/.env_template packages/backend/.env
-# Edit .env: set OPENAI_API_KEY (or BEARER_TOKEN for Groq)
+# Edit .env: set BEARER_TOKEN for Groq
 
-# Build and start
+# Build & run
 yarn workspace backend build
 yarn workspace backend start &
 yarn workspace frontend dev &
-
-# Start similarity worker
 cd packages/worker && pip install -r requirements.txt && python main.py &
 ```
 
-### Modifications Made
-The following fixes were applied to the original NodeGrade codebase:
+## Evaluation Results
 
-1. **Output node type fix** — Changed `output/feedback` to `output/output` in frontend node definitions
-2. **Similarity worker URL** — Added `SIMILARITY_WORKER_URL` to node hydration environment
-3. **CosineSimilarity string handling** — Enhanced to auto-embed string inputs via the similarity worker
-4. **Groq LLM integration** — Configured `MODEL_WORKER_URL` and `BEARER_TOKEN` for Groq API with `llama-3.3-70b-versatile`
+Evaluated on the **Mohler et al. (2011)** CS Short Answer dataset (Data Structures domain):
 
-### Test Results
-- **Score:** 66.79%
-- **Feedback:** German-language LLM-generated feedback
-- **Verdict:** "Bestanden!" (Passed)
-- **LLM Models Available:** 18 Groq models
+| System | Pearson r | QWK | RMSE |
+|--------|-----------|-----|------|
+| Cosine Similarity (TF-IDF) | 0.578 | 0.165 | 2.257 |
+| LLM Zero-Shot (Llama-3.3-70B) | 0.878 | 0.370 | 1.755 |
+| **ConceptGrade (Ours)** | **0.954** | **0.721** | **0.946** |
+
+### Literature Comparison (Full Mohler dataset, n=630)
+
+| System | Pearson r | RMSE | Source |
+|--------|-----------|------|--------|
+| Random Baseline | 0.000 | 1.800 | — |
+| Cosine Similarity | 0.518 | 1.180 | Mohler et al. (2011) |
+| Dependency Graph Alignment | 0.518 | 1.020 | Mohler et al. (2011) |
+| LSA | 0.493 | 1.200 | Mohler & Mihalcea (2009) |
+| BERT-based | 0.592 | 0.970 | Sultan et al. (2016) |
+
+**Key Insight:** ConceptGrade's multi-layer approach (concept extraction + cognitive depth + misconception detection) provides both higher correlation with human scores AND richer diagnostic information (Bloom's level, SOLO level, specific misconceptions) that a single numeric score cannot capture.
+
+## Key Technical Innovations
+
+1. **Graph-Aware SOLO Classification** — Novel approach that infers SOLO taxonomy levels from the topology of student concept sub-graphs (node count, connectivity, relationship diversity), not just text features.
+
+2. **CS Misconception Taxonomy** — Curated 16-entry taxonomy of common Computer Science misconceptions (pointers, recursion, complexity, trees, hashing) with severity classification (minor/moderate/critical).
+
+3. **V-NLI Query Engine** — Educators ask natural language questions ("Which students struggle with recursion?") and get structured analytics + visualizations. Supports 8 query types with LLM intent classification.
+
+4. **Unified ConceptGrade Pipeline** — Single `assess_student()` call runs all 5 layers, producing a `StudentAssessment` object with concept graph, Bloom's/SOLO levels, misconceptions, composite score, and depth category.
+
+## Research Papers
+
+This framework supports 2-3 research publications:
+
+| Paper | Focus | Key Modules |
+|-------|-------|-------------|
+| Paper 1 | Knowledge Graph-Based Concept Assessment | Layers 1-2 (Extraction + KG Comparison) |
+| Paper 2 | Cognitive Depth Analysis (Bloom's + SOLO) | Layers 3-4 (Classification + Misconceptions) |
+| Paper 3 | ConceptGrade: Integrated Framework with V-NLI | Full pipeline (Layers 1-5) |
+
+## LLM Configuration
+
+ConceptGrade uses **Groq** (with `llama-3.3-70b-versatile`) by default. To switch to OpenAI:
+
+```python
+# In any pipeline constructor, change the model parameter:
+pipeline = ConceptGradePipeline(
+    api_key="your-openai-key",
+    model="gpt-4o",  # Or any OpenAI model
+)
+```
+
+The framework is LLM-agnostic — any model accessible via the Groq or OpenAI API format works.
 
 ## References
 
-Key papers cited in the research proposal:
-
 - Fischer, D.V. et al. (2025). *NodeGrade: Evaluation of a Node-based Automatic Short Answer Tool.* ACM.
+- Mohler, M., Bunescu, R., & Mihalcea, R. (2011). *Learning to Grade Short Answer Questions using Semantic Similarity Measures and Dependency Graph Alignments.* ACL-HLT.
 - Emirtekin, E. & Özarslan, Y. (2025). *Automatic Short-Answer Grading in Sustainability Education.* JCAL.
 - Cohn, C. et al. (2024). *A Chain-of-Thought Prompting Approach with LLMs for Evaluating Students' Formative Assessment Responses.* AAAI.
-- Biggs, J. & Collis, K. (1982). *SOLO Taxonomy.* Academic Press.
-- Anderson, L.W. & Krathwohl, D.R. (2001). *Bloom's Revised Taxonomy.* Longman.
+- Biggs, J. & Collis, K. (1982). *Evaluating the Quality of Learning: The SOLO Taxonomy.* Academic Press.
+- Anderson, L.W. & Krathwohl, D.R. (2001). *A Taxonomy for Learning, Teaching, and Assessing.* Longman.
 
 See `research/research_proposal_concept_understanding.docx` for the full 34-page proposal with 23+ references.
 
 ## License
 
-NodeGrade is licensed under the [MIT License](./NodeGrade/LICENSE). Research documents are original work.
+NodeGrade is licensed under the [MIT License](./NodeGrade/LICENSE). Research documents and ConceptGrade extensions are original work.

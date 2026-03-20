@@ -1,0 +1,52 @@
+ConceptGrade Evaluation Summary
+==================================================
+Date: 2026-03-20 14:52
+Dataset: Mohler et al. (2011) — 30 samples, 6 questions
+Mode: Offline (rule-based)
+LLM: llama-3.3-70b-versatile (Groq)
+
+RESULTS:
+System                         Pearson r    QWK        RMSE       F1 (m)     Acc       
+──────────────────────────────────────────────────────────────────────────────────
+Cosine Similarity (TF-IDF)     0.5778       0.1647     2.2567     0.0000     0.1333    
+LLM Zero-Shot (offline)        0.8778       0.3702     1.7545     0.0000     0.1667    
+ConceptGrade (offline)         0.9538       0.7211     0.9457     0.0000     0.4000    
+
+DETAILED METRICS:
+
+=== Cosine Similarity (TF-IDF) (n=30) ===
+  Pearson r: 0.5778 (p=8.2657e-04)
+  QWK: 0.1647
+  RMSE: 2.2567  MAE: 1.8637
+  F1 (macro): 0.0000  Accuracy: 0.1333
+
+=== LLM Zero-Shot (offline) (n=30) ===
+  Pearson r: 0.8778 (p=1.8824e-10)
+  QWK: 0.3702
+  RMSE: 1.7545  MAE: 1.5033
+  F1 (macro): 0.0000  Accuracy: 0.1667
+
+=== ConceptGrade (offline) (n=30) ===
+  Pearson r: 0.9538 (p=3.6886e-16)
+  QWK: 0.7211
+  RMSE: 0.9457  MAE: 0.7993
+  F1 (macro): 0.0000  Accuracy: 0.4000
+
+INTERPRETATION:
+  - Pearson r: Linear correlation with human scores (higher = better)
+  - QWK: Quadratic Weighted Kappa — ordinal agreement (higher = better)
+  - RMSE: Root Mean Squared Error (lower = better)
+
+ConceptGrade integrates 5 assessment layers:
+  Layer 1: Domain Knowledge Graph (101 concepts, 137 relationships)
+  Layer 2: LLM-based Concept Extraction + KG Comparison
+  Layer 3: Bloom's Taxonomy (Chain-of-Thought classification)
+  Layer 4: SOLO Taxonomy + Misconception Detection (16-entry CS taxonomy)
+  Layer 5: V-NLI Analytics Engine + Visualization Dashboard
+
+NOTES:
+  - Sample dataset used (n=30); full Mohler dataset has 630 responses
+  - For live API evaluation, set GROQ_API_KEY and omit --offline flag
+  - ConceptGrade's multi-layer approach provides richer assessment
+    than a single score — Bloom's/SOLO/Misconception dimensions
+    offer diagnostic value beyond numeric correlation
