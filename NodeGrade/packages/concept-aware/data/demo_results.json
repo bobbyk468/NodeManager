@@ -1,0 +1,1899 @@
+[
+  {
+    "question": "What is a linked list and how does it differ from an array?",
+    "quality": "excellent",
+    "answer": "A linked list is a linear data structure where each element (called a node) contains data and a pointer to the next node in the sequence. Unlike arrays, which store elements in contiguous memory locations allowing O(1) random access, linked lists use dynamic memory allocation where nodes can be scattered in memory. This makes insertion and deletion O(1) at the head, compared to O(n) for arrays which require shifting elements. However, linked lists sacrifice random access \u2014 you must traverse from the head to find the nth element, making access O(n). Arrays are better when you need fast access by index, while linked lists excel when frequent insertions and deletions are needed.",
+    "extraction": {
+      "question": "What is a linked list and how does it differ from an array?",
+      "student_answer": "A linked list is a linear data structure where each element (called a node) contains data and a pointer to the next node in the sequence. Unlike arrays, which store elements in contiguous memory locations allowing O(1) random access, linked lists use dynamic memory allocation where nodes can be scattered in memory. This makes insertion and deletion O(1) at the head, compared to O(n) for arrays which require shifting elements. However, linked lists sacrifice random access \u2014 you must traverse from the head to find the nth element, making access O(n). Arrays are better when you need fast access by index, while linked lists excel when frequent insertions and deletions are needed.",
+      "concepts": [
+        {
+          "concept_id": "linked_list",
+          "confidence": 1.0,
+          "evidence": "A linked list is a linear data structure where each element (called a node) contains data and a pointer to the next node in the sequence.",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "array",
+          "confidence": 1.0,
+          "evidence": "Unlike arrays, which store elements in contiguous memory locations allowing O(1) random access",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "node",
+          "confidence": 1.0,
+          "evidence": "each element (called a node) contains data and a pointer to the next node in the sequence",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "pointer",
+          "confidence": 1.0,
+          "evidence": "each element (called a node) contains data and a pointer to the next node in the sequence",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "o_1",
+          "confidence": 1.0,
+          "evidence": "O(1) random access",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "o_n",
+          "confidence": 1.0,
+          "evidence": "making access O(n)",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "insertion",
+          "confidence": 1.0,
+          "evidence": "insertion and deletion O(1) at the head",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "deletion",
+          "confidence": 1.0,
+          "evidence": "insertion and deletion O(1) at the head",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "memory_allocation",
+          "confidence": 0.8,
+          "evidence": "dynamic memory allocation where nodes can be scattered in memory",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "dynamic_memory",
+          "confidence": 0.8,
+          "evidence": "dynamic memory allocation where nodes can be scattered in memory",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "access",
+          "confidence": 1.0,
+          "evidence": "random access \u2014 you must traverse from the head to find the nth element",
+          "is_correct_usage": true
+        }
+      ],
+      "relationships": [
+        {
+          "source_id": "linked_list",
+          "target_id": "node",
+          "relation_type": "has_part",
+          "confidence": 1.0,
+          "evidence": "each element (called a node) contains data and a pointer to the next node in the sequence",
+          "is_correct": true,
+          "misconception_note": ""
+        },
+        {
+          "source_id": "linked_list",
+          "target_id": "pointer",
+          "relation_type": "uses",
+          "confidence": 1.0,
+          "evidence": "each element (called a node) contains data and a pointer to the next node in the sequence",
+          "is_correct": true,
+          "misconception_note": ""
+        },
+        {
+          "source_id": "array",
+          "target_id": "o_1",
+          "relation_type": "has_property",
+          "confidence": 1.0,
+          "evidence": "arrays, which store elements in contiguous memory locations allowing O(1) random access",
+          "is_correct": true,
+          "misconception_note": ""
+        },
+        {
+          "source_id": "linked_list",
+          "target_id": "o_n",
+          "relation_type": "has_property",
+          "confidence": 1.0,
+          "evidence": "making access O(n)",
+          "is_correct": true,
+          "misconception_note": ""
+        },
+        {
+          "source_id": "linked_list",
+          "target_id": "insertion",
+          "relation_type": "operates_on",
+          "confidence": 1.0,
+          "evidence": "insertion and deletion O(1) at the head",
+          "is_correct": true,
+          "misconception_note": ""
+        },
+        {
+          "source_id": "linked_list",
+          "target_id": "deletion",
+          "relation_type": "operates_on",
+          "confidence": 1.0,
+          "evidence": "insertion and deletion O(1) at the head",
+          "is_correct": true,
+          "misconception_note": ""
+        },
+        {
+          "source_id": "array",
+          "target_id": "linked_list",
+          "relation_type": "contrasts_with",
+          "confidence": 1.0,
+          "evidence": "Unlike arrays, which store elements in contiguous memory locations allowing O(1) random access",
+          "is_correct": true,
+          "misconception_note": ""
+        }
+      ],
+      "unmapped_terms": [],
+      "overall_depth": "moderate",
+      "stats": {
+        "num_concepts": 11,
+        "num_relationships": 7,
+        "num_correct_concepts": 11,
+        "num_misconceptions": 0
+      }
+    },
+    "comparison": {
+      "scores": {
+        "concept_coverage": 0.7423,
+        "relationship_accuracy": 0.5714,
+        "integration_quality": 0.6827,
+        "overall": 0.6732
+      },
+      "analysis": {
+        "matched_concepts": [
+          "array",
+          "linked_list",
+          "insertion",
+          "pointer",
+          "deletion",
+          "dynamic_memory",
+          "access",
+          "node"
+        ],
+        "missing_concepts": [
+          {
+            "id": "static_memory",
+            "name": "Static Memory",
+            "importance": 0.44000000000000006,
+            "type": "incomplete"
+          },
+          {
+            "id": "data_structure",
+            "name": "Data Structure",
+            "importance": 0.4,
+            "type": "incomplete"
+          }
+        ],
+        "extra_concepts": [
+          "o_n",
+          "o_1",
+          "memory_allocation"
+        ],
+        "correct_relationships": [
+          {
+            "source": "linked_list",
+            "target": "node",
+            "type": "has_part",
+            "confidence": 1.0
+          },
+          {
+            "source": "linked_list",
+            "target": "insertion",
+            "type": "operates_on",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "linked_list",
+            "target": "deletion",
+            "type": "operates_on",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "array",
+            "target": "linked_list",
+            "type": "contrasts_with",
+            "confidence": 1.0
+          }
+        ],
+        "incorrect_relationships": [
+          {
+            "source": "linked_list",
+            "target": "pointer",
+            "student_relation": "uses",
+            "correct_relation": "has_part",
+            "explanation": "Student used 'uses' but the correct relationship is 'has_part'",
+            "severity": "moderate"
+          },
+          {
+            "source": "array",
+            "target": "o_1",
+            "student_relation": "has_property",
+            "correct_relation": "has_complexity",
+            "explanation": "Student used 'has_property' but the correct relationship is 'has_complexity'",
+            "severity": "moderate"
+          },
+          {
+            "source": "linked_list",
+            "target": "o_n",
+            "student_relation": "has_property",
+            "correct_relation": "has_complexity",
+            "explanation": "Student used 'has_property' but the correct relationship is 'has_complexity'",
+            "severity": "moderate"
+          }
+        ],
+        "missing_relationships": [
+          {
+            "source": "linked_list",
+            "target": "o_1",
+            "type": "has_complexity",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "linked_list",
+            "target": "o_1",
+            "type": "has_complexity",
+            "note": "Expected connection not demonstrated"
+          }
+        ]
+      },
+      "diagnostic": {
+        "depth_assessment": "moderate",
+        "feedback_points": [
+          "Consider discussing 'Static Memory' \u2014 it's important for a complete answer",
+          "Consider discussing 'Data Structure' \u2014 it's important for a complete answer",
+          "Review the relationship between 'linked_list' and 'pointer': Student used 'uses' but the correct relationship is 'has_part'",
+          "Review the relationship between 'array' and 'o_1': Student used 'has_property' but the correct relationship is 'has_complexity'",
+          "Review the relationship between 'linked_list' and 'o_n': Student used 'has_property' but the correct relationship is 'has_complexity'"
+        ],
+        "strengths": [
+          "Good concept coverage",
+          "Well-integrated knowledge showing connections between concepts",
+          "Identified 8 relevant concepts"
+        ],
+        "weaknesses": [
+          "3 misconception(s) detected"
+        ]
+      }
+    }
+  },
+  {
+    "question": "What is a linked list and how does it differ from an array?",
+    "quality": "average",
+    "answer": "A linked list is made of nodes that are connected by pointers. Each node has data and a pointer to the next node. It's different from an array because arrays use contiguous memory but linked lists don't. You can add and remove elements more easily in a linked list.",
+    "extraction": {
+      "question": "What is a linked list and how does it differ from an array?",
+      "student_answer": "A linked list is made of nodes that are connected by pointers. Each node has data and a pointer to the next node. It's different from an array because arrays use contiguous memory but linked lists don't. You can add and remove elements more easily in a linked list.",
+      "concepts": [
+        {
+          "concept_id": "linked_list",
+          "confidence": 1.0,
+          "evidence": "A linked list is made of nodes that are connected by pointers.",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "node",
+          "confidence": 1.0,
+          "evidence": "Each node has data and a pointer to the next node.",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "pointer",
+          "confidence": 1.0,
+          "evidence": "Each node has data and a pointer to the next node.",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "array",
+          "confidence": 1.0,
+          "evidence": "It's different from an array because arrays use contiguous memory but linked lists don't.",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "insertion",
+          "confidence": 0.8,
+          "evidence": "You can add and remove elements more easily in a linked list.",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "deletion",
+          "confidence": 0.8,
+          "evidence": "You can add and remove elements more easily in a linked list.",
+          "is_correct_usage": true
+        }
+      ],
+      "relationships": [
+        {
+          "source_id": "linked_list",
+          "target_id": "node",
+          "relation_type": "has_part",
+          "confidence": 1.0,
+          "evidence": "A linked list is made of nodes that are connected by pointers.",
+          "is_correct": true,
+          "misconception_note": ""
+        },
+        {
+          "source_id": "node",
+          "target_id": "pointer",
+          "relation_type": "has_part",
+          "confidence": 1.0,
+          "evidence": "Each node has data and a pointer to the next node.",
+          "is_correct": true,
+          "misconception_note": ""
+        },
+        {
+          "source_id": "linked_list",
+          "target_id": "array",
+          "relation_type": "contrasts_with",
+          "confidence": 1.0,
+          "evidence": "It's different from an array because arrays use contiguous memory but linked lists don't.",
+          "is_correct": true,
+          "misconception_note": ""
+        },
+        {
+          "source_id": "linked_list",
+          "target_id": "insertion",
+          "relation_type": "operates_on",
+          "confidence": 0.8,
+          "evidence": "You can add and remove elements more easily in a linked list.",
+          "is_correct": true,
+          "misconception_note": ""
+        },
+        {
+          "source_id": "linked_list",
+          "target_id": "deletion",
+          "relation_type": "operates_on",
+          "confidence": 0.8,
+          "evidence": "You can add and remove elements more easily in a linked list.",
+          "is_correct": true,
+          "misconception_note": ""
+        }
+      ],
+      "unmapped_terms": [],
+      "overall_depth": "moderate",
+      "stats": {
+        "num_concepts": 6,
+        "num_relationships": 5,
+        "num_correct_concepts": 6,
+        "num_misconceptions": 0
+      }
+    },
+    "comparison": {
+      "scores": {
+        "concept_coverage": 0.5399,
+        "relationship_accuracy": 1.0,
+        "integration_quality": 0.84,
+        "overall": 0.768
+      },
+      "analysis": {
+        "matched_concepts": [
+          "array",
+          "linked_list",
+          "insertion",
+          "pointer",
+          "deletion",
+          "node"
+        ],
+        "missing_concepts": [
+          {
+            "id": "static_memory",
+            "name": "Static Memory",
+            "importance": 0.44000000000000006,
+            "type": "missing"
+          },
+          {
+            "id": "data_structure",
+            "name": "Data Structure",
+            "importance": 0.4,
+            "type": "incomplete"
+          },
+          {
+            "id": "dynamic_memory",
+            "name": "Dynamic Memory",
+            "importance": 0.44000000000000006,
+            "type": "missing"
+          },
+          {
+            "id": "access",
+            "name": "Access",
+            "importance": 0.22000000000000003,
+            "type": "missing"
+          }
+        ],
+        "extra_concepts": [],
+        "correct_relationships": [
+          {
+            "source": "linked_list",
+            "target": "node",
+            "type": "has_part",
+            "confidence": 1.0
+          },
+          {
+            "source": "node",
+            "target": "pointer",
+            "type": "has_part",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "linked_list",
+            "target": "array",
+            "type": "contrasts_with",
+            "confidence": 1.0
+          },
+          {
+            "source": "linked_list",
+            "target": "insertion",
+            "type": "operates_on",
+            "confidence": 0.5599999999999999,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "linked_list",
+            "target": "deletion",
+            "type": "operates_on",
+            "confidence": 0.5599999999999999,
+            "note": "Not in expert graph but plausible"
+          }
+        ],
+        "incorrect_relationships": [],
+        "missing_relationships": [
+          {
+            "source": "linked_list",
+            "target": "pointer",
+            "type": "has_part",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "pointer",
+            "target": "linked_list",
+            "type": "prerequisite_for",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "linked_list",
+            "target": "pointer",
+            "type": "has_part",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "pointer",
+            "target": "linked_list",
+            "type": "prerequisite_for",
+            "note": "Expected connection not demonstrated"
+          }
+        ]
+      },
+      "diagnostic": {
+        "depth_assessment": "moderate",
+        "feedback_points": [
+          "Consider discussing 'Static Memory' \u2014 it's important for a complete answer",
+          "Consider discussing 'Data Structure' \u2014 it's important for a complete answer",
+          "Consider discussing 'Dynamic Memory' \u2014 it's important for a complete answer"
+        ],
+        "strengths": [
+          "Accurate understanding of concept relationships",
+          "Well-integrated knowledge showing connections between concepts",
+          "Identified 6 relevant concepts"
+        ],
+        "weaknesses": []
+      }
+    }
+  },
+  {
+    "question": "What is a linked list and how does it differ from an array?",
+    "quality": "poor",
+    "answer": "A linked list is a type of list that stores data. It is different from an array.",
+    "extraction": {
+      "question": "What is a linked list and how does it differ from an array?",
+      "student_answer": "A linked list is a type of list that stores data. It is different from an array.",
+      "concepts": [
+        {
+          "concept_id": "linked_list",
+          "confidence": 1.0,
+          "evidence": "A linked list is a type of list that stores data.",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "array",
+          "confidence": 1.0,
+          "evidence": "It is different from an array.",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "data_structure",
+          "confidence": 0.8,
+          "evidence": "A linked list is a type of list that stores data.",
+          "is_correct_usage": true
+        }
+      ],
+      "relationships": [
+        {
+          "source_id": "linked_list",
+          "target_id": "array",
+          "relation_type": "contrasts_with",
+          "confidence": 1.0,
+          "evidence": "It is different from an array.",
+          "is_correct": true,
+          "misconception_note": ""
+        },
+        {
+          "source_id": "linked_list",
+          "target_id": "data_structure",
+          "relation_type": "is_a",
+          "confidence": 0.8,
+          "evidence": "A linked list is a type of list that stores data.",
+          "is_correct": true,
+          "misconception_note": ""
+        }
+      ],
+      "unmapped_terms": [
+        "list",
+        "type"
+      ],
+      "overall_depth": "surface",
+      "stats": {
+        "num_concepts": 3,
+        "num_relationships": 2,
+        "num_correct_concepts": 3,
+        "num_misconceptions": 0
+      }
+    },
+    "comparison": {
+      "scores": {
+        "concept_coverage": 0.3681,
+        "relationship_accuracy": 1.0,
+        "integration_quality": 0.8667,
+        "overall": 0.7072
+      },
+      "analysis": {
+        "matched_concepts": [
+          "array",
+          "linked_list",
+          "data_structure"
+        ],
+        "missing_concepts": [
+          {
+            "id": "static_memory",
+            "name": "Static Memory",
+            "importance": 0.44000000000000006,
+            "type": "missing"
+          },
+          {
+            "id": "insertion",
+            "name": "Insertion",
+            "importance": 0.22000000000000003,
+            "type": "incomplete"
+          },
+          {
+            "id": "pointer",
+            "name": "Pointer",
+            "importance": 0.26,
+            "type": "incomplete"
+          },
+          {
+            "id": "deletion",
+            "name": "Deletion",
+            "importance": 0.22000000000000003,
+            "type": "incomplete"
+          },
+          {
+            "id": "dynamic_memory",
+            "name": "Dynamic Memory",
+            "importance": 0.44000000000000006,
+            "type": "missing"
+          },
+          {
+            "id": "access",
+            "name": "Access",
+            "importance": 0.22000000000000003,
+            "type": "incomplete"
+          },
+          {
+            "id": "node",
+            "name": "Node",
+            "importance": 0.26,
+            "type": "incomplete"
+          }
+        ],
+        "extra_concepts": [],
+        "correct_relationships": [
+          {
+            "source": "linked_list",
+            "target": "array",
+            "type": "contrasts_with",
+            "confidence": 1.0
+          },
+          {
+            "source": "linked_list",
+            "target": "data_structure",
+            "type": "is_a",
+            "confidence": 0.8
+          }
+        ],
+        "incorrect_relationships": [],
+        "missing_relationships": [
+          {
+            "source": "array",
+            "target": "data_structure",
+            "type": "is_a",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "array",
+            "target": "data_structure",
+            "type": "is_a",
+            "note": "Expected connection not demonstrated"
+          }
+        ]
+      },
+      "diagnostic": {
+        "depth_assessment": "surface",
+        "feedback_points": [
+          "Consider discussing 'Static Memory' \u2014 it's important for a complete answer",
+          "Consider discussing 'Insertion' \u2014 it's important for a complete answer",
+          "Consider discussing 'Pointer' \u2014 it's important for a complete answer",
+          "Try to explain HOW concepts relate to each other, not just listing them"
+        ],
+        "strengths": [
+          "Accurate understanding of concept relationships",
+          "Well-integrated knowledge showing connections between concepts"
+        ],
+        "weaknesses": []
+      }
+    }
+  },
+  {
+    "question": "Explain how BFS and DFS work and when you would use each.",
+    "quality": "excellent",
+    "answer": "BFS (Breadth-First Search) explores a graph level by level, using a queue data structure. Starting from a source vertex, it visits all neighbors first before moving to the next level. This makes BFS ideal for finding the shortest path in unweighted graphs. DFS (Depth-First Search) explores as deep as possible along each branch before backtracking, using a stack (or recursion's call stack). DFS is useful for topological sorting, detecting cycles, and solving maze-like problems. Both have O(V+E) time complexity. BFS uses more memory (O(V) for the queue) while DFS can use O(V) stack space in the worst case.",
+    "extraction": {
+      "question": "Explain how BFS and DFS work and when you would use each.",
+      "student_answer": "BFS (Breadth-First Search) explores a graph level by level, using a queue data structure. Starting from a source vertex, it visits all neighbors first before moving to the next level. This makes BFS ideal for finding the shortest path in unweighted graphs. DFS (Depth-First Search) explores as deep as possible along each branch before backtracking, using a stack (or recursion's call stack). DFS is useful for topological sorting, detecting cycles, and solving maze-like problems. Both have O(V+E) time complexity. BFS uses more memory (O(V) for the queue) while DFS can use O(V) stack space in the worst case.",
+      "concepts": [
+        {
+          "concept_id": "bfs",
+          "confidence": 1.0,
+          "evidence": "BFS (Breadth-First Search) explores a graph level by level, using a queue data structure.",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "dfs",
+          "confidence": 1.0,
+          "evidence": "DFS (Depth-First Search) explores as deep as possible along each branch before backtracking, using a stack (or recursion's call stack).",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "queue",
+          "confidence": 1.0,
+          "evidence": "BFS... using a queue data structure.",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "stack",
+          "confidence": 1.0,
+          "evidence": "DFS... using a stack (or recursion's call stack).",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "graph",
+          "confidence": 1.0,
+          "evidence": "BFS (Breadth-First Search) explores a graph level by level...",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "time_complexity",
+          "confidence": 1.0,
+          "evidence": "Both have O(V+E) time complexity.",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "space_complexity",
+          "confidence": 1.0,
+          "evidence": "BFS uses more memory (O(V) for the queue) while DFS can use O(V) stack space in the worst case.",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "shortest_path",
+          "confidence": 1.0,
+          "evidence": "This makes BFS ideal for finding the shortest path in unweighted graphs.",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "topological_sort",
+          "confidence": 1.0,
+          "evidence": "DFS is useful for... topological sorting",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "cycle",
+          "confidence": 1.0,
+          "evidence": "DFS is useful for... detecting cycles",
+          "is_correct_usage": true
+        }
+      ],
+      "relationships": [
+        {
+          "source_id": "bfs",
+          "target_id": "queue",
+          "relation_type": "uses",
+          "confidence": 1.0,
+          "evidence": "BFS... using a queue data structure.",
+          "is_correct": true,
+          "misconception_note": ""
+        },
+        {
+          "source_id": "dfs",
+          "target_id": "stack",
+          "relation_type": "uses",
+          "confidence": 1.0,
+          "evidence": "DFS... using a stack (or recursion's call stack).",
+          "is_correct": true,
+          "misconception_note": ""
+        },
+        {
+          "source_id": "bfs",
+          "target_id": "graph",
+          "relation_type": "operates_on",
+          "confidence": 1.0,
+          "evidence": "BFS (Breadth-First Search) explores a graph level by level...",
+          "is_correct": true,
+          "misconception_note": ""
+        },
+        {
+          "source_id": "dfs",
+          "target_id": "graph",
+          "relation_type": "operates_on",
+          "confidence": 1.0,
+          "evidence": "DFS (Depth-First Search) explores as deep as possible along each branch before backtracking...",
+          "is_correct": true,
+          "misconception_note": ""
+        },
+        {
+          "source_id": "bfs",
+          "target_id": "shortest_path",
+          "relation_type": "produces",
+          "confidence": 1.0,
+          "evidence": "This makes BFS ideal for finding the shortest path in unweighted graphs.",
+          "is_correct": true,
+          "misconception_note": ""
+        },
+        {
+          "source_id": "dfs",
+          "target_id": "topological_sort",
+          "relation_type": "produces",
+          "confidence": 1.0,
+          "evidence": "DFS is useful for... topological sorting",
+          "is_correct": true,
+          "misconception_note": ""
+        },
+        {
+          "source_id": "dfs",
+          "target_id": "cycle",
+          "relation_type": "detects",
+          "confidence": 1.0,
+          "evidence": "DFS is useful for... detecting cycles",
+          "is_correct": true,
+          "misconception_note": ""
+        }
+      ],
+      "unmapped_terms": [],
+      "overall_depth": "moderate",
+      "stats": {
+        "num_concepts": 10,
+        "num_relationships": 7,
+        "num_correct_concepts": 10,
+        "num_misconceptions": 0
+      }
+    },
+    "comparison": {
+      "scores": {
+        "concept_coverage": 0.7639,
+        "relationship_accuracy": 0.8571,
+        "integration_quality": 0.6911,
+        "overall": 0.7701
+      },
+      "analysis": {
+        "matched_concepts": [
+          "shortest_path",
+          "bfs",
+          "dfs",
+          "stack",
+          "queue",
+          "graph"
+        ],
+        "missing_concepts": [
+          {
+            "id": "vertex",
+            "name": "Vertex",
+            "importance": 0.44000000000000006,
+            "type": "incomplete"
+          },
+          {
+            "id": "traversal",
+            "name": "Traversal",
+            "importance": 0.22000000000000003,
+            "type": "missing"
+          },
+          {
+            "id": "edge",
+            "name": "Edge",
+            "importance": 0.44000000000000006,
+            "type": "incomplete"
+          }
+        ],
+        "extra_concepts": [
+          "time_complexity",
+          "space_complexity",
+          "topological_sort",
+          "cycle"
+        ],
+        "correct_relationships": [
+          {
+            "source": "bfs",
+            "target": "queue",
+            "type": "uses",
+            "confidence": 1.0
+          },
+          {
+            "source": "dfs",
+            "target": "stack",
+            "type": "uses",
+            "confidence": 1.0
+          },
+          {
+            "source": "bfs",
+            "target": "graph",
+            "type": "operates_on",
+            "confidence": 1.0
+          },
+          {
+            "source": "dfs",
+            "target": "graph",
+            "type": "operates_on",
+            "confidence": 1.0
+          },
+          {
+            "source": "bfs",
+            "target": "shortest_path",
+            "type": "produces",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "dfs",
+            "target": "cycle",
+            "type": "detects",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          }
+        ],
+        "incorrect_relationships": [
+          {
+            "source": "dfs",
+            "target": "topological_sort",
+            "student_relation": "produces",
+            "correct_relation": "uses",
+            "explanation": "Student used 'produces' but the correct relationship is 'uses'",
+            "severity": "moderate"
+          }
+        ],
+        "missing_relationships": [
+          {
+            "source": "bfs",
+            "target": "dfs",
+            "type": "contrasts_with",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "bfs",
+            "target": "dfs",
+            "type": "contrasts_with",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "stack",
+            "target": "queue",
+            "type": "contrasts_with",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "stack",
+            "target": "queue",
+            "type": "contrasts_with",
+            "note": "Expected connection not demonstrated"
+          }
+        ]
+      },
+      "diagnostic": {
+        "depth_assessment": "deep",
+        "feedback_points": [
+          "Consider discussing 'Vertex' \u2014 it's important for a complete answer",
+          "Consider discussing 'Traversal' \u2014 it's important for a complete answer",
+          "Consider discussing 'Edge' \u2014 it's important for a complete answer",
+          "Review the relationship between 'dfs' and 'topological_sort': Student used 'produces' but the correct relationship is 'uses'"
+        ],
+        "strengths": [
+          "Good concept coverage",
+          "Accurate understanding of concept relationships",
+          "Well-integrated knowledge showing connections between concepts",
+          "Identified 6 relevant concepts"
+        ],
+        "weaknesses": [
+          "1 misconception(s) detected"
+        ]
+      }
+    }
+  },
+  {
+    "question": "Explain how BFS and DFS work and when you would use each.",
+    "quality": "average",
+    "answer": "BFS uses a queue and visits nodes level by level. DFS uses a stack and goes deep first. BFS is good for shortest path. DFS is good for exploring all paths.",
+    "extraction": {
+      "question": "Explain how BFS and DFS work and when you would use each.",
+      "student_answer": "BFS uses a queue and visits nodes level by level. DFS uses a stack and goes deep first. BFS is good for shortest path. DFS is good for exploring all paths.",
+      "concepts": [
+        {
+          "concept_id": "bfs",
+          "confidence": 0.9,
+          "evidence": "BFS uses a queue and visits nodes level by level",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "dfs",
+          "confidence": 0.9,
+          "evidence": "DFS uses a stack and goes deep first",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "queue",
+          "confidence": 0.8,
+          "evidence": "BFS uses a queue",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "stack",
+          "confidence": 0.8,
+          "evidence": "DFS uses a stack",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "shortest_path",
+          "confidence": 0.7,
+          "evidence": "BFS is good for shortest path",
+          "is_correct_usage": true
+        }
+      ],
+      "relationships": [
+        {
+          "source_id": "bfs",
+          "target_id": "queue",
+          "relation_type": "uses",
+          "confidence": 0.9,
+          "evidence": "BFS uses a queue",
+          "is_correct": true,
+          "misconception_note": ""
+        },
+        {
+          "source_id": "dfs",
+          "target_id": "stack",
+          "relation_type": "uses",
+          "confidence": 0.9,
+          "evidence": "DFS uses a stack",
+          "is_correct": true,
+          "misconception_note": ""
+        },
+        {
+          "source_id": "bfs",
+          "target_id": "shortest_path",
+          "relation_type": "produces",
+          "confidence": 0.7,
+          "evidence": "BFS is good for shortest path",
+          "is_correct": true,
+          "misconception_note": ""
+        },
+        {
+          "source_id": "bfs",
+          "target_id": "dfs",
+          "relation_type": "contrasts_with",
+          "confidence": 0.6,
+          "evidence": "BFS and DFS are presented as distinct approaches",
+          "is_correct": true,
+          "misconception_note": ""
+        }
+      ],
+      "unmapped_terms": [],
+      "overall_depth": "surface",
+      "stats": {
+        "num_concepts": 5,
+        "num_relationships": 4,
+        "num_correct_concepts": 5,
+        "num_misconceptions": 0
+      }
+    },
+    "comparison": {
+      "scores": {
+        "concept_coverage": 0.5923,
+        "relationship_accuracy": 1.0,
+        "integration_quality": 0.9,
+        "overall": 0.8069
+      },
+      "analysis": {
+        "matched_concepts": [
+          "shortest_path",
+          "bfs",
+          "dfs",
+          "stack",
+          "queue"
+        ],
+        "missing_concepts": [
+          {
+            "id": "vertex",
+            "name": "Vertex",
+            "importance": 0.44000000000000006,
+            "type": "missing"
+          },
+          {
+            "id": "traversal",
+            "name": "Traversal",
+            "importance": 0.22000000000000003,
+            "type": "missing"
+          },
+          {
+            "id": "edge",
+            "name": "Edge",
+            "importance": 0.44000000000000006,
+            "type": "missing"
+          },
+          {
+            "id": "graph",
+            "name": "Graph",
+            "importance": 0.8,
+            "type": "incomplete"
+          }
+        ],
+        "extra_concepts": [],
+        "correct_relationships": [
+          {
+            "source": "bfs",
+            "target": "queue",
+            "type": "uses",
+            "confidence": 0.9
+          },
+          {
+            "source": "dfs",
+            "target": "stack",
+            "type": "uses",
+            "confidence": 0.9
+          },
+          {
+            "source": "bfs",
+            "target": "shortest_path",
+            "type": "produces",
+            "confidence": 0.48999999999999994,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "bfs",
+            "target": "dfs",
+            "type": "contrasts_with",
+            "confidence": 0.6
+          }
+        ],
+        "incorrect_relationships": [],
+        "missing_relationships": [
+          {
+            "source": "stack",
+            "target": "queue",
+            "type": "contrasts_with",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "stack",
+            "target": "queue",
+            "type": "contrasts_with",
+            "note": "Expected connection not demonstrated"
+          }
+        ]
+      },
+      "diagnostic": {
+        "depth_assessment": "moderate",
+        "feedback_points": [
+          "Consider discussing 'Vertex' \u2014 it's important for a complete answer",
+          "Consider discussing 'Traversal' \u2014 it's important for a complete answer",
+          "Consider discussing 'Edge' \u2014 it's important for a complete answer"
+        ],
+        "strengths": [
+          "Accurate understanding of concept relationships",
+          "Well-integrated knowledge showing connections between concepts",
+          "Identified 5 relevant concepts"
+        ],
+        "weaknesses": []
+      }
+    }
+  },
+  {
+    "question": "Explain how BFS and DFS work and when you would use each.",
+    "quality": "poor",
+    "answer": "BFS and DFS are ways to search through a graph. BFS goes wide and DFS goes deep.",
+    "extraction": {
+      "question": "Explain how BFS and DFS work and when you would use each.",
+      "student_answer": "BFS and DFS are ways to search through a graph. BFS goes wide and DFS goes deep.",
+      "concepts": [
+        {
+          "concept_id": "bfs",
+          "confidence": 0.8,
+          "evidence": "BFS goes wide",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "dfs",
+          "confidence": 0.8,
+          "evidence": "DFS goes deep",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "graph",
+          "confidence": 0.9,
+          "evidence": "search through a graph",
+          "is_correct_usage": true
+        }
+      ],
+      "relationships": [
+        {
+          "source_id": "bfs",
+          "target_id": "graph",
+          "relation_type": "operates_on",
+          "confidence": 0.7,
+          "evidence": "BFS goes wide and is used to search through a graph",
+          "is_correct": true,
+          "misconception_note": ""
+        },
+        {
+          "source_id": "dfs",
+          "target_id": "graph",
+          "relation_type": "operates_on",
+          "confidence": 0.7,
+          "evidence": "DFS goes deep and is used to search through a graph",
+          "is_correct": true,
+          "misconception_note": ""
+        }
+      ],
+      "unmapped_terms": [
+        "wide",
+        "deep"
+      ],
+      "overall_depth": "surface",
+      "stats": {
+        "num_concepts": 3,
+        "num_relationships": 2,
+        "num_correct_concepts": 3,
+        "num_misconceptions": 0
+      }
+    },
+    "comparison": {
+      "scores": {
+        "concept_coverage": 0.4635,
+        "relationship_accuracy": 1.0,
+        "integration_quality": 0.92,
+        "overall": 0.7614
+      },
+      "analysis": {
+        "matched_concepts": [
+          "bfs",
+          "dfs",
+          "graph"
+        ],
+        "missing_concepts": [
+          {
+            "id": "vertex",
+            "name": "Vertex",
+            "importance": 0.44000000000000006,
+            "type": "incomplete"
+          },
+          {
+            "id": "shortest_path",
+            "name": "Shortest Path",
+            "importance": 0.6,
+            "type": "superficial"
+          },
+          {
+            "id": "stack",
+            "name": "Stack",
+            "importance": 0.4,
+            "type": "incomplete"
+          },
+          {
+            "id": "traversal",
+            "name": "Traversal",
+            "importance": 0.22000000000000003,
+            "type": "missing"
+          },
+          {
+            "id": "edge",
+            "name": "Edge",
+            "importance": 0.44000000000000006,
+            "type": "incomplete"
+          },
+          {
+            "id": "queue",
+            "name": "Queue",
+            "importance": 0.4,
+            "type": "incomplete"
+          }
+        ],
+        "extra_concepts": [],
+        "correct_relationships": [
+          {
+            "source": "bfs",
+            "target": "graph",
+            "type": "operates_on",
+            "confidence": 0.7
+          },
+          {
+            "source": "dfs",
+            "target": "graph",
+            "type": "operates_on",
+            "confidence": 0.7
+          }
+        ],
+        "incorrect_relationships": [],
+        "missing_relationships": [
+          {
+            "source": "bfs",
+            "target": "dfs",
+            "type": "contrasts_with",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "bfs",
+            "target": "dfs",
+            "type": "contrasts_with",
+            "note": "Expected connection not demonstrated"
+          }
+        ]
+      },
+      "diagnostic": {
+        "depth_assessment": "moderate",
+        "feedback_points": [
+          "Consider discussing 'Vertex' \u2014 it's important for a complete answer",
+          "Consider discussing 'Shortest Path' \u2014 it's important for a complete answer",
+          "Consider discussing 'Stack' \u2014 it's important for a complete answer"
+        ],
+        "strengths": [
+          "Accurate understanding of concept relationships",
+          "Well-integrated knowledge showing connections between concepts"
+        ],
+        "weaknesses": []
+      }
+    }
+  },
+  {
+    "question": "How does a hash table handle collisions?",
+    "quality": "excellent",
+    "answer": "Hash collisions occur when two different keys map to the same index through the hash function. There are two main strategies: Separate chaining stores multiple elements at the same index using a linked list (or other collection). When a collision occurs, the new element is appended to the list at that bucket. Open addressing instead probes for the next available slot \u2014 linear probing checks consecutive slots, while quadratic probing uses a quadratic function. The load factor (n/m where n is elements and m is table size) affects performance \u2014 as it approaches 1.0, collisions increase and operations degrade from O(1) average to O(n) worst case. Resizing (rehashing) is triggered when the load factor exceeds a threshold, typically 0.75.",
+    "extraction": {
+      "question": "How does a hash table handle collisions?",
+      "student_answer": "Hash collisions occur when two different keys map to the same index through the hash function. There are two main strategies: Separate chaining stores multiple elements at the same index using a linked list (or other collection). When a collision occurs, the new element is appended to the list at that bucket. Open addressing instead probes for the next available slot \u2014 linear probing checks consecutive slots, while quadratic probing uses a quadratic function. The load factor (n/m where n is elements and m is table size) affects performance \u2014 as it approaches 1.0, collisions increase and operations degrade from O(1) average to O(n) worst case. Resizing (rehashing) is triggered when the load factor exceeds a threshold, typically 0.75.",
+      "concepts": [
+        {
+          "concept_id": "hash_table",
+          "confidence": 1.0,
+          "evidence": "Hash collisions occur when two different keys map to the same index through the hash function.",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "collision",
+          "confidence": 1.0,
+          "evidence": "Hash collisions occur when two different keys map to the same index through the hash function.",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "chaining",
+          "confidence": 1.0,
+          "evidence": "Separate chaining stores multiple elements at the same index using a linked list (or other collection).",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "linked_list",
+          "confidence": 1.0,
+          "evidence": "Separate chaining stores multiple elements at the same index using a linked list (or other collection).",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "open_addressing",
+          "confidence": 1.0,
+          "evidence": "Open addressing instead probes for the next available slot \u2014 linear probing checks consecutive slots, while quadratic probing uses a quadratic function.",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "load_factor",
+          "confidence": 1.0,
+          "evidence": "The load factor (n/m where n is elements and m is table size) affects performance \u2014 as it approaches 1.0, collisions increase and operations degrade from O(1) average to O(n) worst case.",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "o_1",
+          "confidence": 1.0,
+          "evidence": "as it approaches 1.0, collisions increase and operations degrade from O(1) average to O(n) worst case.",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "o_n",
+          "confidence": 1.0,
+          "evidence": "as it approaches 1.0, collisions increase and operations degrade from O(1) average to O(n) worst case.",
+          "is_correct_usage": true
+        }
+      ],
+      "relationships": [
+        {
+          "source_id": "hash_table",
+          "target_id": "collision",
+          "relation_type": "has_part",
+          "confidence": 1.0,
+          "evidence": "Hash collisions occur when two different keys map to the same index through the hash function.",
+          "is_correct": true,
+          "misconception_note": ""
+        },
+        {
+          "source_id": "collision",
+          "target_id": "chaining",
+          "relation_type": "is_resolved_by",
+          "confidence": 1.0,
+          "evidence": "Separate chaining stores multiple elements at the same index using a linked list (or other collection).",
+          "is_correct": true,
+          "misconception_note": ""
+        },
+        {
+          "source_id": "collision",
+          "target_id": "open_addressing",
+          "relation_type": "is_resolved_by",
+          "confidence": 1.0,
+          "evidence": "Open addressing instead probes for the next available slot \u2014 linear probing checks consecutive slots, while quadratic probing uses a quadratic function.",
+          "is_correct": true,
+          "misconception_note": ""
+        },
+        {
+          "source_id": "hash_table",
+          "target_id": "load_factor",
+          "relation_type": "has_property",
+          "confidence": 1.0,
+          "evidence": "The load factor (n/m where n is elements and m is table size) affects performance \u2014 as it approaches 1.0, collisions increase and operations degrade from O(1) average to O(n) worst case.",
+          "is_correct": true,
+          "misconception_note": ""
+        },
+        {
+          "source_id": "load_factor",
+          "target_id": "o_1",
+          "relation_type": "contrasts_with",
+          "confidence": 1.0,
+          "evidence": "as it approaches 1.0, collisions increase and operations degrade from O(1) average to O(n) worst case.",
+          "is_correct": true,
+          "misconception_note": ""
+        },
+        {
+          "source_id": "load_factor",
+          "target_id": "o_n",
+          "relation_type": "has_complexity",
+          "confidence": 1.0,
+          "evidence": "as it approaches 1.0, collisions increase and operations degrade from O(1) average to O(n) worst case.",
+          "is_correct": true,
+          "misconception_note": ""
+        }
+      ],
+      "unmapped_terms": [],
+      "overall_depth": "moderate",
+      "stats": {
+        "num_concepts": 8,
+        "num_relationships": 6,
+        "num_correct_concepts": 8,
+        "num_misconceptions": 0
+      }
+    },
+    "comparison": {
+      "scores": {
+        "concept_coverage": 0.89,
+        "relationship_accuracy": 0.6667,
+        "integration_quality": 0.5696,
+        "overall": 0.7269
+      },
+      "analysis": {
+        "matched_concepts": [
+          "load_factor",
+          "chaining",
+          "linked_list",
+          "hash_table",
+          "collision",
+          "open_addressing"
+        ],
+        "missing_concepts": [
+          {
+            "id": "hash_function",
+            "name": "Hash Function",
+            "importance": 0.44000000000000006,
+            "type": "incomplete"
+          }
+        ],
+        "extra_concepts": [
+          "o_n",
+          "o_1"
+        ],
+        "correct_relationships": [
+          {
+            "source": "hash_table",
+            "target": "collision",
+            "type": "has_part",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "hash_table",
+            "target": "load_factor",
+            "type": "has_property",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "load_factor",
+            "target": "o_1",
+            "type": "contrasts_with",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "load_factor",
+            "target": "o_n",
+            "type": "has_complexity",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          }
+        ],
+        "incorrect_relationships": [
+          {
+            "source": "collision",
+            "target": "chaining",
+            "student_relation": "is_resolved_by",
+            "correct_relation": "implements",
+            "explanation": "Student used 'is_resolved_by' but the correct relationship is 'implements'",
+            "severity": "moderate"
+          },
+          {
+            "source": "collision",
+            "target": "open_addressing",
+            "student_relation": "is_resolved_by",
+            "correct_relation": "implements",
+            "explanation": "Student used 'is_resolved_by' but the correct relationship is 'implements'",
+            "severity": "moderate"
+          }
+        ],
+        "missing_relationships": [
+          {
+            "source": "linked_list",
+            "target": "o_n",
+            "type": "has_complexity",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "chaining",
+            "target": "open_addressing",
+            "type": "contrasts_with",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "hash_table",
+            "target": "linked_list",
+            "type": "uses",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "linked_list",
+            "target": "o_n",
+            "type": "has_complexity",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "linked_list",
+            "target": "o_1",
+            "type": "has_complexity",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "hash_table",
+            "target": "linked_list",
+            "type": "uses",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "hash_table",
+            "target": "o_1",
+            "type": "has_complexity",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "chaining",
+            "target": "open_addressing",
+            "type": "contrasts_with",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "linked_list",
+            "target": "o_1",
+            "type": "has_complexity",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "hash_table",
+            "target": "o_1",
+            "type": "has_complexity",
+            "note": "Expected connection not demonstrated"
+          }
+        ]
+      },
+      "diagnostic": {
+        "depth_assessment": "moderate",
+        "feedback_points": [
+          "Consider discussing 'Hash Function' \u2014 it's important for a complete answer",
+          "Review the relationship between 'collision' and 'chaining': Student used 'is_resolved_by' but the correct relationship is 'implements'",
+          "Review the relationship between 'collision' and 'open_addressing': Student used 'is_resolved_by' but the correct relationship is 'implements'"
+        ],
+        "strengths": [
+          "Good concept coverage",
+          "Identified 6 relevant concepts"
+        ],
+        "weaknesses": [
+          "2 misconception(s) detected"
+        ]
+      }
+    }
+  },
+  {
+    "question": "How does a hash table handle collisions?",
+    "quality": "average",
+    "answer": "When two keys hash to the same index, that's a collision. Chaining uses linked lists to store multiple values at the same index. Open addressing finds another empty slot in the table.",
+    "extraction": {
+      "question": "How does a hash table handle collisions?",
+      "student_answer": "When two keys hash to the same index, that's a collision. Chaining uses linked lists to store multiple values at the same index. Open addressing finds another empty slot in the table.",
+      "concepts": [
+        {
+          "concept_id": "hash_table",
+          "confidence": 1.0,
+          "evidence": "hash table",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "collision",
+          "confidence": 1.0,
+          "evidence": "collision",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "chaining",
+          "confidence": 1.0,
+          "evidence": "Chaining uses linked lists to store multiple values at the same index",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "open_addressing",
+          "confidence": 1.0,
+          "evidence": "Open addressing finds another empty slot in the table",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "linked_list",
+          "confidence": 1.0,
+          "evidence": "Chaining uses linked lists",
+          "is_correct_usage": true
+        }
+      ],
+      "relationships": [
+        {
+          "source_id": "hash_table",
+          "target_id": "collision",
+          "relation_type": "has_part",
+          "confidence": 1.0,
+          "evidence": "When two keys hash to the same index, that's a collision",
+          "is_correct": true,
+          "misconception_note": ""
+        },
+        {
+          "source_id": "collision",
+          "target_id": "chaining",
+          "relation_type": "uses",
+          "confidence": 1.0,
+          "evidence": "Chaining uses linked lists to store multiple values at the same index",
+          "is_correct": true,
+          "misconception_note": ""
+        },
+        {
+          "source_id": "collision",
+          "target_id": "open_addressing",
+          "relation_type": "uses",
+          "confidence": 1.0,
+          "evidence": "Open addressing finds another empty slot in the table",
+          "is_correct": true,
+          "misconception_note": ""
+        },
+        {
+          "source_id": "chaining",
+          "target_id": "linked_list",
+          "relation_type": "uses",
+          "confidence": 1.0,
+          "evidence": "Chaining uses linked lists to store multiple values at the same index",
+          "is_correct": true,
+          "misconception_note": ""
+        }
+      ],
+      "unmapped_terms": [],
+      "overall_depth": "moderate",
+      "stats": {
+        "num_concepts": 5,
+        "num_relationships": 4,
+        "num_correct_concepts": 5,
+        "num_misconceptions": 0
+      }
+    },
+    "comparison": {
+      "scores": {
+        "concept_coverage": 0.74,
+        "relationship_accuracy": 0.5,
+        "integration_quality": 0.8,
+        "overall": 0.686
+      },
+      "analysis": {
+        "matched_concepts": [
+          "chaining",
+          "linked_list",
+          "hash_table",
+          "collision",
+          "open_addressing"
+        ],
+        "missing_concepts": [
+          {
+            "id": "load_factor",
+            "name": "Load Factor",
+            "importance": 0.6,
+            "type": "superficial"
+          },
+          {
+            "id": "hash_function",
+            "name": "Hash Function",
+            "importance": 0.44000000000000006,
+            "type": "incomplete"
+          }
+        ],
+        "extra_concepts": [],
+        "correct_relationships": [
+          {
+            "source": "hash_table",
+            "target": "collision",
+            "type": "has_part",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "chaining",
+            "target": "linked_list",
+            "type": "uses",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          }
+        ],
+        "incorrect_relationships": [
+          {
+            "source": "collision",
+            "target": "chaining",
+            "student_relation": "uses",
+            "correct_relation": "implements",
+            "explanation": "Student used 'uses' but the correct relationship is 'implements'",
+            "severity": "moderate"
+          },
+          {
+            "source": "collision",
+            "target": "open_addressing",
+            "student_relation": "uses",
+            "correct_relation": "implements",
+            "explanation": "Student used 'uses' but the correct relationship is 'implements'",
+            "severity": "moderate"
+          }
+        ],
+        "missing_relationships": [
+          {
+            "source": "chaining",
+            "target": "open_addressing",
+            "type": "contrasts_with",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "hash_table",
+            "target": "linked_list",
+            "type": "uses",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "hash_table",
+            "target": "linked_list",
+            "type": "uses",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "chaining",
+            "target": "open_addressing",
+            "type": "contrasts_with",
+            "note": "Expected connection not demonstrated"
+          }
+        ]
+      },
+      "diagnostic": {
+        "depth_assessment": "moderate",
+        "feedback_points": [
+          "Consider discussing 'Load Factor' \u2014 it's important for a complete answer",
+          "Consider discussing 'Hash Function' \u2014 it's important for a complete answer",
+          "Review the relationship between 'collision' and 'chaining': Student used 'uses' but the correct relationship is 'implements'",
+          "Review the relationship between 'collision' and 'open_addressing': Student used 'uses' but the correct relationship is 'implements'"
+        ],
+        "strengths": [
+          "Good concept coverage",
+          "Well-integrated knowledge showing connections between concepts",
+          "Identified 5 relevant concepts"
+        ],
+        "weaknesses": [
+          "2 misconception(s) detected"
+        ]
+      }
+    }
+  },
+  {
+    "question": "How does a hash table handle collisions?",
+    "quality": "poor",
+    "answer": "Collisions happen when two things go to the same place. You can use chaining.",
+    "extraction": {
+      "question": "How does a hash table handle collisions?",
+      "student_answer": "Collisions happen when two things go to the same place. You can use chaining.",
+      "concepts": [
+        {
+          "concept_id": "hash_table",
+          "confidence": 0.9,
+          "evidence": "hash table",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "collision",
+          "confidence": 0.9,
+          "evidence": "Collisions happen",
+          "is_correct_usage": true
+        },
+        {
+          "concept_id": "chaining",
+          "confidence": 0.9,
+          "evidence": "You can use chaining",
+          "is_correct_usage": true
+        }
+      ],
+      "relationships": [
+        {
+          "source_id": "hash_table",
+          "target_id": "collision",
+          "relation_type": "has_part",
+          "confidence": 0.8,
+          "evidence": "Collisions happen when two things go to the same place",
+          "is_correct": true,
+          "misconception_note": ""
+        },
+        {
+          "source_id": "collision",
+          "target_id": "chaining",
+          "relation_type": "uses",
+          "confidence": 0.8,
+          "evidence": "You can use chaining",
+          "is_correct": true,
+          "misconception_note": ""
+        }
+      ],
+      "unmapped_terms": [
+        "things",
+        "place"
+      ],
+      "overall_depth": "surface",
+      "stats": {
+        "num_concepts": 3,
+        "num_relationships": 2,
+        "num_correct_concepts": 3,
+        "num_misconceptions": 0
+      }
+    },
+    "comparison": {
+      "scores": {
+        "concept_coverage": 0.46,
+        "relationship_accuracy": 0.5,
+        "integration_quality": 1.0,
+        "overall": 0.634
+      },
+      "analysis": {
+        "matched_concepts": [
+          "chaining",
+          "hash_table",
+          "collision"
+        ],
+        "missing_concepts": [
+          {
+            "id": "load_factor",
+            "name": "Load Factor",
+            "importance": 0.6,
+            "type": "superficial"
+          },
+          {
+            "id": "linked_list",
+            "name": "Linked List",
+            "importance": 0.4,
+            "type": "incomplete"
+          },
+          {
+            "id": "open_addressing",
+            "name": "Open Addressing",
+            "importance": 0.72,
+            "type": "incomplete"
+          },
+          {
+            "id": "hash_function",
+            "name": "Hash Function",
+            "importance": 0.44000000000000006,
+            "type": "incomplete"
+          }
+        ],
+        "extra_concepts": [],
+        "correct_relationships": [
+          {
+            "source": "hash_table",
+            "target": "collision",
+            "type": "has_part",
+            "confidence": 0.5599999999999999,
+            "note": "Not in expert graph but plausible"
+          }
+        ],
+        "incorrect_relationships": [
+          {
+            "source": "collision",
+            "target": "chaining",
+            "student_relation": "uses",
+            "correct_relation": "implements",
+            "explanation": "Student used 'uses' but the correct relationship is 'implements'",
+            "severity": "moderate"
+          }
+        ],
+        "missing_relationships": []
+      },
+      "diagnostic": {
+        "depth_assessment": "moderate",
+        "feedback_points": [
+          "Consider discussing 'Load Factor' \u2014 it's important for a complete answer",
+          "Consider discussing 'Linked List' \u2014 it's important for a complete answer",
+          "Consider discussing 'Open Addressing' \u2014 it's important for a complete answer",
+          "Review the relationship between 'collision' and 'chaining': Student used 'uses' but the correct relationship is 'implements'"
+        ],
+        "strengths": [
+          "Well-integrated knowledge showing connections between concepts"
+        ],
+        "weaknesses": [
+          "1 misconception(s) detected"
+        ]
+      }
+    }
+  }
+]

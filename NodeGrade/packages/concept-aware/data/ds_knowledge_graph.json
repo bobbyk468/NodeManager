@@ -1,0 +1,2045 @@
+{
+  "domain": "data_structures",
+  "version": "1.0-expert",
+  "concepts": [
+    {
+      "id": "data_structure",
+      "name": "Data Structure",
+      "concept_type": "abstract_concept",
+      "description": "A way of organizing and storing data to enable efficient access and modification",
+      "aliases": [
+        "DS"
+      ],
+      "difficulty_level": 1
+    },
+    {
+      "id": "algorithm",
+      "name": "Algorithm",
+      "concept_type": "abstract_concept",
+      "description": "A finite sequence of well-defined instructions to solve a problem",
+      "aliases": [
+        "algo"
+      ],
+      "difficulty_level": 1
+    },
+    {
+      "id": "abstract_data_type",
+      "name": "Abstract Data Type",
+      "concept_type": "abstract_concept",
+      "description": "A mathematical model defining data and operations independent of implementation",
+      "aliases": [
+        "ADT"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "recursion",
+      "name": "Recursion",
+      "concept_type": "abstract_concept",
+      "description": "A method where the solution depends on solutions to smaller instances of the same problem",
+      "aliases": [
+        "recursive"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "iteration",
+      "name": "Iteration",
+      "concept_type": "abstract_concept",
+      "description": "Repeated execution of a set of instructions using loops",
+      "aliases": [
+        "iterative",
+        "loop"
+      ],
+      "difficulty_level": 1
+    },
+    {
+      "id": "pointer",
+      "name": "Pointer",
+      "concept_type": "programming_construct",
+      "description": "A variable that stores the memory address of another variable",
+      "aliases": [
+        "reference",
+        "memory address"
+      ],
+      "difficulty_level": 1
+    },
+    {
+      "id": "node",
+      "name": "Node",
+      "concept_type": "abstract_concept",
+      "description": "A fundamental unit of a data structure that contains data and links to other nodes",
+      "aliases": [
+        "vertex",
+        "element"
+      ],
+      "difficulty_level": 1
+    },
+    {
+      "id": "memory_allocation",
+      "name": "Memory Allocation",
+      "concept_type": "abstract_concept",
+      "description": "The process of reserving memory space for data storage",
+      "aliases": [
+        "malloc",
+        "dynamic allocation"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "dynamic_memory",
+      "name": "Dynamic Memory",
+      "concept_type": "abstract_concept",
+      "description": "Memory allocated at runtime from the heap",
+      "aliases": [
+        "heap memory"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "static_memory",
+      "name": "Static Memory",
+      "concept_type": "abstract_concept",
+      "description": "Memory allocated at compile time with fixed size",
+      "aliases": [
+        "stack memory"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "time_complexity",
+      "name": "Time Complexity",
+      "concept_type": "complexity_class",
+      "description": "The amount of time an algorithm takes as a function of input size",
+      "aliases": [
+        "runtime complexity",
+        "time cost"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "space_complexity",
+      "name": "Space Complexity",
+      "concept_type": "complexity_class",
+      "description": "The amount of memory an algorithm uses as a function of input size",
+      "aliases": [
+        "memory complexity"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "o_1",
+      "name": "O(1)",
+      "concept_type": "complexity_class",
+      "description": "Constant time complexity",
+      "aliases": [
+        "constant time"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "o_log_n",
+      "name": "O(log n)",
+      "concept_type": "complexity_class",
+      "description": "Logarithmic time complexity",
+      "aliases": [
+        "logarithmic"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "o_n",
+      "name": "O(n)",
+      "concept_type": "complexity_class",
+      "description": "Linear time complexity",
+      "aliases": [
+        "linear time"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "o_n_log_n",
+      "name": "O(n log n)",
+      "concept_type": "complexity_class",
+      "description": "Linearithmic time complexity",
+      "aliases": [
+        "n log n"
+      ],
+      "difficulty_level": 3
+    },
+    {
+      "id": "o_n2",
+      "name": "O(n\u00b2)",
+      "concept_type": "complexity_class",
+      "description": "Quadratic time complexity",
+      "aliases": [
+        "quadratic"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "big_o_notation",
+      "name": "Big-O Notation",
+      "concept_type": "abstract_concept",
+      "description": "Asymptotic notation describing the upper bound of an algorithm's growth rate",
+      "aliases": [
+        "Big O",
+        "asymptotic notation",
+        "order of growth"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "array",
+      "name": "Array",
+      "concept_type": "data_structure",
+      "description": "A contiguous block of memory storing elements of the same type, accessed by index",
+      "aliases": [
+        "list",
+        "vector"
+      ],
+      "difficulty_level": 1
+    },
+    {
+      "id": "dynamic_array",
+      "name": "Dynamic Array",
+      "concept_type": "data_structure",
+      "description": "An array that automatically resizes when capacity is exceeded",
+      "aliases": [
+        "ArrayList",
+        "vector",
+        "resizable array"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "index",
+      "name": "Index",
+      "concept_type": "abstract_concept",
+      "description": "An integer position used to access elements in an array",
+      "aliases": [
+        "subscript",
+        "position"
+      ],
+      "difficulty_level": 1
+    },
+    {
+      "id": "linked_list",
+      "name": "Linked List",
+      "concept_type": "data_structure",
+      "description": "A linear data structure where elements are connected via pointers",
+      "aliases": [
+        "singly linked list"
+      ],
+      "difficulty_level": 1
+    },
+    {
+      "id": "doubly_linked_list",
+      "name": "Doubly Linked List",
+      "concept_type": "data_structure",
+      "description": "A linked list where each node has pointers to both next and previous nodes",
+      "aliases": [
+        "DLL",
+        "double linked list"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "circular_linked_list",
+      "name": "Circular Linked List",
+      "concept_type": "data_structure",
+      "description": "A linked list where the last node points back to the first node",
+      "aliases": [
+        "circular list"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "head",
+      "name": "Head",
+      "concept_type": "abstract_concept",
+      "description": "The first node in a linked list",
+      "aliases": [
+        "head pointer",
+        "front"
+      ],
+      "difficulty_level": 1
+    },
+    {
+      "id": "tail",
+      "name": "Tail",
+      "concept_type": "abstract_concept",
+      "description": "The last node in a linked list",
+      "aliases": [
+        "tail pointer",
+        "rear",
+        "end"
+      ],
+      "difficulty_level": 1
+    },
+    {
+      "id": "stack",
+      "name": "Stack",
+      "concept_type": "data_structure",
+      "description": "A LIFO data structure where elements are added and removed from the top",
+      "aliases": [
+        "LIFO"
+      ],
+      "difficulty_level": 1
+    },
+    {
+      "id": "push",
+      "name": "Push",
+      "concept_type": "operation",
+      "description": "Add an element to the top of a stack",
+      "aliases": [],
+      "difficulty_level": 1
+    },
+    {
+      "id": "pop",
+      "name": "Pop",
+      "concept_type": "operation",
+      "description": "Remove and return the top element of a stack",
+      "aliases": [],
+      "difficulty_level": 1
+    },
+    {
+      "id": "peek",
+      "name": "Peek",
+      "concept_type": "operation",
+      "description": "View the top element without removing it",
+      "aliases": [
+        "top",
+        "peek operation"
+      ],
+      "difficulty_level": 1
+    },
+    {
+      "id": "lifo",
+      "name": "LIFO",
+      "concept_type": "property",
+      "description": "Last In, First Out \u2014 the element added last is removed first",
+      "aliases": [
+        "Last In First Out"
+      ],
+      "difficulty_level": 1
+    },
+    {
+      "id": "stack_overflow",
+      "name": "Stack Overflow",
+      "concept_type": "property",
+      "description": "Error when pushing to a full stack",
+      "aliases": [
+        "overflow"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "stack_underflow",
+      "name": "Stack Underflow",
+      "concept_type": "property",
+      "description": "Error when popping from an empty stack",
+      "aliases": [
+        "underflow"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "queue",
+      "name": "Queue",
+      "concept_type": "data_structure",
+      "description": "A FIFO data structure where elements are added at rear and removed from front",
+      "aliases": [
+        "FIFO queue"
+      ],
+      "difficulty_level": 1
+    },
+    {
+      "id": "enqueue",
+      "name": "Enqueue",
+      "concept_type": "operation",
+      "description": "Add an element to the rear of a queue",
+      "aliases": [
+        "add",
+        "offer"
+      ],
+      "difficulty_level": 1
+    },
+    {
+      "id": "dequeue",
+      "name": "Dequeue",
+      "concept_type": "operation",
+      "description": "Remove and return the front element of a queue",
+      "aliases": [
+        "remove",
+        "poll"
+      ],
+      "difficulty_level": 1
+    },
+    {
+      "id": "fifo",
+      "name": "FIFO",
+      "concept_type": "property",
+      "description": "First In, First Out \u2014 the element added first is removed first",
+      "aliases": [
+        "First In First Out"
+      ],
+      "difficulty_level": 1
+    },
+    {
+      "id": "priority_queue",
+      "name": "Priority Queue",
+      "concept_type": "data_structure",
+      "description": "A queue where elements are dequeued based on priority rather than order",
+      "aliases": [
+        "PQ",
+        "heap-based queue"
+      ],
+      "difficulty_level": 3
+    },
+    {
+      "id": "circular_queue",
+      "name": "Circular Queue",
+      "concept_type": "data_structure",
+      "description": "A queue implemented using a circular array to efficiently use space",
+      "aliases": [
+        "ring buffer"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "deque",
+      "name": "Deque",
+      "concept_type": "data_structure",
+      "description": "A double-ended queue allowing insertion and deletion at both ends",
+      "aliases": [
+        "double-ended queue"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "tree",
+      "name": "Tree",
+      "concept_type": "data_structure",
+      "description": "A hierarchical data structure with a root node and child nodes forming subtrees",
+      "aliases": [
+        "tree structure"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "binary_tree",
+      "name": "Binary Tree",
+      "concept_type": "data_structure",
+      "description": "A tree where each node has at most two children (left and right)",
+      "aliases": [
+        "BT"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "binary_search_tree",
+      "name": "Binary Search Tree",
+      "concept_type": "data_structure",
+      "description": "A binary tree where left child < parent < right child for all nodes",
+      "aliases": [
+        "BST",
+        "ordered binary tree",
+        "sorted binary tree"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "avl_tree",
+      "name": "AVL Tree",
+      "concept_type": "data_structure",
+      "description": "A self-balancing BST where the height difference between subtrees is at most 1",
+      "aliases": [
+        "balanced BST",
+        "Adelson-Velsky Landis tree"
+      ],
+      "difficulty_level": 3
+    },
+    {
+      "id": "red_black_tree",
+      "name": "Red-Black Tree",
+      "concept_type": "data_structure",
+      "description": "A self-balancing BST with color-coded nodes ensuring O(log n) operations",
+      "aliases": [
+        "RB tree"
+      ],
+      "difficulty_level": 4
+    },
+    {
+      "id": "heap",
+      "name": "Heap",
+      "concept_type": "data_structure",
+      "description": "A complete binary tree satisfying the heap property (max-heap or min-heap)",
+      "aliases": [
+        "binary heap"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "max_heap",
+      "name": "Max Heap",
+      "concept_type": "data_structure",
+      "description": "A heap where every parent node is greater than or equal to its children",
+      "aliases": [],
+      "difficulty_level": 2
+    },
+    {
+      "id": "min_heap",
+      "name": "Min Heap",
+      "concept_type": "data_structure",
+      "description": "A heap where every parent node is less than or equal to its children",
+      "aliases": [],
+      "difficulty_level": 2
+    },
+    {
+      "id": "b_tree",
+      "name": "B-Tree",
+      "concept_type": "data_structure",
+      "description": "A self-balancing tree optimized for systems that read/write large blocks of data",
+      "aliases": [
+        "balanced tree"
+      ],
+      "difficulty_level": 4
+    },
+    {
+      "id": "trie",
+      "name": "Trie",
+      "concept_type": "data_structure",
+      "description": "A tree-like structure for storing strings where each node represents a character",
+      "aliases": [
+        "prefix tree",
+        "digital tree"
+      ],
+      "difficulty_level": 3
+    },
+    {
+      "id": "root",
+      "name": "Root",
+      "concept_type": "abstract_concept",
+      "description": "The topmost node in a tree with no parent",
+      "aliases": [
+        "root node"
+      ],
+      "difficulty_level": 1
+    },
+    {
+      "id": "leaf",
+      "name": "Leaf",
+      "concept_type": "abstract_concept",
+      "description": "A node with no children in a tree",
+      "aliases": [
+        "leaf node",
+        "terminal node"
+      ],
+      "difficulty_level": 1
+    },
+    {
+      "id": "parent",
+      "name": "Parent",
+      "concept_type": "abstract_concept",
+      "description": "A node that has one or more child nodes",
+      "aliases": [
+        "parent node"
+      ],
+      "difficulty_level": 1
+    },
+    {
+      "id": "child",
+      "name": "Child",
+      "concept_type": "abstract_concept",
+      "description": "A node connected below its parent node",
+      "aliases": [
+        "child node"
+      ],
+      "difficulty_level": 1
+    },
+    {
+      "id": "subtree",
+      "name": "Subtree",
+      "concept_type": "abstract_concept",
+      "description": "A tree formed by a node and all its descendants",
+      "aliases": [],
+      "difficulty_level": 2
+    },
+    {
+      "id": "tree_height",
+      "name": "Tree Height",
+      "concept_type": "property",
+      "description": "The length of the longest path from the root to a leaf",
+      "aliases": [
+        "height",
+        "depth of tree"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "balanced_tree",
+      "name": "Balanced Tree",
+      "concept_type": "property",
+      "description": "A tree where the height difference between subtrees is bounded",
+      "aliases": [
+        "balanced",
+        "height-balanced"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "inorder",
+      "name": "Inorder Traversal",
+      "concept_type": "algorithm",
+      "description": "Tree traversal visiting left subtree, root, then right subtree",
+      "aliases": [
+        "in-order",
+        "LNR"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "preorder",
+      "name": "Preorder Traversal",
+      "concept_type": "algorithm",
+      "description": "Tree traversal visiting root, left subtree, then right subtree",
+      "aliases": [
+        "pre-order",
+        "NLR"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "postorder",
+      "name": "Postorder Traversal",
+      "concept_type": "algorithm",
+      "description": "Tree traversal visiting left subtree, right subtree, then root",
+      "aliases": [
+        "post-order",
+        "LRN"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "level_order",
+      "name": "Level Order Traversal",
+      "concept_type": "algorithm",
+      "description": "Tree traversal visiting nodes level by level from top to bottom",
+      "aliases": [
+        "breadth-first traversal",
+        "BFS traversal"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "tree_traversal",
+      "name": "Tree Traversal",
+      "concept_type": "algorithm",
+      "description": "The process of visiting all nodes in a tree in a specific order",
+      "aliases": [
+        "traversal"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "graph",
+      "name": "Graph",
+      "concept_type": "data_structure",
+      "description": "A collection of vertices connected by edges",
+      "aliases": [
+        "network"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "directed_graph",
+      "name": "Directed Graph",
+      "concept_type": "data_structure",
+      "description": "A graph where edges have a direction from source to destination",
+      "aliases": [
+        "digraph",
+        "directed network"
+      ],
+      "difficulty_level": 3
+    },
+    {
+      "id": "undirected_graph",
+      "name": "Undirected Graph",
+      "concept_type": "data_structure",
+      "description": "A graph where edges have no direction",
+      "aliases": [
+        "undirected network"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "weighted_graph",
+      "name": "Weighted Graph",
+      "concept_type": "data_structure",
+      "description": "A graph where edges have associated weights or costs",
+      "aliases": [
+        "weighted network"
+      ],
+      "difficulty_level": 3
+    },
+    {
+      "id": "vertex",
+      "name": "Vertex",
+      "concept_type": "abstract_concept",
+      "description": "A fundamental unit in a graph",
+      "aliases": [
+        "node",
+        "graph node"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "edge",
+      "name": "Edge",
+      "concept_type": "abstract_concept",
+      "description": "A connection between two vertices in a graph",
+      "aliases": [
+        "arc",
+        "link"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "adjacency_list",
+      "name": "Adjacency List",
+      "concept_type": "data_structure",
+      "description": "Graph representation using a list of neighbors for each vertex",
+      "aliases": [],
+      "difficulty_level": 3
+    },
+    {
+      "id": "adjacency_matrix",
+      "name": "Adjacency Matrix",
+      "concept_type": "data_structure",
+      "description": "Graph representation using a 2D matrix of edge weights",
+      "aliases": [],
+      "difficulty_level": 3
+    },
+    {
+      "id": "bfs",
+      "name": "Breadth-First Search",
+      "concept_type": "algorithm",
+      "description": "Graph traversal exploring all neighbors at the current depth before going deeper",
+      "aliases": [
+        "BFS",
+        "breadth first"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "dfs",
+      "name": "Depth-First Search",
+      "concept_type": "algorithm",
+      "description": "Graph traversal exploring as far as possible along each branch before backtracking",
+      "aliases": [
+        "DFS",
+        "depth first"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "dijkstra",
+      "name": "Dijkstra's Algorithm",
+      "concept_type": "algorithm",
+      "description": "Finds the shortest path from a source to all other vertices in a weighted graph",
+      "aliases": [
+        "Dijkstra",
+        "single source shortest path"
+      ],
+      "difficulty_level": 3
+    },
+    {
+      "id": "topological_sort",
+      "name": "Topological Sort",
+      "concept_type": "algorithm",
+      "description": "Linear ordering of vertices such that for every directed edge u\u2192v, u comes before v",
+      "aliases": [
+        "topological ordering",
+        "topo sort"
+      ],
+      "difficulty_level": 3
+    },
+    {
+      "id": "minimum_spanning_tree",
+      "name": "Minimum Spanning Tree",
+      "concept_type": "algorithm",
+      "description": "A spanning tree with the minimum total edge weight",
+      "aliases": [
+        "MST"
+      ],
+      "difficulty_level": 3
+    },
+    {
+      "id": "shortest_path",
+      "name": "Shortest Path",
+      "concept_type": "abstract_concept",
+      "description": "The path between two vertices with the minimum total edge weight",
+      "aliases": [
+        "optimal path"
+      ],
+      "difficulty_level": 3
+    },
+    {
+      "id": "cycle",
+      "name": "Cycle",
+      "concept_type": "property",
+      "description": "A path that starts and ends at the same vertex",
+      "aliases": [
+        "loop",
+        "circuit"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "connected_graph",
+      "name": "Connected Graph",
+      "concept_type": "property",
+      "description": "A graph where there is a path between every pair of vertices",
+      "aliases": [
+        "connected"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "hash_table",
+      "name": "Hash Table",
+      "concept_type": "data_structure",
+      "description": "A data structure that maps keys to values using a hash function",
+      "aliases": [
+        "hash map",
+        "dictionary",
+        "associative array"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "hash_function",
+      "name": "Hash Function",
+      "concept_type": "algorithm",
+      "description": "A function that maps data of arbitrary size to fixed-size values",
+      "aliases": [
+        "hashing",
+        "hash"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "collision",
+      "name": "Collision",
+      "concept_type": "abstract_concept",
+      "description": "When two different keys map to the same hash table index",
+      "aliases": [
+        "hash collision"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "chaining",
+      "name": "Chaining",
+      "concept_type": "design_pattern",
+      "description": "Collision resolution by storing multiple elements at the same index using a linked list",
+      "aliases": [
+        "separate chaining"
+      ],
+      "difficulty_level": 3
+    },
+    {
+      "id": "open_addressing",
+      "name": "Open Addressing",
+      "concept_type": "design_pattern",
+      "description": "Collision resolution by probing for the next empty slot",
+      "aliases": [
+        "linear probing",
+        "probing"
+      ],
+      "difficulty_level": 3
+    },
+    {
+      "id": "load_factor",
+      "name": "Load Factor",
+      "concept_type": "property",
+      "description": "The ratio of stored elements to the total number of slots in a hash table",
+      "aliases": [
+        "fill ratio"
+      ],
+      "difficulty_level": 3
+    },
+    {
+      "id": "sorting",
+      "name": "Sorting",
+      "concept_type": "abstract_concept",
+      "description": "The process of arranging elements in a specific order",
+      "aliases": [
+        "sort",
+        "ordering"
+      ],
+      "difficulty_level": 1
+    },
+    {
+      "id": "bubble_sort",
+      "name": "Bubble Sort",
+      "concept_type": "algorithm",
+      "description": "A simple sorting algorithm that repeatedly swaps adjacent elements that are in the wrong order",
+      "aliases": [
+        "bubble"
+      ],
+      "difficulty_level": 1
+    },
+    {
+      "id": "selection_sort",
+      "name": "Selection Sort",
+      "concept_type": "algorithm",
+      "description": "Sorting by repeatedly finding the minimum element and placing it at the beginning",
+      "aliases": [
+        "selection"
+      ],
+      "difficulty_level": 1
+    },
+    {
+      "id": "insertion_sort",
+      "name": "Insertion Sort",
+      "concept_type": "algorithm",
+      "description": "Sorting by building a sorted portion one element at a time",
+      "aliases": [
+        "insertion"
+      ],
+      "difficulty_level": 1
+    },
+    {
+      "id": "merge_sort",
+      "name": "Merge Sort",
+      "concept_type": "algorithm",
+      "description": "A divide-and-conquer sorting algorithm that recursively splits and merges subarrays",
+      "aliases": [
+        "mergesort"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "quick_sort",
+      "name": "Quick Sort",
+      "concept_type": "algorithm",
+      "description": "A divide-and-conquer sorting algorithm using a pivot element to partition the array",
+      "aliases": [
+        "quicksort",
+        "partition sort"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "heap_sort",
+      "name": "Heap Sort",
+      "concept_type": "algorithm",
+      "description": "Sorting by building a heap and repeatedly extracting the maximum element",
+      "aliases": [
+        "heapsort"
+      ],
+      "difficulty_level": 3
+    },
+    {
+      "id": "comparison_sort",
+      "name": "Comparison Sort",
+      "concept_type": "abstract_concept",
+      "description": "A sorting algorithm that determines order by comparing elements",
+      "aliases": [
+        "comparison-based sorting"
+      ],
+      "difficulty_level": 3
+    },
+    {
+      "id": "stable_sort",
+      "name": "Stable Sort",
+      "concept_type": "property",
+      "description": "A sort that preserves the relative order of equal elements",
+      "aliases": [
+        "stability"
+      ],
+      "difficulty_level": 3
+    },
+    {
+      "id": "divide_and_conquer",
+      "name": "Divide and Conquer",
+      "concept_type": "design_pattern",
+      "description": "A strategy that breaks a problem into smaller subproblems, solves them, and combines results",
+      "aliases": [
+        "D&C"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "searching",
+      "name": "Searching",
+      "concept_type": "abstract_concept",
+      "description": "The process of finding a specific element in a data structure",
+      "aliases": [
+        "search"
+      ],
+      "difficulty_level": 1
+    },
+    {
+      "id": "linear_search",
+      "name": "Linear Search",
+      "concept_type": "algorithm",
+      "description": "Searching by checking each element sequentially",
+      "aliases": [
+        "sequential search"
+      ],
+      "difficulty_level": 1
+    },
+    {
+      "id": "binary_search",
+      "name": "Binary Search",
+      "concept_type": "algorithm",
+      "description": "Searching a sorted array by repeatedly dividing the search interval in half",
+      "aliases": [
+        "binary search algorithm"
+      ],
+      "difficulty_level": 2
+    },
+    {
+      "id": "insertion",
+      "name": "Insertion",
+      "concept_type": "operation",
+      "description": "Adding a new element to a data structure",
+      "aliases": [
+        "insert",
+        "add"
+      ],
+      "difficulty_level": 1
+    },
+    {
+      "id": "deletion",
+      "name": "Deletion",
+      "concept_type": "operation",
+      "description": "Removing an element from a data structure",
+      "aliases": [
+        "delete",
+        "remove"
+      ],
+      "difficulty_level": 1
+    },
+    {
+      "id": "traversal",
+      "name": "Traversal",
+      "concept_type": "operation",
+      "description": "Visiting all elements in a data structure",
+      "aliases": [
+        "iterate",
+        "visit"
+      ],
+      "difficulty_level": 1
+    },
+    {
+      "id": "access",
+      "name": "Access",
+      "concept_type": "operation",
+      "description": "Retrieving an element from a data structure",
+      "aliases": [
+        "get",
+        "lookup",
+        "read"
+      ],
+      "difficulty_level": 1
+    }
+  ],
+  "relationships": [
+    {
+      "source_id": "array",
+      "target_id": "data_structure",
+      "relation_type": "is_a",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "linked_list",
+      "target_id": "data_structure",
+      "relation_type": "is_a",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "stack",
+      "target_id": "data_structure",
+      "relation_type": "is_a",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "queue",
+      "target_id": "data_structure",
+      "relation_type": "is_a",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "tree",
+      "target_id": "data_structure",
+      "relation_type": "is_a",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "graph",
+      "target_id": "data_structure",
+      "relation_type": "is_a",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "hash_table",
+      "target_id": "data_structure",
+      "relation_type": "is_a",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "heap",
+      "target_id": "data_structure",
+      "relation_type": "is_a",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "binary_tree",
+      "target_id": "tree",
+      "relation_type": "is_a",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "binary_search_tree",
+      "target_id": "binary_tree",
+      "relation_type": "is_a",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "avl_tree",
+      "target_id": "binary_search_tree",
+      "relation_type": "is_a",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "red_black_tree",
+      "target_id": "binary_search_tree",
+      "relation_type": "is_a",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "max_heap",
+      "target_id": "heap",
+      "relation_type": "is_a",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "min_heap",
+      "target_id": "heap",
+      "relation_type": "is_a",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "directed_graph",
+      "target_id": "graph",
+      "relation_type": "is_a",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "undirected_graph",
+      "target_id": "graph",
+      "relation_type": "is_a",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "weighted_graph",
+      "target_id": "graph",
+      "relation_type": "is_a",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "priority_queue",
+      "target_id": "queue",
+      "relation_type": "is_a",
+      "weight": 0.8,
+      "description": ""
+    },
+    {
+      "source_id": "circular_queue",
+      "target_id": "queue",
+      "relation_type": "is_a",
+      "weight": 0.8,
+      "description": ""
+    },
+    {
+      "source_id": "deque",
+      "target_id": "queue",
+      "relation_type": "is_a",
+      "weight": 0.7,
+      "description": ""
+    },
+    {
+      "source_id": "dynamic_array",
+      "target_id": "array",
+      "relation_type": "is_a",
+      "weight": 0.9,
+      "description": ""
+    },
+    {
+      "source_id": "bubble_sort",
+      "target_id": "algorithm",
+      "relation_type": "is_a",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "selection_sort",
+      "target_id": "algorithm",
+      "relation_type": "is_a",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "insertion_sort",
+      "target_id": "algorithm",
+      "relation_type": "is_a",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "merge_sort",
+      "target_id": "algorithm",
+      "relation_type": "is_a",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "quick_sort",
+      "target_id": "algorithm",
+      "relation_type": "is_a",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "heap_sort",
+      "target_id": "algorithm",
+      "relation_type": "is_a",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "linear_search",
+      "target_id": "algorithm",
+      "relation_type": "is_a",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "binary_search",
+      "target_id": "algorithm",
+      "relation_type": "is_a",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "bfs",
+      "target_id": "algorithm",
+      "relation_type": "is_a",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "dfs",
+      "target_id": "algorithm",
+      "relation_type": "is_a",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "dijkstra",
+      "target_id": "algorithm",
+      "relation_type": "is_a",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "inorder",
+      "target_id": "tree_traversal",
+      "relation_type": "is_a",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "preorder",
+      "target_id": "tree_traversal",
+      "relation_type": "is_a",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "postorder",
+      "target_id": "tree_traversal",
+      "relation_type": "is_a",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "level_order",
+      "target_id": "tree_traversal",
+      "relation_type": "is_a",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "linked_list",
+      "target_id": "node",
+      "relation_type": "has_part",
+      "weight": 1.0,
+      "description": "Each element is stored in a node"
+    },
+    {
+      "source_id": "linked_list",
+      "target_id": "pointer",
+      "relation_type": "has_part",
+      "weight": 1.0,
+      "description": "Nodes are connected via pointers"
+    },
+    {
+      "source_id": "linked_list",
+      "target_id": "head",
+      "relation_type": "has_part",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "linked_list",
+      "target_id": "tail",
+      "relation_type": "has_part",
+      "weight": 0.8,
+      "description": ""
+    },
+    {
+      "source_id": "doubly_linked_list",
+      "target_id": "pointer",
+      "relation_type": "has_part",
+      "weight": 1.0,
+      "description": "Has both next and prev pointers"
+    },
+    {
+      "source_id": "tree",
+      "target_id": "root",
+      "relation_type": "has_part",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "tree",
+      "target_id": "node",
+      "relation_type": "has_part",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "tree",
+      "target_id": "leaf",
+      "relation_type": "has_part",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "binary_tree",
+      "target_id": "subtree",
+      "relation_type": "has_part",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "graph",
+      "target_id": "vertex",
+      "relation_type": "has_part",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "graph",
+      "target_id": "edge",
+      "relation_type": "has_part",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "hash_table",
+      "target_id": "hash_function",
+      "relation_type": "has_part",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "doubly_linked_list",
+      "target_id": "linked_list",
+      "relation_type": "variant_of",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "circular_linked_list",
+      "target_id": "linked_list",
+      "relation_type": "variant_of",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "adjacency_list",
+      "target_id": "linked_list",
+      "relation_type": "variant_of",
+      "weight": 0.6,
+      "description": "Uses linked lists for neighbors"
+    },
+    {
+      "source_id": "adjacency_matrix",
+      "target_id": "array",
+      "relation_type": "variant_of",
+      "weight": 0.6,
+      "description": "Uses 2D array for edges"
+    },
+    {
+      "source_id": "bfs",
+      "target_id": "queue",
+      "relation_type": "uses",
+      "weight": 1.0,
+      "description": "BFS uses a queue for level-order exploration"
+    },
+    {
+      "source_id": "dfs",
+      "target_id": "stack",
+      "relation_type": "uses",
+      "weight": 1.0,
+      "description": "DFS uses a stack (or call stack) for backtracking"
+    },
+    {
+      "source_id": "dijkstra",
+      "target_id": "priority_queue",
+      "relation_type": "uses",
+      "weight": 1.0,
+      "description": "Dijkstra uses a priority queue for greedy selection"
+    },
+    {
+      "source_id": "heap_sort",
+      "target_id": "heap",
+      "relation_type": "uses",
+      "weight": 1.0,
+      "description": "Heap sort builds and uses a heap"
+    },
+    {
+      "source_id": "priority_queue",
+      "target_id": "heap",
+      "relation_type": "uses",
+      "weight": 0.9,
+      "description": "Priority queues are commonly implemented with heaps"
+    },
+    {
+      "source_id": "hash_table",
+      "target_id": "array",
+      "relation_type": "uses",
+      "weight": 0.8,
+      "description": "Hash tables use arrays as underlying storage"
+    },
+    {
+      "source_id": "hash_table",
+      "target_id": "linked_list",
+      "relation_type": "uses",
+      "weight": 0.7,
+      "description": "Chaining uses linked lists"
+    },
+    {
+      "source_id": "level_order",
+      "target_id": "queue",
+      "relation_type": "uses",
+      "weight": 1.0,
+      "description": "Level-order traversal uses a queue"
+    },
+    {
+      "source_id": "topological_sort",
+      "target_id": "dfs",
+      "relation_type": "uses",
+      "weight": 0.8,
+      "description": ""
+    },
+    {
+      "source_id": "binary_search",
+      "target_id": "array",
+      "relation_type": "uses",
+      "weight": 0.9,
+      "description": "Binary search requires a sorted array"
+    },
+    {
+      "source_id": "merge_sort",
+      "target_id": "divide_and_conquer",
+      "relation_type": "implements",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "quick_sort",
+      "target_id": "divide_and_conquer",
+      "relation_type": "implements",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "binary_search",
+      "target_id": "divide_and_conquer",
+      "relation_type": "implements",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "chaining",
+      "target_id": "collision",
+      "relation_type": "implements",
+      "weight": 0.8,
+      "description": "Chaining resolves collisions"
+    },
+    {
+      "source_id": "open_addressing",
+      "target_id": "collision",
+      "relation_type": "implements",
+      "weight": 0.8,
+      "description": "Open addressing resolves collisions"
+    },
+    {
+      "source_id": "array",
+      "target_id": "hash_table",
+      "relation_type": "prerequisite_for",
+      "weight": 0.9,
+      "description": ""
+    },
+    {
+      "source_id": "array",
+      "target_id": "dynamic_array",
+      "relation_type": "prerequisite_for",
+      "weight": 0.9,
+      "description": ""
+    },
+    {
+      "source_id": "array",
+      "target_id": "sorting",
+      "relation_type": "prerequisite_for",
+      "weight": 0.8,
+      "description": ""
+    },
+    {
+      "source_id": "array",
+      "target_id": "binary_search",
+      "relation_type": "prerequisite_for",
+      "weight": 0.8,
+      "description": ""
+    },
+    {
+      "source_id": "pointer",
+      "target_id": "linked_list",
+      "relation_type": "prerequisite_for",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "node",
+      "target_id": "linked_list",
+      "relation_type": "prerequisite_for",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "linked_list",
+      "target_id": "stack",
+      "relation_type": "prerequisite_for",
+      "weight": 0.7,
+      "description": ""
+    },
+    {
+      "source_id": "linked_list",
+      "target_id": "queue",
+      "relation_type": "prerequisite_for",
+      "weight": 0.7,
+      "description": ""
+    },
+    {
+      "source_id": "binary_tree",
+      "target_id": "binary_search_tree",
+      "relation_type": "prerequisite_for",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "binary_search_tree",
+      "target_id": "avl_tree",
+      "relation_type": "prerequisite_for",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "binary_search_tree",
+      "target_id": "red_black_tree",
+      "relation_type": "prerequisite_for",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "tree",
+      "target_id": "binary_tree",
+      "relation_type": "prerequisite_for",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "recursion",
+      "target_id": "tree_traversal",
+      "relation_type": "prerequisite_for",
+      "weight": 0.9,
+      "description": ""
+    },
+    {
+      "source_id": "recursion",
+      "target_id": "merge_sort",
+      "relation_type": "prerequisite_for",
+      "weight": 0.9,
+      "description": ""
+    },
+    {
+      "source_id": "recursion",
+      "target_id": "quick_sort",
+      "relation_type": "prerequisite_for",
+      "weight": 0.9,
+      "description": ""
+    },
+    {
+      "source_id": "recursion",
+      "target_id": "dfs",
+      "relation_type": "prerequisite_for",
+      "weight": 0.8,
+      "description": ""
+    },
+    {
+      "source_id": "graph",
+      "target_id": "bfs",
+      "relation_type": "prerequisite_for",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "graph",
+      "target_id": "dfs",
+      "relation_type": "prerequisite_for",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "graph",
+      "target_id": "dijkstra",
+      "relation_type": "prerequisite_for",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "sorting",
+      "target_id": "binary_search",
+      "relation_type": "prerequisite_for",
+      "weight": 0.8,
+      "description": "Binary search requires sorted data"
+    },
+    {
+      "source_id": "stack",
+      "target_id": "lifo",
+      "relation_type": "has_property",
+      "weight": 1.0,
+      "description": "Stack follows Last In First Out"
+    },
+    {
+      "source_id": "queue",
+      "target_id": "fifo",
+      "relation_type": "has_property",
+      "weight": 1.0,
+      "description": "Queue follows First In First Out"
+    },
+    {
+      "source_id": "binary_search_tree",
+      "target_id": "balanced_tree",
+      "relation_type": "has_property",
+      "weight": 0.5,
+      "description": "BST may or may not be balanced"
+    },
+    {
+      "source_id": "avl_tree",
+      "target_id": "balanced_tree",
+      "relation_type": "has_property",
+      "weight": 1.0,
+      "description": "AVL is always balanced"
+    },
+    {
+      "source_id": "red_black_tree",
+      "target_id": "balanced_tree",
+      "relation_type": "has_property",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "heap",
+      "target_id": "balanced_tree",
+      "relation_type": "has_property",
+      "weight": 0.9,
+      "description": "Heap is a complete binary tree"
+    },
+    {
+      "source_id": "merge_sort",
+      "target_id": "stable_sort",
+      "relation_type": "has_property",
+      "weight": 1.0,
+      "description": "Merge sort is stable"
+    },
+    {
+      "source_id": "insertion_sort",
+      "target_id": "stable_sort",
+      "relation_type": "has_property",
+      "weight": 1.0,
+      "description": "Insertion sort is stable"
+    },
+    {
+      "source_id": "bubble_sort",
+      "target_id": "stable_sort",
+      "relation_type": "has_property",
+      "weight": 1.0,
+      "description": "Bubble sort is stable"
+    },
+    {
+      "source_id": "stack",
+      "target_id": "stack_overflow",
+      "relation_type": "has_property",
+      "weight": 0.7,
+      "description": ""
+    },
+    {
+      "source_id": "stack",
+      "target_id": "stack_underflow",
+      "relation_type": "has_property",
+      "weight": 0.7,
+      "description": ""
+    },
+    {
+      "source_id": "array",
+      "target_id": "o_1",
+      "relation_type": "has_complexity",
+      "weight": 1.0,
+      "description": "Array access is O(1)"
+    },
+    {
+      "source_id": "linked_list",
+      "target_id": "o_n",
+      "relation_type": "has_complexity",
+      "weight": 0.8,
+      "description": "Linked list access is O(n)"
+    },
+    {
+      "source_id": "linked_list",
+      "target_id": "o_1",
+      "relation_type": "has_complexity",
+      "weight": 0.8,
+      "description": "Linked list insertion at head is O(1)"
+    },
+    {
+      "source_id": "binary_search",
+      "target_id": "o_log_n",
+      "relation_type": "has_complexity",
+      "weight": 1.0,
+      "description": "Binary search is O(log n)"
+    },
+    {
+      "source_id": "linear_search",
+      "target_id": "o_n",
+      "relation_type": "has_complexity",
+      "weight": 1.0,
+      "description": "Linear search is O(n)"
+    },
+    {
+      "source_id": "bubble_sort",
+      "target_id": "o_n2",
+      "relation_type": "has_complexity",
+      "weight": 1.0,
+      "description": "Bubble sort is O(n\u00b2)"
+    },
+    {
+      "source_id": "selection_sort",
+      "target_id": "o_n2",
+      "relation_type": "has_complexity",
+      "weight": 1.0,
+      "description": "Selection sort is O(n\u00b2)"
+    },
+    {
+      "source_id": "insertion_sort",
+      "target_id": "o_n2",
+      "relation_type": "has_complexity",
+      "weight": 1.0,
+      "description": "Insertion sort is O(n\u00b2) worst case"
+    },
+    {
+      "source_id": "merge_sort",
+      "target_id": "o_n_log_n",
+      "relation_type": "has_complexity",
+      "weight": 1.0,
+      "description": "Merge sort is O(n log n)"
+    },
+    {
+      "source_id": "quick_sort",
+      "target_id": "o_n_log_n",
+      "relation_type": "has_complexity",
+      "weight": 0.9,
+      "description": "Quick sort average is O(n log n)"
+    },
+    {
+      "source_id": "heap_sort",
+      "target_id": "o_n_log_n",
+      "relation_type": "has_complexity",
+      "weight": 1.0,
+      "description": "Heap sort is O(n log n)"
+    },
+    {
+      "source_id": "hash_table",
+      "target_id": "o_1",
+      "relation_type": "has_complexity",
+      "weight": 0.9,
+      "description": "Hash table operations are O(1) average"
+    },
+    {
+      "source_id": "binary_search_tree",
+      "target_id": "o_log_n",
+      "relation_type": "has_complexity",
+      "weight": 0.8,
+      "description": "BST operations O(log n) average"
+    },
+    {
+      "source_id": "bfs",
+      "target_id": "o_n",
+      "relation_type": "has_complexity",
+      "weight": 0.8,
+      "description": "BFS is O(V + E)"
+    },
+    {
+      "source_id": "dfs",
+      "target_id": "o_n",
+      "relation_type": "has_complexity",
+      "weight": 0.8,
+      "description": "DFS is O(V + E)"
+    },
+    {
+      "source_id": "tree_traversal",
+      "target_id": "tree",
+      "relation_type": "operates_on",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "bfs",
+      "target_id": "graph",
+      "relation_type": "operates_on",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "dfs",
+      "target_id": "graph",
+      "relation_type": "operates_on",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "dijkstra",
+      "target_id": "weighted_graph",
+      "relation_type": "operates_on",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "topological_sort",
+      "target_id": "directed_graph",
+      "relation_type": "operates_on",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "sorting",
+      "target_id": "array",
+      "relation_type": "operates_on",
+      "weight": 0.9,
+      "description": ""
+    },
+    {
+      "source_id": "binary_search",
+      "target_id": "array",
+      "relation_type": "operates_on",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "linear_search",
+      "target_id": "array",
+      "relation_type": "operates_on",
+      "weight": 0.8,
+      "description": ""
+    },
+    {
+      "source_id": "bfs",
+      "target_id": "dfs",
+      "relation_type": "contrasts_with",
+      "weight": 1.0,
+      "description": "BFS explores breadth-first, DFS explores depth-first"
+    },
+    {
+      "source_id": "array",
+      "target_id": "linked_list",
+      "relation_type": "contrasts_with",
+      "weight": 0.9,
+      "description": "Contiguous vs. pointer-based storage"
+    },
+    {
+      "source_id": "stack",
+      "target_id": "queue",
+      "relation_type": "contrasts_with",
+      "weight": 0.8,
+      "description": "LIFO vs. FIFO access pattern"
+    },
+    {
+      "source_id": "linear_search",
+      "target_id": "binary_search",
+      "relation_type": "contrasts_with",
+      "weight": 0.8,
+      "description": "O(n) vs. O(log n)"
+    },
+    {
+      "source_id": "recursion",
+      "target_id": "iteration",
+      "relation_type": "contrasts_with",
+      "weight": 0.9,
+      "description": "Recursive vs. iterative approaches"
+    },
+    {
+      "source_id": "static_memory",
+      "target_id": "dynamic_memory",
+      "relation_type": "contrasts_with",
+      "weight": 0.8,
+      "description": ""
+    },
+    {
+      "source_id": "adjacency_list",
+      "target_id": "adjacency_matrix",
+      "relation_type": "contrasts_with",
+      "weight": 0.9,
+      "description": ""
+    },
+    {
+      "source_id": "chaining",
+      "target_id": "open_addressing",
+      "relation_type": "contrasts_with",
+      "weight": 0.8,
+      "description": ""
+    },
+    {
+      "source_id": "push",
+      "target_id": "stack",
+      "relation_type": "operates_on",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "pop",
+      "target_id": "stack",
+      "relation_type": "operates_on",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "peek",
+      "target_id": "stack",
+      "relation_type": "operates_on",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "enqueue",
+      "target_id": "queue",
+      "relation_type": "operates_on",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "dequeue",
+      "target_id": "queue",
+      "relation_type": "operates_on",
+      "weight": 1.0,
+      "description": ""
+    },
+    {
+      "source_id": "insertion",
+      "target_id": "data_structure",
+      "relation_type": "operates_on",
+      "weight": 0.8,
+      "description": ""
+    },
+    {
+      "source_id": "deletion",
+      "target_id": "data_structure",
+      "relation_type": "operates_on",
+      "weight": 0.8,
+      "description": ""
+    },
+    {
+      "source_id": "traversal",
+      "target_id": "data_structure",
+      "relation_type": "operates_on",
+      "weight": 0.8,
+      "description": ""
+    },
+    {
+      "source_id": "access",
+      "target_id": "data_structure",
+      "relation_type": "operates_on",
+      "weight": 0.8,
+      "description": ""
+    }
+  ],
+  "stats": {
+    "num_concepts": 101,
+    "num_relationships": 138,
+    "concept_types": {
+      "abstract_concept": 25,
+      "programming_construct": 1,
+      "complexity_class": 7,
+      "data_structure": 27,
+      "operation": 9,
+      "property": 10,
+      "algorithm": 19,
+      "design_pattern": 3
+    },
+    "relationship_types": {
+      "is_a": 36,
+      "has_part": 12,
+      "variant_of": 4,
+      "uses": 10,
+      "implements": 5,
+      "prerequisite_for": 20,
+      "has_property": 11,
+      "has_complexity": 15,
+      "operates_on": 17,
+      "contrasts_with": 8
+    }
+  }
+}
