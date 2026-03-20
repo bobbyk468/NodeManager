@@ -12,6 +12,8 @@ import { ConceptExtractorNode } from './ConceptExtractorNode'
 import { KnowledgeGraphCompareNode } from './KnowledgeGraphCompareNode'
 import { CognitiveDepthNode } from './CognitiveDepthNode'
 import { MisconceptionDetectorNode } from './MisconceptionDetectorNode'
+import { ConceptGradeNode } from './ConceptGradeNode'
+import { NLQueryNode } from './NLQueryNode'
 import { LGraphRegisterCustomNodes } from './LGraphRegisterCustomNodes'
 import { LiteGraph } from './litegraph-extensions'
 import { LLMNode } from './LLMNode'
@@ -73,7 +75,9 @@ export {
   ConceptExtractorNode,
   KnowledgeGraphCompareNode,
   CognitiveDepthNode,
-  MisconceptionDetectorNode
+  MisconceptionDetectorNode,
+  ConceptGradeNode,
+  NLQueryNode
 }
 
 export { LGraphNode } from './litegraph-extensions/LGraphNode'
