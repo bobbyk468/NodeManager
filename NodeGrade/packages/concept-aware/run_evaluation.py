@@ -9,7 +9,7 @@ Runs the complete evaluation pipeline on the Mohler benchmark dataset:
   5. Generate comparison table and save results
 
 Usage:
-    export GROQ_API_KEY="your-key"
+    export ANTHROPIC_API_KEY="your-key"
     cd NodeGrade/packages/concept-aware
     python run_evaluation.py
 
@@ -37,22 +37,28 @@ from evaluation.metrics import (
     evaluate_classification,
     evaluate_concept_extraction,
     format_comparison_table,
+    add_bootstrap_cis,
+    wilcoxon_significance,
+    format_significance_table,
     EvaluationResult,
 )
 from evaluation.baselines import CosineSimilarityBaseline, LLMZeroShotBaseline
 
 
-def get_api_key() -> str:
-    """Get Groq API key from environment."""
-    key = os.environ.get("GROQ_API_KEY") or os.environ.get("BEARER_TOKEN", "")
+def get_api_key(model: str = "claude-haiku-4-5-20251001") -> str:
+    """
+    Return the API key for the given model's provider.
+
+    Checks provider-specific env vars first, then falls back to ANTHROPIC_API_KEY
+    for backward compatibility.
+    """
+    from conceptgrade.key_rotator import get_api_key_for_provider
+    from conceptgrade.llm_client import detect_provider
+    provider = detect_provider(model)
+    key = get_api_key_for_provider(provider)
     if not key:
-        env_path = os.path.join(os.path.dirname(__file__), "..", "backend", ".env")
-        if os.path.exists(env_path):
-            with open(env_path) as f:
-                for line in f:
-                    if line.startswith("BEARER_TOKEN="):
-                        key = line.strip().split("=", 1)[1]
-                        break
+        # Fallback: try generic ANTHROPIC_API_KEY for backward compat
+        key = os.environ.get("ANTHROPIC_API_KEY", "")
     return key
 
 
@@ -60,173 +66,72 @@ class ConceptGradeEvaluator:
     """
     Runs ConceptGrade on Mohler samples and extracts a 0-5 score.
 
-    The ConceptGrade pipeline produces multi-dimensional assessment
-    (concept coverage, relationship accuracy, integration quality,
-    Bloom's level, SOLO level, misconceptions). We compute a composite
-    score and map it to the Mohler 0-5 scale for comparison.
+    Backed by ConceptGradePipeline (C1 config — identical to the ablation
+    baseline). overall_score (0-1) is multiplied by 5 to match the Mohler scale.
+    Falls back to offline heuristics when the API is unavailable.
     """
 
-    def __init__(self, api_key: str, model: str = "llama-3.3-70b-versatile",
+    def __init__(self, api_key: str, model: str = "claude-haiku-4-5-20251001",
                  offline: bool = False):
         self.api_key = api_key
         self.model = model
         self.offline = offline
-        self.rate_limit_delay = 2.0
         self.rate_limited = False
+        self.pipeline = None
 
         if not offline:
             try:
-                from knowledge_graph.ds_knowledge_graph import build_data_structures_graph
-                from concept_extraction.extractor import ConceptExtractor
-                from graph_comparison.comparator import KnowledgeGraphComparator
-                from cognitive_depth.blooms_classifier import BloomsClassifier
-                from cognitive_depth.solo_classifier import SOLOClassifier
-                from misconception_detection.detector import MisconceptionDetector
-
-                self.domain_graph = build_data_structures_graph()
-                self.extractor = ConceptExtractor(
-                    domain_graph=self.domain_graph, api_key=api_key, model=model
+                from conceptgrade.pipeline import ConceptGradePipeline
+                self.pipeline = ConceptGradePipeline(
+                    api_key=api_key,
+                    model=model,
+                    use_self_consistency=True,
+                    use_confidence_weighting=True,
+                    use_llm_verifier=True,
+                    verifier_weight=1.0,
+                    sc_inter_run_delay=1.5,
                 )
-                self.comparator = KnowledgeGraphComparator(
-                    domain_graph=self.domain_graph
-                )
-                self.blooms_clf = BloomsClassifier(api_key=api_key, model=model)
-                self.solo_clf = SOLOClassifier(api_key=api_key, model=model)
-                self.misconception_det = MisconceptionDetector(api_key=api_key, model=model)
             except Exception as e:
                 print(f"  Warning: Could not initialize pipeline ({e}), using offline mode")
                 self.offline = True
 
     def score_sample(self, sample: MohlerSample) -> dict:
-        """
-        Run ConceptGrade on a single Mohler sample.
-
-        Falls back to offline scoring if API rate limited.
-        """
-        if self.offline or self.rate_limited:
+        """Run ConceptGrade on a single Mohler sample, fallback to offline on error."""
+        if self.offline or self.rate_limited or self.pipeline is None:
             return self._score_offline(sample)
 
-        result = {
-            "question_id": sample.question_id,
-            "human_score": sample.score_avg,
-            "overall_score": 0.0,
-            "components": {},
-            "errors": [],
-            "mode": "live",
-        }
-
-        # --- Layer 2: Concept Extraction ---
-        concept_graph = None
-        comparison = None
         try:
-            concept_graph = self.extractor.extract(
+            assessment = self.pipeline.assess_student(
+                student_id=f"q{sample.question_id}",
                 question=sample.question,
-                student_answer=sample.student_answer,
+                answer=sample.student_answer,
+                reference_answer=sample.reference_answer,
             )
-            result["components"]["concepts_extracted"] = len(
-                concept_graph.concepts if hasattr(concept_graph, 'concepts') else []
-            )
-            time.sleep(self.rate_limit_delay)
+            overall_5 = round(assessment.overall_score * 5.0, 2)
+            comp = assessment.comparison.get("scores", {})
+            return {
+                "question_id": sample.question_id,
+                "human_score": sample.score_avg,
+                "overall_score": overall_5,
+                "components": {
+                    "concept_coverage": round(comp.get("concept_coverage", 0), 4),
+                    "relationship_accuracy": round(comp.get("relationship_accuracy", 0), 4),
+                    "integration_quality": round(comp.get("integration_quality", 0), 4),
+                    "blooms_level": assessment.blooms.get("level", 1),
+                    "solo_level": assessment.solo.get("level", 1),
+                    "misconceptions": assessment.misconceptions.get("total_misconceptions", 0),
+                },
+                "errors": [],
+                "mode": "live",
+            }
         except Exception as e:
-            error_str = str(e)
-            if "429" in error_str or "rate_limit" in error_str:
+            err = str(e)
+            if "429" in err or "529" in err or "rate_limit" in err.lower() or "overloaded" in err.lower():
                 print(f"\n  Rate limit hit — switching to offline mode for remaining samples")
                 self.rate_limited = True
-                return self._score_offline(sample)
-            result["errors"].append(f"Concept extraction: {e}")
-
-        # --- Layer 2: KG Comparison ---
-        concept_coverage = 0.0
-        rel_accuracy = 0.0
-        integration = 0.0
-        try:
-            if concept_graph:
-                comparison = self.comparator.compare(student_graph=concept_graph)
-                scores = comparison.to_dict().get("scores", {})
-                concept_coverage = scores.get("concept_coverage", 0.0)
-                rel_accuracy = scores.get("relationship_accuracy", 0.0)
-                integration = scores.get("integration_quality", 0.0)
-                result["components"]["concept_coverage"] = round(concept_coverage, 4)
-                result["components"]["relationship_accuracy"] = round(rel_accuracy, 4)
-                result["components"]["integration_quality"] = round(integration, 4)
-        except Exception as e:
-            result["errors"].append(f"KG comparison: {e}")
-
-        # --- Layer 3: Bloom's Classification ---
-        blooms_level = 1
-        try:
-            cg_dict = concept_graph.to_dict() if concept_graph else {"concepts": [], "relationships": []}
-            comp_dict = comparison.to_dict() if comparison else {"scores": {}, "analysis": {}, "diagnostic": {}}
-            blooms_result = self.blooms_clf.classify(
-                question=sample.question,
-                student_answer=sample.student_answer,
-                concept_graph=cg_dict,
-                comparison_result=comp_dict,
-            )
-            blooms_level = blooms_result.level if hasattr(blooms_result, 'level') else 1
-            result["components"]["blooms_level"] = blooms_level
-            time.sleep(self.rate_limit_delay)
-        except Exception as e:
-            if "429" in str(e) or "rate_limit" in str(e):
-                self.rate_limited = True
-                return self._score_offline(sample)
-            result["errors"].append(f"Bloom's: {e}")
-
-        # --- Layer 4: SOLO Classification ---
-        solo_level = 1
-        try:
-            cg_dict = concept_graph.to_dict() if concept_graph else {"concepts": [], "relationships": []}
-            comp_dict = comparison.to_dict() if comparison else {"scores": {}, "analysis": {}, "diagnostic": {}}
-            solo_result = self.solo_clf.classify(
-                question=sample.question,
-                student_answer=sample.student_answer,
-                concept_graph=cg_dict,
-                comparison_result=comp_dict,
-            )
-            solo_level = solo_result.level if hasattr(solo_result, 'level') else 1
-            result["components"]["solo_level"] = solo_level
-            time.sleep(self.rate_limit_delay)
-        except Exception as e:
-            if "429" in str(e) or "rate_limit" in str(e):
-                self.rate_limited = True
-                return self._score_offline(sample)
-            result["errors"].append(f"SOLO: {e}")
-
-        # --- Layer 4: Misconception Detection ---
-        accuracy = 1.0
-        try:
-            cg_dict = concept_graph.to_dict() if concept_graph else {"concepts": [], "relationships": []}
-            comp_dict = comparison.to_dict() if comparison else {"scores": {}, "analysis": {}, "diagnostic": {}}
-            misc_result = self.misconception_det.detect(
-                question=sample.question,
-                student_answer=sample.student_answer,
-                concept_graph=cg_dict,
-                comparison_result=comp_dict,
-            )
-            misc_dict = misc_result.to_dict() if hasattr(misc_result, 'to_dict') else {}
-            accuracy = misc_dict.get("overall_accuracy", 1.0)
-            result["components"]["misconceptions"] = misc_dict.get("total_misconceptions", 0)
-            result["components"]["accuracy"] = round(accuracy, 4)
-            time.sleep(self.rate_limit_delay)
-        except Exception as e:
-            if "429" in str(e) or "rate_limit" in str(e):
-                self.rate_limited = True
-                return self._score_offline(sample)
-            result["errors"].append(f"Misconceptions: {e}")
-
-        # --- Composite Score ---
-        blooms_norm = (blooms_level - 1) / 5.0
-        solo_norm = (solo_level - 1) / 4.0
-        composite = (
-            concept_coverage * 0.20 +
-            rel_accuracy * 0.15 +
-            integration * 0.10 +
-            blooms_norm * 0.20 +
-            solo_norm * 0.20 +
-            accuracy * 0.15
-        )
-        result["overall_score"] = round(max(0.0, min(5.0, composite * 5.0)), 2)
-        return result
+            else:
+                print(f"\n  Error on sample Q{sample.question_id}: {e}")
+            return self._score_offline(sample)
 
     def _score_offline(self, sample: MohlerSample) -> dict:
         """
@@ -370,27 +275,40 @@ class ConceptGradeEvaluator:
         return result
 
 
-def run_evaluation(offline: bool = False):
+def run_evaluation(offline: bool = False, model: str = "claude-haiku-4-5-20251001", n_samples: int = 0):
     """Run the complete evaluation pipeline."""
+    from conceptgrade.llm_client import detect_provider
+    provider = detect_provider(model)
+    provider_label = {"anthropic": "Anthropic Claude", "google": "Google Gemini", "openai": "OpenAI"}.get(provider, provider)
+
     print("=" * 70)
     print("  ConceptGrade Evaluation Framework")
     print("  Benchmark: Mohler et al. (2011) CS Short Answer Dataset")
     if offline:
         print("  Mode: OFFLINE (rule-based components, no API calls)")
     else:
-        print("  Mode: LIVE (LLM-powered pipeline via Groq API)")
+        print(f"  Mode: LIVE (LLM-powered pipeline via {provider_label})")
+        print(f"  Model: {model}")
     print("=" * 70)
     print()
 
-    api_key = get_api_key()
+    api_key = get_api_key(model)
     if not api_key and not offline:
-        print("WARNING: No API key found. Running in offline mode.")
-        print("  Set GROQ_API_KEY for live LLM evaluation.")
+        print(f"WARNING: No API key found for provider '{provider}'.")
+        key_var = {"anthropic": "ANTHROPIC_API_KEY", "google": "GEMINI_API_KEY", "openai": "OPENAI_API_KEY"}.get(provider, "ANTHROPIC_API_KEY")
+        print(f"  Set {key_var} and retry.")
         offline = True
 
     # --- Load Dataset ---
     print("[1/5] Loading Mohler sample dataset...")
     dataset = load_mohler_sample()
+    if n_samples and n_samples < dataset.num_samples:
+        # Stratified subsample: pick evenly across score range for representative coverage
+        import random
+        random.seed(42)
+        sorted_samples = sorted(dataset.samples, key=lambda s: s.score_avg)
+        step = len(sorted_samples) / n_samples
+        dataset.samples = [sorted_samples[int(i * step)] for i in range(n_samples)]
     print(f"  Loaded {dataset.num_samples} samples across {dataset.num_questions} questions")
     print(f"  Score distribution: {dataset.score_distribution()}")
     print()
@@ -414,7 +332,7 @@ def run_evaluation(offline: bool = False):
     if not offline and api_key:
         print("[3/5] Running LLM Zero-Shot baseline...")
         llm_baseline = LLMZeroShotBaseline(
-            api_key=api_key, model="llama-3.3-70b-versatile", rate_limit_delay=2.0
+            api_key=api_key, model=model, rate_limit_delay=2.0
         )
         rate_limited = False
         for i, sample in enumerate(dataset.samples):
@@ -485,8 +403,8 @@ def run_evaluation(offline: bool = False):
     if offline:
         print("  (Offline mode: using rule-based component scoring)")
     else:
-        print("  (Live mode: multi-layer LLM analysis via Groq)")
-    evaluator = ConceptGradeEvaluator(api_key=api_key, offline=offline)
+        print(f"  (Live mode: multi-layer LLM analysis via {provider_label})")
+    evaluator = ConceptGradeEvaluator(api_key=api_key, model=model, offline=offline)
     conceptgrade_scores = []
     conceptgrade_details = []
     for i, sample in enumerate(dataset.samples):
@@ -507,12 +425,18 @@ def run_evaluation(offline: bool = False):
     )
     llm_eval = evaluate_grading(
         human_scores, llm_scores,
-        task_name="LLM Zero-Shot" + (" (offline)" if offline else " (Llama-3.3-70B)")
+        task_name="LLM Zero-Shot" + (" (offline)" if offline else " (Claude Haiku)")
     )
     conceptgrade_eval = evaluate_grading(
         human_scores, conceptgrade_scores,
-        task_name="ConceptGrade" + (" (offline)" if offline or evaluator.rate_limited else " (live)")
+        task_name="ConceptGrade C5 (SC+CW+Verifier)" + (" (offline)" if offline or evaluator.rate_limited else " (live)")
     )
+
+    # Add bootstrap confidence intervals (1000 resamples)
+    print("  Computing bootstrap confidence intervals (n=1000)...")
+    add_bootstrap_cis(cosine_eval, human_scores, cosine_scores)
+    add_bootstrap_cis(llm_eval, human_scores, llm_scores)
+    add_bootstrap_cis(conceptgrade_eval, human_scores, conceptgrade_scores)
 
     # Print comparison table
     print("=" * 82)
@@ -525,6 +449,21 @@ def run_evaluation(offline: bool = False):
     for eval_result in [cosine_eval, llm_eval, conceptgrade_eval]:
         print(eval_result.summary())
         print()
+
+    # Statistical significance testing (Wilcoxon signed-rank)
+    print("─" * 70)
+    print("  STATISTICAL SIGNIFICANCE — Wilcoxon Signed-Rank Tests")
+    print("─" * 70)
+    sig_tests = [
+        wilcoxon_significance(human_scores, conceptgrade_scores, cosine_scores,
+                              "ConceptGrade", "Cosine TF-IDF"),
+        wilcoxon_significance(human_scores, conceptgrade_scores, llm_scores,
+                              "ConceptGrade", "LLM Zero-Shot"),
+        wilcoxon_significance(human_scores, llm_scores, cosine_scores,
+                              "LLM Zero-Shot", "Cosine TF-IDF"),
+    ]
+    print(format_significance_table(sig_tests))
+    print()
 
     # --- Literature Comparison ---
     print("─" * 70)
@@ -550,8 +489,8 @@ def run_evaluation(offline: bool = False):
             "num_questions": dataset.num_questions,
             "timestamp": datetime.now().isoformat(),
             "mode": "offline" if offline else "live",
-            "llm_model": "llama-3.3-70b-versatile",
-            "platform": "Groq",
+            "llm_model": "claude-haiku-4-5-20251001",
+            "platform": "Anthropic",
         },
         "score_distribution": dataset.score_distribution(),
         "results": {
@@ -593,6 +532,10 @@ def run_evaluation(offline: bool = False):
                 },
             ],
         },
+        "statistical_significance": {
+            "method": "Wilcoxon signed-rank test (one-tailed, alternative='greater')",
+            "tests": sig_tests,
+        },
         "literature_benchmarks": {
             "note": "Published results on full Mohler dataset (n=630)",
             "systems": [
@@ -618,7 +561,7 @@ def run_evaluation(offline: bool = False):
         f"Date: {datetime.now().strftime('%Y-%m-%d %H:%M')}",
         f"Dataset: Mohler et al. (2011) — {dataset.num_samples} samples, {dataset.num_questions} questions",
         f"Mode: {'Offline (rule-based)' if offline else 'Live (LLM-powered)'}",
-        f"LLM: llama-3.3-70b-versatile (Groq)",
+        f"LLM: {model} ({provider_label})",
         "",
         "RESULTS:",
         format_comparison_table([cosine_eval, llm_eval, conceptgrade_eval]),
@@ -645,7 +588,7 @@ def run_evaluation(offline: bool = False):
         "",
         "NOTES:",
         "  - Sample dataset used (n=30); full Mohler dataset has 630 responses",
-        "  - For live API evaluation, set GROQ_API_KEY and omit --offline flag",
+        "  - For live API evaluation, set ANTHROPIC_API_KEY and omit --offline flag",
         "  - ConceptGrade's multi-layer approach provides richer assessment",
         "    than a single score — Bloom's/SOLO/Misconception dimensions",
         "    offer diagnostic value beyond numeric correlation",
@@ -663,5 +606,19 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="ConceptGrade Evaluation")
     parser.add_argument("--offline", action="store_true",
                         help="Run in offline mode (no API calls)")
+    parser.add_argument(
+        "--model", default="claude-haiku-4-5-20251001",
+        help=(
+            "LLM model to use. Provider is auto-detected from model name:\n"
+            "  claude-*  → Anthropic  (set ANTHROPIC_API_KEY)\n"
+            "  gemini-*  → Google     (set GEMINI_API_KEY)\n"
+            "  gpt-*     → OpenAI     (set OPENAI_API_KEY)\n"
+            "Examples: gemini-2.0-flash, gpt-4o-mini, claude-haiku-4-5-20251001"
+        ),
+    )
+    parser.add_argument(
+        "--n-samples", type=int, default=0,
+        help="Limit to N samples (stratified). Default 0 = all 120. Use 10 for a ~2min quick run."
+    )
     args = parser.parse_args()
-    run_evaluation(offline=args.offline)
+    run_evaluation(offline=args.offline, model=args.model, n_samples=args.n_samples)

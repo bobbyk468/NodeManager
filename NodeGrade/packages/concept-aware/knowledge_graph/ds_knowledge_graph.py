@@ -413,6 +413,10 @@ def build_data_structures_graph() -> DomainKnowledgeGraph:
         Relationship("hash_table", "linked_list", RT.USES, 0.7, "Chaining uses linked lists"),
         Relationship("level_order", "queue", RT.USES, 1.0, "Level-order traversal uses a queue"),
         Relationship("topological_sort", "dfs", RT.USES, 0.8),
+        # NOTE: binary_search→array also appears as OPERATES_ON below.
+        # NetworkX DiGraph only stores the last edge for a given (src, tgt) pair,
+        # so _verify_relationship uses domain_graph.get_all_relationships() instead
+        # of the graph structure to handle both relationship types correctly.
         Relationship("binary_search", "array", RT.USES, 0.9, "Binary search requires a sorted array"),
 
         # === IMPLEMENTS ===
@@ -508,6 +512,9 @@ def build_data_structures_graph() -> DomainKnowledgeGraph:
 
     for rel in relationships:
         graph.add_relationship(rel)
+
+    # Auto-tag concepts as primary / secondary based on graph topology
+    graph.tag_hierarchical_concepts()
 
     return graph
 

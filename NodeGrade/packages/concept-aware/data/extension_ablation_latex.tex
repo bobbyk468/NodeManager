@@ -1,0 +1,19 @@
+% ConceptGrade Extension Ablation — auto-generated
+\begin{table}[h]
+\centering
+\caption{Ablation study on the Mohler et al. (2011) dataset ($n=30$). SC = Self-Consistent Extraction, CW = Confidence-Weighted Comparison, Ver = LLM Verifier. Bold = best per column.}
+\label{tab:ablation}
+\begin{tabular}{@{}llrrrr@{}}
+\toprule
+\textbf{ID} & \textbf{System} & \textbf{Pearson $r$} & \textbf{QWK} & \textbf{RMSE} & \textbf{MAE} \\
+\midrule
+C0 & Cosine-Only Baseline & \textbf{0.9581} & \textbf{0.7989} & 0.8817 & 0.7480 \\
+C1 & ConceptGrade Baseline & \textbf{0.9581} & \textbf{0.7989} & 0.8817 & 0.7480 \\
+\midrule
+C2 & ConceptGrade + SC & 0.9569 & \textbf{0.7989} & \textbf{0.8760} & \textbf{0.7470} \\
+C3 & ConceptGrade + CW & 0.9552 & 0.6358 & 0.9853 & 0.8137 \\
+C4 & ConceptGrade + Verifier & 0.9533 & 0.5789 & 1.0921 & 0.8860 \\
+C5 & ConceptGrade + All Extensions & 0.9488 & 0.5955 & 1.1749 & 0.9417 \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -109,7 +109,7 @@ def run_demo():
     print("  Paper 3: V-NLI Visualization + Full System")
     print(f"  Timestamp: {datetime.now().isoformat()}")
     print(f"  Classroom: {len(CLASSROOM)} students")
-    print(f"  LLM: Groq (llama-3.3-70b-versatile)")
+    print(f"  LLM: Groq (claude-haiku-4-5-20251001)")
 
     # ── Step 1: Initialize ConceptGrade Pipeline ──
     print_header("STEP 1: Initialize ConceptGrade Pipeline (All 5 Layers)")
@@ -218,7 +218,7 @@ def run_demo():
                 "timestamp": datetime.now().isoformat(),
                 "question": QUESTION,
                 "num_students": len(CLASSROOM),
-                "llm_model": "llama-3.3-70b-versatile",
+                "llm_model": "claude-haiku-4-5-20251001",
             },
             "assessments": [a.to_dict() for a in assessments],
             "analytics": analytics_dict,

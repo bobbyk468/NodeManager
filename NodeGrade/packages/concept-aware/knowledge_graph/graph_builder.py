@@ -8,7 +8,7 @@ from curriculum materials, then validates and builds the domain graph.
 import json
 import re
 from typing import Optional
-from groq import Groq
+from conceptgrade.llm_client import LLMClient as Groq
 
 from .ontology import Concept, Relationship, ConceptType, RelationshipType
 from .domain_graph import DomainKnowledgeGraph
@@ -72,7 +72,7 @@ class KnowledgeGraphBuilder:
     followed by expert validation.
     """
 
-    def __init__(self, api_key: str, model: str = "llama-3.3-70b-versatile"):
+    def __init__(self, api_key: str, model: str = "claude-haiku-4-5-20251001"):
         self.client = Groq(api_key=api_key)
         self.model = model
 
@@ -183,7 +183,42 @@ class KnowledgeGraphBuilder:
                 elif ctype == "add_relationship":
                     rel = Relationship.from_dict(correction["relationship"])
                     graph.add_relationship(rel)
+                elif ctype == "fix_relationship":
+                    # Replace old relation type with new one by removing and re-adding
+                    src = correction.get("source")
+                    tgt = correction.get("target")
+                    new_type = correction.get("new_type")
+                    if src and tgt and new_type:
+                        # Remove old relationship from internal list
+                        old_type = correction.get("old_type")
+                        graph._relationships = [
+                            r for r in graph._relationships
+                            if not (r.source_id == src and r.target_id == tgt
+                                    and r.relation_type.value == old_type)
+                        ]
+                        # Update NetworkX edge in-place
+                        if graph.graph.has_edge(src, tgt):
+                            graph.graph[src][tgt]["relation_type"] = new_type
+                        # Add corrected relationship to internal list
+                        new_rel = Relationship(
+                            source_id=src,
+                            target_id=tgt,
+                            relation_type=RelationshipType(new_type),
+                        )
+                        graph._relationships.append(new_rel)
+                elif ctype == "remove_relationship":
+                    src = correction.get("source")
+                    tgt = correction.get("target")
+                    rel_type = correction.get("relation_type")
+                    if src and tgt:
+                        graph._relationships = [
+                            r for r in graph._relationships
+                            if not (r.source_id == src and r.target_id == tgt
+                                    and (rel_type is None or r.relation_type.value == rel_type))
+                        ]
+                        if graph.graph.has_edge(src, tgt):
+                            graph.graph.remove_edge(src, tgt)
             except Exception as e:
                 print(f"  Warning: Could not apply correction: {e}")
-        
+
         return graph

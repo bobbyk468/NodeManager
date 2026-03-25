@@ -1,0 +1,14 @@
+% ConceptGrade LLM Ablation — real pipeline, Mohler n=30
+\begin{table}[h]\centering
+\caption{LLM-mode ablation study on Mohler et al. (2011) ($n=30$, heuristic-mode results for reference). SC = Self-Consistent Extraction; CW = Confidence-Weighted Comparison; Ver = LLM Verifier. $\Delta$ measured against C1 (ConceptGrade Baseline). Bold = best per metric.}
+\label{tab:llm_ablation}
+\begin{tabular}{@{}llrrrrr@{}}\toprule
+\textbf{ID} & \textbf{System} & \textbf{$r$} & \textbf{$\Delta r$} & \textbf{QWK} & \textbf{$\Delta$QWK} & \textbf{RMSE} \\\midrule
+C0 & Cosine-Only Baseline & 0.7622 & -- & 0.3586 & -- & 2.4202 \\
+C1 & ConceptGrade Baseline & 0.8290 & -- & 0.4896 & -- & 1.8029 \\
+\midrule
+C2 & ConceptGrade + SC & 0.8547 & +0.0258 & 0.5378 & +0.0482 & 1.7504 \\
+C3 & ConceptGrade + CW & 0.8558 & +0.0268 & 0.4937 & +0.0042 & 1.7533 \\
+C4 & ConceptGrade + Verifier & 0.9219 & +0.0929 & 0.6444 & +0.1548 & 1.4829 \\
+C5 & ConceptGrade + All Extensions & \textbf{0.9465} & +0.1175 & \textbf{0.6954} & +0.2058 & \textbf{1.4104} \\
+\bottomrule\end{tabular}\end{table}

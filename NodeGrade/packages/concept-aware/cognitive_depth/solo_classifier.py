@@ -24,11 +24,12 @@ SOLO Levels:
 """
 
 import json
+import math
 import re
 from dataclasses import dataclass
 from enum import IntEnum
 from typing import Optional
-from groq import Groq
+from conceptgrade.llm_client import LLMClient as Groq
 
 
 class SOLOLevel(IntEnum):
@@ -183,11 +184,11 @@ class SOLOClassifier:
     3. Ensemble: combine both signals for final classification
     """
 
-    def __init__(self, api_key: str, model: str = "llama-3.3-70b-versatile"):
+    def __init__(self, api_key: str, model: str = "claude-haiku-4-5-20251001"):
         self.client = Groq(api_key=api_key)
         self.model = model
 
-    def _call_llm(self, system: str, user: str, max_tokens: int = 1500) -> str:
+    def _call_llm(self, system: str, user: str, max_tokens: int = 512) -> str:
         response = self.client.chat.completions.create(
             model=self.model,
             messages=[
@@ -300,17 +301,33 @@ class SOLOClassifier:
         )
 
         # 2. LLM-based classification
-        user_prompt = SOLO_COT_USER.format(
-            question=question,
-            student_answer=student_answer,
-            num_concepts=num_concepts,
-            concept_list=concept_list,
-            num_relationships=num_rels,
-            integration_score=f"{integration_score:.0%}",
-            isolated_concepts=isolated,
-            coverage_score=f"{coverage_score:.0%}",
-            kg_depth=kg_depth,
-        )
+        # When no concept_graph is provided, avoid polluting the prompt with
+        # misleading "0 concepts" evidence — tell the LLM to classify from text.
+        if concept_graph is None:
+            kg_evidence_str = "Not available — classify from text content only."
+            user_prompt = SOLO_COT_USER.format(
+                question=question,
+                student_answer=student_answer,
+                num_concepts="N/A",
+                concept_list="N/A",
+                num_relationships="N/A",
+                integration_score="N/A",
+                isolated_concepts="N/A",
+                coverage_score="N/A",
+                kg_depth="N/A",
+            )
+        else:
+            user_prompt = SOLO_COT_USER.format(
+                question=question,
+                student_answer=student_answer,
+                num_concepts=num_concepts,
+                concept_list=concept_list,
+                num_relationships=num_rels,
+                integration_score=f"{integration_score:.0%}",
+                isolated_concepts=isolated,
+                coverage_score=f"{coverage_score:.0%}",
+                kg_depth=kg_depth,
+            )
 
         try:
             raw = self._call_llm(SOLO_COT_SYSTEM, user_prompt)
@@ -322,19 +339,25 @@ class SOLOClassifier:
             llm_confidence = float(parsed.get("confidence", 0.5))
 
             # 3. Ensemble: weighted combination
+            # When no concept graph is available, rule-based defaults to
+            # PRESTRUCTURAL (no KG evidence) — trust LLM fully in that case.
+            if concept_graph is None:
+                final_level = llm_level
+                confidence = llm_confidence
             # If LLM and rules agree → high confidence
-            # If they disagree by 1 level → use LLM (more nuanced), moderate confidence
-            # If they disagree by 2+ levels → use rule-based (more reliable structural features)
-            if llm_level == rule_level:
+            elif llm_level == rule_level:
                 final_level = llm_level
                 confidence = min(llm_confidence + 0.15, 1.0)
             elif abs(llm_level.value - rule_level.value) <= 1:
                 final_level = llm_level  # Trust LLM for close calls
                 confidence = llm_confidence * 0.9
             else:
-                # Large disagreement — average and use structural evidence
+                # Large disagreement — average and use structural evidence.
+                # Use explicit round-half-up (math.ceil of x - 0.5) instead of
+                # Python's banker's rounding to avoid unexpected floor-rounding
+                # at midpoints (e.g. 2.5 → 2 under banker's, but should be 3).
                 avg = (llm_level.value + rule_level.value) / 2
-                final_level = SOLOLevel(round(avg))
+                final_level = SOLOLevel(math.floor(avg + 0.5))  # round-half-up
                 confidence = min(llm_confidence, 0.5)
 
             return SOLOClassification(

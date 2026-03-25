@@ -1,36 +1,36 @@
 ConceptGrade Evaluation Summary
 ==================================================
-Date: 2026-03-20 14:52
-Dataset: Mohler et al. (2011) — 30 samples, 6 questions
-Mode: Offline (rule-based)
-LLM: llama-3.3-70b-versatile (Groq)
+Date: 2026-03-25 12:13
+Dataset: Mohler et al. (2011) — 10 samples, 10 questions
+Mode: Live (LLM-powered)
+LLM: gemini-2.5-flash (Google Gemini)
 
 RESULTS:
 System                         Pearson r    QWK        RMSE       F1 (m)     Acc       
 ──────────────────────────────────────────────────────────────────────────────────
-Cosine Similarity (TF-IDF)     0.5778       0.1647     2.2567     0.0000     0.1333    
-LLM Zero-Shot (offline)        0.8778       0.3702     1.7545     0.0000     0.1667    
-ConceptGrade (offline)         0.9538       0.7211     0.9457     0.0000     0.4000    
+Cosine Similarity (TF-IDF)     0.8252       0.4765     1.6203     0.0000     0.3000    
+LLM Zero-Shot (Claude Haiku)   0.9106       0.9035     0.7374     0.0000     0.4000    
+ConceptGrade C5 (SC+CW+Verifier) (live) 0.2615       0.2791     1.6813     0.0000     0.0000    
 
 DETAILED METRICS:
 
-=== Cosine Similarity (TF-IDF) (n=30) ===
-  Pearson r: 0.5778 (p=8.2657e-04)
-  QWK: 0.1647
-  RMSE: 2.2567  MAE: 1.8637
-  F1 (macro): 0.0000  Accuracy: 0.1333
+=== Cosine Similarity (TF-IDF) (n=10) ===
+  Pearson r: 0.8252 (p=3.2857e-03)  95% CI [0.6276, 0.9890]
+  QWK: 0.4765  95% CI [0.1978, 0.7929]
+  RMSE: 1.6203  MAE: 1.2510
+  F1 (macro): 0.0000  Accuracy: 0.3000
 
-=== LLM Zero-Shot (offline) (n=30) ===
-  Pearson r: 0.8778 (p=1.8824e-10)
-  QWK: 0.3702
-  RMSE: 1.7545  MAE: 1.5033
-  F1 (macro): 0.0000  Accuracy: 0.1667
-
-=== ConceptGrade (offline) (n=30) ===
-  Pearson r: 0.9538 (p=3.6886e-16)
-  QWK: 0.7211
-  RMSE: 0.9457  MAE: 0.7993
+=== LLM Zero-Shot (Claude Haiku) (n=10) ===
+  Pearson r: 0.9106 (p=2.5031e-04)  95% CI [0.8249, 0.9798]
+  QWK: 0.9035  95% CI [0.7058, 0.9512]
+  RMSE: 0.7374  MAE: 0.5750
   F1 (macro): 0.0000  Accuracy: 0.4000
+
+=== ConceptGrade C5 (SC+CW+Verifier) (live) (n=10) ===
+  Pearson r: 0.2615 (p=4.6552e-01)  95% CI [-0.2459, 0.8715]
+  QWK: 0.2791  95% CI [-0.1905, 0.5763]
+  RMSE: 1.6813  MAE: 1.5430
+  F1 (macro): 0.0000  Accuracy: 0.0000
 
 INTERPRETATION:
   - Pearson r: Linear correlation with human scores (higher = better)
@@ -46,7 +46,7 @@ ConceptGrade integrates 5 assessment layers:
 
 NOTES:
   - Sample dataset used (n=30); full Mohler dataset has 630 responses
-  - For live API evaluation, set GROQ_API_KEY and omit --offline flag
+  - For live API evaluation, set ANTHROPIC_API_KEY and omit --offline flag
   - ConceptGrade's multi-layer approach provides richer assessment
     than a single score — Bloom's/SOLO/Misconception dimensions
     offer diagnostic value beyond numeric correlation

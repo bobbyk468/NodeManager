@@ -1,0 +1,43 @@
+% Inter-Rater Reliability — ConceptGrade vs Human Raters
+\begin{table}[h]
+\centering
+\caption{Inter-rater reliability on the Mohler dataset. QWK = Quadratic Weighted Kappa; $\alpha$ = Krippendorff's $\alpha$; ICC = Intraclass Correlation Coefficient (two-way mixed); Adj\% = percentage of scores within $\pm0.5$. Human-Human serves as the theoretical ceiling.}
+\label{tab:reliability}
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+\textbf{Comparison} & \textbf{QWK} & \textbf{$\kappa$} & \textbf{$\alpha$} & \textbf{ICC} & \textbf{Adj\%} \\
+\midrule
+\textit{Human-Human (ceiling)} & 0.965 & 0.895 & 0.984 & 0.984 & 100.0\% \\
+\midrule
+ConceptGrade vs Rater 1 & 0.802 & 0.559 & 0.823 & 0.835 & 37.5\% \\
+ConceptGrade vs Rater 2 & 0.783 & 0.545 & 0.805 & 0.818 & 35.8\% \\
+ConceptGrade vs Consensus & 0.793 & 0.561 & 0.819 & 0.831 & 35.8\% \\
+\bottomrule
+\multicolumn{6}{l}{\footnotesize Three-way $\alpha$ = 0.886; System QWK as \%% of ceiling = 82.2\%} \\
+\end{tabular}
+\end{table}
+
+% ConceptGrade Ablation Study — 120 samples, heuristic mode
+\begin{table}[h]\centering
+\caption{Ablation study (n=120, heuristic mode). Δ = change from C1 baseline.}
+\label{tab:ablation120}
+\begin{tabular}{@{}llrrrrr@{}}\toprule
+\textbf{ID} & \textbf{System} & \textbf{$r$} & \textbf{$\Delta r$} & \textbf{QWK} & \textbf{$\Delta$QWK} & \textbf{RMSE} \\\midrule
+C0 & Cosine-Only Baseline & 0.9526 & -- & \textbf{0.7935} & -- & 0.8036 \\
+\midrule
+C1 & ConceptGrade Baseline & 0.9526 & -- & \textbf{0.7935} & -- & 0.8036 \\
+C2 & ConceptGrade + SC & 0.9520 & -0.0006 & \textbf{0.7935} & +0.0000 & 0.7984 \\
+C3 & ConceptGrade + CW & 0.9522 & -0.0003 & 0.7241 & -0.0694 & 0.8830 \\
+C4 & ConceptGrade + Verifier & \textbf{0.9533} & +0.0007 & 0.7003 & -0.0932 & 0.9594 \\
+C5 & ConceptGrade + All Extensions & 0.9521 & -0.0005 & 0.6764 & -0.1171 & 1.0278 \\
+\bottomrule\end{tabular}\end{table}
+
+% Cross-Domain Knowledge Graph Statistics
+\begin{table}[h]\centering
+\caption{Expert knowledge graphs constructed for ConceptGrade. Shared concepts are foundational CS concepts (e.g., time\_complexity, recursion, node) present in both domains.}
+\label{tab:kgstats}
+\begin{tabular}{@{}lrrrl@{}}\toprule
+\textbf{Knowledge Graph} & \textbf{Concepts} & \textbf{Relationships} & \textbf{Shared} & \textbf{Coverage} \\\midrule
+Data Structures & 101 & 138 & \multirow{2}{*}{31} & Linked lists, trees, graphs, hashing \\
+Algorithms & 74 & 203 & & Sorting, searching, DP, graph algorithms \\
+\bottomrule\end{tabular}\end{table}

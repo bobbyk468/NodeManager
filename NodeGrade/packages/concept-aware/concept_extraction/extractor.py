@@ -12,7 +12,7 @@ import json
 import re
 from dataclasses import dataclass, field
 from typing import Optional
-from groq import Groq
+from conceptgrade.llm_client import LLMClient as Groq
 
 try:
     from ..knowledge_graph.ontology import (
@@ -168,8 +168,8 @@ class StudentConceptGraph:
     @classmethod
     def from_dict(cls, data: dict) -> "StudentConceptGraph":
         return cls(
-            question=data["question"],
-            student_answer=data["student_answer"],
+            question=data.get("question", ""),
+            student_answer=data.get("student_answer", ""),
             concepts=[ExtractedConcept(**c) for c in data.get("concepts", [])],
             relationships=[ExtractedRelationship(**r) for r in data.get("relationships", [])],
             unmapped_terms=data.get("unmapped_terms", []),
@@ -192,7 +192,7 @@ class ConceptExtractor:
         self,
         domain_graph: DomainKnowledgeGraph,
         api_key: str,
-        model: str = "llama-3.3-70b-versatile"
+        model: str = "claude-haiku-4-5-20251001"
     ):
         self.domain_graph = domain_graph
         self.client = Groq(api_key=api_key)
@@ -200,13 +200,55 @@ class ConceptExtractor:
         self._build_ontology_reference()
 
     def _build_ontology_reference(self) -> None:
-        """Build a compact ontology reference string for the LLM prompt."""
+        """Build a compact ontology reference string for the LLM prompt (full KG, used as fallback)."""
         concepts = self.domain_graph.get_all_concepts()
         lines = []
         for c in concepts:
             aliases = ", ".join(c.aliases) if c.aliases else "none"
             lines.append(f"- {c.id} ({c.name}): {c.description} [aliases: {aliases}]")
         self._ontology_reference = "\n".join(lines)
+
+    def _build_question_ontology(self, question: str) -> str:
+        """
+        Return a filtered ontology reference containing only concepts near the
+        question topic — typically 10-20 concepts instead of all 100.
+
+        Strategy: keyword-match the question against concept IDs/names/descriptions,
+        then expand 1 hop in the KG graph to pick up prerequisite/related concepts.
+        Falls back to the full ontology if no focused match is found.
+        """
+        q_lower = question.lower()
+        seed_ids: list[str] = []
+
+        for c in self.domain_graph.get_all_concepts():
+            # Match on id, name, description, or aliases
+            text = f"{c.id} {c.name} {c.description} {' '.join(c.aliases or [])}".lower()
+            # Score: how many question words appear in the concept text
+            q_words = [w for w in q_lower.split() if len(w) > 3]
+            if any(w in text for w in q_words):
+                seed_ids.append(c.id)
+
+        if not seed_ids:
+            return self._ontology_reference  # full fallback
+
+        # Expand 1 hop via the domain KG graph
+        try:
+            subgraph = self.domain_graph.get_subgraph_for_question(seed_ids, depth=1)
+            focused = subgraph.get_all_concepts()
+        except Exception:
+            focused = [self.domain_graph.get_concept(cid) for cid in seed_ids
+                       if self.domain_graph.get_concept(cid)]
+
+        if not focused:
+            return self._ontology_reference
+
+        lines = []
+        for c in focused:
+            if c is None:
+                continue
+            aliases = ", ".join(c.aliases) if c.aliases else "none"
+            lines.append(f"- {c.id} ({c.name}): {c.description} [aliases: {aliases}]")
+        return "\n".join(lines)
 
     def _call_llm(self, system_prompt: str, user_prompt: str, max_tokens: int = 2048) -> str:
         """Call Groq API with system and user prompts."""
@@ -223,19 +265,8 @@ class ConceptExtractor:
 
     def _parse_json_response(self, text: str) -> dict:
         """Extract JSON from LLM response."""
-        json_match = re.search(r'```(?:json)?\s*\n?(.*?)\n?```', text, re.DOTALL)
-        if json_match:
-            text = json_match.group(1)
-        
-        try:
-            return json.loads(text.strip())
-        except json.JSONDecodeError:
-            start = text.find('{')
-            end = text.rfind('}')
-            if start != -1 and end != -1:
-                return json.loads(text[start:end + 1])
-        
-        raise ValueError(f"Could not parse JSON from response: {text[:200]}...")
+        from conceptgrade.llm_client import parse_llm_json
+        return parse_llm_json(text)
 
     def extract(self, question: str, student_answer: str) -> StudentConceptGraph:
         """
@@ -249,16 +280,18 @@ class ConceptExtractor:
             StudentConceptGraph representing the student's demonstrated knowledge
         """
         # Step 1: LLM-based extraction
+        # Use a question-focused ontology subset (~10-20 concepts) instead of all 100
+        focused_ontology = self._build_question_ontology(question)
         user_prompt = CONCEPT_EXTRACTION_USER.format(
             question=question,
             student_answer=student_answer,
-            ontology_concepts=self._ontology_reference
+            ontology_concepts=focused_ontology
         )
-        
+
         raw_response = self._call_llm(
             CONCEPT_EXTRACTION_SYSTEM,
             user_prompt,
-            max_tokens=2048
+            max_tokens=800   # 800 is sufficient for ~15 concepts with evidence strings
         )
         
         try:
@@ -279,6 +312,8 @@ class ConceptExtractor:
 
         for c_data in parsed.get("concepts_found", []):
             concept_id = c_data.get("id", "").strip()
+            if not concept_id:
+                continue
             # Validate against ontology
             if self.domain_graph.get_concept(concept_id):
                 student_graph.concepts.append(ExtractedConcept(
@@ -316,27 +351,46 @@ class ConceptExtractor:
                     misconception_note=r_data.get("misconception_note", "")
                 ))
 
-        student_graph.unmapped_terms.extend(parsed.get("unmapped_terms", []))
+        # Deduplicate: merge LLM's unmapped_terms without re-adding already-stored ones
+        existing = set(student_graph.unmapped_terms)
+        for term in parsed.get("unmapped_terms", []):
+            if term not in existing:
+                student_graph.unmapped_terms.append(term)
+                existing.add(term)
         student_graph.overall_depth = parsed.get("overall_depth", "surface")
 
         return student_graph
 
     def extract_batch(
-        self, 
-        qa_pairs: list[tuple[str, str]]
+        self,
+        qa_pairs: list[tuple[str, str]],
+        max_workers: int = 4,
     ) -> list[StudentConceptGraph]:
         """
-        Extract concepts from multiple question-answer pairs.
-        
+        Extract concepts from multiple question-answer pairs in parallel.
+
         Args:
-            qa_pairs: List of (question, student_answer) tuples
-            
+            qa_pairs:    List of (question, student_answer) tuples.
+            max_workers: Max concurrent Groq calls (keep ≤5 to respect rate limits).
+
         Returns:
-            List of StudentConceptGraph objects
+            List of StudentConceptGraph objects in the same order as qa_pairs.
         """
-        results = []
-        for i, (question, answer) in enumerate(qa_pairs):
-            print(f"  Extracting [{i+1}/{len(qa_pairs)}]: {question[:50]}...")
-            graph = self.extract(question, answer)
-            results.append(graph)
+        from concurrent.futures import ThreadPoolExecutor, as_completed
+
+        results: list[StudentConceptGraph | None] = [None] * len(qa_pairs)
+
+        def _extract(idx: int, question: str, answer: str):
+            print(f"  Extracting [{idx+1}/{len(qa_pairs)}]: {question[:50]}...")
+            return idx, self.extract(question, answer)
+
+        with ThreadPoolExecutor(max_workers=max_workers) as pool:
+            futures = [
+                pool.submit(_extract, i, q, a)
+                for i, (q, a) in enumerate(qa_pairs)
+            ]
+            for future in as_completed(futures):
+                idx, graph = future.result()
+                results[idx] = graph
+
         return results

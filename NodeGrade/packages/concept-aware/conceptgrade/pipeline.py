@@ -20,18 +20,22 @@ Assessment with Visual Natural Language Interface for Educational Analytics"
 
 import json
 import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass, field
 from typing import Optional
 from datetime import datetime
 
 from knowledge_graph.domain_graph import DomainKnowledgeGraph
 from knowledge_graph.ds_knowledge_graph import build_data_structures_graph
-from concept_extraction.extractor import ConceptExtractor
+from concept_extraction.extractor import ConceptExtractor, StudentConceptGraph
+from concept_extraction.self_consistent_extractor import SelfConsistentExtractor
 from graph_comparison.comparator import KnowledgeGraphComparator
-from cognitive_depth.blooms_classifier import BloomsClassifier
-from cognitive_depth.solo_classifier import SOLOClassifier
+from graph_comparison.confidence_weighted_comparator import ConfidenceWeightedComparator
+from cognitive_depth.cognitive_depth_classifier import CognitiveDepthClassifier
 from misconception_detection.detector import MisconceptionDetector
 from nl_query_engine.parser import NLQueryParser, ParsedQuery, QueryType
+from conceptgrade.cache import ResponseCache
+from conceptgrade.verifier import LLMVerifier
 
 
 @dataclass
@@ -57,8 +61,11 @@ class StudentAssessment:
     overall_score: float = 0.0
     depth_category: str = "surface"  # surface, moderate, deep, expert
 
+    # Extension 3: LLM Verifier (optional)
+    verifier: dict = field(default_factory=dict)
+
     def to_dict(self) -> dict:
-        return {
+        d = {
             "student_id": self.student_id,
             "question": self.question,
             "answer": self.answer,
@@ -71,6 +78,9 @@ class StudentAssessment:
             "overall_score": round(self.overall_score, 4),
             "depth_category": self.depth_category,
         }
+        if self.verifier:
+            d["verifier"] = self.verifier
+        return d
 
 
 @dataclass
@@ -146,57 +156,105 @@ class ConceptGradePipeline:
         self,
         api_key: str,
         domain_graph: Optional[DomainKnowledgeGraph] = None,
-        model: str = "llama-3.3-70b-versatile",
-        rate_limit_delay: float = 1.5,
+        model: str = "claude-haiku-4-5-20251001",
+        rate_limit_delay: float = 0.1,
+        # ── Research Extensions ───────────────────────────────────────────
+        use_self_consistency: bool = False,
+        use_confidence_weighting: bool = True,
+        use_llm_verifier: bool = False,
+        use_sure_verifier: bool = False,
+        verifier_weight: float = 0.25,
+        sc_n_runs: int = 3,
+        sc_min_votes: int = 2,
+        sc_inter_run_delay: float = 0.0,
+        # ── Hierarchical KG ──────────────────────────────────────────────
+        use_hierarchical_kg: bool = False,
     ):
         """
         Initialize the ConceptGrade pipeline.
-        
+
         Args:
-            api_key: Groq API key
-            domain_graph: Expert knowledge graph (defaults to DS graph)
-            model: LLM model name
-            rate_limit_delay: Seconds between API calls for rate limiting
+            api_key                : Groq API key
+            domain_graph           : Expert knowledge graph (defaults to DS graph)
+            model                  : LLM model name
+            rate_limit_delay       : Seconds between API calls for rate limiting
+            use_self_consistency   : Ext-1 — majority-vote extraction (3 LLM calls)
+            use_confidence_weighting: Ext-2 — weight coverage by extraction confidence
+            use_llm_verifier       : Ext-3 — LLM judge post-scoring
+            verifier_weight        : Blend weight for verifier (0=KG only, 1=LLM only)
+            sc_n_runs              : Number of self-consistency runs
+            sc_min_votes           : Minimum votes to accept a concept
+            use_hierarchical_kg    : Split domain KG into primary/secondary tiers and
+                                     score as: min(1.0, p_cov*0.80 + s_cov*0.20)
         """
         self.api_key = api_key
         self.model = model
         self.rate_limit_delay = rate_limit_delay
 
+        # Store extension flags for ablation studies
+        self.use_self_consistency    = use_self_consistency
+        self.use_confidence_weighting = use_confidence_weighting
+        self.use_llm_verifier        = use_llm_verifier
+        self.use_sure_verifier       = use_sure_verifier
+        self.use_hierarchical_kg     = use_hierarchical_kg
+
         # Layer 1: Domain Knowledge Graph
         self.domain_graph = domain_graph or build_data_structures_graph()
 
         # Layer 2: Concept Extraction + Comparison
-        self.extractor = ConceptExtractor(
-            domain_graph=self.domain_graph, api_key=api_key, model=model
-        )
-        self.comparator = KnowledgeGraphComparator(
-            domain_graph=self.domain_graph
-        )
+        # Extension 1: Self-Consistent Extractor (3 LLM calls with majority vote)
+        if use_self_consistency:
+            self.extractor = SelfConsistentExtractor(
+                domain_graph=self.domain_graph,
+                api_key=api_key,
+                model=model,
+                n_runs=sc_n_runs,
+                min_votes=sc_min_votes,
+                inter_run_delay=sc_inter_run_delay,
+            )
+        else:
+            self.extractor = ConceptExtractor(
+                domain_graph=self.domain_graph, api_key=api_key, model=model
+            )
 
-        # Layer 3-4: Cognitive Depth + Misconceptions
-        self.blooms_clf = BloomsClassifier(api_key=api_key, model=model)
-        self.solo_clf = SOLOClassifier(api_key=api_key, model=model)
+        # Extension 2: Confidence-Weighted Comparator
+        if use_confidence_weighting:
+            self.comparator = ConfidenceWeightedComparator(domain_graph=self.domain_graph)
+        else:
+            self.comparator = KnowledgeGraphComparator(domain_graph=self.domain_graph)
+
+        # Layer 3-4: Cognitive Depth (combined 1 call) + Misconceptions
+        self.cognitive_depth_clf = CognitiveDepthClassifier(api_key=api_key, model=model)
         self.misconception_det = MisconceptionDetector(api_key=api_key, model=model)
+
+        # Extension 3: LLM Verifier
+        self.verifier = LLMVerifier(
+            api_key=api_key, model=model, verifier_weight=verifier_weight
+        ) if use_llm_verifier else None
 
         # Layer 5: NL Query Parser
         self.query_parser = NLQueryParser(api_key=api_key, model=model)
+
+        # Response cache — keyed by (question, answer) hash
+        self.cache = ResponseCache()
 
     def assess_student(
         self,
         student_id: str,
         question: str,
         answer: str,
+        reference_answer: str = "",
     ) -> StudentAssessment:
         """
         Run the full 5-layer assessment pipeline on a single student response.
-        
-        Args:
-            student_id: Unique student identifier
-            question: The assessment question
-            answer: Student's free-text response
-            
-        Returns:
-            StudentAssessment with all layers populated
+
+        Cache strategy (token-efficient for ablation studies):
+          - LLM cache  keyed by `sc` flag only — extraction, cognitive depth, and
+            misconception outputs are reused across CW/verifier variants.
+          - Comparison always re-run with the current comparator (CW or standard).
+            This is purely algorithmic (no tokens), so it's cheap.
+          - Verifier cache  keyed by `sc + cw` — only runs when enabled.
+          Result: C3 reuses C1's LLM cache; C5 reuses C2's, cutting ~60% of tokens.
         """
         result = StudentAssessment(
             student_id=student_id,
@@ -205,69 +263,164 @@ class ConceptGradePipeline:
             timestamp=datetime.now().isoformat(),
         )
 
-        # Layer 2: Concept Extraction
-        try:
-            concept_graph_obj = self.extractor.extract(
-                question=question, student_answer=answer
-            )
-            result.concept_graph = concept_graph_obj.to_dict()
-            time.sleep(self.rate_limit_delay)
-        except Exception as e:
-            result.concept_graph = {"error": str(e), "concepts": [], "relationships": []}
-            concept_graph_obj = None
+        # ── LLM cache (extraction + cognitive depth + misconceptions) ───────
+        # Keyed by `sc` only: CW is algorithmic, verifier is a separate step.
+        llm_key = self.cache.key(
+            f"llm_sc{int(self.use_self_consistency)}", self.model, question, answer
+        )
+        concept_graph_obj = None
 
-        # Layer 2: KG Comparison
+        if llm_key in self.cache:
+            cached = self.cache.get(llm_key)
+            print(f"  [LLM-Cache HIT] student={student_id}")
+            result.concept_graph  = cached["concept_graph"]
+            result.blooms         = cached["blooms"]
+            result.solo           = cached["solo"]
+            result.misconceptions = cached["misconceptions"]
+            # Reconstruct graph object so we can re-run comparison
+            try:
+                concept_graph_obj = StudentConceptGraph.from_dict(result.concept_graph)
+            except Exception as e:
+                print(f"  [Cache] Warning: Failed to reconstruct concept graph: {e}")
+                concept_graph_obj = None
+
+        else:
+            # Layer 2: Concept Extraction  (LLM call 1 — or 3 parallel with SC)
+            try:
+                concept_graph_obj = self.extractor.extract(
+                    question=question, student_answer=answer
+                )
+                result.concept_graph = concept_graph_obj.to_dict()
+            except Exception as e:
+                err = str(e)
+                if "429" in err or "529" in err or "rate_limit" in err.lower() or "overloaded" in err.lower():
+                    raise
+                result.concept_graph = {"error": err, "concepts": [], "relationships": []}
+
+            # Temporary algorithmic comparison — gives Bloom's/misconception prompts
+            # coverage/accuracy signals at zero token cost.
+            _tmp_comp: dict = {}
+            try:
+                if concept_graph_obj:
+                    _tmp_comp = KnowledgeGraphComparator(
+                        domain_graph=self.domain_graph
+                    ).compare(student_graph=concept_graph_obj).to_dict()
+            except Exception:
+                pass
+
+            # Layer 3+4 and Layer 4: Bloom's+SOLO and Misconception in PARALLEL
+            # Both are independent of each other — fire them simultaneously.
+            def _run_depth():
+                return self.cognitive_depth_clf.classify(
+                    question=question,
+                    student_answer=answer,
+                    concept_graph=result.concept_graph,
+                    comparison_result=_tmp_comp,
+                )
+
+            def _run_misc():
+                return self.misconception_det.detect(
+                    question=question,
+                    student_answer=answer,
+                    concept_graph=result.concept_graph,
+                    comparison_result=_tmp_comp,
+                )
+
+            with ThreadPoolExecutor(max_workers=2) as pool:
+                f_depth = pool.submit(_run_depth)
+                f_misc  = pool.submit(_run_misc)
+
+                try:
+                    depth_result = f_depth.result()
+                    result.blooms = depth_result.to_blooms_dict()
+                    result.solo   = depth_result.to_solo_dict()
+                except Exception as e:
+                    err = str(e)
+                    if "429" in err or "529" in err or "rate_limit" in err.lower() or "overloaded" in err.lower():
+                        raise
+                    result.blooms = {"error": err, "level": 1, "label": "Remember",      "confidence": 0}
+                    result.solo   = {"error": err, "level": 1, "label": "Prestructural", "confidence": 0}
+
+                try:
+                    misc_result = f_misc.result()
+                    result.misconceptions = misc_result.to_dict()
+                except Exception as e:
+                    err = str(e)
+                    if "429" in err or "529" in err or "rate_limit" in err.lower() or "overloaded" in err.lower():
+                        raise
+                    result.misconceptions = {"error": err, "total_misconceptions": 0, "misconceptions": []}
+
+            # Persist LLM outputs to cache
+            self.cache.set(llm_key, {
+                "concept_graph":  result.concept_graph,
+                "blooms":         result.blooms,
+                "solo":           result.solo,
+                "misconceptions": result.misconceptions,
+            })
+
+        # ── KG Comparison — ALWAYS re-run with the current comparator ───────
+        # Algorithmic only (no LLM, zero token cost). This is what differentiates
+        # C1 (standard) from C3 (confidence-weighted) correctly.
         try:
             if concept_graph_obj:
-                comparison_obj = self.comparator.compare(student_graph=concept_graph_obj)
+                if self.use_hierarchical_kg and hasattr(self.comparator, "compare_hierarchical"):
+                    comparison_obj = self.comparator.compare_hierarchical(
+                        student_graph=concept_graph_obj
+                    )
+                else:
+                    comparison_obj = self.comparator.compare(student_graph=concept_graph_obj)
                 result.comparison = comparison_obj.to_dict()
             else:
                 result.comparison = {"scores": {}, "analysis": {}, "diagnostic": {}}
         except Exception as e:
             result.comparison = {"error": str(e), "scores": {}, "analysis": {}, "diagnostic": {}}
 
-        # Layer 3: Bloom's Classification
-        try:
-            blooms_result = self.blooms_clf.classify(
-                question=question,
-                student_answer=answer,
-                concept_graph=result.concept_graph,
-                comparison_result=result.comparison,
-            )
-            result.blooms = blooms_result.to_dict()
-            time.sleep(self.rate_limit_delay)
-        except Exception as e:
-            result.blooms = {"error": str(e), "level": 1, "label": "Remember", "confidence": 0}
-
-        # Layer 4: SOLO Classification
-        try:
-            solo_result = self.solo_clf.classify(
-                question=question,
-                student_answer=answer,
-                concept_graph=result.concept_graph,
-                comparison_result=result.comparison,
-            )
-            result.solo = solo_result.to_dict()
-            time.sleep(self.rate_limit_delay)
-        except Exception as e:
-            result.solo = {"error": str(e), "level": 1, "label": "Prestructural", "confidence": 0}
-
-        # Layer 4: Misconception Detection
-        try:
-            misc_result = self.misconception_det.detect(
-                question=question,
-                student_answer=answer,
-                concept_graph=result.concept_graph,
-                comparison_result=result.comparison,
-            )
-            result.misconceptions = misc_result.to_dict()
-            time.sleep(self.rate_limit_delay)
-        except Exception as e:
-            result.misconceptions = {"error": str(e), "total_misconceptions": 0, "misconceptions": []}
-
-        # Compute composite score
-        result.overall_score = self._compute_overall_score(result)
+        # Composite score (recomputed from fresh comparison every time)
+        result.overall_score  = self._compute_overall_score(result)
         result.depth_category = self._categorize_depth(result)
+
+        # ── Extension 3: LLM Verifier  (LLM call 4, cached separately) ─────
+        if self.verifier is not None:
+            ver_key = self.cache.key(
+                f"verifier_sc{int(self.use_self_consistency)}"
+                f"_cw{int(self.use_confidence_weighting)}",
+                self.model, question, answer,
+            )
+            if ver_key in self.cache:
+                result.verifier = self.cache.get(ver_key)
+                result.overall_score = result.verifier.get("final_score", result.overall_score)
+            else:
+                try:
+                    if self.use_sure_verifier:
+                        ver = self.verifier.verify_sure(
+                            question=question,
+                            student_answer=answer,
+                            kg_score=result.overall_score,
+                            comparison_result=result.comparison,
+                            blooms=result.blooms,
+                            solo=result.solo,
+                            misconceptions=result.misconceptions,
+                            reference_answer=reference_answer,
+                        )
+                    else:
+                        ver = self.verifier.verify(
+                            question=question,
+                            student_answer=answer,
+                            kg_score=result.overall_score,
+                            comparison_result=result.comparison,
+                            blooms=result.blooms,
+                            solo=result.solo,
+                            misconceptions=result.misconceptions,
+                            reference_answer=reference_answer,
+                        )
+                    result.verifier = ver.to_dict()
+                    result.overall_score = ver.final_score
+                    self.cache.set(ver_key, result.verifier)
+                except Exception as e:
+                    err = str(e)
+                    if "429" in err or "529" in err or "rate_limit" in err.lower() or "overloaded" in err.lower():
+                        raise
+                    result.verifier = {"error": err}
 
         return result
 
@@ -286,10 +439,26 @@ class ConceptGradePipeline:
         Returns:
             List of StudentAssessment objects
         """
-        results = []
-        for student_id, answer in student_answers.items():
-            assessment = self.assess_student(student_id, question, answer)
-            results.append(assessment)
+        # Run student assessments in parallel.
+        # max_workers=3 keeps us inside Groq's rate limits while still
+        # being ~3x faster than sequential for a typical class of 30.
+        results: list[StudentAssessment] = []
+        student_items = list(student_answers.items())
+
+        def _assess(sid: str, ans: str) -> StudentAssessment:
+            return self.assess_student(sid, question, ans)
+
+        with ThreadPoolExecutor(max_workers=3) as pool:
+            futures = {
+                pool.submit(_assess, sid, ans): sid
+                for sid, ans in student_items
+            }
+            for future in as_completed(futures):
+                results.append(future.result())
+
+        # Re-sort to match original insertion order
+        order = {sid: i for i, (sid, _) in enumerate(student_items)}
+        results.sort(key=lambda a: order.get(a.student_id, 0))
         return results
 
     def analyze_class(self, assessments: list[StudentAssessment]) -> ClassAnalytics:
@@ -457,25 +626,56 @@ class ConceptGradePipeline:
         }
 
     def _compute_overall_score(self, assessment: StudentAssessment) -> float:
-        """Compute a composite score from all assessment dimensions."""
+        """Compute a composite score from all assessment dimensions.
+
+        Design principles:
+        - KG signals (coverage, accuracy, integration) are the PRIMARY driver.
+          A student who mentions no relevant concepts scores near 0 — no floor.
+        - Cognitive depth (Bloom's + SOLO) is a secondary amplifier.
+        - Misconceptions apply a multiplicative penalty, capped at 30 %.
+
+        When use_hierarchical_kg is True, the KG knowledge score is replaced by:
+            min(1.0, primary_coverage * 0.80 + secondary_coverage * 0.20)
+        This forces students to cover both core and advanced concepts for 5/5.
+        """
         scores = assessment.comparison.get("scores", {})
         concept_coverage = scores.get("concept_coverage", 0)
-        rel_accuracy = scores.get("relationship_accuracy", 0)
-        integration = scores.get("integration_quality", 0)
+        rel_accuracy     = scores.get("relationship_accuracy", 0)
+        integration      = scores.get("integration_quality", 0)
 
-        blooms_normalized = (assessment.blooms.get("level", 1) - 1) / 5  # 0-1
-        solo_normalized = (assessment.solo.get("level", 1) - 1) / 4  # 0-1
-        accuracy = assessment.misconceptions.get("overall_accuracy", 1.0)
+        blooms_normalized = (assessment.blooms.get("level", 1) - 1) / 5  # 0–1
+        solo_normalized   = (assessment.solo.get("level", 1)   - 1) / 4  # 0–1
 
-        # Weighted composite
-        score = (
-            concept_coverage * 0.15 +
-            rel_accuracy * 0.15 +
-            integration * 0.15 +
-            blooms_normalized * 0.20 +
-            solo_normalized * 0.20 +
-            accuracy * 0.15
+        # Misconception penalty — each misconception proportionally caps the score
+        if "error" in assessment.misconceptions:
+            misc_penalty = 0.0
+        else:
+            n_misc   = assessment.misconceptions.get("total_misconceptions", 0)
+            critical = assessment.misconceptions.get("by_severity", {}).get("critical", 0)
+            misc_penalty = min(0.30, n_misc * 0.06 + critical * 0.10)
+
+        # ── Hierarchical KG scoring ──────────────────────────────────────────
+        if self.use_hierarchical_kg:
+            p_cov = scores.get("primary_coverage",
+                               scores.get("concept_coverage", 0))
+            s_cov = scores.get("secondary_coverage", 0)
+            # Fall back to standard if hierarchical scores are unavailable
+            if p_cov > 0 or s_cov > 0:
+                concept_coverage = min(1.0, p_cov * 0.80 + s_cov * 0.20)
+
+        # Knowledge: primary signal, spans true 0–1
+        knowledge = (
+            concept_coverage * 0.45 +
+            rel_accuracy     * 0.35 +
+            integration      * 0.20
         )
+
+        # Depth: secondary amplifier
+        depth = blooms_normalized * 0.55 + solo_normalized * 0.45
+
+        # Composite: knowledge dominates (60 %), depth secondary (40 %),
+        # multiplicatively penalised by misconceptions — no additive floor.
+        score = (knowledge * 0.60 + depth * 0.40) * (1.0 - misc_penalty)
         return min(1.0, max(0.0, score))
 
     def _categorize_depth(self, assessment: StudentAssessment) -> str:
@@ -579,6 +779,27 @@ class ConceptGradePipeline:
                     }
                     for a in assessments
                     if a.student_id in target_students or not target_students
+                ],
+            }
+
+        elif qt == QueryType.LEARNING_TRAJECTORY:
+            # Longitudinal view: sort assessments by timestamp and return score progression
+            sorted_assessments = sorted(
+                assessments,
+                key=lambda a: a.timestamp or "",
+            )
+            return {
+                "note": "Longitudinal data requires multiple assessment sessions per student.",
+                "trajectory": [
+                    {
+                        "student_id": a.student_id,
+                        "timestamp": a.timestamp,
+                        "overall_score": a.overall_score,
+                        "blooms_level": a.blooms.get("level", 0),
+                        "solo_level": a.solo.get("level", 0),
+                        "depth": a.depth_category,
+                    }
+                    for a in sorted_assessments
                 ],
             }
 

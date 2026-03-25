@@ -121,7 +121,7 @@ def run_demo():
     print("  Concept-Aware Assessment Framework")
     print("  Paper 2: Automated Cognitive Depth Assessment")
     print(f"  Timestamp: {datetime.now().isoformat()}")
-    print(f"  LLM: Groq (llama-3.3-70b-versatile)")
+    print(f"  LLM: Groq (claude-haiku-4-5-20251001)")
 
     # ── Step 1: Load expert knowledge graph ──
     print_header("STEP 1: Load Expert Knowledge Graph (Phase 1)")
@@ -297,7 +297,7 @@ def run_demo():
                 "phase": 2,
                 "timestamp": datetime.now().isoformat(),
                 "question": QUESTION,
-                "llm_model": "llama-3.3-70b-versatile",
+                "llm_model": "claude-haiku-4-5-20251001",
                 "modules": [
                     "ConceptExtractor", "KnowledgeGraphComparator",
                     "BloomsClassifier", "SOLOClassifier", "MisconceptionDetector",

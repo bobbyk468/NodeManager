@@ -1,0 +1,162 @@
+[
+  {
+    "id": 1,
+    "topic": "binary_search_tree",
+    "question": "What is a binary search tree and how does insertion work?",
+    "reference_answer": "A binary search tree (BST) is a node-based data structure where each node has at most two children. For any node, all values in the left subtree are less than the node's value, and all values in the right subtree are greater. Insertion starts at the root: compare the new value to the current node, recurse left if smaller or right if larger, and insert when a null child is reached. This takes O(log n) time for balanced trees and O(n) worst case for skewed trees.",
+    "student_answer": "A binary search tree is a type of tree where each node can have up to two children. The special property is that for any node, all nodes to the left are smaller and all nodes to the right are larger.\n\nTo insert a new value, you start at the root. If the new value is less than the root, you go left. If it is greater, you go right. You keep doing this until you find an empty spot where you can place the new node. This is basically like a binary search through the tree.\n\nThe time complexity of insertion is O(log n) on average because each comparison cuts the search space in half. However, if the tree becomes unbalanced, like if you insert sorted values in order, the tree degenerates into a linked list and insertion becomes O(n).\n\nBSTs are useful for maintaining sorted data and support efficient search, insertion, and deletion operations. They are the foundation for more advanced structures like AVL trees and Red-Black trees that maintain balance automatically to guarantee O(log n) operations.",
+    "human_score": 4.5
+  },
+  {
+    "id": 2,
+    "topic": "binary_search_tree",
+    "question": "What is a binary search tree and how does insertion work?",
+    "reference_answer": "A binary search tree (BST) is a node-based data structure where each node has at most two children. For any node, all values in the left subtree are less than the node's value, and all values in the right subtree are greater. Insertion starts at the root: compare the new value to the current node, recurse left if smaller or right if larger, and insert when a null child is reached. This takes O(log n) time for balanced trees and O(n) worst case for skewed trees.",
+    "student_answer": "A binary search tree is a data structure made of nodes connected by edges. Each node stores a value and has two child pointers called left and right.\n\nTo insert a value you compare it to the current node. Smaller values go to the left child and larger values go to the right child. You repeat until you find an empty place.\n\nBSTs allow fast searching because you can skip half the tree at each step.",
+    "human_score": 2.5
+  },
+  {
+    "id": 3,
+    "topic": "binary_search_tree",
+    "question": "What is a binary search tree and how does insertion work?",
+    "reference_answer": "A binary search tree (BST) is a node-based data structure where each node has at most two children. For any node, all values in the left subtree are less than the node's value, and all values in the right subtree are greater. Insertion starts at the root: compare the new value to the current node, recurse left if smaller or right if larger, and insert when a null child is reached. This takes O(log n) time for balanced trees and O(n) worst case for skewed trees.",
+    "student_answer": "A binary search tree is like a regular tree but sorted. You can search it quickly.\n\nTo insert, you just add the new node wherever there is space. The tree will sort itself automatically.",
+    "human_score": 0.5
+  },
+  {
+    "id": 4,
+    "topic": "virtual_memory",
+    "question": "Explain the concept of virtual memory in operating systems.",
+    "reference_answer": "Virtual memory is an OS memory management technique that gives each process the illusion of having a large, contiguous address space, independent of physical RAM. The OS maps virtual addresses to physical addresses using a page table. When a process accesses a virtual address not mapped to physical memory, a page fault occurs and the OS loads the required page from disk (the swap space). This allows programs to use more memory than physically available, enables process isolation, and simplifies memory management for programmers.",
+    "student_answer": "Virtual memory is a fundamental technique in modern operating systems that abstracts physical memory away from processes. Each process sees its own private virtual address space, typically spanning the full addressable range of the CPU (e.g., 4 GB on 32-bit, much larger on 64-bit systems), regardless of how much RAM is actually installed.\n\nThe key mechanism is address translation. Every memory access by a process uses a virtual address, which the Memory Management Unit (MMU) hardware translates to a physical address using a data structure called the page table. The address space is divided into fixed-size chunks called pages (commonly 4 KB). A page table entry maps a virtual page number to a physical frame number.\n\nWhen a process accesses a virtual page that is not currently in physical memory, the MMU raises a page fault exception. The operating system's page fault handler then loads the required page from secondary storage (the swap partition or page file on disk) into a free physical frame and updates the page table. This allows the total virtual memory across all processes to exceed the amount of physical RAM.\n\nVirtual memory also provides critical security benefits. Because each process has its own virtual address space, one process cannot directly read or write another process's memory, providing isolation. The OS can also mark pages as read-only to prevent code modification.\n\nHowever, excessive swapping (called thrashing) can severely degrade performance because disk access is orders of magnitude slower than RAM.",
+    "human_score": 5.0
+  },
+  {
+    "id": 5,
+    "topic": "virtual_memory",
+    "question": "Explain the concept of virtual memory in operating systems.",
+    "reference_answer": "Virtual memory is an OS memory management technique that gives each process the illusion of having a large, contiguous address space, independent of physical RAM. The OS maps virtual addresses to physical addresses using a page table. When a process accesses a virtual address not mapped to physical memory, a page fault occurs and the OS loads the required page from disk (the swap space). This allows programs to use more memory than physically available, enables process isolation, and simplifies memory management for programmers.",
+    "student_answer": "Virtual memory is a way for the operating system to use disk space as if it were RAM. When your computer runs out of physical memory, it moves some data from RAM to the hard drive to free up space. This area on disk is called the swap file or page file.\n\nThe operating system keeps track of what is in RAM and what is on disk using page tables. Each process gets its own set of page tables.\n\nWhen a program tries to access memory that has been moved to disk, the CPU detects this and causes a page fault. The OS then brings the page back from disk into RAM.\n\nVirtual memory lets computers run programs that need more memory than is physically available. It also keeps processes separate from each other for security.",
+    "human_score": 3.0
+  },
+  {
+    "id": 6,
+    "topic": "virtual_memory",
+    "question": "Explain the concept of virtual memory in operating systems.",
+    "reference_answer": "Virtual memory is an OS memory management technique that gives each process the illusion of having a large, contiguous address space, independent of physical RAM. The OS maps virtual addresses to physical addresses using a page table. When a process accesses a virtual address not mapped to physical memory, a page fault occurs and the OS loads the required page from disk (the swap space). This allows programs to use more memory than physically available, enables process isolation, and simplifies memory management for programmers.",
+    "student_answer": "Virtual memory is extra memory that the computer creates using the hard drive. It is slower than real RAM but gives programs more space to work with.\n\nThe operating system manages virtual memory automatically. Programs do not need to know about it.",
+    "human_score": 0.5
+  },
+  {
+    "id": 7,
+    "topic": "tcp_vs_udp",
+    "question": "What is the difference between TCP and UDP protocols?",
+    "reference_answer": "TCP (Transmission Control Protocol) is a connection-oriented, reliable protocol. It establishes a connection via a three-way handshake, guarantees ordered delivery of packets, and uses acknowledgments and retransmission for reliability. UDP (User Datagram Protocol) is connectionless and unreliable: it sends packets without establishing a connection, does not guarantee delivery or ordering, and has no retransmission. TCP has higher overhead and latency; UDP is faster and suited for real-time applications like video streaming, gaming, and DNS queries.",
+    "student_answer": "TCP and UDP are two transport-layer protocols in the Internet protocol suite, each designed for different use cases.\n\nTCP, the Transmission Control Protocol, is connection-oriented. Before any data transfer, the sender and receiver must establish a connection using a three-way handshake: SYN from client, SYN-ACK from server, ACK from client. Once connected, TCP guarantees that all data arrives in the correct order. Every packet is acknowledged, and if an ACK is not received within a timeout period, the sender retransmits the packet. TCP also includes flow control (via sliding window) and congestion control (e.g., slow start, congestion avoidance) to prevent overwhelming the receiver or the network. These features make TCP reliable but add overhead and latency.\n\nUDP, the User Datagram Protocol, is connectionless and stateless. It simply sends datagrams without establishing a connection or tracking state. There is no acknowledgment, no guaranteed delivery, no ordering guarantees, and no retransmission. If a packet is lost, it is gone.\n\nBecause UDP has minimal overhead, it is faster and preferred for latency-sensitive applications. Examples include video streaming (where a dropped frame is better than a delayed one), online gaming, VoIP, and DNS lookups (single request-response, fast timeout). HTTP/3 and QUIC are built on UDP but add their own reliability layer at the application level.\n\nIn summary: TCP trades performance for reliability; UDP trades reliability for speed.",
+    "human_score": 5.0
+  },
+  {
+    "id": 8,
+    "topic": "tcp_vs_udp",
+    "question": "What is the difference between TCP and UDP protocols?",
+    "reference_answer": "TCP (Transmission Control Protocol) is a connection-oriented, reliable protocol. It establishes a connection via a three-way handshake, guarantees ordered delivery of packets, and uses acknowledgments and retransmission for reliability. UDP (User Datagram Protocol) is connectionless and unreliable: it sends packets without establishing a connection, does not guarantee delivery or ordering, and has no retransmission. TCP has higher overhead and latency; UDP is faster and suited for real-time applications like video streaming, gaming, and DNS queries.",
+    "student_answer": "TCP and UDP are network protocols used to send data over the internet.\n\nTCP is reliable. It makes sure all packets arrive and are in the right order. If a packet is lost, TCP resends it. This makes TCP good for things like web pages and file downloads where you need all the data.\n\nUDP is faster but not reliable. It just sends packets without checking if they arrive. This makes UDP good for video calls and games where speed matters more than getting every single packet.\n\nTCP uses a handshake to start a connection. UDP does not need a connection.",
+    "human_score": 3.5
+  },
+  {
+    "id": 9,
+    "topic": "tcp_vs_udp",
+    "question": "What is the difference between TCP and UDP protocols?",
+    "reference_answer": "TCP (Transmission Control Protocol) is a connection-oriented, reliable protocol. It establishes a connection via a three-way handshake, guarantees ordered delivery of packets, and uses acknowledgments and retransmission for reliability. UDP (User Datagram Protocol) is connectionless and unreliable: it sends packets without establishing a connection, does not guarantee delivery or ordering, and has no retransmission. TCP has higher overhead and latency; UDP is faster and suited for real-time applications like video streaming, gaming, and DNS queries.",
+    "student_answer": "TCP is used for the internet and UDP is used for games. TCP sends data reliably and UDP is fast.\n\nTCP stands for Transmission Control Protocol. It checks if data arrives. UDP stands for User Datagram Protocol and does not check.\n\nI think TCP uses port 80 and UDP uses port 443 for HTTPS. Both are part of the TCP/IP network stack.",
+    "human_score": 1.0
+  },
+  {
+    "id": 10,
+    "topic": "garbage_collection",
+    "question": "Explain how garbage collection works in managed runtimes.",
+    "reference_answer": "Garbage collection (GC) is an automatic memory management technique used in managed runtimes like Java, Python, and C#. The GC identifies objects that are no longer reachable from the program's roots (global variables, stack frames, registers) and reclaims their memory. Common algorithms include mark-and-sweep (mark all reachable objects, then sweep unreachable ones), reference counting (track how many references point to an object; free when count reaches zero), and generational GC (divide heap into generations based on object age; collect younger generations more frequently). Generational GC exploits the observation that most objects die young.",
+    "student_answer": "Garbage collection is a form of automatic memory management found in languages like Java, C#, Python, and Go. Instead of requiring programmers to manually free memory, the runtime tracks which objects are still being used and reclaims the rest.\n\nThe most conceptually simple algorithm is mark-and-sweep. Starting from a set of root references (local variables, static fields, thread stacks), the collector performs a graph traversal to mark every reachable object. Any object not marked is considered unreachable garbage and its memory is reclaimed in the sweep phase. This handles cycles, which reference counting cannot.\n\nReference counting is another approach: each object stores a count of how many references point to it. When the count drops to zero, the object is immediately freed. Python uses reference counting as its primary mechanism, with a cycle detector to handle circular references. The advantage is that objects are freed promptly, but maintaining counts adds overhead to every pointer assignment.\n\nModern runtimes like the JVM and .NET CLR use generational garbage collection based on the generational hypothesis: most objects die young. The heap is divided into generations. New objects are allocated in the young generation (Eden space in JVM). Minor GCs collect the young generation frequently. Long-lived objects are promoted to the old generation, which is collected less often in major GCs. This approach reduces pause times because the young generation is small.\n\nGarbage collection introduces stop-the-world pauses where application threads are suspended while GC runs. Modern GCs (G1, ZGC, Shenandoah) aim to reduce these pauses using concurrent marking and compaction that runs alongside application threads.",
+    "human_score": 5.0
+  },
+  {
+    "id": 11,
+    "topic": "garbage_collection",
+    "question": "Explain how garbage collection works in managed runtimes.",
+    "reference_answer": "Garbage collection (GC) is an automatic memory management technique used in managed runtimes like Java, Python, and C#. The GC identifies objects that are no longer reachable from the program's roots (global variables, stack frames, registers) and reclaims their memory. Common algorithms include mark-and-sweep (mark all reachable objects, then sweep unreachable ones), reference counting (track how many references point to an object; free when count reaches zero), and generational GC (divide heap into generations based on object age; collect younger generations more frequently). Generational GC exploits the observation that most objects die young.",
+    "student_answer": "Garbage collection automatically frees memory that is no longer being used by the program. This means the programmer does not have to call free() or delete manually.\n\nThe runtime keeps track of objects and figures out which ones are still needed. Objects that cannot be reached from the program anymore are considered garbage.\n\nThere are different garbage collection algorithms. Mark-and-sweep marks all reachable objects and then frees the others. Reference counting keeps a counter for each object showing how many things point to it, and frees the object when the counter reaches zero.\n\nJava uses garbage collection and so does Python. Garbage collection can sometimes cause the program to pause briefly while memory is cleaned up.",
+    "human_score": 2.5
+  },
+  {
+    "id": 12,
+    "topic": "garbage_collection",
+    "question": "Explain how garbage collection works in managed runtimes.",
+    "reference_answer": "Garbage collection (GC) is an automatic memory management technique used in managed runtimes like Java, Python, and C#. The GC identifies objects that are no longer reachable from the program's roots (global variables, stack frames, registers) and reclaims their memory. Common algorithms include mark-and-sweep (mark all reachable objects, then sweep unreachable ones), reference counting (track how many references point to an object; free when count reaches zero), and generational GC (divide heap into generations based on object age; collect younger generations more frequently). Generational GC exploits the observation that most objects die young.",
+    "student_answer": "Garbage collection is when the computer cleans up old files and programs to free up memory. It is like defragmenting the disk.\n\nJava has garbage collection which runs in the background and removes unused code from memory. You can call System.gc() to force it to run.\n\nWithout garbage collection programs would run out of memory quickly.",
+    "human_score": 0.5
+  },
+  {
+    "id": 13,
+    "topic": "hash_table",
+    "question": "What is a hash table and how does it handle collisions?",
+    "reference_answer": "A hash table is a data structure that maps keys to values using a hash function. The hash function transforms a key into an index in an underlying array. Collisions occur when two keys hash to the same index. The two main collision resolution strategies are chaining (each array bucket holds a linked list of entries with the same hash) and open addressing (on collision, probe for the next empty slot using linear probing, quadratic probing, or double hashing). Average-case lookup, insertion, and deletion are O(1); worst case (all keys collide) degrades to O(n).",
+    "student_answer": "A hash table is a data structure that provides average O(1) time complexity for insert, delete, and lookup operations. It achieves this by using a hash function to map keys to array indices.\n\nThe core idea is simple: given a key, apply a hash function h(key) that returns an integer index into an underlying array (the hash table). Store the value at that index. To look up a key, apply the same hash function to find the index and read the value directly.\n\nCollisions occur when two different keys produce the same hash index. There are two classical strategies to handle them.\n\nChaining: Each slot in the array holds a pointer to a linked list (or another dynamic structure). When a collision occurs, the new key-value pair is appended to the list at that slot. Lookup traverses the list to find the matching key. Performance degrades to O(n) in the worst case if all keys hash to the same slot, but with a good hash function and a load factor (ratio of entries to slots) below 0.75, average performance remains O(1).\n\nOpen addressing: All key-value pairs are stored within the array itself. When a collision occurs, the algorithm probes adjacent slots according to some probing sequence. Linear probing checks index+1, index+2, etc. Quadratic probing uses index+1, index+4, index+9. Double hashing uses a second hash function to determine the step size. Open addressing is cache-friendly because all data stays in a contiguous array, but performance degrades quickly at high load factors.\n\nWhen the load factor exceeds a threshold (commonly 0.7 or 0.75), the hash table is resized: a larger array is allocated and all entries are rehashed into it. This keeps average performance at O(1).",
+    "human_score": 4.5
+  },
+  {
+    "id": 14,
+    "topic": "hash_table",
+    "question": "What is a hash table and how does it handle collisions?",
+    "reference_answer": "A hash table is a data structure that maps keys to values using a hash function. The hash function transforms a key into an index in an underlying array. Collisions occur when two keys hash to the same index. The two main collision resolution strategies are chaining (each array bucket holds a linked list of entries with the same hash) and open addressing (on collision, probe for the next empty slot using linear probing, quadratic probing, or double hashing). Average-case lookup, insertion, and deletion are O(1); worst case (all keys collide) degrades to O(n).",
+    "student_answer": "A hash table is a key-value store that uses a hash function to map keys to positions in an array. This allows very fast lookup, usually O(1).\n\nA collision happens when two different keys produce the same hash value and would be stored in the same position. There are two main ways to handle collisions.\n\nThe first is chaining. Each position in the array holds a list. When there is a collision, the new entry is added to the list at that position.\n\nThe second is open addressing. When a collision occurs, you look for another empty position in the array. Linear probing just checks the next position one by one.\n\nHash tables are used in dictionaries in Python and HashMaps in Java.",
+    "human_score": 3.5
+  },
+  {
+    "id": 15,
+    "topic": "hash_table",
+    "question": "What is a hash table and how does it handle collisions?",
+    "reference_answer": "A hash table is a data structure that maps keys to values using a hash function. The hash function transforms a key into an index in an underlying array. Collisions occur when two keys hash to the same index. The two main collision resolution strategies are chaining (each array bucket holds a linked list of entries with the same hash) and open addressing (on collision, probe for the next empty slot using linear probing, quadratic probing, or double hashing). Average-case lookup, insertion, and deletion are O(1); worst case (all keys collide) degrades to O(n).",
+    "student_answer": "A hash table stores data in an array. To find where to put a key, you use a hash function. The hash function takes the key and returns a number which is the index.\n\nSometimes two keys give the same index. This is called a collision. To fix collisions you can use a technique called chaining where you keep a list at each index.",
+    "human_score": 2.0
+  },
+  {
+    "id": 16,
+    "topic": "hash_table",
+    "question": "What is a hash table and how does it handle collisions?",
+    "reference_answer": "A hash table is a data structure that maps keys to values using a hash function. The hash function transforms a key into an index in an underlying array. Collisions occur when two keys hash to the same index. The two main collision resolution strategies are chaining (each array bucket holds a linked list of entries with the same hash) and open addressing (on collision, probe for the next empty slot using linear probing, quadratic probing, or double hashing). Average-case lookup, insertion, and deletion are O(1); worst case (all keys collide) degrades to O(n).",
+    "student_answer": "A hash table is a dictionary. It stores keys and values. It is always O(1) no matter what because of the hash function.\n\nCollisions never happen with a good hash function. If they do happen, the table automatically fixes itself by resizing.",
+    "human_score": 0.5
+  },
+  {
+    "id": 17,
+    "topic": "binary_search_tree",
+    "question": "What is a binary search tree and how does insertion work?",
+    "reference_answer": "A binary search tree (BST) is a node-based data structure where each node has at most two children. For any node, all values in the left subtree are less than the node's value, and all values in the right subtree are greater. Insertion starts at the root: compare the new value to the current node, recurse left if smaller or right if larger, and insert when a null child is reached. This takes O(log n) time for balanced trees and O(n) worst case for skewed trees.",
+    "student_answer": "A binary search tree organizes data in a hierarchical structure. Each node in the tree has a value and at most two children, called left and right. The BST property states that all values in the left subtree of any node are strictly less than that node's value, and all values in the right subtree are strictly greater.\n\nInsertion works recursively. Starting at the root, compare the value to be inserted with the current node's value. If the new value is smaller, move to the left child. If it is larger, move to the right child. Continue until you reach a node with no child in the required direction, then create a new node there.\n\nFor example, inserting 5, 3, 7, 1 into an empty tree: 5 becomes the root. 3 is less than 5, so it goes to the left of the root. 7 is greater than 5, so it goes to the right. 1 is less than 5, go left to 3, then 1 is less than 3, so it goes to the left of 3.\n\nTime complexity is O(h) where h is the height of the tree. For a balanced BST, h = O(log n), so insertion is O(log n). If the BST becomes degenerate (inserting already sorted data), h = O(n) and insertion degrades to O(n).",
+    "human_score": 4.0
+  },
+  {
+    "id": 18,
+    "topic": "garbage_collection",
+    "question": "Explain how garbage collection works in managed runtimes.",
+    "reference_answer": "Garbage collection (GC) is an automatic memory management technique used in managed runtimes like Java, Python, and C#. The GC identifies objects that are no longer reachable from the program's roots (global variables, stack frames, registers) and reclaims their memory. Common algorithms include mark-and-sweep (mark all reachable objects, then sweep unreachable ones), reference counting (track how many references point to an object; free when count reaches zero), and generational GC (divide heap into generations based on object age; collect younger generations more frequently). Generational GC exploits the observation that most objects die young.",
+    "student_answer": "Garbage collection is an automatic memory management system used in languages like Java and Python so programmers do not need to manually allocate and free memory.\n\nThe basic idea is reachability. An object is alive if it can be reached by following references from a set of root objects. Root objects include local variables in active stack frames, static class variables, and CPU registers. Any object not reachable from the roots is garbage and can be safely freed.\n\nGenerational garbage collection is the most widely used approach in production runtimes. It is based on the weak generational hypothesis: most objects die young. The heap is divided into generations. New objects go into the young generation. When the young generation fills up, a minor GC runs quickly because the young generation is small. Objects that survive enough minor GCs are promoted to the old generation, which is collected less often in major GCs.\n\nThis works well in practice because most temporary objects like loop variables and intermediate results are short-lived and get collected in cheap minor GCs, while long-lived objects like caches and data structures rarely need to be collected.",
+    "human_score": 4.0
+  },
+  {
+    "id": 19,
+    "topic": "virtual_memory",
+    "question": "Explain the concept of virtual memory in operating systems.",
+    "reference_answer": "Virtual memory is an OS memory management technique that gives each process the illusion of having a large, contiguous address space, independent of physical RAM. The OS maps virtual addresses to physical addresses using a page table. When a process accesses a virtual address not mapped to physical memory, a page fault occurs and the OS loads the required page from disk (the swap space). This allows programs to use more memory than physically available, enables process isolation, and simplifies memory management for programmers.",
+    "student_answer": "Virtual memory is when the OS uses RAM and disk together to simulate more memory than physically exists. Each program thinks it has its own large address space.\n\nThe CPU translates virtual addresses to physical addresses. There is a special chip called the MMU that does this. The mapping is stored in a page table.\n\nIf a program accesses a page that is not in RAM, the CPU generates a page fault interrupt. The OS handles this by loading the page from the disk swap area into RAM and then resumes the program.\n\nVirtual memory is important because it allows programs larger than physical RAM to run, and it gives each process a private address space so processes cannot interfere with each other.",
+    "human_score": 3.5
+  },
+  {
+    "id": 20,
+    "topic": "tcp_vs_udp",
+    "question": "What is the difference between TCP and UDP protocols?",
+    "reference_answer": "TCP (Transmission Control Protocol) is a connection-oriented, reliable protocol. It establishes a connection via a three-way handshake, guarantees ordered delivery of packets, and uses acknowledgments and retransmission for reliability. UDP (User Datagram Protocol) is connectionless and unreliable: it sends packets without establishing a connection, does not guarantee delivery or ordering, and has no retransmission. TCP has higher overhead and latency; UDP is faster and suited for real-time applications like video streaming, gaming, and DNS queries.",
+    "student_answer": "TCP and UDP are both transport layer protocols but they are very different.\n\nTCP is like a phone call. You first dial and wait for the other side to pick up before you start talking. This is the three-way handshake. Then both sides can send data reliably. Every packet sent is acknowledged by the receiver, and the sender waits for that acknowledgment. If it does not come, the packet is resent. The data always arrives in order.\n\nUDP is like sending postcards. You just write the address and drop it in the mailbox. You do not know if it arrived and you do not care. There is no handshake, no acknowledgment, no retransmission. Packets can arrive out of order or not at all.\n\nBecause TCP has all this overhead, it is slower. It is used for HTTP, email, and file transfers where every byte matters. UDP is used for live video, voice calls, and games where a small amount of packet loss is acceptable but low latency is critical.",
+    "human_score": 4.0
+  }
+]

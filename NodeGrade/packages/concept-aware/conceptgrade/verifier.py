@@ -1,0 +1,405 @@
+"""
+LLM-as-Verifier Layer.
+
+Research Extension 3 — ConceptGrade Enhancement.
+
+Motivation
+----------
+Knowledge-graph scoring is objective but blind to nuance:
+  - A student may express a correct concept in non-standard vocabulary,
+    getting penalised by the KG matcher even though they understand it.
+  - A student may game keyword matching without genuine understanding.
+
+The Verifier addresses this by running an LLM "judge" after the KG scoring
+phase. The LLM receives the raw student answer AND the KG-computed evidence
+and must output a verified score with an explicit chain-of-thought that
+either confirms or overrides the KG score.
+
+Algorithm
+---------
+1. Collect KG scores (coverage, accuracy, integration), Bloom's level,
+   SOLO level, and misconception count from the preceding pipeline layers.
+2. Feed them alongside the raw Q&A to an LLM verifier prompt.
+3. LLM outputs:
+   - verified_score (0-1): Its own holistic estimate of correctness
+   - adjustment_reason: Why it agrees/disagrees with KG
+   - confidence: How confident it is in the adjustment
+4. Final score = weighted blend of KG score and verified score:
+     final = (1 - verifier_weight) × kg_score + verifier_weight × verified_score
+   Default verifier_weight = 0.25 (KG score dominates; LLM provides soft correction)
+
+Effect on downstream evaluation
+---------------------------------
+On the Mohler benchmark, this correction layer is expected to improve:
+  - Pearson r  by 0.01–0.03 (handles vocabulary mismatch cases)
+  - RMSE       by 0.05–0.10 (reduces large outlier errors)
+"""
+
+from __future__ import annotations
+
+import json
+import re
+import statistics
+from dataclasses import dataclass, field
+from typing import List
+from conceptgrade.llm_client import LLMClient as Groq
+
+
+VERIFIER_SYSTEM = """You are an expert Computer Science educator grading a student's short answer.
+
+Your task:
+1. Read the question, reference answer, and student answer carefully.
+2. Use the concept evidence (covered/missing concepts from the knowledge graph) to ground your assessment.
+3. Assign a score from 0.0 to 5.0 using one decimal place (e.g. 1.5, 2.5, 3.5).
+
+HOW TO SCORE:
+- Compare the student answer directly to the reference answer.
+- The reference answer defines what 5.0 looks like.
+- Missing critical concepts lower the score; misconceptions lower it further.
+- Partially correct or vague explanations merit partial credit (e.g. 1.5 not 1 or 2).
+- Be precise: use the full range 0.0–5.0 with one decimal place.
+
+Return ONLY valid JSON."""
+
+VERIFIER_USER = """QUESTION: {question}
+
+REFERENCE ANSWER (expert answer — defines 5.0):
+{reference_answer}
+
+STUDENT ANSWER:
+{student_answer}
+
+CONCEPT ANALYSIS (from structured knowledge graph):
+- Concepts student COVERED: {covered_concepts}
+- Concepts student MISSED: {missing_concepts}
+- Bloom's cognitive level: {blooms_label} (level {blooms_level}/6)
+- SOLO level: {solo_label} (level {solo_level}/5)
+- Misconceptions detected: {misc_count}
+
+Grade the student answer compared to the reference. Which covered concepts are strongest evidence? Which missing concepts are critical gaps? Give a precise score.
+
+Return ONLY valid JSON:
+{{
+  "verified_score": <float 0.0–5.0 with one decimal, e.g. 2.5>,
+  "adjustment_direction": "confirm|increase|decrease",
+  "adjustment_reason": "2-3 sentence explanation comparing student to reference answer",
+  "confidence": 0.0-1.0,
+  "key_evidence": "Most compelling evidence for your grade"
+}}"""
+
+
+# ── SURE Framework constants ───────────────────────────────────────────────────
+
+HUMAN_REVIEW_THRESHOLD = 0.10  # 0.5 / 5.0 on the 0-1 scale
+
+_SURE_PERSONAS = [
+    (
+        "Meticulous",
+        "You are a strict academic grader. Penalise vague language, missing mechanisms, "
+        "and incomplete explanations. Require precision.",
+    ),
+    (
+        "Standard",
+        "You are a fair academic grader. Reward correct core ideas, penalise significant "
+        "omissions or misconceptions.",
+    ),
+    (
+        "Lenient",
+        "You are a supportive academic grader. Reward demonstrated understanding and effort. "
+        "Only penalise factually wrong statements.",
+    ),
+]
+
+
+@dataclass
+class SureResult:
+    """Result from the SURE (Self-Uncertainty-Reduction Ensemble) verification."""
+
+    scores: List[float]           # 3 raw verified scores (0-1)
+    median_score: float           # median of scores
+    spread: float                 # max - min
+    requires_human_review: bool   # spread > HUMAN_REVIEW_THRESHOLD
+    directions: List[str]         # confirm/increase/decrease per persona
+    verifier_weight: float
+    kg_score: float
+    final_score: float            # blend: (1-w)*kg + w*median
+
+    def to_dict(self) -> dict:
+        return {
+            "mode": "sure",
+            "kg_score": round(self.kg_score, 4),
+            "sure_scores": [round(s, 4) for s in self.scores],
+            "median_score": round(self.median_score, 4),
+            "spread": round(self.spread, 4),
+            "requires_human_review": self.requires_human_review,
+            "directions": self.directions,
+            "verifier_weight": self.verifier_weight,
+            "final_score": round(self.final_score, 4),
+        }
+
+
+@dataclass
+class VerifierResult:
+    """Result from the LLM verifier layer."""
+    kg_score: float
+    verified_score: float
+    final_score: float
+    adjustment_direction: str  # "confirm", "increase", "decrease"
+    adjustment_reason: str
+    confidence: float
+    key_evidence: str
+    verifier_weight: float
+
+    def to_dict(self) -> dict:
+        return {
+            "kg_score": round(self.kg_score, 4),
+            "verified_score": round(self.verified_score, 4),
+            "final_score": round(self.final_score, 4),
+            "adjustment_direction": self.adjustment_direction,
+            "adjustment_reason": self.adjustment_reason,
+            "confidence": round(self.confidence, 3),
+            "key_evidence": self.key_evidence,
+            "verifier_weight": self.verifier_weight,
+        }
+
+
+class LLMVerifier:
+    """
+    Post-scoring LLM verifier that validates and optionally adjusts the
+    KG-computed composite score.
+
+    Parameters
+    ----------
+    api_key         : Groq API key
+    model           : LLM model name
+    verifier_weight : Weight of LLM score in final blend (0 = KG only, 1 = LLM only)
+                      Default 0.25 — KG dominates, LLM provides soft correction.
+    """
+
+    def __init__(
+        self,
+        api_key: str,
+        model: str = "claude-haiku-4-5-20251001",
+        verifier_weight: float = 0.25,
+    ):
+        self.client = Groq(api_key=api_key)
+        self.model = model
+        if not 0.0 <= verifier_weight <= 1.0:
+            raise ValueError("verifier_weight must be in [0, 1]")
+        self.verifier_weight = verifier_weight
+
+    def verify(
+        self,
+        question: str,
+        student_answer: str,
+        kg_score: float,
+        comparison_result: dict,
+        blooms: dict,
+        solo: dict,
+        misconceptions: dict,
+        reference_answer: str = "",
+    ) -> VerifierResult:
+        """
+        Verify and optionally adjust the KG-computed score.
+
+        Parameters
+        ----------
+        question         : Assessment question
+        student_answer   : Student's free-text response
+        kg_score         : Overall score from ConceptGradePipeline
+        comparison_result: Output of KnowledgeGraphComparator.compare().to_dict()
+        blooms           : Bloom's classification dict
+        solo             : SOLO classification dict
+        misconceptions   : Misconception detection dict
+
+        Returns
+        -------
+        VerifierResult with blended final score
+        """
+        analysis = comparison_result.get("analysis", comparison_result)
+
+        # Extract concept lists for richer verifier context
+        matched = analysis.get("matched_concepts", [])
+        missing_raw = analysis.get("missing_concepts", [])
+        covered_str = ", ".join(matched[:12]) if matched else "none identified"
+        missing_str = ", ".join(
+            (g.get("concept_id", g.get("id", "?")) if isinstance(g, dict) else str(g))
+            for g in missing_raw[:8]
+        ) if missing_raw else "none — full coverage"
+
+        user_prompt = VERIFIER_USER.format(
+            question=question,
+            reference_answer=reference_answer or "(not provided)",
+            student_answer=student_answer,
+            covered_concepts=covered_str,
+            missing_concepts=missing_str,
+            blooms_label=blooms.get("label", "Remember"),
+            blooms_level=blooms.get("level", 1),
+            solo_label=solo.get("label", "Prestructural"),
+            solo_level=solo.get("level", 1),
+            misc_count=misconceptions.get("total_misconceptions", 0),
+        )
+
+        try:
+            raw = self._call_llm(VERIFIER_SYSTEM, user_prompt)
+            parsed = self._parse_json(raw)
+            # Parse as fine-grained score (0.5 increments), convert to 0-1
+            raw_score = float(parsed.get("verified_score", kg_score * 5))
+            # Round to nearest 0.5
+            verified_fine = round(raw_score * 2) / 2
+            verified_fine = max(0.0, min(5.0, verified_fine))
+            verified = verified_fine / 5.0   # 0-1 for blend arithmetic
+            direction = parsed.get("adjustment_direction", "confirm")
+            reason = parsed.get("adjustment_reason", "")
+            conf = float(parsed.get("confidence", 0.5))
+            evidence = parsed.get("key_evidence", "")
+        except Exception as e:
+            # Fallback: trust KG score
+            import traceback
+            print(f"  [Verifier] FALLBACK triggered — {type(e).__name__}: {e}")
+            traceback.print_exc()
+            verified = kg_score
+            direction = "confirm"
+            reason = f"LLM verification failed: {e}; using KG score unchanged."
+            conf = 0.0
+            evidence = ""
+
+        # Blend: at verifier_weight=1.0 the KG analysis informs the prompt
+        # but the LLM holistic grade drives the final score.
+        final = (1.0 - self.verifier_weight) * kg_score + self.verifier_weight * verified
+
+        print(
+            f"  [Verifier] KG={kg_score * 5:.1f}/5 → verified={verified * 5:.1f}/5 "
+            f"({direction}) → final={final * 5:.2f}/5"
+        )
+
+        return VerifierResult(
+            kg_score=kg_score,
+            verified_score=verified,
+            final_score=round(final, 4),
+            adjustment_direction=direction,
+            adjustment_reason=reason,
+            confidence=conf,
+            key_evidence=evidence,
+            verifier_weight=self.verifier_weight,
+        )
+
+    def verify_sure(
+        self,
+        question: str,
+        student_answer: str,
+        kg_score: float,
+        comparison_result: dict,
+        blooms: dict,
+        solo: dict,
+        misconceptions: dict,
+        reference_answer: str = "",
+    ) -> "SureResult":
+        """
+        Run 3-persona SURE (Self-Uncertainty-Reduction Ensemble) verification.
+
+        Each of the three personas (Meticulous, Standard, Lenient) grades the
+        student answer independently. The final score is the median. A large
+        spread across personas flags the answer for human review.
+
+        Parameters
+        ----------
+        question         : Assessment question
+        student_answer   : Student's free-text response
+        kg_score         : Overall score from ConceptGradePipeline (0-1)
+        comparison_result: Output of KnowledgeGraphComparator.compare().to_dict()
+        blooms           : Bloom's classification dict
+        solo             : SOLO classification dict
+        misconceptions   : Misconception detection dict
+        reference_answer : Expert/model reference answer (optional)
+
+        Returns
+        -------
+        SureResult with median blended final score and human-review flag
+        """
+        scores_01: List[float] = []
+        directions: List[str] = []
+
+        # Build the shared user prompt (identical across all personas)
+        analysis = comparison_result.get("analysis", comparison_result)
+        matched = analysis.get("matched_concepts", [])
+        missing_raw = analysis.get("missing_concepts", [])
+        covered_str = ", ".join(matched[:12]) if matched else "none identified"
+        missing_str = ", ".join(
+            (g.get("concept_id", g.get("id", "?")) if isinstance(g, dict) else str(g))
+            for g in missing_raw[:8]
+        ) if missing_raw else "none — full coverage"
+
+        user_prompt = VERIFIER_USER.format(
+            question=question,
+            reference_answer=reference_answer or "(not provided)",
+            student_answer=student_answer,
+            covered_concepts=covered_str,
+            missing_concepts=missing_str,
+            blooms_label=blooms.get("label", "Remember"),
+            blooms_level=blooms.get("level", 1),
+            solo_label=solo.get("label", "Prestructural"),
+            solo_level=solo.get("level", 1),
+            misc_count=misconceptions.get("total_misconceptions", 0),
+        )
+
+        for persona_name, persona_prefix in _SURE_PERSONAS:
+            persona_system = f"{persona_prefix}\n\n{VERIFIER_SYSTEM}"
+            try:
+                raw = self._call_llm(persona_system, user_prompt)
+                parsed = self._parse_json(raw)
+                raw_score = float(parsed.get("verified_score", kg_score * 5))
+                verified_fine = round(raw_score * 2) / 2
+                verified_fine = max(0.0, min(5.0, verified_fine))
+                verified = verified_fine / 5.0
+                direction = parsed.get("adjustment_direction", "confirm")
+            except Exception as e:
+                print(f"  [SURE/{persona_name}] FALLBACK — {type(e).__name__}: {e}; using kg_score")
+                verified = kg_score
+                direction = "confirm"
+
+            scores_01.append(verified)
+            directions.append(direction)
+            print(
+                f"  [SURE/{persona_name}] score={verified * 5:.1f}/5 ({direction})"
+            )
+
+        spread = max(scores_01) - min(scores_01)
+        median_01 = statistics.median(scores_01)
+        requires_review = spread > HUMAN_REVIEW_THRESHOLD
+
+        final = (1.0 - self.verifier_weight) * kg_score + self.verifier_weight * median_01
+        final = round(final, 4)
+
+        print(
+            f"  [SURE] KG={kg_score * 5:.1f}/5 → median={median_01 * 5:.1f}/5 "
+            f"spread={spread * 5:.2f}/5 "
+            f"{'⚠ REVIEW' if requires_review else 'OK'} → final={final * 5:.2f}/5"
+        )
+
+        return SureResult(
+            scores=scores_01,
+            median_score=round(median_01, 4),
+            spread=round(spread, 4),
+            requires_human_review=requires_review,
+            directions=directions,
+            verifier_weight=self.verifier_weight,
+            kg_score=kg_score,
+            final_score=final,
+        )
+
+    def _call_llm(self, system: str, user: str) -> str:
+        response = self.client.chat.completions.create(
+            model=self.model,
+            messages=[
+                {"role": "system", "content": system},
+                {"role": "user",   "content": user},
+            ],
+            temperature=0.0,   # Deterministic — verifier should be consistent
+            max_tokens=1200,
+        )
+        return response.choices[0].message.content
+
+    def _parse_json(self, text: str) -> dict:
+        from conceptgrade.llm_client import parse_llm_json
+        return parse_llm_json(text)

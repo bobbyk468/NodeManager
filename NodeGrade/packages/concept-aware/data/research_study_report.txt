@@ -1,0 +1,15 @@
+ConceptGrade Research Study Report
+==================================================
+Date: 2026-03-23T07:04:35.745263
+Samples: 120, Questions: 10
+
+Comparison                                      QWK   κ(lin)   α(Kripp)      ICC        r    Adj%
+──────────────────────────────────────────────────────────────────────────────────────────
+  Rater1 vs Rater2    (upper bound)          0.9650   0.8951     0.9843   0.9843   0.9848  100.0%
+  ConceptGrade vs Rater1                     0.8021   0.5594     0.8229   0.8350   0.9510   37.5%
+  ConceptGrade vs Rater2                     0.7835   0.5452     0.8052   0.8184   0.9470   35.8%
+  ConceptGrade vs Consensus                  0.7935   0.5610     0.8186   0.8314   0.9526   35.8%
+──────────────────────────────────────────────────────────────────────────────────────────
+  Three-way Krippendorff α: 0.8864  |  System QWK as % of ceiling: 82.2%
+
+LaTeX tables saved to: /Users/brahmajikatragadda/Desktop/PHD/NodeGrade/NodeManager/NodeGrade/packages/concept-aware/data/research_study_latex.tex

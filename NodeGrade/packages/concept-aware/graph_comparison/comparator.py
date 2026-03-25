@@ -13,6 +13,7 @@ Assessment dimensions:
 """
 
 import json
+import math
 from dataclasses import dataclass, field
 from typing import Optional
 import networkx as nx
@@ -77,14 +78,22 @@ class ComparisonResult:
     strengths: list[str] = field(default_factory=list)
     weaknesses: list[str] = field(default_factory=list)
 
+    # Hierarchical KG scores (populated by compare_hierarchical / compare with use_hierarchical=True)
+    primary_coverage_score: float = 0.0
+    secondary_coverage_score: float = 0.0
+
     def to_dict(self) -> dict:
+        scores: dict = {
+            "concept_coverage": round(self.concept_coverage_score, 4),
+            "relationship_accuracy": round(self.relationship_accuracy_score, 4),
+            "integration_quality": round(self.integration_quality_score, 4),
+            "overall": round(self.overall_score, 4),
+        }
+        if self.primary_coverage_score > 0.0 or self.secondary_coverage_score > 0.0:
+            scores["primary_coverage"]   = round(self.primary_coverage_score, 4)
+            scores["secondary_coverage"] = round(self.secondary_coverage_score, 4)
         return {
-            "scores": {
-                "concept_coverage": round(self.concept_coverage_score, 4),
-                "relationship_accuracy": round(self.relationship_accuracy_score, 4),
-                "integration_quality": round(self.integration_quality_score, 4),
-                "overall": round(self.overall_score, 4),
-            },
+            "scores": scores,
             "analysis": {
                 "matched_concepts": self.matched_concepts,
                 "missing_concepts": [
@@ -141,6 +150,65 @@ class KnowledgeGraphComparator:
 
     def __init__(self, domain_graph: DomainKnowledgeGraph):
         self.domain_graph = domain_graph
+
+    def compare_hierarchical(
+        self,
+        student_graph: StudentConceptGraph,
+        expected_concepts: Optional[list[str]] = None,
+        weights: Optional[dict[str, float]] = None,
+    ) -> ComparisonResult:
+        """Run standard comparison then layer on hierarchical primary/secondary scores.
+
+        Primary coverage: fraction of expected *primary* concepts matched.
+        Secondary coverage: fraction of expected *secondary* concepts matched.
+
+        Falls back to standard scoring if the expected set contains no primary
+        concepts (e.g. a custom expected_concepts list that has no is_primary tags).
+        """
+        result = self.compare(
+            student_graph=student_graph,
+            expected_concepts=expected_concepts,
+            weights=weights,
+        )
+
+        # Determine expected concept set (same logic as compare())
+        if expected_concepts:
+            expected_set = set(expected_concepts)
+        else:
+            expected_set = student_graph.concept_ids
+
+        student_concept_ids = student_graph.concept_ids
+
+        # Split expected concepts into primary / secondary
+        primary_expected:   list[str] = []
+        secondary_expected: list[str] = []
+
+        for cid in expected_set:
+            concept = self.domain_graph.get_concept(cid)
+            if concept is None:
+                continue
+            # Default to primary if is_primary field is missing
+            if getattr(concept, "is_primary", True):
+                primary_expected.append(cid)
+            else:
+                secondary_expected.append(cid)
+
+        # Fall back to standard if no primary concepts found
+        if not primary_expected:
+            return result
+
+        # Primary coverage
+        primary_matched = [cid for cid in primary_expected if cid in student_concept_ids]
+        result.primary_coverage_score = len(primary_matched) / len(primary_expected)
+
+        # Secondary coverage
+        if secondary_expected:
+            secondary_matched = [cid for cid in secondary_expected if cid in student_concept_ids]
+            result.secondary_coverage_score = len(secondary_matched) / len(secondary_expected)
+        else:
+            result.secondary_coverage_score = 0.0
+
+        return result
 
     def compare(
         self,
@@ -353,33 +421,34 @@ class KnowledgeGraphComparator:
     def _verify_relationship(
         self, source_id: str, target_id: str, relation_type: str
     ) -> bool:
-        """Check if a specific relationship exists in the expert graph."""
-        if self.domain_graph.graph.has_edge(source_id, target_id):
-            edge_data = self.domain_graph.graph[source_id][target_id]
-            # Accept if exact match or semantically close
-            if edge_data.get("relation_type") == relation_type:
+        """Check if a specific relationship exists in the expert graph.
+
+        Uses the authoritative _relationships list instead of the NetworkX
+        graph to handle concepts with multiple edge types to the same target
+        (e.g. binary_search→array exists as both USES and OPERATES_ON).
+        """
+        for rel in self.domain_graph.get_all_relationships():
+            if rel.relation_type.value != relation_type:
+                continue
+            # Forward direction
+            if rel.source_id == source_id and rel.target_id == target_id:
                 return True
-            # Also accept reverse direction for symmetric relations
-            if relation_type == "contrasts_with":
-                if self.domain_graph.graph.has_edge(target_id, source_id):
-                    return True
-        
-        # Check reverse direction
-        if self.domain_graph.graph.has_edge(target_id, source_id):
-            edge_data = self.domain_graph.graph[target_id][source_id]
-            if edge_data.get("relation_type") == relation_type:
+            # Reverse direction (also valid for symmetric contrasts_with)
+            if rel.source_id == target_id and rel.target_id == source_id:
                 return True
-        
         return False
 
     def _find_correct_relation(
         self, source_id: str, target_id: str
     ) -> Optional[str]:
-        """Find the correct relationship type between two concepts."""
-        if self.domain_graph.graph.has_edge(source_id, target_id):
-            return self.domain_graph.graph[source_id][target_id].get("relation_type")
-        if self.domain_graph.graph.has_edge(target_id, source_id):
-            return self.domain_graph.graph[target_id][source_id].get("relation_type")
+        """Find the correct relationship type(s) between two concepts.
+
+        Returns the first match from the authoritative _relationships list.
+        """
+        for rel in self.domain_graph.get_all_relationships():
+            if (rel.source_id == source_id and rel.target_id == target_id) or \
+               (rel.source_id == target_id and rel.target_id == source_id):
+                return rel.relation_type.value
         return None
 
     def _assess_severity(self, rel: ExtractedRelationship) -> str:
@@ -452,9 +521,10 @@ class KnowledgeGraphComparator:
                             "note": "Expected connection not demonstrated"
                         })
 
-        # Avoid double-counting (each edge counted from both directions)
-        expected_rels_count = max(expected_rels_count // 2, 1)
-        found_rels_count = found_rels_count // 2
+        # Avoid double-counting (each edge counted from both directions).
+        # Use ceil so odd counts round up rather than losing a relationship.
+        expected_rels_count = max(math.ceil(expected_rels_count / 2), 1)
+        found_rels_count = math.ceil(found_rels_count / 2)
 
         rel_coverage = found_rels_count / expected_rels_count if expected_rels_count > 0 else 0
 

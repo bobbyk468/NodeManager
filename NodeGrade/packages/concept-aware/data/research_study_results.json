@@ -1,0 +1,591 @@
+{
+  "meta": {
+    "study": "ConceptGrade Complete Research Study",
+    "timestamp": "2026-03-23T07:04:35.744131",
+    "n_samples": 120,
+    "n_questions": 10
+  },
+  "study_a_inter_rater": {
+    "human_vs_human_qwk": 0.9650383606875789,
+    "system_vs_consensus_qwk": 0.7934852033212689,
+    "system_pearson_r": 0.9525785028111741,
+    "three_way_alpha": 0.8863557270905262,
+    "qwk_ceiling_pct": 82.2,
+    "full": {
+      "human_vs_human": {
+        "comparison": "Rater1 vs Rater2",
+        "n_samples": 120,
+        "qwk": 0.965,
+        "linear_kappa": 0.8951,
+        "pearson_r": 0.9848,
+        "pearson_p": 0.0,
+        "spearman_rho": 0.9827,
+        "icc": {
+          "icc": 0.9843,
+          "f_stat": 126.12,
+          "p_value": 0.0,
+          "lower_ci_95": 0.9775,
+          "upper_ci_95": 0.989
+        },
+        "bland_altman": {
+          "bias": 0.0167,
+          "sd_diff": 0.2894,
+          "loa_lower": -0.5506,
+          "loa_upper": 0.5839,
+          "within_loa_pct": 100.0,
+          "name1": "Rater1",
+          "name2": "Rater2",
+          "n": 120
+        },
+        "exact_agreement_pct": 66.7,
+        "adjacent_agreement_pct": 100.0,
+        "krippendorff_alpha": 0.9843,
+        "kappa_interpretation": "Almost Perfect"
+      },
+      "system_vs_r1": {
+        "comparison": "ConceptGrade vs Rater1",
+        "n_samples": 120,
+        "qwk": 0.8021,
+        "linear_kappa": 0.5594,
+        "pearson_r": 0.951,
+        "pearson_p": 0.0,
+        "spearman_rho": 0.9448,
+        "icc": {
+          "icc": 0.835,
+          "f_stat": 11.124,
+          "p_value": 0.0,
+          "lower_ci_95": 0.7715,
+          "upper_ci_95": 0.8821
+        },
+        "bland_altman": {
+          "bias": 0.2206,
+          "sd_diff": 0.7581,
+          "loa_lower": -1.2653,
+          "loa_upper": 1.7065,
+          "within_loa_pct": 99.2,
+          "name1": "ConceptGrade",
+          "name2": "Rater1",
+          "n": 120
+        },
+        "exact_agreement_pct": 0.8,
+        "adjacent_agreement_pct": 37.5,
+        "krippendorff_alpha": 0.8229,
+        "kappa_interpretation": "Almost Perfect"
+      },
+      "system_vs_r2": {
+        "comparison": "ConceptGrade vs Rater2",
+        "n_samples": 120,
+        "qwk": 0.7835,
+        "linear_kappa": 0.5452,
+        "pearson_r": 0.947,
+        "pearson_p": 0.0,
+        "spearman_rho": 0.9414,
+        "icc": {
+          "icc": 0.8184,
+          "f_stat": 10.016,
+          "p_value": 0.0,
+          "lower_ci_95": 0.7494,
+          "upper_ci_95": 0.8699
+        },
+        "bland_altman": {
+          "bias": 0.2372,
+          "sd_diff": 0.8148,
+          "loa_lower": -1.3597,
+          "loa_upper": 1.8342,
+          "within_loa_pct": 98.3,
+          "name1": "ConceptGrade",
+          "name2": "Rater2",
+          "n": 120
+        },
+        "exact_agreement_pct": 0.8,
+        "adjacent_agreement_pct": 35.8,
+        "krippendorff_alpha": 0.8052,
+        "kappa_interpretation": "Substantial"
+      },
+      "system_vs_consensus": {
+        "comparison": "ConceptGrade vs Human Consensus",
+        "n_samples": 120,
+        "qwk": 0.7935,
+        "linear_kappa": 0.561,
+        "pearson_r": 0.9526,
+        "pearson_p": 0.0,
+        "spearman_rho": 0.9466,
+        "icc": {
+          "icc": 0.8314,
+          "f_stat": 10.863,
+          "p_value": 0.0,
+          "lower_ci_95": 0.7667,
+          "upper_ci_95": 0.8794
+        },
+        "bland_altman": {
+          "bias": 0.2289,
+          "sd_diff": 0.7735,
+          "loa_lower": -1.2872,
+          "loa_upper": 1.745,
+          "within_loa_pct": 98.3,
+          "name1": "ConceptGrade",
+          "name2": "Human Consensus",
+          "n": 120
+        },
+        "exact_agreement_pct": 0.8,
+        "adjacent_agreement_pct": 35.8,
+        "krippendorff_alpha": 0.8186,
+        "kappa_interpretation": "Substantial"
+      },
+      "three_way_alpha": 0.8863557270905262,
+      "qwk_ceiling_pct": 82.2,
+      "per_question": {
+        "Q1": {
+          "n": 12,
+          "human_human_r": 0.9743,
+          "system_human_r": 0.9741,
+          "delta_r": -0.0001
+        },
+        "Q10": {
+          "n": 12,
+          "human_human_r": 0.9909,
+          "system_human_r": 0.9421,
+          "delta_r": -0.0488
+        },
+        "Q2": {
+          "n": 12,
+          "human_human_r": 0.9878,
+          "system_human_r": 0.9656,
+          "delta_r": -0.0221
+        },
+        "Q3": {
+          "n": 12,
+          "human_human_r": 0.9793,
+          "system_human_r": 0.9548,
+          "delta_r": -0.0245
+        },
+        "Q4": {
+          "n": 12,
+          "human_human_r": 0.9866,
+          "system_human_r": 0.9686,
+          "delta_r": -0.018
+        },
+        "Q5": {
+          "n": 12,
+          "human_human_r": 0.9906,
+          "system_human_r": 0.9428,
+          "delta_r": -0.0478
+        },
+        "Q6": {
+          "n": 12,
+          "human_human_r": 0.9915,
+          "system_human_r": 0.9718,
+          "delta_r": -0.0197
+        },
+        "Q7": {
+          "n": 12,
+          "human_human_r": 0.9802,
+          "system_human_r": 0.9453,
+          "delta_r": -0.035
+        },
+        "Q8": {
+          "n": 12,
+          "human_human_r": 0.984,
+          "system_human_r": 0.9754,
+          "delta_r": -0.0085
+        },
+        "Q9": {
+          "n": 12,
+          "human_human_r": 0.9934,
+          "system_human_r": 0.9724,
+          "delta_r": -0.021
+        }
+      }
+    }
+  },
+  "study_b_ablation": {
+    "C0": {
+      "task_name": "ConceptGrade + All Extensions",
+      "num_samples": 120,
+      "correlation": {
+        "pearson_r": 0.9521,
+        "pearson_p": 0.0,
+        "spearman_rho": 0.9455,
+        "rmse": 1.0278,
+        "mae": 0.8372
+      },
+      "agreement": {
+        "qwk": 0.6764,
+        "cohens_kappa": 0.1399,
+        "accuracy": 0.2833
+      },
+      "classification": {
+        "f1_macro": 0.0,
+        "f1_weighted": 0.0,
+        "precision_macro": 0.0,
+        "recall_macro": 0.0
+      },
+      "concept_level": {
+        "f1": 0.0,
+        "precision": 0.0,
+        "recall": 0.0
+      },
+      "confidence_intervals_95": {
+        "pearson_r": [
+          0.9345,
+          0.9659
+        ],
+        "qwk": [
+          0.6207,
+          0.7203
+        ],
+        "rmse": [
+          0.9185,
+          1.1349
+        ]
+      }
+    },
+    "C1": {
+      "task_name": "ConceptGrade + All Extensions",
+      "num_samples": 120,
+      "correlation": {
+        "pearson_r": 0.9521,
+        "pearson_p": 0.0,
+        "spearman_rho": 0.9455,
+        "rmse": 1.0278,
+        "mae": 0.8372
+      },
+      "agreement": {
+        "qwk": 0.6764,
+        "cohens_kappa": 0.1399,
+        "accuracy": 0.2833
+      },
+      "classification": {
+        "f1_macro": 0.0,
+        "f1_weighted": 0.0,
+        "precision_macro": 0.0,
+        "recall_macro": 0.0
+      },
+      "concept_level": {
+        "f1": 0.0,
+        "precision": 0.0,
+        "recall": 0.0
+      },
+      "confidence_intervals_95": {
+        "pearson_r": [
+          0.9345,
+          0.9659
+        ],
+        "qwk": [
+          0.6207,
+          0.7203
+        ],
+        "rmse": [
+          0.9185,
+          1.1349
+        ]
+      }
+    },
+    "C2": {
+      "task_name": "ConceptGrade + All Extensions",
+      "num_samples": 120,
+      "correlation": {
+        "pearson_r": 0.9521,
+        "pearson_p": 0.0,
+        "spearman_rho": 0.9455,
+        "rmse": 1.0278,
+        "mae": 0.8372
+      },
+      "agreement": {
+        "qwk": 0.6764,
+        "cohens_kappa": 0.1399,
+        "accuracy": 0.2833
+      },
+      "classification": {
+        "f1_macro": 0.0,
+        "f1_weighted": 0.0,
+        "precision_macro": 0.0,
+        "recall_macro": 0.0
+      },
+      "concept_level": {
+        "f1": 0.0,
+        "precision": 0.0,
+        "recall": 0.0
+      },
+      "confidence_intervals_95": {
+        "pearson_r": [
+          0.9345,
+          0.9659
+        ],
+        "qwk": [
+          0.6207,
+          0.7203
+        ],
+        "rmse": [
+          0.9185,
+          1.1349
+        ]
+      }
+    },
+    "C3": {
+      "task_name": "ConceptGrade + All Extensions",
+      "num_samples": 120,
+      "correlation": {
+        "pearson_r": 0.9521,
+        "pearson_p": 0.0,
+        "spearman_rho": 0.9455,
+        "rmse": 1.0278,
+        "mae": 0.8372
+      },
+      "agreement": {
+        "qwk": 0.6764,
+        "cohens_kappa": 0.1399,
+        "accuracy": 0.2833
+      },
+      "classification": {
+        "f1_macro": 0.0,
+        "f1_weighted": 0.0,
+        "precision_macro": 0.0,
+        "recall_macro": 0.0
+      },
+      "concept_level": {
+        "f1": 0.0,
+        "precision": 0.0,
+        "recall": 0.0
+      },
+      "confidence_intervals_95": {
+        "pearson_r": [
+          0.9345,
+          0.9659
+        ],
+        "qwk": [
+          0.6207,
+          0.7203
+        ],
+        "rmse": [
+          0.9185,
+          1.1349
+        ]
+      }
+    },
+    "C4": {
+      "task_name": "ConceptGrade + All Extensions",
+      "num_samples": 120,
+      "correlation": {
+        "pearson_r": 0.9521,
+        "pearson_p": 0.0,
+        "spearman_rho": 0.9455,
+        "rmse": 1.0278,
+        "mae": 0.8372
+      },
+      "agreement": {
+        "qwk": 0.6764,
+        "cohens_kappa": 0.1399,
+        "accuracy": 0.2833
+      },
+      "classification": {
+        "f1_macro": 0.0,
+        "f1_weighted": 0.0,
+        "precision_macro": 0.0,
+        "recall_macro": 0.0
+      },
+      "concept_level": {
+        "f1": 0.0,
+        "precision": 0.0,
+        "recall": 0.0
+      },
+      "confidence_intervals_95": {
+        "pearson_r": [
+          0.9345,
+          0.9659
+        ],
+        "qwk": [
+          0.6207,
+          0.7203
+        ],
+        "rmse": [
+          0.9185,
+          1.1349
+        ]
+      }
+    },
+    "C5": {
+      "task_name": "ConceptGrade + All Extensions",
+      "num_samples": 120,
+      "correlation": {
+        "pearson_r": 0.9521,
+        "pearson_p": 0.0,
+        "spearman_rho": 0.9455,
+        "rmse": 1.0278,
+        "mae": 0.8372
+      },
+      "agreement": {
+        "qwk": 0.6764,
+        "cohens_kappa": 0.1399,
+        "accuracy": 0.2833
+      },
+      "classification": {
+        "f1_macro": 0.0,
+        "f1_weighted": 0.0,
+        "precision_macro": 0.0,
+        "recall_macro": 0.0
+      },
+      "concept_level": {
+        "f1": 0.0,
+        "precision": 0.0,
+        "recall": 0.0
+      },
+      "confidence_intervals_95": {
+        "pearson_r": [
+          0.9345,
+          0.9659
+        ],
+        "qwk": [
+          0.6207,
+          0.7203
+        ],
+        "rmse": [
+          0.9185,
+          1.1349
+        ]
+      }
+    }
+  },
+  "study_c_cross_domain": {
+    "ds_graph": {
+      "domain": "Data Structures",
+      "concepts": 101,
+      "relationships": 138,
+      "coverage_topics": [
+        "Linked Lists",
+        "Arrays",
+        "Stacks",
+        "Queues",
+        "Trees",
+        "BST",
+        "Graphs",
+        "Hash Tables",
+        "Sorting",
+        "Searching",
+        "Complexity Analysis",
+        "Recursion"
+      ]
+    },
+    "algorithms_graph": {
+      "domain": "Algorithms",
+      "concepts": 74,
+      "relationships": 203,
+      "coverage_topics": [
+        "Sorting (bubble/selection/insertion/merge/quick/heap)",
+        "Searching (linear/binary)",
+        "Graph Algorithms (Dijkstra/Bellman-Ford/Floyd-Warshall/Prim/Kruskal)",
+        "Dynamic Programming",
+        "Divide & Conquer",
+        "Greedy Algorithms",
+        "Backtracking",
+        "Complexity Classes"
+      ]
+    },
+    "overlap": {
+      "shared_concepts": 31,
+      "ds_only": 70,
+      "alg_only": 43,
+      "shared_ids": [
+        "algorithm",
+        "bfs",
+        "big_o_notation",
+        "binary_search",
+        "bubble_sort",
+        "dfs",
+        "dijkstra",
+        "divide_and_conquer",
+        "dynamic_array",
+        "heap_sort",
+        "insertion_sort",
+        "iteration",
+        "linear_search",
+        "merge_sort",
+        "minimum_spanning_tree",
+        "o_1",
+        "o_log_n",
+        "o_n",
+        "o_n2",
+        "o_n_log_n",
+        "quick_sort",
+        "recursion",
+        "searching",
+        "selection_sort",
+        "shortest_path",
+        "sorting",
+        "space_complexity",
+        "stable_sort",
+        "time_complexity",
+        "topological_sort",
+        "weighted_graph"
+      ]
+    },
+    "latex": "% Cross-Domain Knowledge Graph Statistics\n\\begin{table}[h]\\centering\n\\caption{Expert knowledge graphs constructed for ConceptGrade. Shared concepts are foundational CS concepts (e.g., time\\_complexity, recursion, node) present in both domains.}\n\\label{tab:kgstats}\n\\begin{tabular}{@{}lrrrl@{}}\\toprule\n\\textbf{Knowledge Graph} & \\textbf{Concepts} & \\textbf{Relationships} & \\textbf{Shared} & \\textbf{Coverage} \\\\\\midrule\nData Structures & 101 & 138 & \\multirow{2}{*}{31} & Linked lists, trees, graphs, hashing \\\\\nAlgorithms & 74 & 203 & & Sorting, searching, DP, graph algorithms \\\\\n\\bottomrule\\end{tabular}\\end{table}"
+  },
+  "study_d_ceiling": {
+    "per_question": {
+      "Q1": {
+        "human_human_r": 0.9743,
+        "system_r": 0.9741,
+        "pct_of_ceiling": 100.0,
+        "status": "\u2605 STRONG"
+      },
+      "Q10": {
+        "human_human_r": 0.9909,
+        "system_r": 0.9421,
+        "pct_of_ceiling": 95.1,
+        "status": "\u2605 STRONG"
+      },
+      "Q2": {
+        "human_human_r": 0.9878,
+        "system_r": 0.9656,
+        "pct_of_ceiling": 97.8,
+        "status": "\u2605 STRONG"
+      },
+      "Q3": {
+        "human_human_r": 0.9793,
+        "system_r": 0.9548,
+        "pct_of_ceiling": 97.5,
+        "status": "\u2605 STRONG"
+      },
+      "Q4": {
+        "human_human_r": 0.9866,
+        "system_r": 0.9686,
+        "pct_of_ceiling": 98.2,
+        "status": "\u2605 STRONG"
+      },
+      "Q5": {
+        "human_human_r": 0.9906,
+        "system_r": 0.9428,
+        "pct_of_ceiling": 95.2,
+        "status": "\u2605 STRONG"
+      },
+      "Q6": {
+        "human_human_r": 0.9915,
+        "system_r": 0.9718,
+        "pct_of_ceiling": 98.0,
+        "status": "\u2605 STRONG"
+      },
+      "Q7": {
+        "human_human_r": 0.9802,
+        "system_r": 0.9453,
+        "pct_of_ceiling": 96.4,
+        "status": "\u2605 STRONG"
+      },
+      "Q8": {
+        "human_human_r": 0.984,
+        "system_r": 0.9754,
+        "pct_of_ceiling": 99.1,
+        "status": "\u2605 STRONG"
+      },
+      "Q9": {
+        "human_human_r": 0.9934,
+        "system_r": 0.9724,
+        "pct_of_ceiling": 97.9,
+        "status": "\u2605 STRONG"
+      }
+    },
+    "avg_hh_r": 0.9859,
+    "avg_system_r": 0.9613,
+    "avg_pct_ceiling": 97.5
+  }
+}

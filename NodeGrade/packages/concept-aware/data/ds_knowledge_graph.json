@@ -10,7 +10,8 @@
       "aliases": [
         "DS"
       ],
-      "difficulty_level": 1
+      "difficulty_level": 1,
+      "is_primary": true
     },
     {
       "id": "algorithm",
@@ -20,7 +21,8 @@
       "aliases": [
         "algo"
       ],
-      "difficulty_level": 1
+      "difficulty_level": 1,
+      "is_primary": true
     },
     {
       "id": "abstract_data_type",
@@ -30,7 +32,8 @@
       "aliases": [
         "ADT"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": true
     },
     {
       "id": "recursion",
@@ -40,7 +43,8 @@
       "aliases": [
         "recursive"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": true
     },
     {
       "id": "iteration",
@@ -51,7 +55,8 @@
         "iterative",
         "loop"
       ],
-      "difficulty_level": 1
+      "difficulty_level": 1,
+      "is_primary": true
     },
     {
       "id": "pointer",
@@ -62,7 +67,8 @@
         "reference",
         "memory address"
       ],
-      "difficulty_level": 1
+      "difficulty_level": 1,
+      "is_primary": true
     },
     {
       "id": "node",
@@ -73,7 +79,8 @@
         "vertex",
         "element"
       ],
-      "difficulty_level": 1
+      "difficulty_level": 1,
+      "is_primary": true
     },
     {
       "id": "memory_allocation",
@@ -84,7 +91,8 @@
         "malloc",
         "dynamic allocation"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": true
     },
     {
       "id": "dynamic_memory",
@@ -94,7 +102,8 @@
       "aliases": [
         "heap memory"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": true
     },
     {
       "id": "static_memory",
@@ -104,7 +113,8 @@
       "aliases": [
         "stack memory"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": false
     },
     {
       "id": "time_complexity",
@@ -115,7 +125,8 @@
         "runtime complexity",
         "time cost"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": true
     },
     {
       "id": "space_complexity",
@@ -125,7 +136,8 @@
       "aliases": [
         "memory complexity"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": true
     },
     {
       "id": "o_1",
@@ -135,7 +147,8 @@
       "aliases": [
         "constant time"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": true
     },
     {
       "id": "o_log_n",
@@ -145,7 +158,8 @@
       "aliases": [
         "logarithmic"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": true
     },
     {
       "id": "o_n",
@@ -155,7 +169,8 @@
       "aliases": [
         "linear time"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": true
     },
     {
       "id": "o_n_log_n",
@@ -165,7 +180,8 @@
       "aliases": [
         "n log n"
       ],
-      "difficulty_level": 3
+      "difficulty_level": 3,
+      "is_primary": false
     },
     {
       "id": "o_n2",
@@ -175,7 +191,8 @@
       "aliases": [
         "quadratic"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": false
     },
     {
       "id": "big_o_notation",
@@ -187,7 +204,8 @@
         "asymptotic notation",
         "order of growth"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": true
     },
     {
       "id": "array",
@@ -198,7 +216,8 @@
         "list",
         "vector"
       ],
-      "difficulty_level": 1
+      "difficulty_level": 1,
+      "is_primary": true
     },
     {
       "id": "dynamic_array",
@@ -210,7 +229,8 @@
         "vector",
         "resizable array"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": false
     },
     {
       "id": "index",
@@ -221,7 +241,8 @@
         "subscript",
         "position"
       ],
-      "difficulty_level": 1
+      "difficulty_level": 1,
+      "is_primary": true
     },
     {
       "id": "linked_list",
@@ -231,7 +252,8 @@
       "aliases": [
         "singly linked list"
       ],
-      "difficulty_level": 1
+      "difficulty_level": 1,
+      "is_primary": true
     },
     {
       "id": "doubly_linked_list",
@@ -242,7 +264,8 @@
         "DLL",
         "double linked list"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": false
     },
     {
       "id": "circular_linked_list",
@@ -252,7 +275,8 @@
       "aliases": [
         "circular list"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": false
     },
     {
       "id": "head",
@@ -263,7 +287,8 @@
         "head pointer",
         "front"
       ],
-      "difficulty_level": 1
+      "difficulty_level": 1,
+      "is_primary": true
     },
     {
       "id": "tail",
@@ -275,7 +300,8 @@
         "rear",
         "end"
       ],
-      "difficulty_level": 1
+      "difficulty_level": 1,
+      "is_primary": true
     },
     {
       "id": "stack",
@@ -285,7 +311,8 @@
       "aliases": [
         "LIFO"
       ],
-      "difficulty_level": 1
+      "difficulty_level": 1,
+      "is_primary": true
     },
     {
       "id": "push",
@@ -293,7 +320,8 @@
       "concept_type": "operation",
       "description": "Add an element to the top of a stack",
       "aliases": [],
-      "difficulty_level": 1
+      "difficulty_level": 1,
+      "is_primary": true
     },
     {
       "id": "pop",
@@ -301,7 +329,8 @@
       "concept_type": "operation",
       "description": "Remove and return the top element of a stack",
       "aliases": [],
-      "difficulty_level": 1
+      "difficulty_level": 1,
+      "is_primary": true
     },
     {
       "id": "peek",
@@ -312,7 +341,8 @@
         "top",
         "peek operation"
       ],
-      "difficulty_level": 1
+      "difficulty_level": 1,
+      "is_primary": true
     },
     {
       "id": "lifo",
@@ -322,7 +352,8 @@
       "aliases": [
         "Last In First Out"
       ],
-      "difficulty_level": 1
+      "difficulty_level": 1,
+      "is_primary": true
     },
     {
       "id": "stack_overflow",
@@ -332,7 +363,8 @@
       "aliases": [
         "overflow"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": false
     },
     {
       "id": "stack_underflow",
@@ -342,7 +374,8 @@
       "aliases": [
         "underflow"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": false
     },
     {
       "id": "queue",
@@ -352,7 +385,8 @@
       "aliases": [
         "FIFO queue"
       ],
-      "difficulty_level": 1
+      "difficulty_level": 1,
+      "is_primary": true
     },
     {
       "id": "enqueue",
@@ -363,7 +397,8 @@
         "add",
         "offer"
       ],
-      "difficulty_level": 1
+      "difficulty_level": 1,
+      "is_primary": true
     },
     {
       "id": "dequeue",
@@ -374,7 +409,8 @@
         "remove",
         "poll"
       ],
-      "difficulty_level": 1
+      "difficulty_level": 1,
+      "is_primary": true
     },
     {
       "id": "fifo",
@@ -384,7 +420,8 @@
       "aliases": [
         "First In First Out"
       ],
-      "difficulty_level": 1
+      "difficulty_level": 1,
+      "is_primary": true
     },
     {
       "id": "priority_queue",
@@ -395,7 +432,8 @@
         "PQ",
         "heap-based queue"
       ],
-      "difficulty_level": 3
+      "difficulty_level": 3,
+      "is_primary": true
     },
     {
       "id": "circular_queue",
@@ -405,7 +443,8 @@
       "aliases": [
         "ring buffer"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": false
     },
     {
       "id": "deque",
@@ -415,7 +454,8 @@
       "aliases": [
         "double-ended queue"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": false
     },
     {
       "id": "tree",
@@ -425,7 +465,8 @@
       "aliases": [
         "tree structure"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": true
     },
     {
       "id": "binary_tree",
@@ -435,7 +476,8 @@
       "aliases": [
         "BT"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": true
     },
     {
       "id": "binary_search_tree",
@@ -447,7 +489,8 @@
         "ordered binary tree",
         "sorted binary tree"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": true
     },
     {
       "id": "avl_tree",
@@ -458,7 +501,8 @@
         "balanced BST",
         "Adelson-Velsky Landis tree"
       ],
-      "difficulty_level": 3
+      "difficulty_level": 3,
+      "is_primary": false
     },
     {
       "id": "red_black_tree",
@@ -468,7 +512,8 @@
       "aliases": [
         "RB tree"
       ],
-      "difficulty_level": 4
+      "difficulty_level": 4,
+      "is_primary": false
     },
     {
       "id": "heap",
@@ -478,7 +523,8 @@
       "aliases": [
         "binary heap"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": true
     },
     {
       "id": "max_heap",
@@ -486,7 +532,8 @@
       "concept_type": "data_structure",
       "description": "A heap where every parent node is greater than or equal to its children",
       "aliases": [],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": false
     },
     {
       "id": "min_heap",
@@ -494,7 +541,8 @@
       "concept_type": "data_structure",
       "description": "A heap where every parent node is less than or equal to its children",
       "aliases": [],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": false
     },
     {
       "id": "b_tree",
@@ -504,7 +552,8 @@
       "aliases": [
         "balanced tree"
       ],
-      "difficulty_level": 4
+      "difficulty_level": 4,
+      "is_primary": false
     },
     {
       "id": "trie",
@@ -515,7 +564,8 @@
         "prefix tree",
         "digital tree"
       ],
-      "difficulty_level": 3
+      "difficulty_level": 3,
+      "is_primary": false
     },
     {
       "id": "root",
@@ -525,7 +575,8 @@
       "aliases": [
         "root node"
       ],
-      "difficulty_level": 1
+      "difficulty_level": 1,
+      "is_primary": true
     },
     {
       "id": "leaf",
@@ -536,7 +587,8 @@
         "leaf node",
         "terminal node"
       ],
-      "difficulty_level": 1
+      "difficulty_level": 1,
+      "is_primary": true
     },
     {
       "id": "parent",
@@ -546,7 +598,8 @@
       "aliases": [
         "parent node"
       ],
-      "difficulty_level": 1
+      "difficulty_level": 1,
+      "is_primary": true
     },
     {
       "id": "child",
@@ -556,7 +609,8 @@
       "aliases": [
         "child node"
       ],
-      "difficulty_level": 1
+      "difficulty_level": 1,
+      "is_primary": true
     },
     {
       "id": "subtree",
@@ -564,7 +618,8 @@
       "concept_type": "abstract_concept",
       "description": "A tree formed by a node and all its descendants",
       "aliases": [],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": false
     },
     {
       "id": "tree_height",
@@ -575,7 +630,8 @@
         "height",
         "depth of tree"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": false
     },
     {
       "id": "balanced_tree",
@@ -586,7 +642,8 @@
         "balanced",
         "height-balanced"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": false
     },
     {
       "id": "inorder",
@@ -597,7 +654,8 @@
         "in-order",
         "LNR"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": false
     },
     {
       "id": "preorder",
@@ -608,7 +666,8 @@
         "pre-order",
         "NLR"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": false
     },
     {
       "id": "postorder",
@@ -619,7 +678,8 @@
         "post-order",
         "LRN"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": false
     },
     {
       "id": "level_order",
@@ -630,7 +690,8 @@
         "breadth-first traversal",
         "BFS traversal"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": false
     },
     {
       "id": "tree_traversal",
@@ -640,7 +701,8 @@
       "aliases": [
         "traversal"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": true
     },
     {
       "id": "graph",
@@ -650,7 +712,8 @@
       "aliases": [
         "network"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": true
     },
     {
       "id": "directed_graph",
@@ -661,7 +724,8 @@
         "digraph",
         "directed network"
       ],
-      "difficulty_level": 3
+      "difficulty_level": 3,
+      "is_primary": false
     },
     {
       "id": "undirected_graph",
@@ -671,7 +735,8 @@
       "aliases": [
         "undirected network"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": true
     },
     {
       "id": "weighted_graph",
@@ -681,7 +746,8 @@
       "aliases": [
         "weighted network"
       ],
-      "difficulty_level": 3
+      "difficulty_level": 3,
+      "is_primary": false
     },
     {
       "id": "vertex",
@@ -692,7 +758,8 @@
         "node",
         "graph node"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": true
     },
     {
       "id": "edge",
@@ -703,7 +770,8 @@
         "arc",
         "link"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": true
     },
     {
       "id": "adjacency_list",
@@ -711,7 +779,8 @@
       "concept_type": "data_structure",
       "description": "Graph representation using a list of neighbors for each vertex",
       "aliases": [],
-      "difficulty_level": 3
+      "difficulty_level": 3,
+      "is_primary": false
     },
     {
       "id": "adjacency_matrix",
@@ -719,7 +788,8 @@
       "concept_type": "data_structure",
       "description": "Graph representation using a 2D matrix of edge weights",
       "aliases": [],
-      "difficulty_level": 3
+      "difficulty_level": 3,
+      "is_primary": false
     },
     {
       "id": "bfs",
@@ -730,7 +800,8 @@
         "BFS",
         "breadth first"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": true
     },
     {
       "id": "dfs",
@@ -741,7 +812,8 @@
         "DFS",
         "depth first"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": true
     },
     {
       "id": "dijkstra",
@@ -752,7 +824,8 @@
         "Dijkstra",
         "single source shortest path"
       ],
-      "difficulty_level": 3
+      "difficulty_level": 3,
+      "is_primary": false
     },
     {
       "id": "topological_sort",
@@ -763,7 +836,8 @@
         "topological ordering",
         "topo sort"
       ],
-      "difficulty_level": 3
+      "difficulty_level": 3,
+      "is_primary": false
     },
     {
       "id": "minimum_spanning_tree",
@@ -773,7 +847,8 @@
       "aliases": [
         "MST"
       ],
-      "difficulty_level": 3
+      "difficulty_level": 3,
+      "is_primary": false
     },
     {
       "id": "shortest_path",
@@ -783,7 +858,8 @@
       "aliases": [
         "optimal path"
       ],
-      "difficulty_level": 3
+      "difficulty_level": 3,
+      "is_primary": false
     },
     {
       "id": "cycle",
@@ -794,7 +870,8 @@
         "loop",
         "circuit"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": true
     },
     {
       "id": "connected_graph",
@@ -804,7 +881,8 @@
       "aliases": [
         "connected"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": true
     },
     {
       "id": "hash_table",
@@ -816,7 +894,8 @@
         "dictionary",
         "associative array"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": true
     },
     {
       "id": "hash_function",
@@ -827,7 +906,8 @@
         "hashing",
         "hash"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": true
     },
     {
       "id": "collision",
@@ -837,7 +917,8 @@
       "aliases": [
         "hash collision"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": true
     },
     {
       "id": "chaining",
@@ -847,7 +928,8 @@
       "aliases": [
         "separate chaining"
       ],
-      "difficulty_level": 3
+      "difficulty_level": 3,
+      "is_primary": false
     },
     {
       "id": "open_addressing",
@@ -858,7 +940,8 @@
         "linear probing",
         "probing"
       ],
-      "difficulty_level": 3
+      "difficulty_level": 3,
+      "is_primary": false
     },
     {
       "id": "load_factor",
@@ -868,7 +951,8 @@
       "aliases": [
         "fill ratio"
       ],
-      "difficulty_level": 3
+      "difficulty_level": 3,
+      "is_primary": false
     },
     {
       "id": "sorting",
@@ -879,7 +963,8 @@
         "sort",
         "ordering"
       ],
-      "difficulty_level": 1
+      "difficulty_level": 1,
+      "is_primary": true
     },
     {
       "id": "bubble_sort",
@@ -889,7 +974,8 @@
       "aliases": [
         "bubble"
       ],
-      "difficulty_level": 1
+      "difficulty_level": 1,
+      "is_primary": true
     },
     {
       "id": "selection_sort",
@@ -899,7 +985,8 @@
       "aliases": [
         "selection"
       ],
-      "difficulty_level": 1
+      "difficulty_level": 1,
+      "is_primary": true
     },
     {
       "id": "insertion_sort",
@@ -909,7 +996,8 @@
       "aliases": [
         "insertion"
       ],
-      "difficulty_level": 1
+      "difficulty_level": 1,
+      "is_primary": true
     },
     {
       "id": "merge_sort",
@@ -919,7 +1007,8 @@
       "aliases": [
         "mergesort"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": true
     },
     {
       "id": "quick_sort",
@@ -930,7 +1019,8 @@
         "quicksort",
         "partition sort"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": true
     },
     {
       "id": "heap_sort",
@@ -940,7 +1030,8 @@
       "aliases": [
         "heapsort"
       ],
-      "difficulty_level": 3
+      "difficulty_level": 3,
+      "is_primary": false
     },
     {
       "id": "comparison_sort",
@@ -950,7 +1041,8 @@
       "aliases": [
         "comparison-based sorting"
       ],
-      "difficulty_level": 3
+      "difficulty_level": 3,
+      "is_primary": false
     },
     {
       "id": "stable_sort",
@@ -960,7 +1052,8 @@
       "aliases": [
         "stability"
       ],
-      "difficulty_level": 3
+      "difficulty_level": 3,
+      "is_primary": false
     },
     {
       "id": "divide_and_conquer",
@@ -970,7 +1063,8 @@
       "aliases": [
         "D&C"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": true
     },
     {
       "id": "searching",
@@ -980,7 +1074,8 @@
       "aliases": [
         "search"
       ],
-      "difficulty_level": 1
+      "difficulty_level": 1,
+      "is_primary": true
     },
     {
       "id": "linear_search",
@@ -990,7 +1085,8 @@
       "aliases": [
         "sequential search"
       ],
-      "difficulty_level": 1
+      "difficulty_level": 1,
+      "is_primary": true
     },
     {
       "id": "binary_search",
@@ -1000,7 +1096,8 @@
       "aliases": [
         "binary search algorithm"
       ],
-      "difficulty_level": 2
+      "difficulty_level": 2,
+      "is_primary": true
     },
     {
       "id": "insertion",
@@ -1011,7 +1108,8 @@
         "insert",
         "add"
       ],
-      "difficulty_level": 1
+      "difficulty_level": 1,
+      "is_primary": true
     },
     {
       "id": "deletion",
@@ -1022,7 +1120,8 @@
         "delete",
         "remove"
       ],
-      "difficulty_level": 1
+      "difficulty_level": 1,
+      "is_primary": true
     },
     {
       "id": "traversal",
@@ -1033,7 +1132,8 @@
         "iterate",
         "visit"
       ],
-      "difficulty_level": 1
+      "difficulty_level": 1,
+      "is_primary": true
     },
     {
       "id": "access",
@@ -1045,7 +1145,8 @@
         "lookup",
         "read"
       ],
-      "difficulty_level": 1
+      "difficulty_level": 1,
+      "is_primary": true
     }
   ],
   "relationships": [

@@ -21,7 +21,7 @@ import re
 from dataclasses import dataclass, field
 from enum import Enum
 from typing import Optional
-from groq import Groq
+from conceptgrade.llm_client import LLMClient as Groq
 
 
 class MisconceptionType(str, Enum):
@@ -282,12 +282,12 @@ class MisconceptionDetector:
     using knowledge graph evidence and a curated taxonomy.
     """
 
-    def __init__(self, api_key: str, model: str = "llama-3.3-70b-versatile"):
+    def __init__(self, api_key: str, model: str = "claude-haiku-4-5-20251001"):
         self.client = Groq(api_key=api_key)
         self.model = model
         self.taxonomy = CS_MISCONCEPTION_TAXONOMY
 
-    def _call_llm(self, system: str, user: str, max_tokens: int = 2048) -> str:
+    def _call_llm(self, system: str, user: str, max_tokens: int = 600) -> str:
         response = self.client.chat.completions.create(
             model=self.model,
             messages=[
@@ -300,30 +300,28 @@ class MisconceptionDetector:
         return response.choices[0].message.content
 
     def _parse_json(self, text: str) -> dict:
-        json_match = re.search(r'```(?:json)?\s*\n?(.*?)\n?```', text, re.DOTALL)
-        if json_match:
-            text = json_match.group(1)
-        try:
-            return json.loads(text.strip())
-        except json.JSONDecodeError:
-            start = text.find('{')
-            end = text.rfind('}')
-            if start != -1 and end != -1:
-                return json.loads(text[start:end + 1])
-        raise ValueError(f"Could not parse JSON: {text[:200]}")
+        from conceptgrade.llm_client import parse_llm_json
+        return parse_llm_json(text)
 
     def _find_taxonomy_matches(
         self, incorrect_rels: list[dict], student_concepts: set[str]
     ) -> list[tuple[str, dict]]:
-        """Find matches in the misconception taxonomy based on involved concepts."""
+        """Find matches in the misconception taxonomy based on involved concepts.
+
+        Threshold lowered to >=1 so single-concept errors still match taxonomy
+        entries (e.g. a student who only mentions 'stack' can still match
+        DS-STACK-01 which involves ['stack', 'queue', 'lifo', 'fifo']).
+        Entries are ranked by overlap size so more specific matches come first.
+        """
         matches = []
         for tax_id, tax in self.taxonomy.items():
             tax_concepts = set(tax.get("concepts", []))
-            # Check if student's error involves concepts from this taxonomy entry
             overlap = tax_concepts & student_concepts
-            if len(overlap) >= 2:
-                matches.append((tax_id, tax))
-        return matches
+            if len(overlap) >= 1:
+                matches.append((tax_id, tax, len(overlap)))
+        # Sort by overlap size descending so best matches are used first
+        matches.sort(key=lambda x: -x[2])
+        return [(tid, t) for tid, t, _ in matches]
 
     def detect(
         self,
@@ -361,7 +359,7 @@ class MisconceptionDetector:
             }
             # Also check relationships flagged as incorrect in extraction
             for rel in concept_graph.get("relationships", []):
-                if rel.get("is_correct") == False:
+                if not rel.get("is_correct", True):
                     incorrect_rels.append({
                         "source": rel.get("source_id", rel.get("source", "")),
                         "target": rel.get("target_id", rel.get("target", "")),
@@ -431,22 +429,39 @@ class MisconceptionDetector:
             report.summary = parsed.get("summary", "")
 
         except Exception as e:
-            # Fallback: create basic misconception entries from incorrect relationships
+            err = str(e)
+            if "429" in err or "529" in err or "rate_limit" in err.lower() or "overloaded" in err.lower():
+                raise  # propagate so key rotator can handle it
+            # Fallback: create basic misconception entries from incorrect relationships.
+            # Use rule-based taxonomy matching so taxonomy_category is populated even
+            # when the LLM is unavailable (e.g. parse failure).
             for r in incorrect_rels:
+                # Build a mini concept set from this relationship's concepts
+                rel_concepts = {r.get("source", ""), r.get("target", "")} - {""}
+                rule_matches = self._find_taxonomy_matches([r], rel_concepts | student_concept_ids)
+                tax_category = rule_matches[0][0] if rule_matches else "novel"
+                tax_info = rule_matches[0][1] if rule_matches else {}
+                # Derive severity from taxonomy or relationship note
+                severity_str = tax_info.get("severity", "moderate")
+                try:
+                    severity_val = Severity(severity_str)
+                except ValueError:
+                    severity_val = Severity.MODERATE
+
                 report.misconceptions.append(DetectedMisconception(
                     misconception_id=f"M-fallback-{len(report.misconceptions) + 1}",
-                    taxonomy_category="unclassified",
+                    taxonomy_category=tax_category,
                     misconception_type=MisconceptionType.ISOLATED,
-                    severity=Severity.MODERATE,
+                    severity=severity_val,
                     source_concept=r.get("source", "?"),
                     target_concept=r.get("target", "?"),
                     student_claim=f"Used relationship '{r.get('student_relation', '?')}'",
-                    correct_understanding=r.get("correct_relation", "Unknown"),
-                    explanation=r.get("note", r.get("explanation", "Incorrect relationship")),
-                    remediation_hint="Review the relationship between these concepts",
-                    confidence=0.3,
+                    correct_understanding=tax_info.get("correct", r.get("correct_relation", "Unknown")),
+                    explanation=r.get("note", r.get("explanation", tax_info.get("description", "Incorrect relationship"))),
+                    remediation_hint=f"Review: {tax_info.get('common_claim', 'the relationship between these concepts')}",
+                    confidence=0.4,
                 ))
-            report.summary = f"Detected {len(report.misconceptions)} potential misconception(s) (fallback analysis)"
+            report.summary = f"Detected {len(report.misconceptions)} potential misconception(s) (rule-based fallback)"
 
         # Compute stats
         report.total_misconceptions = len(report.misconceptions)
@@ -454,13 +469,21 @@ class MisconceptionDetector:
         report.moderate_count = sum(1 for m in report.misconceptions if m.severity == Severity.MODERATE)
         report.minor_count = sum(1 for m in report.misconceptions if m.severity == Severity.MINOR)
 
-        # Overall accuracy: penalize based on severity
+        # Overall accuracy: penalize based on severity, normalized by total
+        # relationships demonstrated so one critical error in an otherwise
+        # thorough answer hurts less than one in a minimal answer.
         if report.total_misconceptions > 0:
-            penalty = (
+            total_rels = max(
+                len(concept_graph.get("relationships", [])) if concept_graph else 0,
+                report.total_misconceptions,
+            )
+            raw_penalty = (
                 report.critical_count * 0.3 +
                 report.moderate_count * 0.15 +
                 report.minor_count * 0.05
             )
-            report.overall_accuracy = max(0.0, 1.0 - penalty)
+            # Scale penalty so it reflects proportion of wrong vs total rels
+            normalized_penalty = raw_penalty * (report.total_misconceptions / total_rels)
+            report.overall_accuracy = max(0.0, 1.0 - normalized_penalty)
 
         return report

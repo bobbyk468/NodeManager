@@ -22,7 +22,7 @@ import re
 from dataclasses import dataclass
 from enum import IntEnum
 from typing import Optional
-from groq import Groq
+from conceptgrade.llm_client import LLMClient as Groq
 
 
 class BloomsLevel(IntEnum):
@@ -149,11 +149,11 @@ class BloomsClassifier:
     using Chain-of-Thought prompting with concept graph evidence.
     """
 
-    def __init__(self, api_key: str, model: str = "llama-3.3-70b-versatile"):
+    def __init__(self, api_key: str, model: str = "claude-haiku-4-5-20251001"):
         self.client = Groq(api_key=api_key)
         self.model = model
 
-    def _call_llm(self, system: str, user: str, max_tokens: int = 1500) -> str:
+    def _call_llm(self, system: str, user: str, max_tokens: int = 512) -> str:
         response = self.client.chat.completions.create(
             model=self.model,
             messages=[

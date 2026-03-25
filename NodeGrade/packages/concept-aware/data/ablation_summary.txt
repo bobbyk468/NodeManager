@@ -1,0 +1,33 @@
+ConceptGrade Ablation Study
+==================================================
+Date: 2026-03-21 07:23
+Dataset: Mohler et al. (2011) — 30 samples
+
+ABLATION TABLE:
+System                         Pearson r    QWK        RMSE       F1 (m)     Acc       
+──────────────────────────────────────────────────────────────────────────────────
+ConceptGrade (Full)            0.9538       0.7211     0.9457     0.0000     0.4000    
+  - Concept Coverage           0.8948       0.3054     1.6467     0.0000     0.2333    
+  - Depth / Bloom's            0.9637       0.5714     1.0668     0.0000     0.4000    
+  - SOLO Proxy                 0.9327       0.5255     1.3508     0.0000     0.3333    
+  - Misconception Acc.         0.9505       0.7458     0.9131     0.0000     0.4000    
+  - Cosine Similarity          0.9539       0.6041     0.9944     0.0000     0.4000    
+Cosine-Only (Baseline)         0.5649       0.0870     2.4869     0.0000     0.1000    
+
+DELTA vs FULL MODEL:
+  Concept Coverage                  ΔPearson r=-0.0590  ΔQWK=-0.4157
+  Depth / Bloom's                   ΔPearson r=+0.0098  ΔQWK=-0.1497
+  SOLO Proxy                        ΔPearson r=-0.0211  ΔQWK=-0.1957
+  Misconception Acc.                ΔPearson r=-0.0033  ΔQWK=+0.0246
+  Cosine Similarity                 ΔPearson r=+0.0001  ΔQWK=-0.1170
+  Cosine-Only (Baseline)            ΔPearson r=-0.3889  ΔQWK=-0.6342
+
+SIGNIFICANCE TESTS:
+Comparison                               W-stat     p-value      Sig?     Direction
+──────────────────────────────────────────────────────────────────────────────────────────
+ConceptGrade (Full) vs Concept Coverage  330.50     0.0003       ✓ p<0.05 ConceptGrade (Full) > Concept Coverage
+ConceptGrade (Full) vs Depth / Bloom's   91.00      0.0074       ✓ p<0.05 ConceptGrade (Full) > Depth / Bloom's
+ConceptGrade (Full) vs SOLO Proxy        388.50     0.0007       ✓ p<0.05 ConceptGrade (Full) > SOLO Proxy
+ConceptGrade (Full) vs Misconception Acc. 18.00      0.8348       ✗ n.s.   no_significant_difference
+ConceptGrade (Full) vs Cosine Similarity 291.00     0.0071       ✓ p<0.05 ConceptGrade (Full) > Cosine Similarity
+ConceptGrade (Full) vs Cosine-Only (Baseline) 454.00     0.0000       ✓ p<0.05 ConceptGrade (Full) > Cosine-Only (Baseline)

@@ -11,7 +11,7 @@ Implements all standard ASAG evaluation metrics used in the literature:
 
 References:
   - Mohler & Mihalcea (2009): Pearson r for ASAG
-  - Emirtekin & Özarslan (2025): QWK for Bloom's (baseline: 0.585–0.640)
+  - Emirtekin & Ozarslan (2025): QWK for Bloom's (baseline: 0.585–0.640)
   - SemEval 2013 Task 7: 5-way classification accuracy
 """
 
@@ -21,7 +21,7 @@ from dataclasses import dataclass, field
 from typing import Optional
 
 import numpy as np
-from scipy.stats import pearsonr, spearmanr
+from scipy.stats import pearsonr, spearmanr, wilcoxon, norm
 from sklearn.metrics import (
     cohen_kappa_score,
     f1_score,
@@ -66,6 +66,11 @@ class EvaluationResult:
     concept_precision: float = 0.0
     concept_recall: float = 0.0
 
+    # Bootstrap confidence intervals (95%) for primary metrics
+    pearson_r_ci: tuple = field(default_factory=lambda: (0.0, 0.0))
+    qwk_ci: tuple = field(default_factory=lambda: (0.0, 0.0))
+    rmse_ci: tuple = field(default_factory=lambda: (0.0, 0.0))
+
     def to_dict(self) -> dict:
         return {
             "task_name": self.task_name,
@@ -93,13 +98,22 @@ class EvaluationResult:
                 "precision": round(self.concept_precision, 4),
                 "recall": round(self.concept_recall, 4),
             },
+            "confidence_intervals_95": {
+                "pearson_r": [round(self.pearson_r_ci[0], 4), round(self.pearson_r_ci[1], 4)],
+                "qwk": [round(self.qwk_ci[0], 4), round(self.qwk_ci[1], 4)],
+                "rmse": [round(self.rmse_ci[0], 4), round(self.rmse_ci[1], 4)],
+            },
         }
 
     def summary(self) -> str:
+        ci_r = self.pearson_r_ci
+        ci_q = self.qwk_ci
         lines = [
             f"=== {self.task_name} (n={self.num_samples}) ===",
-            f"  Pearson r: {self.pearson_r:.4f} (p={self.pearson_p:.4e})",
-            f"  QWK: {self.qwk:.4f}",
+            f"  Pearson r: {self.pearson_r:.4f} (p={self.pearson_p:.4e})"
+            + (f"  95% CI [{ci_r[0]:.4f}, {ci_r[1]:.4f}]" if ci_r != (0.0, 0.0) else ""),
+            f"  QWK: {self.qwk:.4f}"
+            + (f"  95% CI [{ci_q[0]:.4f}, {ci_q[1]:.4f}]" if ci_q != (0.0, 0.0) else ""),
             f"  RMSE: {self.rmse:.4f}  MAE: {self.mae:.4f}",
             f"  F1 (macro): {self.f1_macro:.4f}  Accuracy: {self.accuracy:.4f}",
         ]
@@ -261,5 +275,147 @@ def format_comparison_table(results: list[EvaluationResult]) -> str:
         lines.append(
             f"{r.task_name:<30} {r.pearson_r:<12.4f} {r.qwk:<10.4f} "
             f"{r.rmse:<10.4f} {r.f1_macro:<10.4f} {r.accuracy:<10.4f}"
+        )
+    return "\n".join(lines)
+
+
+def bootstrap_ci(
+    y_true: list[float],
+    y_pred: list[float],
+    metric_fn,
+    n_bootstrap: int = 1000,
+    ci: float = 0.95,
+    seed: int = 42,
+) -> tuple[float, float]:
+    """
+    Compute bootstrap confidence interval for a metric function.
+
+    Args:
+        y_true: Ground-truth values
+        y_pred: Predicted values
+        metric_fn: callable(y_true_sample, y_pred_sample) → float
+        n_bootstrap: Number of bootstrap resamples
+        ci: Confidence level (default 0.95 = 95% CI)
+        seed: Random seed for reproducibility
+
+    Returns:
+        (lower, upper) confidence interval bounds
+    """
+    rng = np.random.RandomState(seed)
+    n = len(y_true)
+    y_true_arr = np.array(y_true)
+    y_pred_arr = np.array(y_pred)
+    scores = []
+    for _ in range(n_bootstrap):
+        idx = rng.randint(0, n, size=n)
+        try:
+            s = metric_fn(y_true_arr[idx], y_pred_arr[idx])
+            if not math.isnan(s):
+                scores.append(s)
+        except Exception:
+            pass
+    if not scores:
+        return (0.0, 0.0)
+    alpha = 1.0 - ci
+    lower = float(np.percentile(scores, alpha / 2 * 100))
+    upper = float(np.percentile(scores, (1 - alpha / 2) * 100))
+    return (lower, upper)
+
+
+def add_bootstrap_cis(
+    result: EvaluationResult,
+    y_true: list[float],
+    y_pred: list[float],
+    n_bootstrap: int = 1000,
+) -> EvaluationResult:
+    """
+    Add 95% bootstrap confidence intervals to an EvaluationResult in-place.
+
+    Computes CIs for Pearson r, QWK, and RMSE. Call this after
+    evaluate_grading() when you want published-quality uncertainty estimates.
+    """
+    from scipy.stats import pearsonr as _pearsonr
+    from sklearn.metrics import cohen_kappa_score as _kappa
+
+    def _r(yt, yp):
+        r, _ = _pearsonr(yt, yp)
+        return float(r)
+
+    def _qwk(yt, yp):
+        yt_i = np.clip(np.round(yt).astype(int), 0, 5)
+        yp_i = np.clip(np.round(yp).astype(int), 0, 5)
+        return float(_kappa(yt_i, yp_i, weights="quadratic"))
+
+    def _rmse(yt, yp):
+        return float(np.sqrt(np.mean((yt - yp) ** 2)))
+
+    result.pearson_r_ci = bootstrap_ci(y_true, y_pred, _r, n_bootstrap)
+    result.qwk_ci = bootstrap_ci(y_true, y_pred, _qwk, n_bootstrap)
+    result.rmse_ci = bootstrap_ci(y_true, y_pred, _rmse, n_bootstrap)
+    return result
+
+
+def wilcoxon_significance(
+    y_true: list[float],
+    scores_a: list[float],
+    scores_b: list[float],
+    system_a: str = "A",
+    system_b: str = "B",
+) -> dict:
+    """
+    Wilcoxon signed-rank test to determine if system A outperforms system B
+    significantly on absolute error vs. human scores.
+
+    Uses |error_B| - |error_A| as the paired differences — positive values
+    indicate A is better (lower error).
+
+    Args:
+        y_true: Human expert scores
+        scores_a: System A predictions
+        scores_b: System B predictions
+        system_a, system_b: Names for the report
+
+    Returns:
+        dict with statistic, p_value, significant (p < 0.05), direction
+    """
+    err_a = np.abs(np.array(y_true) - np.array(scores_a))
+    err_b = np.abs(np.array(y_true) - np.array(scores_b))
+    diffs = err_b - err_a  # positive = A is better (smaller error)
+
+    try:
+        stat, p = wilcoxon(diffs, alternative="greater")
+    except ValueError:
+        # All differences zero — no signal
+        return {
+            "statistic": 0.0, "p_value": 1.0,
+            "significant": False, "direction": "no_difference",
+            "system_a": system_a, "system_b": system_b,
+        }
+
+    significant = bool(p < 0.05)
+    return {
+        "statistic": float(stat),
+        "p_value": float(p),
+        "significant": significant,
+        "direction": f"{system_a} > {system_b}" if significant else "no_significant_difference",
+        "system_a": system_a,
+        "system_b": system_b,
+        "mean_error_a": float(np.mean(err_a)),
+        "mean_error_b": float(np.mean(err_b)),
+    }
+
+
+def format_significance_table(tests: list[dict]) -> str:
+    """Format Wilcoxon significance test results as a table."""
+    lines = [
+        f"{'Comparison':<40} {'W-stat':<10} {'p-value':<12} {'Sig?':<8} {'Direction'}",
+        "─" * 90,
+    ]
+    for t in tests:
+        comparison = f"{t['system_a']} vs {t['system_b']}"
+        sig = "✓ p<0.05" if t["significant"] else "✗ n.s."
+        lines.append(
+            f"{comparison:<40} {t['statistic']:<10.2f} {t['p_value']:<12.4f} "
+            f"{sig:<8} {t['direction']}"
         )
     return "\n".join(lines)

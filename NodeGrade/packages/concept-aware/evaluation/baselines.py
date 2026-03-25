@@ -17,17 +17,14 @@ References:
 import json
 import re
 import time
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Optional
 
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity as sklearn_cosine
 
-try:
-    from groq import Groq
-except ImportError:
-    Groq = None
+from conceptgrade.llm_client import LLMClient as Groq
 
 
 @dataclass
@@ -36,11 +33,7 @@ class BaselineScore:
     method: str
     raw_score: float       # 0.0 to 1.0
     scaled_score: float    # Scaled to target range (e.g., 0-5)
-    metadata: dict = None
-
-    def __post_init__(self):
-        if self.metadata is None:
-            self.metadata = {}
+    metadata: dict = field(default_factory=dict)
 
 
 class CosineSimilarityBaseline:
@@ -73,33 +66,12 @@ class CosineSimilarityBaseline:
         """
         Score a single student answer against the reference.
 
-        Args:
-            reference_answer: Expert/model answer
-            student_answer: Student's response
-
-        Returns:
-            BaselineScore with cosine similarity
+        Delegates to score_batch for a consistent vocabulary — both texts are
+        fitted together so TF-IDF weights are computed on the same vocabulary
+        as the batch variant, making individual and batch scores comparable.
         """
-        try:
-            # Fit and transform both texts
-            tfidf_matrix = self.vectorizer.fit_transform(
-                [reference_answer, student_answer]
-            )
-            cos_sim = float(sklearn_cosine(
-                tfidf_matrix[0:1], tfidf_matrix[1:2]
-            )[0][0])
-        except Exception:
-            cos_sim = 0.0
-
-        return BaselineScore(
-            method="cosine_similarity",
-            raw_score=cos_sim,
-            scaled_score=round(cos_sim * self.scale_max, 2),
-            metadata={
-                "similarity_type": "tfidf_cosine",
-                "ngram_range": "1-2",
-            },
-        )
+        result = self.score_batch(reference_answer, [student_answer])
+        return result[0]
 
     def score_batch(
         self,
@@ -166,7 +138,7 @@ Respond with ONLY a JSON object:
     def __init__(
         self,
         api_key: str,
-        model: str = "llama-3.3-70b-versatile",
+        model: str = "claude-haiku-4-5-20251001",
         scale_max: float = 5.0,
         rate_limit_delay: float = 1.5,
     ):
@@ -174,7 +146,7 @@ Respond with ONLY a JSON object:
         self.model = model
         self.scale_max = scale_max
         self.rate_limit_delay = rate_limit_delay
-        self.client = Groq(api_key=api_key) if Groq else None
+        self.client = Groq(api_key=api_key)
 
     def score(
         self,
@@ -215,19 +187,42 @@ Respond with ONLY a JSON object:
                     {"role": "user", "content": prompt},
                 ],
                 temperature=0.1,
-                max_tokens=200,
+                max_tokens=500,
             )
 
             content = response.choices[0].message.content.strip()
 
-            # Parse JSON from response
-            json_match = re.search(r'\{[^}]+\}', content)
-            if json_match:
-                result = json.loads(json_match.group())
-                llm_score = int(result.get("score", 0))
-                reasoning = result.get("reasoning", "")
+            # Parse JSON — handle markdown code blocks (Gemini wraps in ```json)
+            # and nested braces (reasoning field may contain curly braces)
+            parsed = None
+            # 1. Strip markdown code fences
+            md_match = re.search(r'```(?:json)?\s*\n?(.*?)\n?```', content, re.DOTALL)
+            if md_match:
+                try:
+                    parsed = json.loads(md_match.group(1).strip())
+                except json.JSONDecodeError:
+                    pass
+            # 2. Try raw JSON parse
+            if parsed is None:
+                try:
+                    parsed = json.loads(content)
+                except json.JSONDecodeError:
+                    pass
+            # 3. Find outermost { } pair
+            if parsed is None:
+                start = content.find('{')
+                end = content.rfind('}')
+                if start != -1 and end != -1:
+                    try:
+                        parsed = json.loads(content[start:end + 1])
+                    except json.JSONDecodeError:
+                        pass
+
+            if parsed is not None:
+                llm_score = int(round(float(parsed.get("score", 0))))
+                reasoning = parsed.get("reasoning", "")
             else:
-                # Try to extract just a number
+                # Last resort: extract any digit 0-5
                 num_match = re.search(r'\b([0-5])\b', content)
                 llm_score = int(num_match.group(1)) if num_match else 0
                 reasoning = content

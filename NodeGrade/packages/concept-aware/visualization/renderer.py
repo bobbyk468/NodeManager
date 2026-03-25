@@ -182,15 +182,24 @@ class VisualizationRenderer:
         # Build heatmap data
         concepts = sorted(concept_severity.keys())
         severities = ["critical", "moderate", "minor"]
+
+        # Compute per-severity max counts for dynamic normalization so the
+        # colour scale stays meaningful regardless of class size.
+        max_per_severity = {
+            s: max((concept_severity[c].get(s, 0) for c in concepts), default=1)
+            for s in severities
+        }
+
         cells = []
         for concept in concepts:
             for severity in severities:
                 count = concept_severity[concept].get(severity, 0)
+                denom = max_per_severity[severity] or 1
                 cells.append({
                     "concept": concept,
                     "severity": severity,
                     "count": count,
-                    "intensity": min(1.0, count / 3),  # Normalize
+                    "intensity": round(count / denom, 4),
                 })
 
         insights = []

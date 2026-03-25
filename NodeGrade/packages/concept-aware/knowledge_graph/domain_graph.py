@@ -45,7 +45,8 @@ class DomainKnowledgeGraph:
             concept_type=concept.concept_type.value,
             description=concept.description,
             aliases=concept.aliases,
-            difficulty_level=concept.difficulty_level
+            difficulty_level=concept.difficulty_level,
+            is_primary=concept.is_primary,
         )
 
     def add_relationship(self, relationship: Relationship) -> None:
@@ -129,14 +130,89 @@ class DomainKnowledgeGraph:
         
         return subgraph
 
-    def get_prerequisites(self, concept_id: str) -> list[str]:
-        """Get all prerequisites for a concept (transitive)."""
+    def get_prerequisites(self, concept_id: str, _visited: set = None) -> list[str]:
+        """Get all prerequisites for a concept (transitive).
+
+        _visited guards against infinite recursion in cyclic prerequisite chains.
+        """
+        if _visited is None:
+            _visited = set()
+        if concept_id in _visited:
+            return []
+        _visited.add(concept_id)
+
         prereqs = set()
         for source, target, data in self.graph.in_edges(concept_id, data=True):
             if data["relation_type"] == RelationshipType.PREREQUISITE_FOR.value:
                 prereqs.add(source)
-                prereqs.update(self.get_prerequisites(source))
+                prereqs.update(self.get_prerequisites(source, _visited))
         return list(prereqs)
+
+    def tag_hierarchical_concepts(self) -> None:
+        """Auto-tag each concept as primary or secondary using graph structure.
+
+        Heuristic (topology-first, then known-secondary set, then difficulty):
+        - Primary  (is_primary=True):  concepts that serve as a prerequisite for
+          at least one other concept (outgoing PREREQUISITE_FOR edge).  These are
+          foundational — they *enable* other learning.  All others default primary.
+        - Secondary (is_primary=False): non-prereq-source concepts that are either
+          (a) well-known variants/specializations (doubly linked list, AVL tree,
+          specific traversals, advanced graph algorithms, hash collision strategies,
+          sort variants, etc.) or (b) difficulty_level >= 4.
+
+        After calling this method all Concept objects and their corresponding
+        NetworkX node attributes are updated in-place.  Aims for ~65% primary /
+        35% secondary split on the standard DS domain graph.
+        """
+        prereq_type = RelationshipType.PREREQUISITE_FOR.value
+
+        # Concepts that are topology-source of a prerequisite edge → always primary
+        prereq_sources: set[str] = set()
+        for rel in self._relationships:
+            if rel.relation_type.value == prereq_type:
+                prereq_sources.add(rel.source_id)
+
+        # Known secondary concept IDs (variants, specialisations, advanced topics)
+        known_secondary: set[str] = {
+            # Linked-list variants
+            "doubly_linked_list", "circular_linked_list",
+            # Queue / deque variants
+            "circular_queue", "deque",
+            # Array / heap variants
+            "dynamic_array", "max_heap", "min_heap",
+            # Tree variants and internals
+            "avl_tree", "red_black_tree", "b_tree", "trie",
+            "subtree", "tree_height", "balanced_tree",
+            # Specific traversals (general tree_traversal is primary)
+            "inorder", "preorder", "postorder", "level_order",
+            # Graph types / representations
+            "directed_graph", "weighted_graph",
+            "adjacency_list", "adjacency_matrix",
+            # Advanced graph algorithms
+            "dijkstra", "topological_sort", "minimum_spanning_tree", "shortest_path",
+            # Hash-table internals
+            "chaining", "open_addressing", "load_factor",
+            # Memory edge-cases
+            "static_memory", "stack_overflow", "stack_underflow",
+            # Specific complexity classes (general big-O reasoning is primary)
+            "o_n2", "o_n_log_n",
+            # Sort variants
+            "heap_sort", "comparison_sort", "stable_sort",
+        }
+
+        for concept in self._concepts.values():
+            if concept.id in prereq_sources:
+                concept.is_primary = True
+            elif concept.id in known_secondary:
+                concept.is_primary = False
+            elif concept.difficulty_level >= 4:
+                concept.is_primary = False
+            else:
+                concept.is_primary = True  # safe default
+
+            # Sync back to NetworkX node attribute
+            if concept.id in self.graph:
+                self.graph.nodes[concept.id]["is_primary"] = concept.is_primary
 
     def get_concept_ids(self) -> list[str]:
         """Get all concept IDs."""

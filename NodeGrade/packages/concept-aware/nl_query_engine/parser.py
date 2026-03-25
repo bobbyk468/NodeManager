@@ -28,7 +28,7 @@ import re
 from dataclasses import dataclass, field
 from enum import Enum
 from typing import Optional
-from groq import Groq
+from conceptgrade.llm_client import LLMClient as Groq
 
 
 class QueryType(str, Enum):
@@ -128,7 +128,7 @@ class NLQueryParser:
     data operations for the ConceptGrade analytics system.
     """
 
-    def __init__(self, api_key: str, model: str = "llama-3.3-70b-versatile"):
+    def __init__(self, api_key: str, model: str = "claude-haiku-4-5-20251001"):
         self.client = Groq(api_key=api_key)
         self.model = model
 

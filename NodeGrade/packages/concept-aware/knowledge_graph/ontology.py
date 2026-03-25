@@ -46,7 +46,8 @@ class Concept:
     description: str = ""                   # Brief definition
     aliases: list[str] = field(default_factory=list)  # Alternative names
     difficulty_level: int = 1               # 1-5 scale (1=intro, 5=advanced)
-    
+    is_primary: bool = True                 # Hierarchical KG: True=core, False=advanced/supplementary
+
     def to_dict(self) -> dict:
         return {
             "id": self.id,
@@ -54,9 +55,10 @@ class Concept:
             "concept_type": self.concept_type.value,
             "description": self.description,
             "aliases": self.aliases,
-            "difficulty_level": self.difficulty_level
+            "difficulty_level": self.difficulty_level,
+            "is_primary": self.is_primary,
         }
-    
+
     @classmethod
     def from_dict(cls, data: dict) -> "Concept":
         return cls(
@@ -65,7 +67,8 @@ class Concept:
             concept_type=ConceptType(data["concept_type"]),
             description=data.get("description", ""),
             aliases=data.get("aliases", []),
-            difficulty_level=data.get("difficulty_level", 1)
+            difficulty_level=data.get("difficulty_level", 1),
+            is_primary=data.get("is_primary", True),  # default True if missing
         )
 
 

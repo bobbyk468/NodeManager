@@ -146,7 +146,7 @@ def run_demo():
     extractor = ConceptExtractor(
         domain_graph=domain_graph,
         api_key=GROQ_API_KEY,
-        model="llama-3.3-70b-versatile"
+        model="claude-haiku-4-5-20251001"
     )
     comparator = KnowledgeGraphComparator(domain_graph)
 
