@@ -75,8 +75,7 @@ Your task:
 HOW TO SCORE:
 - Compare the student answer directly to the reference answer.
 - The reference answer defines what 5.0 looks like.
-- Missing CRITICAL concepts lower the score significantly; missing minor concepts lower it slightly.
-- Misconceptions lower the score further beyond concept gaps.
+- Missing critical concepts lower the score; misconceptions lower it further.
 - Partially correct or vague explanations merit partial credit (e.g. 1.5 not 1 or 2).
 - Be precise: use the full range 0.0–5.0 with one decimal place.
 
@@ -92,13 +91,12 @@ STUDENT ANSWER:
 
 CONCEPT ANALYSIS (from structured knowledge graph):
 - Concepts student COVERED: {covered_concepts}
-- CRITICAL concepts MISSED (high-importance, heavily penalise): {critical_missing}
-- Minor concepts missed (low-importance, lightly penalise): {minor_missing}
+- Concepts student MISSED: {missing_concepts}
 - Bloom's cognitive level: {blooms_label} (level {blooms_level}/6)
 - SOLO level: {solo_label} (level {solo_level}/5)
 - Misconceptions detected: {misc_count}
 
-Grade the student answer vs the reference. Each CRITICAL missing concept should lower your score noticeably. Give a precise score.
+Grade the student answer compared to the reference. Which covered concepts are strongest evidence? Which missing concepts are critical gaps? Give a precise score.
 
 Return ONLY valid JSON:
 {{
@@ -119,8 +117,7 @@ STUDENT ESSAY:
 
 CONCEPT ANALYSIS (from structured knowledge graph):
 - Concepts student COVERED: {covered_concepts}
-- CRITICAL concepts MISSED (high-importance, heavily penalise): {critical_missing}
-- Minor concepts missed (low-importance, lightly penalise): {minor_missing}
+- Concepts student MISSED: {missing_concepts}
 - Bloom's cognitive level: {blooms_label} (level {blooms_level}/6)
 - SOLO level: {solo_label} (level {solo_level}/5)
 - Misconceptions detected: {misc_count}
@@ -308,6 +305,7 @@ class LLMVerifier:
         analysis = comparison_result.get("analysis", comparison_result)
 
         covered_str, critical_str, minor_str = self._extract_concept_strings(analysis)
+        missing_str = ", ".join(filter(None, [critical_str.replace("none", ""), minor_str.replace("none", "")])).strip(", ") or "none — full coverage"
 
         user_template = VERIFIER_USER_LAG if mode == "lag" else VERIFIER_USER
         fmt_kwargs = dict(
@@ -315,8 +313,7 @@ class LLMVerifier:
             reference_answer=reference_answer or "(not provided)",
             student_answer=student_answer,
             covered_concepts=covered_str,
-            critical_missing=critical_str,
-            minor_missing=minor_str,
+            missing_concepts=missing_str,
             blooms_label=blooms.get("label", "Remember"),
             blooms_level=blooms.get("level", 1),
             solo_label=solo.get("label", "Prestructural"),
@@ -417,6 +414,7 @@ class LLMVerifier:
         # Build the shared user prompt (identical across all personas)
         analysis = comparison_result.get("analysis", comparison_result)
         covered_str, critical_str, minor_str = self._extract_concept_strings(analysis)
+        missing_str = ", ".join(filter(None, [critical_str.replace("none", ""), minor_str.replace("none", "")])).strip(", ") or "none — full coverage"
 
         user_template = VERIFIER_USER_LAG if mode == "lag" else VERIFIER_USER
         fmt_kwargs = dict(
@@ -424,8 +422,7 @@ class LLMVerifier:
             reference_answer=reference_answer or "(not provided)",
             student_answer=student_answer,
             covered_concepts=covered_str,
-            critical_missing=critical_str,
-            minor_missing=minor_str,
+            missing_concepts=missing_str,
             blooms_label=blooms.get("label", "Remember"),
             blooms_level=blooms.get("level", 1),
             solo_label=solo.get("label", "Prestructural"),
