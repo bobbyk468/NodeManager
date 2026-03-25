@@ -107,6 +107,44 @@ Return ONLY valid JSON:
   "key_evidence": "Most compelling evidence for your grade"
 }}"""
 
+VERIFIER_USER_LAG = """QUESTION: {question}
+
+REFERENCE ANSWER (expert answer — defines 5.0):
+{reference_answer}
+
+STUDENT ESSAY:
+{student_answer}
+
+CONCEPT ANALYSIS (from structured knowledge graph):
+- Concepts student COVERED: {covered_concepts}
+- Concepts student MISSED: {missing_concepts}
+- Bloom's cognitive level: {blooms_label} (level {blooms_level}/6)
+- SOLO level: {solo_label} (level {solo_level}/5)
+- Misconceptions detected: {misc_count}
+
+DEPTH EVALUATION CHECKLIST (answer each before scoring):
+1. Does the essay explain HOW/WHY concepts work, or just name them? (depth vs. breadth)
+2. Are the covered concepts explained accurately with mechanisms, or are they vague?
+3. How many of the MISSED concepts are critical to a complete answer?
+4. Does the essay demonstrate genuine understanding or surface-level recall?
+
+Apply the scoring anchors strictly:
+- 5.0: ALL key concepts with accurate mechanisms AND clear explanations
+- 4.0: MOST concepts accurately, only minor gaps
+- 3.0: Main ideas present but missing important details or depth
+- 2.0: Some correct points but significant gaps or shallow
+- 1.0: Mostly off-target or very incomplete
+
+Return ONLY valid JSON:
+{{
+  "verified_score": <float 0.0–5.0 with one decimal, e.g. 2.5>,
+  "adjustment_direction": "confirm|increase|decrease",
+  "depth_assessment": "Is this depth (HOW/WHY explained) or breadth (concepts named only)?",
+  "adjustment_reason": "2-3 sentence explanation comparing student to reference answer",
+  "confidence": 0.0-1.0,
+  "key_evidence": "Most compelling evidence for your grade"
+}}"""
+
 
 # ── SURE Framework constants ───────────────────────────────────────────────────
 
@@ -274,7 +312,8 @@ class LLMVerifier:
             for g in missing_raw[:8]
         ) if missing_raw else "none — full coverage"
 
-        user_prompt = VERIFIER_USER.format(
+        user_template = VERIFIER_USER_LAG if mode == "lag" else VERIFIER_USER
+        fmt_kwargs = dict(
             question=question,
             reference_answer=reference_answer or "(not provided)",
             student_answer=student_answer,
@@ -286,6 +325,7 @@ class LLMVerifier:
             solo_level=solo.get("level", 1),
             misc_count=misconceptions.get("total_misconceptions", 0),
         )
+        user_prompt = user_template.format(**fmt_kwargs)
 
         try:
             system_prompt = VERIFIER_SYSTEM_LAG if mode == "lag" else VERIFIER_SYSTEM
@@ -386,7 +426,8 @@ class LLMVerifier:
             for g in missing_raw[:8]
         ) if missing_raw else "none — full coverage"
 
-        user_prompt = VERIFIER_USER.format(
+        user_template = VERIFIER_USER_LAG if mode == "lag" else VERIFIER_USER
+        fmt_kwargs = dict(
             question=question,
             reference_answer=reference_answer or "(not provided)",
             student_answer=student_answer,
@@ -398,10 +439,12 @@ class LLMVerifier:
             solo_level=solo.get("level", 1),
             misc_count=misconceptions.get("total_misconceptions", 0),
         )
+        user_prompt = user_template.format(**fmt_kwargs)
 
         personas = _SURE_PERSONAS_LAG if mode == "lag" else _SURE_PERSONAS
+        base_system = VERIFIER_SYSTEM_LAG if mode == "lag" else VERIFIER_SYSTEM
         for persona_name, persona_prefix in personas:
-            persona_system = f"{persona_prefix}\n\n{VERIFIER_SYSTEM}"
+            persona_system = f"{persona_prefix}\n\n{base_system}"
             try:
                 raw = self._call_llm(persona_system, user_prompt)
                 parsed = self._parse_json(raw)

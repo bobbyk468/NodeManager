@@ -5,16 +5,16 @@
     "num_samples": 20,
     "model": "gemini-2.5-flash-lite",
     "sure_enabled": false,
-    "timestamp": "2026-03-25T21:28:38.859395",
-    "total_elapsed_seconds": 137.67
+    "timestamp": "2026-03-25T21:36:31.437596",
+    "total_elapsed_seconds": 143.22
   },
   "metrics": {
-    "pearson_r": 0.965353,
+    "pearson_r": 0.967149,
     "pearson_p": 0.0,
-    "rmse": 0.547723,
-    "mae": 0.4,
-    "qwk": 0.880515,
-    "bias": 0.35
+    "rmse": 0.48734,
+    "mae": 0.375,
+    "qwk": 0.855521,
+    "bias": 0.175
   },
   "requires_human_review_rate": 0.0,
   "samples": [
@@ -26,8 +26,8 @@
       "lag": 4.5,
       "delta": 0.0,
       "sure": "ok    ",
-      "elapsed": 7.0,
-      "feedback": "Demonstrates a strong, analytical understanding of binary se"
+      "elapsed": 7.6,
+      "feedback": "Demonstrates excellent understanding of binary search trees "
     },
     {
       "idx": 2,
@@ -38,7 +38,7 @@
       "delta": 0.5,
       "sure": "ok    ",
       "elapsed": 6.0,
-      "feedback": "Student accurately described binary search trees and inserti"
+      "feedback": "Student accurately defines binary search trees and insertion"
     },
     {
       "idx": 3,
@@ -48,30 +48,30 @@
       "lag": 1.0,
       "delta": 0.5,
       "sure": "ok    ",
-      "elapsed": 9.2,
-      "feedback": "The student correctly identified key BST concepts but needs "
+      "elapsed": 6.4,
+      "feedback": "Student correctly identified core BST concepts but needs to "
     },
     {
       "idx": 4,
       "id": "4",
       "topic": "virtual_memory",
       "gt": 5.0,
-      "lag": 5.0,
-      "delta": 0.0,
+      "lag": 4.5,
+      "delta": -0.5,
       "sure": "ok    ",
-      "elapsed": 7.6,
-      "feedback": "Demonstrates a comprehensive and accurate understanding of v"
+      "elapsed": 6.9,
+      "feedback": "Demonstrates excellent understanding and analytical depth of"
     },
     {
       "idx": 5,
       "id": "5",
       "topic": "virtual_memory",
       "gt": 3.0,
-      "lag": 4.0,
-      "delta": 1.0,
+      "lag": 3.5,
+      "delta": 0.5,
       "sure": "ok    ",
-      "elapsed": 5.2,
-      "feedback": "Demonstrated a strong understanding of virtual memory concep"
+      "elapsed": 7.0,
+      "feedback": "Demonstrates a good understanding of virtual memory concepts"
     },
     {
       "idx": 6,
@@ -81,8 +81,8 @@
       "lag": 1.5,
       "delta": 1.0,
       "sure": "ok    ",
-      "elapsed": 6.3,
-      "feedback": "Demonstrates a foundational understanding of virtual memory "
+      "elapsed": 7.6,
+      "feedback": "Demonstrates foundational knowledge of memory concepts but n"
     },
     {
       "idx": 7,
@@ -92,19 +92,19 @@
       "lag": 5.0,
       "delta": 0.0,
       "sure": "ok    ",
-      "elapsed": 7.1,
-      "feedback": "Student demonstrates a comprehensive and accurate understand"
+      "elapsed": 7.5,
+      "feedback": "Demonstrates a comprehensive and accurate understanding of T"
     },
     {
       "idx": 8,
       "id": "8",
       "topic": "tcp_vs_udp",
       "gt": 3.5,
-      "lag": 3.5,
-      "delta": 0.0,
+      "lag": 3.0,
+      "delta": -0.5,
       "sure": "ok    ",
-      "elapsed": 7.4,
-      "feedback": "Demonstrated a good understanding of TCP vs. UDP differences"
+      "elapsed": 6.9,
+      "feedback": "Demonstrated a good understanding of TCP vs. UDP, with poten"
     },
     {
       "idx": 9,
@@ -114,8 +114,8 @@
       "lag": 1.5,
       "delta": 0.5,
       "sure": "ok    ",
-      "elapsed": 6.3,
-      "feedback": "The student accurately described the fundamental differences"
+      "elapsed": 6.6,
+      "feedback": "Demonstrated a foundational understanding of TCP and UDP dif"
     },
     {
       "idx": 10,
@@ -125,7 +125,7 @@
       "lag": 4.5,
       "delta": -0.5,
       "sure": "ok    ",
-      "elapsed": 7.8,
+      "elapsed": 7.2,
       "feedback": "Demonstrates a strong understanding of garbage collection me"
     },
     {
@@ -133,33 +133,33 @@
       "id": "11",
       "topic": "garbage_collection",
       "gt": 2.5,
-      "lag": 3.0,
-      "delta": 0.5,
+      "lag": 2.5,
+      "delta": 0.0,
       "sure": "ok    ",
-      "elapsed": 5.7,
-      "feedback": "Demonstrates a strong understanding of garbage collection pr"
+      "elapsed": 5.8,
+      "feedback": "Demonstrated a good understanding of garbage collection conc"
     },
     {
       "idx": 12,
       "id": "12",
       "topic": "garbage_collection",
       "gt": 0.5,
-      "lag": 0.5,
-      "delta": 0.0,
+      "lag": 1.0,
+      "delta": 0.5,
       "sure": "ok    ",
-      "elapsed": 5.8,
-      "feedback": "The student correctly identified core concepts but needs to "
+      "elapsed": 7.9,
+      "feedback": "Student correctly identified core concepts but needs to addr"
     },
     {
       "idx": 13,
       "id": "13",
       "topic": "hash_table",
       "gt": 4.5,
-      "lag": 5.0,
-      "delta": 0.5,
+      "lag": 4.5,
+      "delta": 0.0,
       "sure": "ok    ",
-      "elapsed": 6.6,
-      "feedback": "Student demonstrates a strong understanding of hash tables a"
+      "elapsed": 8.6,
+      "feedback": "Demonstrates a strong understanding of hash tables and colli"
     },
     {
       "idx": 14,
@@ -169,7 +169,7 @@
       "lag": 3.5,
       "delta": 0.0,
       "sure": "ok    ",
-      "elapsed": 8.7,
+      "elapsed": 7.3,
       "feedback": "Demonstrates a strong understanding of hash tables and colli"
     },
     {
@@ -180,8 +180,8 @@
       "lag": 2.5,
       "delta": 0.5,
       "sure": "ok    ",
-      "elapsed": 12.0,
-      "feedback": "Student accurately defined hash tables and collision handlin"
+      "elapsed": 5.3,
+      "feedback": "Student accurately described hash tables and collision handl"
     },
     {
       "idx": 16,
@@ -191,7 +191,7 @@
       "lag": 1.0,
       "delta": 0.5,
       "sure": "ok    ",
-      "elapsed": 6.4,
+      "elapsed": 6.8,
       "feedback": "The student correctly identified key hash table concepts but"
     },
     {
@@ -202,30 +202,30 @@
       "lag": 5.0,
       "delta": 1.0,
       "sure": "ok    ",
-      "elapsed": 5.6,
-      "feedback": "Demonstrated excellent understanding of binary search trees "
+      "elapsed": 7.4,
+      "feedback": "Demonstrates a comprehensive and accurate understanding of b"
     },
     {
       "idx": 18,
       "id": "18",
       "topic": "garbage_collection",
       "gt": 4.0,
-      "lag": 4.0,
-      "delta": 0.0,
+      "lag": 3.5,
+      "delta": -0.5,
       "sure": "ok    ",
-      "elapsed": 5.6,
-      "feedback": "Demonstrated a strong understanding of garbage collection fu"
+      "elapsed": 9.4,
+      "feedback": "Demonstrates a good understanding of garbage collection mech"
     },
     {
       "idx": 19,
       "id": "19",
       "topic": "virtual_memory",
       "gt": 3.5,
-      "lag": 4.5,
-      "delta": 1.0,
+      "lag": 3.5,
+      "delta": 0.0,
       "sure": "ok    ",
-      "elapsed": 6.4,
-      "feedback": "Demonstrates a strong understanding of virtual memory concep"
+      "elapsed": 7.2,
+      "feedback": "Demonstrates a good understanding of virtual memory concepts"
     },
     {
       "idx": 20,
@@ -235,8 +235,8 @@
       "lag": 4.0,
       "delta": 0.0,
       "sure": "ok    ",
-      "elapsed": 5.1,
-      "feedback": "Demonstrated a strong, accurate understanding of TCP vs. UDP"
+      "elapsed": 7.8,
+      "feedback": "Demonstrated a strong understanding of TCP and UDP differenc"
     }
   ],
   "human_scores": [
@@ -265,22 +265,22 @@
     4.5,
     3.0,
     1.0,
-    5.0,
-    4.0,
-    1.5,
-    5.0,
+    4.5,
     3.5,
     1.5,
-    4.5,
-    3.0,
-    0.5,
     5.0,
+    3.0,
+    1.5,
+    4.5,
+    2.5,
+    1.0,
+    4.5,
     3.5,
     2.5,
     1.0,
     5.0,
-    4.0,
-    4.5,
+    3.5,
+    3.5,
     4.0
   ]
 }
