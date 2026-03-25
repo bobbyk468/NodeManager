@@ -246,6 +246,7 @@ def run_lag_evaluation(
         api_key=api_key,
         model=model,
         max_workers=8,
+        use_sure=True,
     )
     print("  Pipeline ready.")
     print()

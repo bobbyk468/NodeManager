@@ -45,6 +45,26 @@ from typing import List
 from conceptgrade.llm_client import LLMClient as Groq
 
 
+VERIFIER_SYSTEM_LAG = """You are an expert Computer Science educator grading a student's long-form essay answer.
+
+IMPORTANT CALIBRATION — essays are typically over-graded. Apply these anchors strictly:
+- 5.0: Exceptional — covers ALL key concepts with accurate mechanisms and clear explanations
+- 4.0: Good — covers most concepts accurately, only minor gaps
+- 3.0: Moderate — covers main ideas but missing important details or depth
+- 2.0: Basic — some correct points but significant gaps or shallow explanations
+- 1.0: Minimal — vaguely related, mostly off-target or very incomplete
+- 0.5: Trace — one correct idea buried in incorrect or irrelevant content
+
+DEPTH RULE: An essay that lists concept names without explaining HOW or WHY they work
+scores NO HIGHER than 3.0. Reserve 4.0+ for answers with mechanistic explanations.
+
+Your task:
+1. Read the question, reference answer, and student essay carefully.
+2. Use the concept evidence (covered/missing concepts) to identify specific gaps.
+3. Assign a score from 0.0 to 5.0 using one decimal place.
+
+Return ONLY valid JSON."""
+
 VERIFIER_SYSTEM = """You are an expert Computer Science educator grading a student's short answer.
 
 Your task:
@@ -107,6 +127,31 @@ _SURE_PERSONAS = [
         "Lenient",
         "You are a supportive academic grader. Reward demonstrated understanding and effort. "
         "Only penalise factually wrong statements.",
+    ),
+]
+
+# LAG-specific personas: replace Lenient with Analytical to avoid over-rewarding
+# essay breadth without depth. Essays naturally mention many concepts superficially —
+# the Lenient persona inflates scores by ~0.6 pts on average for long answers.
+_SURE_PERSONAS_LAG = [
+    (
+        "Meticulous",
+        "You are a strict academic grader for long-form essays. Penalise shallow coverage, "
+        "vague language, and missing mechanisms. A student who lists concepts without "
+        "explaining them earns no more than 2.5/5.",
+    ),
+    (
+        "Standard",
+        "You are a fair academic grader for essays. Reward correct core ideas with clear "
+        "explanations. Penalise significant omissions, misconceptions, and surface-level "
+        "answers that lack depth. Breadth alone is not sufficient for a high score.",
+    ),
+    (
+        "Analytical",
+        "You are a depth-focused academic grader. Evaluate whether the student demonstrates "
+        "genuine understanding of mechanisms and relationships, not just terminology recall. "
+        "An essay that names concepts but does not explain how or why they work scores "
+        "no higher than 3.0/5. Reserve 4.0+ for answers showing causal understanding.",
     ),
 ]
 
@@ -198,6 +243,7 @@ class LLMVerifier:
         solo: dict,
         misconceptions: dict,
         reference_answer: str = "",
+        mode: str = "sag",
     ) -> VerifierResult:
         """
         Verify and optionally adjust the KG-computed score.
@@ -210,6 +256,7 @@ class LLMVerifier:
         comparison_result: Output of KnowledgeGraphComparator.compare().to_dict()
         blooms           : Bloom's classification dict
         solo             : SOLO classification dict
+        mode             : "sag" (default) or "lag" — selects calibrated prompt for essays
         misconceptions   : Misconception detection dict
 
         Returns
@@ -241,7 +288,8 @@ class LLMVerifier:
         )
 
         try:
-            raw = self._call_llm(VERIFIER_SYSTEM, user_prompt)
+            system_prompt = VERIFIER_SYSTEM_LAG if mode == "lag" else VERIFIER_SYSTEM
+            raw = self._call_llm(system_prompt, user_prompt)
             parsed = self._parse_json(raw)
             # Parse as fine-grained score (0.5 increments), convert to 0-1
             raw_score = float(parsed.get("verified_score", kg_score * 5))
@@ -294,11 +342,19 @@ class LLMVerifier:
         solo: dict,
         misconceptions: dict,
         reference_answer: str = "",
+        mode: str = "sag",
     ) -> "SureResult":
         """
         Run 3-persona SURE (Self-Uncertainty-Reduction Ensemble) verification.
 
-        Each of the three personas (Meticulous, Standard, Lenient) grades the
+        Parameters
+        ----------
+        mode : "sag" (default) uses Meticulous/Standard/Lenient personas.
+               "lag" uses Meticulous/Standard/Analytical personas — replaces
+               the Lenient persona which inflates scores for long essays that
+               have breadth without depth.
+
+        Each of the three personas grades the
         student answer independently. The final score is the median. A large
         spread across personas flags the answer for human review.
 
@@ -343,7 +399,8 @@ class LLMVerifier:
             misc_count=misconceptions.get("total_misconceptions", 0),
         )
 
-        for persona_name, persona_prefix in _SURE_PERSONAS:
+        personas = _SURE_PERSONAS_LAG if mode == "lag" else _SURE_PERSONAS
+        for persona_name, persona_prefix in personas:
             persona_system = f"{persona_prefix}\n\n{VERIFIER_SYSTEM}"
             try:
                 raw = self._call_llm(persona_system, user_prompt)

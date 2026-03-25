@@ -358,6 +358,7 @@ class LongAnswerPipeline:
                     solo=merged_solo,
                     misconceptions=merged_misc,
                     reference_answer=reference_answer,
+                    mode="lag",
                 )
                 verified_score = round(sure_result.final_score * 5.0, 2)
                 verifier_dict = sure_result.to_dict()
@@ -373,6 +374,7 @@ class LongAnswerPipeline:
                     solo=merged_solo,
                     misconceptions=merged_misc,
                     reference_answer=reference_answer,
+                    mode="lag",
                 )
                 verified_score = round(ver.final_score * 5.0, 2)
                 verifier_dict = ver.to_dict()
