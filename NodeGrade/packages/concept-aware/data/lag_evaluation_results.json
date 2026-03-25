@@ -5,16 +5,24 @@
     "num_samples": 20,
     "model": "gemini-2.5-flash-lite",
     "sure_enabled": false,
-    "timestamp": "2026-03-25T21:36:31.437596",
-    "total_elapsed_seconds": 143.22
+    "timestamp": "2026-03-26T05:06:34.450335",
+    "total_elapsed_seconds": 154.54
   },
-  "metrics": {
+  "metrics_lag": {
     "pearson_r": 0.967149,
     "pearson_p": 0.0,
     "rmse": 0.48734,
     "mae": 0.375,
     "qwk": 0.855521,
     "bias": 0.175
+  },
+  "metrics_pure": {
+    "pearson_r": 0.964056,
+    "pearson_p": 0.0,
+    "rmse": 0.715891,
+    "mae": 0.575,
+    "qwk": 0.844262,
+    "bias": 0.575
   },
   "requires_human_review_rate": 0.0,
   "samples": [
@@ -23,32 +31,38 @@
       "id": "1",
       "topic": "binary_search_tree",
       "gt": 4.5,
+      "pure": 5.0,
       "lag": 4.5,
       "delta": 0.0,
+      "delta_pure": 0.5,
       "sure": "ok    ",
-      "elapsed": 7.6,
-      "feedback": "Demonstrates excellent understanding of binary search trees "
+      "elapsed": 7.7,
+      "feedback": "Demonstrates a strong, analytical understanding of binary se"
     },
     {
       "idx": 2,
       "id": "2",
       "topic": "binary_search_tree",
       "gt": 2.5,
+      "pure": 3.5,
       "lag": 3.0,
       "delta": 0.5,
+      "delta_pure": 1.0,
       "sure": "ok    ",
-      "elapsed": 6.0,
-      "feedback": "Student accurately defines binary search trees and insertion"
+      "elapsed": 8.5,
+      "feedback": "Student accurately described binary search trees and inserti"
     },
     {
       "idx": 3,
       "id": "3",
       "topic": "binary_search_tree",
       "gt": 0.5,
+      "pure": 0.5,
       "lag": 1.0,
       "delta": 0.5,
+      "delta_pure": 0.0,
       "sure": "ok    ",
-      "elapsed": 6.4,
+      "elapsed": 7.7,
       "feedback": "Student correctly identified core BST concepts but needs to "
     },
     {
@@ -56,21 +70,25 @@
       "id": "4",
       "topic": "virtual_memory",
       "gt": 5.0,
+      "pure": 5.0,
       "lag": 4.5,
       "delta": -0.5,
+      "delta_pure": 0.0,
       "sure": "ok    ",
-      "elapsed": 6.9,
-      "feedback": "Demonstrates excellent understanding and analytical depth of"
+      "elapsed": 8.1,
+      "feedback": "Demonstrates excellent understanding of virtual memory, with"
     },
     {
       "idx": 5,
       "id": "5",
       "topic": "virtual_memory",
       "gt": 3.0,
+      "pure": 4.5,
       "lag": 3.5,
       "delta": 0.5,
+      "delta_pure": 1.5,
       "sure": "ok    ",
-      "elapsed": 7.0,
+      "elapsed": 7.2,
       "feedback": "Demonstrates a good understanding of virtual memory concepts"
     },
     {
@@ -78,54 +96,64 @@
       "id": "6",
       "topic": "virtual_memory",
       "gt": 0.5,
+      "pure": 1.5,
       "lag": 1.5,
       "delta": 1.0,
+      "delta_pure": 1.0,
       "sure": "ok    ",
-      "elapsed": 7.6,
-      "feedback": "Demonstrates foundational knowledge of memory concepts but n"
+      "elapsed": 8.3,
+      "feedback": "Demonstrates foundational understanding of virtual memory co"
     },
     {
       "idx": 7,
       "id": "7",
       "topic": "tcp_vs_udp",
       "gt": 5.0,
+      "pure": 5.0,
       "lag": 5.0,
       "delta": 0.0,
+      "delta_pure": 0.0,
       "sure": "ok    ",
-      "elapsed": 7.5,
-      "feedback": "Demonstrates a comprehensive and accurate understanding of T"
+      "elapsed": 7.7,
+      "feedback": "Demonstrated a comprehensive and accurate understanding of T"
     },
     {
       "idx": 8,
       "id": "8",
       "topic": "tcp_vs_udp",
       "gt": 3.5,
+      "pure": 4.0,
       "lag": 3.0,
       "delta": -0.5,
+      "delta_pure": 0.5,
       "sure": "ok    ",
-      "elapsed": 6.9,
-      "feedback": "Demonstrated a good understanding of TCP vs. UDP, with poten"
+      "elapsed": 7.5,
+      "feedback": "Demonstrated a strong understanding of TCP vs. UDP differenc"
     },
     {
       "idx": 9,
       "id": "9",
       "topic": "tcp_vs_udp",
       "gt": 1.0,
+      "pure": 1.5,
       "lag": 1.5,
       "delta": 0.5,
+      "delta_pure": 0.5,
       "sure": "ok    ",
-      "elapsed": 6.6,
-      "feedback": "Demonstrated a foundational understanding of TCP and UDP dif"
+      "elapsed": 7.4,
+      "feedback": "The student accurately described the basic differences betwe"
     },
     {
       "idx": 10,
       "id": "10",
       "topic": "garbage_collection",
       "gt": 5.0,
+      "pure": 5.0,
       "lag": 4.5,
       "delta": -0.5,
+      "delta_pure": 0.0,
       "sure": "ok    ",
-      "elapsed": 7.2,
+      "elapsed": 7.3,
       "feedback": "Demonstrates a strong understanding of garbage collection me"
     },
     {
@@ -133,21 +161,25 @@
       "id": "11",
       "topic": "garbage_collection",
       "gt": 2.5,
+      "pure": 3.5,
       "lag": 2.5,
       "delta": 0.0,
+      "delta_pure": 1.0,
       "sure": "ok    ",
-      "elapsed": 5.8,
-      "feedback": "Demonstrated a good understanding of garbage collection conc"
+      "elapsed": 7.7,
+      "feedback": "Demonstrated a good understanding of garbage collection mech"
     },
     {
       "idx": 12,
       "id": "12",
       "topic": "garbage_collection",
       "gt": 0.5,
+      "pure": 1.0,
       "lag": 1.0,
       "delta": 0.5,
+      "delta_pure": 0.5,
       "sure": "ok    ",
-      "elapsed": 7.9,
+      "elapsed": 7.8,
       "feedback": "Student correctly identified core concepts but needs to addr"
     },
     {
@@ -155,32 +187,38 @@
       "id": "13",
       "topic": "hash_table",
       "gt": 4.5,
+      "pure": 5.0,
       "lag": 4.5,
       "delta": 0.0,
+      "delta_pure": 0.5,
       "sure": "ok    ",
-      "elapsed": 8.6,
-      "feedback": "Demonstrates a strong understanding of hash tables and colli"
+      "elapsed": 7.7,
+      "feedback": "Demonstrates a thorough and accurate understanding of hash t"
     },
     {
       "idx": 14,
       "id": "14",
       "topic": "hash_table",
       "gt": 3.5,
+      "pure": 4.0,
       "lag": 3.5,
       "delta": 0.0,
+      "delta_pure": 0.5,
       "sure": "ok    ",
-      "elapsed": 7.3,
-      "feedback": "Demonstrates a strong understanding of hash tables and colli"
+      "elapsed": 7.6,
+      "feedback": "Demonstrated a strong analytical understanding of hash table"
     },
     {
       "idx": 15,
       "id": "15",
       "topic": "hash_table",
       "gt": 2.0,
+      "pure": 3.0,
       "lag": 2.5,
       "delta": 0.5,
+      "delta_pure": 1.0,
       "sure": "ok    ",
-      "elapsed": 5.3,
+      "elapsed": 7.2,
       "feedback": "Student accurately described hash tables and collision handl"
     },
     {
@@ -188,52 +226,62 @@
       "id": "16",
       "topic": "hash_table",
       "gt": 0.5,
+      "pure": 0.5,
       "lag": 1.0,
       "delta": 0.5,
+      "delta_pure": 0.0,
       "sure": "ok    ",
-      "elapsed": 6.8,
-      "feedback": "The student correctly identified key hash table concepts but"
+      "elapsed": 7.1,
+      "feedback": "Demonstrated understanding of hash table components and idea"
     },
     {
       "idx": 17,
       "id": "17",
       "topic": "binary_search_tree",
       "gt": 4.0,
+      "pure": 5.0,
       "lag": 5.0,
       "delta": 1.0,
+      "delta_pure": 1.0,
       "sure": "ok    ",
-      "elapsed": 7.4,
-      "feedback": "Demonstrates a comprehensive and accurate understanding of b"
+      "elapsed": 7.1,
+      "feedback": "Demonstrates a strong and accurate understanding of binary s"
     },
     {
       "idx": 18,
       "id": "18",
       "topic": "garbage_collection",
       "gt": 4.0,
+      "pure": 4.5,
       "lag": 3.5,
       "delta": -0.5,
+      "delta_pure": 0.5,
       "sure": "ok    ",
-      "elapsed": 9.4,
-      "feedback": "Demonstrates a good understanding of garbage collection mech"
+      "elapsed": 8.2,
+      "feedback": "Demonstrates a strong understanding of garbage collection me"
     },
     {
       "idx": 19,
       "id": "19",
       "topic": "virtual_memory",
       "gt": 3.5,
+      "pure": 4.5,
       "lag": 3.5,
       "delta": 0.0,
+      "delta_pure": 1.0,
       "sure": "ok    ",
-      "elapsed": 7.2,
-      "feedback": "Demonstrates a good understanding of virtual memory concepts"
+      "elapsed": 8.8,
+      "feedback": "Demonstrated a good understanding of virtual memory concepts"
     },
     {
       "idx": 20,
       "id": "20",
       "topic": "tcp_vs_udp",
       "gt": 4.0,
+      "pure": 4.5,
       "lag": 4.0,
       "delta": 0.0,
+      "delta_pure": 0.5,
       "sure": "ok    ",
       "elapsed": 7.8,
       "feedback": "Demonstrated a strong understanding of TCP and UDP differenc"
@@ -282,5 +330,27 @@
     3.5,
     3.5,
     4.0
+  ],
+  "pure_scores": [
+    5.0,
+    3.5,
+    0.5,
+    5.0,
+    4.5,
+    1.5,
+    5.0,
+    4.0,
+    1.5,
+    5.0,
+    3.5,
+    1.0,
+    5.0,
+    4.0,
+    3.0,
+    0.5,
+    5.0,
+    4.5,
+    4.5,
+    4.5
   ]
 }

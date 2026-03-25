@@ -22,6 +22,7 @@ Options:
 import argparse
 import json
 import os
+import re
 import sys
 import time
 from datetime import datetime
@@ -46,6 +47,41 @@ def get_api_key(model: str) -> str:
         print(f"ERROR: Set {env_var} for model '{model}'", file=sys.stderr)
         sys.exit(1)
     return key
+
+
+# ── Pure LLM baseline grader ─────────────────────────────────────────────────
+
+PURE_LLM_SYSTEM_LAG = (
+    "You are an expert academic grader. "
+    "Score the student essay answer on a scale of 0 to 5 (decimals allowed). "
+    "Reply with ONLY a JSON object: {\"score\": <number>}"
+)
+
+def pure_llm_grade_lag(client, model: str, question: str, reference: str, answer: str) -> float:
+    """Grade a long-form essay with no KG structure — pure LLM baseline."""
+    user_prompt = (
+        f"Question: {question}\n\n"
+        f"Reference answer: {reference}\n\n"
+        f"Student essay: {answer}\n\n"
+        "Score the student essay 0–5."
+    )
+    raw = client.chat.completions.create(
+        model=model,
+        messages=[
+            {"role": "system", "content": PURE_LLM_SYSTEM_LAG},
+            {"role": "user",   "content": user_prompt},
+        ],
+        max_tokens=50,
+        temperature=0.0,
+    )
+    text = raw.choices[0].message.content or ""
+    m = re.search(r'"score"\s*:\s*([0-9.]+)', text)
+    if m:
+        return min(5.0, max(0.0, float(m.group(1))))
+    m = re.search(r'[0-9]+(?:\.[0-9]+)?', text)
+    if m:
+        return min(5.0, max(0.0, float(m.group())))
+    return 0.0
 
 
 # ── QWK helper (uses sklearn when available, falls back to pure Python) ───────
@@ -239,15 +275,17 @@ def run_lag_evaluation(
     print(f"  Score distribution (bucket:count): {dist_str}")
     print()
 
-    # ── Initialise pipeline ─────────────────────────────────────────────────
-    print("[2/3] Initialising LongAnswerPipeline...")
+    # ── Initialise pipelines ────────────────────────────────────────────────
+    print("[2/3] Initialising LongAnswerPipeline + Pure LLM baseline...")
     from conceptgrade.lag_pipeline import LongAnswerPipeline
+    from conceptgrade.llm_client import LLMClient
     pipeline = LongAnswerPipeline(
         api_key=api_key,
         model=model,
         max_workers=8,
         use_sure=True,
     )
+    llm_client = LLMClient(api_key=api_key)
     print("  Pipeline ready.")
     print()
 
@@ -257,6 +295,7 @@ def run_lag_evaluation(
 
     human_scores: list[float] = []
     lag_scores:   list[float] = []
+    pure_scores:  list[float] = []
     sure_flags:   list[bool]  = []
     rows: list[dict] = []
 
@@ -273,6 +312,17 @@ def run_lag_evaluation(
         cb = make_progress_callback(idx, total, verbose=verbose)
         t0 = time.time()
 
+        # Pure LLM baseline
+        try:
+            pure_raw = pure_llm_grade_lag(
+                llm_client, model,
+                sample["question"], sample["reference_answer"], sample["student_answer"]
+            )
+        except Exception as e:
+            print(f"    Pure-LLM ERROR: {e}", file=sys.stderr)
+            pure_raw = 0.0
+
+        # ConceptGrade LAG pipeline
         try:
             result = pipeline.assess(
                 question=sample["question"],
@@ -287,7 +337,9 @@ def run_lag_evaluation(
 
         elapsed = time.time() - t0
         lag = round(lag_raw, 2)
+        pure = round(pure_raw, 2)
         delta = round(lag - gt, 2)
+        delta_pure = round(pure - gt, 2)
 
         sure_flag = requires_human_review(lag) if use_sure else False
         sure_str  = "REVIEW" if sure_flag else "ok    "
@@ -300,24 +352,27 @@ def run_lag_evaluation(
 
         human_scores.append(gt)
         lag_scores.append(lag)
+        pure_scores.append(pure)
         sure_flags.append(sure_flag)
 
         rows.append({
-            "idx":       idx,
-            "id":        sid,
-            "topic":     sample.get("topic", ""),
-            "gt":        gt,
-            "lag":       lag,
-            "delta":     delta,
-            "sure":      sure_str,
-            "elapsed":   round(elapsed, 1),
-            "feedback":  fb_snippet,
+            "idx":        idx,
+            "id":         sid,
+            "topic":      sample.get("topic", ""),
+            "gt":         gt,
+            "pure":       pure,
+            "lag":        lag,
+            "delta":      delta,
+            "delta_pure": delta_pure,
+            "sure":       sure_str,
+            "elapsed":    round(elapsed, 1),
+            "feedback":   fb_snippet,
         })
 
-        delta_str = f"{delta:+.2f}"
         print(
-            f"    → LAG={lag:.2f}  Δ={delta_str:>6}  SURE={sure_str}  "
-            f"({elapsed:.1f}s)  \"{fb_snippet}\"",
+            f"    → PureLLM={pure:.2f}  LAG={lag:.2f}  "
+            f"Δ_pure={delta_pure:+.2f}  Δ_lag={delta:+.2f}  "
+            f"SURE={sure_str}  ({elapsed:.1f}s)  \"{fb_snippet}\"",
             flush=True,
         )
         print()
@@ -343,26 +398,33 @@ def run_lag_evaluation(
     print()
 
     # ── Aggregate metrics ────────────────────────────────────────────────────
-    metrics = compute_metrics(human_scores, lag_scores)
-    review_rate = sum(sure_flags) / len(sure_flags) if sure_flags else 0.0
+    metrics_lag  = compute_metrics(human_scores, lag_scores)
+    metrics_pure = compute_metrics(human_scores, pure_scores)
+    review_rate  = sum(sure_flags) / len(sure_flags) if sure_flags else 0.0
+    # alias for backward compat in prints below
+    metrics = metrics_lag
 
-    print("=" * 72)
-    print("  LAG EVALUATION SUMMARY")
-    print("=" * 72)
+    print("=" * 80)
+    print("  LAG EVALUATION SUMMARY — ConceptGrade vs Pure LLM vs Ground Truth")
+    print("=" * 80)
     print(f"  Samples evaluated      : {len(human_scores)}")
     print(f"  Total wall time        : {total_elapsed:.1f}s  "
           f"({total_elapsed / len(human_scores):.1f}s/sample avg)")
     print()
-    print(f"  {'Metric':<30} {'Value':>10}")
-    print("  " + "-" * 42)
-    print(f"  {'Pearson r (LAG vs GT)':<30} {metrics['pearson_r']:>10.4f}  "
-          f"(p={metrics['pearson_p']:.3e})")
-    print(f"  {'RMSE':<30} {metrics['rmse']:>10.4f}")
-    print(f"  {'MAE':<30} {metrics['mae']:>10.4f}")
-    print(f"  {'QWK (quadratic weighted κ)':<30} {metrics['qwk']:>10.4f}")
-    print(f"  {'Bias (mean Δ LAG - GT)':<30} {metrics['bias']:>+10.4f}")
+    print(f"  {'Metric':<30} {'Pure LLM':>10}  {'ConceptGrade':>13}")
+    print("  " + "-" * 58)
+    print(f"  {'Pearson r':<30} {metrics_pure['pearson_r']:>10.4f}  "
+          f"{metrics_lag['pearson_r']:>13.4f}")
+    print(f"  {'RMSE':<30} {metrics_pure['rmse']:>10.4f}  "
+          f"{metrics_lag['rmse']:>13.4f}")
+    print(f"  {'MAE':<30} {metrics_pure['mae']:>10.4f}  "
+          f"{metrics_lag['mae']:>13.4f}")
+    print(f"  {'QWK (quadratic weighted κ)':<30} {metrics_pure['qwk']:>10.4f}  "
+          f"{metrics_lag['qwk']:>13.4f}")
+    print(f"  {'Bias (mean Δ - GT)':<30} {metrics_pure['bias']:>+10.4f}  "
+          f"{metrics_lag['bias']:>+13.4f}")
     if use_sure:
-        print(f"  {'requires_human_review rate':<30} {review_rate:>10.1%}")
+        print(f"  {'requires_human_review rate':<30} {'':>10}  {review_rate:>13.1%}")
     print()
 
     # Interpretation guide
@@ -413,11 +475,13 @@ def run_lag_evaluation(
             "timestamp":    datetime.now().isoformat(),
             "total_elapsed_seconds": round(total_elapsed, 2),
         },
-        "metrics": {k: round(v, 6) for k, v in metrics.items()},
+        "metrics_lag":  {k: round(v, 6) for k, v in metrics_lag.items()},
+        "metrics_pure": {k: round(v, 6) for k, v in metrics_pure.items()},
         "requires_human_review_rate": round(review_rate, 4),
         "samples": rows,
         "human_scores": human_scores,
         "lag_scores":   lag_scores,
+        "pure_scores":  pure_scores,
     }
     out_path = os.path.join(output_dir, "lag_evaluation_results.json")
     with open(out_path, "w", encoding="utf-8") as f:
