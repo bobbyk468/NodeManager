@@ -75,7 +75,8 @@ Your task:
 HOW TO SCORE:
 - Compare the student answer directly to the reference answer.
 - The reference answer defines what 5.0 looks like.
-- Missing critical concepts lower the score; misconceptions lower it further.
+- Missing CRITICAL concepts lower the score significantly; missing minor concepts lower it slightly.
+- Misconceptions lower the score further beyond concept gaps.
 - Partially correct or vague explanations merit partial credit (e.g. 1.5 not 1 or 2).
 - Be precise: use the full range 0.0–5.0 with one decimal place.
 
@@ -91,12 +92,13 @@ STUDENT ANSWER:
 
 CONCEPT ANALYSIS (from structured knowledge graph):
 - Concepts student COVERED: {covered_concepts}
-- Concepts student MISSED: {missing_concepts}
+- CRITICAL concepts MISSED (high-importance, heavily penalise): {critical_missing}
+- Minor concepts missed (low-importance, lightly penalise): {minor_missing}
 - Bloom's cognitive level: {blooms_label} (level {blooms_level}/6)
 - SOLO level: {solo_label} (level {solo_level}/5)
 - Misconceptions detected: {misc_count}
 
-Grade the student answer compared to the reference. Which covered concepts are strongest evidence? Which missing concepts are critical gaps? Give a precise score.
+Grade the student answer vs the reference. Each CRITICAL missing concept should lower your score noticeably. Give a precise score.
 
 Return ONLY valid JSON:
 {{
@@ -117,7 +119,8 @@ STUDENT ESSAY:
 
 CONCEPT ANALYSIS (from structured knowledge graph):
 - Concepts student COVERED: {covered_concepts}
-- Concepts student MISSED: {missing_concepts}
+- CRITICAL concepts MISSED (high-importance, heavily penalise): {critical_missing}
+- Minor concepts missed (low-importance, lightly penalise): {minor_missing}
 - Bloom's cognitive level: {blooms_label} (level {blooms_level}/6)
 - SOLO level: {solo_label} (level {solo_level}/5)
 - Misconceptions detected: {misc_count}
@@ -154,12 +157,13 @@ _SURE_PERSONAS = [
     (
         "Meticulous",
         "You are a strict academic grader. Penalise vague language, missing mechanisms, "
-        "and incomplete explanations. Require precision.",
+        "and incomplete explanations. Require precision. An answer missing any critical "
+        "concept from the reference scores no higher than 3.5.",
     ),
     (
         "Standard",
         "You are a fair academic grader. Reward correct core ideas, penalise significant "
-        "omissions or misconceptions.",
+        "omissions or misconceptions. Use the reference answer as the definitive standard.",
     ),
     (
         "Lenient",
@@ -303,14 +307,7 @@ class LLMVerifier:
         """
         analysis = comparison_result.get("analysis", comparison_result)
 
-        # Extract concept lists for richer verifier context
-        matched = analysis.get("matched_concepts", [])
-        missing_raw = analysis.get("missing_concepts", [])
-        covered_str = ", ".join(matched[:12]) if matched else "none identified"
-        missing_str = ", ".join(
-            (g.get("concept_id", g.get("id", "?")) if isinstance(g, dict) else str(g))
-            for g in missing_raw[:8]
-        ) if missing_raw else "none — full coverage"
+        covered_str, critical_str, minor_str = self._extract_concept_strings(analysis)
 
         user_template = VERIFIER_USER_LAG if mode == "lag" else VERIFIER_USER
         fmt_kwargs = dict(
@@ -318,7 +315,8 @@ class LLMVerifier:
             reference_answer=reference_answer or "(not provided)",
             student_answer=student_answer,
             covered_concepts=covered_str,
-            missing_concepts=missing_str,
+            critical_missing=critical_str,
+            minor_missing=minor_str,
             blooms_label=blooms.get("label", "Remember"),
             blooms_level=blooms.get("level", 1),
             solo_label=solo.get("label", "Prestructural"),
@@ -418,13 +416,7 @@ class LLMVerifier:
 
         # Build the shared user prompt (identical across all personas)
         analysis = comparison_result.get("analysis", comparison_result)
-        matched = analysis.get("matched_concepts", [])
-        missing_raw = analysis.get("missing_concepts", [])
-        covered_str = ", ".join(matched[:12]) if matched else "none identified"
-        missing_str = ", ".join(
-            (g.get("concept_id", g.get("id", "?")) if isinstance(g, dict) else str(g))
-            for g in missing_raw[:8]
-        ) if missing_raw else "none — full coverage"
+        covered_str, critical_str, minor_str = self._extract_concept_strings(analysis)
 
         user_template = VERIFIER_USER_LAG if mode == "lag" else VERIFIER_USER
         fmt_kwargs = dict(
@@ -432,7 +424,8 @@ class LLMVerifier:
             reference_answer=reference_answer or "(not provided)",
             student_answer=student_answer,
             covered_concepts=covered_str,
-            missing_concepts=missing_str,
+            critical_missing=critical_str,
+            minor_missing=minor_str,
             blooms_label=blooms.get("label", "Remember"),
             blooms_level=blooms.get("level", 1),
             solo_label=solo.get("label", "Prestructural"),
@@ -487,6 +480,35 @@ class LLMVerifier:
             kg_score=kg_score,
             final_score=final,
         )
+
+    def _extract_concept_strings(self, analysis: dict) -> tuple[str, str, str]:
+        """
+        Return (covered_str, critical_missing_str, minor_missing_str).
+
+        Missing concepts are split by importance:
+          critical  : importance >= 0.6  (high-weight, core concepts)
+          minor     : importance <  0.6  (supporting details)
+        """
+        matched = analysis.get("matched_concepts", [])
+        missing_raw = analysis.get("missing_concepts", [])
+
+        covered_str = ", ".join(matched[:12]) if matched else "none identified"
+
+        critical, minor = [], []
+        for g in missing_raw:
+            if isinstance(g, dict):
+                cid = g.get("concept_id", g.get("id", "?"))
+                imp = float(g.get("importance", 0.5))
+            else:
+                cid, imp = str(g), 0.5
+            if imp >= 0.6:
+                critical.append(cid)
+            else:
+                minor.append(cid)
+
+        critical_str = ", ".join(critical[:6]) if critical else "none"
+        minor_str    = ", ".join(minor[:6])    if minor    else "none"
+        return covered_str, critical_str, minor_str
 
     def _call_llm(self, system: str, user: str) -> str:
         response = self.client.chat.completions.create(
