@@ -82,6 +82,19 @@ class ComparisonResult:
     primary_coverage_score: float = 0.0
     secondary_coverage_score: float = 0.0
 
+    # Multi-hop causal chain coverage
+    chain_coverage_score: float = 0.0      # fraction of causal chains student covered (0–1)
+    chain_coverage_summary: str = ""       # human-readable e.g. "3/5 chains covered"
+
+    # Topological graph features (Anchor-Conductance)
+    anchor_ratio: float = 1.0             # matched / total student concepts (0–1)
+    clustering_coefficient: float = 0.0   # avg clustering of matched concept subgraph
+    graph_diameter: int = 0               # longest shortest path in matched subgraph
+    topological_summary: str = ""         # human-readable for verifier prompt
+
+    # Epistemic uncertainty (ρ)
+    kg_relevance_score: float = 1.0       # question/KG keyword overlap (0–1)
+
     def to_dict(self) -> dict:
         scores: dict = {
             "concept_coverage": round(self.concept_coverage_score, 4),
@@ -92,6 +105,15 @@ class ComparisonResult:
         if self.primary_coverage_score > 0.0 or self.secondary_coverage_score > 0.0:
             scores["primary_coverage"]   = round(self.primary_coverage_score, 4)
             scores["secondary_coverage"] = round(self.secondary_coverage_score, 4)
+        if self.chain_coverage_score > 0.0 or self.chain_coverage_summary:
+            scores["chain_coverage"]     = round(self.chain_coverage_score, 4)
+        # Topological features (always include if computed)
+        if self.anchor_ratio < 1.0 or self.clustering_coefficient > 0.0 or self.graph_diameter > 0:
+            scores["anchor_ratio"]            = round(self.anchor_ratio, 4)
+            scores["clustering_coefficient"]  = round(self.clustering_coefficient, 4)
+            scores["graph_diameter"]          = self.graph_diameter
+        if self.kg_relevance_score < 1.0:
+            scores["kg_relevance_score"]      = round(self.kg_relevance_score, 4)
         return {
             "scores": scores,
             "analysis": {
@@ -117,6 +139,7 @@ class ComparisonResult:
                 "feedback_points": self.feedback_points,
                 "strengths": self.strengths,
                 "weaknesses": self.weaknesses,
+                "topological_summary": self.topological_summary,
             }
         }
 
@@ -156,6 +179,7 @@ class KnowledgeGraphComparator:
         student_graph: StudentConceptGraph,
         expected_concepts: Optional[list[str]] = None,
         weights: Optional[dict[str, float]] = None,
+        question: Optional[str] = None,
     ) -> ComparisonResult:
         """Run standard comparison then layer on hierarchical primary/secondary scores.
 
@@ -169,6 +193,7 @@ class KnowledgeGraphComparator:
             student_graph=student_graph,
             expected_concepts=expected_concepts,
             weights=weights,
+            question=question,
         )
 
         # Determine expected concept set (same logic as compare())
@@ -215,17 +240,19 @@ class KnowledgeGraphComparator:
         student_graph: StudentConceptGraph,
         expected_concepts: Optional[list[str]] = None,
         weights: Optional[dict[str, float]] = None,
+        question: Optional[str] = None,
     ) -> ComparisonResult:
         """
         Compare a student's concept graph against the expert knowledge graph.
-        
+
         Args:
             student_graph: The student's extracted concept sub-graph
             expected_concepts: Optional list of concept IDs expected for this question.
                              If not provided, uses all concepts the student mentioned.
             weights: Optional scoring weights dict with keys:
                      coverage, accuracy, integration (must sum to 1.0)
-        
+            question: The assessment question text (used by subclasses for ρ computation)
+
         Returns:
             ComparisonResult with scores and detailed analysis
         """
@@ -268,10 +295,15 @@ class KnowledgeGraphComparator:
             weights["integration"] * result.integration_quality_score
         )
 
-        # 5. Depth assessment
+        # 5. Multi-hop causal chain coverage
+        result.chain_coverage_score, result.chain_coverage_summary = (
+            self.compute_chain_coverage(student_concept_ids, expected_set)
+        )
+
+        # 6. Depth assessment
         result.depth_assessment = self._assess_depth(student_graph, result)
 
-        # 6. Generate feedback
+        # 7. Generate feedback
         result.strengths, result.weaknesses, result.feedback_points = (
             self._generate_feedback(result, student_graph)
         )
@@ -554,6 +586,63 @@ class KnowledgeGraphComparator:
         
         # Surface: few concepts, isolated mentions
         return "surface"
+
+    def compute_chain_coverage(
+        self,
+        student_concept_ids: set[str],
+        expected_concept_ids: set[str],
+        min_chain_length: int = 2,
+    ) -> tuple[float, str]:
+        """
+        Multi-hop causal chain coverage.
+
+        Finds all PREREQUISITE_FOR / causal chains of length >= min_chain_length
+        in the expected concept subgraph, then checks how many chains the student
+        covered by having at least (min_chain_length) consecutive nodes.
+
+        Returns (score 0–1, human-readable summary string).
+        """
+        # Build the subgraph restricted to expected concepts
+        sub = self.domain_graph.graph.subgraph(expected_concept_ids)
+        if sub.number_of_edges() == 0:
+            return 0.0, "no causal chains in domain graph"
+
+        # Enumerate all simple paths of length >= min_chain_length between
+        # pairs of nodes in the expected subgraph (cap at depth 3 for speed)
+        chains_found = total_chains = 0
+        seen_paths: set[tuple] = set()
+
+        for src in expected_concept_ids:
+            for tgt in expected_concept_ids:
+                if src == tgt:
+                    continue
+                try:
+                    for path in nx.all_simple_paths(sub, src, tgt, cutoff=3):
+                        if len(path) < min_chain_length + 1:
+                            continue
+                        key = tuple(path)
+                        if key in seen_paths:
+                            continue
+                        seen_paths.add(key)
+                        total_chains += 1
+                        # Chain is "covered" if student mentioned >= min_chain_length
+                        # consecutive nodes anywhere in the path
+                        hits = [n in student_concept_ids for n in path]
+                        consecutive = sum(
+                            1 for i in range(len(hits) - 1)
+                            if hits[i] and hits[i + 1]
+                        )
+                        if consecutive >= 1:   # at least one consecutive pair covered
+                            chains_found += 1
+                except (nx.NetworkXError, nx.NodeNotFound):
+                    continue
+
+        if total_chains == 0:
+            return 0.0, "no causal chains in domain graph"
+
+        score = chains_found / total_chains
+        summary = f"{chains_found}/{total_chains} causal chains covered ({score:.0%})"
+        return round(score, 4), summary
 
     def _generate_feedback(
         self,

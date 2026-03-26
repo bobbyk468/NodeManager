@@ -32,7 +32,13 @@ Effect on downstream scoring
 
 from __future__ import annotations
 
+import re
 from typing import Optional
+
+try:
+    import networkx as nx
+except ImportError:
+    nx = None  # type: ignore
 
 try:
     from graph_comparison.comparator import (
@@ -72,6 +78,7 @@ class ConfidenceWeightedComparator(KnowledgeGraphComparator):
         student_graph: StudentConceptGraph,
         expected_concepts: Optional[list[str]] = None,
         weights: Optional[dict[str, float]] = None,
+        question: Optional[str] = None,
     ) -> ComparisonResult:
         """
         Run comparison with confidence-weighted coverage scoring.
@@ -125,6 +132,15 @@ class ConfidenceWeightedComparator(KnowledgeGraphComparator):
             self._generate_feedback(result, student_graph)
         )
 
+        # 5. Topological features (Anchor-Conductance)
+        result.anchor_ratio, result.clustering_coefficient, result.graph_diameter, result.topological_summary = (
+            self._compute_topological(result.matched_concepts, student_concept_ids)
+        )
+
+        # 6. Epistemic uncertainty ρ (question/KG keyword overlap)
+        if question:
+            result.kg_relevance_score = self._compute_kg_relevance(question)
+
         return result
 
     # ── Internal ─────────────────────────────────────────────────────────────
@@ -157,7 +173,11 @@ class ConfidenceWeightedComparator(KnowledgeGraphComparator):
             if not concept:
                 continue
 
-            importance = concept.difficulty_level / 5.0
+            # Saliency: primary concepts are core — secondary are fringe detail.
+            # Missing a fringe concept should not heavily penalise a mastery answer.
+            saliency = 1.0 if concept.is_primary else 0.35
+
+            importance = saliency * concept.difficulty_level / 5.0
             if concept_id in self.domain_graph.graph:
                 degree = self.domain_graph.graph.degree(concept_id)
                 importance *= (1.0 + min(degree / 10.0, 1.0))
@@ -182,3 +202,131 @@ class ConfidenceWeightedComparator(KnowledgeGraphComparator):
 
         score = matched_weight / total_weight if total_weight > 0 else 0.0
         return min(score, 1.0), matched, missing
+
+    # ── Topological features ─────────────────────────────────────────────────
+
+    def _compute_topological(
+        self,
+        matched_concepts: list[str],
+        student_concept_ids: set[str],
+    ) -> tuple[float, float, int, str]:
+        """
+        Compute Anchor-Conductance topological features.
+
+        Returns
+        -------
+        (anchor_ratio, clustering_coefficient, graph_diameter, topological_summary)
+
+        anchor_ratio
+            len(matched) / len(student_concepts) — proportion of student concepts
+            that are grounded in the domain KG. Low values signal hallucination /
+            invented vocabulary.
+
+        clustering_coefficient
+            Average clustering of the matched concept subgraph. High value means
+            the student's matched concepts form tightly-knit clusters (depth);
+            low value means isolated mentions (breadth bluffing).
+
+        graph_diameter
+            Longest shortest path in the matched subgraph. A longer diameter
+            suggests the student connects distant parts of the KG (integration).
+        """
+        n_student = len(student_concept_ids)
+        n_matched = len(matched_concepts)
+
+        anchor_ratio = n_matched / max(1, n_student)
+
+        clustering_coeff = 0.0
+        diameter = 0
+
+        if nx is not None and n_matched >= 2:
+            subgraph = self.domain_graph.graph.subgraph(matched_concepts)
+            if subgraph.number_of_nodes() >= 2:
+                # Undirected view for clustering coefficient
+                ug = subgraph.to_undirected() if subgraph.is_directed() else subgraph
+                try:
+                    clustering_coeff = nx.average_clustering(ug)
+                except Exception:
+                    clustering_coeff = 0.0
+
+                # Diameter — only for connected components (take the largest)
+                try:
+                    components = list(nx.connected_components(ug))
+                    largest = max(components, key=len)
+                    if len(largest) >= 2:
+                        sub = ug.subgraph(largest)
+                        diameter = nx.diameter(sub)
+                except Exception:
+                    diameter = 0
+
+        # Build human-readable summary
+        parts: list[str] = []
+
+        if anchor_ratio < 0.40:
+            parts.append(
+                f"Anchor Ratio {anchor_ratio:.0%}: very low — "
+                "many student concepts are not in the domain KG; "
+                "evaluate carefully for hallucination or invented terminology."
+            )
+        elif anchor_ratio < 0.65:
+            parts.append(
+                f"Anchor Ratio {anchor_ratio:.0%}: moderate — "
+                "some student concepts fall outside the KG vocabulary."
+            )
+        else:
+            parts.append(f"Anchor Ratio {anchor_ratio:.0%}: high — student concepts are well-grounded in KG.")
+
+        if n_matched >= 2:
+            parts.append(
+                f"Clustering {clustering_coeff:.2f} "
+                f"(0=isolated mentions, 1=tightly connected); "
+                f"Diameter {diameter} (path length across matched KG subgraph)."
+            )
+
+        summary = " ".join(parts)
+        return anchor_ratio, clustering_coeff, diameter, summary
+
+    # ── Epistemic uncertainty ρ ───────────────────────────────────────────────
+
+    def _compute_kg_relevance(self, question: str) -> float:
+        """
+        Compute ρ = question/KG keyword overlap.
+
+        Tokenise the question into content words, then count how many appear
+        in the KG concept names or aliases. ρ close to 1.0 means the question
+        is well-covered by the KG; ρ close to 0.0 means the KG is off-topic.
+
+        When ρ is low, the verifier should rely more on holistic LLM judgment
+        and treat KG coverage scores with lower weight.
+        """
+        # Collect all KG vocabulary (concept names + aliases, lowercased)
+        kg_vocab: set[str] = set()
+        for concept in self.domain_graph._concepts.values():
+            for token in re.split(r'[\s_\-/]+', concept.name.lower()):
+                if len(token) > 2:
+                    kg_vocab.add(token)
+            for alias in getattr(concept, "aliases", []):
+                for token in re.split(r'[\s_\-/]+', alias.lower()):
+                    if len(token) > 2:
+                        kg_vocab.add(token)
+
+        # Tokenise question — ignore stopwords and short tokens
+        _STOPWORDS = {
+            "what", "how", "why", "when", "where", "which", "who",
+            "the", "a", "an", "is", "are", "was", "were", "be", "been",
+            "have", "has", "had", "do", "does", "did", "will", "would",
+            "can", "could", "should", "may", "might", "shall",
+            "in", "on", "at", "to", "for", "of", "with", "by", "from",
+            "and", "or", "but", "not", "if", "that", "this", "these", "those",
+            "explain", "describe", "define", "discuss", "compare", "contrast",
+        }
+        q_tokens = [
+            t for t in re.split(r'[^a-z]+', question.lower())
+            if len(t) > 2 and t not in _STOPWORDS
+        ]
+
+        if not q_tokens:
+            return 1.0  # No content words — assume KG is relevant
+
+        matched = sum(1 for t in q_tokens if t in kg_vocab)
+        return min(1.0, matched / len(q_tokens))

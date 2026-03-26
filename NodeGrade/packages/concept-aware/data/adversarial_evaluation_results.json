@@ -1,0 +1,802 @@
+{
+  "1": {
+    "gt_score": 4.8,
+    "pure_score": 5.0,
+    "cg_score": 5.0,
+    "adj": "confirm",
+    "category": "mastery",
+    "topic": "Hash Tables"
+  },
+  "2": {
+    "gt_score": 5.0,
+    "pure_score": 5.0,
+    "cg_score": 5.0,
+    "adj": "confirm",
+    "category": "mastery",
+    "topic": "Binary Search Trees"
+  },
+  "3": {
+    "gt_score": 4.8,
+    "pure_score": 5.0,
+    "cg_score": 5.0,
+    "adj": "confirm",
+    "category": "mastery",
+    "topic": "Virtual Memory"
+  },
+  "4": {
+    "gt_score": 4.8,
+    "pure_score": 5.0,
+    "cg_score": 5.0,
+    "adj": "confirm",
+    "category": "mastery",
+    "topic": "TCP vs UDP"
+  },
+  "5": {
+    "gt_score": 4.8,
+    "pure_score": 5.0,
+    "cg_score": 5.0,
+    "adj": "confirm",
+    "category": "mastery",
+    "topic": "Garbage Collection"
+  },
+  "6": {
+    "gt_score": 4.8,
+    "pure_score": 5.0,
+    "cg_score": 5.0,
+    "adj": "confirm",
+    "category": "mastery",
+    "topic": "CPU Scheduling"
+  },
+  "7": {
+    "gt_score": 5.0,
+    "pure_score": 5.0,
+    "cg_score": 5.0,
+    "adj": "confirm",
+    "category": "mastery",
+    "topic": "Graph Algorithms \u2014 Dijkstra"
+  },
+  "8": {
+    "gt_score": 5.0,
+    "pure_score": 5.0,
+    "cg_score": 5.0,
+    "adj": "confirm",
+    "category": "mastery",
+    "topic": "Sorting \u2014 Merge Sort"
+  },
+  "9": {
+    "gt_score": 5.0,
+    "pure_score": 5.0,
+    "cg_score": 5.0,
+    "adj": "confirm",
+    "category": "mastery",
+    "topic": "Operating Systems \u2014 Deadlock"
+  },
+  "10": {
+    "gt_score": 2.5,
+    "pure_score": 0.0,
+    "cg_score": 0.0,
+    "adj": "confirm",
+    "category": "mastery",
+    "topic": "Memory Management \u2014 Stack vs Heap"
+  },
+  "11": {
+    "gt_score": 5.0,
+    "pure_score": 5.0,
+    "cg_score": 5.0,
+    "adj": "confirm",
+    "category": "mastery",
+    "topic": "Hash Tables"
+  },
+  "12": {
+    "gt_score": 4.8,
+    "pure_score": 5.0,
+    "cg_score": 5.0,
+    "adj": "confirm",
+    "category": "mastery",
+    "topic": "Binary Search Trees"
+  },
+  "14": {
+    "gt_score": 4.9,
+    "pure_score": 5.0,
+    "cg_score": 5.0,
+    "adj": "confirm",
+    "category": "mastery",
+    "topic": "TCP vs UDP"
+  },
+  "15": {
+    "gt_score": 5.0,
+    "pure_score": 3.0,
+    "cg_score": 2.5,
+    "adj": "confirm",
+    "category": "mastery",
+    "topic": "Garbage Collection"
+  },
+  "16": {
+    "gt_score": 5.0,
+    "pure_score": 5.0,
+    "cg_score": 5.0,
+    "adj": "confirm",
+    "category": "mastery",
+    "topic": "CPU Scheduling"
+  },
+  "17": {
+    "gt_score": 4.8,
+    "pure_score": 5.0,
+    "cg_score": 5.0,
+    "adj": "confirm",
+    "category": "mastery",
+    "topic": "Graph Algorithms \u2014 Dijkstra"
+  },
+  "18": {
+    "gt_score": 4.8,
+    "pure_score": 5.0,
+    "cg_score": 5.0,
+    "adj": "confirm",
+    "category": "mastery",
+    "topic": "Sorting \u2014 Merge Sort"
+  },
+  "19": {
+    "gt_score": 2.5,
+    "pure_score": 0.0,
+    "cg_score": 0.5,
+    "adj": "confirm",
+    "category": "mastery",
+    "topic": "Operating Systems \u2014 Deadlock"
+  },
+  "20": {
+    "gt_score": 5.0,
+    "pure_score": 5.0,
+    "cg_score": 5.0,
+    "adj": "confirm",
+    "category": "mastery",
+    "topic": "Memory Management \u2014 Stack vs Heap"
+  },
+  "21": {
+    "gt_score": 0.0,
+    "pure_score": 0.0,
+    "cg_score": 0.0,
+    "adj": "confirm",
+    "category": "prose_trap",
+    "topic": "Hash Tables"
+  },
+  "22": {
+    "gt_score": 0.0,
+    "pure_score": 0.0,
+    "cg_score": 0.0,
+    "adj": "confirm",
+    "category": "prose_trap",
+    "topic": "Binary Search Trees"
+  },
+  "23": {
+    "gt_score": 0.0,
+    "pure_score": 1.0,
+    "cg_score": 1.0,
+    "adj": "decrease",
+    "category": "prose_trap",
+    "topic": "Virtual Memory"
+  },
+  "24": {
+    "gt_score": 0.0,
+    "pure_score": 0.0,
+    "cg_score": 0.5,
+    "adj": "confirm",
+    "category": "prose_trap",
+    "topic": "TCP vs UDP"
+  },
+  "25": {
+    "gt_score": 0.0,
+    "pure_score": 0.5,
+    "cg_score": 0.0,
+    "adj": "confirm",
+    "category": "prose_trap",
+    "topic": "Garbage Collection"
+  },
+  "26": {
+    "gt_score": 0.0,
+    "pure_score": 0.0,
+    "cg_score": 0.0,
+    "adj": "confirm",
+    "category": "prose_trap",
+    "topic": "CPU Scheduling"
+  },
+  "27": {
+    "gt_score": 0.5,
+    "pure_score": 0.0,
+    "cg_score": 0.0,
+    "adj": "confirm",
+    "category": "prose_trap",
+    "topic": "Graph Algorithms \u2014 Dijkstra"
+  },
+  "28": {
+    "gt_score": 0.0,
+    "pure_score": 0.0,
+    "cg_score": 0.0,
+    "adj": "confirm",
+    "category": "prose_trap",
+    "topic": "Sorting \u2014 Merge Sort"
+  },
+  "29": {
+    "gt_score": 0.0,
+    "pure_score": 0.0,
+    "cg_score": 0.0,
+    "adj": "confirm",
+    "category": "prose_trap",
+    "topic": "Operating Systems \u2014 Deadlock"
+  },
+  "30": {
+    "gt_score": 0.0,
+    "pure_score": 0.5,
+    "cg_score": 1.0,
+    "adj": "decrease",
+    "category": "prose_trap",
+    "topic": "Memory Management \u2014 Stack vs Heap"
+  },
+  "31": {
+    "gt_score": 0.0,
+    "pure_score": 0.0,
+    "cg_score": 0.0,
+    "adj": "confirm",
+    "category": "prose_trap",
+    "topic": "Hash Tables"
+  },
+  "32": {
+    "gt_score": 0.0,
+    "pure_score": 0.0,
+    "cg_score": 0.0,
+    "adj": "decrease",
+    "category": "prose_trap",
+    "topic": "Binary Search Trees"
+  },
+  "33": {
+    "gt_score": 0.0,
+    "pure_score": 0.0,
+    "cg_score": 0.0,
+    "adj": "confirm",
+    "category": "prose_trap",
+    "topic": "Virtual Memory"
+  },
+  "34": {
+    "gt_score": 0.0,
+    "pure_score": 0.0,
+    "cg_score": 0.0,
+    "adj": "confirm",
+    "category": "prose_trap",
+    "topic": "TCP vs UDP"
+  },
+  "35": {
+    "gt_score": 0.0,
+    "pure_score": 0.0,
+    "cg_score": 0.0,
+    "adj": "confirm",
+    "category": "prose_trap",
+    "topic": "Garbage Collection"
+  },
+  "36": {
+    "gt_score": 1.0,
+    "pure_score": 0.0,
+    "cg_score": 0.0,
+    "adj": "confirm",
+    "category": "adjective_injection",
+    "topic": "Hash Tables"
+  },
+  "37": {
+    "gt_score": 1.0,
+    "pure_score": 2.0,
+    "cg_score": 2.0,
+    "adj": "confirm",
+    "category": "adjective_injection",
+    "topic": "Binary Search Trees"
+  },
+  "38": {
+    "gt_score": 1.0,
+    "pure_score": 0.0,
+    "cg_score": 1.5,
+    "adj": "confirm",
+    "category": "adjective_injection",
+    "topic": "Virtual Memory"
+  },
+  "39": {
+    "gt_score": 1.0,
+    "pure_score": 2.0,
+    "cg_score": 1.5,
+    "adj": "confirm",
+    "category": "adjective_injection",
+    "topic": "TCP vs UDP"
+  },
+  "40": {
+    "gt_score": 1.0,
+    "pure_score": 2.0,
+    "cg_score": 2.0,
+    "adj": "confirm",
+    "category": "adjective_injection",
+    "topic": "Garbage Collection"
+  },
+  "41": {
+    "gt_score": 0.5,
+    "pure_score": 1.0,
+    "cg_score": 1.0,
+    "adj": "confirm",
+    "category": "adjective_injection",
+    "topic": "CPU Scheduling"
+  },
+  "42": {
+    "gt_score": 1.0,
+    "pure_score": 2.0,
+    "cg_score": 2.0,
+    "adj": "decrease",
+    "category": "adjective_injection",
+    "topic": "Graph Algorithms \u2014 Dijkstra"
+  },
+  "43": {
+    "gt_score": 1.0,
+    "pure_score": 1.0,
+    "cg_score": 1.5,
+    "adj": "decrease",
+    "category": "adjective_injection",
+    "topic": "Sorting \u2014 Merge Sort"
+  },
+  "44": {
+    "gt_score": 1.0,
+    "pure_score": 0.5,
+    "cg_score": 0.0,
+    "adj": "confirm",
+    "category": "adjective_injection",
+    "topic": "Operating Systems \u2014 Deadlock"
+  },
+  "45": {
+    "gt_score": 1.0,
+    "pure_score": 0.0,
+    "cg_score": 0.0,
+    "adj": "confirm",
+    "category": "adjective_injection",
+    "topic": "Memory Management \u2014 Stack vs Heap"
+  },
+  "46": {
+    "gt_score": 0.5,
+    "pure_score": 0.0,
+    "cg_score": 0.0,
+    "adj": "confirm",
+    "category": "adjective_injection",
+    "topic": "Hash Tables"
+  },
+  "47": {
+    "gt_score": 1.0,
+    "pure_score": 0.5,
+    "cg_score": 0.5,
+    "adj": "decrease",
+    "category": "adjective_injection",
+    "topic": "Binary Search Trees"
+  },
+  "48": {
+    "gt_score": 1.0,
+    "pure_score": 0.5,
+    "cg_score": 1.0,
+    "adj": "confirm",
+    "category": "adjective_injection",
+    "topic": "Virtual Memory"
+  },
+  "49": {
+    "gt_score": 1.0,
+    "pure_score": 0.0,
+    "cg_score": 0.0,
+    "adj": "confirm",
+    "category": "adjective_injection",
+    "topic": "TCP vs UDP"
+  },
+  "50": {
+    "gt_score": 1.0,
+    "pure_score": 0.5,
+    "cg_score": 0.5,
+    "adj": "confirm",
+    "category": "adjective_injection",
+    "topic": "Garbage Collection"
+  },
+  "51": {
+    "gt_score": 0.5,
+    "pure_score": 0.0,
+    "cg_score": 0.0,
+    "adj": "confirm",
+    "category": "hallucination",
+    "topic": "Hash Tables"
+  },
+  "52": {
+    "gt_score": 0.5,
+    "pure_score": 0.0,
+    "cg_score": 0.0,
+    "adj": "decrease",
+    "category": "hallucination",
+    "topic": "Binary Search Trees"
+  },
+  "53": {
+    "gt_score": 0.5,
+    "pure_score": 0.0,
+    "cg_score": 0.0,
+    "adj": "confirm",
+    "category": "hallucination",
+    "topic": "Virtual Memory"
+  },
+  "54": {
+    "gt_score": 0.5,
+    "pure_score": 0.0,
+    "cg_score": 0.5,
+    "adj": "confirm",
+    "category": "hallucination",
+    "topic": "TCP vs UDP"
+  },
+  "55": {
+    "gt_score": 0.5,
+    "pure_score": 0.0,
+    "cg_score": 0.0,
+    "adj": "confirm",
+    "category": "hallucination",
+    "topic": "Garbage Collection"
+  },
+  "56": {
+    "gt_score": 0.5,
+    "pure_score": 0.0,
+    "cg_score": 0.0,
+    "adj": "confirm",
+    "category": "hallucination",
+    "topic": "CPU Scheduling"
+  },
+  "57": {
+    "gt_score": 0.5,
+    "pure_score": 0.0,
+    "cg_score": 0.5,
+    "adj": "confirm",
+    "category": "hallucination",
+    "topic": "Graph Algorithms \u2014 Dijkstra"
+  },
+  "58": {
+    "gt_score": 0.5,
+    "pure_score": 0.0,
+    "cg_score": 0.5,
+    "adj": "confirm",
+    "category": "hallucination",
+    "topic": "Sorting \u2014 Merge Sort"
+  },
+  "59": {
+    "gt_score": 0.0,
+    "pure_score": 0.0,
+    "cg_score": 0.0,
+    "adj": "confirm",
+    "category": "hallucination",
+    "topic": "Operating Systems \u2014 Deadlock"
+  },
+  "60": {
+    "gt_score": 0.5,
+    "pure_score": 0.0,
+    "cg_score": 0.5,
+    "adj": "confirm",
+    "category": "hallucination",
+    "topic": "Memory Management \u2014 Stack vs Heap"
+  },
+  "61": {
+    "gt_score": 0.5,
+    "pure_score": 0.0,
+    "cg_score": 0.0,
+    "adj": "confirm",
+    "category": "hallucination",
+    "topic": "Hash Tables"
+  },
+  "62": {
+    "gt_score": 0.5,
+    "pure_score": 0.0,
+    "cg_score": 0.0,
+    "adj": "confirm",
+    "category": "hallucination",
+    "topic": "Binary Search Trees"
+  },
+  "63": {
+    "gt_score": 0.5,
+    "pure_score": 0.0,
+    "cg_score": 0.0,
+    "adj": "confirm",
+    "category": "hallucination",
+    "topic": "Virtual Memory"
+  },
+  "64": {
+    "gt_score": 0.5,
+    "pure_score": 0.0,
+    "cg_score": 0.5,
+    "adj": "confirm",
+    "category": "hallucination",
+    "topic": "TCP vs UDP"
+  },
+  "65": {
+    "gt_score": 0.5,
+    "pure_score": 0.0,
+    "cg_score": 0.0,
+    "adj": "confirm",
+    "category": "hallucination",
+    "topic": "Garbage Collection"
+  },
+  "66": {
+    "gt_score": 2.0,
+    "pure_score": 2.0,
+    "cg_score": 1.5,
+    "adj": "confirm",
+    "category": "breadth_bluffer",
+    "topic": "Hash Tables"
+  },
+  "67": {
+    "gt_score": 2.0,
+    "pure_score": 2.0,
+    "cg_score": 1.0,
+    "adj": "confirm",
+    "category": "breadth_bluffer",
+    "topic": "Binary Search Trees"
+  },
+  "68": {
+    "gt_score": 2.0,
+    "pure_score": 1.5,
+    "cg_score": 1.0,
+    "adj": "confirm",
+    "category": "breadth_bluffer",
+    "topic": "Virtual Memory"
+  },
+  "69": {
+    "gt_score": 2.0,
+    "pure_score": 2.5,
+    "cg_score": 2.0,
+    "adj": "confirm",
+    "category": "breadth_bluffer",
+    "topic": "TCP vs UDP"
+  },
+  "70": {
+    "gt_score": 2.0,
+    "pure_score": 2.0,
+    "cg_score": 1.5,
+    "adj": "confirm",
+    "category": "breadth_bluffer",
+    "topic": "Garbage Collection"
+  },
+  "71": {
+    "gt_score": 2.0,
+    "pure_score": 2.0,
+    "cg_score": 1.0,
+    "adj": "confirm",
+    "category": "breadth_bluffer",
+    "topic": "CPU Scheduling"
+  },
+  "72": {
+    "gt_score": 2.0,
+    "pure_score": 3.0,
+    "cg_score": 2.0,
+    "adj": "confirm",
+    "category": "breadth_bluffer",
+    "topic": "Graph Algorithms \u2014 Dijkstra"
+  },
+  "73": {
+    "gt_score": 2.0,
+    "pure_score": 1.0,
+    "cg_score": 1.5,
+    "adj": "confirm",
+    "category": "breadth_bluffer",
+    "topic": "Sorting \u2014 Merge Sort"
+  },
+  "74": {
+    "gt_score": 2.0,
+    "pure_score": 3.0,
+    "cg_score": 2.0,
+    "adj": "confirm",
+    "category": "breadth_bluffer",
+    "topic": "Operating Systems \u2014 Deadlock"
+  },
+  "75": {
+    "gt_score": 2.0,
+    "pure_score": 1.0,
+    "cg_score": 1.0,
+    "adj": "confirm",
+    "category": "breadth_bluffer",
+    "topic": "Memory Management \u2014 Stack vs Heap"
+  },
+  "76": {
+    "gt_score": 2.0,
+    "pure_score": 3.0,
+    "cg_score": 2.0,
+    "adj": "confirm",
+    "category": "code_logic_drift",
+    "topic": "Hash Tables"
+  },
+  "77": {
+    "gt_score": 2.5,
+    "pure_score": 3.0,
+    "cg_score": 2.5,
+    "adj": "confirm",
+    "category": "code_logic_drift",
+    "topic": "Binary Search Trees"
+  },
+  "78": {
+    "gt_score": 2.0,
+    "pure_score": 3.5,
+    "cg_score": 2.5,
+    "adj": "confirm",
+    "category": "code_logic_drift",
+    "topic": "Virtual Memory"
+  },
+  "79": {
+    "gt_score": 2.0,
+    "pure_score": 4.0,
+    "cg_score": 2.5,
+    "adj": "confirm",
+    "category": "code_logic_drift",
+    "topic": "TCP vs UDP"
+  },
+  "80": {
+    "gt_score": 2.5,
+    "pure_score": 1.5,
+    "cg_score": 1.0,
+    "adj": "confirm",
+    "category": "code_logic_drift",
+    "topic": "Garbage Collection"
+  },
+  "81": {
+    "gt_score": 2.0,
+    "pure_score": 3.5,
+    "cg_score": 2.5,
+    "adj": "confirm",
+    "category": "code_logic_drift",
+    "topic": "CPU Scheduling"
+  },
+  "82": {
+    "gt_score": 2.5,
+    "pure_score": 2.0,
+    "cg_score": 1.5,
+    "adj": "confirm",
+    "category": "code_logic_drift",
+    "topic": "Graph Algorithms \u2014 Dijkstra"
+  },
+  "83": {
+    "gt_score": 2.0,
+    "pure_score": 4.0,
+    "cg_score": 3.5,
+    "adj": "confirm",
+    "category": "code_logic_drift",
+    "topic": "Sorting \u2014 Merge Sort"
+  },
+  "84": {
+    "gt_score": 2.5,
+    "pure_score": 3.0,
+    "cg_score": 2.5,
+    "adj": "confirm",
+    "category": "code_logic_drift",
+    "topic": "Operating Systems \u2014 Deadlock"
+  },
+  "85": {
+    "gt_score": 2.0,
+    "pure_score": 2.0,
+    "cg_score": 1.5,
+    "adj": "confirm",
+    "category": "code_logic_drift",
+    "topic": "Memory Management \u2014 Stack vs Heap"
+  },
+  "86": {
+    "gt_score": 2.5,
+    "pure_score": 1.0,
+    "cg_score": 2.5,
+    "adj": "confirm",
+    "category": "structural_split",
+    "topic": "Hash Tables"
+  },
+  "87": {
+    "gt_score": 2.5,
+    "pure_score": 5.0,
+    "cg_score": 4.0,
+    "adj": "confirm",
+    "category": "structural_split",
+    "topic": "Binary Search Trees"
+  },
+  "88": {
+    "gt_score": 2.5,
+    "pure_score": 2.0,
+    "cg_score": 1.5,
+    "adj": "confirm",
+    "category": "structural_split",
+    "topic": "Virtual Memory"
+  },
+  "89": {
+    "gt_score": 2.5,
+    "pure_score": 4.0,
+    "cg_score": 4.0,
+    "adj": "confirm",
+    "category": "structural_split",
+    "topic": "TCP vs UDP"
+  },
+  "90": {
+    "gt_score": 2.5,
+    "pure_score": 3.0,
+    "cg_score": 3.0,
+    "adj": "confirm",
+    "category": "structural_split",
+    "topic": "Garbage Collection"
+  },
+  "91": {
+    "gt_score": 2.5,
+    "pure_score": 4.0,
+    "cg_score": 4.5,
+    "adj": "confirm",
+    "category": "structural_split",
+    "topic": "CPU Scheduling"
+  },
+  "92": {
+    "gt_score": 2.5,
+    "pure_score": 2.0,
+    "cg_score": 2.0,
+    "adj": "confirm",
+    "category": "structural_split",
+    "topic": "Graph Algorithms \u2014 Dijkstra"
+  },
+  "94": {
+    "gt_score": 2.5,
+    "pure_score": 3.0,
+    "cg_score": 1.8,
+    "adj": "confirm",
+    "category": "structural_split",
+    "topic": "Operating Systems \u2014 Deadlock"
+  },
+  "95": {
+    "gt_score": 2.5,
+    "pure_score": 3.0,
+    "cg_score": 1.2,
+    "adj": "confirm",
+    "category": "structural_split",
+    "topic": "Memory Management \u2014 Stack vs Heap"
+  },
+  "97": {
+    "gt_score": 2.5,
+    "pure_score": 4.0,
+    "cg_score": 4.0,
+    "adj": "confirm",
+    "category": "structural_split",
+    "topic": "Binary Search Trees"
+  },
+  "98": {
+    "gt_score": 2.5,
+    "pure_score": 2.0,
+    "cg_score": 2.0,
+    "adj": "confirm",
+    "category": "structural_split",
+    "topic": "Virtual Memory"
+  },
+  "99": {
+    "gt_score": 2.5,
+    "pure_score": 2.0,
+    "cg_score": 2.0,
+    "adj": "confirm",
+    "category": "structural_split",
+    "topic": "TCP vs UDP"
+  },
+  "100": {
+    "gt_score": 2.5,
+    "pure_score": 3.0,
+    "cg_score": 1.2,
+    "adj": "confirm",
+    "category": "structural_split",
+    "topic": "Garbage Collection"
+  },
+  "93": {
+    "gt_score": 2.5,
+    "pure_score": 2.0,
+    "cg_score": 2.0,
+    "adj": "confirm",
+    "category": "structural_split",
+    "topic": "Sorting \u2014 Merge Sort"
+  },
+  "13": {
+    "gt_score": 4.8,
+    "pure_score": 2.0,
+    "cg_score": 2.5,
+    "adj": "confirm",
+    "category": "mastery",
+    "topic": "Virtual Memory"
+  },
+  "96": {
+    "gt_score": 2.5,
+    "pure_score": 0.0,
+    "cg_score": 0.5,
+    "adj": "confirm",
+    "category": "structural_split",
+    "topic": "Hash Tables"
+  }
+}

@@ -60,9 +60,13 @@ class IntegrationResult:
     lexical_bridge_count: int         = 0
     semantic_bridge_count: int        = 0
     reasoning: str                    = ""
+    # Contradiction detection fields
+    contradictions: list[dict]        = field(default_factory=list)
+    coherence_penalty: float          = 1.0   # multiplicative penalty 0–1 (1 = no penalty)
+    coherence_report: str             = ""    # human-readable summary for verifier prompt
 
     def to_dict(self) -> dict:
-        return {
+        d = {
             "integration_score":     round(self.integration_score, 3),
             "integration_level":     self.integration_level,
             "lexical_bridge_count":  self.lexical_bridge_count,
@@ -71,6 +75,11 @@ class IntegrationResult:
             "semantic_bridges":      self.semantic_bridges,
             "reasoning":             self.reasoning,
         }
+        if self.contradictions:
+            d["contradictions"]    = self.contradictions
+            d["coherence_penalty"] = round(self.coherence_penalty, 3)
+            d["coherence_report"]  = self.coherence_report
+        return d
 
 
 # ── Main class ─────────────────────────────────────────────────────────────────
@@ -143,6 +152,12 @@ class CrossParaIntegrator:
         # Re-evaluate level after blending
         final_level = self._score_to_level(blended_score) if integration_level != "n/a" else integration_level
 
+        # Tier 3: contradiction detection (1 LLM call)
+        contradiction_result = self._detect_contradictions(segment_scores)
+        contradictions    = contradiction_result.get("contradictions", [])
+        coherence_penalty = contradiction_result.get("coherence_penalty", 1.0)
+        coherence_report  = contradiction_result.get("coherence_report", "")
+
         return IntegrationResult(
             lexical_bridges=lexical_bridges,
             semantic_bridges=semantic_bridges,
@@ -151,6 +166,9 @@ class CrossParaIntegrator:
             lexical_bridge_count=len(lexical_bridges),
             semantic_bridge_count=len(semantic_bridges),
             reasoning=reasoning,
+            contradictions=contradictions,
+            coherence_penalty=coherence_penalty,
+            coherence_report=coherence_report,
         )
 
     # ── Tier 1 — Lexical detection ────────────────────────────────────────────
@@ -244,6 +262,106 @@ class CrossParaIntegrator:
                 "integration_level": "none",
                 "reasoning": f"LLM call failed: {e}",
             }
+
+    # ── Tier 3 — Contradiction detection ──────────────────────────────────────
+
+    _CONTRADICTION_SYSTEM = (
+        "You are a grading assistant checking whether a student's multi-paragraph essay "
+        "contains factual contradictions — places where one paragraph makes a claim that "
+        "directly conflicts with a claim in another paragraph. "
+        "Focus only on contradictions about the same concept or mechanism. "
+        "Ignore stylistic variation and mere differences in emphasis. "
+        "Return ONLY valid JSON."
+    )
+
+    def _detect_contradictions(self, segment_scores: list) -> dict:
+        """
+        Detect factual contradictions across essay segments via a single LLM call.
+
+        Returns a dict with:
+          contradictions   : list of {seg_a, seg_b, claim_a, claim_b, severity}
+          coherence_penalty: float  (1.0 = no penalty, 0.85 = minor, 0.6 = critical)
+          coherence_report : str    (human-readable summary for verifier prompt)
+        """
+        # Build segment summaries — use full text for accurate contradiction detection
+        seg_summaries: list[str] = []
+        for ss in segment_scores:
+            # Truncate only if very long (>600 chars) to fit model context while preserving key claims
+            text_snippet = ss.segment.text[:600].replace("\n", " ").strip()
+            seg_summaries.append(
+                f"Segment {ss.segment.index} ({ss.segment.label}): \"{text_snippet}\""
+            )
+
+        user_prompt = (
+            "ESSAY SEGMENTS:\n" +
+            "\n".join(seg_summaries) +
+            "\n\n"
+            "Identify any pairs of segments that make directly contradictory factual claims "
+            "about the same concept or mechanism.\n\n"
+            "Return JSON:\n"
+            "{\n"
+            '  "contradictions": [\n'
+            '    {"seg_a": 1, "seg_b": 2, "claim_a": "...", "claim_b": "...", '
+            '"severity": "critical|minor"}\n'
+            "  ],\n"
+            '  "overall_coherence": "coherent|minor_issues|critical_issues"\n'
+            "}"
+        )
+
+        try:
+            response = self._client.chat.completions.create(
+                model=self.model,
+                messages=[
+                    {"role": "system", "content": self._CONTRADICTION_SYSTEM},
+                    {"role": "user",   "content": user_prompt},
+                ],
+                temperature=0.0,
+                max_tokens=1200,
+            )
+            raw = response.choices[0].message.content
+            parsed = parse_llm_json(raw)
+        except Exception as e:
+            return {
+                "contradictions": [],
+                "coherence_penalty": 1.0,
+                "coherence_report": f"Contradiction detection failed: {e}",
+            }
+
+        contradictions = parsed.get("contradictions", [])
+        overall = parsed.get("overall_coherence", "coherent")
+
+        # Compute penalty
+        has_critical = any(c.get("severity") == "critical" for c in contradictions)
+        has_minor    = any(c.get("severity") == "minor"    for c in contradictions)
+
+        if has_critical:
+            coherence_penalty = 0.60
+        elif has_minor:
+            coherence_penalty = 0.85
+        else:
+            coherence_penalty = 1.0
+
+        # Build human-readable report for the verifier prompt
+        if not contradictions:
+            coherence_report = "No factual contradictions detected across paragraphs."
+        else:
+            lines = ["COHERENCE ISSUES DETECTED:"]
+            for c in contradictions:
+                sev = c.get("severity", "minor").upper()
+                lines.append(
+                    f"  [{sev}] Seg {c.get('seg_a')} vs Seg {c.get('seg_b')}: "
+                    f"\"{c.get('claim_a')}\" contradicts \"{c.get('claim_b')}\""
+                )
+            lines.append(
+                f"Coherence penalty applied: {coherence_penalty:.0%} of verifier score."
+            )
+            coherence_report = "\n".join(lines)
+
+        return {
+            "contradictions":    contradictions,
+            "coherence_penalty": coherence_penalty,
+            "coherence_report":  coherence_report,
+        }
 
     # ── Utilities ─────────────────────────────────────────────────────────────
 

@@ -1,0 +1,74 @@
+{
+  "n_cases": 100,
+  "model": "gemini-2.5-flash",
+  "overall": {
+    "mae_llm": 0.63,
+    "mae_cg": 0.558,
+    "rmse_llm": 0.9106,
+    "rmse_cg": 0.823,
+    "pearson_llm": 0.8727,
+    "pearson_cg": 0.8901,
+    "bias_llm": -0.056,
+    "bias_cg": -0.174,
+    "robustness_gain": 0.072,
+    "pct_gain": 11.4
+  },
+  "per_category": {
+    "mastery": {
+      "n": 20,
+      "mae_llm": 0.575,
+      "mae_cg": 0.55,
+      "gain": 0.025,
+      "bias_llm": -0.405,
+      "bias_cg": -0.38
+    },
+    "prose_trap": {
+      "n": 15,
+      "mae_llm": 0.1667,
+      "mae_cg": 0.2,
+      "gain": -0.0333,
+      "bias_llm": 0.1,
+      "bias_cg": 0.1333
+    },
+    "adjective_injection": {
+      "n": 15,
+      "mae_llm": 0.7333,
+      "mae_cg": 0.7,
+      "gain": 0.0333,
+      "bias_llm": -0.1333,
+      "bias_cg": -0.0333
+    },
+    "hallucination": {
+      "n": 15,
+      "mae_llm": 0.4667,
+      "mae_cg": 0.3,
+      "gain": 0.1667,
+      "bias_llm": -0.4667,
+      "bias_cg": -0.3
+    },
+    "breadth_bluffer": {
+      "n": 10,
+      "mae_llm": 0.5,
+      "mae_cg": 0.55,
+      "gain": -0.05,
+      "bias_llm": 0.0,
+      "bias_cg": -0.55
+    },
+    "code_logic_drift": {
+      "n": 10,
+      "mae_llm": 1.05,
+      "mae_cg": 0.6,
+      "gain": 0.45,
+      "bias_llm": 0.75,
+      "bias_cg": 0.0
+    },
+    "structural_split": {
+      "n": 15,
+      "mae_llm": 1.0333,
+      "mae_cg": 1.02,
+      "gain": 0.0133,
+      "bias_llm": 0.1667,
+      "bias_cg": -0.0867
+    }
+  }
+}

@@ -365,10 +365,14 @@ class ConceptGradePipeline:
             if concept_graph_obj:
                 if self.use_hierarchical_kg and hasattr(self.comparator, "compare_hierarchical"):
                     comparison_obj = self.comparator.compare_hierarchical(
-                        student_graph=concept_graph_obj
+                        student_graph=concept_graph_obj,
+                        question=question,
                     )
                 else:
-                    comparison_obj = self.comparator.compare(student_graph=concept_graph_obj)
+                    comparison_obj = self.comparator.compare(
+                        student_graph=concept_graph_obj,
+                        question=question,
+                    )
                 result.comparison = comparison_obj.to_dict()
             else:
                 result.comparison = {"scores": {}, "analysis": {}, "diagnostic": {}}

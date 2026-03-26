@@ -287,7 +287,7 @@ class LongAnswerPipeline:
         for i, seg in enumerate(seg_result.segments):
             cg = concept_graphs.get(i)
             try:
-                comp = self.comparator.compare(student_graph=cg).to_dict() if cg else {}
+                comp = self.comparator.compare(student_graph=cg, question=question).to_dict() if cg else {}
             except Exception:
                 comp = {"scores": {}, "analysis": {}}
             comparison_results[i] = comp
@@ -380,6 +380,20 @@ class LongAnswerPipeline:
                 verifier_dict = ver.to_dict()
         except Exception as e:
             verified_score = agg_pre.final_score
+
+        # Apply coherence penalty for cross-paragraph contradictions
+        if _integration_result is not None and _integration_result.coherence_penalty < 1.0:
+            penalty = _integration_result.coherence_penalty
+            penalized = round(verified_score * penalty, 2)
+            n_contra = len(_integration_result.contradictions)
+            self.on_progress("verify",
+                f"  [Coherence] {n_contra} contradiction(s) — "
+                f"penalty {penalty:.0%}: {verified_score:.2f} → {penalized:.2f}/5")
+            print(f"  [Coherence] penalty={penalty:.0%} "
+                  f"contradictions={n_contra} "
+                  f"score: {verified_score:.2f} → {penalized:.2f}/5")
+            verified_score = penalized
+
         agg_pre.final_score = min(5.0, verified_score)
         agg = agg_pre
         self.on_progress("verify", f"  Final score: {agg.final_score}/5")

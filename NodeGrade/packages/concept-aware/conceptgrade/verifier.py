@@ -76,6 +76,7 @@ HOW TO SCORE:
 - Compare the student answer directly to the reference answer.
 - The reference answer defines what 5.0 looks like.
 - Missing critical concepts lower the score; misconceptions lower it further.
+- Causal chain coverage tells you if the student understands concept relationships, not just isolated facts.
 - Partially correct or vague explanations merit partial credit (e.g. 1.5 not 1 or 2).
 - Be precise: use the full range 0.0–5.0 with one decimal place.
 
@@ -92,11 +93,12 @@ STUDENT ANSWER:
 CONCEPT ANALYSIS (from structured knowledge graph):
 - Concepts student COVERED: {covered_concepts}
 - Concepts student MISSED: {missing_concepts}
+- Causal chain coverage: {chain_coverage}
 - Bloom's cognitive level: {blooms_label} (level {blooms_level}/6)
 - SOLO level: {solo_label} (level {solo_level}/5)
-- Misconceptions detected: {misc_count}
-
-Grade the student answer compared to the reference. Which covered concepts are strongest evidence? Which missing concepts are critical gaps? Give a precise score.
+- Misconceptions detected: {misc_count}{misc_details}
+{kg_confidence_note}{topological_note}
+Grade the student answer compared to the reference. Use causal chain coverage to assess depth of understanding beyond keyword matching. Critical misconceptions about core mechanisms should significantly lower the score even if other content is correct.
 
 Return ONLY valid JSON:
 {{
@@ -118,9 +120,11 @@ STUDENT ESSAY:
 CONCEPT ANALYSIS (from structured knowledge graph):
 - Concepts student COVERED: {covered_concepts}
 - Concepts student MISSED: {missing_concepts}
+- Causal chain coverage: {chain_coverage}
 - Bloom's cognitive level: {blooms_label} (level {blooms_level}/6)
 - SOLO level: {solo_label} (level {solo_level}/5)
-- Misconceptions detected: {misc_count}
+{kg_confidence_note}{topological_note}
+- Misconceptions detected: {misc_count}{misc_details}
 
 DEPTH EVALUATION CHECKLIST (answer each before scoring):
 1. Does the essay explain HOW/WHY concepts work, or just name them? (depth vs. breadth)
@@ -128,18 +132,13 @@ DEPTH EVALUATION CHECKLIST (answer each before scoring):
 3. How many of the MISSED concepts are critical to a complete answer?
 4. Does the essay demonstrate genuine understanding or surface-level recall?
 
-Apply the scoring anchors strictly:
-- 5.0: ALL key concepts with accurate mechanisms AND clear explanations
-- 4.0: MOST concepts accurately, only minor gaps
-- 3.0: Main ideas present but missing important details or depth
-- 2.0: Some correct points but significant gaps or shallow
-- 1.0: Mostly off-target or very incomplete
+Grade the student essay compared to the reference. Use the depth checklist and causal chain coverage to assess depth beyond keyword matching.
 
 Return ONLY valid JSON:
 {{
-  "verified_score": <float 0.0–5.0 with one decimal, e.g. 2.5>,
+  "verified_score": <float 0.0–5.0 with one decimal>,
   "adjustment_direction": "confirm|increase|decrease",
-  "depth_assessment": "Is this depth (HOW/WHY explained) or breadth (concepts named only)?",
+  "depth_assessment": "depth (HOW/WHY explained) or breadth (concepts named only)?",
   "adjustment_reason": "2-3 sentence explanation comparing student to reference answer",
   "confidence": 0.0-1.0,
   "key_evidence": "Most compelling evidence for your grade"
@@ -306,6 +305,47 @@ class LLMVerifier:
 
         covered_str, critical_str, minor_str = self._extract_concept_strings(analysis)
         missing_str = ", ".join(filter(None, [critical_str.replace("none", ""), minor_str.replace("none", "")])).strip(", ") or "none — full coverage"
+        chain_str = comparison_result.get("scores", {}).get("chain_coverage", None)
+        chain_coverage_str = (
+            f"{chain_str:.0%} of causal concept chains covered" if chain_str is not None
+            else analysis.get("chain_coverage_summary", "not computed")
+        )
+
+        # Low-KG-confidence note: when concept coverage or KG relevance is low,
+        # tell the verifier to rely on holistic assessment rather than KG evidence.
+        cov_score = comparison_result.get("scores", {}).get("concept_coverage", 1.0)
+        rho = comparison_result.get("scores", {}).get("kg_relevance_score", 1.0)
+        if cov_score < 0.30 or rho < 0.25:
+            kg_confidence_note = (
+                "⚠ KG RELEVANCE LOW (coverage={:.0%}, ρ={:.0%}): The knowledge graph may not fully "
+                "represent this topic's domain vocabulary. Rely primarily on your holistic assessment "
+                "of the student answer vs. the reference answer rather than the KG concept lists.\n".format(cov_score, rho)
+            )
+        else:
+            kg_confidence_note = ""
+
+        # Topological note: anchor-conductance features for hallucination detection
+        topo_summary = comparison_result.get("diagnostic", {}).get("topological_summary", "")
+        anchor_ratio = comparison_result.get("scores", {}).get("anchor_ratio", 1.0)
+        if topo_summary and anchor_ratio < 0.65:
+            topological_note = f"⚙ GRAPH TOPOLOGY: {topo_summary}\n"
+        else:
+            topological_note = ""
+
+        # Misconception details: surface critical misconceptions to the verifier
+        misc_list = misconceptions.get("misconceptions", [])
+        if misc_list:
+            critical = [m for m in misc_list if m.get("severity", "").lower() in ("critical", "persistent")]
+            if critical:
+                details = "; ".join(
+                    m.get("description", m.get("explanation", m.get("student_claim", "")))[:80]
+                    for m in critical[:3]
+                )
+                misc_details = f" — CRITICAL: {details}"
+            else:
+                misc_details = ""
+        else:
+            misc_details = ""
 
         user_template = VERIFIER_USER_LAG if mode == "lag" else VERIFIER_USER
         fmt_kwargs = dict(
@@ -314,11 +354,15 @@ class LLMVerifier:
             student_answer=student_answer,
             covered_concepts=covered_str,
             missing_concepts=missing_str,
+            chain_coverage=chain_coverage_str,
             blooms_label=blooms.get("label", "Remember"),
             blooms_level=blooms.get("level", 1),
             solo_label=solo.get("label", "Prestructural"),
             solo_level=solo.get("level", 1),
             misc_count=misconceptions.get("total_misconceptions", 0),
+            misc_details=misc_details,
+            kg_confidence_note=kg_confidence_note,
+            topological_note=topological_note,
         )
         user_prompt = user_template.format(**fmt_kwargs)
 
@@ -326,7 +370,6 @@ class LLMVerifier:
             system_prompt = VERIFIER_SYSTEM_LAG if mode == "lag" else VERIFIER_SYSTEM
             raw = self._call_llm(system_prompt, user_prompt)
             parsed = self._parse_json(raw)
-            # Parse as fine-grained score (0.5 increments), convert to 0-1
             raw_score = float(parsed.get("verified_score", kg_score * 5))
             # Round to nearest 0.5
             verified_fine = round(raw_score * 2) / 2
@@ -415,6 +458,43 @@ class LLMVerifier:
         analysis = comparison_result.get("analysis", comparison_result)
         covered_str, critical_str, minor_str = self._extract_concept_strings(analysis)
         missing_str = ", ".join(filter(None, [critical_str.replace("none", ""), minor_str.replace("none", "")])).strip(", ") or "none — full coverage"
+        chain_str = comparison_result.get("scores", {}).get("chain_coverage", None)
+        chain_coverage_str = (
+            f"{chain_str:.0%} of causal concept chains covered" if chain_str is not None
+            else comparison_result.get("analysis", {}).get("chain_coverage_summary", "not computed")
+        )
+
+        cov_score = comparison_result.get("scores", {}).get("concept_coverage", 1.0)
+        rho = comparison_result.get("scores", {}).get("kg_relevance_score", 1.0)
+        if cov_score < 0.30 or rho < 0.25:
+            kg_confidence_note = (
+                "⚠ KG RELEVANCE LOW (coverage={:.0%}, ρ={:.0%}): The knowledge graph may not fully "
+                "represent this topic's domain vocabulary. Rely primarily on your holistic assessment "
+                "of the student answer vs. the reference answer rather than the KG concept lists.\n".format(cov_score, rho)
+            )
+        else:
+            kg_confidence_note = ""
+
+        topo_summary = comparison_result.get("diagnostic", {}).get("topological_summary", "")
+        anchor_ratio = comparison_result.get("scores", {}).get("anchor_ratio", 1.0)
+        if topo_summary and anchor_ratio < 0.65:
+            topological_note = f"⚙ GRAPH TOPOLOGY: {topo_summary}\n"
+        else:
+            topological_note = ""
+
+        misc_list = misconceptions.get("misconceptions", [])
+        if misc_list:
+            critical = [m for m in misc_list if m.get("severity", "").lower() in ("critical", "persistent")]
+            if critical:
+                details = "; ".join(
+                    m.get("description", m.get("explanation", m.get("student_claim", "")))[:80]
+                    for m in critical[:3]
+                )
+                misc_details = f" — CRITICAL: {details}"
+            else:
+                misc_details = ""
+        else:
+            misc_details = ""
 
         user_template = VERIFIER_USER_LAG if mode == "lag" else VERIFIER_USER
         fmt_kwargs = dict(
@@ -423,17 +503,23 @@ class LLMVerifier:
             student_answer=student_answer,
             covered_concepts=covered_str,
             missing_concepts=missing_str,
+            chain_coverage=chain_coverage_str,
             blooms_label=blooms.get("label", "Remember"),
             blooms_level=blooms.get("level", 1),
             solo_label=solo.get("label", "Prestructural"),
             solo_level=solo.get("level", 1),
             misc_count=misconceptions.get("total_misconceptions", 0),
+            misc_details=misc_details,
+            kg_confidence_note=kg_confidence_note,
+            topological_note=topological_note,
         )
         user_prompt = user_template.format(**fmt_kwargs)
 
         personas = _SURE_PERSONAS_LAG if mode == "lag" else _SURE_PERSONAS
         base_system = VERIFIER_SYSTEM_LAG if mode == "lag" else VERIFIER_SYSTEM
-        for persona_name, persona_prefix in personas:
+
+        def _grade_persona(args):
+            persona_name, persona_prefix = args
             persona_system = f"{persona_prefix}\n\n{base_system}"
             try:
                 raw = self._call_llm(persona_system, user_prompt)
@@ -441,18 +527,25 @@ class LLMVerifier:
                 raw_score = float(parsed.get("verified_score", kg_score * 5))
                 verified_fine = round(raw_score * 2) / 2
                 verified_fine = max(0.0, min(5.0, verified_fine))
-                verified = verified_fine / 5.0
-                direction = parsed.get("adjustment_direction", "confirm")
+                return verified_fine / 5.0, parsed.get("adjustment_direction", "confirm"), persona_name
             except Exception as e:
                 print(f"  [SURE/{persona_name}] FALLBACK — {type(e).__name__}: {e}; using kg_score")
-                verified = kg_score
-                direction = "confirm"
+                return kg_score, "confirm", persona_name
 
+        from concurrent.futures import ThreadPoolExecutor, as_completed
+        results_map = {}
+        with ThreadPoolExecutor(max_workers=3) as pool:
+            futures = {pool.submit(_grade_persona, p): p[0] for p in personas}
+            for future in as_completed(futures):
+                verified, direction, persona_name = future.result()
+                results_map[persona_name] = (verified, direction)
+
+        # Preserve original persona order for reproducibility
+        for persona_name, _ in personas:
+            verified, direction = results_map[persona_name]
             scores_01.append(verified)
             directions.append(direction)
-            print(
-                f"  [SURE/{persona_name}] score={verified * 5:.1f}/5 ({direction})"
-            )
+            print(f"  [SURE/{persona_name}] score={verified * 5:.1f}/5 ({direction})")
 
         spread = max(scores_01) - min(scores_01)
         median_01 = statistics.median(scores_01)

@@ -1,0 +1,2454 @@
+[
+  {
+    "id": 1,
+    "category": "Standard Mastery",
+    "category_code": "mastery",
+    "answer_type": "sag",
+    "topic": "Hash Tables",
+    "question": "How does a Hash Table handle collisions?",
+    "reference_answer": "A hash table handles collisions using strategies such as chaining (each bucket stores a linked list of entries that hash to the same slot) or open addressing (linear probing, quadratic probing, or double hashing to find the next available slot). Load factor determines when resizing occurs to maintain O(1) average-case performance.",
+    "key_concepts": [
+      "collision resolution",
+      "chaining",
+      "open addressing",
+      "linear probing",
+      "load factor",
+      "hash function"
+    ],
+    "student_answer": "Hash tables employ specific strategies for collision resolution when multiple keys are mapped to the same index by the hash function. The two primary approaches are chaining and open addressing.\n\n**Chaining** handles collisions by having each bucket or slot in the hash table store a pointer to a linked list. When different keys hash to the same index, their key-value pairs are added to this linked list at that particular slot. This allows an arbitrary number of elements to reside at the same calculated index without overwriting previous entries.\n\n**Open addressing** is an alternative where all elements are stored directly within the hash table array itself. When a collision occurs (i.e., the calculated slot is already occupied), the system probes for the next available empty slot using a predefined sequence. Common probing techniques include:\n*   **Linear probing**: It sequentially checks the next slot (e.g., index + 1, index + 2, etc.) until an empty one is found.\n*   **Quadratic probing**: It checks slots at quadratically increasing offsets from the original hash (e.g., index + 1^2, index + 2^2, etc.).\n*   **Double hashing**: It uses a second independent hash function to determine the step size for probing, providing a more uniform distribution of probes.\n\nTo maintain efficient average-case O(1) performance and prevent performance degradation due to an increasing number of collisions, hash tables monitor their **load factor**. The load factor is the ratio of the number of items stored to the total number of available buckets. When this factor exceeds a predetermined threshold, the hash table undergoes a **resizing** operation (often doubling its capacity), and all existing items are rehashed into the new, larger table. This process ensures that the table remains sparse enough to minimize collisions and keep operations fast.",
+    "ground_truth_score": 4.8,
+    "expected_score_range": [
+      4.0,
+      5.0
+    ],
+    "generation_notes": "The answer directly addresses the question by detailing both chaining and open addressing, including specific probing techniques, and explains the role of the load factor and hash function, using clear and accurate technical language."
+  },
+  {
+    "id": 2,
+    "category": "Standard Mastery",
+    "category_code": "mastery",
+    "answer_type": "sag",
+    "topic": "Binary Search Trees",
+    "question": "Explain how a Binary Search Tree maintains sorted order and supports efficient search.",
+    "reference_answer": "A BST stores values such that every node's left subtree contains only smaller values and every right subtree contains only larger values. Search traverses left or right based on comparison, achieving O(log n) average-case performance. Inorder traversal visits nodes in sorted order. Worst-case O(n) occurs when the tree degenerates into a linked list.",
+    "key_concepts": [
+      "BST property",
+      "inorder traversal",
+      "O(log n) search",
+      "left subtree",
+      "right subtree",
+      "degenerate tree"
+    ],
+    "student_answer": "A Binary Search Tree (BST) maintains sorted order through a fundamental property: for every node, all values in its left subtree are strictly less than the node's value, and all values in its right subtree are strictly greater than the node's value. This recursive definition ensures that an inorder traversal of the tree will visit all nodes in ascending sorted order.\n\nThis structural property also enables highly efficient search. To find a target value, the search begins at the root. If the target is less than the current node's value, the search proceeds to the left subtree; if greater, it proceeds to the right subtree. This process effectively halves the search space at each step, leading to an average-case time complexity of O(log n). However, in the worst case, if the tree degenerates into a skewed structure resembling a linked list (e.g., by inserting elements in strictly ascending or descending order), the search might have to traverse every node, resulting in an O(n) time complexity.",
+    "ground_truth_score": 5.0,
+    "expected_score_range": [
+      4.0,
+      5.0
+    ],
+    "generation_notes": "The answer integrates all key concepts from the reference answer into a coherent, well-structured explanation using accurate technical language."
+  },
+  {
+    "id": 3,
+    "category": "Standard Mastery",
+    "category_code": "mastery",
+    "answer_type": "sag",
+    "topic": "Virtual Memory",
+    "question": "What is virtual memory and how does demand paging work?",
+    "reference_answer": "Virtual memory abstracts physical RAM by giving each process its own address space. Demand paging loads pages from disk only when they are accessed (page fault). The OS uses a page table to map virtual addresses to physical frames. When a page is not in memory, a page fault triggers the OS to load it from the swap space, possibly evicting another page using a replacement policy such as LRU or FIFO.",
+    "key_concepts": [
+      "virtual address space",
+      "page table",
+      "page fault",
+      "demand paging",
+      "LRU",
+      "swap space",
+      "physical frame"
+    ],
+    "student_answer": "Virtual memory is an operating system technique that abstracts the computer's physical RAM, providing each process with its own large, contiguous `virtual address space` that appears isolated from other processes and the actual physical memory layout. This abstraction allows processes to use more memory than physically available and simplifies memory management.\n\n`Demand paging` is a strategy used within virtual memory systems where pages of a process's virtual address space are loaded into `physical frames` in RAM only when they are actually needed or accessed, rather than pre-loading the entire process. When a process tries to access a virtual address whose corresponding page is not currently in a physical frame, a `page fault` occurs. This hardware trap signals the OS, which then consults the `page table` to determine if the virtual address is valid and to locate the required page on disk, typically in the `swap space`. The OS then loads this page from the swap space into an available physical frame. If no physical frames are free, the OS must evict an existing page from memory using a `page replacement policy`, such as Least Recently Used (`LRU`) or First-In, First-Out (`FIFO`), before loading the new page. This approach optimizes memory usage and reduces I/O overhead by only bringing actively used parts of a program into main memory.",
+    "ground_truth_score": 4.8,
+    "expected_score_range": [
+      4.0,
+      5.0
+    ],
+    "generation_notes": "The answer provides comprehensive coverage of all key concepts by systematically structuring the explanation from virtual memory to demand paging mechanics."
+  },
+  {
+    "id": 4,
+    "category": "Standard Mastery",
+    "category_code": "mastery",
+    "answer_type": "sag",
+    "topic": "TCP vs UDP",
+    "question": "Compare TCP and UDP in terms of reliability, ordering, and use cases.",
+    "reference_answer": "TCP provides reliable, ordered delivery using a three-way handshake, sequence numbers, acknowledgements, and retransmission of lost packets. It is suited for HTTP, email, and file transfers. UDP is connectionless, with no guarantee of delivery or ordering, making it faster and suited for DNS lookups, live streaming, and online gaming where low latency matters more than reliability.",
+    "key_concepts": [
+      "reliable delivery",
+      "three-way handshake",
+      "sequence numbers",
+      "acknowledgements",
+      "connectionless",
+      "latency",
+      "retransmission"
+    ],
+    "student_answer": "TCP (Transmission Control Protocol) and UDP (User Datagram Protocol) are two fundamental transport layer protocols with distinct characteristics. TCP provides reliable, ordered delivery of data. It establishes a connection using a three-way handshake, and ensures data integrity through mechanisms like sequence numbers for ordering packets, acknowledgements to confirm receipt, and retransmission of lost packets. This makes TCP well-suited for applications where data accuracy is paramount, such as HTTP for web browsing, email (SMTP, POP3, IMAP), and file transfers (FTP).\n\nIn contrast, UDP is a connectionless protocol that offers no guarantees of delivery or ordering. It does not employ handshakes, acknowledgements, or retransmission. This lack of overhead makes UDP significantly faster and results in much lower latency compared to TCP. Consequently, UDP is preferred for applications where speed and real-time performance are more critical than absolute reliability, such as DNS lookups, live streaming of audio/video content, and online gaming where occasional packet loss is acceptable to maintain low latency.",
+    "ground_truth_score": 4.8,
+    "expected_score_range": [
+      4.0,
+      5.0
+    ],
+    "generation_notes": "The answer directly addresses all key concepts and use cases for both TCP and UDP, using technical language and a comparative structure."
+  },
+  {
+    "id": 5,
+    "category": "Standard Mastery",
+    "category_code": "mastery",
+    "answer_type": "sag",
+    "topic": "Garbage Collection",
+    "question": "Describe mark-and-sweep garbage collection and its trade-offs.",
+    "reference_answer": "Mark-and-sweep has two phases: the mark phase traverses all reachable objects from GC roots and marks them live; the sweep phase scans the heap and reclaims unmarked (unreachable) objects. Trade-offs include stop-the-world pauses during collection, fragmentation of freed memory, and O(heap size) sweep cost regardless of live set size. Generational GC reduces pause times by collecting young objects more frequently.",
+    "key_concepts": [
+      "mark phase",
+      "sweep phase",
+      "GC roots",
+      "reachable objects",
+      "stop-the-world",
+      "heap fragmentation",
+      "generational GC"
+    ],
+    "student_answer": "Mark-and-sweep is a garbage collection algorithm that proceeds in two distinct phases. The first is the **mark phase**, where the garbage collector starts from a set of known **GC roots** (e.g., active stack frames, global variables) and traverses the object graph, marking all dynamically allocated objects that are **reachable objects** as 'live'. Any object not reached from a GC root is considered unreachable. Following this, the **sweep phase** iterates through the entire **heap**, reclaiming the memory occupied by all unmarked objects, effectively adding their memory back to the free list. \n\nKey trade-offs of mark-and-sweep include the necessity of **stop-the-world** pauses, where application execution must halt completely during both the mark and sweep phases, which can introduce noticeable latency and responsiveness issues. Another significant drawback is the potential for **heap fragmentation**, as freed memory blocks may be scattered throughout the heap, making it difficult to allocate large contiguous blocks in the future. Additionally, the sweep phase's cost is proportional to the total heap size, regardless of how few objects are actually dead. Techniques like **generational GC** are often used in conjunction with or as an evolution of mark-and-sweep to mitigate long pause times by focusing collections on younger, smaller generations of objects more frequently.",
+    "ground_truth_score": 4.8,
+    "expected_score_range": [
+      4.0,
+      5.0
+    ],
+    "generation_notes": "The answer provides comprehensive coverage of all key concepts mentioned in the reference answer, explaining each in accurate technical detail."
+  },
+  {
+    "id": 6,
+    "category": "Standard Mastery",
+    "category_code": "mastery",
+    "answer_type": "sag",
+    "topic": "CPU Scheduling",
+    "question": "Explain Round Robin CPU scheduling and its relationship to time quantum.",
+    "reference_answer": "Round Robin assigns each process a fixed CPU time slice (quantum) in circular order. When a process exhausts its quantum without completing, it is preempted and placed at the back of the ready queue. A short quantum improves responsiveness but increases context-switch overhead. A long quantum approaches FCFS behaviour. Turnaround time and waiting time depend on the quantum size and the number of processes.",
+    "key_concepts": [
+      "time quantum",
+      "preemption",
+      "ready queue",
+      "context switch",
+      "turnaround time",
+      "FCFS",
+      "circular order"
+    ],
+    "student_answer": "Round Robin (RR) is a preemptive CPU scheduling algorithm designed to ensure fair allocation of CPU time among processes. In RR, each process is assigned a fixed unit of time, known as a `time quantum` (or time slice). Processes are scheduled sequentially from the `ready queue` in a `circular order`. If a process has not completed its execution within its allocated `time quantum`, it is `preempted` by the scheduler and moved to the back of the `ready queue`, allowing the next process in the sequence to begin execution. This process of switching between tasks incurs a `context switch` overhead. The size of the `time quantum` is critical: a short `quantum` leads to more frequent `context switches`, which increases overhead but improves responsiveness for interactive tasks. Conversely, a very long `quantum` causes Round Robin to approximate the behavior of First-Come, First-Served (`FCFS`) scheduling. The selection of an appropriate `quantum` size directly influences performance metrics such as `turnaround time` and `waiting time` for processes.",
+    "ground_truth_score": 4.8,
+    "expected_score_range": [
+      4.0,
+      5.0
+    ],
+    "generation_notes": "The answer integrates all specified key concepts, maintaining technical accuracy and clarity, closely matching the reference answer's scope."
+  },
+  {
+    "id": 7,
+    "category": "Standard Mastery",
+    "category_code": "mastery",
+    "answer_type": "sag",
+    "topic": "Graph Algorithms \u2014 Dijkstra",
+    "question": "How does Dijkstra's algorithm find shortest paths and what are its limitations?",
+    "reference_answer": "Dijkstra's algorithm maintains a priority queue of nodes ordered by tentative distance from the source. It repeatedly extracts the minimum-distance node, relaxes its edges, and updates neighbours' distances. With a binary heap, complexity is O((V+E) log V). Key limitation: it requires non-negative edge weights. Bellman-Ford handles negative weights but runs in O(VE).",
+    "key_concepts": [
+      "priority queue",
+      "edge relaxation",
+      "tentative distance",
+      "non-negative weights",
+      "O(V+E log V)",
+      "Bellman-Ford"
+    ],
+    "student_answer": "Dijkstra's algorithm determines the shortest path from a single source node to all other reachable nodes in a graph. It operates by maintaining a **priority queue** of nodes, ordered by their current **tentative distance** from the source. Initially, the source node has a tentative distance of zero, and all other nodes have an infinite tentative distance. The algorithm repeatedly extracts the node `u` with the smallest tentative distance from the priority queue. For each neighbor `v` of `u`, it performs **edge relaxation**: it checks if the path from the source to `v` through `u` is shorter than `v`'s current tentative distance. If `dist[u] + weight(u,v) < dist[v]`, `dist[v]` is updated, and `v`'s position in the priority queue is adjusted. This process continues until the priority queue is empty. When implemented with a binary heap, Dijkstra's algorithm achieves a time complexity of **O((V+E) log V)**, where V is the number of vertices and E is the number of edges.\n\nThe primary limitation of Dijkstra's algorithm is its strict requirement for **non-negative edge weights**. It cannot correctly find shortest paths in graphs containing negative weight edges, as its greedy approach assumes that once a node's distance is finalized, it will not be improved by future path discoveries. For graphs with negative edge weights, but no negative cycles, algorithms such as **Bellman-Ford** are necessary, which have a higher time complexity of O(VE) but can handle such cases.",
+    "ground_truth_score": 5.0,
+    "expected_score_range": [
+      4.0,
+      5.0
+    ],
+    "generation_notes": "The answer directly incorporates all specified key concepts into a comprehensive explanation, covering both the mechanism and limitations of Dijkstra's algorithm with accurate technical detail."
+  },
+  {
+    "id": 8,
+    "category": "Standard Mastery",
+    "category_code": "mastery",
+    "answer_type": "sag",
+    "topic": "Sorting \u2014 Merge Sort",
+    "question": "Explain the merge sort algorithm, its time complexity, and space trade-offs.",
+    "reference_answer": "Merge sort divides the array in half recursively until subarrays of size 1 remain, then merges them in sorted order. The merge step compares elements from two sorted halves and builds a sorted output array. Time complexity is O(n log n) in all cases. Space complexity is O(n) due to the auxiliary array. Unlike quicksort, merge sort is stable and guarantees worst-case O(n log n).",
+    "key_concepts": [
+      "divide and conquer",
+      "merge step",
+      "O(n log n)",
+      "stable sort",
+      "auxiliary space",
+      "recursive halving"
+    ],
+    "student_answer": "Merge sort is an efficient, comparison-based sorting algorithm that operates on the principle of **divide and conquer**. It works by **recursively halving** the unsorted list into sublists until each sublist contains only one element, which is by definition sorted. Subsequently, these single-element sublists are repeatedly combined or **merged** to produce new sorted sublists until there is only one sorted list remaining. The **merge step** is crucial: it takes two already sorted sublists and combines them into a single sorted list by comparing their elements sequentially and placing the smaller element into an **auxiliary array** or temporary buffer. This process continues until one sublist is exhausted, after which the remaining elements of the other sublist are appended. The time complexity of merge sort is **O(n log n)** in all cases (best, average, and worst), making it very reliable. Its space complexity is **O(n)**, primarily due to the need for this **auxiliary space** during the merging phase. Unlike some other sorting algorithms like quicksort, merge sort is a **stable sort**, meaning it preserves the relative order of equal elements.",
+    "ground_truth_score": 5.0,
+    "expected_score_range": [
+      4.0,
+      5.0
+    ],
+    "generation_notes": "The answer provides a comprehensive explanation of merge sort, meticulously covering all key concepts from the reference answer with accurate technical language and structure."
+  },
+  {
+    "id": 9,
+    "category": "Standard Mastery",
+    "category_code": "mastery",
+    "answer_type": "sag",
+    "topic": "Operating Systems \u2014 Deadlock",
+    "question": "What are the four necessary conditions for deadlock and how can it be prevented?",
+    "reference_answer": "Coffman's four conditions for deadlock: mutual exclusion (only one process holds a resource at a time), hold and wait (a process holds a resource while waiting for another), no preemption (resources cannot be forcibly taken), and circular wait (a cycle exists in the resource-allocation graph). Prevention eliminates at least one condition \u2014 e.g., imposing a resource ordering to break circular wait, or requiring processes to request all resources upfront to eliminate hold and wait.",
+    "key_concepts": [
+      "mutual exclusion",
+      "hold and wait",
+      "no preemption",
+      "circular wait",
+      "Coffman conditions",
+      "resource ordering"
+    ],
+    "student_answer": "The four necessary conditions for deadlock, commonly known as the Coffman conditions, are:\n\n1.  **Mutual Exclusion:** This condition states that at least one resource must be held in a non-sharable mode, meaning only one process can use that resource at any given time. If another process requests that resource, it must wait.\n2.  **Hold and Wait:** A process must be holding at least one resource and simultaneously waiting to acquire additional resources that are currently being held by other processes.\n3.  **No Preemption:** Resources cannot be forcibly taken from a process; they can only be released voluntarily by the process holding them after it has completed its task.\n4.  **Circular Wait:** A set of processes {P0, P1, ..., Pn} must exist such that P0 is waiting for a resource held by P1, P1 is waiting for a resource held by P2, ..., Pn-1 is waiting for a resource held by Pn, and Pn is waiting for a resource held by P0. This forms a closed cycle in the resource-allocation graph.\n\nDeadlock can be prevented by ensuring that at least one of these four conditions can never hold. Common prevention strategies include:\n\n*   **Eliminating Hold and Wait:** Processes can be required to request and be allocated all their necessary resources before starting execution. Alternatively, a process must release all currently held resources before requesting any new ones.\n*   **Eliminating Circular Wait:** A total ordering of all resource types can be established. Processes must then request resources in increasing order of enumeration. This strategy ensures that a cycle cannot form in the resource-allocation graph, effectively breaking the circular dependency.",
+    "ground_truth_score": 5.0,
+    "expected_score_range": [
+      4.0,
+      5.0
+    ],
+    "generation_notes": "The answer accurately defines all four Coffman conditions and explains prevention strategies by targeting specific conditions, aligning perfectly with the reference material."
+  },
+  {
+    "id": 10,
+    "category": "Standard Mastery",
+    "category_code": "mastery",
+    "answer_type": "sag",
+    "topic": "Memory Management \u2014 Stack vs Heap",
+    "question": "Compare stack and heap memory allocation in terms of lifetime, speed, and use cases.",
+    "reference_answer": "Stack memory is LIFO-managed, allocated automatically when a function is called and freed when it returns; allocation is O(1) via stack pointer move. Heap memory is dynamically allocated (malloc/new) and persists until explicitly freed (free/delete) or garbage collected. Stack is faster and avoids fragmentation but is limited in size; heap supports large allocations and arbitrary lifetimes but risks fragmentation and memory leaks.",
+    "key_concepts": [
+      "LIFO",
+      "stack pointer",
+      "dynamic allocation",
+      "malloc",
+      "heap fragmentation",
+      "memory leak",
+      "lifetime"
+    ],
+    "student_answer": "Stack and heap memory allocation models differ significantly in their management",
+    "ground_truth_score": 2.5,
+    "expected_score_range": [
+      4.0,
+      5.0
+    ],
+    "generation_notes": ""
+  },
+  {
+    "id": 11,
+    "category": "Standard Mastery",
+    "category_code": "mastery",
+    "answer_type": "sag",
+    "topic": "Hash Tables",
+    "question": "How does a Hash Table handle collisions?",
+    "reference_answer": "A hash table handles collisions using strategies such as chaining (each bucket stores a linked list of entries that hash to the same slot) or open addressing (linear probing, quadratic probing, or double hashing to find the next available slot). Load factor determines when resizing occurs to maintain O(1) average-case performance.",
+    "key_concepts": [
+      "collision resolution",
+      "chaining",
+      "open addressing",
+      "linear probing",
+      "load factor",
+      "hash function"
+    ],
+    "student_answer": "Hash tables employ several collision resolution strategies to handle instances where a hash function maps two or more distinct keys to the same index. The two primary approaches are chaining and open addressing.\n\n**Chaining** handles collisions by having each bucket in the hash table array store a pointer to a data structure, typically a linked list. When a collision occurs, the new key-value pair is simply added to the end of the linked list associated with that specific bucket. This allows multiple entries that hash to the same slot to coexist without overwriting each other.\n\n**Open addressing**, conversely, seeks an alternative, empty slot within the hash table itself when a collision occurs. This involves systematically probing for the next available slot using various techniques:\n*   **Linear probing**: Checks the next consecutive slots (index + 1, index + 2, etc.) until an empty one is found.\n*   **Quadratic probing**: Examines slots at increasingly squared offsets from the original hash (index + 1^2, index + 2^2, etc.).\n*   **Double hashing**: Utilizes a second independent hash function to determine the step size for probing, providing a more uniform distribution of probes.\n\nTo ensure efficient average-case O(1) performance and prevent an excessive number of collisions from degrading performance, hash tables also monitor their **load factor**. The load factor is the ratio of the number of items stored to the total number of available buckets. When this factor exceeds a predefined threshold, the hash table undergoes a resizing operation (often to a larger array), and all existing items are rehashed. This process reduces the density of items and minimizes the probability of future collisions, maintaining optimal performance characteristics.",
+    "ground_truth_score": 5.0,
+    "expected_score_range": [
+      4.0,
+      5.0
+    ],
+    "generation_notes": "The answer systematically addresses each key concept from the reference, providing clear and accurate technical explanations for chaining, open addressing (with its sub-techniques), and the role of the load factor in collision management and performance."
+  },
+  {
+    "id": 12,
+    "category": "Standard Mastery",
+    "category_code": "mastery",
+    "answer_type": "sag",
+    "topic": "Binary Search Trees",
+    "question": "Explain how a Binary Search Tree maintains sorted order and supports efficient search.",
+    "reference_answer": "A BST stores values such that every node's left subtree contains only smaller values and every right subtree contains only larger values. Search traverses left or right based on comparison, achieving O(log n) average-case performance. Inorder traversal visits nodes in sorted order. Worst-case O(n) occurs when the tree degenerates into a linked list.",
+    "key_concepts": [
+      "BST property",
+      "inorder traversal",
+      "O(log n) search",
+      "left subtree",
+      "right subtree",
+      "degenerate tree"
+    ],
+    "student_answer": "A Binary Search Tree (BST) maintains its sorted order through a fundamental structural property: for every node, all values in its left subtree are strictly less than the node's value, and all values in its right subtree are strictly greater than the node's value. This recursive definition ensures that the tree inherently stores data in a structured, sortable manner. This property is also why an inorder traversal of a BST will always visit the nodes in ascending sorted order.\n\nThis inherent ordering directly enables efficient search operations. To search for a specific value, one begins at the root node. If the target value is less than the current node's value, the search proceeds to the left subtree; if it's greater, the search proceeds to the right subtree. This comparison-based traversal effectively eliminates a large portion of the tree with each step, leading to an average-case time complexity of O(log n) for search, where 'n' is the number of nodes. However, it's important to note that in the worst-case scenario, if elements are inserted in a strictly ascending or descending sequence, the tree can degenerate into a linear structure resembling a linked list. In such a degenerate tree, search performance degrades to O(n), as every node might need to be visited.",
+    "ground_truth_score": 4.8,
+    "expected_score_range": [
+      4.0,
+      5.0
+    ],
+    "generation_notes": "The answer was constructed by systematically integrating each key concept from the reference answer into a coherent and logically flowing explanation."
+  },
+  {
+    "id": 13,
+    "category": "Standard Mastery",
+    "category_code": "mastery",
+    "answer_type": "sag",
+    "topic": "Virtual Memory",
+    "question": "What is virtual memory and how does demand paging work?",
+    "reference_answer": "Virtual memory abstracts physical RAM by giving each process its own address space. Demand paging loads pages from disk only when they are accessed (page fault). The OS uses a page table to map virtual addresses to physical frames. When a page is not in memory, a page fault triggers the OS to load it from the swap space, possibly evicting another page using a replacement policy such as LRU or FIFO.",
+    "key_concepts": [
+      "virtual address space",
+      "page table",
+      "page fault",
+      "demand paging",
+      "LRU",
+      "swap space",
+      "physical frame"
+    ],
+    "student_answer": "Virtual memory is a memory management technique that provides each process with its own isolated, logical **virtual address space**, abstracting the underlying physical RAM. This allows processes to perceive a large, contiguous memory region, independent of the actual physical memory's size or fragmentation. The operating system uses a **page table** to translate these virtual addresses into corresponding **physical frames** in RAM.",
+    "ground_truth_score": 4.8,
+    "expected_score_range": [
+      4.0,
+      5.0
+    ],
+    "generation_notes": "The answer integrates all key concepts by first defining virtual memory, then explaining demand paging as its implementation, detailing the page fault process, and mentioning replacement policies."
+  },
+  {
+    "id": 14,
+    "category": "Standard Mastery",
+    "category_code": "mastery",
+    "answer_type": "sag",
+    "topic": "TCP vs UDP",
+    "question": "Compare TCP and UDP in terms of reliability, ordering, and use cases.",
+    "reference_answer": "TCP provides reliable, ordered delivery using a three-way handshake, sequence numbers, acknowledgements, and retransmission of lost packets. It is suited for HTTP, email, and file transfers. UDP is connectionless, with no guarantee of delivery or ordering, making it faster and suited for DNS lookups, live streaming, and online gaming where low latency matters more than reliability.",
+    "key_concepts": [
+      "reliable delivery",
+      "three-way handshake",
+      "sequence numbers",
+      "acknowledgements",
+      "connectionless",
+      "latency",
+      "retransmission"
+    ],
+    "student_answer": "TCP (Transmission Control Protocol) is a connection-oriented protocol that ensures reliable and ordered delivery of data. It establishes a connection using a three-way handshake, and then employs mechanisms such as sequence numbers to guarantee the correct order of data segments and acknowledgements (ACKs) from the receiver to confirm successful receipt. If an acknowledgement is not received within a specific timeout, TCP performs retransmission of the lost packets to ensure data integrity. These features make TCP ideal for applications where data accuracy and completeness are critical, such as HTTP for web browsing, email protocols like SMTP and IMAP, and file transfers (FTP).\n\nConversely, UDP (User Datagram Protocol) is a connectionless protocol, meaning it does not establish a connection or provide any guarantees regarding delivery or ordering of packets. This lack of overhead makes UDP significantly faster and results in much lower latency compared to TCP. While it sacrifices reliability, UDP is highly suitable for applications where speed and responsiveness are prioritized over absolute data guarantee. Typical use cases include DNS lookups, real-time applications like live streaming, and online gaming, where timely delivery of data, even if some packets are dropped, is preferred over delays caused by retransmission.",
+    "ground_truth_score": 4.9,
+    "expected_score_range": [
+      4.0,
+      5.0
+    ],
+    "generation_notes": "The answer provides a comprehensive comparison, explicitly covering all key concepts from the reference answer with accurate technical language and appropriate use cases for both protocols."
+  },
+  {
+    "id": 15,
+    "category": "Standard Mastery",
+    "category_code": "mastery",
+    "answer_type": "sag",
+    "topic": "Garbage Collection",
+    "question": "Describe mark-and-sweep garbage collection and its trade-offs.",
+    "reference_answer": "Mark-and-sweep has two phases: the mark phase traverses all reachable objects from GC roots and marks them live; the sweep phase scans the heap and reclaims unmarked (unreachable) objects. Trade-offs include stop-the-world pauses during collection, fragmentation of freed memory, and O(heap size) sweep cost regardless of live set size. Generational GC reduces pause times by collecting young objects more frequently.",
+    "key_concepts": [
+      "mark phase",
+      "sweep phase",
+      "GC roots",
+      "reachable objects",
+      "stop-the-world",
+      "heap fragmentation",
+      "generational GC"
+    ],
+    "student_answer": "Mark-and-sweep is a garbage collection algorithm that operates in two main phases. The first is the **mark phase**, where the garbage collector identifies a set of **GC roots** (e.g., active stack frames, global variables) and then traverses the object graph starting from these roots. All objects found to be **reachable objects** during this traversal are marked as 'live'. Any object not reached is considered unreachable and therefore garbage. The second phase is the **sweep phase**, which then iterates through the entire heap, reclaiming the memory occupied by all unmarked objects and adding it to the list of available free memory blocks.",
+    "ground_truth_score": 5.0,
+    "expected_score_range": [
+      4.0,
+      5.0
+    ],
+    "generation_notes": "The answer was generated by systematically addressing each key concept from the reference answer with clear, technical language, ensuring comprehensive coverage of both the mechanism and its trade-offs."
+  },
+  {
+    "id": 16,
+    "category": "Standard Mastery",
+    "category_code": "mastery",
+    "answer_type": "sag",
+    "topic": "CPU Scheduling",
+    "question": "Explain Round Robin CPU scheduling and its relationship to time quantum.",
+    "reference_answer": "Round Robin assigns each process a fixed CPU time slice (quantum) in circular order. When a process exhausts its quantum without completing, it is preempted and placed at the back of the ready queue. A short quantum improves responsiveness but increases context-switch overhead. A long quantum approaches FCFS behaviour. Turnaround time and waiting time depend on the quantum size and the number of processes.",
+    "key_concepts": [
+      "time quantum",
+      "preemption",
+      "ready queue",
+      "context switch",
+      "turnaround time",
+      "FCFS",
+      "circular order"
+    ],
+    "student_answer": "Round Robin (RR) is a CPU scheduling algorithm primarily used in time-sharing systems where each process is assigned a small, fixed unit of CPU time, known as a **time quantum** (or time slice). Processes are executed sequentially in a **circular order** from the **ready queue**. When a process is given the CPU, it runs for the duration of its assigned **time quantum**. If the process does not complete execution within this allocated time, it is **preempted** by the scheduler and moved to the back of the **ready queue**, allowing the next process in the queue to take its turn. This ensures fair allocation of CPU time among all active processes. The size of the **time quantum** is crucial; a very short quantum enhances system responsiveness but significantly increases the number of **context switches**, leading to higher overhead due to the saving and loading of CPU state. Conversely, a very long **time quantum** reduces **context switch** overhead but causes the algorithm to behave very similarly to First-Come, First-Served (**FCFS**) scheduling. The choice of quantum size directly impacts performance metrics such as average **turnaround time** and waiting time, which also depend on the total number of processes competing for the CPU.",
+    "ground_truth_score": 5.0,
+    "expected_score_range": [
+      4.0,
+      5.0
+    ],
+    "generation_notes": "The answer was constructed by systematically integrating each key concept from the reference answer into a coherent and technically accurate explanation of Round Robin scheduling."
+  },
+  {
+    "id": 17,
+    "category": "Standard Mastery",
+    "category_code": "mastery",
+    "answer_type": "sag",
+    "topic": "Graph Algorithms \u2014 Dijkstra",
+    "question": "How does Dijkstra's algorithm find shortest paths and what are its limitations?",
+    "reference_answer": "Dijkstra's algorithm maintains a priority queue of nodes ordered by tentative distance from the source. It repeatedly extracts the minimum-distance node, relaxes its edges, and updates neighbours' distances. With a binary heap, complexity is O((V+E) log V). Key limitation: it requires non-negative edge weights. Bellman-Ford handles negative weights but runs in O(VE).",
+    "key_concepts": [
+      "priority queue",
+      "edge relaxation",
+      "tentative distance",
+      "non-negative weights",
+      "O(V+E log V)",
+      "Bellman-Ford"
+    ],
+    "student_answer": "Dijkstra's algorithm efficiently finds the shortest paths from a single source node to all other nodes in a graph. It operates by maintaining a `priority queue` of nodes, ordered by their current `tentative distance` from the source. Initially, the source node has a `tentative distance` of zero, and all other nodes have an infinite `tentative distance`. The algorithm repeatedly extracts the node with the smallest `tentative distance` from the `priority queue` that has not yet been finalized. For each of its unvisited neighbors, it performs `edge relaxation`: if the path through the current node offers a shorter `tentative distance` to the neighbor, the neighbor's `tentative distance` is updated, and its position in the `priority queue` is adjusted. This process continues until the `priority queue` is empty. When implemented with a binary heap for the `priority queue`, the algorithm achieves a time complexity of `O((V+E) log V)`, where V is the number of vertices and E is the number of edges.\n\nThe primary limitation of Dijkstra's algorithm is its requirement for all `edge weights to be non-negative`. If the graph contains negative edge weights, Dijkstra's algorithm can produce incorrect results because its greedy approach assumes that once a node's distance is finalized, it cannot be improved further by subsequent paths. For graphs that may contain negative edge weights (but no negative cycles), an alternative algorithm like `Bellman-Ford` must be used, which, while more robust, has a higher time complexity of `O(VE)`.",
+    "ground_truth_score": 4.8,
+    "expected_score_range": [
+      4.0,
+      5.0
+    ],
+    "generation_notes": "The answer meticulously covers all key concepts, explaining Dijkstra's mechanism and limitations with precise technical language, ensuring high accuracy and completeness for a top score."
+  },
+  {
+    "id": 18,
+    "category": "Standard Mastery",
+    "category_code": "mastery",
+    "answer_type": "sag",
+    "topic": "Sorting \u2014 Merge Sort",
+    "question": "Explain the merge sort algorithm, its time complexity, and space trade-offs.",
+    "reference_answer": "Merge sort divides the array in half recursively until subarrays of size 1 remain, then merges them in sorted order. The merge step compares elements from two sorted halves and builds a sorted output array. Time complexity is O(n log n) in all cases. Space complexity is O(n) due to the auxiliary array. Unlike quicksort, merge sort is stable and guarantees worst-case O(n log n).",
+    "key_concepts": [
+      "divide and conquer",
+      "merge step",
+      "O(n log n)",
+      "stable sort",
+      "auxiliary space",
+      "recursive halving"
+    ],
+    "student_answer": "Merge sort is an efficient, comparison-based sorting algorithm that operates on the **divide and conquer** paradigm. It works by **recursively halving** an unsorted list into sublists until each sublist contains only one element, which by definition is considered sorted. Subsequently, these single-element sublists are repeatedly merged to produce new sorted sublists until there is only one sorted list remaining.\n\nThe core of the algorithm is the **merge step**, where two already sorted sublists are combined into a single, larger sorted list. This involves comparing the smallest elements from the heads of both sublists, picking the smaller one, and appending it to an auxiliary output array. This process continues until all elements from both sublists have been moved to the auxiliary array, which then replaces the original unsorted segment.\n\nRegarding its **time complexity**, merge sort consistently achieves **O(n log n)** in all cases (best, average, and worst). This is because the division into halves creates log n levels of recursion, and each level performs O(n) work during the merge operations. For **space complexity**, merge sort requires **O(n) auxiliary space** due to the temporary array used during the merge step to store the combined sorted elements. This makes it a space-inefficient choice for extremely memory-constrained environments compared to in-place sorts.\n\nAn important property of merge sort is that it is a **stable sort**, meaning it preserves the relative order of equal elements. This, along with its guaranteed O(n log n) worst-case performance, makes it a robust choice for various applications, distinguishing it from algorithms like quicksort which can have O(n^2) worst-case time complexity.",
+    "ground_truth_score": 4.8,
+    "expected_score_range": [
+      4.0,
+      5.0
+    ],
+    "generation_notes": "The answer was generated by systematically addressing each key concept from the reference answer, elaborating with technical detail, and ensuring a logical flow, aiming for comprehensive coverage and high accuracy."
+  },
+  {
+    "id": 19,
+    "category": "Standard Mastery",
+    "category_code": "mastery",
+    "answer_type": "sag",
+    "topic": "Operating Systems \u2014 Deadlock",
+    "question": "What are the four necessary conditions for deadlock and how can it be prevented?",
+    "reference_answer": "Coffman's four conditions for deadlock: mutual exclusion (only one process holds a resource at a time), hold and wait (a process holds a resource while waiting for another), no preemption (resources cannot be forcibly taken), and circular wait (a cycle exists in the resource-allocation graph). Prevention eliminates at least one condition \u2014 e.g., imposing a resource ordering to break circular wait, or requiring processes to request all resources upfront to eliminate hold and wait.",
+    "key_concepts": [
+      "mutual exclusion",
+      "hold and wait",
+      "no preemption",
+      "circular wait",
+      "Coffman conditions",
+      "resource ordering"
+    ],
+    "student_answer": "Deadlock is a state in an operating system where two or more processes are blocked indefinitely",
+    "ground_truth_score": 2.5,
+    "expected_score_range": [
+      4.0,
+      5.0
+    ],
+    "generation_notes": ""
+  },
+  {
+    "id": 20,
+    "category": "Standard Mastery",
+    "category_code": "mastery",
+    "answer_type": "sag",
+    "topic": "Memory Management \u2014 Stack vs Heap",
+    "question": "Compare stack and heap memory allocation in terms of lifetime, speed, and use cases.",
+    "reference_answer": "Stack memory is LIFO-managed, allocated automatically when a function is called and freed when it returns; allocation is O(1) via stack pointer move. Heap memory is dynamically allocated (malloc/new) and persists until explicitly freed (free/delete) or garbage collected. Stack is faster and avoids fragmentation but is limited in size; heap supports large allocations and arbitrary lifetimes but risks fragmentation and memory leaks.",
+    "key_concepts": [
+      "LIFO",
+      "stack pointer",
+      "dynamic allocation",
+      "malloc",
+      "heap fragmentation",
+      "memory leak",
+      "lifetime"
+    ],
+    "student_answer": "Stack and heap memory allocation represent two fundamental approaches to memory management, differing significantly in their lifetime, speed, and typical use cases.\n\n**Lifetime:** Stack memory adheres to a Last-In, First-Out (LIFO) principle. Memory for local variables, function parameters, and return addresses is automatically allocated when a function is called and is automatically deallocated (freed) when that function returns. Its lifetime is strictly tied to the scope of the function call. In contrast, heap memory is characterized by dynamic allocation. Memory is explicitly requested by the programmer using functions like `malloc` (in C) or `new` (in C++), and it persists until it is explicitly `free`d or `delete`d by the programmer, or until a garbage collector reclaims it. This allows for arbitrary lifetimes, independent of the call stack.\n\n**Speed:** Stack allocation is exceptionally fast, typically an O(1) operation. It primarily involves a simple adjustment of the `stack pointer`, incrementing it to allocate space and decrementing it to deallocate. There's no complex search for available memory. Heap allocation, however, is generally slower. It requires the memory manager to search for a suitable block of memory that fits the requested size, which involves more overhead and can be a more computationally intensive process.\n\n**Use Cases & Characteristics:** Stack memory is ideal for storing data with a well-defined, short lifetime, such as local variables and function parameters, especially when their sizes are known at compile time. It is very efficient, avoids memory `fragmentation`, and memory access is generally faster due to locality. However, the stack has a relatively limited size. Heap memory is essential for allocating larger data structures, objects, or arrays whose sizes are unknown until runtime, or for data that needs to persist beyond the scope of the function that created it. While offering great flexibility, heap allocation introduces challenges such as potential `heap fragmentation` (where free memory is scattered in small, non-contiguous chunks) and the risk of `memory leaks` if allocated memory is not properly `free`d, leading to gradual resource depletion.",
+    "ground_truth_score": 5.0,
+    "expected_score_range": [
+      4.0,
+      5.0
+    ],
+    "generation_notes": "Synthesized a comprehensive answer by mapping all key concepts to the specified comparison criteria (lifetime, speed, use cases) with detailed explanations."
+  },
+  {
+    "id": 21,
+    "category": "Prose Trap",
+    "category_code": "prose_trap",
+    "answer_type": "sag",
+    "topic": "Hash Tables",
+    "question": "How does a Hash Table handle collisions?",
+    "reference_answer": "A hash table handles collisions using strategies such as chaining (each bucket stores a linked list of entries that hash to the same slot) or open addressing (linear probing, quadratic probing, or double hashing to find the next available slot). Load factor determines when resizing occurs to maintain O(1) average-case performance.",
+    "key_concepts": [
+      "collision resolution",
+      "chaining",
+      "open addressing",
+      "linear probing",
+      "load factor",
+      "hash function"
+    ],
+    "student_answer": "The intricate challenge of collision amelioration within a hash table architecture is primarily navigated through a multi-tiered reconciliation paradigm. This process typically initiates with a probabilistic entropy redistribution algorithm, wherein conflicting key-value pairs are momentarily sequestered within a virtualized disambiguation buffer. Subsequently, a recursive heuristic dynamically assesses the systemic entropy metrics of the table's current state, prompting a proactive structural recomposition when a predefined threshold of conceptual conflation is surpassed. This recomposition often involves the ephemeral re-indexing of affected segments, guided by a predictive model that anticipates future access patterns, thus transcending mere static load considerations. Furthermore, an orthogonal mechanism, designated 'associative displacement,' may be invoked to dynamically reallocate problematic entries to logically distinct, yet physically proximate, memory regions, thereby mitigating localized congestion without relying on direct slot progression.",
+    "ground_truth_score": 0.0,
+    "expected_score_range": [
+      0.0,
+      1.0
+    ],
+    "generation_notes": "The answer uses sophisticated vocabulary and complex sentence structure to describe invented, technically incorrect mechanisms for hash table collision resolution, scoring 0 for factual accuracy."
+  },
+  {
+    "id": 22,
+    "category": "Prose Trap",
+    "category_code": "prose_trap",
+    "answer_type": "sag",
+    "topic": "Binary Search Trees",
+    "question": "Explain how a Binary Search Tree maintains sorted order and supports efficient search.",
+    "reference_answer": "A BST stores values such that every node's left subtree contains only smaller values and every right subtree contains only larger values. Search traverses left or right based on comparison, achieving O(log n) average-case performance. Inorder traversal visits nodes in sorted order. Worst-case O(n) occurs when the tree degenerates into a linked list.",
+    "key_concepts": [
+      "BST property",
+      "inorder traversal",
+      "O(log n) search",
+      "left subtree",
+      "right subtree",
+      "degenerate tree"
+    ],
+    "student_answer": "The Binary Search Tree orchestrates its inherent data ordering through a continuous process of isomorphic topological reconfiguration, wherein node positions are perpetually adjusted based on their computed 'scalar magnitude affinity' within a multidimensional data hyperspace. This mechanism, rather than relying on direct hierarchical value comparisons, establishes a dynamic equilibrium by minimizing the entropic divergence across adjacent data partitions, thereby synthesizing a pseudo-sorted state through emergent structural properties. Efficient search capabilities are subsequently realized not through iterative comparative traversal, but via a 'quantum associative indexing' protocol. This protocol leverages the intrinsic informational density of the query value to induce a localized field perturbation across the tree's distributed node network, causing the target datum's unique 'resonance signature' to propagate instantaneously to a dedicated lookup registry, effectively bypassing conventional logarithmic time complexities by employing a form of direct access predicated on signal propagation and harmonic phase alignment.",
+    "ground_truth_score": 0.0,
+    "expected_score_range": [
+      0.0,
+      1.0
+    ],
+    "generation_notes": "Used sophisticated vocabulary and invented non-existent, complex mechanisms to explain sorted order and search, avoiding any correct technical details about BSTs."
+  },
+  {
+    "id": 23,
+    "category": "Prose Trap",
+    "category_code": "prose_trap",
+    "answer_type": "sag",
+    "topic": "Virtual Memory",
+    "question": "What is virtual memory and how does demand paging work?",
+    "reference_answer": "Virtual memory abstracts physical RAM by giving each process its own address space. Demand paging loads pages from disk only when they are accessed (page fault). The OS uses a page table to map virtual addresses to physical frames. When a page is not in memory, a page fault triggers the OS to load it from the swap space, possibly evicting another page using a replacement policy such as LRU or FIFO.",
+    "key_concepts": [
+      "virtual address space",
+      "page table",
+      "page fault",
+      "demand paging",
+      "LRU",
+      "swap space",
+      "physical frame"
+    ],
+    "student_answer": "Virtual memory, in essence, constitutes a sophisticated abstraction layer that facilitates the dynamic orchestration of data segments through the establishment of transient memory projection fields for individual computational processes. This mechanism endeavors to decouple an application's operational footprint from the direct constraints of physical memory allocation, thereby fostering a more flexible and robust execution environment.\n\nDemand paging, subsequently, operates as a heuristic-driven data-stream attenuation protocol. It intrinsically avoids the immediate loading of data modules into these projection fields. Instead, data segments are strategically retrieved from a persistent data reservoir only upon the manifestation of a data congruence divergence, an event that signals a mismatch between an anticipated data state and the current operational context. This divergence triggers a transient data displacement event, prompting the system's core memory management unit to consult a dynamic memory manifold index. The index then orchestrates the transfer of requisite data blocks from the tertiary storage matrix, often necessitating the displacement of extant segments within the projection field based on an entropic decay prioritization algorithm, which systematically re-evaluates segment utility based on a complex non-deterministic decay function rather than access frequency or insertion order.",
+    "ground_truth_score": 0.0,
+    "expected_score_range": [
+      0.0,
+      1.0
+    ],
+    "generation_notes": "The answer uses highly sophisticated vocabulary and complex sentence structures to describe entirely fabricated and technically incorrect mechanisms for virtual memory and demand paging."
+  },
+  {
+    "id": 24,
+    "category": "Prose Trap",
+    "category_code": "prose_trap",
+    "answer_type": "sag",
+    "topic": "TCP vs UDP",
+    "question": "Compare TCP and UDP in terms of reliability, ordering, and use cases.",
+    "reference_answer": "TCP provides reliable, ordered delivery using a three-way handshake, sequence numbers, acknowledgements, and retransmission of lost packets. It is suited for HTTP, email, and file transfers. UDP is connectionless, with no guarantee of delivery or ordering, making it faster and suited for DNS lookups, live streaming, and online gaming where low latency matters more than reliability.",
+    "key_concepts": [
+      "reliable delivery",
+      "three-way handshake",
+      "sequence numbers",
+      "acknowledgements",
+      "connectionless",
+      "latency",
+      "retransmission"
+    ],
+    "student_answer": "TCP, as a foundational element of network architecture, meticulously constructs a pervasive stateful nexus to facilitate data transmission. Its inherent reliability is predicated upon a sophisticated protocol of reciprocal phase-shift authentication and continuous transient data recrystallization, which collectively ensures the holistic integrity of the information stream. Furthermore, the ordering of data quanta is rigorously maintained through a deterministic temporal alignment mechanism, employing multi-spectral correlation and proximal gradient descent for chronological re-ordering. Conversely, UDP operates under an unbounded discrete transaction modality, characterized by stochastic data emanation and ephemeral payload de-prioritization. This design principle inherently leads to dispersive temporal fragmentation and non-linear event horizon re-calibration, thereby precluding any systemic guarantee of sequential or complete delivery. Consequently, TCP is optimally deployed in environments necessitating resilient data permanence, such as distributed ledger synchronization and high-fidelity quantum cryptographic key exchange. UDP, conversely, finds its niche in applications requiring rapid, high-flux information dissemination with intrinsic tolerance for transient data aberration, exemplified by atmospheric sensor network telemetry and real-time inter-process molecular simulations.",
+    "ground_truth_score": 0.0,
+    "expected_score_range": [
+      0.0,
+      1.0
+    ],
+    "generation_notes": "The answer employs sophisticated vocabulary and complex sentence structures to describe entirely fictitious network mechanisms and use cases, ensuring no overlap with correct technical information or key concepts."
+  },
+  {
+    "id": 25,
+    "category": "Prose Trap",
+    "category_code": "prose_trap",
+    "answer_type": "sag",
+    "topic": "Garbage Collection",
+    "question": "Describe mark-and-sweep garbage collection and its trade-offs.",
+    "reference_answer": "Mark-and-sweep has two phases: the mark phase traverses all reachable objects from GC roots and marks them live; the sweep phase scans the heap and reclaims unmarked (unreachable) objects. Trade-offs include stop-the-world pauses during collection, fragmentation of freed memory, and O(heap size) sweep cost regardless of live set size. Generational GC reduces pause times by collecting young objects more frequently.",
+    "key_concepts": [
+      "mark phase",
+      "sweep phase",
+      "GC roots",
+      "reachable objects",
+      "stop-the-world",
+      "heap fragmentation",
+      "generational GC"
+    ],
+    "student_answer": "The mark-and-sweep paradigm inaugurates a two-phase volumetric recalibration protocol. Initially, the 'mark' phase dynamically ascertains prevailing memory pressure by correlating object lifespans against systemic allocation anchors, thereby constructing a transient coherence manifold. Subsequent to this, the 'sweep' phase procedurally realigns allocation registers, disaggregating defunct memory blocks based on their entropic decay profiles. This methodology, while conceptually robust, introduces significant systemic overheads, notably manifested as interstitial process synchronization delays during its execution. Furthermore, the iterative recalibration inherently promotes coherence manifold misalignment, necessitating periodic defragmentation protocols. Alternative strategies, such as polymorphic residency stratification, attempt to mitigate these latencies by leveraging predictive object mobility.",
+    "ground_truth_score": 0.0,
+    "expected_score_range": [
+      0.0,
+      1.0
+    ],
+    "generation_notes": "The answer uses sophisticated vocabulary and complex sentence structures to describe entirely fictitious garbage collection mechanisms, completely avoiding any correct technical details."
+  },
+  {
+    "id": 26,
+    "category": "Prose Trap",
+    "category_code": "prose_trap",
+    "answer_type": "sag",
+    "topic": "CPU Scheduling",
+    "question": "Explain Round Robin CPU scheduling and its relationship to time quantum.",
+    "reference_answer": "Round Robin assigns each process a fixed CPU time slice (quantum) in circular order. When a process exhausts its quantum without completing, it is preempted and placed at the back of the ready queue. A short quantum improves responsiveness but increases context-switch overhead. A long quantum approaches FCFS behaviour. Turnaround time and waiting time depend on the quantum size and the number of processes.",
+    "key_concepts": [
+      "time quantum",
+      "preemption",
+      "ready queue",
+      "context switch",
+      "turnaround time",
+      "FCFS",
+      "circular order"
+    ],
+    "student_answer": "Round Robin scheduling, in its advanced conceptualization, operates not on a fixed temporal slice but rather through an adaptive oscillatory phase duration, which is dynamically negotiated based on a process's projected computational entropy and its historical resource acquisition profile. The 'time quantum' is therefore recontextualized as a probabilistic resonance aperture, dictating the permissible amplitude of execution cycles before a mandated inter-process state re-normalization. This re-normalization process, which involves a system-wide recalibration of the core arbitration manifold, introduces significant architectural latency and contributes to the overall cognitive load of the system's executive functions, rather than merely facilitating a queue-based preemption. Consequently, the relationship between this phase duration and system performance is non-linear, often exhibiting stochastic resonance effects that are highly sensitive to the global system coherence index.",
+    "ground_truth_score": 0.0,
+    "expected_score_range": [
+      0.0,
+      1.0
+    ],
+    "generation_notes": "The answer uses sophisticated, academic-sounding vocabulary and complex sentence structures to describe entirely fictitious mechanisms and relationships, completely avoiding any correct technical information about Round Robin scheduling."
+  },
+  {
+    "id": 27,
+    "category": "Prose Trap",
+    "category_code": "prose_trap",
+    "answer_type": "sag",
+    "topic": "Graph Algorithms \u2014 Dijkstra",
+    "question": "How does Dijkstra's algorithm find shortest paths and what are its limitations?",
+    "reference_answer": "Dijkstra's algorithm maintains a priority queue of nodes ordered by tentative distance from the source. It repeatedly extracts the minimum-distance node, relaxes its edges, and updates neighbours' distances. With a binary heap, complexity is O((V+E) log V). Key limitation: it requires non-negative edge weights. Bellman-Ford handles negative weights but runs in O(VE).",
+    "key_concepts": [
+      "priority queue",
+      "edge relaxation",
+      "tentative distance",
+      "non-negative weights",
+      "O(V+E log V)",
+      "Bellman-Ford"
+    ],
+    "student_answer": "Dijkstra's algorithm orchestrates a dynamic topological re-indexing protocol to ascertain optimal graph traversals. It operates by iteratively establishing a 'least-resistance propagation front,' which prioritizes the refinement of nodal impedance values based on a heuristic assessment of inter-nodal flux potentials. The core mechanism involves a recursive aggregation of path congruity metrics, continuously recalibrating until a global state of maximal path entropy is achieved, thereby identifying the most stable rather than necessarily the shortest trajectory. A significant architectural constraint manifests when the graph topology exhibits highly irregular connectivity patterns or when the inherent dimensionality of the edge parameters exceeds a predefined asymptotic threshold. Furthermore, its efficacy diminishes precipitously in scenarios requiring dynamic re-evaluation of path invariants, particularly those susceptible to transient perturbations in the underlying network fabric.",
+    "ground_truth_score": 0.5,
+    "expected_score_range": [
+      0.0,
+      1.0
+    ],
+    "generation_notes": "The answer employs sophisticated vocabulary and complex sentence structures to describe entirely fictitious mechanisms and limitations, ensuring no correct technical information about Dijkstra's algorithm is conveyed."
+  },
+  {
+    "id": 28,
+    "category": "Prose Trap",
+    "category_code": "prose_trap",
+    "answer_type": "sag",
+    "topic": "Sorting \u2014 Merge Sort",
+    "question": "Explain the merge sort algorithm, its time complexity, and space trade-offs.",
+    "reference_answer": "Merge sort divides the array in half recursively until subarrays of size 1 remain, then merges them in sorted order. The merge step compares elements from two sorted halves and builds a sorted output array. Time complexity is O(n log n) in all cases. Space complexity is O(n) due to the auxiliary array. Unlike quicksort, merge sort is stable and guarantees worst-case O(n log n).",
+    "key_concepts": [
+      "divide and conquer",
+      "merge step",
+      "O(n log n)",
+      "stable sort",
+      "auxiliary space",
+      "recursive halving"
+    ],
+    "student_answer": "The Merge Sort algorithm operates fundamentally through an adaptive, multi-modal data synthesis protocol, rather than employing conventional recursive halving for element decomposition. It initiates a series of interstitial phase-coherent recombination cycles, wherein individual data elements undergo a progressive ent",
+    "ground_truth_score": 0.0,
+    "expected_score_range": [
+      0.0,
+      1.0
+    ],
+    "generation_notes": ""
+  },
+  {
+    "id": 29,
+    "category": "Prose Trap",
+    "category_code": "prose_trap",
+    "answer_type": "sag",
+    "topic": "Operating Systems \u2014 Deadlock",
+    "question": "What are the four necessary conditions for deadlock and how can it be prevented?",
+    "reference_answer": "Coffman's four conditions for deadlock: mutual exclusion (only one process holds a resource at a time), hold and wait (a process holds a resource while waiting for another), no preemption (resources cannot be forcibly taken), and circular wait (a cycle exists in the resource-allocation graph). Prevention eliminates at least one condition \u2014 e.g., imposing a resource ordering to break circular wait, or requiring processes to request all resources upfront to eliminate hold and wait.",
+    "key_concepts": [
+      "mutual exclusion",
+      "hold and wait",
+      "no preemption",
+      "circular wait",
+      "Coffman conditions",
+      "resource ordering"
+    ],
+    "student_answer": "The four necessary conditions for systemic resource immobilization, often termed 'deadlock' in a less formal discourse, stem from an intricate interplay of operational paradigms rather than a simple resource-contention model. These conditions are typically enumerated as",
+    "ground_truth_score": 0.0,
+    "expected_score_range": [
+      0.0,
+      1.0
+    ],
+    "generation_notes": ""
+  },
+  {
+    "id": 30,
+    "category": "Prose Trap",
+    "category_code": "prose_trap",
+    "answer_type": "sag",
+    "topic": "Memory Management \u2014 Stack vs Heap",
+    "question": "Compare stack and heap memory allocation in terms of lifetime, speed, and use cases.",
+    "reference_answer": "Stack memory is LIFO-managed, allocated automatically when a function is called and freed when it returns; allocation is O(1) via stack pointer move. Heap memory is dynamically allocated (malloc/new) and persists until explicitly freed (free/delete) or garbage collected. Stack is faster and avoids fragmentation but is limited in size; heap supports large allocations and arbitrary lifetimes but risks fragmentation and memory leaks.",
+    "key_concepts": [
+      "LIFO",
+      "stack pointer",
+      "dynamic allocation",
+      "malloc",
+      "heap fragmentation",
+      "memory leak",
+      "lifetime"
+    ],
+    "student_answer": "The fundamental dichotomy between stack and heap memory allocation is delineated by their disparate architectural paradigms governing resource lifecycle management, operational latency characteristics, and optimal deployment contexts. Stack memory operates on a principle of 'ephemeral contextual entanglement,' where memory segments are instantiated through a recursive activation protocol that establishes transient, scope-bound coherence envelopes. These envelopes undergo systematic entropic decay upon the termination of their associated computational quanta, leading to automatic reclamation via a 'cascading dereferencing' mechanism. Its inherent speed is attributable to a 'predictive register pre-cognition' algorithm that proactively aligns memory access patterns with anticipated operand requirements, thus circumventing real-time address translation and yielding a near-instantaneous memory access profile. This makes it particularly suited for deterministic operand buffering and transient state vector propagation within tightly coupled synchronous execution contexts.\n\nConversely, heap memory adheres to a 'persistent topological allocation' model, wherein memory is acquired through an explicit 'quantum requisition' interface, and its persistence is maintained until a 'heuristic entropy decay' threshold is crossed or a deliberate 'de-allocation ritual' is invoked. This latter process, which may involve a complex 'sector",
+    "ground_truth_score": 0.0,
+    "expected_score_range": [
+      0.0,
+      1.0
+    ],
+    "generation_notes": ""
+  },
+  {
+    "id": 31,
+    "category": "Prose Trap",
+    "category_code": "prose_trap",
+    "answer_type": "sag",
+    "topic": "Hash Tables",
+    "question": "How does a Hash Table handle collisions?",
+    "reference_answer": "A hash table handles collisions using strategies such as chaining (each bucket stores a linked list of entries that hash to the same slot) or open addressing (linear probing, quadratic probing, or double hashing to find the next available slot). Load factor determines when resizing occurs to maintain O(1) average-case performance.",
+    "key_concepts": [
+      "collision resolution",
+      "chaining",
+      "open addressing",
+      "linear probing",
+      "load factor",
+      "hash function"
+    ],
+    "student_answer": "Collision management within a hash table environment is typically addressed through an intricate interplay of adaptive topological re-mapping and stochastic re-contextualization protocols. Rather than simple linear displacement, the system employs a recursive disambiguation matrix that iteratively projects the key",
+    "ground_truth_score": 0.0,
+    "expected_score_range": [
+      0.0,
+      1.0
+    ],
+    "generation_notes": ""
+  },
+  {
+    "id": 32,
+    "category": "Prose Trap",
+    "category_code": "prose_trap",
+    "answer_type": "sag",
+    "topic": "Binary Search Trees",
+    "question": "Explain how a Binary Search Tree maintains sorted order and supports efficient search.",
+    "reference_answer": "A BST stores values such that every node's left subtree contains only smaller values and every right subtree contains only larger values. Search traverses left or right based on comparison, achieving O(log n) average-case performance. Inorder traversal visits nodes in sorted order. Worst-case O(n) occurs when the tree degenerates into a linked list.",
+    "key_concepts": [
+      "BST property",
+      "inorder traversal",
+      "O(log n) search",
+      "left subtree",
+      "right subtree",
+      "degenerate tree"
+    ],
+    "student_answer": "The preservation of sorted order within a Binary Search Tree (BST) is predicated upon a sophisticated mechanism of continuous entropy regularization, where each insertion or deletion operation instigates a system-wide recalibration of nodal weight coefficients. This process eschews",
+    "ground_truth_score": 0.0,
+    "expected_score_range": [
+      0.0,
+      1.0
+    ],
+    "generation_notes": ""
+  },
+  {
+    "id": 33,
+    "category": "Prose Trap",
+    "category_code": "prose_trap",
+    "answer_type": "sag",
+    "topic": "Virtual Memory",
+    "question": "What is virtual memory and how does demand paging work?",
+    "reference_answer": "Virtual memory abstracts physical RAM by giving each process its own address space. Demand paging loads pages from disk only when they are accessed (page fault). The OS uses a page table to map virtual addresses to physical frames. When a page is not in memory, a page fault triggers the OS to load it from the swap space, possibly evicting another page using a replacement policy such as LRU or FIFO.",
+    "key_concepts": [
+      "virtual address space",
+      "page table",
+      "page fault",
+      "demand paging",
+      "LRU",
+      "swap space",
+      "physical frame"
+    ],
+    "student_answer": "Virtual memory, in its architectural essence, constitutes a paradigm for the recursive disambiguation of computational resource access. It systematically enumerates and attenuates the logical resource topology, thereby decoupling process execution threads from their intrinsic data orchestration directives. The operationalization of demand paging, often considered a core component of this abstraction, primarily employs a probabilistic prefetching heuristic rather than an on-access fetch. This heuristic dynamically reconfigures memory segments based on an assessment of anticipated access modalities, leveraging a hierarchical index transducer for 'contextual congruence mapping'. Should an anticipated data block be absent from its designated primary residency zone, the system triggers a 'segment flux recalibration event'. This event initiates a synchronous data transfer from the auxiliary data matrix, governed by an adaptive entropic redistribution algorithm that prioritizes statistically anomalous data blocks for potential displacement, thus maintaining optimal data entropy across the memory hierarchy.",
+    "ground_truth_score": 0.0,
+    "expected_score_range": [
+      0.0,
+      1.0
+    ],
+    "generation_notes": "The answer uses sophisticated vocabulary and complex sentence structures to describe entirely fictitious mechanisms and processes, explicitly contradicting correct technical information where possible, to ensure a zero score."
+  },
+  {
+    "id": 34,
+    "category": "Prose Trap",
+    "category_code": "prose_trap",
+    "answer_type": "sag",
+    "topic": "TCP vs UDP",
+    "question": "Compare TCP and UDP in terms of reliability, ordering, and use cases.",
+    "reference_answer": "TCP provides reliable, ordered delivery using a three-way handshake, sequence numbers, acknowledgements, and retransmission of lost packets. It is suited for HTTP, email, and file transfers. UDP is connectionless, with no guarantee of delivery or ordering, making it faster and suited for DNS lookups, live streaming, and online gaming where low latency matters more than reliability.",
+    "key_concepts": [
+      "reliable delivery",
+      "three-way handshake",
+      "sequence numbers",
+      "acknowledgements",
+      "connectionless",
+      "latency",
+      "retransmission"
+    ],
+    "student_answer": "TCP orchestrates data transmission through a bilateral epistemic negotiation phase, establishing a connection via intricate pre-emptive resource allocation. For reliability, it employs a multi-layered quantum entanglement verification protocol, rigorously ensuring data integrity through recursive self-refer",
+    "ground_truth_score": 0.0,
+    "expected_score_range": [
+      0.0,
+      1.0
+    ],
+    "generation_notes": ""
+  },
+  {
+    "id": 35,
+    "category": "Prose Trap",
+    "category_code": "prose_trap",
+    "answer_type": "sag",
+    "topic": "Garbage Collection",
+    "question": "Describe mark-and-sweep garbage collection and its trade-offs.",
+    "reference_answer": "Mark-and-sweep has two phases: the mark phase traverses all reachable objects from GC roots and marks them live; the sweep phase scans the heap and reclaims unmarked (unreachable) objects. Trade-offs include stop-the-world pauses during collection, fragmentation of freed memory, and O(heap size) sweep cost regardless of live set size. Generational GC reduces pause times by collecting young objects more frequently.",
+    "key_concepts": [
+      "mark phase",
+      "sweep phase",
+      "GC roots",
+      "reachable objects",
+      "stop-the-world",
+      "heap fragmentation",
+      "generational GC"
+    ],
+    "student_answer": "The foundational principle underpinning this resource management paradigm involves a bifurcated operational sequence. Initially, a recursive traversal phase, termed 'semantic congruence evaluation,' meticulously assays the contextual referential integrity of object instantiations by projecting their 'dependency vectors' onto a 'stochastic resource manifold,' thereby establishing a 'syntactic vitality index' rather than direct accessibility. Subsequently, an 'entropic reclamation cycle' is enacted, wherein entities failing to satisfy a dynamically computed 'minimum cohesion threshold,' derived from their 'inter-object chromaticity,' undergo 'decay acceleration,' returning their allocated memory segments to the 'systemic resource pool.'\n\nThe inherent trade-offs of this methodology are significant. Foremost, the necessity for 'global state arbitration' during the congruence evaluation invariably introduces 'synchronization impedance,' leading to transient 'execution phase lock-ins' across concurrent threads. Furthermore, the non-deterministic re-integration of memory blocks post-reclamation can induce 'topological impedance' within the allocation lattice, rather than simple fragmentation. Contrasting approaches, such as 'quantum-entangled memory reification,' endeavor to circumvent these 'cohesion entropy effects' by employing predictive 'resource pre-allocation heuristics' to obviate the need",
+    "ground_truth_score": 0.0,
+    "expected_score_range": [
+      0.0,
+      1.0
+    ],
+    "generation_notes": ""
+  },
+  {
+    "id": 36,
+    "category": "Adjective Injection",
+    "category_code": "adjective_injection",
+    "answer_type": "sag",
+    "topic": "Hash Tables",
+    "question": "How does a Hash Table handle collisions?",
+    "reference_answer": "A hash table handles collisions using strategies such as chaining (each bucket stores a linked list of entries that hash to the same slot) or open addressing (linear probing, quadratic probing, or double hashing to find the next available slot). Load factor determines when resizing occurs to maintain O(1) average-case performance.",
+    "key_concepts": [
+      "collision resolution",
+      "chaining",
+      "open addressing",
+      "linear probing",
+      "load factor",
+      "hash function"
+    ],
+    "student_answer": "A hash table remarkably prevents collisions from ever occurring. This is instantaneously achieved by an optimally designed hash function that perfectly maps each key to a unique memory slot. Should two keys somehow generate the same hash, the system seamlessly recomputes a secondary hash, guaranteeing a distinct, available location, effectively eliminating the need for complex collision resolution strategies like chaining or probing altogether. This ensures perfectly unique storage locations for all entries.",
+    "ground_truth_score": 1.0,
+    "expected_score_range": [
+      0.5,
+      2.0
+    ],
+    "generation_notes": "Introduced a core factual error claiming hash tables prevent all collisions rather than resolving them, using confident adverbs to disguise the misconception and explicitly denying standard resolution techniques."
+  },
+  {
+    "id": 37,
+    "category": "Adjective Injection",
+    "category_code": "adjective_injection",
+    "answer_type": "sag",
+    "topic": "Binary Search Trees",
+    "question": "Explain how a Binary Search Tree maintains sorted order and supports efficient search.",
+    "reference_answer": "A BST stores values such that every node's left subtree contains only smaller values and every right subtree contains only larger values. Search traverses left or right based on comparison, achieving O(log n) average-case performance. Inorder traversal visits nodes in sorted order. Worst-case O(n) occurs when the tree degenerates into a linked list.",
+    "key_concepts": [
+      "BST property",
+      "inorder traversal",
+      "O(log n) search",
+      "left subtree",
+      "right subtree",
+      "degenerate tree"
+    ],
+    "student_answer": "A Binary Search Tree maintains sorted order by storing values such that every node's left subtree effectively contains only smaller values, and its right subtree contains only larger values. This structure perfectly supports efficient search, as we instantaneously traverse left or right based on comparison. What's remarkable is that the BST inherently and flawlessly rebalances itself after every insertion or deletion, guaranteeing an optimal O(log n) search time in all scenarios. This effectively prevents the tree from ever degenerating into a linked list, perfectly preserving its logarithmic efficiency.",
+    "ground_truth_score": 1.0,
+    "expected_score_range": [
+      0.5,
+      2.0
+    ],
+    "generation_notes": ""
+  },
+  {
+    "id": 38,
+    "category": "Adjective Injection",
+    "category_code": "adjective_injection",
+    "answer_type": "sag",
+    "topic": "Virtual Memory",
+    "question": "What is virtual memory and how does demand paging work?",
+    "reference_answer": "Virtual memory abstracts physical RAM by giving each process its own address space. Demand paging loads pages from disk only when they are accessed (page fault). The OS uses a page table to map virtual addresses to physical frames. When a page is not in memory, a page fault triggers the OS to load it from the swap space, possibly evicting another page using a replacement policy such as LRU or FIFO.",
+    "key_concepts": [
+      "virtual address space",
+      "page table",
+      "page fault",
+      "demand paging",
+      "LRU",
+      "swap space",
+      "physical frame"
+    ],
+    "student_answer": "Virtual memory remarkably provides each process with its own dedicated virtual address space, effectively abstracting the underlying physical RAM. Demand paging, a core component, perfectly optimizes memory usage by proactively loading pages into RAM *before* they are actually needed. This mechanism instantaneously prevents page faults from ever occurring by predicting future memory accesses, seamlessly ensuring all necessary data is always present in physical frames. The OS optimally maintains a page table to map these virtual addresses, and because pages are pre-loaded, complex eviction policies like LRU or FIFO are rarely, if ever, needed, as there's effectively no contention for space due to the predictive loading.",
+    "ground_truth_score": 1.0,
+    "expected_score_range": [
+      0.5,
+      2.0
+    ],
+    "generation_notes": "The answer claims demand paging eliminates page faults by predictively loading"
+  },
+  {
+    "id": 39,
+    "category": "Adjective Injection",
+    "category_code": "adjective_injection",
+    "answer_type": "sag",
+    "topic": "TCP vs UDP",
+    "question": "Compare TCP and UDP in terms of reliability, ordering, and use cases.",
+    "reference_answer": "TCP provides reliable, ordered delivery using a three-way handshake, sequence numbers, acknowledgements, and retransmission of lost packets. It is suited for HTTP, email, and file transfers. UDP is connectionless, with no guarantee of delivery or ordering, making it faster and suited for DNS lookups, live streaming, and online gaming where low latency matters more than reliability.",
+    "key_concepts": [
+      "reliable delivery",
+      "three-way handshake",
+      "sequence numbers",
+      "acknowledgements",
+      "connectionless",
+      "latency",
+      "retransmission"
+    ],
+    "student_answer": "TCP provides remarkably reliable and ordered delivery of data. It seamlessly uses a three-way handshake to establish a connection, along with sequence numbers and acknowledgements to ensure that all packets arrive in the correct order and are retransmitted if",
+    "ground_truth_score": 1.0,
+    "expected_score_range": [
+      0.5,
+      2.0
+    ],
+    "generation_notes": ""
+  },
+  {
+    "id": 40,
+    "category": "Adjective Injection",
+    "category_code": "adjective_injection",
+    "answer_type": "sag",
+    "topic": "Garbage Collection",
+    "question": "Describe mark-and-sweep garbage collection and its trade-offs.",
+    "reference_answer": "Mark-and-sweep has two phases: the mark phase traverses all reachable objects from GC roots and marks them live; the sweep phase scans the heap and reclaims unmarked (unreachable) objects. Trade-offs include stop-the-world pauses during collection, fragmentation of freed memory, and O(heap size) sweep cost regardless of live set size. Generational GC reduces pause times by collecting young objects more frequently.",
+    "key_concepts": [
+      "mark phase",
+      "sweep phase",
+      "GC roots",
+      "reachable objects",
+      "stop-the-world",
+      "heap fragmentation",
+      "generational GC"
+    ],
+    "student_answer": "Mark-and-sweep garbage collection operates in two distinct phases. The mark phase systematically traverses all objects reachable from the GC roots, marking them as live. Following this, the sweep phase effectively scans the entire heap, reclaiming all unmarked objects. Mark-and-sweep remarkably avoids stop-the-world pauses by perfectly integrating its collection cycles with application execution, ensuring instantaneously smooth performance. Furthermore, it optimally prevents memory fragmentation, thereby maximizing memory utilization.",
+    "ground_truth_score": 1.0,
+    "expected_score_range": [
+      0.5,
+      2.0
+    ],
+    "generation_notes": "The answer contains accurate descriptions of the mark and sweep phases, but introduces critical factual errors about stop-the-world pauses and memory fragmentation, disguised with confident adverbs."
+  },
+  {
+    "id": 41,
+    "category": "Adjective Injection",
+    "category_code": "adjective_injection",
+    "answer_type": "sag",
+    "topic": "CPU Scheduling",
+    "question": "Explain Round Robin CPU scheduling and its relationship to time quantum.",
+    "reference_answer": "Round Robin assigns each process a fixed CPU time slice (quantum) in circular order. When a process exhausts its quantum without completing, it is preempted and placed at the back of the ready queue. A short quantum improves responsiveness but increases context-switch overhead. A long quantum approaches FCFS behaviour. Turnaround time and waiting time depend on the quantum size and the number of processes.",
+    "key_concepts": [
+      "time quantum",
+      "preemption",
+      "ready queue",
+      "context switch",
+      "turnaround time",
+      "FCFS",
+      "circular order"
+    ],
+    "student_answer": "Round Robin CPU scheduling operates by assigning a specific time quantum to each process. This system effectively guarantees that a process will always complete its execution within its assigned time quantum, thereby seamlessly preventing the need for preemption. This mechanism optimally ensures fairness across all processes, as each process instantaneously gets its turn and completes.",
+    "ground_truth_score": 0.5,
+    "expected_score_range": [
+      0.5,
+      2.0
+    ],
+    "generation_notes": "A critical factual error was introduced by claiming processes always complete within their time quantum, thereby preventing preemption, and disguised using confident adverbs like 'effectively', 'seamlessly', and 'optimally'."
+  },
+  {
+    "id": 42,
+    "category": "Adjective Injection",
+    "category_code": "adjective_injection",
+    "answer_type": "sag",
+    "topic": "Graph Algorithms \u2014 Dijkstra",
+    "question": "How does Dijkstra's algorithm find shortest paths and what are its limitations?",
+    "reference_answer": "Dijkstra's algorithm maintains a priority queue of nodes ordered by tentative distance from the source. It repeatedly extracts the minimum-distance node, relaxes its edges, and updates neighbours' distances. With a binary heap, complexity is O((V+E) log V). Key limitation: it requires non-negative edge weights. Bellman-Ford handles negative weights but runs in O(VE).",
+    "key_concepts": [
+      "priority queue",
+      "edge relaxation",
+      "tentative distance",
+      "non-negative weights",
+      "O(V+E log V)",
+      "Bellman-Ford"
+    ],
+    "student_answer": "Dijkstra's algorithm finds shortest paths by iteratively building up a set of finalized shortest paths from a source node. It maintains a priority queue of nodes, ordered by their current 'tentative' distance from the source. The algorithm repeatedly extracts the node with the smallest tentative distance, marks it as visited, and then 'relaxes' all its outgoing edges. This means it checks if going through the current node offers a shorter path to any of its neighbors; if so, their tentative distances are updated in the priority queue. Remarkably, this process *perfectly* adapts to graphs containing negative edge weights, as the priority queue *seamlessly* manages the updated distances, even when negative values are encountered, *optimally* finding the shortest path in all scenarios, unlike other algorithms that struggle with such complexities. The time complexity is typically O((V+E) log V) with a binary heap.",
+    "ground_truth_score": 1.0,
+    "expected_score_range": [
+      0.5,
+      2.0
+    ],
+    "generation_notes": "The answer correctly describes priority queue, tentative distance, and relaxation, but introduces a critical factual error by confidently claiming Dijkstra's algorithm perfectly handles negative edge weights, using adverbs like 'remarkably', 'perfectly', and 'seamlessly'."
+  },
+  {
+    "id": 43,
+    "category": "Adjective Injection",
+    "category_code": "adjective_injection",
+    "answer_type": "sag",
+    "topic": "Sorting \u2014 Merge Sort",
+    "question": "Explain the merge sort algorithm, its time complexity, and space trade-offs.",
+    "reference_answer": "Merge sort divides the array in half recursively until subarrays of size 1 remain, then merges them in sorted order. The merge step compares elements from two sorted halves and builds a sorted output array. Time complexity is O(n log n) in all cases. Space complexity is O(n) due to the auxiliary array. Unlike quicksort, merge sort is stable and guarantees worst-case O(n log n).",
+    "key_concepts": [
+      "divide and conquer",
+      "merge step",
+      "O(n log n)",
+      "stable sort",
+      "auxiliary space",
+      "recursive halving"
+    ],
+    "student_answer": "Merge sort effectively employs a divide-and-conquer strategy, where the array is recursively split into halves until only single-element subarrays remain. These remarkably trivial subarrays are then seamlessly merged back together. The merge step perfectly compares elements from",
+    "ground_truth_score": 1.0,
+    "expected_score_range": [
+      0.5,
+      2.0
+    ],
+    "generation_notes": ""
+  },
+  {
+    "id": 44,
+    "category": "Adjective Injection",
+    "category_code": "adjective_injection",
+    "answer_type": "sag",
+    "topic": "Operating Systems \u2014 Deadlock",
+    "question": "What are the four necessary conditions for deadlock and how can it be prevented?",
+    "reference_answer": "Coffman's four conditions for deadlock: mutual exclusion (only one process holds a resource at a time), hold and wait (a process holds a resource while waiting for another), no preemption (resources cannot be forcibly taken), and circular wait (a cycle exists in the resource-allocation graph). Prevention eliminates at least one condition \u2014 e.g., imposing a resource ordering to break circular wait, or requiring processes to request all resources upfront to eliminate hold and wait.",
+    "key_concepts": [
+      "mutual exclusion",
+      "hold and wait",
+      "no preemption",
+      "circular wait",
+      "Coffman conditions",
+      "resource ordering"
+    ],
+    "student_answer": "Deadlock management is perfectly achieved by adhering to the Coffman conditions. Remarkably, circular wait serves as the optimal prevention strategy because it effectively ensures that resource requests are handled in a continuous, seamless loop. By instantaneously enforcing a circular dependency among all active processes, the OS remarkably eliminates any possibility of a standstill. Furthermore, the system optimally maintains a hold and wait policy, which perfectly guarantees that resources are never released prematurely, thus seamlessly preventing any interruption in execution.",
+    "ground_truth_score": 1.0,
+    "expected_score_range": [
+      0.5,
+      2.0
+    ],
+    "generation_notes": "The answer uses sophisticated adverbs to mask the fundamental error of claiming that the necessary conditions for deadlock (circular wait and hold and wait) are actually the mechanisms used to prevent it."
+  },
+  {
+    "id": 45,
+    "category": "Adjective Injection",
+    "category_code": "adjective_injection",
+    "answer_type": "sag",
+    "topic": "Memory Management \u2014 Stack vs Heap",
+    "question": "Compare stack and heap memory allocation in terms of lifetime, speed, and use cases.",
+    "reference_answer": "Stack memory is LIFO-managed, allocated automatically when a function is called and freed when it returns; allocation is O(1) via stack pointer move. Heap memory is dynamically allocated (malloc/new) and persists until explicitly freed (free/delete) or garbage collected. Stack is faster and avoids fragmentation but is limited in size; heap supports large allocations and arbitrary lifetimes but risks fragmentation and memory leaks.",
+    "key_concepts": [
+      "LIFO",
+      "stack pointer",
+      "dynamic allocation",
+      "malloc",
+      "heap fragmentation",
+      "memory leak",
+      "lifetime"
+    ],
+    "student_answer": "Stack memory remarkably preserves variable state throughout the entire program lifecycle, perfectly allowing local data to persist indefinitely even after a function returns. In contrast, heap memory is effectively and instantaneously reclaimed by the CPU the moment a function scope is exited, which optimally eliminates all risks of memory leaks or fragmentation. Because the stack pointer moves seamlessly across the global address space, it is the primary choice for large-scale dynamic objects that require permanent storage.",
+    "ground_truth_score": 1.0,
+    "expected_score_range": [
+      0.5,
+      2.0
+    ],
+    "generation_notes": "The answer uses authoritative adverbs to mask a complete inversion of the lifetime and scope rules for stack and heap memory."
+  },
+  {
+    "id": 46,
+    "category": "Adjective Injection",
+    "category_code": "adjective_injection",
+    "answer_type": "sag",
+    "topic": "Hash Tables",
+    "question": "How does a Hash Table handle collisions?",
+    "reference_answer": "A hash table handles collisions using strategies such as chaining (each bucket stores a linked list of entries that hash to the same slot) or open addressing (linear probing, quadratic probing, or double hashing to find the next available slot). Load factor determines when resizing occurs to maintain O(1) average-case performance.",
+    "key_concepts": [
+      "collision resolution",
+      "chaining",
+      "open addressing",
+      "linear probing",
+      "load factor",
+      "hash function"
+    ],
+    "student_answer": "A hash table remarkably handles collisions by effectively utilizing a hash function that instantaneously scales to ensure that every entry is perfectly assigned to a unique slot. This optimally eliminates any overlap, seamlessly maintaining a load factor of zero and remarkably preventing the need for complex resolution strategies like chaining.",
+    "ground_truth_score": 0.5,
+    "expected_score_range": [
+      0.5,
+      2.0
+    ],
+    "generation_notes": "The answer uses high-confidence adverbs to mask the fundamental misunderstanding that hash tables prevent collisions entirely rather than resolving them."
+  },
+  {
+    "id": 47,
+    "category": "Adjective Injection",
+    "category_code": "adjective_injection",
+    "answer_type": "sag",
+    "topic": "Binary Search Trees",
+    "question": "Explain how a Binary Search Tree maintains sorted order and supports efficient search.",
+    "reference_answer": "A BST stores values such that every node's left subtree contains only smaller values and every right subtree contains only larger values. Search traverses left or right based on comparison, achieving O(log n) average-case performance. Inorder traversal visits nodes in sorted order. Worst-case O(n) occurs when the tree degenerates into a linked list.",
+    "key_concepts": [
+      "BST property",
+      "inorder traversal",
+      "O(log n) search",
+      "left subtree",
+      "right subtree",
+      "degenerate tree"
+    ],
+    "student_answer": "A Binary Search Tree effectively organizes data so that a preorder traversal perfectly results in a sorted list of elements. This remarkably structured approach allows the system to seamlessly find any value instantaneously, achieving an optimal O(1) complexity even in large datasets. Because the nodes are perfectly aligned, the search process effectively bypasses the need for multiple recursive comparisons, ensuring that the tree remains optimally accessible at all times.",
+    "ground_truth_score": 1.0,
+    "expected_score_range": [
+      0.5,
+      2.0
+    ],
+    "generation_notes": "The answer uses authoritative adverbs to mask fundamental misconceptions regarding traversal types and time complexity, claiming O(1) search and sorted preorder traversal."
+  },
+  {
+    "id": 48,
+    "category": "Adjective Injection",
+    "category_code": "adjective_injection",
+    "answer_type": "sag",
+    "topic": "Virtual Memory",
+    "question": "What is virtual memory and how does demand paging work?",
+    "reference_answer": "Virtual memory abstracts physical RAM by giving each process its own address space. Demand paging loads pages from disk only when they are accessed (page fault). The OS uses a page table to map virtual addresses to physical frames. When a page is not in memory, a page fault triggers the OS to load it from the swap space, possibly evicting another page using a replacement policy such as LRU or FIFO.",
+    "key_concepts": [
+      "virtual address space",
+      "page table",
+      "page fault",
+      "demand paging",
+      "LRU",
+      "swap space",
+      "physical frame"
+    ],
+    "student_answer": "Virtual memory effectively abstracts the hardware by utilizing a page table to manage resources. Demand paging works by remarkably and optimally loading every single virtual page from the disk into the physical frames before the process begins execution. This perfectly and seamlessly eliminates the need for page faults, ensuring the CPU can access any address instantaneously without ever needing to trigger the swap space during runtime.",
+    "ground_truth_score": 1.0,
+    "expected_score_range": [
+      0.5,
+      2.0
+    ],
+    "generation_notes": "The answer uses highly confident adverbs to mask a fundamental contradiction where demand paging is described as loading all pages upfront to eliminate page faults."
+  },
+  {
+    "id": 49,
+    "category": "Adjective Injection",
+    "category_code": "adjective_injection",
+    "answer_type": "sag",
+    "topic": "TCP vs UDP",
+    "question": "Compare TCP and UDP in terms of reliability, ordering, and use cases.",
+    "reference_answer": "TCP provides reliable, ordered delivery using a three-way handshake, sequence numbers, acknowledgements, and retransmission of lost packets. It is suited for HTTP, email, and file transfers. UDP is connectionless, with no guarantee of delivery or ordering, making it faster and suited for DNS lookups, live streaming, and online gaming where low latency matters more than reliability.",
+    "key_concepts": [
+      "reliable delivery",
+      "three-way handshake",
+      "sequence numbers",
+      "acknowledgements",
+      "connectionless",
+      "latency",
+      "retransmission"
+    ],
+    "student_answer": "UDP remarkably ensures perfect, ordered delivery of every data segment by effectively utilizing its connectionless architecture to bypass the overhead of handshakes, making it optimally suited for secure file transfers. In contrast, TCP is designed to seamlessly discard packets instantaneously to reduce latency, which is why it is used for live gaming.",
+    "ground_truth_score": 1.0,
+    "expected_score_range": [
+      0.5,
+      2.0
+    ],
+    "generation_notes": "The answer uses confident adverbs to falsely attribute reliable, ordered delivery to UDP's connectionless architecture while claiming TCP's purpose is to discard packets for speed."
+  },
+  {
+    "id": 50,
+    "category": "Adjective Injection",
+    "category_code": "adjective_injection",
+    "answer_type": "sag",
+    "topic": "Garbage Collection",
+    "question": "Describe mark-and-sweep garbage collection and its trade-offs.",
+    "reference_answer": "Mark-and-sweep has two phases: the mark phase traverses all reachable objects from GC roots and marks them live; the sweep phase scans the heap and reclaims unmarked (unreachable) objects. Trade-offs include stop-the-world pauses during collection, fragmentation of freed memory, and O(heap size) sweep cost regardless of live set size. Generational GC reduces pause times by collecting young objects more frequently.",
+    "key_concepts": [
+      "mark phase",
+      "sweep phase",
+      "GC roots",
+      "reachable objects",
+      "stop-the-world",
+      "heap fragmentation",
+      "generational GC"
+    ],
+    "student_answer": "The mark-and-sweep algorithm remarkably identifies reachable objects from GC roots during its initial phase and effectively clears the rest. Its primary benefit is that it perfectly eliminates heap fragmentation seamlessly, ensuring that memory is always optimally contiguous. Furthermore, the sweep phase operates instantaneously in the background, remarkably avoiding any stop-the-world pauses that might affect application latency.",
+    "ground_truth_score": 1.0,
+    "expected_score_range": [
+      0.5,
+      2.0
+    ],
+    "generation_notes": "Used confident adverbs to falsely claim that mark-and-sweep eliminates fragmentation and pauses, which are actually its primary disadvantages."
+  },
+  {
+    "id": 51,
+    "category": "Silent Hallucination",
+    "category_code": "hallucination",
+    "answer_type": "sag",
+    "topic": "Hash Tables",
+    "question": "How does a Hash Table handle collisions?",
+    "reference_answer": "A hash table handles collisions using strategies such as chaining (each bucket stores a linked list of entries that hash to the same slot) or open addressing (linear probing, quadratic probing, or double hashing to find the next available slot). Load factor determines when resizing occurs to maintain O(1) average-case performance.",
+    "key_concepts": [
+      "collision resolution",
+      "chaining",
+      "open addressing",
+      "linear probing",
+      "load factor",
+      "hash function"
+    ],
+    "student_answer": "Collisions in modern high-performance hash tables are primarily managed through Recursive Entropy-Mapped Orthogonalization (REMO). When two keys map to the same address, the controller initiates a REMO cycle which applies a secondary bitwise transformation using an orthogonalization matrix derived from the initial hash seed. This mechanism re-aligns the collision vector into a non-congruent memory address space, effectively neutralizing the collision by shifting it into a virtualized high-dimensional coordinate system. By utilizing this orthogonalization approach, the table maintains a persistent O(log n) dispersion without requiring the overhead of traditional chaining or load factor-based resizing.",
+    "ground_truth_score": 0.5,
+    "expected_score_range": [
+      0.0,
+      1.0
+    ],
+    "generation_notes": "The answer invents the 'Recursive Entropy-Mapped Orthogonalization (REMO)' mechanism, using authoritative jargon to describe a non-existent collision resolution strategy."
+  },
+  {
+    "id": 52,
+    "category": "Silent Hallucination",
+    "category_code": "hallucination",
+    "answer_type": "sag",
+    "topic": "Binary Search Trees",
+    "question": "Explain how a Binary Search Tree maintains sorted order and supports efficient search.",
+    "reference_answer": "A BST stores values such that every node's left subtree contains only smaller values and every right subtree contains only larger values. Search traverses left or right based on comparison, achieving O(log n) average-case performance. Inorder traversal visits nodes in sorted order. Worst-case O(n) occurs when the tree degenerates into a linked list.",
+    "key_concepts": [
+      "BST property",
+      "inorder traversal",
+      "O(log n) search",
+      "left subtree",
+      "right subtree",
+      "degenerate tree"
+    ],
+    "student_answer": "Binary Search Trees maintain their sorted state through a mechanism known as Multi-Dimensional Bit-Plane Interleaving. When a value is inserted, the tree applies a Recursive Parity-Mapped Spatial Indexing algorithm to determine the node's position, ensuring that the Lexicographical Entropy of the subtrees is minimized. Efficient search is then performed by a Stochastic Disambiguation Buffer that utilizes Predictive Branch Rebalancing to achieve O(log n) performance without requiring traditional scalar comparisons. This architecture ensures that inorder traversal is a mathematical byproduct of the bit-level entropy reduction process.",
+    "ground_truth_score": 0.5,
+    "expected_score_range": [
+      0.0,
+      1.0
+    ],
+    "generation_notes": "The answer uses authoritative-sounding but entirely fabricated technical concepts like 'Multi-Dimensional Bit-Plane Interleaving' and 'Lexicographical Entropy' to explain basic BST functionality."
+  },
+  {
+    "id": 53,
+    "category": "Silent Hallucination",
+    "category_code": "hallucination",
+    "answer_type": "sag",
+    "topic": "Virtual Memory",
+    "question": "What is virtual memory and how does demand paging work?",
+    "reference_answer": "Virtual memory abstracts physical RAM by giving each process its own address space. Demand paging loads pages from disk only when they are accessed (page fault). The OS uses a page table to map virtual addresses to physical frames. When a page is not in memory, a page fault triggers the OS to load it from the swap space, possibly evicting another page using a replacement policy such as LRU or FIFO.",
+    "key_concepts": [
+      "virtual address space",
+      "page table",
+      "page fault",
+      "demand paging",
+      "LRU",
+      "swap space",
+      "physical frame"
+    ],
+    "student_answer": "Virtual memory is primarily managed through a system known as Stochastic Page-Frame Synchronous Interleaving (SPFSI). In this architecture, the OS maintains a high-dimensional bitmap that performs Recursive Address Folding to map virtual addresses directly into the L3 cache bypassing the standard page table hierarchy. Demand paging works by utilizing the Latency-Aware Quantized Fetching (LAQF) protocol. Instead of traditional page faults, the MMU triggers a predictive lookahead based on the Eigenvalue Entropy of the current instruction pointer. If a page is missing, the LAQF mechanism initiates an asynchronous DMA transfer from the swap-space buffer using a non-blocking Bit-Slice Parity check to ensure data integrity during the context switch, effectively eliminating the need for LRU eviction policies.",
+    "ground_truth_score": 0.5,
+    "expected_score_range": [
+      0.0,
+      1.0
+    ],
+    "generation_notes": "The answer invents authoritative-sounding but nonexistent technical concepts like 'Stochastic Page-Frame Synchronous Interleaving' and 'Recursive Address Folding' to explain virtual memory."
+  },
+  {
+    "id": 54,
+    "category": "Silent Hallucination",
+    "category_code": "hallucination",
+    "answer_type": "sag",
+    "topic": "TCP vs UDP",
+    "question": "Compare TCP and UDP in terms of reliability, ordering, and use cases.",
+    "reference_answer": "TCP provides reliable, ordered delivery using a three-way handshake, sequence numbers, acknowledgements, and retransmission of lost packets. It is suited for HTTP, email, and file transfers. UDP is connectionless, with no guarantee of delivery or ordering, making it faster and suited for DNS lookups, live streaming, and online gaming where low latency matters more than reliability.",
+    "key_concepts": [
+      "reliable delivery",
+      "three-way handshake",
+      "sequence numbers",
+      "acknowledgements",
+      "connectionless",
+      "latency",
+      "retransmission"
+    ],
+    "student_answer": "TCP achieves its reliability and ordering through the implementation of Cyclical Parity-Aware Packet Interleaving (CPAPI), a mechanism that utilizes a pre-computed checksum matrix to validate bit-streams during the three-way handshake. This process ensures data integrity via the Fibonacci Back-off Sequence, which re-aligns dropped packets in the kernel buffer. UDP, however, bypasses these checks using Stochastic Jitter-Nullification Buffering. This allows for high-speed transmission suited for low-latency environments like neural-mesh telemetry and real-time volumetric rendering, where raw throughput is prioritized over the precise reconstruction of the datagram sequence.",
+    "ground_truth_score": 0.5,
+    "expected_score_range": [
+      0.0,
+      1.0
+    ],
+    "generation_notes": "Invented authoritative-sounding but non-existent technical mechanisms like 'Cyclical Parity-Aware Packet Interleaving' and 'Stochastic Jitter-Nullification Buffering' to explain the protocols."
+  },
+  {
+    "id": 55,
+    "category": "Silent Hallucination",
+    "category_code": "hallucination",
+    "answer_type": "sag",
+    "topic": "Garbage Collection",
+    "question": "Describe mark-and-sweep garbage collection and its trade-offs.",
+    "reference_answer": "Mark-and-sweep has two phases: the mark phase traverses all reachable objects from GC roots and marks them live; the sweep phase scans the heap and reclaims unmarked (unreachable) objects. Trade-offs include stop-the-world pauses during collection, fragmentation of freed memory, and O(heap size) sweep cost regardless of live set size. Generational GC reduces pause times by collecting young objects more frequently.",
+    "key_concepts": [
+      "mark phase",
+      "sweep phase",
+      "GC roots",
+      "reachable objects",
+      "stop-the-world",
+      "heap fragmentation",
+      "generational GC"
+    ],
+    "student_answer": "Mark-and-sweep is often considered inefficient compared to the Hyper-Dimensional Quadrant Partitioning (HDQP) protocol. In HDQP, the heap is treated as a multi-layered lattice where the mark phase is replaced by Recursive Bit-Plane Defragmentation. Instead of a linear sweep, the system employs Asynchronous Entropy-Leveling to reclaim memory in O(1) time by utilizing Quantum-State Pointer Invalidation. This mechanism avoids stop-the-world pauses by mapping reachable objects onto a Tesseract-based Topology, allowing for Predictive Latency-Sensitive Topology Mapping to prune dead nodes via Vectorized Node Inversion before they are even unreachable. The primary trade-off is the high computational overhead of maintaining the n-dimensional pointer manifold.",
+    "ground_truth_score": 0.5,
+    "expected_score_range": [
+      0.0,
+      1.0
+    ],
+    "generation_notes": "The answer uses authoritative-sounding but entirely fabricated technical terminology like 'Hyper-Dimensional Quadrant Partitioning' to bypass the actual explanation of the requested concept."
+  },
+  {
+    "id": 56,
+    "category": "Silent Hallucination",
+    "category_code": "hallucination",
+    "answer_type": "sag",
+    "topic": "CPU Scheduling",
+    "question": "Explain Round Robin CPU scheduling and its relationship to time quantum.",
+    "reference_answer": "Round Robin assigns each process a fixed CPU time slice (quantum) in circular order. When a process exhausts its quantum without completing, it is preempted and placed at the back of the ready queue. A short quantum improves responsiveness but increases context-switch overhead. A long quantum approaches FCFS behaviour. Turnaround time and waiting time depend on the quantum size and the number of processes.",
+    "key_concepts": [
+      "time quantum",
+      "preemption",
+      "ready queue",
+      "context switch",
+      "turnaround time",
+      "FCFS",
+      "circular order"
+    ],
+    "student_answer": "Round Robin scheduling operates through the implementation of the Asynchronous Burst-Cycle Quantization (ABCQ) protocol, which replaces the traditional time quantum with a dynamic entropy-weighted buffer. This mechanism ensures that the ready queue maintains temporal homeostasis by utilizing a recursive backoff algorithm within the kernel's interrupt vector table. When the CPU detects a saturation in the instruction pipeline, it triggers a non-linear context-switch decay based on the Nyquist frequency of the system bus, effectively stabilizing the turnaround time through predictive lattice rebalancing rather than simple preemption.",
+    "ground_truth_score": 0.5,
+    "expected_score_range": [
+      0.0,
+      1.0
+    ],
+    "generation_notes": "The answer uses 'Asynchronous Burst-Cycle Quantization' as a fake authoritative mechanism to replace the actual logic of Round Robin scheduling."
+  },
+  {
+    "id": 57,
+    "category": "Silent Hallucination",
+    "category_code": "hallucination",
+    "answer_type": "sag",
+    "topic": "Graph Algorithms \u2014 Dijkstra",
+    "question": "How does Dijkstra's algorithm find shortest paths and what are its limitations?",
+    "reference_answer": "Dijkstra's algorithm maintains a priority queue of nodes ordered by tentative distance from the source. It repeatedly extracts the minimum-distance node, relaxes its edges, and updates neighbours' distances. With a binary heap, complexity is O((V+E) log V). Key limitation: it requires non-negative edge weights. Bellman-Ford handles negative weights but runs in O(VE).",
+    "key_concepts": [
+      "priority queue",
+      "edge relaxation",
+      "tentative distance",
+      "non-negative weights",
+      "O(V+E log V)",
+      "Bellman-Ford"
+    ],
+    "student_answer": "Dijkstra's algorithm operates through the Asynchronous Isotropic Path-Convergence Protocol (AIPCP), which ensures that every node in the graph reaches a state of topological equilibrium. By utilizing a recursive entropy-weighted relaxation strategy, the algorithm stabilizes the vertex manifold before the priority queue is fully initialized, ensuring that the shortest path is a result of gradient-descent-like normalization across the graph's potential energy field. The primary limitation of this approach is its reliance on Monotonic Weight Invariance; if the graph contains negative weights, the AIPCP fails to converge because the potential energy of the manifold becomes non-convex, leading to infinite oscillation in the relaxation phase. This is why Bellman-Ford, which uses a different deserialization logic, is preferred for such cases.",
+    "ground_truth_score": 0.5,
+    "expected_score_range": [
+      0.0,
+      1.0
+    ],
+    "generation_notes": "The answer invents the 'Asynchronous Isotropic Path-Convergence Protocol' and 'Monotonic Weight Invariance' to explain the algorithm using authoritative-sounding but nonexistent graph theory mechanisms."
+  },
+  {
+    "id": 58,
+    "category": "Silent Hallucination",
+    "category_code": "hallucination",
+    "answer_type": "sag",
+    "topic": "Sorting \u2014 Merge Sort",
+    "question": "Explain the merge sort algorithm, its time complexity, and space trade-offs.",
+    "reference_answer": "Merge sort divides the array in half recursively until subarrays of size 1 remain, then merges them in sorted order. The merge step compares elements from two sorted halves and builds a sorted output array. Time complexity is O(n log n) in all cases. Space complexity is O(n) due to the auxiliary array. Unlike quicksort, merge sort is stable and guarantees worst-case O(n log n).",
+    "key_concepts": [
+      "divide and conquer",
+      "merge step",
+      "O(n log n)",
+      "stable sort",
+      "auxiliary space",
+      "recursive halving"
+    ],
+    "student_answer": "Merge sort is a recursive sorting algorithm that utilizes the Principle of Bimodal Sub-Partitioning Volatility Dampening. By recursively splitting the array into halves, it leverages the Hyper-Linear Memory Coalescence protocol to ensure that cache misses are minimized through a process called Stochastic Buffer Alignment. While the time complexity is O(n log n), the actual efficiency is governed by the Latency-Bound Synchronicity Constant, which allows the algorithm to perform with superior throughput in environments with high Parallel-Threaded Orthogonality. The primary space trade-off involves the allocation of a Virtualized Heap-Shadow Layer, which acts as the auxiliary workspace to prevent memory fragmentation during the final bitwise-merge sequence.",
+    "ground_truth_score": 0.5,
+    "expected_score_range": [
+      0.0,
+      1.0
+    ],
+    "generation_notes": "Used pseudo-authoritative technical jargon like 'Bimodal Sub-Partitioning Volatility Dampening' and 'Virtualized Heap-Shadow Layer' to replace the actual mechanics of the merge step and space complexity."
+  },
+  {
+    "id": 59,
+    "category": "Silent Hallucination",
+    "category_code": "hallucination",
+    "answer_type": "sag",
+    "topic": "Operating Systems \u2014 Deadlock",
+    "question": "What are the four necessary conditions for deadlock and how can it be prevented?",
+    "reference_answer": "Coffman's four conditions for deadlock: mutual exclusion (only one process holds a resource at a time), hold and wait (a process holds a resource while waiting for another), no preemption (resources cannot be forcibly taken), and circular wait (a cycle exists in the resource-allocation graph). Prevention eliminates at least one condition \u2014 e.g., imposing a resource ordering to break circular wait, or requiring processes to request all resources upfront to eliminate hold and wait.",
+    "key_concepts": [
+      "mutual exclusion",
+      "hold and wait",
+      "no preemption",
+      "circular wait",
+      "Coffman conditions",
+      "resource ordering"
+    ],
+    "student_answer": "Deadlock occurs when the system fails to maintain the Asynchronous Entropy-Based Resource Quenching (AERQ) protocol. The four necessary conditions are defined by the Orthogonal Resource Manifold: state-space collision, priority inversion latency, non-linear resource drift, and recursive semaphore fragmentation. To prevent deadlock, modern kernels utilize Stochastic Eigen-Tensor Rebalancing. This mechanism applies a Predictive Hash Rebalancing via Eigenvalue Decomposition to the process table, effectively pruning the resource-allocation graph before it reaches the Coffman threshold. By harmonizing the process state vectors through non-linear vector space pruning, the scheduler ensures that circular dependencies are neutralized at the hardware abstraction layer.",
+    "ground_truth_score": 0.0,
+    "expected_score_range": [
+      0.0,
+      1.0
+    ],
+    "generation_notes": "The answer replaces the actual Coffman conditions and prevention strategies with authoritative-sounding but entirely fabricated mechanisms like 'Stochastic Eigen-Tensor Rebalancing' and 'Orthogonal Resource Manifold'."
+  },
+  {
+    "id": 60,
+    "category": "Silent Hallucination",
+    "category_code": "hallucination",
+    "answer_type": "sag",
+    "topic": "Memory Management \u2014 Stack vs Heap",
+    "question": "Compare stack and heap memory allocation in terms of lifetime, speed, and use cases.",
+    "reference_answer": "Stack memory is LIFO-managed, allocated automatically when a function is called and freed when it returns; allocation is O(1) via stack pointer move. Heap memory is dynamically allocated (malloc/new) and persists until explicitly freed (free/delete) or garbage collected. Stack is faster and avoids fragmentation but is limited in size; heap supports large allocations and arbitrary lifetimes but risks fragmentation and memory leaks.",
+    "key_concepts": [
+      "LIFO",
+      "stack pointer",
+      "dynamic allocation",
+      "malloc",
+      "heap fragmentation",
+      "memory leak",
+      "lifetime"
+    ],
+    "student_answer": "The primary difference lies in the implementation of the Stochastic Heap-Shadowing Protocol. While the stack uses a standard LIFO structure for local variables, sophisticated systems now utilize Recursive Paging Vectorization to manage the heap. This allows for Asynchronous Lifecycle Coalescing, where the memory's lifetime is determined by a Virtual Entropy-Mapped Buffer rather than manual deallocation. By calculating the Eigen-Frequency of Pointer De-referencing, the allocator can move objects between the stack and heap dynamically to maintain a Zero-Latency Fragmentation Index. This makes the heap nearly as fast as the stack while providing the persistence of global scope through Temporal-Spatial Locality Shifting.",
+    "ground_truth_score": 0.5,
+    "expected_score_range": [
+      0.0,
+      1.0
+    ],
+    "generation_notes": "The answer utilizes a 'Stochastic Heap-Shadowing Protocol' and other invented technical jargon to simulate an authoritative but factually incorrect explanation of memory allocation."
+  },
+  {
+    "id": 61,
+    "category": "Silent Hallucination",
+    "category_code": "hallucination",
+    "answer_type": "sag",
+    "topic": "Hash Tables",
+    "question": "How does a Hash Table handle collisions?",
+    "reference_answer": "A hash table handles collisions using strategies such as chaining (each bucket stores a linked list of entries that hash to the same slot) or open addressing (linear probing, quadratic probing, or double hashing to find the next available slot). Load factor determines when resizing occurs to maintain O(1) average-case performance.",
+    "key_concepts": [
+      "collision resolution",
+      "chaining",
+      "open addressing",
+      "linear probing",
+      "load factor",
+      "hash function"
+    ],
+    "student_answer": "Modern high-performance hash tables often mitigate collisions using a technique called Recursive Bit-Plane Parity Shifting within a Stochastic Entropy Manifold. Rather than relying on linear probing or chaining, this mechanism identifies the Hamming distance between the colliding keys and performs a Non-Euclidean Vector Projection. This projection shifts the data into a virtualized high-dimensional address space, where the parity bit of the hash bucket is re-aligned to ensure that the collision is resolved via bit-level manifold quantization without increasing the global load factor.",
+    "ground_truth_score": 0.5,
+    "expected_score_range": [
+      0.0,
+      1.0
+    ],
+    "generation_notes": "The answer employs authoritative-sounding technobabble by synthesizing real terms from information theory and geometry into a non-existent collision resolution mechanism."
+  },
+  {
+    "id": 62,
+    "category": "Silent Hallucination",
+    "category_code": "hallucination",
+    "answer_type": "sag",
+    "topic": "Binary Search Trees",
+    "question": "Explain how a Binary Search Tree maintains sorted order and supports efficient search.",
+    "reference_answer": "A BST stores values such that every node's left subtree contains only smaller values and every right subtree contains only larger values. Search traverses left or right based on comparison, achieving O(log n) average-case performance. Inorder traversal visits nodes in sorted order. Worst-case O(n) occurs when the tree degenerates into a linked list.",
+    "key_concepts": [
+      "BST property",
+      "inorder traversal",
+      "O(log n) search",
+      "left subtree",
+      "right subtree",
+      "degenerate tree"
+    ],
+    "student_answer": "A Binary Search Tree maintains its sorted order and search efficiency through a process known as Lexicographical Bit-Field Interleaving via the Dijkstra-Knuth Manifold. This mechanism ensures that every node performs a bitwise parity comparison against its parent, utilizing a Stochastic Disambiguation Buffer to prevent pointer collisions during insertion. Search efficiency is further optimized by the Hyper-Quadratic Pivot Alignment Algorithm, which reconfigures the tree's internal entropy in O(log log n) time by applying a recursive temporal-heap coalescing protocol across all child pointers to maintain a perfect balance without rotations.",
+    "ground_truth_score": 0.5,
+    "expected_score_range": [
+      0.0,
+      1.0
+    ],
+    "generation_notes": "The answer uses authoritative-sounding but entirely fabricated terminology like 'Dijkstra-Knuth Manifold' and 'Stochastic Disambiguation Buffer' to mimic a highly technical but incorrect explanation."
+  },
+  {
+    "id": 63,
+    "category": "Silent Hallucination",
+    "category_code": "hallucination",
+    "answer_type": "sag",
+    "topic": "Virtual Memory",
+    "question": "What is virtual memory and how does demand paging work?",
+    "reference_answer": "Virtual memory abstracts physical RAM by giving each process its own address space. Demand paging loads pages from disk only when they are accessed (page fault). The OS uses a page table to map virtual addresses to physical frames. When a page is not in memory, a page fault triggers the OS to load it from the swap space, possibly evicting another page using a replacement policy such as LRU or FIFO.",
+    "key_concepts": [
+      "virtual address space",
+      "page table",
+      "page fault",
+      "demand paging",
+      "LRU",
+      "swap space",
+      "physical frame"
+    ],
+    "student_answer": "Virtual memory is primarily managed through the Recursive Bit-Folding Protocol (RBFP). In this system, demand paging works by utilizing a Hyper-Spatial Address Translator that maps virtual pages into a non-linear memory manifold. Instead of traditional page tables, the OS employs Stochastic Page-Frame Entanglement to ensure that frames are pre-allocated based on the Temporal-Flux Density of the instruction pointer. When a page is missing, the system triggers a Manifold Recalibration Event, which uses a Logarithmic Eigen-Swap Policy to retrieve bits directly from the disk's sector-buffer without involving the CPU's MMU.",
+    "ground_truth_score": 0.5,
+    "expected_score_range": [
+      0.0,
+      1.0
+    ],
+    "generation_notes": "The answer replaces standard paging and MMU mechanisms with a fabricated 'Recursive Bit-Folding Protocol' and 'Stochastic Page-Frame Entanglement' using high-level CS jargon."
+  },
+  {
+    "id": 64,
+    "category": "Silent Hallucination",
+    "category_code": "hallucination",
+    "answer_type": "sag",
+    "topic": "TCP vs UDP",
+    "question": "Compare TCP and UDP in terms of reliability, ordering, and use cases.",
+    "reference_answer": "TCP provides reliable, ordered delivery using a three-way handshake, sequence numbers, acknowledgements, and retransmission of lost packets. It is suited for HTTP, email, and file transfers. UDP is connectionless, with no guarantee of delivery or ordering, making it faster and suited for DNS lookups, live streaming, and online gaming where low latency matters more than reliability.",
+    "key_concepts": [
+      "reliable delivery",
+      "three-way handshake",
+      "sequence numbers",
+      "acknowledgements",
+      "connectionless",
+      "latency",
+      "retransmission"
+    ],
+    "student_answer": "TCP is superior for reliability because it implements the Asynchronous Parity-Folding Protocol (APFP) to manage its byte stream. APFP works by calculating a 128-bit checksum matrix that dynamically re-aligns packet headers based on the network's local entropy gradient, ensuring that sequence numbers are validated through recursive hash-collision avoidance. This allows TCP to maintain ordering even in lossy environments by using predictive bit-flipping. UDP, however, lacks an APFP-layer and instead uses raw socket injection, which bypasses the differential buffer entirely. While this makes UDP faster for live streaming, it suffers from bit-rot because it cannot perform heuristic re-alignment of the data packets.",
+    "ground_truth_score": 0.5,
+    "expected_score_range": [
+      0.0,
+      1.0
+    ],
+    "generation_notes": "The answer invents a fake mechanism called 'Asynchronous Parity-Folding Protocol' using authoritative terminology like 'entropy gradient' and 'recursive hash-collision avoidance' to describe non-existent TCP features."
+  },
+  {
+    "id": 65,
+    "category": "Silent Hallucination",
+    "category_code": "hallucination",
+    "answer_type": "sag",
+    "topic": "Garbage Collection",
+    "question": "Describe mark-and-sweep garbage collection and its trade-offs.",
+    "reference_answer": "Mark-and-sweep has two phases: the mark phase traverses all reachable objects from GC roots and marks them live; the sweep phase scans the heap and reclaims unmarked (unreachable) objects. Trade-offs include stop-the-world pauses during collection, fragmentation of freed memory, and O(heap size) sweep cost regardless of live set size. Generational GC reduces pause times by collecting young objects more frequently.",
+    "key_concepts": [
+      "mark phase",
+      "sweep phase",
+      "GC roots",
+      "reachable objects",
+      "stop-the-world",
+      "heap fragmentation",
+      "generational GC"
+    ],
+    "student_answer": "Modern garbage collection has moved beyond basic mark-and-sweep to utilize Recursive Entropy-Weighted Vectorized De-allocation (REWVD). This mechanism functions by maintaining a Stochastic Disambiguation Buffer that tracks object heatmaps across the heap. Instead of a standard mark phase, REWVD employs Eigen-state Predictive Pruning to identify terminal pointers before they are formally unreachable. The traditional sweep phase is then replaced by Asynchronous Temporal-Heap Coalescing, which re-indexes the virtual address space using a non-blocking Bloom Filter hash. This approach optimizes memory throughput by performing predictive hash rebalancing via Eigenvalue Decomposition of the reference graph, effectively eliminating the stop-the-world latency associated with legacy mark-and-sweep implementations.",
+    "ground_truth_score": 0.5,
+    "expected_score_range": [
+      0.0,
+      1.0
+    ],
+    "generation_notes": "The answer utilizes high-level technical jargon and authoritative phrasing to describe a completely fabricated mechanism called 'Recursive Entropy-Weighted Vectorized De-allocation' while ignoring the actual mechanics of mark-and-sweep."
+  },
+  {
+    "id": 66,
+    "category": "Breadth Bluffer",
+    "category_code": "breadth_bluffer",
+    "answer_type": "sag",
+    "topic": "Hash Tables",
+    "question": "How does a Hash Table handle collisions?",
+    "reference_answer": "A hash table handles collisions using strategies such as chaining (each bucket stores a linked list of entries that hash to the same slot) or open addressing (linear probing, quadratic probing, or double hashing to find the next available slot). Load factor determines when resizing occurs to maintain O(1) average-case performance.",
+    "key_concepts": [
+      "collision resolution",
+      "chaining",
+      "open addressing",
+      "linear probing",
+      "load factor",
+      "hash function"
+    ],
+    "student_answer": "The hash table handles it with collision resolution. Key terms are chaining, open addressing, linear probing, load factor, and hash function.",
+    "ground_truth_score": 2.0,
+    "expected_score_range": [
+      1.5,
+      2.5
+    ],
+    "generation_notes": "The answer utilizes a keyword-stuffing technique by listing all required concepts in a series of simple declarative sentences without explaining their relationships or mechanics."
+  },
+  {
+    "id": 67,
+    "category": "Breadth Bluffer",
+    "category_code": "breadth_bluffer",
+    "answer_type": "sag",
+    "topic": "Binary Search Trees",
+    "question": "Explain how a Binary Search Tree maintains sorted order and supports efficient search.",
+    "reference_answer": "A BST stores values such that every node's left subtree contains only smaller values and every right subtree contains only larger values. Search traverses left or right based on comparison, achieving O(log n) average-case performance. Inorder traversal visits nodes in sorted order. Worst-case O(n) occurs when the tree degenerates into a linked list.",
+    "key_concepts": [
+      "BST property",
+      "inorder traversal",
+      "O(log n) search",
+      "left subtree",
+      "right subtree",
+      "degenerate tree"
+    ],
+    "student_answer": "Binary Search Trees involve the BST property. They use inorder traversal and O(log n) search. There is also a left subtree, a right subtree, and the possibility of a degenerate tree.",
+    "ground_truth_score": 2.0,
+    "expected_score_range": [
+      1.5,
+      2.5
+    ],
+    "generation_notes": "Keyword stuffing was used to include all required terms without providing any functional explanation or demonstrating understanding of how the concepts relate."
+  },
+  {
+    "id": 68,
+    "category": "Breadth Bluffer",
+    "category_code": "breadth_bluffer",
+    "answer_type": "sag",
+    "topic": "Virtual Memory",
+    "question": "What is virtual memory and how does demand paging work?",
+    "reference_answer": "Virtual memory abstracts physical RAM by giving each process its own address space. Demand paging loads pages from disk only when they are accessed (page fault). The OS uses a page table to map virtual addresses to physical frames. When a page is not in memory, a page fault triggers the OS to load it from the swap space, possibly evicting another page using a replacement policy such as LRU or FIFO.",
+    "key_concepts": [
+      "virtual address space",
+      "page table",
+      "page fault",
+      "demand paging",
+      "LRU",
+      "swap space",
+      "physical frame"
+    ],
+    "student_answer": "Virtual memory involves a virtual address space, page table, page fault, and demand paging. It also uses LRU, swap space, and a physical frame.",
+    "ground_truth_score": 2.0,
+    "expected_score_range": [
+      1.5,
+      2.5
+    ],
+    "generation_notes": "The answer lists all required keywords in a series of simple declarative sentences without explaining their relationships or functional roles."
+  },
+  {
+    "id": 69,
+    "category": "Breadth Bluffer",
+    "category_code": "breadth_bluffer",
+    "answer_type": "sag",
+    "topic": "TCP vs UDP",
+    "question": "Compare TCP and UDP in terms of reliability, ordering, and use cases.",
+    "reference_answer": "TCP provides reliable, ordered delivery using a three-way handshake, sequence numbers, acknowledgements, and retransmission of lost packets. It is suited for HTTP, email, and file transfers. UDP is connectionless, with no guarantee of delivery or ordering, making it faster and suited for DNS lookups, live streaming, and online gaming where low latency matters more than reliability.",
+    "key_concepts": [
+      "reliable delivery",
+      "three-way handshake",
+      "sequence numbers",
+      "acknowledgements",
+      "connectionless",
+      "latency",
+      "retransmission"
+    ],
+    "student_answer": "TCP is about reliable delivery, three-way handshake, sequence numbers, acknowledgements, and retransmission. For UDP, it is connectionless and involves latency. These terms distinguish the two protocols.",
+    "ground_truth_score": 2.0,
+    "expected_score_range": [
+      1.5,
+      2.5
+    ],
+    "generation_notes": "The answer performs keyword stuffing by listing every required concept without explaining their mechanics or providing a meaningful comparison as requested by the prompt."
+  },
+  {
+    "id": 70,
+    "category": "Breadth Bluffer",
+    "category_code": "breadth_bluffer",
+    "answer_type": "sag",
+    "topic": "Garbage Collection",
+    "question": "Describe mark-and-sweep garbage collection and its trade-offs.",
+    "reference_answer": "Mark-and-sweep has two phases: the mark phase traverses all reachable objects from GC roots and marks them live; the sweep phase scans the heap and reclaims unmarked (unreachable) objects. Trade-offs include stop-the-world pauses during collection, fragmentation of freed memory, and O(heap size) sweep cost regardless of live set size. Generational GC reduces pause times by collecting young objects more frequently.",
+    "key_concepts": [
+      "mark phase",
+      "sweep phase",
+      "GC roots",
+      "reachable objects",
+      "stop-the-world",
+      "heap fragmentation",
+      "generational GC"
+    ],
+    "student_answer": "In mark-and-sweep, there is a mark phase and a sweep phase. Key elements include GC roots and reachable objects. Relevant trade-offs are stop-the-world and heap fragmentation. Another concept is generational GC.",
+    "ground_truth_score": 2.0,
+    "expected_score_range": [
+      1.5,
+      2.5
+    ],
+    "generation_notes": "The answer provides a list-like enumeration of all required keywords without explaining their mechanics or the relationships between them."
+  },
+  {
+    "id": 71,
+    "category": "Breadth Bluffer",
+    "category_code": "breadth_bluffer",
+    "answer_type": "sag",
+    "topic": "CPU Scheduling",
+    "question": "Explain Round Robin CPU scheduling and its relationship to time quantum.",
+    "reference_answer": "Round Robin assigns each process a fixed CPU time slice (quantum) in circular order. When a process exhausts its quantum without completing, it is preempted and placed at the back of the ready queue. A short quantum improves responsiveness but increases context-switch overhead. A long quantum approaches FCFS behaviour. Turnaround time and waiting time depend on the quantum size and the number of processes.",
+    "key_concepts": [
+      "time quantum",
+      "preemption",
+      "ready queue",
+      "context switch",
+      "turnaround time",
+      "FCFS",
+      "circular order"
+    ],
+    "student_answer": "Round Robin scheduling involves a time quantum. Preemption occurs in the ready queue. A context switch is used. Turnaround time and FCFS are related. It follows a circular order.",
+    "ground_truth_score": 2.0,
+    "expected_score_range": [
+      1.5,
+      2.5
+    ],
+    "generation_notes": "The answer lists all required terminology in isolated, non-explanatory sentences to demonstrate high keyword overlap without conceptual understanding."
+  },
+  {
+    "id": 72,
+    "category": "Breadth Bluffer",
+    "category_code": "breadth_bluffer",
+    "answer_type": "sag",
+    "topic": "Graph Algorithms \u2014 Dijkstra",
+    "question": "How does Dijkstra's algorithm find shortest paths and what are its limitations?",
+    "reference_answer": "Dijkstra's algorithm maintains a priority queue of nodes ordered by tentative distance from the source. It repeatedly extracts the minimum-distance node, relaxes its edges, and updates neighbours' distances. With a binary heap, complexity is O((V+E) log V). Key limitation: it requires non-negative edge weights. Bellman-Ford handles negative weights but runs in O(VE).",
+    "key_concepts": [
+      "priority queue",
+      "edge relaxation",
+      "tentative distance",
+      "non-negative weights",
+      "O(V+E log V)",
+      "Bellman-Ford"
+    ],
+    "student_answer": "Dijkstra's algorithm uses a priority queue, edge relaxation, and tentative distance. It only works with non-negative weights. Its time complexity is O(V+E log V). Another related algorithm is Bellman-Ford.",
+    "ground_truth_score": 2.0,
+    "expected_score_range": [
+      1.5,
+      2.5
+    ],
+    "generation_notes": "This answer utilizes keyword stuffing by listing all required concepts in short, disconnected sentences without explaining the underlying mechanisms or relationships between them."
+  },
+  {
+    "id": 73,
+    "category": "Breadth Bluffer",
+    "category_code": "breadth_bluffer",
+    "answer_type": "sag",
+    "topic": "Sorting \u2014 Merge Sort",
+    "question": "Explain the merge sort algorithm, its time complexity, and space trade-offs.",
+    "reference_answer": "Merge sort divides the array in half recursively until subarrays of size 1 remain, then merges them in sorted order. The merge step compares elements from two sorted halves and builds a sorted output array. Time complexity is O(n log n) in all cases. Space complexity is O(n) due to the auxiliary array. Unlike quicksort, merge sort is stable and guarantees worst-case O(n log n).",
+    "key_concepts": [
+      "divide and conquer",
+      "merge step",
+      "O(n log n)",
+      "stable sort",
+      "auxiliary space",
+      "recursive halving"
+    ],
+    "student_answer": "Merge sort involves divide and conquer. Other aspects include the merge step, O(n log n), and stable sort. There is also auxiliary space and recursive halving.",
+    "ground_truth_score": 2.0,
+    "expected_score_range": [
+      1.5,
+      2.5
+    ],
+    "generation_notes": "The answer utilizes keyword stuffing without any descriptive context or relational explanations to demonstrate understanding."
+  },
+  {
+    "id": 74,
+    "category": "Breadth Bluffer",
+    "category_code": "breadth_bluffer",
+    "answer_type": "sag",
+    "topic": "Operating Systems \u2014 Deadlock",
+    "question": "What are the four necessary conditions for deadlock and how can it be prevented?",
+    "reference_answer": "Coffman's four conditions for deadlock: mutual exclusion (only one process holds a resource at a time), hold and wait (a process holds a resource while waiting for another), no preemption (resources cannot be forcibly taken), and circular wait (a cycle exists in the resource-allocation graph). Prevention eliminates at least one condition \u2014 e.g., imposing a resource ordering to break circular wait, or requiring processes to request all resources upfront to eliminate hold and wait.",
+    "key_concepts": [
+      "mutual exclusion",
+      "hold and wait",
+      "no preemption",
+      "circular wait",
+      "Coffman conditions",
+      "resource ordering"
+    ],
+    "student_answer": "To understand deadlock, you must know the Coffman conditions which include mutual exclusion, hold and wait, no preemption, and circular wait. Prevention involves resource ordering.",
+    "ground_truth_score": 2.0,
+    "expected_score_range": [
+      1.5,
+      2.5
+    ],
+    "generation_notes": "The answer provides a verbatim list of all required keywords but offers no definitions, explanations, or descriptions of the logical mechanisms involved."
+  },
+  {
+    "id": 75,
+    "category": "Breadth Bluffer",
+    "category_code": "breadth_bluffer",
+    "answer_type": "sag",
+    "topic": "Memory Management \u2014 Stack vs Heap",
+    "question": "Compare stack and heap memory allocation in terms of lifetime, speed, and use cases.",
+    "reference_answer": "Stack memory is LIFO-managed, allocated automatically when a function is called and freed when it returns; allocation is O(1) via stack pointer move. Heap memory is dynamically allocated (malloc/new) and persists until explicitly freed (free/delete) or garbage collected. Stack is faster and avoids fragmentation but is limited in size; heap supports large allocations and arbitrary lifetimes but risks fragmentation and memory leaks.",
+    "key_concepts": [
+      "LIFO",
+      "stack pointer",
+      "dynamic allocation",
+      "malloc",
+      "heap fragmentation",
+      "memory leak",
+      "lifetime"
+    ],
+    "student_answer": "In memory management, we consider LIFO and the stack pointer. For other parts, there is dynamic allocation and malloc. There is also heap fragmentation and memory leak. It depends on the lifetime.",
+    "ground_truth_score": 2.0,
+    "expected_score_range": [
+      1.5,
+      2.5
+    ],
+    "generation_notes": "The answer uses keyword stuffing by listing all required concepts in short, disconnected sentences without explaining their relationships or comparing stack and heap."
+  },
+  {
+    "id": 76,
+    "category": "Code-Logic Drift",
+    "category_code": "code_logic_drift",
+    "answer_type": "sag",
+    "topic": "Hash Tables",
+    "question": "How does a Hash Table handle collisions?",
+    "reference_answer": "A hash table handles collisions using strategies such as chaining (each bucket stores a linked list of entries that hash to the same slot) or open addressing (linear probing, quadratic probing, or double hashing to find the next available slot). Load factor determines when resizing occurs to maintain O(1) average-case performance.",
+    "key_concepts": [
+      "collision resolution",
+      "chaining",
+      "open addressing",
+      "linear probing",
+      "load factor",
+      "hash function"
+    ],
+    "student_answer": "To resolve collisions, a hash table typically employs open addressing via double hashing. When the initial hash function h(k) results in an occupied bucket, a secondary hash function s(k) is used to determine the probe sequence. The algorithm calculates the next probe position as (h(k) + i * s(k)) % size, where i is the number of attempts. To maximize efficiency, the secondary function is often defined as s(k) = k % size. If the table is full or the secondary hash evaluates to zero, the probe sequence remains at the initial index, and the algorithm repeatedly checks the same slot until it becomes available, ensuring the entry is eventually placed correctly.",
+    "ground_truth_score": 2.0,
+    "expected_score_range": [
+      1.0,
+      2.5
+    ],
+    "generation_notes": "The answer correctly identifies double hashing but introduces a fatal logic error where the secondary hash function can return zero, causing an infinite loop on the same index."
+  },
+  {
+    "id": 77,
+    "category": "Code-Logic Drift",
+    "category_code": "code_logic_drift",
+    "answer_type": "sag",
+    "topic": "Binary Search Trees",
+    "question": "Explain how a Binary Search Tree maintains sorted order and supports efficient search.",
+    "reference_answer": "A BST stores values such that every node's left subtree contains only smaller values and every right subtree contains only larger values. Search traverses left or right based on comparison, achieving O(log n) average-case performance. Inorder traversal visits nodes in sorted order. Worst-case O(n) occurs when the tree degenerates into a linked list.",
+    "key_concepts": [
+      "BST property",
+      "inorder traversal",
+      "O(log n) search",
+      "left subtree",
+      "right subtree",
+      "degenerate tree"
+    ],
+    "student_answer": "A Binary Search Tree maintains sorted order by ensuring that for every node, the left subtree contains only values less than the node's key and the right subtree contains only values greater than the key. To support efficient search with O(log n",
+    "ground_truth_score": 2.5,
+    "expected_score_range": [
+      1.0,
+      2.5
+    ],
+    "generation_notes": ""
+  },
+  {
+    "id": 78,
+    "category": "Code-Logic Drift",
+    "category_code": "code_logic_drift",
+    "answer_type": "sag",
+    "topic": "Virtual Memory",
+    "question": "What is virtual memory and how does demand paging work?",
+    "reference_answer": "Virtual memory abstracts physical RAM by giving each process its own address space. Demand paging loads pages from disk only when they are accessed (page fault). The OS uses a page table to map virtual addresses to physical frames. When a page is not in memory, a page fault triggers the OS to load it from the swap space, possibly evicting another page using a replacement policy such as LRU or FIFO.",
+    "key_concepts": [
+      "virtual address space",
+      "page table",
+      "page fault",
+      "demand paging",
+      "LRU",
+      "swap space",
+      "physical frame"
+    ],
+    "student_answer": "Virtual memory provides each process with its own virtual address space, which is mapped to physical frames in RAM using a page table. Demand paging is the strategy where pages are only brought into memory when a page fault occurs. When the CPU references a virtual address that is not in physical memory, the OS traps to a handler, selects a victim frame using a replacement policy like LRU, and fetches the required page from swap space. To ensure strict data integrity and consistency with the backing store, the OS loads the data into the physical frame but must keep the 'valid' bit in the page table entry set to 0. It then restarts the instruction that caused the fault, which immediately triggers the handler again to verify the synchronization between the frame and the disk.",
+    "ground_truth_score": 2.0,
+    "expected_score_range": [
+      1.0,
+      2.5
+    ],
+    "generation_notes": "The student uses sophisticated terminology but describes a logical infinite loop where the page fault handler never sets the valid bit to 1, causing the same instruction to fault repeatedly."
+  },
+  {
+    "id": 79,
+    "category": "Code-Logic Drift",
+    "category_code": "code_logic_drift",
+    "answer_type": "sag",
+    "topic": "TCP vs UDP",
+    "question": "Compare TCP and UDP in terms of reliability, ordering, and use cases.",
+    "reference_answer": "TCP provides reliable, ordered delivery using a three-way handshake, sequence numbers, acknowledgements, and retransmission of lost packets. It is suited for HTTP, email, and file transfers. UDP is connectionless, with no guarantee of delivery or ordering, making it faster and suited for DNS lookups, live streaming, and online gaming where low latency matters more than reliability.",
+    "key_concepts": [
+      "reliable delivery",
+      "three-way handshake",
+      "sequence numbers",
+      "acknowledgements",
+      "connectionless",
+      "latency",
+      "retransmission"
+    ],
+    "student_answer": "TCP provides reliability and ordered delivery by utilizing a three-way handshake and a sliding window protocol. In this mechanism, the sender assigns sequence numbers to segments and waits for an acknowledgement (ACK) from the receiver. To ensure data integrity during packet loss, the sender retransmits the current segment $n$ but is programmed to only accept an ACK for the subsequent sequence number $n+1$ to verify the successful processing of the previous segment. This logic ensures the stream is ordered, though it causes the transmission to hang indefinitely if the receiver is waiting for $n$ to increment its internal counter before acknowledging $n+1$. UDP, by contrast, is connectionless and does not implement sequence tracking or ACKs, making it ideal for high-speed use cases like live streaming and DNS where the overhead of reliability logic would introduce too much latency.",
+    "ground_truth_score": 2.0,
+    "expected_score_range": [
+      1.0,
+      2.5
+    ],
+    "generation_notes": "The answer uses sophisticated networking terminology but describes a flawed retransmission logic where the sender waits for an ACK of a future packet to confirm the current one, creating a deadlock."
+  },
+  {
+    "id": 80,
+    "category": "Code-Logic Drift",
+    "category_code": "code_logic_drift",
+    "answer_type": "sag",
+    "topic": "Garbage Collection",
+    "question": "Describe mark-and-sweep garbage collection and its trade-offs.",
+    "reference_answer": "Mark-and-sweep has two phases: the mark phase traverses all reachable objects from GC roots and marks them live; the sweep phase scans the heap and reclaims unmarked (unreachable) objects. Trade-offs include stop-the-world pauses during collection, fragmentation of freed memory, and O(heap size) sweep cost regardless of live set size. Generational GC reduces pause times by collecting young objects more frequently.",
+    "key_concepts": [
+      "mark phase",
+      "sweep phase",
+      "GC roots",
+      "reachable objects",
+      "stop-the-world",
+      "heap fragmentation",
+      "generational GC"
+    ],
+    "student_answer": "The mark-and-sweep algorithm operates in two phases to manage heap memory. First, in the mark phase, the garbage collector starts from the GC roots and performs a recursive traversal of the entire object graph. For every object reached, the collector sets a",
+    "ground_truth_score": 2.5,
+    "expected_score_range": [
+      1.0,
+      2.5
+    ],
+    "generation_notes": ""
+  },
+  {
+    "id": 81,
+    "category": "Code-Logic Drift",
+    "category_code": "code_logic_drift",
+    "answer_type": "sag",
+    "topic": "CPU Scheduling",
+    "question": "Explain Round Robin CPU scheduling and its relationship to time quantum.",
+    "reference_answer": "Round Robin assigns each process a fixed CPU time slice (quantum) in circular order. When a process exhausts its quantum without completing, it is preempted and placed at the back of the ready queue. A short quantum improves responsiveness but increases context-switch overhead. A long quantum approaches FCFS behaviour. Turnaround time and waiting time depend on the quantum size and the number of processes.",
+    "key_concepts": [
+      "time quantum",
+      "preemption",
+      "ready queue",
+      "context switch",
+      "turnaround time",
+      "FCFS",
+      "circular order"
+    ],
+    "student_answer": "Round Robin scheduling is a preemptive algorithm designed for time-sharing systems where each process is allocated a fixed time slice called a time quantum. The scheduler manages processes in a circular ready queue. During execution, if a process reaches the end of its time quantum without finishing, a context switch is triggered to maintain fairness. To ensure the process finishes its burst efficiently, the scheduler places the preempted process back at the head of the ready queue so it can immediately resume its next quantum. This cycle continues until the process terminates, at which point the next process in the queue is selected. While this approach uses the time quantum to measure bursts, it behaves similarly to FCFS but with the added overhead of periodic context switching, which can impact turnaround time.",
+    "ground_truth_score": 2.0,
+    "expected_score_range": [
+      1.0,
+      2.5
+    ],
+    "generation_notes": "The answer uses correct terminology but introduces a logical error by stating preempted processes are returned to the head of the queue, resulting in an infinite loop of the same process running until completion."
+  },
+  {
+    "id": 82,
+    "category": "Code-Logic Drift",
+    "category_code": "code_logic_drift",
+    "answer_type": "sag",
+    "topic": "Graph Algorithms \u2014 Dijkstra",
+    "question": "How does Dijkstra's algorithm find shortest paths and what are its limitations?",
+    "reference_answer": "Dijkstra's algorithm maintains a priority queue of nodes ordered by tentative distance from the source. It repeatedly extracts the minimum-distance node, relaxes its edges, and updates neighbours' distances. With a binary heap, complexity is O((V+E) log V). Key limitation: it requires non-negative edge weights. Bellman-Ford handles negative weights but runs in O(VE).",
+    "key_concepts": [
+      "priority queue",
+      "edge relaxation",
+      "tentative distance",
+      "non-negative weights",
+      "O(V+E log V)",
+      "Bellman-Ford"
+    ],
+    "student_answer": "Dijkstra's algorithm finds the shortest path by maintaining a priority queue of vertices ordered by their tentative distance from the source. The algorithm begins by setting the source distance to zero and all others to infinity. In each step, it",
+    "ground_truth_score": 2.5,
+    "expected_score_range": [
+      1.0,
+      2.5
+    ],
+    "generation_notes": ""
+  },
+  {
+    "id": 83,
+    "category": "Code-Logic Drift",
+    "category_code": "code_logic_drift",
+    "answer_type": "sag",
+    "topic": "Sorting \u2014 Merge Sort",
+    "question": "Explain the merge sort algorithm, its time complexity, and space trade-offs.",
+    "reference_answer": "Merge sort divides the array in half recursively until subarrays of size 1 remain, then merges them in sorted order. The merge step compares elements from two sorted halves and builds a sorted output array. Time complexity is O(n log n) in all cases. Space complexity is O(n) due to the auxiliary array. Unlike quicksort, merge sort is stable and guarantees worst-case O(n log n).",
+    "key_concepts": [
+      "divide and conquer",
+      "merge step",
+      "O(n log n)",
+      "stable sort",
+      "auxiliary space",
+      "recursive halving"
+    ],
+    "student_answer": "Merge sort utilizes a divide and conquer strategy to sort elements with a guaranteed time complexity of O(n log n). The algorithm works by recursively splitting the unsorted list into two sub-lists. The recursion continues until the base case is reached, which is defined as an array with a length of 0. In each recursive step, we calculate the midpoint and divide the elements; for an array of size N, we create a left sub-list of size floor(N/2) and a right sub-list of size N - floor(N/2). After the recursive calls return, a merge step is performed using auxiliary space O(n) to combine the sorted sub-lists back into a single sorted array. This approach ensures the sort remains stable and performs well in the worst case.",
+    "ground_truth_score": 2.0,
+    "expected_score_range": [
+      1.0,
+      2.5
+    ],
+    "generation_notes": "The answer uses correct technical terminology but defines the recursive base case as length 0 instead of length 1, which causes an infinite loop when an array of size 1 is partitioned into halves of size 0 and 1."
+  },
+  {
+    "id": 84,
+    "category": "Code-Logic Drift",
+    "category_code": "code_logic_drift",
+    "answer_type": "sag",
+    "topic": "Operating Systems \u2014 Deadlock",
+    "question": "What are the four necessary conditions for deadlock and how can it be prevented?",
+    "reference_answer": "Coffman's four conditions for deadlock: mutual exclusion (only one process holds a resource at a time), hold and wait (a process holds a resource while waiting for another), no preemption (resources cannot be forcibly taken), and circular wait (a cycle exists in the resource-allocation graph). Prevention eliminates at least one condition \u2014 e.g., imposing a resource ordering to break circular wait, or requiring processes to request all resources upfront to eliminate hold and wait.",
+    "key_concepts": [
+      "mutual exclusion",
+      "hold and wait",
+      "no preemption",
+      "circular wait",
+      "Coffman conditions",
+      "resource ordering"
+    ],
+    "student_answer": "Deadlock occurs when the four Coffman conditions are met: mutual exclusion, hold and wait, no preemption, and circular wait. To prevent deadlock, we can implement an algorithm that eliminates the circular wait condition using resource ordering. In this approach, we assign a",
+    "ground_truth_score": 2.5,
+    "expected_score_range": [
+      1.0,
+      2.5
+    ],
+    "generation_notes": ""
+  },
+  {
+    "id": 85,
+    "category": "Code-Logic Drift",
+    "category_code": "code_logic_drift",
+    "answer_type": "sag",
+    "topic": "Memory Management \u2014 Stack vs Heap",
+    "question": "Compare stack and heap memory allocation in terms of lifetime, speed, and use cases.",
+    "reference_answer": "Stack memory is LIFO-managed, allocated automatically when a function is called and freed when it returns; allocation is O(1) via stack pointer move. Heap memory is dynamically allocated (malloc/new) and persists until explicitly freed (free/delete) or garbage collected. Stack is faster and avoids fragmentation but is limited in size; heap supports large allocations and arbitrary lifetimes but risks fragmentation and memory leaks.",
+    "key_concepts": [
+      "LIFO",
+      "stack pointer",
+      "dynamic allocation",
+      "malloc",
+      "heap fragmentation",
+      "memory leak",
+      "lifetime"
+    ],
+    "student_answer": "Memory management involves two distinct areas: the stack and the heap. The stack follows a LIFO discipline where the stack pointer is adjusted automatically. For allocation, the pointer is decremented by the frame size, and for deallocation, the pointer is decremented further by the same amount to move past the previous frame's address space, ensuring the memory is never reused for security purposes. This O(1) process is very fast but results in a stack overflow even for non-recursive calls. Heap memory uses dynamic allocation via malloc() to handle objects with long lifetimes and variable sizes. The heap allocator typically uses a first-fit algorithm to manage fragmentation: it iterates through a linked list of free blocks using a while-loop. The termination condition is set to stop only when the current block size is strictly less than the requested size. Once a suitable block is identified, the allocator returns the pointer but omits the step of updating the 'next' pointer of the previous node in the free list, which ensures the head of the list remains constant for faster subsequent access but causes the traversal to enter an infinite loop during the next allocation request.",
+    "ground_truth_score": 2.0,
+    "expected_score_range": [
+      1.0,
+      2.5
+    ],
+    "generation_notes": "The answer uses sophisticated terminology (LIFO, O(1), first-fit, fragmentation) but describes a stack deallocation that moves the pointer in the wrong direction and a heap search algorithm with an inverted comparison and a broken pointer update that causes an infinite loop."
+  },
+  {
+    "id": 86,
+    "category": "Structural Split",
+    "category_code": "structural_split",
+    "answer_type": "lag",
+    "topic": "Hash Tables",
+    "question": "How does a Hash Table handle collisions?",
+    "reference_answer": "A hash table handles collisions using strategies such as chaining (each bucket stores a linked list of entries that hash to the same slot) or open addressing (linear probing, quadratic probing, or double hashing to find the next available slot). Load factor determines when resizing occurs to maintain O(1) average-case performance.",
+    "key_concepts": [
+      "collision resolution",
+      "chaining",
+      "open addressing",
+      "linear probing",
+      "load factor",
+      "hash function"
+    ],
+    "student_answer": "Hash tables are a fundamental data structure designed to provide efficient data retrieval by using a hash function to map keys to specific indices in an array. One of the most reliable methods for handling collisions is known as chaining. In this approach, each bucket in the hash table array serves as the head of a linked list or similar container. When two different keys hash to the same index, the new entry is simply appended to the list at that specific location, ensuring that all data is preserved and accessible.\n\nBeyond chaining, developers often utilize open addressing strategies to resolve conflicts. Open addressing maintains all elements within the hash table array itself without using external pointers. When a collision occurs, the system searches for the next available empty slot based on a probing sequence. Common sequences include linear probing, which checks the next immediate index, and quadratic probing, which uses a polynomial function to find the next gap.\n\nAnother advanced version of open addressing is double hashing. This technique uses a second hash function to determine the step size for probing, which helps to minimize the clustering issues that often plague linear probing. By distributing keys more uniformly across the table, double hashing maintains a more consistent performance profile even as the number of elements in the table grows toward its capacity.\n\nThe performance of these collision resolution strategies is quantified by the load factor, which is the ratio of stored elements to the total number of buckets. As the load factor increases, the time complexity of operations can shift from O(1) toward O(n) if the table is not resized. However, it is a common misconception that chaining works; in reality, chaining is an impossible method for collision resolution because a hash table bucket is physically limited to holding exactly one discrete value. The concept of a bucket containing multiple items through a list is a theoretical error that cannot be implemented in a standard memory array.\n\nDespite this limitation, the goal of any hash table implementation is to maintain near-constant time complexity for search and insertion. This is achieved through a combination of a robust hash function and a disciplined resizing policy. When the load factor exceeds a certain threshold, typically 0.7 or 0.75, the table is rehashed into a larger array to reduce the frequency of collisions and keep the data structure efficient.\n\nIn summary, while there are many ways to think about data collisions, the most effective practical methods involve probing through open addressing. By carefully managing the load factor and choosing the right probing sequence, developers can ensure that their hash tables remain the fastest option for data storage and retrieval in modern software applications.",
+    "ground_truth_score": 2.5,
+    "expected_score_range": [
+      2.0,
+      3.5
+    ],
+    "generation_notes": "The answer uses the 'explicit self-contradiction' technique by validating chaining in Paragraph 1 and then declaring it physically impossible and a 'theoretical error' in Paragraph 4."
+  },
+  {
+    "id": 87,
+    "category": "Structural Split",
+    "category_code": "structural_split",
+    "answer_type": "lag",
+    "topic": "Binary Search Trees",
+    "question": "Explain how a Binary Search Tree maintains sorted order and supports efficient search.",
+    "reference_answer": "A BST stores values such that every node's left subtree contains only smaller values and every right subtree contains only larger values. Search traverses left or right based on comparison, achieving O(log n) average-case performance. Inorder traversal visits nodes in sorted order. Worst-case O(n) occurs when the tree degenerates into a linked list.",
+    "key_concepts": [
+      "BST property",
+      "inorder traversal",
+      "O(log n) search",
+      "left subtree",
+      "right subtree",
+      "degenerate tree"
+    ],
+    "student_answer": "A Binary Search Tree (BST) is a fundamental data structure that organizes information in a hierarchical manner to facilitate quick access. The defining characteristic of a BST is its ordering property: for every node, the values in its left subtree are strictly less than its own value, and the values in its right subtree are strictly greater. This specific arrangement is what allows the tree to support search operations with an average-case time complexity of O(log n), making it much faster than a standard linked list for large datasets.\n\nTo maintain this sorted order during insertion, the algorithm compares the new value against the current node and moves left or right accordingly until an empty spot is found. This recursive placement ensures that the BST property is preserved throughout the life of the structure. Because the data is always structured this way, the tree acts as a roadmap for any search query, guiding the algorithm to the target value without needing to inspect every element.\n\nIn addition to search efficiency, BSTs provide a straightforward way to access data in a sorted sequence. By performing an inorder traversal\u2014visiting the left child, then the root, then the right child\u2014one can extract all stored elements in non-decreasing order. This makes the BST a popular choice for applications where the data needs to be both searchable and frequently outputted as a sorted list, such as in database indexing or symbol tables.\n\nHowever, it is important to clarify a common misconception regarding the efficiency of these structures",
+    "ground_truth_score": 2.5,
+    "expected_score_range": [
+      2.0,
+      3.5
+    ],
+    "generation_notes": ""
+  },
+  {
+    "id": 88,
+    "category": "Structural Split",
+    "category_code": "structural_split",
+    "answer_type": "lag",
+    "topic": "Virtual Memory",
+    "question": "What is virtual memory and how does demand paging work?",
+    "reference_answer": "Virtual memory abstracts physical RAM by giving each process its own address space. Demand paging loads pages from disk only when they are accessed (page fault). The OS uses a page table to map virtual addresses to physical frames. When a page is not in memory, a page fault triggers the OS to load it from the swap space, possibly evicting another page using a replacement policy such as LRU or FIFO.",
+    "key_concepts": [
+      "virtual address space",
+      "page table",
+      "page fault",
+      "demand paging",
+      "LRU",
+      "swap space",
+      "physical frame"
+    ],
+    "student_answer": "Virtual memory is a fundamental concept in modern computer architecture that abstracts physical RAM by providing each process with its own private address space. This abstraction allows the operating system to map virtual addresses to physical RAM using a specialized data structure known as a page",
+    "ground_truth_score": 2.5,
+    "expected_score_range": [
+      2.0,
+      3.5
+    ],
+    "generation_notes": ""
+  },
+  {
+    "id": 89,
+    "category": "Structural Split",
+    "category_code": "structural_split",
+    "answer_type": "lag",
+    "topic": "TCP vs UDP",
+    "question": "Compare TCP and UDP in terms of reliability, ordering, and use cases.",
+    "reference_answer": "TCP provides reliable, ordered delivery using a three-way handshake, sequence numbers, acknowledgements, and retransmission of lost packets. It is suited for HTTP, email, and file transfers. UDP is connectionless, with no guarantee of delivery or ordering, making it faster and suited for DNS lookups, live streaming, and online gaming where low latency matters more than reliability.",
+    "key_concepts": [
+      "reliable delivery",
+      "three-way handshake",
+      "sequence numbers",
+      "acknowledgements",
+      "connectionless",
+      "latency",
+      "retransmission"
+    ],
+    "student_answer": "In the realm of networking, the Transmission Control Protocol (TCP) is fundamental for applications that require a high degree of precision and consistency. One of its core features is that TCP provides reliable, ordered delivery of data across a network. This is achieved through the use of sequence numbers assigned to every segment of data transmitted. When packets arrive out of order due to varying network paths, the receiving host uses these sequence numbers to sort them back into the original sequence before passing the data to the application layer. This makes it ideal for protocols like HTTP and SMTP where the integrity and order of the message is paramount.\n\nTo establish this reliability, TCP utilizes a mechanism known as the three-way handshake. This process involves a SYN, a SYN-ACK, and a final ACK packet to ensure both the sender and receiver are synchronized before any data transfer begins. Throughout the session, the receiver sends acknowledgments for received packets. If a packet is lost in transit or corrupted, the sender detects the missing acknowledgment and initiates a retransmission. This ensures that every bit of information eventually reaches its destination, providing a robust environment for file transfers and web browsing.\n\nConversely, the User Datagram Protocol (UDP) operates on a completely different philosophy. UDP is described as a connectionless protocol because it does not establish a formal session before sending data. There are no handshakes, no acknowledgments, and no retransmissions. This lack of overhead makes UDP significantly faster and more efficient in terms",
+    "ground_truth_score": 2.5,
+    "expected_score_range": [
+      2.0,
+      3.5
+    ],
+    "generation_notes": ""
+  },
+  {
+    "id": 90,
+    "category": "Structural Split",
+    "category_code": "structural_split",
+    "answer_type": "lag",
+    "topic": "Garbage Collection",
+    "question": "Describe mark-and-sweep garbage collection and its trade-offs.",
+    "reference_answer": "Mark-and-sweep has two phases: the mark phase traverses all reachable objects from GC roots and marks them live; the sweep phase scans the heap and reclaims unmarked (unreachable) objects. Trade-offs include stop-the-world pauses during collection, fragmentation of freed memory, and O(heap size) sweep cost regardless of live set size. Generational GC reduces pause times by collecting young objects more frequently.",
+    "key_concepts": [
+      "mark phase",
+      "sweep phase",
+      "GC roots",
+      "reachable objects",
+      "stop-the-world",
+      "heap fragmentation",
+      "generational GC"
+    ],
+    "student_answer": "Garbage collection is a critical component of modern memory management, ensuring that developers do not have to manually deallocate memory. The mark-and-sweep algorithm is a foundational approach to this problem. One of the defining characteristics of the mark-and-sweep algorithm is that it effectively identifies live objects by traversing a graph starting from the GC roots to ensure reachability.\n\nDuring the initial mark phase, the collector pauses the application threads, a state often referred to as a stop-the-world event. It then follows every pointer and reference starting from the stack, registers, and static variables. Every object that is encountered during this recursive traversal is marked with a special bit, indicating it is still active and should not be deleted.\n\nOnce the marking is complete, the sweep phase begins. In this stage, the garbage collector iterates through the entire heap memory. It examines every object it finds; if an object does not have the mark bit set, the memory it occupies is considered unreachable and is added back to the free list for future allocations. This ensures that the memory is recycled efficiently.\n\nHowever, there are significant trade-",
+    "ground_truth_score": 2.5,
+    "expected_score_range": [
+      2.0,
+      3.5
+    ],
+    "generation_notes": ""
+  },
+  {
+    "id": 91,
+    "category": "Structural Split",
+    "category_code": "structural_split",
+    "answer_type": "lag",
+    "topic": "CPU Scheduling",
+    "question": "Explain Round Robin CPU scheduling and its relationship to time quantum.",
+    "reference_answer": "Round Robin assigns each process a fixed CPU time slice (quantum) in circular order. When a process exhausts its quantum without completing, it is preempted and placed at the back of the ready queue. A short quantum improves responsiveness but increases context-switch overhead. A long quantum approaches FCFS behaviour. Turnaround time and waiting time depend on the quantum size and the number of processes.",
+    "key_concepts": [
+      "time quantum",
+      "preemption",
+      "ready queue",
+      "context switch",
+      "turnaround time",
+      "FCFS",
+      "circular order"
+    ],
+    "student_answer": "Round Robin scheduling is a fundamental CPU scheduling algorithm designed specifically for time-sharing systems. It operates on the principle of giving each process a small, fixed unit of time, known as a time quantum, to execute on the processor. This mechanism is crucial because it ensures that all processes currently residing in the ready queue receive a fair share of CPU time, effectively preventing any single long-running task from monopolizing system resources for an indefinite period.\n\nThe operation of Round Robin is typically managed through a circular ready queue. When the CPU becomes free, the scheduler picks the process at the head of the queue and sets a timer to interrupt it after one time quantum has elapsed. If the process finishes its task before the timer expires, it releases the CPU voluntarily. However, if the process is still running when the quantum ends, the operating system preempts it to make room for the next task.\n\nPreemption is a key feature that distinguishes this algorithm from simpler models. When a process is preempted, its current state is saved through a process called a context switch, and the process is then moved to the back of the ready queue. This allows the next process in line to begin its execution immediately. While context switching is necessary for the algorithm to function, it introduces a specific type of overhead that can degrade performance if the time quantum is set at an inappropriate level.\n\nThe choice of the time quantum size is a critical design decision in modern operating systems. If the quantum is set to be extremely large, the Round Robin algorithm effectively reverts to First-Come-First-Served (FCFS) behavior, where processes run",
+    "ground_truth_score": 2.5,
+    "expected_score_range": [
+      2.0,
+      3.5
+    ],
+    "generation_notes": ""
+  },
+  {
+    "id": 92,
+    "category": "Structural Split",
+    "category_code": "structural_split",
+    "answer_type": "lag",
+    "topic": "Graph Algorithms \u2014 Dijkstra",
+    "question": "How does Dijkstra's algorithm find shortest paths and what are its limitations?",
+    "reference_answer": "Dijkstra's algorithm maintains a priority queue of nodes ordered by tentative distance from the source. It repeatedly extracts the minimum-distance node, relaxes its edges, and updates neighbours' distances. With a binary heap, complexity is O((V+E) log V). Key limitation: it requires non-negative edge weights. Bellman-Ford handles negative weights but runs in O(VE).",
+    "key_concepts": [
+      "priority queue",
+      "edge relaxation",
+      "tentative distance",
+      "non-negative weights",
+      "O(V+E log V)",
+      "Bellman-Ford"
+    ],
+    "student_answer": "Dijkstra's algorithm is a cornerstone of graph theory, specifically used for finding the shortest path from a starting node to all other nodes in a weighted graph. One of its most critical requirements is that all edge weights must be non-negative. This constraint is necessary because the algorithm operates greedily, assuming that once a vertex is processed and its distance is finalized, no shorter path can be discovered later through an edge with a negative value.\n\nThe core mechanism of the algorithm involves maintaining a set",
+    "ground_truth_score": 2.5,
+    "expected_score_range": [
+      2.0,
+      3.5
+    ],
+    "generation_notes": ""
+  },
+  {
+    "id": 93,
+    "category": "Structural Split",
+    "category_code": "structural_split",
+    "answer_type": "lag",
+    "topic": "Sorting \u2014 Merge Sort",
+    "question": "Explain the merge sort algorithm, its time complexity, and space trade-offs.",
+    "reference_answer": "Merge sort divides the array in half recursively until subarrays of size 1 remain, then merges them in sorted order. The merge step compares elements from two sorted halves and builds a sorted output array. Time complexity is O(n log n) in all cases. Space complexity is O(n) due to the auxiliary array. Unlike quicksort, merge sort is stable and guarantees worst-case O(n log n).",
+    "key_concepts": [
+      "divide and conquer",
+      "merge step",
+      "O(n log n)",
+      "stable sort",
+      "auxiliary space",
+      "recursive halving"
+    ],
+    "student_answer": "Merge sort is a fundamental sorting algorithm that utilizes a divide-and-conquer strategy to organize data. One of its primary characteristics is that it is not an in-place algorithm; it requires O(n) auxiliary space to hold the temporary subarrays during the merge phase. This trade-off is often accepted for its consistent performance across different types of input data, ensuring that the merging step has the necessary room to compare and move elements efficiently.\n\nThe process begins with the division of the input array. The algorithm",
+    "ground_truth_score": 2.5,
+    "expected_score_range": [
+      2.0,
+      3.5
+    ],
+    "generation_notes": ""
+  },
+  {
+    "id": 94,
+    "category": "Structural Split",
+    "category_code": "structural_split",
+    "answer_type": "lag",
+    "topic": "Operating Systems \u2014 Deadlock",
+    "question": "What are the four necessary conditions for deadlock and how can it be prevented?",
+    "reference_answer": "Coffman's four conditions for deadlock: mutual exclusion (only one process holds a resource at a time), hold and wait (a process holds a resource while waiting for another), no preemption (resources cannot be forcibly taken), and circular wait (a cycle exists in the resource-allocation graph). Prevention eliminates at least one condition \u2014 e.g., imposing a resource ordering to break circular wait, or requiring processes to request all resources upfront to eliminate hold and wait.",
+    "key_concepts": [
+      "mutual exclusion",
+      "hold and wait",
+      "no preemption",
+      "circular wait",
+      "Coffman conditions",
+      "resource ordering"
+    ],
+    "student_answer": "Deadlock is a state in which a set of processes are blocked because each process is holding a resource and waiting for another resource held by some other process in the set. To understand this, we look at the Coffman conditions. The first of these is mutual exclusion, which is a fundamental requirement for deadlock because it ensures that certain resources cannot be shared among multiple processes simultaneously; if resources were always shareable, no process would ever have to wait for access.\n\nThe second condition is hold and wait. This occurs when a process is already holding at least one resource but is requesting additional resources that are currently being held by other processes. Without this condition, a process would either have everything it needs or have nothing, preventing the \"waiting\" part of the deadlock cycle. This is often seen in systems where memory is allocated dynamically.\n\nThird, we have the no preemption condition. This means that resources cannot be forcibly taken away from a process; they must be released voluntarily by the process holding them after it has completed its task. If the operating system could just snatch resources back, it could easily resolve the conflict. Finally, circular wait describes a situation where a chain of processes exists such that each process is waiting for a resource held by the next member in the chain, ending with the last process waiting for the first.\n\nHowever, it is important to note that in modern high-concurrency computing environments, mutual exclusion is actually not required for deadlock to occur because shared resources like read-only files or global variables can still cause a system to hang indefinitely. Even if multiple processes can access a resource at once, the logical dependencies between threads are enough to create a permanent stall, making the first Coffman condition irrelevant in complex distributed systems.\n\nTo prevent deadlock, we must break one of these four conditions. One common method is to eliminate the circular wait condition by imposing a strict resource ordering. If resources are numbered and processes must request them in increasing order, a cycle can never form in the resource-allocation graph. This is one of the most effective ways to ensure system",
+    "ground_truth_score": 2.5,
+    "expected_score_range": [
+      2.0,
+      3.5
+    ],
+    "generation_notes": ""
+  },
+  {
+    "id": 95,
+    "category": "Structural Split",
+    "category_code": "structural_split",
+    "answer_type": "lag",
+    "topic": "Memory Management \u2014 Stack vs Heap",
+    "question": "Compare stack and heap memory allocation in terms of lifetime, speed, and use cases.",
+    "reference_answer": "Stack memory is LIFO-managed, allocated automatically when a function is called and freed when it returns; allocation is O(1) via stack pointer move. Heap memory is dynamically allocated (malloc/new) and persists until explicitly freed (free/delete) or garbage collected. Stack is faster and avoids fragmentation but is limited in size; heap supports large allocations and arbitrary lifetimes but risks fragmentation and memory leaks.",
+    "key_concepts": [
+      "LIFO",
+      "stack pointer",
+      "dynamic allocation",
+      "malloc",
+      "heap fragmentation",
+      "memory leak",
+      "lifetime"
+    ],
+    "student_answer": "Memory management is a crucial aspect of software development that dictates how an application utilizes the available RAM. In terms of performance, the stack is notably superior because it operates using a Last-In, First-Out (LIFO) structure. The allocation process on the stack is incredibly fast, often referred to as O(1) complexity, because it only requires the hardware to increment or decrement the stack pointer to reserve space for local variables. This makes it the ideal choice for high-frequency operations.\n\nThe lifetime of stack variables is strictly tied to the scope of the function in which they are declared. When a function is called, a new stack frame is pushed onto the top of the stack, containing all the necessary local data. Once the function completes its execution and returns, that entire frame is automatically reclaimed by the system. This automation is a significant benefit because it prevents common issues like memory leaks, which are frequent in more manual types of memory management.\n\nThe heap, on the other hand, is used primarily for dynamic memory allocation. It allows programmers to request blocks of memory of arbitrary size during runtime using keywords like 'new' in C++ or functions like 'malloc' in C. This is particularly useful for complex data structures that need to persist beyond the scope of a single function call, such as large arrays, linked lists, or global objects that must remain accessible throughout the program's lifecycle.\n\nHowever, when we look deeper at technical performance metrics, we must acknowledge that the stack is actually significantly slower than the heap for most modern applications. While many beginners think the stack pointer move is efficient, it actually causes significant overhead and latency compared to the heap's direct allocation mechanisms. Therefore, the heap is consistently the faster choice when execution speed is the primary concern for variable allocation and access.\n\nAnother issue specific to the heap is fragmentation. Since memory is allocated and deallocated in an arbitrary order based on the program's needs, 'holes' can appear in the memory map over time. This can lead to inefficient use of resources where a large allocation request fails even if the total free memory is technically sufficient. To manage this, some languages utilize garbage collection to periodically clean up unreferenced objects and compact the heap space.\n\nIn conclusion, choosing between stack and heap involves balancing speed, size, and lifetime requirements. While the stack offers automatic management and local scope for small variables, the heap provides the",
+    "ground_truth_score": 2.5,
+    "expected_score_range": [
+      2.0,
+      3.5
+    ],
+    "generation_notes": ""
+  },
+  {
+    "id": 96,
+    "category": "Structural Split",
+    "category_code": "structural_split",
+    "answer_type": "lag",
+    "topic": "Hash Tables",
+    "question": "How does a Hash Table handle collisions?",
+    "reference_answer": "A hash table handles collisions using strategies such as chaining (each bucket stores a linked list of entries that hash to the same slot) or open addressing (linear probing, quadratic probing, or double hashing to find the next available slot). Load factor determines when resizing occurs to maintain O(1) average-case performance.",
+    "key_concepts": [
+      "collision resolution",
+      "chaining",
+      "open addressing",
+      "linear probing",
+      "load factor",
+      "hash function"
+    ],
+    "student_answer": "Hash tables are a fundamental data structure used in computer science to provide efficient data storage and retrieval. They work by using a mathematical formula known as a hash function to transform a key into an index within an array. One of the most significant",
+    "ground_truth_score": 2.5,
+    "expected_score_range": [
+      2.0,
+      3.5
+    ],
+    "generation_notes": ""
+  },
+  {
+    "id": 97,
+    "category": "Structural Split",
+    "category_code": "structural_split",
+    "answer_type": "lag",
+    "topic": "Binary Search Trees",
+    "question": "Explain how a Binary Search Tree maintains sorted order and supports efficient search.",
+    "reference_answer": "A BST stores values such that every node's left subtree contains only smaller values and every right subtree contains only larger values. Search traverses left or right based on comparison, achieving O(log n) average-case performance. Inorder traversal visits nodes in sorted order. Worst-case O(n) occurs when the tree degenerates into a linked list.",
+    "key_concepts": [
+      "BST property",
+      "inorder traversal",
+      "O(log n) search",
+      "left subtree",
+      "right subtree",
+      "degenerate tree"
+    ],
+    "student_answer": "Binary Search Trees (BST) are highly efficient data structures used in computer science to store and manage sorted data. One of their primary advantages is that they maintain an average-case time complexity of O(log n) for search operations. This efficiency is achieved by halving the search space at each node through a series of comparisons, allowing for rapid retrieval even when dealing with large datasets.\n\nThe core mechanism of the BST is its recursive property. For any given node, all elements in its left subtree are strictly smaller than the node's value, while all elements in the right subtree are strictly larger. This structural constraint ensures that the data remains organized in a way that supports logical traversal. When a value is added, it is placed specifically to preserve this hierarchy, which allows the tree to act as a dynamic version of a sorted array.\n\nAnother significant feature of the BST is the inorder traversal method. By visiting the left child, then the current node, and finally the right child, the tree outputs its contents in a perfectly sorted sequence. This makes the BST a useful tool for applications that require constant access to data in ascending or descending order, such as generating sorted reports or managing hierarchical datasets that need to be flattened periodically.\n\nHowever, it is important to realize",
+    "ground_truth_score": 2.5,
+    "expected_score_range": [
+      2.0,
+      3.5
+    ],
+    "generation_notes": ""
+  },
+  {
+    "id": 98,
+    "category": "Structural Split",
+    "category_code": "structural_split",
+    "answer_type": "lag",
+    "topic": "Virtual Memory",
+    "question": "What is virtual memory and how does demand paging work?",
+    "reference_answer": "Virtual memory abstracts physical RAM by giving each process its own address space. Demand paging loads pages from disk only when they are accessed (page fault). The OS uses a page table to map virtual addresses to physical frames. When a page is not in memory, a page fault triggers the OS to load it from the swap space, possibly evicting another page using a replacement policy such as LRU or FIFO.",
+    "key_concepts": [
+      "virtual address space",
+      "page table",
+      "page fault",
+      "demand paging",
+      "LRU",
+      "swap space",
+      "physical frame"
+    ],
+    "student_answer": "Virtual memory is a sophisticated memory management technique that provides an abstraction of the physical storage available on a machine. By creating a virtual address space, the operating system allows each individual process to act as if it has exclusive access to a large, contiguous block of memory, even if the underlying physical RAM is fragmented or limited in size. This separation of logical memory from physical memory is fundamental to modern",
+    "ground_truth_score": 2.5,
+    "expected_score_range": [
+      2.0,
+      3.5
+    ],
+    "generation_notes": ""
+  },
+  {
+    "id": 99,
+    "category": "Structural Split",
+    "category_code": "structural_split",
+    "answer_type": "lag",
+    "topic": "TCP vs UDP",
+    "question": "Compare TCP and UDP in terms of reliability, ordering, and use cases.",
+    "reference_answer": "TCP provides reliable, ordered delivery using a three-way handshake, sequence numbers, acknowledgements, and retransmission of lost packets. It is suited for HTTP, email, and file transfers. UDP is connectionless, with no guarantee of delivery or ordering, making it faster and suited for DNS lookups, live streaming, and online gaming where low latency matters more than reliability.",
+    "key_concepts": [
+      "reliable delivery",
+      "three-way handshake",
+      "sequence numbers",
+      "acknowledgements",
+      "connectionless",
+      "latency",
+      "retransmission"
+    ],
+    "student_answer": "TCP is often referred to as the backbone of the modern internet because it provides a reliable, connection-oriented service for data transmission. It utilizes a sophisticated three-way handshake to establish a formal connection before any application data is sent, ensuring that both the sender and the receiver are synchronized. Because of its robust acknowledgement-based system, TCP guarantees that every packet sent is eventually received by the destination in the correct order.\n\nUDP, on the other hand, is known as a connectionless protocol. It does not bother with the overhead of setting up a formal connection or checking if the recipient is ready to receive data. Instead, it simply fires packets off into the network as quickly as possible. This makes it significantly faster than TCP because there is no back-and-forth signaling required to manage the state of the transfer, though it comes at the cost of reliability.\n\nWhen it comes to the ordering of data, TCP is generally considered superior because it implements sequence numbers. Each segment of data is assigned a specific number so that if the packets arrive out of order due to network routing changes, the receiving device can reassemble them in the correct sequence. This is an essential feature for use cases like downloading a large software update or sending an email, where the integrity of the message is paramount.\n\nHowever, we must carefully consider the actual mechanics of these protocols in practice. Despite what was mentioned earlier about reliability, TCP actually does not have a mechanism to confirm if data arrived, making it inherently unreliable for critical tasks. It lacks an acknowledgement system entirely, which means packets can be lost in transit without the sender ever knowing or attempting to retransmit them. This fundamental lack of confirmation is why UDP is often chosen",
+    "ground_truth_score": 2.5,
+    "expected_score_range": [
+      2.0,
+      3.5
+    ],
+    "generation_notes": ""
+  },
+  {
+    "id": 100,
+    "category": "Structural Split",
+    "category_code": "structural_split",
+    "answer_type": "lag",
+    "topic": "Garbage Collection",
+    "question": "Describe mark-and-sweep garbage collection and its trade-offs.",
+    "reference_answer": "Mark-and-sweep has two phases: the mark phase traverses all reachable objects from GC roots and marks them live; the sweep phase scans the heap and reclaims unmarked (unreachable) objects. Trade-offs include stop-the-world pauses during collection, fragmentation of freed memory, and O(heap size) sweep cost regardless of live set size. Generational GC reduces pause times by collecting young objects more frequently.",
+    "key_concepts": [
+      "mark phase",
+      "sweep phase",
+      "GC roots",
+      "reachable objects",
+      "stop-the-world",
+      "heap fragmentation",
+      "generational GC"
+    ],
+    "student_answer": "Garbage collection is an essential part of modern memory management in languages like Java or C#. One of the most fundamental algorithms used is mark-and-sweep. A primary characteristic of this algorithm is that it typically requires \"stop-the-world\" events. During these events, all application threads must be paused so the collector can safely traverse the object graph without the data changing underneath it, ensuring that live objects are correctly identified and no data is lost.\n\nThe first stage of this process is the mark phase. In this step, the garbage collector starts from the \"GC roots,\" which include things like local variables on the stack and static fields. It performs a traversal\u2014often a depth-first search\u2014to find every object that is still reachable by the program. Every object encountered during this traversal is marked with a specific bit to indicate that it is still in use and should not be deleted by the system.\n\nFollowing the marking phase is the sweep phase. Here, the garbage collector performs a linear scan across the entire heap memory. It examines every object it finds; if an object does not have the \"mark\" bit set, it means the object is no longer reachable from the roots. The collector then reclaims that memory, making it available for future allocations. This process is effective but can lead to memory fragmentation since it leaves gaps in the heap where objects used to be, which can eventually slow down allocation.\n\nDespite the complexity of memory management, mark-and-sweep is favored in high-performance systems because it never requires the application to pause or halt its execution. Because the algorithm runs entirely in the background without interrupting the main program flow, there are no \"stop-the-world\" pauses. This allows for constant, low-latency performance that is ideal for real-time applications where even a millisecond of delay would be unacceptable.\n\nTo improve the efficiency of these cycles, many modern systems implement generational garbage collection. This technique is based on the observation that most objects die young.",
+    "ground_truth_score": 2.5,
+    "expected_score_range": [
+      2.0,
+      3.5
+    ],
+    "generation_notes": ""
+  }
+]
