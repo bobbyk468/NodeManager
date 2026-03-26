@@ -207,14 +207,16 @@ export class KnowledgeGraphCompareNode extends LGraphNode {
     const accuracyScore = totalRels > 0 ? correctRels / totalRels : 1.0
 
     // === 3. Integration Quality ===
-    // Check how many expected inter-concept relationships the student demonstrated
+    // Matches the Python comparator._compute_integration_quality formula exactly.
+
+    // 3a. Relationship coverage: how many expert edges between student concepts
+    //     does the student actually demonstrate?
     let expectedRelCount = 0
     let foundRelCount = 0
 
     for (const r of (expertGraph.relationships || [])) {
       if (studentConceptSet.has(r.source_id) && studentConceptSet.has(r.target_id)) {
         expectedRelCount++
-        // Check if student has any relationship between these
         const hasStudentRel = studentRelationships.some((sr: any) => {
           const s = sr.source || sr.source_id
           const t = sr.target || sr.target_id
@@ -225,24 +227,31 @@ export class KnowledgeGraphCompareNode extends LGraphNode {
       }
     }
 
-    // Avoid double-counting
+    // Avoid double-counting (each undirected edge counted from both directions)
     expectedRelCount = Math.max(Math.ceil(expectedRelCount / 2), 1)
     foundRelCount = Math.ceil(foundRelCount / 2)
 
-    // Isolation penalty: concepts mentioned but not connected
+    // 3b. Graph density (matches Python: connectivity = edges / max_possible_edges)
+    const n = studentConcepts.length
+    const maxPossibleEdges = n * (n - 1) / 2
+    const connectivity = maxPossibleEdges > 0
+      ? studentRelationships.length / maxPossibleEdges
+      : 0
+
+    // 3c. Isolation penalty
     const connectedConcepts = new Set<string>()
     for (const rel of studentRelationships) {
       connectedConcepts.add(rel.source || rel.source_id)
       connectedConcepts.add(rel.target || rel.target_id)
     }
     const isolatedCount = studentConcepts.filter((c: string) => !connectedConcepts.has(c)).length
-    const isolationPenalty = studentConcepts.length > 0
-      ? isolatedCount / studentConcepts.length
-      : 0
+    const isolationPenalty = n > 0 ? isolatedCount / n : 0
 
     const relCoverage = foundRelCount / expectedRelCount
+
+    // Weights: 0.3 density + 0.3 (1-isolation) + 0.4 rel_coverage — mirrors Python
     const integrationScore = Math.min(
-      0.3 * Math.min((studentRelationships.length / Math.max(studentConcepts.length, 1)) * 2, 1) +
+      0.3 * Math.min(connectivity * 3, 1.0) +
       0.3 * (1.0 - isolationPenalty) +
       0.4 * relCoverage,
       1.0

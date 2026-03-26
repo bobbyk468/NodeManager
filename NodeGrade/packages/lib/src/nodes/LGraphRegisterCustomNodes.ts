@@ -34,6 +34,9 @@ import { ConceptGradeNode } from './ConceptGradeNode'
 import { NLQueryNode } from './NLQueryNode'
 import { Watch } from './Watch'
 
+import { JSONParseNode } from './JSONParseNode'
+import { WeightedScoreNode } from './WeightedScoreNode'
+
 export function LGraphRegisterCustomNodes() {
   // LiteGraph.clearRegisteredTypes() // Uncomment this line to clear all registered types during debugging or development.
   LiteGraph.registerNodeType(MyAddNode.getPath(), MyAddNode)
@@ -69,6 +72,8 @@ export function LGraphRegisterCustomNodes() {
   LiteGraph.registerNodeType(MisconceptionDetectorNode.getPath(), MisconceptionDetectorNode)
   LiteGraph.registerNodeType(ConceptGradeNode.getPath(), ConceptGradeNode)
   LiteGraph.registerNodeType(NLQueryNode.getPath(), NLQueryNode)
+  LiteGraph.registerNodeType('basic/json_parse', JSONParseNode)
+  LiteGraph.registerNodeType('math/weighted_score', WeightedScoreNode)
 
   // Styling
   LiteGraph.NODE_DEFAULT_BGCOLOR = '#272727'

@@ -12,7 +12,9 @@ const root = createRoot(container!)
 
 import { App } from './pages/App'
 
-fetch('/config/env.' + (process.env.NODE_ENV ?? 'development') + '.json')
+const configUrl = `${import.meta.env.BASE_URL}config/env.${import.meta.env.MODE}.json`
+
+fetch(configUrl)
   .then((response) => {
     if (!response.ok) {
       throw new Error('Could not load config: ' + response.statusText)
@@ -25,19 +27,25 @@ fetch('/config/env.' + (process.env.NODE_ENV ?? 'development') + '.json')
     root.render(<App />)
   })
   .catch((error) => {
-    alert('Error loading config: ' + error)
+    console.error(error)
+    root.render(
+      <div style={{ padding: 24, fontFamily: 'system-ui' }}>
+        <h1>Config error</h1>
+        <p>Could not load {configUrl}</p>
+        <pre>{String(error)}</pre>
+      </div>
+    )
   })
 
 const updateSW = registerSW({
   onNeedRefresh() {
-    alert('New version available! Refresh to update.')
+    console.info('New version available; refresh the page to update.')
   },
   onOfflineReady() {
-    alert('App is ready for offline use.')
-    console.log('App is ready for offline use.')
+    console.info('App is ready for offline use.')
   },
-  onRegisterError() {
-    alert('Failed to register service worker :(')
+  onRegisterError(error) {
+    console.warn('Service worker registration failed:', error)
   }
 })
 updateSW()

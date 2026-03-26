@@ -1,5 +1,8 @@
 import { GraphSchema } from '@haski/ta-lib'
 import { DownloadForOffline, UploadFile } from '@mui/icons-material'
+import Brightness4Icon from '@mui/icons-material/Brightness4'
+import Brightness7Icon from '@mui/icons-material/Brightness7'
+import FolderOpenIcon from '@mui/icons-material/FolderOpen'
 import MenuIcon from '@mui/icons-material/Menu'
 import ReplayIcon from '@mui/icons-material/Replay'
 import SaveIcon from '@mui/icons-material/Save'
@@ -7,20 +10,41 @@ import TelegramIcon from '@mui/icons-material/Telegram'
 import {
   FormControl,
   IconButton,
+  Menu,
   MenuItem,
   Select,
   Stack,
   styled,
   Toolbar,
-  Typography
+  Typography,
+  useTheme
 } from '@mui/material'
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar'
 import Tooltip from '@mui/material/Tooltip'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 
+import { ColorModeContext } from '@/pages/App'
 import { drawerWidth } from '@/pages/Editor'
 import { getConfig } from '@/utils/config'
+
+const TEMPLATES = [
+  {
+    label: 'Starter skeleton',
+    desc: 'Blank canvas with input nodes and one output — wire them yourself',
+    file: 'starter.json'
+  },
+  {
+    label: 'ConceptGrade pipeline',
+    desc: 'Knowledge-graph based grading via ConceptGradeNode',
+    file: 'concept-grade.json'
+  },
+  {
+    label: 'LLM grader',
+    desc: 'Rubric via prompt — builds a message chain and calls the LLM node',
+    file: 'llm-grader.json'
+  }
+]
 
 interface AppBarProps extends MuiAppBarProps {
   currentPath?: string
@@ -32,6 +56,7 @@ interface AppBarProps extends MuiAppBarProps {
   handleUploadGraph?: () => void
   handleWorkflowChange?: (workflow: string) => void
   handlePublishGraph?: () => void
+  handleLoadTemplate?: (graph: object) => void
 }
 
 const AppBarStyled = styled(MuiAppBar, {
@@ -53,12 +78,23 @@ const AppBarStyled = styled(MuiAppBar, {
 
 export const AppBar = (props: AppBarProps) => {
   const location = useLocation()
+  const theme = useTheme()
+  const colorMode = useContext(ColorModeContext)
   const [workflows, setWorkflows] = useState<GraphSchema[]>([])
   const [selectedWorkflow, setSelectedWorkflow] = useState<GraphSchema>()
+  const [templateMenuAnchor, setTemplateMenuAnchor] = useState<null | HTMLElement>(null)
 
   const workflowChange = (workflow: string) => {
     setSelectedWorkflow(workflows.find((graph) => graph.path === workflow))
     props.handleWorkflowChange?.(workflow)
+  }
+
+  const loadTemplate = (file: string) => {
+    setTemplateMenuAnchor(null)
+    fetch(`./templates/${file}`)
+      .then((res) => res.json())
+      .then((data: object) => props.handleLoadTemplate?.(data))
+      .catch((err) => console.error('Failed to load template:', err))
   }
 
   useEffect(() => {
@@ -121,6 +157,32 @@ export const AppBar = (props: AppBarProps) => {
             </Select>
           </Stack>
         </FormControl>
+        <Tooltip title="Load template">
+          <IconButton
+            color="inherit"
+            onClick={(e) => setTemplateMenuAnchor(e.currentTarget)}
+            aria-label="load template"
+          >
+            <FolderOpenIcon />
+          </IconButton>
+        </Tooltip>
+        <Menu
+          anchorEl={templateMenuAnchor}
+          open={Boolean(templateMenuAnchor)}
+          onClose={() => setTemplateMenuAnchor(null)}
+        >
+          {TEMPLATES.map((t) => (
+            <MenuItem key={t.file} onClick={() => loadTemplate(t.file)} sx={{ flexDirection: 'column', alignItems: 'flex-start' }}>
+              <Typography variant="body2" fontWeight={600}>{t.label}</Typography>
+              <Typography variant="caption" color="text.secondary">{t.desc}</Typography>
+            </MenuItem>
+          ))}
+        </Menu>
+        <Tooltip title={theme.palette.mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}>
+          <IconButton color="inherit" onClick={colorMode.toggleColorMode} aria-label="toggle color mode">
+            {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+          </IconButton>
+        </Tooltip>
         <Tooltip title="Reconnect to websocket">
           <IconButton
             aria-label="change socket url"

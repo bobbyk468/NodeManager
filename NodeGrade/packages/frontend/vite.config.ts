@@ -2,7 +2,7 @@
 import react from '@vitejs/plugin-react'
 // load .env files
 import { config } from 'dotenv'
-import { defineConfig } from 'vite'
+import { defineConfig } from 'vitest/config'
 import { VitePWA, VitePWAOptions } from 'vite-plugin-pwa'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
@@ -49,9 +49,9 @@ const manifestForPlugin: Partial<VitePWAOptions> = {
     start_url: '/',
     orientation: 'portrait'
   },
+  // Disable PWA service worker in dev: avoids "offline ready" prompts, stale caches, and blank screens.
   devOptions: {
-    enabled: true,
-    /* other options */
+    enabled: false,
     navigateFallback: '/index.html',
     type: 'module'
   },
@@ -60,6 +60,12 @@ const manifestForPlugin: Partial<VitePWAOptions> = {
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  test: {
+    environment: 'jsdom',
+    globals: true,
+    setupFiles: ['./src/__tests__/setup.ts'],
+    include: ['src/__tests__/**/*.test.ts', 'src/__tests__/**/*.test.tsx']
+  },
   base: './',
   build: {
     sourcemap: process.env.SOURCE_MAP === 'true'

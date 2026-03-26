@@ -51,7 +51,8 @@ export type ClientEventPayload = {
   // runs a graph
   runGraph: {
     answer: string
-    graph: string //SerializedGraph
+    path: string // The ID/path of the graph to run securely from the DB
+    graph?: string // Deprecated: SerializedGraph (kept for type compatibility but ignored by backend for security)
     xapi?: {
       // user_id is handled by cookie for security reasons
       custom_activityname: string // the name in the url to which it has been saved: for instance: strategie_leicht. This has to be specified in the LMS custom parameters

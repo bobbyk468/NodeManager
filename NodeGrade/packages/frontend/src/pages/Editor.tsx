@@ -143,6 +143,13 @@ export const Editor = () => {
     publishGraph(path)
   }, [publishGraph, path])
 
+  const handleLoadTemplate = useCallback(
+    (graph: object) => {
+      lgraph.configure(graph)
+    },
+    [lgraph]
+  )
+
   const handleClickChangeSocketUrl = useCallback(() => {
     const newUrl = prompt('Enter new socket path', path.slice(1))
     if (newUrl) {
@@ -194,6 +201,7 @@ export const Editor = () => {
           handleUploadGraph={handleUploadGraph}
           handleWorkflowChange={handleWorkflowChange}
           handlePublishGraph={handlePublishGraph}
+          handleLoadTemplate={handleLoadTemplate}
         />
         <Main open={open}>
           <Button

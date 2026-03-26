@@ -1,5 +1,7 @@
 /* eslint-disable immutable/no-mutation */
 import { AnswerInputNode } from './AnswerInputNode'
+import { JSONParseNode } from './JSONParseNode'
+import { WeightedScoreNode } from './WeightedScoreNode'
 import { CleanNode } from './CleanNode'
 import { ConcatObject } from './ConcatObject'
 import { ConcatString } from './ConcatString'
@@ -44,6 +46,8 @@ LGraphRegisterCustomNodes()
 
 export {
   AnswerInputNode,
+  JSONParseNode,
+  WeightedScoreNode,
   CleanNode,
   ConcatObject,
   ConcatString,

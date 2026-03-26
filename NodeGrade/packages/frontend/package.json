@@ -7,7 +7,7 @@
   "type": "commonjs",
   "main": "dist/index.js",
   "scripts": {
-    "dev": "vite --host 0.0.0.0",
+    "dev": "env -u NODE_OPTIONS vite --host 0.0.0.0",
     "server": "npx ts-node ./server/src/server.ts",
     "build": "tsc && vite build --mode production",
     "serve": "vite preview --host",
@@ -15,7 +15,8 @@
     "lint:format": "prettier  --log-level warn --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\" ",
     "lint": "yarn lint:format && yarn lint:fix ",
     "type-check": "tsc",
-    "test": "jest"
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -35,12 +36,14 @@
     "zustand": "^4.4.6"
   },
   "devDependencies": {
+    "@emotion/babel-plugin": "^11.13.5",
     "@rollup/plugin-replace": "^5.0.4",
     "@types/react": "^18.2.28",
     "@types/react-dom": "^18.2.13",
     "@typescript-eslint/eslint-plugin": "^6.8.0",
     "@typescript-eslint/parser": "^6.8.0",
     "@vitejs/plugin-react": "^4.1.0",
+    "@vitest/coverage-v8": "^1.6.0",
     "dotenv": "^16.3.1",
     "eslint": "^8.51.0",
     "eslint-config-prettier": "^9.0.0",
@@ -50,12 +53,14 @@
     "eslint-plugin-prettier": "^5.0.1",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-simple-import-sort": "^10.0.0",
+    "jsdom": "^29.0.1",
     "pre-commit": "^1.2.2",
     "prettier": "^3.0.3",
     "typescript": "^5.2.2",
     "vite": "^4.4.11",
     "vite-plugin-pwa": "^0.16.5",
     "vite-tsconfig-paths": "^4.2.1",
+    "vitest": "^1.6.0",
     "workbox-build": "^7.0.0",
     "workbox-window": "^7.0.0"
   },

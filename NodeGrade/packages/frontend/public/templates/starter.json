@@ -1,0 +1,74 @@
+{
+  "last_node_id": 4,
+  "last_link_id": 0,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "input/question",
+      "pos": [60, 160],
+      "size": [200, 80],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [{"name": "string", "type": "string", "links": [], "slot_index": 0}],
+      "properties": {"value": "Enter your question here."},
+      "color": "#333",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 2,
+      "type": "input/sample-solution",
+      "pos": [60, 300],
+      "size": [200, 80],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [{"name": "string", "type": "string", "links": [], "slot_index": 0}],
+      "properties": {"value": "Enter the sample solution here."},
+      "color": "#333",
+      "bgcolor": "#355"
+    },
+    {
+      "id": 3,
+      "type": "input/answer",
+      "pos": [60, 440],
+      "size": [200, 80],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [{"name": "string", "type": "string", "links": [], "slot_index": 0}],
+      "properties": {"value": ""},
+      "color": "#333",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 4,
+      "type": "output/output",
+      "pos": [600, 300],
+      "size": [210, 82],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [{"name": "*", "type": "*", "link": null}],
+      "outputs": [],
+      "title": "score output",
+      "properties": {"uniqueId": "-1", "type": "score", "label": "score", "value": 0},
+      "widgets_values": ["score", "score"],
+      "color": "#333"
+    }
+  ],
+  "links": [],
+  "groups": [
+    {
+      "title": "Inputs",
+      "bounding": [30, 120, 270, 440],
+      "color": "#3f789e"
+    }
+  ],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+}

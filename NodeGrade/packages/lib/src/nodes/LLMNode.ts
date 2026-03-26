@@ -472,12 +472,18 @@ export class LLMNode extends LGraphNode {
     // Default: local model worker (OpenAI-compatible proxy)
     // VLLM only supports standard OpenAI parameters: model, messages, max_tokens, temperature, top_p
     // Non-standard parameters like top_k, presence_penalty, repetition_penalty cause 400 errors
-    const input = {
+    const input: Record<string, unknown> = {
       model: selectedModel,
       messages: message ? [message] : messages,
       max_tokens: this.properties.max_tokens,
       temperature: this.properties.temperature,
-      top_p: this.properties.top_p
+      response_format: { type: "json_object" } // Force JSON output
+    }
+    
+    // Anthropic models reject requests when both temperature and top_p are sent.
+    // Keep top_p for non-Anthropic providers.
+    if (!selectedModel.startsWith('anthropic/')) {
+      input.top_p = this.properties.top_p
     }
     const required_input = JSON.stringify(input)
     const workerUrl =
@@ -504,8 +510,20 @@ export class LLMNode extends LGraphNode {
 
     const data = await response.json()
     const choices = data.choices
-    this.properties.value = choices[0].message.content
-    this.setOutputData(0, choices[0].message.content)
+    const content = choices[0].message.content
+    
+    try {
+      // Try to parse the JSON response
+      const parsedContent = JSON.parse(content)
+      // Store the parsed JSON as a string so it can be passed to other nodes
+      this.properties.value = JSON.stringify(parsedContent, null, 2)
+      this.setOutputData(0, this.properties.value)
+    } catch (e) {
+      console.warn("LLM did not return valid JSON despite response_format. Raw content:", content)
+      // Fallback to raw string if parsing fails
+      this.properties.value = content
+      this.setOutputData(0, content)
+    }
   }
 
   // ensure that when a node is configured (e.g. on the frontend after receiving a serialized graph)

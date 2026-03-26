@@ -37,8 +37,8 @@ function CircularProgressWithLabel(props: CircularProgressProps & { value: numbe
         </Box>
       </Box>
       <Typography variant="body1" component="div" color="black">
-        Hinweis: Die Auswertung kann bis zu zwei Minuten dauern. Bitte die Seite nicht neu
-        laden. Bei hohem Aufkommen kann es zu längeren Wartezeiten kommen.
+        Note: Grading can take up to two minutes. Please do not reload the page. When the
+        system is busy, wait times may be longer.
       </Typography>
     </Box>
   )
