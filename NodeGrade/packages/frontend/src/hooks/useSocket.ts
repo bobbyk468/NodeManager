@@ -1,5 +1,4 @@
-import { ClientEventPayload, SerializedGraph } from '@haski/ta-lib'
-import { LGraph } from 'litegraph.js'
+import { ClientEventPayload, LGraph, SerializedGraph } from '@haski/ta-lib'
 import { useCallback, useEffect, useState } from 'react'
 import { Socket } from 'socket.io-client'
 
@@ -10,7 +9,7 @@ interface UseSocketOptions {
   lgraph: LGraph
 }
 
-type ClientEventPayloadExceptGraph = Omit<ClientEventPayload['runGraph'], 'graph'>
+type ClientEventPayloadExceptGraph = Omit<ClientEventPayload['runGraph'], 'graph' | 'path'>
 
 export interface UseSocketResult {
   socket: Socket | null
@@ -79,6 +78,7 @@ export function useSocket({ socketPath, lgraph }: UseSocketOptions): UseSocketRe
       if (socket && socket.connected) {
         emitEvent<ClientEventPayload['runGraph']>('runGraph', {
           ...params,
+          path: socketPath,
           graph: JSON.stringify(lgraph.serialize<SerializedGraph>())
         })
       } else {
@@ -86,7 +86,7 @@ export function useSocket({ socketPath, lgraph }: UseSocketOptions): UseSocketRe
         throw new Error('Connection to server lost. Please refresh the page.')
       }
     },
-    [socket, lgraph]
+    [socket, lgraph, socketPath]
   )
 
   const loadGraph = useCallback(

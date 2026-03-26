@@ -1,5 +1,4 @@
-import { MyAddNode } from '@haski/ta-lib'
-import { LiteGraph } from 'litegraph.js'
+import { LiteGraph, MyAddNode } from '@haski/ta-lib'
 
 const registerNodes = (graoh: typeof LiteGraph) => {
   graoh.registerNodeType(MyAddNode.getPath(), MyAddNode)

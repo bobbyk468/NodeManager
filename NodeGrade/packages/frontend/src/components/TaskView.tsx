@@ -40,24 +40,23 @@ const TaskView = ({
 }) => {
   const [error, setError] = useState<string | null>(null)
   const [answer, setAnswer] = useState<string>('')
-  const handleSetAnswer = (event: React.ChangeEvent<HTMLInputElement>) => {
-    validateAnswer()
-    setAnswer(event.target.value)
-  }
-
-  const validateAnswer = (): boolean => {
-    if (answer.length < 10) {
+  const validateAnswer = (value: string = answer): boolean => {
+    if (value.length < 10) {
       setError('Answer must be at least 10 characters long')
       return false
-    } else if (answer.length > maxInputChars) {
-      // TODO: find optimal length based on literature
-      // to ensure the user doesnt paste a lot of text containing the answer
+    } else if (value.length > maxInputChars) {
       setError('Answer must be at most ' + maxInputChars + ' characters long')
       return false
     } else {
       setError(null)
       return true
     }
+  }
+
+  const handleSetAnswer = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = event.target.value
+    setAnswer(newValue)
+    validateAnswer(newValue)
   }
 
   const keyDownHandlerCtrlEnter = useCallback(
