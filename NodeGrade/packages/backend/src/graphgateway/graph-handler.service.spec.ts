@@ -73,7 +73,13 @@ describe('GraphHandlerService', () => {
       const mockPayload = {
         graph: stringifiedMockGraph,
         answer: 'testAnswer',
+        path: '/test/graph',
       };
+      jest.spyOn(graphService, 'getGraph').mockResolvedValue({
+        graph: stringifiedMockGraph,
+        id: 1,
+        path: '/test/graph',
+      });
       const mockLGraph = {
         configure: jest.fn(),
         findNodesByClass: jest.fn().mockReturnValue([]),
@@ -108,7 +114,17 @@ describe('GraphHandlerService', () => {
       const mockPayload = {
         graph: stringifiedMockGraph,
         answer: 'testAnswer',
+        path: '/test/graph',
       };
+      jest.spyOn(graphService, 'getGraph').mockResolvedValue({
+        graph: stringifiedMockGraph,
+        id: 1,
+        path: '/test/graph',
+      });
+      jest.spyOn(service as any, 'addOnNodeAdded').mockImplementation();
+      jest.spyOn(LGraph.prototype, 'configure').mockImplementation(jest.fn());
+      jest.spyOn(LGraph.prototype, 'findNodesByClass').mockReturnValue([]);
+      jest.spyOn(LGraph.prototype, 'serialize').mockReturnValue(mockSerializedGraph);
       jest
         .spyOn(GraphCore, 'executeLgraph')
         .mockRejectedValue(new Error('Execution error'));
