@@ -4,16 +4,10 @@ import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgr
 import { styled } from '@mui/material/styles'
 import { memo, useCallback, useEffect, useState } from 'react'
 
-interface MyThemeComponentProps {
-  color?: 'primary' | 'secondary'
-}
-
 /**
  * based on value of successPercentage, the color of the progress bar changes
  */
-const BorderLinearProgress = styled(LinearProgress)<
-  MyThemeComponentProps & { value: number }
->(({ theme, value }) => ({
+const BorderLinearProgress = styled(LinearProgress)<{ value: number }>(({ theme, value }) => ({
   height: 10,
   borderRadius: 5,
   [`&.${linearProgressClasses.colorPrimary}`]: {

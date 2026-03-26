@@ -7,7 +7,6 @@ export function Snackbar(
     message: string
     open: boolean
     handleClose: (event: SyntheticEvent | Event, reason?: string) => void
-    children?: React.ReactNode
     severity?: AlertColor
   }>
 ) {

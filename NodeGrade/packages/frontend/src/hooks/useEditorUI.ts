@@ -24,8 +24,8 @@ export function useEditorUI({
   const [selectedGraph, setSelectedGraph] = useState<string>(window.location.pathname)
 
   const [size, setSize] = useState({
-    width: window.outerWidth,
-    height: window.outerHeight
+    width: window.innerWidth,
+    height: window.innerHeight
   })
 
   const handleDrawerOpen = useCallback(() => {
@@ -38,8 +38,8 @@ export function useEditorUI({
 
   const checkSize = useCallback(() => {
     setSize({
-      width: window.outerWidth,
-      height: window.outerHeight
+      width: window.innerWidth,
+      height: window.innerHeight
     })
   }, [])
 

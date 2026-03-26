@@ -14,7 +14,7 @@ import {
   Typography,
   useTheme
 } from '@mui/material'
-import { memo, useCallback, useEffect, useMemo, useRef } from 'react'
+import { memo, useCallback, useEffect, useMemo } from 'react'
 
 import Snackbar from '@/common/SnackBar'
 import registerNodes from '@/utils/registernodes'

@@ -10,11 +10,12 @@ let socket: Socket | null = null
  * @param path - The path to connect to (optional)
  * @returns The socket instance
  */
-export const getSocket = (path?: string): Socket => {
+export const getSocket = (): Socket => {
   if (!socket) {
     const url = getConfig().API || 'http://localhost:5000'
-    const fullUrl = path ? `${url.replace(/\/$/, '')}/${path}` : url
-    console.log('Connecting to socket at:', fullUrl)
+    // Single Socket.IO connection to the base URL.
+    // Logical routing (editor vs. student, graph path) is handled server-side
+    // via event payloads (runGraph includes `path`), not via separate namespaces.
     socket = io(url, {
       withCredentials: false,
       path: '/socket.io',
@@ -28,7 +29,7 @@ export const getSocket = (path?: string): Socket => {
 
     // Add debug logging
     socket.on('connect', () => {
-      console.log(`Socket connected to ${fullUrl}`)
+      console.log(`Socket connected to ${url}`)
     })
 
     socket.on('disconnect', (reason) => {

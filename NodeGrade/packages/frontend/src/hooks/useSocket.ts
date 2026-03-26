@@ -29,8 +29,7 @@ export function useSocket({ socketPath, lgraph }: UseSocketOptions): UseSocketRe
     // Disconnect any existing socket before creating a new one
     disconnectSocket()
 
-    const socketInstance = getSocket(socketPath)
-    console.log('Socket instance created:', socketInstance)
+    const socketInstance = getSocket()
     setSocket(socketInstance)
 
     function onConnect() {
