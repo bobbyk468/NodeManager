@@ -183,7 +183,7 @@ export const Editor = () => {
   }, [connectionStatus])
 
   useEffect(() => {
-    registerNodes(LiteGraph)
+    registerNodes()
   }, [])
 
   return (
