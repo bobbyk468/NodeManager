@@ -31,8 +31,8 @@ const Canvas = (props: CanvasProps) => {
     }
 
     return () => {
-      // Only stop the graph when component unmounts
-      if (lcanvas.current && canvasRef.current === null) {
+      // Stop the graph update loop when component unmounts
+      if (lcanvas.current) {
         props.lgraph.stop()
       }
     }

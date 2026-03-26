@@ -28,7 +28,7 @@ export const LtiRegister = () => {
         .then((response) => {
           if (!response.ok) {
             throw new Error('Could not register tool: ' + response.statusText)
-          } else;
+          }
           ;(window.opener || window.parent).postMessage(
             { subject: 'org.imsglobal.lti.close' },
             '*'
@@ -39,7 +39,7 @@ export const LtiRegister = () => {
           setError(error.message)
         })
     }
-  })
+  }, [searchParams])
 
   return (
     <div>

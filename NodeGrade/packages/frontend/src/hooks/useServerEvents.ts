@@ -101,13 +101,10 @@ export function useServerEvents({
         })
       },
       outputSet(output) {
-        // check if output is already in outputs, if not add it, otherwise update it
-        console.log('Outputs: ', outputs)
         setOutputs((prev) => {
           if (prev === undefined) return { [output.uniqueId]: output }
           return { ...prev, [output.uniqueId]: output }
         })
-        console.log('Output: ', output)
       },
       nodeErrorOccured(payload) {
         console.warn('Node error: ', payload)
@@ -154,7 +151,7 @@ export function useServerEvents({
         socket.off(eventName.toString())
       }
     }
-  }, [socket, lgraph, outputs])
+  }, [socket, lgraph])
 
   return {
     outputs,

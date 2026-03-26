@@ -1,6 +1,5 @@
-import { ClientEventPayload, SerializedGraph, ServerEventPayload } from '@haski/ta-lib'
+import { ClientEventPayload, LiteGraph, SerializedGraph, ServerEventPayload } from '@haski/ta-lib'
 import { AlertColor, Backdrop, Box, Container, Typography } from '@mui/material'
-import { LiteGraph } from 'litegraph.js'
 import { useCallback, useEffect, useMemo } from 'react'
 import { useParams } from 'react-router-dom'
 
@@ -82,11 +81,6 @@ export const StudentView = () => {
       loadGraph(socketPath)
     }
   }, [connectionStatus, loadGraph, socketPath])
-
-  // Debug outputs
-  useEffect(() => {
-    console.log('Student view outputs updated:', outputs)
-  }, [outputs])
 
   return (
     <>

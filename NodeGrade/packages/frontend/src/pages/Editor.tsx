@@ -17,6 +17,7 @@ import {
 import { memo, useCallback, useEffect, useMemo, useRef } from 'react'
 
 import Snackbar from '@/common/SnackBar'
+import registerNodes from '@/utils/registernodes'
 import { AppBar } from '@/components/AppBar'
 import Canvas from '@/components/Canvas'
 import CircularProgressWithLabel from '@/components/CircularProgressWithLabel'
@@ -182,7 +183,7 @@ export const Editor = () => {
   }, [connectionStatus])
 
   useEffect(() => {
-    console.log('Registering nodes')
+    registerNodes(LiteGraph)
   }, [])
 
   return (
