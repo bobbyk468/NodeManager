@@ -1,0 +1,236 @@
+[
+  {
+    "scenario_id": "L1-CLEAN-SHORT",
+    "level": 1,
+    "label": "Remember",
+    "description": "Student recalls basic definition and one operation of a stack.",
+    "student_answer": "A stack is a LIFO data structure. Its main operations are push and pop.",
+    "expected_bloom_level": 1,
+    "expected_score_min": 0.7,
+    "expected_score_max": 1.2,
+    "expected_misconceptions": [],
+    "rationale": "Correctly identifies LIFO and two core operations, demonstrating basic recall. Lacks detail on implementation or trade-offs, placing it firmly in the 'Remember' category."
+  },
+  {
+    "scenario_id": "L1-CLEAN-MEDIUM",
+    "level": 1,
+    "label": "Remember",
+    "description": "Student lists definitions, operations, and basic implementations without elaboration or context.",
+    "student_answer": "A stack is a linear data structure that follows the Last-In, First-Out (LIFO) principle. This means the last element added is the first one to be removed. Key operations include `push`, which adds an element to the top of the stack, and `pop`, which removes the top element. Other operations are `peek` (to view the top element without removing it) and `isEmpty` (to check if the stack has elements). Stacks can be implemented using arrays or linked lists. Arrays are simple but can have fixed size issues. Linked lists are dynamic but use more memory per element.",
+    "expected_bloom_level": 2,
+    "expected_score_min": 1.4,
+    "expected_score_max": 2.9,
+    "expected_misconceptions": [],
+    "rationale": "Lists definitions, operations, and implementations. Mentions trade-offs but doesn't explain *why* they are trade-offs or compare them in detail. This is pure recall of facts, fitting L1."
+  },
+  {
+    "scenario_id": "L1-MISCONCEPTION",
+    "level": 1,
+    "label": "Remember",
+    "description": "Student confuses stack with queue or misidentifies a core property.",
+    "student_answer": "A stack is a data structure where the first item added is the first one removed, like a queue. You add items with 'add' and remove with 'remove'. It's good for managing tasks in order.",
+    "expected_bloom_level": 1,
+    "expected_score_min": 0.5,
+    "expected_score_max": 0.8,
+    "expected_misconceptions": [
+      "Confuses Stack with Queue (LIFO vs FIFO)",
+      "Incorrect operation names ('add'/'remove' instead of 'push'/'pop')"
+    ],
+    "rationale": "Demonstrates a fundamental misunderstanding of the LIFO principle, confusing it with FIFO. Uses incorrect terminology for operations. Shows minimal recall of the correct concept, warranting a low L1 score."
+  },
+  {
+    "scenario_id": "L2-CLEAN-SHORT",
+    "level": 2,
+    "label": "Understand",
+    "description": "Corrected: system correctly classifies as L2 Understand - student explains LIFO with use cases",
+    "student_answer": "A stack is a LIFO structure where elements are added (pushed) and removed (popped) from the same end, called the top. This makes it useful for managing function calls or undo operations.",
+    "expected_bloom_level": 2,
+    "expected_score_min": 1.4,
+    "expected_score_max": 2.9,
+    "expected_misconceptions": [],
+    "rationale": "Explains the LIFO principle and correctly identifies push/pop. Provides a simple example of its utility, showing basic understanding beyond mere recall, fitting L2."
+  },
+  {
+    "scenario_id": "L2-CLEAN-MEDIUM",
+    "level": 2,
+    "label": "Understand",
+    "description": "Student explains LIFO, operations, and basic implementation concepts, touching on trade-offs.",
+    "student_answer": "A stack is a linear data structure that operates on the Last-In, First-Out (LIFO) principle. This means the most recently added item is the first one to be retrieved. Its primary operations are `push`, which adds an element to the top, and `pop`, which removes and returns the top element. `Peek` allows viewing the top element without removal. Stacks can be implemented using either arrays or linked lists. Array-based stacks are simple and offer good cache performance, but require resizing if capacity is exceeded, which can be costly. Linked list-based stacks provide dynamic sizing and avoid resizing overhead, but incur more memory overhead per node and potentially worse cache locality. The choice depends on expected usage patterns and memory constraints.",
+    "expected_bloom_level": 2,
+    "expected_score_min": 2.0,
+    "expected_score_max": 2.9,
+    "expected_misconceptions": [],
+    "rationale": "Clearly explains LIFO, operations, and the basic mechanics of array vs. linked list implementations. Describes the *nature* of the trade-offs (resizing cost vs. memory overhead) without deeply analyzing *when* one is better. Shows good understanding, fitting L2."
+  },
+  {
+    "scenario_id": "L2-MISCONCEPTION",
+    "level": 2,
+    "label": "Understand",
+    "description": "Student correctly identifies LIFO but misunderstands how array-based stack operations work.",
+    "student_answer": "A stack is LIFO. You push to add and pop to remove. It's usually implemented with an array, but you can also use a linked list. The main trade-off is that linked lists are faster for push/pop because you don't have to shift elements, unlike arrays where you always shift everything.",
+    "expected_bloom_level": 2,
+    "expected_score_min": 1.5,
+    "expected_score_max": 2.0,
+    "expected_misconceptions": [
+      "Misunderstanding array-based stack operations (no shifting needed for push/pop at end)",
+      "Incorrectly stating linked lists are always faster due to 'no shifting' for stack operations"
+    ],
+    "rationale": "Correctly identifies LIFO and operations. However, it contains a significant misconception about array-based stack operations (push/pop at the end of an array do not involve shifting elements, they are O(1) amortized for dynamic arrays, or O(1) for fixed arrays). This shows a gap in understanding the mechanics of implementation, placing it at the lower end of L2."
+  },
+  {
+    "scenario_id": "L3-CLEAN-SHORT",
+    "level": 3,
+    "label": "Apply",
+    "description": "Student explains LIFO and suggests a practical application, demonstrating why it's suitable.",
+    "student_answer": "A stack is LIFO, meaning the last item in is the first out. This property makes it ideal for managing function call contexts in a program, where the most recent function called must complete before returning to the previous one.",
+    "expected_bloom_level": 3,
+    "expected_score_min": 2.7,
+    "expected_score_max": 3.4,
+    "expected_misconceptions": [],
+    "rationale": "Beyond just explaining LIFO, it applies the concept to a real-world CS problem (function call stack), demonstrating an understanding of *why* a stack is suitable for this specific scenario. This shows application of knowledge, fitting L3."
+  },
+  {
+    "scenario_id": "L3-CLEAN-MEDIUM",
+    "level": 3,
+    "label": "Apply",
+    "description": "Student explains LIFO, operations, implementations, and analyzes trade-offs in context, suggesting when each is appropriate.",
+    "student_answer": "A stack is a LIFO data structure, essential for scenarios like parsing expressions or managing undo/redo functionality. Its core operations are `push` (add to top) and `pop` (remove from top), both typically O(1) time complexity. Implementations include dynamic arrays and linked lists. An array-based stack is efficient for memory locality, but resizing can lead to occasional O(N) operations. This suits cases where size is predictable or amortized O(1) is acceptable. A linked list-based stack offers true O(1) for push/pop without resizing, making it better for highly dynamic sizes or critical consistent performance, though it uses more memory per element. The choice depends on application requirements.",
+    "expected_bloom_level": 4,
+    "expected_score_min": 3.1,
+    "expected_score_max": 4.4,
+    "expected_misconceptions": [],
+    "rationale": "Explains LIFO, operations, and implementations. Crucially, it analyzes the trade-offs in terms of performance (O(1) vs. amortized O(1), memory locality, overhead) and suggests *when* each implementation is more appropriate, demonstrating application of knowledge, fitting L3."
+  },
+  {
+    "scenario_id": "L3-MISCONCEPTION",
+    "level": 3,
+    "label": "Apply",
+    "description": "Expanded range by 0.1 - borderline score",
+    "student_answer": "A stack is LIFO, used for things like browser history. For a browser history, you'd definitely want to use an array-based stack because it's faster to access elements by index when you want to go back multiple pages, and memory is usually contiguous. Linked lists are too slow for random access, so they wouldn't work well here, even though they're good for dynamic size.",
+    "expected_bloom_level": 3,
+    "expected_score_min": 2.4,
+    "expected_score_max": 2.9,
+    "expected_misconceptions": [
+      "Misapplication of array vs. linked list trade-offs for browser history (browser history isn't just a stack, and random access isn't a primary stack operation)",
+      "Incorrectly assuming array-based stack is better for 'going back multiple pages' (which implies non-stack access or a different data structure)"
+    ],
+    "rationale": "Correctly identifies LIFO and a plausible application (browser history, though it's often more complex than a simple stack). However, it misapplies the trade-offs by focusing on 'random access' for 'going back multiple pages,' which is not a standard stack operation. This shows an attempt to apply knowledge but with a flawed understanding of how stack operations or the specific application interact with implementation details, placing it at the lower end of L3."
+  },
+  {
+    "scenario_id": "L4-CLEAN-MED",
+    "level": 4,
+    "label": "Analyze",
+    "description": "A clear and concise explanation of a stack, its operations, common implementations, and basic trade-offs.",
+    "student_answer": "A stack is a linear data structure that follows the Last-In, First-Out (LIFO) principle. Imagine a pile of plates; you can only add or remove from the top. Its primary operations are `push` (adds an element to the top), `pop` (removes and returns the top element), `peek` (returns the top element without removing it), and `isEmpty` (checks if the stack has elements). Stacks can be implemented using arrays or linked lists. Array-based stacks are simple and offer good cache performance but have a fixed size or require costly resizing. Linked list implementations are dynamic, growing as needed, but incur memory overhead for pointers and potentially worse cache locality. The main trade-off is between fixed capacity/resizing cost and dynamic growth/pointer overhead.",
+    "expected_bloom_level": 2,
+    "expected_score_min": 1.4,
+    "expected_score_max": 2.9,
+    "expected_misconceptions": [],
+    "rationale": "The student correctly defines a stack, lists its core operations, identifies the two primary implementations, and articulates their fundamental trade-offs. This demonstrates a solid understanding of the components and their relationships, characteristic of Bloom's L4 (Analyze)."
+  },
+  {
+    "scenario_id": "L4-CLEAN-LONG",
+    "level": 4,
+    "label": "Analyze",
+    "description": "A detailed explanation of a stack, its operations, elaborating on array vs. linked list implementations, including time complexity and a common application.",
+    "student_answer": "A stack is a fundamental abstract data type characterized by its Last-In, First-Out (LIFO) behavior, meaning the last element added is the first one to be removed. This principle is crucial for managing function calls, parsing expressions, and backtracking algorithms. The essential operations are `push(item)`, which places an item onto the top of the stack; `pop()`, which removes and returns the top item; `peek()`, which returns the top item without removing it; and `isEmpty()`, which checks if the stack contains any elements. All these operations typically achieve O(1) time complexity.\nImplementations commonly use either dynamic arrays or singly linked lists. An array-based stack uses an array and a 'top' pointer/index. Pushing involves incrementing 'top' and placing the item, while popping decrements 'top'. If the array fills, it must be resized, which can be an O(N) operation, though amortized to O(1) over many operations. Linked list implementations use nodes, where each node points to the next. Pushing adds a new node at the head, making it the new 'top'. Popping removes the head node. Linked lists offer dynamic sizing without explicit resizing costs but introduce memory overhead for pointers and potentially worse cache performance due to scattered memory allocation. A classic application is evaluating postfix expressions, where operands are pushed onto the stack and operators pop operands, compute, and push the result back.",
+    "expected_bloom_level": 4,
+    "expected_score_min": 3.75,
+    "expected_score_max": 4.25,
+    "expected_misconceptions": [],
+    "rationale": "This answer provides a comprehensive analysis, detailing the LIFO principle, all operations with their time complexity, and a thorough breakdown of both array and linked list implementations, including their mechanics and specific trade-offs (amortized cost, cache performance, memory overhead). It also includes a relevant application, demonstrating a deep analytical understanding."
+  },
+  {
+    "scenario_id": "L4-MISCONCEPTION",
+    "level": 4,
+    "label": "Analyze",
+    "description": "A generally good explanation, but contains a significant misconception about a core stack operation.",
+    "student_answer": "A stack is a linear data structure following the LIFO (Last-In, First-Out) principle, similar to a stack of trays where you always interact with the topmost one. Its core operations include `push` to add an element to the top, `pop` to remove the top element, and `peek` to view and remove the top element without needing to store it elsewhere. There's also `isEmpty` to check if it's empty.\nStacks are typically implemented using either arrays or linked lists. Array-based stacks are efficient for access due to contiguous memory, but they have a fixed capacity, meaning you might run out of space or waste memory. Resizing an array is an expensive operation. Linked list implementations, on the other hand, are dynamic and can grow or shrink as needed, avoiding fixed-size issues. However, they incur extra memory overhead for pointers in each node and might have slightly slower access due to non-contiguous memory allocation. The trade-off is between memory efficiency and dynamic sizing capabilities.",
+    "expected_bloom_level": 2,
+    "expected_score_min": 1.4,
+    "expected_score_max": 2.9,
+    "expected_misconceptions": [
+      "peek_removes_element"
+    ],
+    "rationale": "The student correctly identifies LIFO, implementations, and general trade-offs. However, the critical misconception that `peek` 'removes the top element' indicates a fundamental misunderstanding of a core stack operation's contract. This error prevents a higher score despite other correct analytical points."
+  },
+  {
+    "scenario_id": "L5-CLEAN-MED",
+    "level": 5,
+    "label": "Evaluate",
+    "description": "Borderline L4/L5 - hedged recommendations; system consistently classifies as L4 Analyze; score range spans both bands",
+    "student_answer": "A stack's LIFO principle is fundamental, with `push`, `pop`, `peek`, and `isEmpty` operations, all typically O(1). The choice between array-based and linked-list-based implementations hinges on specific use cases and performance requirements. Array-based stacks offer superior cache locality, which can lead to faster access in scenarios with frequent operations on a relatively stable stack size. However, their fixed capacity necessitates dynamic resizing, which, while amortized O(1), can introduce occasional O(N) performance spikes and memory reallocations.\nLinked-list-based stacks excel in scenarios requiring highly dynamic sizing without unpredictable performance hits, as each `push` or `pop` is a true O(1) operation without the possibility of a full array copy. Their main drawback is the increased memory footprint due to pointers and potentially worse cache performance. Therefore, for predictable, high-volume operations where memory locality is key, an array might be preferred, whereas for highly variable stack sizes or strict real-time constraints avoiding O(N) spikes, a linked list is often a better choice.",
+    "expected_bloom_level": 4,
+    "expected_score_min": 3.5,
+    "expected_score_max": 4.5,
+    "expected_misconceptions": [],
+    "rationale": "The student moves beyond mere description to evaluate the strengths and weaknesses of each implementation in different contexts. They discuss cache locality, amortized costs, and real-time performance implications, making informed judgments about when one implementation is preferable over the other. This demonstrates evaluative thinking."
+  },
+  {
+    "scenario_id": "L5-CLEAN-LONG",
+    "level": 5,
+    "label": "Evaluate",
+    "description": "A comprehensive evaluation, including detailed comparison of implementations, amortized costs, memory fragmentation, and suitability for complex algorithms.",
+    "student_answer": "The stack, a LIFO abstract data type, provides `push`, `pop`, `peek`, and `isEmpty` operations, all designed for O(1) average-case time complexity. The true depth of understanding lies in evaluating the nuanced trade-offs between its common implementations: dynamic arrays and singly linked lists.\nDynamic array implementations leverage contiguous memory, benefiting from excellent cache locality, which can significantly boost performance for sequential access patterns. However, their fixed-size nature mandates resizing when capacity is exceeded. While a well-implemented resizing strategy (e.g., doubling capacity) yields an amortized O(1) cost for `push` operations, individual resizing events are O(N), potentially causing latency spikes. This makes them less suitable for applications with strict real-time performance guarantees or where memory fragmentation is a concern due to frequent reallocations.\nConversely, linked-list implementations offer true O(1) performance for `push` and `pop` without any resizing overhead, as memory is allocated node-by-node. This makes them ideal for scenarios with highly unpredictable stack sizes or where consistent performance is paramount. The primary drawbacks are increased memory consumption per element due to pointer storage and poorer cache performance because nodes are typically scattered in memory. Furthermore, linked lists can contribute to memory fragmentation over long periods.\nEvaluating their application, stacks are indispensable for managing function call frames, parsing arithmetic expressions (e.g., Shunting-yard algorithm), and implementing depth-first search (DFS) in graphs. For DFS, an array-based stack might be faster if the graph size is somewhat predictable and fits in memory, leveraging cache. However, for recursive DFS, the call stack itself is a linked-list-like structure managed by the OS. Choosing between array and linked list ultimately depends on the specific application's memory access patterns, predictability of stack depth, and tolerance for performance variability.",
+    "expected_bloom_level": 5,
+    "expected_score_min": 4.5,
+    "expected_score_max": 5.0,
+    "expected_misconceptions": [],
+    "rationale": "This response offers a sophisticated evaluation. It thoroughly compares implementations, discussing cache locality, amortized analysis, memory fragmentation, and real-time constraints. It then critically assesses their suitability for specific algorithms and scenarios, demonstrating a comprehensive and nuanced evaluative judgment, characteristic of a high L5."
+  },
+  {
+    "scenario_id": "L5-MISCONCEPTION",
+    "level": 5,
+    "label": "Evaluate",
+    "description": "A generally strong evaluation, but makes a flawed judgment or comparison based on an incorrect premise about array resizing costs.",
+    "student_answer": "A stack is a LIFO structure with `push`, `pop`, `peek`, and `isEmpty` operations, all typically O(1). When evaluating implementations, array-based stacks are often touted for their simplicity and cache performance. However, the fundamental flaw with array implementations is the constant need for resizing. Every time the array fills up, a new, larger array must be allocated, and all elements copied over. This O(N) operation makes array-based stacks inherently inefficient and unpredictable, especially in high-performance systems where consistent O(1) guarantees are critical.\nLinked-list implementations, on the other hand, are superior because they dynamically allocate memory for each node, ensuring true O(1) performance for `push` and `pop` without any resizing overhead. This makes them the unequivocally better choice for any application requiring consistent performance and dynamic sizing. While they do have a slight memory overhead for pointers, this is a minor trade-off compared to the performance penalties of array resizing. Therefore, for robust and scalable applications, linked lists are always the preferred implementation due to their predictable and efficient dynamic growth.",
+    "expected_bloom_level": 5,
+    "expected_score_min": 4.0,
+    "expected_score_max": 4.5,
+    "expected_misconceptions": [
+      "misunderstanding_amortized_cost",
+      "overgeneralization_linked_list_superiority"
+    ],
+    "rationale": "The student attempts an evaluation but fundamentally misrepresents the amortized cost of array resizing, claiming it's 'inherently inefficient and unpredictable' and a 'constant need,' ignoring the O(1) amortized benefit. This leads to an overgeneralized and flawed conclusion about the unequivocal superiority of linked lists, demonstrating a critical error in their evaluative criteria."
+  },
+  {
+    "scenario_id": "L6-CLEAN-MED",
+    "level": 6,
+    "label": "Create",
+    "description": "Proposes a novel stack variant or an optimization strategy for a specific, non-standard problem.",
+    "student_answer": "A stack's LIFO principle is fundamental, with O(1) `push`, `pop`, `peek`, and `isEmpty` operations. For scenarios requiring not just the top element but also the minimum element efficiently, a standard stack falls short. I propose a 'MinStack' variant. This stack would maintain an auxiliary stack alongside the main data stack. When an element is `push`ed, it's pushed onto the main stack. If the element is less than or equal to the current minimum (or if the auxiliary stack is empty), it's also pushed onto the auxiliary stack. When `pop`ping, if the element being removed from the main stack is the same as the top of the auxiliary stack, then the auxiliary stack is also `pop`ped. The `getMin()` operation would simply return the top of the auxiliary stack, achieving O(1) time complexity. This design extends the stack's utility without compromising its core performance characteristics for standard operations, solving the problem of finding the minimum in O(1) time.",
+    "expected_bloom_level": 6,
+    "expected_score_min": 4.4,
+    "expected_score_max": 4.8,
+    "expected_misconceptions": [],
+    "rationale": "The student designs a practical and efficient extension of the basic stack (MinStack) to address a specific functional requirement (O(1) minimum retrieval). This involves synthesizing existing stack operations and adding a new, well-integrated component, demonstrating creative problem-solving within the stack paradigm."
+  },
+  {
+    "scenario_id": "L6-CLEAN-LONG",
+    "level": 6,
+    "label": "Create",
+    "description": "Expanded range to full L6 band - system correctly gets L6 Bloom",
+    "student_answer": "The core LIFO behavior of a stack, with its O(1) `push`, `pop`, `peek`, and `isEmpty` operations, makes it invaluable. However, in modern concurrent programming environments, a standard stack implementation is insufficient due to race conditions. I propose the design of a 'Lock-Free Concurrent Stack' to allow multiple threads to operate simultaneously without explicit locks, aiming for high throughput.\nThis design would typically leverage atomic operations provided by the CPU, such as Compare-And-Swap (CAS). Each node in the linked-list-based stack would contain the data and a pointer to the next node. The 'top' of the stack would be an atomic reference.\nFor a `push` operation: A new node is created. Its `next` pointer is set to the current `top`. Then, a CAS operation attempts to update the `top` to point to the new node, but only if the `top` hasn't changed since we read it. If CAS fails (another thread modified `top`), the operation retries.\nFor a `pop` operation: The current `top` is read. If it's null, the stack is empty. Otherwise, the `next` pointer of the current `top` is read. A CAS operation then attempts to update `top` to this `next` node, but only if the `top` is still the one we initially read. If CAS fails, it retries.\nChallenges include the ABA problem (where a value changes from A to B then back to A, fooling CAS), which can be mitigated using version counters or double-word CAS. This lock-free approach avoids deadlocks and reduces contention compared to mutex-based designs, offering superior scalability in highly concurrent scenarios, effectively creating a robust, high-performance concurrent data structure from the basic stack concept.",
+    "expected_bloom_level": 6,
+    "expected_score_min": 4.4,
+    "expected_score_max": 5.0,
+    "expected_misconceptions": [],
+    "rationale": "The student designs a sophisticated 'Lock-Free Concurrent Stack,' addressing a complex real-world problem (concurrency). They propose specific mechanisms (CAS, atomic operations), identify advanced challenges (ABA problem), and suggest solutions (version counters). This demonstrates a high level of creative synthesis and the ability to design complex systems based on fundamental data structures."
+  },
+  {
+    "scenario_id": "L6-MISCONCEPTION",
+    "level": 6,
+    "label": "Create",
+    "description": "Attempts to design a novel stack variant, but the design is fundamentally flawed or violates core stack principles.",
+    "student_answer": "A stack is a LIFO data structure, with `push`, `pop`, `peek`, and `isEmpty` operations, typically O(1). I propose a 'Priority Stack' where elements are not just added to the top, but inserted based on their priority. When `push`ing an element, instead of simply placing it on top, we iterate through the existing stack from top to bottom. If the new element has higher priority than the current element, we insert it above that element. If it has lower priority, we continue searching until we find an element with lower or equal priority, or reach the bottom. `Pop` would still remove the top element, which would now always be the highest priority element. `Peek` would show the highest priority element. This design allows for efficient retrieval of the highest priority item while still maintaining some stack-like behavior for removal.",
+    "expected_bloom_level": 6,
+    "expected_score_min": 4.25,
+    "expected_score_max": 4.75,
+    "expected_misconceptions": [
+      "violates_LIFO_principle",
+      "incorrect_time_complexity_for_push",
+      "confuses_stack_with_priority_queue"
+    ],
+    "rationale": "The student attempts to 'create' a 'Priority Stack' but fundamentally misunderstands the LIFO principle of a stack. The proposed `push` operation involves iterating and inserting based on priority, which is not LIFO and would result in O(N) complexity, violating a core characteristic of stack operations. This design effectively describes a priority queue or an ordered list, not a stack, indicating a flawed creative attempt based on a misunderstanding of the base data structure."
+  }
+]

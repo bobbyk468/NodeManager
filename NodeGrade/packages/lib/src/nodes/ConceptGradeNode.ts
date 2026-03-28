@@ -3,6 +3,17 @@
 /* eslint-disable immutable/no-this */
 import { LGraphNode, LiteGraph } from './litegraph-extensions'
 
+// ── CS Misconception Taxonomy (mirrors MisconceptionDetectorNode) ──────────
+const CS_MISCONCEPTION_TAXONOMY: Record<string, { description: string; common_claim: string; correct: string; severity: string }> = {
+  'DS-STACK-01': { description: 'Confusing LIFO (stack) with FIFO (queue)', common_claim: 'A stack follows First In First Out order', correct: 'A stack follows LIFO; a queue follows FIFO', severity: 'critical' },
+  'DS-STACK-02': { description: 'Thinking stacks can only be implemented with arrays', common_claim: 'Stacks must use arrays as the underlying storage', correct: 'Stacks can be implemented with either arrays or linked lists', severity: 'minor' },
+  'DS-LINK-01': { description: 'Confusing array indices with pointer-based access', common_claim: 'You can access linked list elements by index in O(1)', correct: 'Linked list access requires O(n) traversal; only arrays support O(1) index access', severity: 'critical' },
+  'DS-LINK-02': { description: 'Believing linked lists use contiguous memory', common_claim: 'Linked list nodes are stored next to each other in memory', correct: 'Linked list nodes are dynamically allocated and can be anywhere in memory', severity: 'critical' },
+  'DS-TREE-01': { description: 'Assuming all binary trees are binary search trees', common_claim: 'Any binary tree has the ordered property', correct: 'Only BSTs maintain the ordering property; a general binary tree has no ordering constraint', severity: 'critical' },
+  'DS-HASH-01': { description: 'Assuming hash tables never have worst-case O(n)', common_claim: 'Hash table operations are always O(1)', correct: 'Hash table operations are O(1) average; worst case with many collisions is O(n)', severity: 'moderate' },
+  'DS-SORT-01': { description: 'Believing quicksort is always faster than merge sort', common_claim: 'Quick sort is always the fastest sorting algorithm', correct: 'Quick sort average is O(n log n) but worst case is O(n²); merge sort guarantees O(n log n)', severity: 'moderate' },
+}
+
 /**
  * ConceptGradeNode
  *
@@ -82,91 +93,279 @@ export class ConceptGradeNode extends LGraphNode {
       return
     }
 
+    const geminiApiKey = this.env.GEMINI_API_KEY as string | undefined
     const workerUrl = (this.env.MODEL_WORKER_URL as string) ?? 'https://api.groq.com/openai'
     const bearerToken = this.env.BEARER_TOKEN as string | undefined
     const headers: Record<string, string> = { 'Content-Type': 'application/json' }
     if (bearerToken) headers['Authorization'] = `Bearer ${bearerToken}`
 
+    const llm = (prompt: string, system: string, maxTokens = 1024, jsonMode = false): Promise<string> =>
+      geminiApiKey
+        ? this.callGemini(geminiApiKey, prompt, system, maxTokens, jsonMode)
+        : this.callLLM(workerUrl, headers, prompt, system, maxTokens)
+
+    const emitProgress = (pct: number, stage: string) => {
+      this.emitEventCallback?.({ eventName: 'percentageUpdated', payload: pct })
+      this.emitEventCallback?.({ eventName: 'outputSet', payload: { uniqueId: 'grading-stage', type: 'text', label: 'grading-stage', value: stage } })
+    }
+
+    // Truncate for extraction only — concept labels need ~2000 chars of text,
+    // not the full answer. Stages 2 & 4 always receive the full studentAnswer.
+    const answerForExtraction = studentAnswer.length > 3000
+      ? studentAnswer.substring(0, 3000) + '\n[...answer truncated for concept extraction...]'
+      : studentAnswer
+
     // Run multi-stage pipeline via sequential LLM calls
     try {
-      // Stage 1: Concept Extraction
-      const extractionPrompt = `You are a CS education expert. Extract concepts and relationships from this student answer about Data Structures.
+      // Stage 1: Concept Extraction (ontology-guided, with relationships)
+      const extractionSystemPrompt = `You are an expert Computer Science educator analyzing student answers about Data Structures and Algorithms.
+Extract domain concepts and relationships from the student's response using compact JSON.
+Keep concept_id values short (1-3 words, snake_case). Limit to at most 12 concepts and 10 relationships.
+Relationship types: is_a, has_part, prerequisite_for, implements, uses, has_property, has_complexity, contrasts_with`
 
-QUESTION: ${question}
-STUDENT ANSWER: ${studentAnswer}
+      const extractionPrompt = `QUESTION: ${question}
 
-Return ONLY valid JSON:
-{
-  "concepts": [{"concept_id": "id", "evidence": "quote from answer"}],
-  "relationships": [{"source_id": "id", "target_id": "id", "relation_type": "type", "is_correct": true/false}],
-  "overall_depth": "surface|moderate|deep"
-}`
+STUDENT ANSWER: ${answerForExtraction}
 
-      const extractResp = await this.callLLM(workerUrl, headers, extractionPrompt,
-        'Extract concepts and relationships from the student answer.')
+Return compact JSON (no whitespace):
+{"concepts":[{"id":"name","ok":true}],"relationships":[{"s":"src","t":"tgt","r":"type","ok":true}],"depth":"surface|moderate|deep"}`
+
+      emitProgress(10, 'Extracting concepts...')
+      const extractResp = await llm(extractionPrompt, extractionSystemPrompt, 4096, true)
+      emitProgress(30, 'Classifying depth & detecting misconceptions...')
 
       let conceptGraph: any = {}
-      try { conceptGraph = JSON.parse(this.extractJson(extractResp)) } catch { /* empty */ }
+      try {
+        const raw = this.extractJson(extractResp).trimStart()
+        const jsonStr = raw.startsWith('{') ? raw : `{${raw}}`
+        conceptGraph = JSON.parse(jsonStr)
+      } catch (e) {
+        console.error('[ConceptGrade] concept extraction parse failed, raw:', extractResp.substring(0, 200))
+      }
 
       const concepts = conceptGraph.concepts || []
       const relationships = conceptGraph.relationships || []
       const numConcepts = concepts.length
-      const numRels = relationships.length
-      const incorrectRels = relationships.filter((r: any) => r.is_correct === false)
+      const numRelationships = relationships.length
+      const incorrectConcepts = concepts.filter((c: any) => c.ok === false || c.is_correct === false)
+      const incorrectRelationships = relationships.filter((r: any) => r.ok === false || r.is_correct === false)
 
-      // Stage 2: Cognitive Depth Classification (Bloom's + SOLO combined)
-      const depthPrompt = `You are an educational assessment researcher. Classify this student response on BOTH Bloom's Revised Taxonomy (1-6) and SOLO Taxonomy (1-5).
+      // Stage 2: Cognitive Depth Classification — evidence-based + Chain-of-Thought
+      const conceptList = concepts.map((c: any) => c.id || c.concept_id || '?').join(', ')
+      const connectedConcepts = new Set<string>()
+      for (const r of relationships) {
+        connectedConcepts.add(r.s || r.source || '')
+        connectedConcepts.add(r.t || r.target || '')
+      }
+      const isolatedCount = concepts.filter((c: any) => !connectedConcepts.has(c.id || c.concept_id || '')).length
 
-QUESTION: ${question}
+      const depthSystemPrompt = `You are an expert educational assessment researcher. Classify this student response along TWO taxonomies simultaneously using Chain-of-Thought reasoning and the provided concept graph evidence.
+
+⚠ CRITICAL RULE — COGNITIVE LEVEL ≠ CORRECTNESS:
+Bloom's level reflects the COGNITIVE OPERATION the student ATTEMPTED, not whether the answer is correct.
+An answer with a factual misconception that ATTEMPTS analysis (e.g., "I think linked lists are O(1) for all ops because there's no resizing, which is why they outperform arrays") is STILL L4 (Analyze) — the cognitive attempt is analysis, even though it is wrong.
+DO NOT downgrade the Bloom's level because of factual errors. DO NOT upgrade the level because the answer sounds complex but only lists facts.
+
+1. BLOOM'S REVISED TAXONOMY (1-6):
+   1=Remember: Recalls facts or definitions (e.g., "A stack is LIFO, push adds, pop removes").
+   2=Understand: Explains concepts in own words. Includes: basic comparisons, simple examples, paraphrasing.
+      Counter-example: A brief 1-2 sentence mention of trade-offs ("arrays are fixed-size, linked lists can grow") is STILL L2.
+   3=Apply: Actively uses knowledge in a specific context or scenario.
+      Examples: "To implement browser history, I would use a stack because LIFO matches the back-button behaviour."
+               "The call stack manages function execution by pushing frames on invocation and popping on return."
+      Counter-example: Just listing that stacks are used in function calls WITHOUT explaining the mechanism is L2.
+   4=Analyze: Substantially deconstructs mechanisms and examines WHY differences exist.
+      Examples: Explaining WHY array stacks have amortized O(1) push (doubling strategy), WHY pointer overhead affects cache, comparing complexity trade-offs with evidence.
+      Counter-example: "Arrays are faster because of cache locality" (stated without mechanism) is L2-L3.
+   5=Evaluate: Uses analysis to reach a VERDICT — tells you WHAT IS BETTER or WHAT TO USE in specific conditions.
+      DECISION RULE — if the answer's conclusion answers "which one should I use and when?", it is L5.
+      L4 answers "how does it work?" — L5 answers "which is better and for what?"
+      Language strength does NOT matter: "might be preferred", "is often a better choice", "makes it ideal", "is less suitable" are ALL evaluative — they all tell you what to use when.
+      Key patterns (any one is sufficient for L5):
+        • "X is preferred/better/ideal for [condition A]; Y is preferred for [condition B]"
+        • "Therefore, for [use-case], [implementation] is the better choice"
+        • "X makes it [un]suitable for [scenario]"
+        • "Choosing X depends on [explicit criterion]: if [A] then X, if [B] then Y"
+      Examples (all L5 regardless of hedging):
+        • "For real-time systems I would prefer a linked-list stack because worst-case O(n) resize is unacceptable."
+        • "Therefore, for predictable, high-volume operations where memory locality is key, an array might be preferred, whereas for strict real-time constraints, a linked list is often a better choice." ← THIS IS L5
+        • "This makes array stacks less suitable for real-time applications; linked lists are ideal for dynamic sizing."
+      Distinction from L4: An answer that ONLY explains mechanisms (cache locality works like X, resizing costs O(N)) without ending in a verdict about WHICH to use = L4. Once the answer concludes "therefore use X for Y" or "X is better when Y", it becomes L5.
+   6=Create: Proposes a novel design, algorithm, or architecture not described in standard literature.
+      Example: Designing a lock-free concurrent stack, a cache-oblivious stack, or a domain-specific variant.
+
+2. SOLO TAXONOMY (1-5):
+   1=Prestructural: No relevant understanding.
+   2=Unistructural: One relevant concept correctly identified.
+   3=Multistructural: Several concepts listed but not connected — concepts are parallel, not integrated.
+   4=Relational: Multiple concepts integrated into a coherent explanation — shows HOW ideas relate.
+   5=Extended Abstract: Generalises the argument beyond the specific topic or question domain.
+
+CALIBRATION RULES:
+- Do not award L4 unless you see DETAILED mechanistic reasoning (not just naming trade-offs).
+- UPGRADE from L4 to L5 if the student makes design recommendations tied to specific criteria or constraints, even with hedged language ("might be preferred when...", "would choose X for Y").
+- Explicit pattern for L5: "For [specific scenario], [implementation] is preferred because [criterion]" — even if worded tentatively.
+- Do not DOWNGRADE from L3/L4 because the answer contains misconceptions — classify the INTENDED operation.
+- Do not UPGRADE from L2 because the language sounds sophisticated — look for the actual cognitive operation performed.`
+
+      const depthPrompt = `QUESTION: ${question}
+
 STUDENT ANSWER: ${studentAnswer}
-EVIDENCE: ${numConcepts} concepts, ${numRels} relationships, ${incorrectRels.length} incorrect
+
+CONCEPT GRAPH EVIDENCE:
+- Concepts found: ${numConcepts} (${conceptList})
+- Relationships: ${numRelationships}
+- Isolated concepts (no connections): ${isolatedCount}
+- KG depth assessment: ${conceptGraph.overall_depth || 'not assessed'}
 
 Return ONLY valid JSON:
 {
-  "blooms": {"level": 1-6, "label": "Remember|Understand|Apply|Analyze|Evaluate|Create", "confidence": 0-1},
-  "solo": {"level": 1-5, "label": "Prestructural|Unistructural|Multistructural|Relational|Extended Abstract", "confidence": 0-1}
+  "blooms": {
+    "level": 1-6,
+    "label": "Remember|Understand|Apply|Analyze|Evaluate|Create",
+    "reasoning": "brief chain-of-thought",
+    "confidence": 0.0-1.0
+  },
+  "solo": {
+    "level": 1-5,
+    "label": "Prestructural|Unistructural|Multistructural|Relational|Extended Abstract",
+    "reasoning": "brief chain-of-thought",
+    "confidence": 0.0-1.0
+  }
 }`
 
-      const depthResp = await this.callLLM(workerUrl, headers, depthPrompt,
-        'Classify cognitive depth on Bloom\'s and SOLO taxonomies.')
+      // Build stage 3 inputs before parallel launch
+      const allIncorrect = [...incorrectConcepts, ...incorrectRelationships]
+      const studentConceptSet = new Set(concepts.map((c: any) => (c.id || c.concept_id || '').toLowerCase()))
+      const taxonomyMatches = Object.entries(CS_MISCONCEPTION_TAXONOMY)
+        .filter(([, tax]) => tax.description.toLowerCase().split(' ').some(w => w.length > 4 && studentConceptSet.has(w)))
+      const taxonomyStr = taxonomyMatches.length > 0
+        ? taxonomyMatches.map(([id, tax]) =>
+            `- ${id}: ${tax.description}\n  Common claim: "${tax.common_claim}"\n  Correct: "${tax.correct}" (${tax.severity})`
+          ).join('\n')
+        : 'No direct taxonomy matches — analyse as novel misconceptions if any exist.'
+      const extractedErrors = allIncorrect.map((r: any) =>
+        `- ${r.id || r.concept_id || r.s || r.source || '?'} → ${r.t || r.target || ''} (${r.r || r.relation_type || 'concept error'}): marked incorrect`
+      ).join('\n')
+
+      const miscSystemPrompt = `You are an expert CS educator analyzing student answers for misconceptions about Data Structures and Algorithms.
+Scan the FULL student answer for factual errors and misconceptions. Do NOT just report extraction errors — actively check the answer for:
+- Wrong claims about time complexity (e.g., "array push always O(n)")
+- Confusing data structure properties (e.g., stack vs queue, random access vs sequential)
+- Wrong assertions about implementations (e.g., "arrays always shift on push/pop")
+- Overgeneralizations and unsupported absolute claims
+
+If the answer contains NO factual errors, return empty misconceptions array.
+For each misconception found:
+1. Type: systematic|isolated|knowledge_gap|conflation|overgeneralization|undergeneralization
+2. Severity: critical (fundamentally wrong core concept), moderate (incorrect detail), minor (imprecise)
+3. Match to taxonomy ID if applicable
+4. Clear explanation and remediation hint`
+
+      const miscPrompt = `QUESTION: ${question}
+STUDENT ANSWER: ${studentAnswer}
+
+EXTRACTION-FLAGGED ERRORS (may be empty):
+${extractedErrors || 'None flagged by extraction.'}
+
+RELEVANT MISCONCEPTION TAXONOMY:
+${taxonomyStr}
+
+Scan the full answer for ANY factual misconceptions. Return ONLY valid JSON:
+{"misconceptions":[{"taxonomy_match":"DS-XXX-NN or novel","type":"systematic|isolated|knowledge_gap|conflation|overgeneralization|undergeneralization","severity":"critical|moderate|minor","explanation":"...","remediation_hint":"..."}],"summary":"..."}`
+
+      // ── Stages 2 & 3 run IN PARALLEL (both depend only on Stage 1 output) ──
+      const [depthResp, miscResp] = await Promise.all([
+        llm(depthPrompt, depthSystemPrompt, 2048, true),   // jsonMode; reasoning can be long
+        llm(miscPrompt, miscSystemPrompt, 1024, true),     // jsonMode avoids fence issues
+      ])
+      emitProgress(70, 'Calculating final score...')
 
       let depthResult: any = {}
-      try { depthResult = JSON.parse(this.extractJson(depthResp)) } catch { /* empty */ }
+      try {
+        const depthJson = this.extractJson(depthResp)
+        depthResult = JSON.parse(depthJson)
+      } catch (e) {
+        console.error('[ConceptGrade] depth parse failed. Error:', String(e).substring(0, 100))
+        console.error('[ConceptGrade] depth raw (first 500):', depthResp.substring(0, 500))
+      }
 
       const blooms = depthResult.blooms || { level: 1, label: 'Remember' }
       const solo = depthResult.solo || { level: 1, label: 'Prestructural' }
+      console.log(`[ConceptGrade] depth: Blooms L${blooms.level} ${blooms.label}, SOLO L${solo.level} ${solo.label}`)
 
-      // Stage 3: Misconception Analysis (only if incorrect relationships found)
       let misconceptions: any = { total: 0, misconceptions: [] }
-      if (incorrectRels.length > 0) {
-        const miscPrompt = `Analyze misconceptions in this CS student answer:
-
-QUESTION: ${question}
-STUDENT ANSWER: ${studentAnswer}
-INCORRECT: ${JSON.stringify(incorrectRels.slice(0, 5))}
-
-Return ONLY valid JSON:
-{
-  "misconceptions": [{"severity": "critical|moderate|minor", "explanation": "...", "remediation_hint": "..."}],
-  "summary": "overall assessment"
-}`
-
-        const miscResp = await this.callLLM(workerUrl, headers, miscPrompt,
-          'Analyze misconceptions in the student response.')
-        try { misconceptions = JSON.parse(this.extractJson(miscResp)) } catch { /* empty */ }
-      }
+      try { misconceptions = JSON.parse(this.extractJson(miscResp)) } catch { /* empty */ }
 
       const miscList = misconceptions.misconceptions || []
       const numMisc = miscList.length
       const critical = miscList.filter((m: any) => m.severity === 'critical').length
+      // Enrich conceptGraph with relationship data for report
+      conceptGraph.relationships = relationships
 
-      // Compute composite score
-      const bloomsNorm = ((blooms.level || 1) - 1) / 5
-      const soloNorm = ((solo.level || 1) - 1) / 4
-      const miscPenalty = critical * 0.3 + (numMisc - critical) * 0.1
-      const overallScore = Math.max(0, Math.min(1,
-        bloomsNorm * 0.35 + soloNorm * 0.35 + (1 - miscPenalty) * 0.3
-      ))
+      // Stage 4: Holistic LLM scoring — Bloom's/SOLO level sets the score band ceiling
+      const scoringPrompt = `You are an expert CS educator grading a student answer. Score it from 0.0 to 1.0 (where 1.0 = 5/5).
+
+QUESTION: ${question}
+
+STUDENT ANSWER:
+${studentAnswer}
+
+AUTOMATED ASSESSMENT EVIDENCE:
+- Bloom's Taxonomy: ${blooms.label} (Level ${blooms.level}/6)
+- SOLO Taxonomy: ${solo.label} (Level ${solo.level}/5)
+- Concepts identified: ${numConcepts}
+- Misconceptions: ${numMisc} total, ${critical} critical
+
+SCORING RUBRIC — the Bloom's level sets the CEILING for the score band:
+- Bloom's L1 (Remember) / SOLO L1-L2: 0.10–0.30. Even if factually correct, recall alone earns at most 1.5/5.
+- Bloom's L2 (Understand) / SOLO L2-L3: 0.30–0.55. Clear explanation with basic examples earns ~2.5/5 at best.
+- Bloom's L3 (Apply) / SOLO L3: 0.50–0.65. Correct application of knowledge to a context.
+- Bloom's L4 (Analyze) / SOLO L3-L4: 0.65–0.85. Detailed deconstruction of mechanisms and trade-offs.
+- Bloom's L5 (Evaluate) / SOLO L4-L5: 0.85–1.00. Justified critique of design choices; thorough and accurate.
+- Bloom's L6 (Create) / SOLO L5: 0.90–1.00 ONLY IF the novel design also answers the question asked. If the answer proposes novel ideas but ignores the question's core requirements, score within L4 range.
+
+IMPORTANT:
+- A complete and accurate L2 answer is worth ~2.5/5 (0.50), NOT 4–5/5. Do not award high scores purely for accuracy if depth is shallow.
+- Missing elements from the question reduce the score within the band.
+- Critical misconceptions reduce the score by 0.15–0.30.
+
+Return ONLY valid JSON: {"score": 0.0-1.0, "rationale": "one sentence reason", "missing": "what is absent or null if nothing significant"}`
+
+      // Bloom's level → score band [min, max] (slightly widened to reduce boundary brittleness)
+      const bloomsBand: Record<number, [number, number]> = {
+        1: [0.10, 0.32],  // 0.5-1.6/5
+        2: [0.28, 0.58],  // 1.4-2.9/5
+        3: [0.48, 0.68],  // 2.4-3.4/5
+        4: [0.62, 0.88],  // 3.1-4.4/5
+        5: [0.82, 1.00],  // 4.1-5.0/5
+        6: [0.88, 1.00],  // 4.4-5.0/5
+      }
+      const [bandMin, bandMax] = bloomsBand[blooms.level || 1] ?? [0.10, 1.00]
+      // Apply misconception penalty: critical misconceptions reduce the band ceiling
+      const miscPenalty = critical * 0.08 + Math.max(0, numMisc - critical) * 0.03
+      const effectiveBandMax = Math.max(bandMin, bandMax - miscPenalty)
+
+      let overallScore = 0
+      let scoreRationale = ''
+      let scoreMissing: string | null = null
+      try {
+        const scoreResp = await llm(scoringPrompt, 'You are an expert CS educator. Return only valid JSON.', 512, true)
+        const scoreResult = JSON.parse(this.extractJson(scoreResp))
+        const rawScore = Math.max(0, Math.min(1, parseFloat(scoreResult.score) || 0))
+        // Clamp to Bloom's band — deterministic enforcement with misconception penalty
+        overallScore = Math.max(bandMin, Math.min(effectiveBandMax, rawScore))
+        scoreRationale = scoreResult.rationale || ''
+        scoreMissing = scoreResult.missing || null
+      } catch {
+        // Fallback to deterministic formula if LLM scoring fails
+        const bloomsNorm = ((blooms.level || 1) - 1) / 5
+        const soloNorm = ((solo.level || 1) - 1) / 4
+        const miscPenalty = critical * 0.3 + (numMisc - critical) * 0.1
+        overallScore = Math.max(bandMin, Math.min(bandMax,
+          bloomsNorm * 0.35 + soloNorm * 0.35 + (1 - miscPenalty) * 0.3
+        ))
+      }
 
       // Depth category
       let depthCategory = 'surface'
@@ -182,6 +381,8 @@ Return ONLY valid JSON:
         misconceptions,
         overall_score: overallScore,
         depth_category: depthCategory,
+        score_rationale: scoreRationale,
+        score_missing: scoreMissing,
       }
 
       this.properties.overall_score = overallScore
@@ -194,6 +395,7 @@ Return ONLY valid JSON:
       this.setOutputData(2, blooms.label || 'Remember')
       this.setOutputData(3, solo.label || 'Prestructural')
       this.setOutputData(4, String(numMisc))
+      emitProgress(100, 'Done')
       this.setOutputData(5, JSON.stringify(report))
 
     } catch (error) {
@@ -211,7 +413,8 @@ Return ONLY valid JSON:
     workerUrl: string,
     headers: Record<string, string>,
     userContent: string,
-    systemContent: string
+    systemContent: string,
+    maxTokens = 2048
   ): Promise<string> {
     const response = await fetch(workerUrl + '/v1/chat/completions', {
       method: 'POST',
@@ -223,7 +426,7 @@ Return ONLY valid JSON:
           { role: 'user', content: userContent }
         ],
         temperature: 0.1,
-        max_tokens: 2048
+        max_tokens: maxTokens
       })
     })
     if (!response.ok) throw new Error(`API error: ${response.status}`)
@@ -231,13 +434,82 @@ Return ONLY valid JSON:
     return data.choices?.[0]?.message?.content || '{}'
   }
 
+  private async callGemini(
+    apiKey: string,
+    userContent: string,
+    systemContent: string,
+    maxTokens = 2048,
+    jsonMode = false
+  ): Promise<string> {
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`
+    const generationConfig: any = {
+      temperature: 0.1,
+      maxOutputTokens: maxTokens,
+      thinkingConfig: { thinkingBudget: 0 },  // disable thinking tokens so full budget goes to output
+    }
+    if (jsonMode) generationConfig.responseMimeType = 'application/json'
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        system_instruction: { parts: [{ text: systemContent }] },
+        contents: [{ parts: [{ text: userContent }] }],
+        generationConfig
+      })
+    })
+    if (!response.ok) {
+      const err = await response.text()
+      throw new Error(`Gemini API error ${response.status}: ${err.substring(0, 200)}`)
+    }
+    const data: any = await response.json()
+    return data.candidates?.[0]?.content?.parts?.[0]?.text || '{}'
+  }
+
   private extractJson(text: string): string {
-    const jsonMatch = text.match(/```(?:json)?\s*\n?([\s\S]*?)\n?```/)
-    if (jsonMatch) return jsonMatch[1].trim()
-    const s = text.indexOf('{')
-    const e = text.lastIndexOf('}')
-    if (s !== -1 && e !== -1) return text.substring(s, e + 1)
-    return text.trim()
+    // Strip ALL markdown fences (opening and closing), anywhere in the text
+    let cleaned = text
+      .replace(/```(?:json)?\s*\n?/g, '')  // remove all opening fences
+      .replace(/\n?```/g, '')               // remove all closing fences
+      .trim()
+    // Sanitize: fix literal newlines/tabs inside JSON string values
+    cleaned = this.sanitizeJsonStrings(cleaned)
+    // Find the outermost balanced {} block
+    const start = cleaned.indexOf('{')
+    if (start === -1) return cleaned.trim()
+    let depth = 0
+    let inString = false
+    let escape = false
+    for (let i = start; i < cleaned.length; i++) {
+      const ch = cleaned[i]
+      if (escape) { escape = false; continue }
+      if (ch === '\\' && inString) { escape = true; continue }
+      if (ch === '"') { inString = !inString; continue }
+      if (inString) continue
+      if (ch === '{') depth++
+      else if (ch === '}') { depth--; if (depth === 0) return cleaned.substring(start, i + 1) }
+    }
+    // Truncated JSON — return what we have from start
+    return cleaned.substring(start)
+  }
+
+  /** Replace literal control characters inside JSON string values so JSON.parse succeeds */
+  private sanitizeJsonStrings(text: string): string {
+    let result = ''
+    let inString = false
+    let escape = false
+    for (let i = 0; i < text.length; i++) {
+      const ch = text[i]
+      if (escape) { escape = false; result += ch; continue }
+      if (ch === '\\' && inString) { escape = true; result += ch; continue }
+      if (ch === '"') { inString = !inString; result += ch; continue }
+      if (inString) {
+        if (ch === '\n') { result += '\\n'; continue }
+        if (ch === '\r') { result += '\\r'; continue }
+        if (ch === '\t') { result += '\\t'; continue }
+      }
+      result += ch
+    }
+    return result
   }
 
   static register() {
