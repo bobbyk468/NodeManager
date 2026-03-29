@@ -48,6 +48,7 @@ export class ConceptGradeNode extends LGraphNode {
     super()
     this.addIn('string', 'student answer')
     this.addIn('string', 'question')
+    this.addIn('string', 'domain')          // optional: e.g. "physics", "civil engineering"
     this.addOut('string', 'overall score')
     this.addOut('string', 'depth category')
     this.addOut('string', 'blooms label')
@@ -82,6 +83,7 @@ export class ConceptGradeNode extends LGraphNode {
 
     const studentAnswer = this.getInputData<string>(0) || ''
     const question = this.getInputData<string>(1) || ''
+    const domain = (this.getInputData<string>(2) || '').trim() || 'general'
 
     if (!studentAnswer.trim()) {
       this.setOutputData(0, '0')
@@ -117,11 +119,28 @@ export class ConceptGradeNode extends LGraphNode {
 
     // Run multi-stage pipeline via sequential LLM calls
     try {
-      // Stage 1: Concept Extraction (ontology-guided, with relationships)
-      const extractionSystemPrompt = `You are an expert educator analyzing student answers.
+      // Stage 1: Concept Extraction — domain-adaptive relationship types
+      // Relationship vocabulary varies by domain to improve concept graph fidelity
+      const domainLower = domain.toLowerCase()
+      const isMath = domainLower.includes('math')
+      const isCS = domainLower.includes('computer') || domainLower.includes('software') || domainLower.includes('cs')
+      const isEngineering = domainLower.includes('engineer') || domainLower.includes('mechanic') ||
+        domainLower.includes('civil') || domainLower.includes('electrical') || domainLower.includes('chemical') ||
+        domainLower.includes('aerospace') || domainLower.includes('biomedical') || domainLower.includes('robotic') ||
+        domainLower.includes('environmental') || domainLower.includes('industrial')
+
+      const relTypes = isMath
+        ? 'uses, proves, derives, applies, defines, is_equivalent_to, is_step_of, is_special_case_of'
+        : isCS
+        ? 'is_a, has_part, prerequisite_for, implements, uses, has_property, has_complexity, contrasts_with'
+        : isEngineering
+        ? 'is_a, has_part, causes, leads_to, uses, has_property, contrasts_with, requires, produces, governs'
+        : 'is_a, has_part, causes, leads_to, uses, contrasts_with, has_property, explains, supports, challenges'
+
+      const extractionSystemPrompt = `You are an expert ${domain} educator analyzing student answers.
 Extract domain concepts and relationships from the student's response using compact JSON.
 Keep concept_id values short (1-3 words, snake_case). Limit to at most 12 concepts and 10 relationships.
-Relationship types: is_a, has_part, causes, leads_to, uses, has_property, contrasts_with, prerequisite_for, implements, has_complexity`
+Relationship types: ${relTypes}`
 
       const extractionPrompt = `QUESTION: ${question}
 
@@ -159,7 +178,7 @@ Return compact JSON (no whitespace):
       }
       const isolatedCount = concepts.filter((c: any) => !connectedConcepts.has(c.id || c.concept_id || '')).length
 
-      const depthSystemPrompt = `You are an expert educational assessment researcher. Classify this student response along TWO taxonomies simultaneously using Chain-of-Thought reasoning and the provided concept graph evidence.
+      const depthSystemPrompt = `You are an expert educational assessment researcher. Classify this student response in the domain of ${domain} along TWO taxonomies simultaneously using Chain-of-Thought reasoning and the provided concept graph evidence.
 
 ⚠ CRITICAL RULE — COGNITIVE LEVEL ≠ CORRECTNESS:
 Bloom's level reflects the COGNITIVE OPERATION the student ATTEMPTED, not whether the answer is correct.
@@ -167,45 +186,57 @@ DO NOT downgrade the Bloom's level because of factual errors. DO NOT upgrade the
 
 1. BLOOM'S REVISED TAXONOMY (1-6):
    1=Remember: Recalls a fact, definition, or formula with no explanation beyond stating it.
+      Examples: stating Newton's First Law verbatim; defining "opportunity cost"; listing DNA bases; stating KCL.
+
    2=Understand: Explains in own words, paraphrases, gives examples. Uses ONE concept to explain ONE phenomenon.
-      Example: "Metal feels colder because thermal conductivity transfers heat away from your hand faster." (ONE concept, ONE cause-effect chain)
+      Examples across domains:
+        • "Metal feels colder because thermal conductivity transfers heat away faster." (ONE concept, ONE cause-effect)
+        • "Vaccines train the immune system by introducing antigens that trigger memory cell production." (biology)
+        • "Recursion works by having a function call itself with a smaller sub-problem until a base case stops it." (CS)
       Counter-example: A brief mention of trade-offs without mechanistic detail is STILL L2.
-   3=Apply: Takes an established principle, law, or framework and uses it to PREDICT or SOLVE a specific new scenario.
-      Examples: "A price ceiling below equilibrium leads to a shortage because consumers demand more while producers supply less."
-               "To implement browser history, I would use a stack because LIFO matches the back-button behaviour."
-               "Applying natural selection: a mutation giving better camouflage raises survival rate, shifting population allele frequency."
-      Key: applying a known framework to a scenario = L3, even if the student explains the mechanism within that framework.
-      Counter-example: Just stating that stacks are used in function calls WITHOUT connecting to a specific scenario or showing working = L2.
+
+   3=Apply: Takes an established principle, law, or framework and uses it to PREDICT or SOLVE a specific new scenario. Shows working steps.
+      Examples across domains:
+        • "Using F=ma: a=24/4=6 m/s²." (physics — applying formula)
+        • "A price ceiling below equilibrium → consumers demand more, producers supply less → shortage." (economics)
+        • "The camouflage mutation raises survival rate → allele frequency shifts over generations." (biology — applying natural selection)
+        • "BST: 6<10 go left, 6>5 go right, 6<7 → insert as left child of 7." (CS — step-by-step application)
+        • "Using CSTR design equation: V = F_A0·X / (-r_A) = 100·0.8 / (0.5·0.4) = 400 L." (chemical engineering)
+      Key: applying a known framework to predict or calculate for a specific scenario = L3.
+
    4=Analyze: Deconstructs a COMPLEX system into MULTIPLE interacting components, OR compares MULTIPLE alternatives with mechanistic evidence of WHY they differ.
-      Examples: Explaining a refrigerator cycle through all interacting components (compressor→condenser→expansion valve→evaporator).
-               Comparing two data structures: explaining WHY array stacks have amortized O(1) push (doubling strategy), WHY pointer overhead affects cache, with trade-off evidence.
-      Counter-examples (NOT L4): Explaining ONE concept to explain ONE phenomenon = L2. Applying supply/demand to predict a shortage = L3.
+      Examples across domains:
+        • Refrigerator cycle: compressor→condenser→expansion valve→evaporator — all components and interactions. (engineering)
+        • DFS vs BFS: space O(h) vs O(w), why BFS guarantees shortest paths, when each is preferred. (CS)
+        • Industrial Revolution: coal+iron, agricultural release of labour, capital markets, colonial demand — all interacting causes. (history)
+        • BJT transistor: minority carrier injection + thin-base design + NHEJ/HDR repair pathways. (EE/biomedical)
+      IMPORTANT — closely related principles still count as L4 when the student covers MULTIPLE distinct sub-points:
+        e.g., Newton's 3rd Law + momentum conservation + WHY no external medium is needed + self-contained oxidiser = L4.
+        The test is "how many DISTINCT sub-points are analysed", not "how many named laws are cited".
+      Counter-examples (NOT L4): explaining ONE concept for ONE phenomenon = L2. Applying supply/demand to predict a single outcome = L3.
+
    5=Evaluate: Uses analysis to reach a VERDICT — tells you WHAT IS BETTER or WHAT TO USE in specific conditions.
-      DECISION RULE — if the answer's conclusion answers "which one should I use and when?", it is L5.
+      DECISION RULE: if the conclusion answers "which one should I use and when?", it is L5.
       L4 answers "how does it work?" — L5 answers "which is better and for what?"
-      Language strength does NOT matter: "might be preferred", "is often a better choice", "makes it ideal", "is less suitable" are ALL evaluative.
-      Key patterns (any one is sufficient for L5):
-        • "X is preferred/better/ideal for [condition A]; Y is preferred for [condition B]"
-        • "Therefore, for [use-case], X is the better choice"
-        • "X makes it [un]suitable for [scenario]"
-        • "Choosing X depends on [explicit criterion]: if [A] then X, if [B] then Y"
-      Distinction from L4: an answer that ONLY explains mechanisms without concluding WHICH to use = L4. Once it says "therefore use X for Y" or "X is better when Y", it becomes L5.
-   6=Create: Proposes a novel design, algorithm, proof technique, or architecture not described in standard literature.
-      Example: A genuinely new method, not a well-known one being described or applied.
+      Language strength does NOT matter: "might be preferred", "is often a better choice", "makes it ideal" are ALL evaluative.
+      Key patterns (any one is sufficient): "X preferred for [condition A]; Y preferred for [condition B]"; "Therefore use X for Y"; "X is unsuitable for Z because…"
+
+   6=Create: Proposes a NOVEL design, algorithm, proof technique, methodology, or system not in standard literature.
+      Note for mathematics: deriving a known result from first principles = L4. Proposing a genuinely new proof strategy = L6.
 
 2. SOLO TAXONOMY (1-5):
    1=Prestructural: No relevant understanding.
    2=Unistructural: One relevant concept correctly identified.
-   3=Multistructural: Several concepts listed but not connected — concepts are parallel, not integrated.
-   4=Relational: Multiple concepts integrated into a coherent explanation — shows HOW ideas relate.
-   5=Extended Abstract: Generalises the argument beyond the specific topic or question domain.
+   3=Multistructural: Several concepts listed but not connected — parallel, not integrated.
+   4=Relational: Multiple concepts integrated — shows HOW they relate.
+   5=Extended Abstract: Generalises beyond the specific topic or question domain.
 
 CALIBRATION RULES:
-- Do NOT award L4 just because the student explains a mechanism — L2 can explain mechanisms using ONE concept.
-- Do NOT award L4 for applying a single framework to predict an outcome — that is L3.
+- Do NOT award L4 just because the student explains a mechanism — L2 explains mechanisms using ONE concept.
+- Do NOT award L4 for applying a single framework to predict or calculate — that is L3.
 - ONLY award L4 when you see MULTIPLE interacting components deconstructed, or MULTIPLE alternatives compared mechanistically.
-- UPGRADE from L4 to L5 if the student makes design recommendations tied to specific criteria, even with hedged language ("might be preferred when...", "would choose X for Y").
-- Do not DOWNGRADE from L3/L4 because the answer contains misconceptions — classify the INTENDED operation.
+- UPGRADE from L4 to L5 if the student makes design/selection recommendations tied to specific criteria, even with hedged language.
+- Do not DOWNGRADE from L3/L4 because of misconceptions — classify the INTENDED cognitive operation.
 - Do not UPGRADE from L2 because the language sounds sophisticated — look for the actual cognitive operation performed.`
 
       const depthPrompt = `QUESTION: ${question}
@@ -248,8 +279,8 @@ Return ONLY valid JSON:
         `- ${r.id || r.concept_id || r.s || r.source || '?'} → ${r.t || r.target || ''} (${r.r || r.relation_type || 'concept error'}): marked incorrect`
       ).join('\n')
 
-      const miscSystemPrompt = `You are an expert educator analyzing student answers for factual errors and misconceptions.
-Scan the FULL student answer for factual errors and misconceptions. Do NOT just report extraction errors — actively check the answer for:
+      const miscSystemPrompt = `You are an expert ${domain} educator analyzing student answers for factual errors and misconceptions.
+Scan the FULL student answer for factual errors and misconceptions relevant to ${domain}. Do NOT just report extraction errors — actively check the answer for:
 - Wrong factual claims about domain concepts
 - Confusing related concepts or properties
 - Wrong assertions about how things work
@@ -304,7 +335,7 @@ Scan the full answer for ANY factual misconceptions. Return ONLY valid JSON:
       conceptGraph.relationships = relationships
 
       // Stage 4: Holistic LLM scoring — Bloom's/SOLO level sets the score band ceiling
-      const scoringPrompt = `You are an expert educator grading a student answer. Score it from 0.0 to 1.0 (where 1.0 = 5/5).
+      const scoringPrompt = `You are an expert ${domain} educator grading a student answer. Score it from 0.0 to 1.0 (where 1.0 = 5/5).
 
 QUESTION: ${question}
 
@@ -350,7 +381,7 @@ Return ONLY valid JSON: {"score": 0.0-1.0, "rationale": "one sentence reason", "
       let scoreRationale = ''
       let scoreMissing: string | null = null
       try {
-        const scoreResp = await llm(scoringPrompt, 'You are an expert educator. Return only valid JSON.', 512, true)
+        const scoreResp = await llm(scoringPrompt, `You are an expert ${domain} educator. Return only valid JSON.`, 512, true)
         const scoreResult = JSON.parse(this.extractJson(scoreResp))
         const rawScore = Math.max(0, Math.min(1, parseFloat(scoreResult.score) || 0))
         // Clamp to Bloom's band — deterministic enforcement with misconception penalty
