@@ -84,12 +84,14 @@ const scenarios = [
   },
 
   // ── Bloom L2: Understand ────────────────────────────────────────────────────
+  // Strictly L2: paraphrase with a simple reason — no component breakdown or
+  // multi-concept integration (which pushes into L4 territory).
   {
     id: 'BIO-L2-M1',
     level: 2,
-    label: 'Understand — explain mechanism + importance',
+    label: 'Understand — paraphrase with simple reason',
     answer:
-      'Photosynthesis converts light energy into chemical energy stored as glucose. Chlorophyll in the chloroplasts absorbs sunlight. The light reactions split water molecules and release oxygen, while the Calvin cycle uses CO₂ to build sugar molecules. This process is important because it forms the base of almost every food chain on Earth and continuously replenishes atmospheric oxygen, making aerobic life possible.',
+      'Photosynthesis is how plants make their own food using sunlight. They take in carbon dioxide and water, and use the energy from light to turn these into glucose and oxygen. It is important because it produces the oxygen we breathe and creates the food that almost all living things depend on, either directly or indirectly.',
     minScore: 1.4,
     maxScore: 3.5,
     expectedDepth: 'surface'
@@ -97,21 +99,23 @@ const scenarios = [
   {
     id: 'BIO-L2-M2',
     level: 2,
-    label: 'Understand — analogy and ecological role',
+    label: 'Understand — explain in own words why it matters',
     answer:
-      'Photosynthesis is like a solar panel for plants: it captures energy from sunlight and converts it into a storable chemical form (glucose). Without it, there would be no primary producers, and all food webs would collapse. It also drives the global carbon cycle by removing CO₂ from the atmosphere and locking carbon into biomass.',
+      'Photosynthesis is the way green plants use light to produce sugar from carbon dioxide and water. This is important because it is the main way energy from the sun enters the food chain. Plants are eaten by animals, which are eaten by other animals, so without photosynthesis most life on Earth could not exist. It also releases oxygen as a by-product, which animals need to breathe.',
     minScore: 1.4,
     maxScore: 3.5,
     expectedDepth: 'surface'
   },
 
   // ── Bloom L3: Apply ─────────────────────────────────────────────────────────
+  // L3 answers must still address the question (what is photosynthesis + why important)
+  // while applying that knowledge to a specific scenario.
   {
     id: 'BIO-L3-M1',
     level: 3,
-    label: 'Apply — predict effect of low light on a plant',
+    label: 'Apply — explain photosynthesis then predict low-light effect',
     answer:
-      'A plant in low-light conditions will have a reduced rate of photosynthesis because less light energy is available to drive the light-dependent reactions. The electron transport chain in the thylakoid membrane will produce less ATP and NADPH, limiting the Calvin cycle. As a result, less glucose is synthesised, the plant grows more slowly and may show chlorosis as chlorophyll degrades from lack of energy to maintain it.',
+      'Photosynthesis is the process by which plants convert light energy, water and carbon dioxide into glucose and oxygen. It is important because it is the foundation of almost every food chain and it produces the oxygen that animals breathe. In a low-light environment, the rate of photosynthesis slows because less light energy is available to drive the reactions. This means less glucose is produced, so the plant grows more slowly and may eventually show yellowing leaves as chlorophyll breaks down.',
     minScore: 2.0,
     maxScore: 3.9,
     expectedDepth: 'surface'
