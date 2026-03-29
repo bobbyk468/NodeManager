@@ -118,10 +118,10 @@ export class ConceptGradeNode extends LGraphNode {
     // Run multi-stage pipeline via sequential LLM calls
     try {
       // Stage 1: Concept Extraction (ontology-guided, with relationships)
-      const extractionSystemPrompt = `You are an expert Computer Science educator analyzing student answers about Data Structures and Algorithms.
+      const extractionSystemPrompt = `You are an expert educator analyzing student answers.
 Extract domain concepts and relationships from the student's response using compact JSON.
 Keep concept_id values short (1-3 words, snake_case). Limit to at most 12 concepts and 10 relationships.
-Relationship types: is_a, has_part, prerequisite_for, implements, uses, has_property, has_complexity, contrasts_with`
+Relationship types: is_a, has_part, causes, leads_to, uses, has_property, contrasts_with, prerequisite_for, implements, has_complexity`
 
       const extractionPrompt = `QUESTION: ${question}
 
@@ -163,36 +163,35 @@ Return compact JSON (no whitespace):
 
 ⚠ CRITICAL RULE — COGNITIVE LEVEL ≠ CORRECTNESS:
 Bloom's level reflects the COGNITIVE OPERATION the student ATTEMPTED, not whether the answer is correct.
-An answer with a factual misconception that ATTEMPTS analysis (e.g., "I think linked lists are O(1) for all ops because there's no resizing, which is why they outperform arrays") is STILL L4 (Analyze) — the cognitive attempt is analysis, even though it is wrong.
 DO NOT downgrade the Bloom's level because of factual errors. DO NOT upgrade the level because the answer sounds complex but only lists facts.
 
 1. BLOOM'S REVISED TAXONOMY (1-6):
-   1=Remember: Recalls facts or definitions (e.g., "A stack is LIFO, push adds, pop removes").
-   2=Understand: Explains concepts in own words. Includes: basic comparisons, simple examples, paraphrasing.
-      Counter-example: A brief 1-2 sentence mention of trade-offs ("arrays are fixed-size, linked lists can grow") is STILL L2.
-   3=Apply: Actively uses knowledge in a specific context or scenario.
-      Examples: "To implement browser history, I would use a stack because LIFO matches the back-button behaviour."
-               "The call stack manages function execution by pushing frames on invocation and popping on return."
-      Counter-example: Just listing that stacks are used in function calls WITHOUT explaining the mechanism is L2.
-   4=Analyze: Substantially deconstructs mechanisms and examines WHY differences exist.
-      Examples: Explaining WHY array stacks have amortized O(1) push (doubling strategy), WHY pointer overhead affects cache, comparing complexity trade-offs with evidence.
-      Counter-example: "Arrays are faster because of cache locality" (stated without mechanism) is L2-L3.
+   1=Remember: Recalls a fact, definition, or formula with no explanation beyond stating it.
+   2=Understand: Explains in own words, paraphrases, gives examples. Uses ONE concept to explain ONE phenomenon.
+      Example: "Metal feels colder because thermal conductivity transfers heat away from your hand faster." (ONE concept, ONE cause-effect chain)
+      Counter-example: A brief mention of trade-offs without mechanistic detail is STILL L2.
+   3=Apply: Takes an established principle, law, or framework and uses it to PREDICT or SOLVE a specific new scenario.
+      Examples: "A price ceiling below equilibrium leads to a shortage because consumers demand more while producers supply less."
+               "To implement browser history, I would use a stack because LIFO matches the back-button behaviour."
+               "Applying natural selection: a mutation giving better camouflage raises survival rate, shifting population allele frequency."
+      Key: applying a known framework to a scenario = L3, even if the student explains the mechanism within that framework.
+      Counter-example: Just stating that stacks are used in function calls WITHOUT connecting to a specific scenario or showing working = L2.
+   4=Analyze: Deconstructs a COMPLEX system into MULTIPLE interacting components, OR compares MULTIPLE alternatives with mechanistic evidence of WHY they differ.
+      Examples: Explaining a refrigerator cycle through all interacting components (compressor→condenser→expansion valve→evaporator).
+               Comparing two data structures: explaining WHY array stacks have amortized O(1) push (doubling strategy), WHY pointer overhead affects cache, with trade-off evidence.
+      Counter-examples (NOT L4): Explaining ONE concept to explain ONE phenomenon = L2. Applying supply/demand to predict a shortage = L3.
    5=Evaluate: Uses analysis to reach a VERDICT — tells you WHAT IS BETTER or WHAT TO USE in specific conditions.
       DECISION RULE — if the answer's conclusion answers "which one should I use and when?", it is L5.
       L4 answers "how does it work?" — L5 answers "which is better and for what?"
-      Language strength does NOT matter: "might be preferred", "is often a better choice", "makes it ideal", "is less suitable" are ALL evaluative — they all tell you what to use when.
+      Language strength does NOT matter: "might be preferred", "is often a better choice", "makes it ideal", "is less suitable" are ALL evaluative.
       Key patterns (any one is sufficient for L5):
         • "X is preferred/better/ideal for [condition A]; Y is preferred for [condition B]"
-        • "Therefore, for [use-case], [implementation] is the better choice"
+        • "Therefore, for [use-case], X is the better choice"
         • "X makes it [un]suitable for [scenario]"
         • "Choosing X depends on [explicit criterion]: if [A] then X, if [B] then Y"
-      Examples (all L5 regardless of hedging):
-        • "For real-time systems I would prefer a linked-list stack because worst-case O(n) resize is unacceptable."
-        • "Therefore, for predictable, high-volume operations where memory locality is key, an array might be preferred, whereas for strict real-time constraints, a linked list is often a better choice." ← THIS IS L5
-        • "This makes array stacks less suitable for real-time applications; linked lists are ideal for dynamic sizing."
-      Distinction from L4: An answer that ONLY explains mechanisms (cache locality works like X, resizing costs O(N)) without ending in a verdict about WHICH to use = L4. Once the answer concludes "therefore use X for Y" or "X is better when Y", it becomes L5.
-   6=Create: Proposes a novel design, algorithm, or architecture not described in standard literature.
-      Example: Designing a lock-free concurrent stack, a cache-oblivious stack, or a domain-specific variant.
+      Distinction from L4: an answer that ONLY explains mechanisms without concluding WHICH to use = L4. Once it says "therefore use X for Y" or "X is better when Y", it becomes L5.
+   6=Create: Proposes a novel design, algorithm, proof technique, or architecture not described in standard literature.
+      Example: A genuinely new method, not a well-known one being described or applied.
 
 2. SOLO TAXONOMY (1-5):
    1=Prestructural: No relevant understanding.
@@ -202,9 +201,10 @@ DO NOT downgrade the Bloom's level because of factual errors. DO NOT upgrade the
    5=Extended Abstract: Generalises the argument beyond the specific topic or question domain.
 
 CALIBRATION RULES:
-- Do not award L4 unless you see DETAILED mechanistic reasoning (not just naming trade-offs).
-- UPGRADE from L4 to L5 if the student makes design recommendations tied to specific criteria or constraints, even with hedged language ("might be preferred when...", "would choose X for Y").
-- Explicit pattern for L5: "For [specific scenario], [implementation] is preferred because [criterion]" — even if worded tentatively.
+- Do NOT award L4 just because the student explains a mechanism — L2 can explain mechanisms using ONE concept.
+- Do NOT award L4 for applying a single framework to predict an outcome — that is L3.
+- ONLY award L4 when you see MULTIPLE interacting components deconstructed, or MULTIPLE alternatives compared mechanistically.
+- UPGRADE from L4 to L5 if the student makes design recommendations tied to specific criteria, even with hedged language ("might be preferred when...", "would choose X for Y").
 - Do not DOWNGRADE from L3/L4 because the answer contains misconceptions — classify the INTENDED operation.
 - Do not UPGRADE from L2 because the language sounds sophisticated — look for the actual cognitive operation performed.`
 
@@ -248,11 +248,11 @@ Return ONLY valid JSON:
         `- ${r.id || r.concept_id || r.s || r.source || '?'} → ${r.t || r.target || ''} (${r.r || r.relation_type || 'concept error'}): marked incorrect`
       ).join('\n')
 
-      const miscSystemPrompt = `You are an expert CS educator analyzing student answers for misconceptions about Data Structures and Algorithms.
+      const miscSystemPrompt = `You are an expert educator analyzing student answers for factual errors and misconceptions.
 Scan the FULL student answer for factual errors and misconceptions. Do NOT just report extraction errors — actively check the answer for:
-- Wrong claims about time complexity (e.g., "array push always O(n)")
-- Confusing data structure properties (e.g., stack vs queue, random access vs sequential)
-- Wrong assertions about implementations (e.g., "arrays always shift on push/pop")
+- Wrong factual claims about domain concepts
+- Confusing related concepts or properties
+- Wrong assertions about how things work
 - Overgeneralizations and unsupported absolute claims
 
 If the answer contains NO factual errors, return empty misconceptions array.
@@ -304,7 +304,7 @@ Scan the full answer for ANY factual misconceptions. Return ONLY valid JSON:
       conceptGraph.relationships = relationships
 
       // Stage 4: Holistic LLM scoring — Bloom's/SOLO level sets the score band ceiling
-      const scoringPrompt = `You are an expert CS educator grading a student answer. Score it from 0.0 to 1.0 (where 1.0 = 5/5).
+      const scoringPrompt = `You are an expert educator grading a student answer. Score it from 0.0 to 1.0 (where 1.0 = 5/5).
 
 QUESTION: ${question}
 
@@ -350,7 +350,7 @@ Return ONLY valid JSON: {"score": 0.0-1.0, "rationale": "one sentence reason", "
       let scoreRationale = ''
       let scoreMissing: string | null = null
       try {
-        const scoreResp = await llm(scoringPrompt, 'You are an expert CS educator. Return only valid JSON.', 512, true)
+        const scoreResp = await llm(scoringPrompt, 'You are an expert educator. Return only valid JSON.', 512, true)
         const scoreResult = JSON.parse(this.extractJson(scoreResp))
         const rawScore = Math.max(0, Math.min(1, parseFloat(scoreResult.score) || 0))
         // Clamp to Bloom's band — deterministic enforcement with misconception penalty
