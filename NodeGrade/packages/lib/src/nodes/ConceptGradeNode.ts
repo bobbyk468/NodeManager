@@ -55,6 +55,7 @@ export class ConceptGradeNode extends LGraphNode {
     this.addOut('string', 'solo label')
     this.addOut('string', 'num misconceptions')
     this.addOut('string', 'full report (JSON)')
+    this.addOut('string', 'pure llm score')  // slot 6: zero-shot LLM score for comparison
     this.properties = {
       overall_score: 0,
       depth_category: 'surface',
@@ -92,6 +93,7 @@ export class ConceptGradeNode extends LGraphNode {
       this.setOutputData(3, 'N/A')
       this.setOutputData(4, '0')
       this.setOutputData(5, '{}')
+      this.setOutputData(6, '0')
       return
     }
 
@@ -363,6 +365,16 @@ IMPORTANT:
 
 Return ONLY valid JSON: {"score": 0.0-1.0, "rationale": "one sentence reason", "missing": "what is absent or null if nothing significant"}`
 
+      // Stage 4b: Pure LLM Zero-Shot score (no KG evidence) — runs IN PARALLEL with Stage 4
+      const pureLlmPrompt = `You are an expert ${domain} educator. Grade the student answer 0.0–1.0 (1.0 = perfect).
+
+QUESTION: ${question}
+
+STUDENT ANSWER:
+${studentAnswer}
+
+Return ONLY valid JSON: {"score": 0.0-1.0, "rationale": "one sentence"}`
+
       // Bloom's level → score band [min, max] (slightly widened to reduce boundary brittleness)
       const bloomsBand: Record<number, [number, number]> = {
         1: [0.10, 0.32],  // 0.5-1.6/5
@@ -380,8 +392,13 @@ Return ONLY valid JSON: {"score": 0.0-1.0, "rationale": "one sentence reason", "
       let overallScore = 0
       let scoreRationale = ''
       let scoreMissing: string | null = null
+      let pureLlmScore = 0
+      // Stage 4 (ConceptGrade) + Stage 4b (Pure LLM) run in parallel
+      const [scoreResp, pureLlmResp] = await Promise.all([
+        llm(scoringPrompt, `You are an expert ${domain} educator. Return only valid JSON.`, 512, true),
+        llm(pureLlmPrompt, `You are an expert ${domain} educator. Return only valid JSON.`, 256, true),
+      ])
       try {
-        const scoreResp = await llm(scoringPrompt, `You are an expert ${domain} educator. Return only valid JSON.`, 512, true)
         const scoreResult = JSON.parse(this.extractJson(scoreResp))
         const rawScore = Math.max(0, Math.min(1, parseFloat(scoreResult.score) || 0))
         // Clamp to Bloom's band — deterministic enforcement with misconception penalty
@@ -397,6 +414,10 @@ Return ONLY valid JSON: {"score": 0.0-1.0, "rationale": "one sentence reason", "
           bloomsNorm * 0.35 + soloNorm * 0.35 + (1 - miscPenalty) * 0.3
         ))
       }
+      try {
+        const pureLlmResult = JSON.parse(this.extractJson(pureLlmResp))
+        pureLlmScore = Math.max(0, Math.min(1, parseFloat(pureLlmResult.score) || 0))
+      } catch { /* pure LLM score stays 0 on parse failure */ }
 
       // Depth category
       let depthCategory = 'surface'
@@ -411,6 +432,7 @@ Return ONLY valid JSON: {"score": 0.0-1.0, "rationale": "one sentence reason", "
         solo,
         misconceptions,
         overall_score: overallScore,
+        pure_llm_score: pureLlmScore,
         depth_category: depthCategory,
         score_rationale: scoreRationale,
         score_missing: scoreMissing,
@@ -428,6 +450,7 @@ Return ONLY valid JSON: {"score": 0.0-1.0, "rationale": "one sentence reason", "
       this.setOutputData(4, String(numMisc))
       emitProgress(100, 'Done')
       this.setOutputData(5, JSON.stringify(report))
+      this.setOutputData(6, pureLlmScore.toFixed(3))
 
     } catch (error) {
       console.error('ConceptGradeNode error:', error)

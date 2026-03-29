@@ -1,18 +1,19 @@
 """
 ConceptGrade LLM-Mode Ablation Study with Key Rotation.
 
-Uses the real ConceptGrade pipeline (actual LLM calls) across 6 configurations
+Uses the real ConceptGrade pipeline (actual LLM calls) across 7 configurations
 on 30 Mohler samples (3 per question: low/mid/high score). Rotates across
-7 verified active API keys to avoid rate-limit interruptions.
+available API keys to avoid rate-limit interruptions.
 
 Configurations
 --------------
-  C0  Cosine-Only Baseline          — TF-IDF cosine (no LLM)
-  C1  ConceptGrade Baseline         — standard extractor + standard comparator
-  C2  ConceptGrade + SC             — Self-Consistent Extraction (2 runs)
-  C3  ConceptGrade + CW             — Confidence-Weighted Comparison
-  C4  ConceptGrade + Verifier       — LLM-as-Verifier post-scoring
-  C5  ConceptGrade + All Extensions — SC + CW + Verifier
+  C0    Cosine-Only Baseline          — TF-IDF cosine (no LLM)
+  C_LLM Pure LLM Zero-Shot           — direct Gemini prompt, no KG structure
+  C1    ConceptGrade Baseline         — standard extractor + standard comparator
+  C2    ConceptGrade + SC             — Self-Consistent Extraction (2 runs)
+  C3    ConceptGrade + CW             — Confidence-Weighted Comparison
+  C4    ConceptGrade + Verifier       — LLM-as-Verifier post-scoring
+  C5    ConceptGrade + All Extensions — SC + CW + Verifier
 
 Output
 ------
@@ -44,15 +45,55 @@ from evaluation.metrics import (
 from conceptgrade.key_rotator import KeyRotator, API_KEYS
 
 CONFIGS = [
-    ("C0", "Cosine-Only Baseline",          False, False, False),
-    ("C1", "ConceptGrade Baseline",         False, False, False),
-    ("C2", "ConceptGrade + SC",             True,  False, False),
-    ("C3", "ConceptGrade + CW",             False, True,  False),
-    ("C4", "ConceptGrade + Verifier",       False, False, True),
-    ("C5", "ConceptGrade + All Extensions", True,  True,  True),
+    ("C0",    "Cosine-Only Baseline",          False, False, False),
+    ("C_LLM", "Pure LLM Zero-Shot",            False, False, False),
+    ("C1",    "ConceptGrade Baseline",         False, False, False),
+    ("C2",    "ConceptGrade + SC",             True,  False, False),
+    ("C3",    "ConceptGrade + CW",             False, True,  False),
+    ("C4",    "ConceptGrade + Verifier",       False, False, True),
+    ("C5",    "ConceptGrade + All Extensions", True,  True,  True),
 ]
 
+# Configs excluded from Δ delta columns (baselines)
+BASELINE_IDS = {"C0", "C_LLM", "C1"}
+
 SEP = "─" * 72
+
+PURE_LLM_SYSTEM = (
+    "You are an expert academic grader. "
+    "Score the student answer on a scale of 0 to 5 (decimals allowed). "
+    "Reply with ONLY a JSON object: {\"score\": <number>}"
+)
+
+
+def pure_llm_score(sample: MohlerSample, api_key: str, model: str) -> float:
+    """Grade with no KG structure — direct LLM zero-shot baseline."""
+    import re
+    from conceptgrade.llm_client import LLMClient
+    client = LLMClient(api_key=api_key)
+    user_prompt = (
+        f"Question: {sample.question}\n\n"
+        f"Reference answer: {sample.reference_answer}\n\n"
+        f"Student answer: {sample.student_answer}\n\n"
+        "Score the student answer 0–5."
+    )
+    raw = client.chat.completions.create(
+        model=model,
+        messages=[
+            {"role": "system", "content": PURE_LLM_SYSTEM},
+            {"role": "user",   "content": user_prompt},
+        ],
+        max_tokens=256,   # Gemini 2.5 Flash needs headroom for thinking tokens
+        temperature=0.1,
+    )
+    text = raw.choices[0].message.content or ""
+    m = re.search(r'"score"\s*:\s*([0-9.]+)', text)
+    if m:
+        return min(5.0, max(0.0, float(m.group(1))))
+    m = re.search(r'[0-9]+(?:\.[0-9]+)?', text)
+    if m:
+        return min(5.0, max(0.0, float(m.group())))
+    return 0.0
 
 
 def cosine_score(sample: MohlerSample) -> float:
@@ -79,6 +120,33 @@ def run_config(
 
     if cid == "C0":
         return [cosine_score(s) for s in samples]
+
+    if cid == "C_LLM":
+        scores = []
+        for i, sample in enumerate(samples):
+            print(f"    [C_LLM] {i+1:2d}/{len(samples)}: Q{sample.question_id[-2:] if len(sample.question_id)>1 else sample.question_id} ", end="", flush=True)
+            for attempt in range(len(rotator._keys) + 1):
+                try:
+                    s = pure_llm_score(sample, rotator.current_key, model)
+                    print(f"→ {s:.2f}")
+                    scores.append(round(s, 2))
+                    break
+                except Exception as e:
+                    err = str(e)
+                    is_rate_limit = ("429" in err or "rate_limit" in err.lower()
+                                     or "overloaded" in err.lower() or "529" in err)
+                    if is_rate_limit:
+                        rotator.next_key()
+                        print(f"\n      [RateLimit] rotating...", end="")
+                        time.sleep(2.0)
+                    else:
+                        print(f"\n      ERROR: {err[:80]}")
+                        scores.append(0.0)
+                        break
+            else:
+                scores.append(0.0)
+            time.sleep(0.5)
+        return scores
 
     from conceptgrade.pipeline import ConceptGradePipeline
 
@@ -157,20 +225,20 @@ def format_results_table(
     results: dict[str, EvaluationResult],
 ) -> str:
     base = results["C1"]
-    header = (f"  {'ID':<4}  {'System':<32}  {'r':>7}  {'Δr':>7}  "
-              f"{'QWK':>7}  {'ΔQWK':>7}  {'RMSE':>7}")
+    header = (f"  {'ID':<6}  {'System':<32}  {'r':>7}  {'Δr vs C1':>9}  "
+              f"{'QWK':>7}  {'ΔQWK':>7}  {'RMSE':>7}  {'MAE':>7}")
     sep = SEP
     rows = [header, sep]
     for cid, cname, *_ in CONFIGS:
         ev = results[cid]
         dr = ev.pearson_r - base.pearson_r
         dq = ev.qwk       - base.qwk
-        dr_s = "  —   " if cid in ("C0","C1") else f"{dr:>+7.4f}"
-        dq_s = "  —   " if cid in ("C0","C1") else f"{dq:>+7.4f}"
-        ci_r = ev.pearson_r_ci
+        dr_s = "    —    " if cid in BASELINE_IDS else f"{dr:>+9.4f}"
+        dq_s = "  —   "   if cid in BASELINE_IDS else f"{dq:>+7.4f}"
+        mae  = float(np.mean(np.abs(np.array(human) - np.array(config_scores[cid]))))
         rows.append(
-            f"  {cid:<4}  {cname:<32}  {ev.pearson_r:>7.4f}  {dr_s}  "
-            f"{ev.qwk:>7.4f}  {dq_s}  {ev.rmse:>7.4f}"
+            f"  {cid:<6}  {cname:<32}  {ev.pearson_r:>7.4f}  {dr_s}  "
+            f"{ev.qwk:>7.4f}  {dq_s}  {ev.rmse:>7.4f}  {mae:>7.4f}"
         )
         if cid == "C1":
             rows.append("  " + "·"*68)
@@ -178,43 +246,48 @@ def format_results_table(
     return "\n".join(rows)
 
 
-def generate_latex(results: dict[str, EvaluationResult]) -> str:
+def generate_latex(results: dict[str, EvaluationResult],
+                   config_scores: dict[str, list[float]],
+                   human: list[float]) -> str:
     base = results["C1"]
-    best_r   = max(ev.pearson_r for ev in results.values())
-    best_qwk = max(ev.qwk       for ev in results.values())
-    best_rmse = min(ev.rmse     for ev in results.values())
+    best_r    = max(ev.pearson_r for ev in results.values())
+    best_qwk  = max(ev.qwk       for ev in results.values())
+    best_rmse = min(ev.rmse      for ev in results.values())
+    best_mae  = min(float(np.mean(np.abs(np.array(human) - np.array(config_scores[cid]))))
+                    for cid, *_ in CONFIGS)
 
     def b(val, best, hi=True):
-        ok = (hi and abs(val-best)<1e-4) or (not hi and abs(val-best)<1e-4)
+        ok = abs(val - best) < 1e-4
         s = f"{val:.4f}"
         return f"\\textbf{{{s}}}" if ok else s
 
     lines = [
         "% ConceptGrade LLM Ablation — real pipeline, Mohler n=30",
         "\\begin{table}[h]\\centering",
-        "\\caption{LLM-mode ablation study on Mohler et al. (2011) ($n=30$, "
-        "heuristic-mode results for reference). "
+        "\\caption{LLM-mode ablation on Mohler et al.\\ (2011) ($n=30$). "
+        "C\\textsubscript{LLM} = Pure LLM Zero-Shot (no KG); "
         "SC = Self-Consistent Extraction; CW = Confidence-Weighted Comparison; "
-        "Ver = LLM Verifier. $\\Delta$ measured against C1 (ConceptGrade Baseline). "
-        "Bold = best per metric.}",
+        "Ver = LLM Verifier. $\\Delta$ vs.\\ C1 (ConceptGrade Baseline). Bold = best.}",
         "\\label{tab:llm_ablation}",
-        "\\begin{tabular}{@{}llrrrrr@{}}\\toprule",
+        "\\begin{tabular}{@{}llrrrrrr@{}}\\toprule",
         "\\textbf{ID} & \\textbf{System} & \\textbf{$r$} & \\textbf{$\\Delta r$} & "
-        "\\textbf{QWK} & \\textbf{$\\Delta$QWK} & \\textbf{RMSE} \\\\\\midrule",
+        "\\textbf{QWK} & \\textbf{$\\Delta$QWK} & \\textbf{RMSE} & \\textbf{MAE} \\\\\\midrule",
     ]
     for cid, cname, *_ in CONFIGS:
-        ev = results[cid]
-        dr = ev.pearson_r - base.pearson_r
-        dq = ev.qwk       - base.qwk
-        dr_s = "--" if cid in ("C0","C1") else f"{dr:+.4f}"
-        dq_s = "--" if cid in ("C0","C1") else f"{dq:+.4f}"
-        r_s    = b(ev.pearson_r, best_r,   hi=True)
-        q_s    = b(ev.qwk,       best_qwk, hi=True)
+        ev  = results[cid]
+        mae = float(np.mean(np.abs(np.array(human) - np.array(config_scores[cid]))))
+        dr  = ev.pearson_r - base.pearson_r
+        dq  = ev.qwk       - base.qwk
+        dr_s = "--" if cid in BASELINE_IDS else f"{dr:+.4f}"
+        dq_s = "--" if cid in BASELINE_IDS else f"{dq:+.4f}"
+        r_s    = b(ev.pearson_r, best_r,    hi=True)
+        q_s    = b(ev.qwk,       best_qwk,  hi=True)
         rmse_s = b(ev.rmse,      best_rmse, hi=False)
-        if cid == "C2":
+        mae_s  = b(mae,          best_mae,  hi=False)
+        if cid == "C1":
             lines.append("\\midrule")
         lines.append(
-            f"{cid} & {cname} & {r_s} & {dr_s} & {q_s} & {dq_s} & {rmse_s} \\\\"
+            f"{cid} & {cname} & {r_s} & {dr_s} & {q_s} & {dq_s} & {rmse_s} & {mae_s} \\\\"
         )
     lines += ["\\bottomrule\\end{tabular}\\end{table}"]
     return "\n".join(lines)
@@ -321,10 +394,12 @@ def main(model_override: str | None = None):
         print(f"  {cid}  r={ev.pearson_r:.4f} [{ci_r[0]:.4f},{ci_r[1]:.4f}]"
               f"  QWK={ev.qwk:.4f} [{ci_q[0]:.4f},{ci_q[1]:.4f}]")
 
-    # Wilcoxon significance
+    # Wilcoxon significance vs C1 and vs C_LLM
     print(f"\n  Significance vs C1 (Wilcoxon signed-rank):")
     base_scores = config_scores["C1"]
-    for cid, cname, *_ in CONFIGS[2:]:
+    for cid, cname, *_ in CONFIGS:
+        if cid in ("C0", "C1"):
+            continue
         t = wilcoxon_significance(
             human, config_scores[cid], base_scores,
             cname, "ConceptGrade Baseline"
@@ -332,11 +407,22 @@ def main(model_override: str | None = None):
         sig = "p<0.05 ✓" if t["significant"] else "n.s."
         print(f"  {cid}: W={t['statistic']:.1f}  p={t['p_value']:.4f}  {sig}")
 
+    print(f"\n  Significance vs C_LLM (Pure LLM Zero-Shot):")
+    pure_scores = config_scores["C_LLM"]
+    for cid in ("C1", "C5"):
+        cname = next(cn for ci, cn, *_ in CONFIGS if ci == cid)
+        t = wilcoxon_significance(
+            human, config_scores[cid], pure_scores,
+            cname, "Pure LLM Zero-Shot"
+        )
+        sig = "p<0.05 ✓" if t["significant"] else "n.s."
+        print(f"  {cid} vs C_LLM: W={t['statistic']:.1f}  p={t['p_value']:.4f}  {sig}")
+
     # Save
     out_dir = os.path.join(os.path.dirname(__file__), "data")
     os.makedirs(out_dir, exist_ok=True)
 
-    latex = generate_latex(results)
+    latex = generate_latex(results, config_scores, human)
     output = {
         "meta": {
             "study": "ConceptGrade LLM Ablation Study",
@@ -347,6 +433,7 @@ def main(model_override: str | None = None):
             "total_time_s": round(time.time() - t_total, 1),
         },
         "configs": {cid: cname for cid, cname, *_ in CONFIGS},
+        "pure_llm_scores": config_scores.get("C_LLM", []),
         "human_scores": human,
         "predicted_scores": config_scores,
         "metrics": {cid: results[cid].to_dict() for cid, *_ in CONFIGS},

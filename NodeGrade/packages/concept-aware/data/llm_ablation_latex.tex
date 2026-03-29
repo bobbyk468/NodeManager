@@ -1,14 +1,15 @@
 % ConceptGrade LLM Ablation — real pipeline, Mohler n=30
 \begin{table}[h]\centering
-\caption{LLM-mode ablation study on Mohler et al. (2011) ($n=30$, heuristic-mode results for reference). SC = Self-Consistent Extraction; CW = Confidence-Weighted Comparison; Ver = LLM Verifier. $\Delta$ measured against C1 (ConceptGrade Baseline). Bold = best per metric.}
+\caption{LLM-mode ablation on Mohler et al.\ (2011) ($n=30$). C\textsubscript{LLM} = Pure LLM Zero-Shot (no KG); SC = Self-Consistent Extraction; CW = Confidence-Weighted Comparison; Ver = LLM Verifier. $\Delta$ vs.\ C1 (ConceptGrade Baseline). Bold = best.}
 \label{tab:llm_ablation}
-\begin{tabular}{@{}llrrrrr@{}}\toprule
-\textbf{ID} & \textbf{System} & \textbf{$r$} & \textbf{$\Delta r$} & \textbf{QWK} & \textbf{$\Delta$QWK} & \textbf{RMSE} \\\midrule
-C0 & Cosine-Only Baseline & 0.7622 & -- & 0.3586 & -- & 2.4202 \\
-C1 & ConceptGrade Baseline & 0.8290 & -- & 0.4896 & -- & 1.8029 \\
+\begin{tabular}{@{}llrrrrrr@{}}\toprule
+\textbf{ID} & \textbf{System} & \textbf{$r$} & \textbf{$\Delta r$} & \textbf{QWK} & \textbf{$\Delta$QWK} & \textbf{RMSE} & \textbf{MAE} \\\midrule
+C0 & Cosine-Only Baseline & 0.7622 & -- & 0.3586 & -- & 2.4202 & 1.8490 \\
+C_LLM & Pure LLM Zero-Shot & \textbf{0.9818} & -- & \textbf{0.9444} & -- & \textbf{0.4425} & \textbf{0.3000} \\
 \midrule
-C2 & ConceptGrade + SC & 0.8547 & +0.0258 & 0.5378 & +0.0482 & 1.7504 \\
-C3 & ConceptGrade + CW & 0.8558 & +0.0268 & 0.4937 & +0.0042 & 1.7533 \\
-C4 & ConceptGrade + Verifier & 0.9219 & +0.0929 & 0.6444 & +0.1548 & 1.4829 \\
-C5 & ConceptGrade + All Extensions & \textbf{0.9465} & +0.1175 & \textbf{0.6954} & +0.2058 & \textbf{1.4104} \\
+C1 & ConceptGrade Baseline & 0.1343 & -- & 0.0526 & -- & 2.0360 & 1.7693 \\
+C2 & ConceptGrade + SC & 0.0755 & -0.0588 & 0.1154 & +0.0628 & 2.0509 & 1.7790 \\
+C3 & ConceptGrade + CW & 0.1619 & +0.0276 & 0.0526 & +0.0000 & 2.0263 & 1.7600 \\
+C4 & ConceptGrade + Verifier & 0.6262 & +0.4919 & 0.3814 & +0.3288 & 1.6517 & 1.1600 \\
+C5 & ConceptGrade + All Extensions & 0.8225 & +0.6882 & 0.6842 & +0.6316 & 1.2493 & 0.7567 \\
 \bottomrule\end{tabular}\end{table}

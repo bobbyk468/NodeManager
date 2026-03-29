@@ -1,6 +1,6 @@
 {
-  "last_node_id": 8,
-  "last_link_id": 7,
+  "last_node_id": 9,
+  "last_link_id": 8,
   "nodes": [
     {
       "id": 1,
@@ -70,7 +70,8 @@
         { "name": "blooms label",       "type": "string", "links": [],   "slot_index": 2 },
         { "name": "solo label",         "type": "string", "links": [],   "slot_index": 3 },
         { "name": "num misconceptions", "type": "string", "links": [],   "slot_index": 4 },
-        { "name": "full report (JSON)", "type": "string", "links": [5],  "slot_index": 5 }
+        { "name": "full report (JSON)", "type": "string", "links": [5],  "slot_index": 5 },
+        { "name": "pure llm score",     "type": "string", "links": [8],  "slot_index": 6 }
       ],
       "properties": {
         "overall_score": 0,
@@ -130,6 +131,23 @@
       "properties": { "uniqueId": "-3", "type": "feedback", "label": "feedback", "value": "" },
       "widgets_values": ["feedback", "feedback"],
       "color": "#333"
+    },
+    {
+      "id": 8,
+      "type": "output/output",
+      "pos": [700, 590],
+      "size": [210, 82],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        { "name": "*", "type": "*", "link": 8, "slot_index": 0 }
+      ],
+      "outputs": [],
+      "title": "pure llm output",
+      "properties": { "uniqueId": "-4", "type": "score", "label": "pure llm score", "value": 0 },
+      "widgets_values": ["pure llm score", "score"],
+      "color": "#333"
     }
   ],
   "links": [
@@ -138,7 +156,8 @@
     [3, 3, 0, 4, 0, "string"],
     [4, 3, 1, 5, 0, "string"],
     [5, 3, 5, 6, 0, "string"],
-    [6, 7, 0, 3, 2, "string"]
+    [6, 7, 0, 3, 2, "string"],
+    [8, 3, 6, 8, 0, "string"]
   ],
   "groups": [],
   "config": {},
