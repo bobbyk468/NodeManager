@@ -178,17 +178,28 @@ class _GoogleCompletions:
 
         user_content = "\n\n".join(user_parts) if user_parts else ""
 
+        json_mode = kwargs.get("json_mode", True)  # default True: all pipeline calls expect JSON
         config = types.GenerateContentConfig(
             temperature=temperature,
             max_output_tokens=max_tokens,
             system_instruction=system_instruction or None,
+            response_mime_type="application/json" if json_mode else None,
+            thinking_config=types.ThinkingConfig(thinking_budget=0),  # disable thinking tokens (matches TS pipeline)
         )
 
-        response = client.models.generate_content(
-            model=model,
-            contents=user_content,
-            config=config,
-        )
+        import concurrent.futures as _cf
+        def _call():
+            return client.models.generate_content(
+                model=model,
+                contents=user_content,
+                config=config,
+            )
+        with _cf.ThreadPoolExecutor(max_workers=1) as _pool:
+            _fut = _pool.submit(_call)
+            try:
+                response = _fut.result(timeout=60)  # 60-second hard timeout per call
+            except _cf.TimeoutError:
+                raise TimeoutError(f"Gemini API timed out after 60s (model={model})")
         text = response.text
         if text is None:
             raise ValueError(

@@ -1,18 +1,18 @@
 ConceptGrade LLM Ablation Study
 ==================================================
-Date: 2026-03-29T16:47:20.545973
+Date: 2026-03-29T17:50:05.149819
 Samples: 30
 
   ID      System                                  r   Δr vs C1      QWK     ΔQWK     RMSE      MAE
 ────────────────────────────────────────────────────────────────────────
   C0      Cosine-Only Baseline               0.7622      —       0.3586    —      2.4202   1.8490
-  C_LLM   Pure LLM Zero-Shot                 0.9818      —       0.9444    —      0.4425   0.3000
-  C1      ConceptGrade Baseline              0.1343      —       0.0526    —      2.0360   1.7693
+  C_LLM   Pure LLM Zero-Shot                 0.9888      —       0.9819    —      0.3227   0.2167
+  C1      ConceptGrade Baseline              0.6688      —       0.2895    —      1.8894   1.7113
   ····································································
-  C2      ConceptGrade + SC                  0.0755    -0.0588   0.1154  +0.0628   2.0509   1.7790
-  C3      ConceptGrade + CW                  0.1619    +0.0276   0.0526  +0.0000   2.0263   1.7600
-  C4      ConceptGrade + Verifier            0.6262    +0.4919   0.3814  +0.3288   1.6517   1.1600
-  C5      ConceptGrade + All Extensions      0.8225    +0.6882   0.6842  +0.6316   1.2493   0.7567
+  C2      ConceptGrade + SC                  0.6601    -0.0087   0.3419  +0.0525   1.8980   1.7117
+  C3      ConceptGrade + CW                  0.7685    +0.0997   0.3529  +0.0635   1.8101   1.6473
+  C4      ConceptGrade + Verifier            0.9805    +0.3117   0.9524  +0.6629   0.4518   0.3333
+  C5      ConceptGrade + All Extensions      0.9845    +0.3157   0.9737  +0.6842   0.3926   0.2667
 ────────────────────────────────────────────────────────────────────────
 
 LaTeX:
@@ -23,11 +23,11 @@ LaTeX:
 \begin{tabular}{@{}llrrrrrr@{}}\toprule
 \textbf{ID} & \textbf{System} & \textbf{$r$} & \textbf{$\Delta r$} & \textbf{QWK} & \textbf{$\Delta$QWK} & \textbf{RMSE} & \textbf{MAE} \\\midrule
 C0 & Cosine-Only Baseline & 0.7622 & -- & 0.3586 & -- & 2.4202 & 1.8490 \\
-C_LLM & Pure LLM Zero-Shot & \textbf{0.9818} & -- & \textbf{0.9444} & -- & \textbf{0.4425} & \textbf{0.3000} \\
+C_LLM & Pure LLM Zero-Shot & \textbf{0.9888} & -- & \textbf{0.9819} & -- & \textbf{0.3227} & \textbf{0.2167} \\
 \midrule
-C1 & ConceptGrade Baseline & 0.1343 & -- & 0.0526 & -- & 2.0360 & 1.7693 \\
-C2 & ConceptGrade + SC & 0.0755 & -0.0588 & 0.1154 & +0.0628 & 2.0509 & 1.7790 \\
-C3 & ConceptGrade + CW & 0.1619 & +0.0276 & 0.0526 & +0.0000 & 2.0263 & 1.7600 \\
-C4 & ConceptGrade + Verifier & 0.6262 & +0.4919 & 0.3814 & +0.3288 & 1.6517 & 1.1600 \\
-C5 & ConceptGrade + All Extensions & 0.8225 & +0.6882 & 0.6842 & +0.6316 & 1.2493 & 0.7567 \\
+C1 & ConceptGrade Baseline & 0.6688 & -- & 0.2895 & -- & 1.8894 & 1.7113 \\
+C2 & ConceptGrade + SC & 0.6601 & -0.0087 & 0.3419 & +0.0525 & 1.8980 & 1.7117 \\
+C3 & ConceptGrade + CW & 0.7685 & +0.0997 & 0.3529 & +0.0635 & 1.8101 & 1.6473 \\
+C4 & ConceptGrade + Verifier & 0.9805 & +0.3117 & 0.9524 & +0.6629 & 0.4518 & 0.3333 \\
+C5 & ConceptGrade + All Extensions & 0.9845 & +0.3157 & 0.9737 & +0.6842 & 0.3926 & 0.2667 \\
 \bottomrule\end{tabular}\end{table}
