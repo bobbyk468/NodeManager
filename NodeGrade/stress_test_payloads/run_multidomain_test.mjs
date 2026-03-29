@@ -102,7 +102,8 @@ DO NOT downgrade Bloom's because of errors. DO NOT upgrade because the answer so
       Key: applying a known framework to a scenario = L3, even if the student explains WHY within that framework.
    4=Analyze: Deconstructs a COMPLEX system into MULTIPLE interacting components, OR compares MULTIPLE alternatives with mechanistic evidence of WHY they differ.
       True L4 examples: Explaining a refrigerator cycle (compressor→condenser→expansion valve→evaporator — all components, all interactions). Comparing natural selection vs genetic drift as mechanisms (population size effects, allele frequency changes, role of fitness vs randomness).
-      NOT L4: Explaining one concept to explain one phenomenon (that is L2). Applying supply/demand to predict a shortage (that is L3).
+      NOT L4: Applying supply/demand to predict a shortage (that is L3). Explaining ONE isolated concept = L2.
+      IMPORTANT — closely related principles count as L4 if the student explains multiple sub-points: e.g., explaining Newton's 3rd Law + conservation of momentum TOGETHER with WHY no external medium is needed + WHY the rocket carries its own oxidizer = L4 (multiple interacting sub-components addressed). The test is not "how many named laws" but "how many distinct sub-points are explained in the analysis".
    5=Evaluate: Uses analysis to reach a VERDICT — tells you WHAT IS BETTER or WHAT TO USE for specific conditions.
       DECISION RULE: if the answer's conclusion answers "which one should I use and when?", it is L5.
       Language strength doesn't matter: "might be preferred", "is often better", "makes it ideal" are all evaluative.
