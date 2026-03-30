@@ -208,6 +208,54 @@ class _GoogleCompletions:
             )
         return _Response(text)
 
+    async def async_create(
+        self,
+        model: str,
+        messages: list[dict],
+        temperature: float = 0.1,
+        max_tokens: int = 1024,
+        **kwargs,
+    ) -> _Response:
+        """Async version using generate_content_async — enables asyncio.gather parallelism."""
+        import asyncio
+        from google import genai
+        from google.genai import types
+
+        client = genai.Client(api_key=self._api_key)
+
+        system_instruction = None
+        user_parts = []
+        for msg in messages:
+            if msg["role"] == "system":
+                system_instruction = msg["content"]
+            else:
+                user_parts.append(msg["content"])
+        user_content = "\n\n".join(user_parts) if user_parts else ""
+
+        json_mode = kwargs.get("json_mode", True)
+        config = types.GenerateContentConfig(
+            temperature=temperature,
+            max_output_tokens=max_tokens,
+            system_instruction=system_instruction or None,
+            response_mime_type="application/json" if json_mode else None,
+            thinking_config=types.ThinkingConfig(thinking_budget=0),
+        )
+
+        try:
+            response = await asyncio.wait_for(
+                client.aio.models.generate_content(
+                    model=model, contents=user_content, config=config
+                ),
+                timeout=60,
+            )
+        except asyncio.TimeoutError:
+            raise TimeoutError(f"Gemini async timed out after 60s (model={model})")
+
+        text = response.text
+        if text is None:
+            raise ValueError(f"Gemini returned None (model={model})")
+        return _Response(text)
+
 
 # ── OpenAI backend ─────────────────────────────────────────────────────────────
 

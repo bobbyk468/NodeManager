@@ -106,6 +106,69 @@ def cosine_score(sample: MohlerSample) -> float:
         return 0.0
 
 
+async def _async_run_config(
+    samples: list,
+    cid: str,
+    api_key: str,
+    model: str,
+    use_sc: bool,
+    use_cw: bool,
+    use_ver: bool,
+    concurrency: int = 8,
+) -> list[float]:
+    """
+    Async version of run_config using asyncio.gather + semaphore.
+    Runs `concurrency` samples in parallel — ~8x faster than sequential.
+    Only works for C_LLM (pure LLM calls); pipeline configs still use threads.
+    """
+    import asyncio
+    from conceptgrade.llm_client import LLMClient
+
+    semaphore = asyncio.Semaphore(concurrency)
+    scores = [0.0] * len(samples)
+    completed = [0]
+
+    async def _score_one(i: int, sample) -> None:
+        async with semaphore:
+            client = LLMClient(api_key=api_key)
+            backend = client._get_completions("google")
+            user_prompt = (
+                f"Question: {sample.question}\n\n"
+                f"Reference answer: {sample.reference_answer}\n\n"
+                f"Student answer: {sample.student_answer}\n\n"
+                "Score the student answer 0–5."
+            )
+            for attempt in range(3):
+                try:
+                    resp = await backend.async_create(
+                        model=model,
+                        messages=[
+                            {"role": "system", "content": PURE_LLM_SYSTEM},
+                            {"role": "user", "content": user_prompt},
+                        ],
+                        max_tokens=256,
+                        temperature=0.1,
+                    )
+                    import re
+                    text = resp.choices[0].message.content or ""
+                    m = re.search(r'"score"\s*:\s*([0-9.]+)', text)
+                    s = float(m.group(1)) if m else 0.0
+                    scores[i] = round(min(5.0, max(0.0, s)), 2)
+                    break
+                except Exception as e:
+                    if "429" in str(e) or "529" in str(e):
+                        await asyncio.sleep(2.0 * (attempt + 1))
+                    else:
+                        break
+            completed[0] += 1
+            qshort = sample.question_id[-2:] if len(sample.question_id) > 1 else sample.question_id
+            print(f"    [C_LLM] {completed[0]:3d}/{len(samples)}: Q{qshort} → {scores[i]:.2f}", flush=True)
+
+    import asyncio
+    await asyncio.gather(*[_score_one(i, s) for i, s in enumerate(samples)])
+    return scores
+
+
 def _score_one_sample(
     i: int,
     sample: MohlerSample,
@@ -180,6 +243,30 @@ def run_config(
 
     if cid == "C0":
         return [cosine_score(s) for s in samples]
+
+    # C_LLM: use native async for maximum parallelism (8 concurrent calls)
+    if cid == "C_LLM":
+        import asyncio
+        api_key = rotator.current_key
+        try:
+            loop = asyncio.get_event_loop()
+            if loop.is_running():
+                import concurrent.futures
+                with concurrent.futures.ThreadPoolExecutor(1) as ex:
+                    return ex.submit(
+                        lambda: asyncio.run(
+                            _async_run_config(samples, cid, api_key, model,
+                                              use_sc, use_cw, use_ver, concurrency=8)
+                        )
+                    ).result()
+            else:
+                return asyncio.run(
+                    _async_run_config(samples, cid, api_key, model,
+                                      use_sc, use_cw, use_ver, concurrency=8)
+                )
+        except Exception as e:
+            print(f"  [Async] Falling back to sync: {e}")
+            # fall through to thread pool below
 
     scores: list[float] = [0.0] * len(samples)
     completed = [0]
