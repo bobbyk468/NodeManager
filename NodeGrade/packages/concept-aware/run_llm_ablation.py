@@ -446,15 +446,25 @@ def main(model_override: str | None = None, reset: bool = False):
         with open(checkpoint_path, "w") as f:
             json.dump(ckpt, f, indent=2)
 
-    checkpoint = {} if reset else _load_checkpoint()
-    if reset:
-        print(f"  [Checkpoint] --reset flag: ignoring any saved checkpoint.\n")
-    elif checkpoint:
-        print(f"  [Checkpoint] Found: {checkpoint_path}")
-        print(f"  [Checkpoint] Cached configs: {list(checkpoint.get('scores', {}).keys())}")
-        print(f"  [Checkpoint] Pass --reset to ignore and re-run all configs.\n")
+    # C0 (cosine) and C_LLM (pure LLM) never change when the KG pipeline is modified.
+    # --reset only clears C1–C5 so those are re-run with the new pipeline code,
+    # while C0/C_LLM are always loaded from JSON — saving ~25 min per reset run.
+    STABLE_CONFIGS = {"C0", "C_LLM"}   # never affected by pipeline changes
 
-    cached_scores: dict[str, list[float]] = checkpoint.get("scores", {})
+    full_checkpoint = _load_checkpoint()
+    if reset:
+        # Keep stable configs from JSON, drop pipeline configs
+        stable_scores = {k: v for k, v in full_checkpoint.get("scores", {}).items()
+                         if k in STABLE_CONFIGS and len(v) == len(human)}
+        cached_scores = stable_scores
+        kept = list(stable_scores.keys())
+        print(f"  [Checkpoint] --reset: keeping {kept} from JSON, re-running C1–C5.\n")
+    else:
+        cached_scores = full_checkpoint.get("scores", {})
+        if cached_scores:
+            print(f"  [Checkpoint] Found: {checkpoint_path}")
+            print(f"  [Checkpoint] Cached configs: {list(cached_scores.keys())}")
+            print(f"  [Checkpoint] Pass --reset to re-run pipeline configs (C1–C5) only.\n")
     config_scores: dict[str, list[float]] = {}
     t_total = time.time()
 
