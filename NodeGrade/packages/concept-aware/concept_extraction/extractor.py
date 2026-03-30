@@ -291,7 +291,7 @@ class ConceptExtractor:
         raw_response = self._call_llm(
             CONCEPT_EXTRACTION_SYSTEM,
             user_prompt,
-            max_tokens=800   # 800 is sufficient for ~15 concepts with evidence strings
+            max_tokens=4096  # Expert answers can produce 15+ concepts; 800 truncated verbose responses
         )
         
         try:

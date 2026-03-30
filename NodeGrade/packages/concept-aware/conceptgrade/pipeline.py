@@ -380,7 +380,23 @@ class ConceptGradePipeline:
             result.comparison = {"error": str(e), "scores": {}, "analysis": {}, "diagnostic": {}}
 
         # Composite score (recomputed from fresh comparison every time)
-        result.overall_score  = self._compute_overall_score(result)
+        kg_score = self._compute_overall_score(result)
+
+        # LLM holistic scoring — anchored to Bloom's bands (mirrors TypeScript Stage 4).
+        # Cached with the main LLM key so it's only computed once per student per config.
+        holistic_score: float | None = None
+        if llm_key in self.cache:
+            holistic_score = self.cache.get(llm_key).get("holistic_score", None)
+
+        if holistic_score is None:
+            holistic_score = self._run_llm_holistic_score(question, answer, result)
+            cached_entry = self.cache.get(llm_key) or {}
+            cached_entry["holistic_score"] = holistic_score
+            self.cache.set(llm_key, cached_entry)
+
+        # Blend: 20% KG formula + 80% LLM holistic — LLM dominates calibration,
+        # KG provides structural grounding. Verifier (C4/C5) overrides this downstream.
+        result.overall_score  = min(1.0, max(0.0, 0.20 * kg_score + 0.80 * holistic_score))
         result.depth_category = self._categorize_depth(result)
 
         # ── Extension 3: LLM Verifier  (LLM call 4, cached separately) ─────
@@ -681,6 +697,81 @@ class ConceptGradePipeline:
         # multiplicatively penalised by misconceptions — no additive floor.
         score = (knowledge * 0.60 + depth * 0.40) * (1.0 - misc_penalty)
         return min(1.0, max(0.0, score))
+
+    def _run_llm_holistic_score(self, question: str, answer: str, assessment: StudentAssessment) -> float:
+        """LLM holistic scoring anchored to Bloom's bands — mirrors TypeScript Stage 4.
+
+        Scoring is constrained within the detected Bloom's level band so that:
+          - L1 answers score 0.5–1.6/5 (never inflated to 4/5)
+          - L4 answers score 3.1–4.4/5 (never deflated to 1/5)
+
+        This corrects the deterministic KG formula which clusters scores in 2–3.7/5
+        regardless of answer quality. Result is 0–1 (divide by 5 internally).
+        """
+        from conceptgrade.llm_client import LLMClient, parse_llm_json
+
+        # Bloom's level → score band [min, max] out of 5
+        bloom_bands = {
+            1: (0.5, 1.6), 2: (1.4, 2.9), 3: (2.4, 3.4),
+            4: (3.1, 4.4), 5: (4.1, 5.0), 6: (4.4, 5.0),
+        }
+        bloom_level = assessment.blooms.get("level", 1)
+        band_min, band_max = bloom_bands.get(bloom_level, (0.5, 1.6))
+        band_mid = (band_min + band_max) / 2.0
+
+        concepts = assessment.concept_graph.get("concepts", [])
+        concept_list = ", ".join(
+            c.get("concept_id", c.get("id", "?")) for c in concepts[:10]
+        ) or "none"
+        num_misc = assessment.misconceptions.get("total_misconceptions", 0)
+        critical  = assessment.misconceptions.get("by_severity", {}).get("critical", 0)
+
+        user_prompt = (
+            f"QUESTION: {question}\n\n"
+            f"STUDENT ANSWER:\n{answer}\n\n"
+            f"KNOWLEDGE GRAPH EVIDENCE:\n"
+            f"- Concepts identified: {len(concepts)} ({concept_list})\n"
+            f"- Bloom's level: {assessment.blooms.get('label', 'Remember')} (L{bloom_level}/6)\n"
+            f"- SOLO level: {assessment.solo.get('label', 'Prestructural')} (L{assessment.solo.get('level', 1)}/5)\n"
+            f"- Misconceptions: {num_misc} total, {critical} critical\n\n"
+            f"SCORING RUBRIC — score STRICTLY within the Bloom's band:\n"
+            f"  L1 Remember:   [0.5, 1.6] / 5\n"
+            f"  L2 Understand: [1.4, 2.9] / 5\n"
+            f"  L3 Apply:      [2.4, 3.4] / 5\n"
+            f"  L4 Analyze:    [3.1, 4.4] / 5\n"
+            f"  L5 Evaluate:   [4.1, 5.0] / 5\n"
+            f"  L6 Create:     [4.4, 5.0] / 5\n\n"
+            f"Bloom's L{bloom_level} → score in [{band_min}, {band_max}].\n"
+            f"Complete answer → near ceiling. Incomplete → near floor. "
+            f"Each critical misconception lowers score by 0.5 within band.\n\n"
+            f'Return ONLY: {{"score": <float {band_min}–{band_max}>, "rationale": "one sentence"}}'
+        )
+        system_prompt = (
+            f"You are an expert educator. Score the student answer strictly within "
+            f"the Bloom's L{bloom_level} band [{band_min}–{band_max}] out of 5. "
+            f"Return only valid JSON."
+        )
+
+        try:
+            client = LLMClient(api_key=self.api_key)
+            resp = client.chat.completions.create(
+                model=self.model,
+                messages=[
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user",   "content": user_prompt},
+                ],
+                temperature=0.1,
+                max_tokens=128,
+            )
+            parsed = parse_llm_json(resp.choices[0].message.content)
+            raw = float(parsed.get("score", band_mid))
+            # Clamp to declared band, then apply critical misconception penalty
+            raw = max(band_min, min(band_max, raw))
+            raw = max(band_min, raw - critical * 0.5)
+            return raw / 5.0
+        except Exception as e:
+            print(f"  [HolisticScore] FALLBACK ({type(e).__name__}: {e}); using band midpoint")
+            return band_mid / 5.0
 
     def _categorize_depth(self, assessment: StudentAssessment) -> str:
         """Categorize overall depth of understanding."""
