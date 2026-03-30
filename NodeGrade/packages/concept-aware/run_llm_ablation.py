@@ -40,7 +40,7 @@ from datasets.mohler_loader import load_mohler_sample, MohlerSample
 from evaluation.metrics import (
     evaluate_grading, add_bootstrap_cis,
     wilcoxon_significance, format_comparison_table,
-    format_significance_table, EvaluationResult,
+    format_significance_table, paired_ttest, cohens_d, EvaluationResult,
 )
 from conceptgrade.key_rotator import KeyRotator, API_KEYS
 
@@ -335,17 +335,15 @@ def main(model_override: str | None = None):
     print(f"  Keys available: {len(active_keys)}")
     print("=" * 72)
 
-    # Stratified sampling: 3 samples per question (low/mid/high score bands).
-    # n=30 with score distribution {0:10, 2:10, 5:10} for good Pearson r variance.
-    # Each independent Groq org contributes ~100K TPD; budget scales with key count.
+    # Use all available embedded samples (10 questions × 12 answers = 120 total).
+    # Full dataset gives better statistical power vs. the former 3-per-question (n=30)
+    # and is the complete enumeration of the embedded Mohler benchmark.
     full_dataset = load_mohler_sample()
     qids = list(full_dataset.questions.keys())
     stratified = []
     for qid in qids:
         q_samples = full_dataset.get_by_question(qid)
-        sorted_s = sorted(q_samples, key=lambda s: s.score_avg)
-        n = len(sorted_s)
-        stratified.extend([sorted_s[0], sorted_s[n // 2], sorted_s[-1]])
+        stratified.extend(sorted(q_samples, key=lambda s: s.score_avg))
 
     dataset = full_dataset
     dataset.samples = stratified
@@ -394,29 +392,40 @@ def main(model_override: str | None = None):
         print(f"  {cid}  r={ev.pearson_r:.4f} [{ci_r[0]:.4f},{ci_r[1]:.4f}]"
               f"  QWK={ev.qwk:.4f} [{ci_q[0]:.4f},{ci_q[1]:.4f}]")
 
-    # Wilcoxon significance vs C1 and vs C_LLM
-    print(f"\n  Significance vs C1 (Wilcoxon signed-rank):")
+    # ── Statistical significance: Wilcoxon + paired t-test + Cohen's d ──────────
+    print(f"\n  Significance vs C1 (Wilcoxon one-sided: does X outperform C1?):")
     base_scores = config_scores["C1"]
     for cid, cname, *_ in CONFIGS:
         if cid in ("C0", "C1"):
             continue
-        t = wilcoxon_significance(
+        w = wilcoxon_significance(
             human, config_scores[cid], base_scores,
             cname, "ConceptGrade Baseline"
         )
-        sig = "p<0.05 ✓" if t["significant"] else "n.s."
-        print(f"  {cid}: W={t['statistic']:.1f}  p={t['p_value']:.4f}  {sig}")
+        tt = paired_ttest(human, config_scores[cid], base_scores, cname, "C1")
+        d  = cohens_d(human, config_scores[cid], base_scores)
+        sig = "p<0.05 ✓" if w["significant"] else "n.s."
+        print(f"  {cid}: W={w['statistic']:.1f}  p={w['p_value']:.4f}  {sig}"
+              f"  |  t={tt['t_stat']:+.2f}  t-p={tt['p_value']:.4f}  d={d:+.2f}")
 
-    print(f"\n  Significance vs C_LLM (Pure LLM Zero-Shot):")
+    # Two-sided: is there ANY difference between C_LLM and C1/C5?
+    print(f"\n  Equivalence vs C_LLM (two-sided paired t-test + Wilcoxon):")
     pure_scores = config_scores["C_LLM"]
     for cid in ("C1", "C5"):
         cname = next(cn for ci, cn, *_ in CONFIGS if ci == cid)
-        t = wilcoxon_significance(
-            human, config_scores[cid], pure_scores,
-            cname, "Pure LLM Zero-Shot"
+        # One-sided Wilcoxon: is C_LLM significantly better than this config?
+        w_llm_better = wilcoxon_significance(
+            human, pure_scores, config_scores[cid],
+            "C_LLM", cname
         )
-        sig = "p<0.05 ✓" if t["significant"] else "n.s."
-        print(f"  {cid} vs C_LLM: W={t['statistic']:.1f}  p={t['p_value']:.4f}  {sig}")
+        # Two-sided t-test: any difference?
+        tt = paired_ttest(human, config_scores[cid], pure_scores, cname, "C_LLM")
+        d  = cohens_d(human, config_scores[cid], pure_scores)
+        llm_wins = "C_LLM significantly better ✓" if w_llm_better["significant"] else "statistically equivalent (n.s.)"
+        print(f"  {cid} vs C_LLM:  {llm_wins}")
+        print(f"    Wilcoxon (C_LLM>X): W={w_llm_better['statistic']:.1f}  p={w_llm_better['p_value']:.4f}")
+        print(f"    t-test (two-sided): t={tt['t_stat']:+.2f}  p={tt['p_value']:.4f}  d={d:+.2f}  [{tt['direction']}]")
+        print(f"    MAE: {cname}={tt['mean_error_a']:.4f}  C_LLM={tt['mean_error_b']:.4f}")
 
     # Save
     out_dir = os.path.join(os.path.dirname(__file__), "data")

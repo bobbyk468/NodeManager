@@ -726,14 +726,40 @@ class ConceptGradePipeline:
         num_misc = assessment.misconceptions.get("total_misconceptions", 0)
         critical  = assessment.misconceptions.get("by_severity", {}).get("critical", 0)
 
+        # KG quality signals — expose integration depth to prevent breadth-bluffer inflation
+        scores = assessment.comparison.get("scores", {})
+        rel_accuracy  = scores.get("relationship_accuracy", 0.0)
+        integration   = scores.get("integration_quality", 0.0)
+        coverage      = scores.get("concept_coverage", 0.0)
+
+        # Breadth signal: many concepts mentioned but shallow integration → warn LLM
+        breadth_warning = ""
+        if len(concepts) >= 5 and integration < 0.30:
+            breadth_warning = (
+                "\nWARNING: Student mentions many concepts but KG integration quality "
+                f"is low ({integration:.2f}/1.0) — breadth without depth. "
+                "Do NOT reward concept count alone; score for demonstrated understanding."
+            )
+        # Prose warning: answer has sophisticated language but no KG concept coverage
+        prose_warning = ""
+        if coverage < 0.10 and len(concepts) == 0:
+            prose_warning = (
+                "\nWARNING: No domain concepts identified in the KG. "
+                "If the answer reads well but contains no substantive CS content, score low."
+            )
+
         user_prompt = (
             f"QUESTION: {question}\n\n"
             f"STUDENT ANSWER:\n{answer}\n\n"
             f"KNOWLEDGE GRAPH EVIDENCE:\n"
             f"- Concepts identified: {len(concepts)} ({concept_list})\n"
+            f"- KG concept coverage: {coverage:.2f}/1.0\n"
+            f"- KG relationship accuracy: {rel_accuracy:.2f}/1.0\n"
+            f"- KG integration quality: {integration:.2f}/1.0\n"
             f"- Bloom's level: {assessment.blooms.get('label', 'Remember')} (L{bloom_level}/6)\n"
             f"- SOLO level: {assessment.solo.get('label', 'Prestructural')} (L{assessment.solo.get('level', 1)}/5)\n"
-            f"- Misconceptions: {num_misc} total, {critical} critical\n\n"
+            f"- Misconceptions: {num_misc} total, {critical} critical"
+            f"{breadth_warning}{prose_warning}\n\n"
             f"SCORING RUBRIC — score STRICTLY within the Bloom's band:\n"
             f"  L1 Remember:   [0.5, 1.6] / 5\n"
             f"  L2 Understand: [1.4, 2.9] / 5\n"

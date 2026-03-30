@@ -419,3 +419,60 @@ def format_significance_table(tests: list[dict]) -> str:
             f"{sig:<8} {t['direction']}"
         )
     return "\n".join(lines)
+
+
+def cohens_d(
+    y_true: list[float],
+    scores_a: list[float],
+    scores_b: list[float],
+) -> float:
+    """
+    Cohen's d effect size for the paired improvement of A over B in absolute error.
+
+    Positive d = system A has lower (better) absolute error than B.
+    Interpretation: |d| < 0.2 small, 0.2–0.5 medium, > 0.8 large.
+    """
+    err_a = np.abs(np.array(y_true) - np.array(scores_a))
+    err_b = np.abs(np.array(y_true) - np.array(scores_b))
+    diffs = err_b - err_a   # positive = A is better
+    sd = float(np.std(diffs, ddof=1))
+    return float(np.mean(diffs) / sd) if sd > 1e-9 else 0.0
+
+
+def paired_ttest(
+    y_true: list[float],
+    scores_a: list[float],
+    scores_b: list[float],
+    system_a: str = "A",
+    system_b: str = "B",
+) -> dict:
+    """
+    Two-sided paired t-test on absolute errors: tests whether system A and B
+    produce the same absolute error distribution.
+
+    Use alongside Wilcoxon for complementary parametric/non-parametric evidence.
+
+    Returns dict with t_stat, p_value, significant, cohens_d, direction.
+    """
+    from scipy.stats import ttest_rel
+    err_a = np.abs(np.array(y_true) - np.array(scores_a))
+    err_b = np.abs(np.array(y_true) - np.array(scores_b))
+    stat, p = ttest_rel(err_a, err_b)   # positive stat = A has higher error than B
+    d = cohens_d(y_true, scores_a, scores_b)
+    significant = bool(p < 0.05)
+    direction = (
+        f"{system_a} better (d={d:.2f})" if stat > 0 and significant
+        else f"{system_b} better (d={-d:.2f})" if stat < 0 and significant
+        else "no significant difference"
+    )
+    return {
+        "t_stat": float(stat),
+        "p_value": float(p),
+        "significant": significant,
+        "cohens_d": d,
+        "direction": direction,
+        "mean_error_a": float(np.mean(err_a)),
+        "mean_error_b": float(np.mean(err_b)),
+        "system_a": system_a,
+        "system_b": system_b,
+    }
