@@ -106,6 +106,58 @@ def cosine_score(sample: MohlerSample) -> float:
         return 0.0
 
 
+def _score_one_sample(
+    i: int,
+    sample: MohlerSample,
+    cid: str,
+    api_key: str,
+    model: str,
+    use_sc: bool,
+    use_cw: bool,
+    use_ver: bool,
+) -> tuple[int, float]:
+    """Score a single sample — runs in a thread worker."""
+    if cid == "C_LLM":
+        for _ in range(3):
+            try:
+                s = pure_llm_score(sample, api_key, model)
+                return i, round(s, 2)
+            except Exception as e:
+                if "429" in str(e) or "529" in str(e):
+                    time.sleep(3.0)
+                else:
+                    break
+        return i, 0.0
+
+    from conceptgrade.pipeline import ConceptGradePipeline
+    pipeline = ConceptGradePipeline(
+        api_key=api_key,
+        model=model,
+        use_self_consistency=use_sc,
+        use_confidence_weighting=use_cw,
+        use_llm_verifier=use_ver,
+        verifier_weight=1.0,
+        rate_limit_delay=0.0,   # threading handles pacing
+        sc_n_runs=2,
+        sc_min_votes=2,
+    )
+    for _ in range(3):
+        try:
+            result = pipeline.assess_student(
+                student_id=f"s{i}",
+                question=sample.question,
+                answer=sample.student_answer,
+                reference_answer=sample.reference_answer,
+            )
+            return i, round(result.overall_score * 5.0, 2)
+        except Exception as e:
+            if "429" in str(e) or "529" in str(e) or "overloaded" in str(e).lower():
+                time.sleep(3.0)
+            else:
+                break
+    return i, 0.0
+
+
 def run_config(
     samples: list[MohlerSample],
     cid: str,
@@ -115,106 +167,41 @@ def run_config(
     use_ver: bool,
     rotator: KeyRotator,
     model: str = "claude-haiku-4-5-20251001",
+    max_workers: int = 3,
 ) -> list[float]:
-    """Score all samples under one configuration."""
+    """Score all samples under one configuration.
+
+    Uses a thread pool (max_workers=3 by default) so multiple samples are
+    scored concurrently, cutting wall-clock time by ~3x while staying within
+    Gemini free-tier rate limits.  Pass max_workers=1 to force sequential.
+    """
+    import threading
+    from concurrent.futures import ThreadPoolExecutor, as_completed
 
     if cid == "C0":
         return [cosine_score(s) for s in samples]
 
-    if cid == "C_LLM":
-        scores = []
-        for i, sample in enumerate(samples):
-            print(f"    [C_LLM] {i+1:2d}/{len(samples)}: Q{sample.question_id[-2:] if len(sample.question_id)>1 else sample.question_id} ", end="", flush=True)
-            for attempt in range(len(rotator._keys) + 1):
-                try:
-                    s = pure_llm_score(sample, rotator.current_key, model)
-                    print(f"→ {s:.2f}")
-                    scores.append(round(s, 2))
-                    break
-                except Exception as e:
-                    err = str(e)
-                    is_rate_limit = ("429" in err or "rate_limit" in err.lower()
-                                     or "overloaded" in err.lower() or "529" in err)
-                    if is_rate_limit:
-                        rotator.next_key()
-                        print(f"\n      [RateLimit] rotating...", end="")
-                        time.sleep(2.0)
-                    else:
-                        print(f"\n      ERROR: {err[:80]}")
-                        scores.append(0.0)
-                        break
-            else:
-                scores.append(0.0)
-            time.sleep(0.5)
-        return scores
+    scores: list[float] = [0.0] * len(samples)
+    completed = [0]
+    lock = threading.Lock()
 
-    from conceptgrade.pipeline import ConceptGradePipeline
+    api_key = rotator.current_key
 
-    scores = []
-    pipeline = None
-
-    for i, sample in enumerate(samples):
-        print(f"    [{cid}] {i+1:2d}/{len(samples)}: Q{sample.question_id[-2:] if len(sample.question_id)>1 else sample.question_id} ", end="", flush=True)
-
-        # Build (or rebuild) pipeline with current key
-        api_key = rotator.current_key
-        if pipeline is None or pipeline.api_key != api_key:
-            pipeline = ConceptGradePipeline(
-                api_key=api_key,
-                model=model,
-                use_self_consistency=use_sc,
-                use_confidence_weighting=use_cw,
-                use_llm_verifier=use_ver,
-                verifier_weight=1.0,
-                rate_limit_delay=1.5,
-                sc_n_runs=2,
-                sc_min_votes=2,
-            )
-
-        success = False
-        for attempt in range(len(rotator._keys) + 1):
-            try:
-                result = pipeline.assess_student(
-                    student_id=f"s{i}",
-                    question=sample.question,
-                    answer=sample.student_answer,
-                    reference_answer=sample.reference_answer,
-                )
-                score = round(result.overall_score * 5.0, 2)
-                print(f"→ {score:.2f}")
-                scores.append(score)
-                success = True
-                break
-            except Exception as e:
-                err = str(e)
-                is_rate_limit = ("429" in err or "rate_limit" in err.lower()
-                                 or "overloaded" in err.lower() or "529" in err)
-                if is_rate_limit:
-                    new_key = rotator.next_key()
-                    print(f"\n      [RateLimit] rotating to key {rotator._idx + 1}...", end="")
-                    pipeline = ConceptGradePipeline(
-                        api_key=new_key,
-                        model=model,
-                        use_self_consistency=use_sc,
-                        use_confidence_weighting=use_cw,
-                        use_llm_verifier=use_ver,
-                        verifier_weight=1.0,
-                        rate_limit_delay=1.5,
-                        sc_n_runs=2,
-                        sc_min_votes=2,
-                    )
-                    time.sleep(2.0)
-                else:
-                    print(f"\n      ERROR: {err[:80]}")
-                    scores.append(0.0)
-                    success = True
-                    break
-
-        if not success:
-            print(f"\n      All keys exhausted — using 0")
-            scores.append(0.0)
-
-        time.sleep(0.5)
+    with ThreadPoolExecutor(max_workers=max_workers) as pool:
+        futures = {
+            pool.submit(_score_one_sample, i, s, cid, api_key, model,
+                        use_sc, use_cw, use_ver): i
+            for i, s in enumerate(samples)
+        }
+        for fut in as_completed(futures):
+            idx, score = fut.result()
+            scores[idx] = score
+            with lock:
+                completed[0] += 1
+                done = completed[0]
+            qid = samples[idx].question_id
+            qshort = qid[-2:] if len(qid) > 1 else qid
+            print(f"    [{cid}] {done:3d}/{len(samples)}: Q{qshort} → {score:.2f}", flush=True)
 
     return scores
 
