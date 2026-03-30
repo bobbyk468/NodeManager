@@ -802,7 +802,7 @@ class ConceptGradePipeline:
                     {"role": "user",   "content": user_prompt},
                 ],
                 temperature=0.1,
-                max_tokens=128,
+                max_tokens=256,
             )
             parsed = parse_llm_json(resp.choices[0].message.content)
             raw = float(parsed.get("score", band_mid))
@@ -811,8 +811,12 @@ class ConceptGradePipeline:
             raw = max(band_min, raw - critical * 0.5)
             return raw / 5.0
         except Exception as e:
-            print(f"  [HolisticScore] FALLBACK ({type(e).__name__}: {e}); using band midpoint")
-            return band_mid / 5.0
+            # Fallback: use band ceiling * coverage as a reference-aware estimate
+            # (better than midpoint — high coverage answers score near ceiling)
+            coverage = assessment.comparison.get("scores", {}).get("concept_coverage", 0.5)
+            fallback = band_min + (band_max - band_min) * max(0.3, coverage)
+            print(f"  [HolisticScore] FALLBACK ({type(e).__name__}); coverage-based={fallback:.2f}")
+            return fallback / 5.0
 
     def _categorize_depth(self, assessment: StudentAssessment) -> str:
         """Categorize overall depth of understanding."""

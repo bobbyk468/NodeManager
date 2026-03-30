@@ -1,6 +1,6 @@
 {
   "n_cases": 100,
-  "model": "gemini-2.5-flash",
+  "model": "gemini-flash-latest",
   "overall": {
     "mae_llm": 0.63,
     "mae_cg": 0.558,
