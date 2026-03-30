@@ -293,7 +293,7 @@ def generate_latex(results: dict[str, EvaluationResult],
     return "\n".join(lines)
 
 
-def main(model_override: str | None = None):
+def main(model_override: str | None = None, reset: bool = False):
     from conceptgrade.key_rotator import get_api_key_for_provider
     from conceptgrade.llm_client import detect_provider
 
@@ -354,6 +354,33 @@ def main(model_override: str | None = None):
     print(f"\nDataset: {len(samples)} samples, {dataset.num_questions} questions")
     print(f"Score distribution: {dataset.score_distribution()}\n")
 
+    # ── Score checkpoint — reuse saved scores instead of re-running API calls ──
+    # Keyed by model name so changing the model invalidates the checkpoint.
+    checkpoint_path = os.path.join(
+        os.path.dirname(__file__), "data",
+        f"ablation_checkpoint_{default_model.replace('/', '_').replace('-', '_')}.json"
+    )
+
+    def _load_checkpoint() -> dict:
+        if os.path.exists(checkpoint_path):
+            with open(checkpoint_path) as f:
+                return json.load(f)
+        return {}
+
+    def _save_checkpoint(ckpt: dict):
+        os.makedirs(os.path.dirname(checkpoint_path), exist_ok=True)
+        with open(checkpoint_path, "w") as f:
+            json.dump(ckpt, f, indent=2)
+
+    checkpoint = {} if reset else _load_checkpoint()
+    if reset:
+        print(f"  [Checkpoint] --reset flag: ignoring any saved checkpoint.\n")
+    elif checkpoint:
+        print(f"  [Checkpoint] Found: {checkpoint_path}")
+        print(f"  [Checkpoint] Cached configs: {list(checkpoint.get('scores', {}).keys())}")
+        print(f"  [Checkpoint] Pass --reset to ignore and re-run all configs.\n")
+
+    cached_scores: dict[str, list[float]] = checkpoint.get("scores", {})
     config_scores: dict[str, list[float]] = {}
     t_total = time.time()
 
@@ -361,13 +388,24 @@ def main(model_override: str | None = None):
         print(f"\n{SEP}")
         print(f"  {cid}: {cname}")
         print(SEP)
-        t0 = time.time()
-        scores = run_config(samples, cid, cname, use_sc, use_cw, use_ver, rotator,
-                            model=default_model)
-        elapsed = time.time() - t0
+
+        if cid in cached_scores and len(cached_scores[cid]) == len(samples):
+            scores = cached_scores[cid]
+            ev = evaluate_grading(human, scores, task_name=cname)
+            print(f"  [CACHED] → r={ev.pearson_r:.4f}  QWK={ev.qwk:.4f}  RMSE={ev.rmse:.4f}  [0s]")
+        else:
+            t0 = time.time()
+            scores = run_config(samples, cid, cname, use_sc, use_cw, use_ver, rotator,
+                                model=default_model)
+            elapsed = time.time() - t0
+            ev = evaluate_grading(human, scores, task_name=cname)
+            print(f"  → r={ev.pearson_r:.4f}  QWK={ev.qwk:.4f}  RMSE={ev.rmse:.4f}  [{elapsed:.0f}s]")
+            # Save after each config so a crash doesn't lose prior work
+            cached_scores[cid] = scores
+            _save_checkpoint({"model": default_model, "n_samples": len(samples),
+                              "human_scores": human, "scores": cached_scores})
+
         config_scores[cid] = scores
-        ev = evaluate_grading(human, scores, task_name=cname)
-        print(f"  → r={ev.pearson_r:.4f}  QWK={ev.qwk:.4f}  RMSE={ev.rmse:.4f}  [{elapsed:.0f}s]")
 
     # Evaluate all
     results: dict[str, EvaluationResult] = {}
@@ -483,5 +521,9 @@ if __name__ == "__main__":
             "Example: --model gemini-2.0-flash"
         ),
     )
+    parser.add_argument(
+        "--reset", action="store_true",
+        help="Ignore checkpoint and re-run all configs from scratch.",
+    )
     args = parser.parse_args()
-    main(model_override=args.model)
+    main(model_override=args.model, reset=args.reset)
