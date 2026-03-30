@@ -394,9 +394,12 @@ class ConceptGradePipeline:
             cached_entry["holistic_score"] = holistic_score
             self.cache.set(llm_key, cached_entry)
 
-        # Blend: 20% KG formula + 80% LLM holistic — LLM dominates calibration,
-        # KG provides structural grounding. Verifier (C4/C5) overrides this downstream.
-        result.overall_score  = min(1.0, max(0.0, 0.20 * kg_score + 0.80 * holistic_score))
+        # Blend: 5% KG formula + 95% LLM holistic.
+        # KG formula is biased low (max ~0.75 for most answers), so a larger weight
+        # systematically underscores mid-range answers. 5% keeps KG as a floor signal
+        # while letting the reference-anchored holistic scorer drive calibration.
+        # Verifier (C4/C5) overrides this score downstream with full KG+reference evidence.
+        result.overall_score  = min(1.0, max(0.0, 0.05 * kg_score + 0.95 * holistic_score))
         result.depth_category = self._categorize_depth(result)
 
         # ── Extension 3: LLM Verifier  (LLM call 4, cached separately) ─────
@@ -711,10 +714,14 @@ class ConceptGradePipeline:
         """
         from conceptgrade.llm_client import LLMClient, parse_llm_json
 
-        # Bloom's level → score band [min, max] out of 5
+        # Bloom's level → score band [min, max] out of 5.
+        # Bands are intentionally overlapping and wide-ceiling to avoid hard capping
+        # answers that demonstrate understanding beyond what the LLM predicts as the
+        # Bloom's level. Floors prevent L1 answers from being inflated; ceilings are
+        # soft guidance, not hard limits (the LLM is told "aim within band").
         bloom_bands = {
-            1: (0.5, 1.6), 2: (1.4, 2.9), 3: (2.4, 3.4),
-            4: (3.1, 4.4), 5: (4.1, 5.0), 6: (4.4, 5.0),
+            1: (0.0, 2.0), 2: (1.0, 3.0), 3: (2.0, 4.0),
+            4: (3.0, 5.0), 5: (3.5, 5.0), 6: (4.0, 5.0),
         }
         bloom_level = assessment.blooms.get("level", 1)
         band_min, band_max = bloom_bands.get(bloom_level, (0.5, 1.6))
