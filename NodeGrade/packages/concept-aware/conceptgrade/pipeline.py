@@ -389,7 +389,7 @@ class ConceptGradePipeline:
             holistic_score = self.cache.get(llm_key).get("holistic_score", None)
 
         if holistic_score is None:
-            holistic_score = self._run_llm_holistic_score(question, answer, result)
+            holistic_score = self._run_llm_holistic_score(question, answer, result, reference_answer)
             cached_entry = self.cache.get(llm_key) or {}
             cached_entry["holistic_score"] = holistic_score
             self.cache.set(llm_key, cached_entry)
@@ -698,15 +698,16 @@ class ConceptGradePipeline:
         score = (knowledge * 0.60 + depth * 0.40) * (1.0 - misc_penalty)
         return min(1.0, max(0.0, score))
 
-    def _run_llm_holistic_score(self, question: str, answer: str, assessment: StudentAssessment) -> float:
-        """LLM holistic scoring anchored to Bloom's bands — mirrors TypeScript Stage 4.
+    def _run_llm_holistic_score(self, question: str, answer: str, assessment: StudentAssessment, reference_answer: str = "") -> float:
+        """LLM holistic scoring with reference answer + KG evidence — strictly more informed than Pure LLM.
+
+        Pure LLM zero-shot only sees: question + reference + student answer.
+        This scorer sees: question + reference + student answer + KG structure
+        (Bloom's level, SOLO level, concept coverage, integration quality, misconceptions).
 
         Scoring is constrained within the detected Bloom's level band so that:
           - L1 answers score 0.5–1.6/5 (never inflated to 4/5)
           - L4 answers score 3.1–4.4/5 (never deflated to 1/5)
-
-        This corrects the deterministic KG formula which clusters scores in 2–3.7/5
-        regardless of answer quality. Result is 0–1 (divide by 5 internally).
         """
         from conceptgrade.llm_client import LLMClient, parse_llm_json
 
@@ -748,10 +749,16 @@ class ConceptGradePipeline:
                 "If the answer reads well but contains no substantive CS content, score low."
             )
 
+        ref_section = (
+            f"REFERENCE ANSWER (expert model answer):\n{reference_answer}\n\n"
+            if reference_answer else ""
+        )
+
         user_prompt = (
             f"QUESTION: {question}\n\n"
+            f"{ref_section}"
             f"STUDENT ANSWER:\n{answer}\n\n"
-            f"KNOWLEDGE GRAPH EVIDENCE:\n"
+            f"KNOWLEDGE GRAPH EVIDENCE (structural grounding beyond the reference):\n"
             f"- Concepts identified: {len(concepts)} ({concept_list})\n"
             f"- KG concept coverage: {coverage:.2f}/1.0\n"
             f"- KG relationship accuracy: {rel_accuracy:.2f}/1.0\n"
@@ -760,7 +767,7 @@ class ConceptGradePipeline:
             f"- SOLO level: {assessment.solo.get('label', 'Prestructural')} (L{assessment.solo.get('level', 1)}/5)\n"
             f"- Misconceptions: {num_misc} total, {critical} critical"
             f"{breadth_warning}{prose_warning}\n\n"
-            f"SCORING RUBRIC — score STRICTLY within the Bloom's band:\n"
+            f"SCORING RUBRIC — compare student answer to reference, then constrain within Bloom's band:\n"
             f"  L1 Remember:   [0.5, 1.6] / 5\n"
             f"  L2 Understand: [1.4, 2.9] / 5\n"
             f"  L3 Apply:      [2.4, 3.4] / 5\n"
@@ -768,14 +775,15 @@ class ConceptGradePipeline:
             f"  L5 Evaluate:   [4.1, 5.0] / 5\n"
             f"  L6 Create:     [4.4, 5.0] / 5\n\n"
             f"Bloom's L{bloom_level} → score in [{band_min}, {band_max}].\n"
-            f"Complete answer → near ceiling. Incomplete → near floor. "
+            f"Complete coverage of reference key points → near ceiling. "
+            f"Missing key points → near floor. "
             f"Each critical misconception lowers score by 0.5 within band.\n\n"
             f'Return ONLY: {{"score": <float {band_min}–{band_max}>, "rationale": "one sentence"}}'
         )
         system_prompt = (
-            f"You are an expert educator. Score the student answer strictly within "
-            f"the Bloom's L{bloom_level} band [{band_min}–{band_max}] out of 5. "
-            f"Return only valid JSON."
+            f"You are an expert educator. Compare the student answer to the reference answer, "
+            f"then score strictly within the Bloom's L{bloom_level} band [{band_min}–{band_max}] out of 5. "
+            f"Use KG evidence to verify depth and detect misconceptions. Return only valid JSON."
         )
 
         try:
