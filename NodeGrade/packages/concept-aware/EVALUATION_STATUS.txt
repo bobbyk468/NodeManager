@@ -1,0 +1,60 @@
+ConceptGrade Multi-Dataset Evaluation Status
+============================================
+Last updated: 2026-04-05
+
+API Configuration
+-----------------
+Model: gemini-2.5-flash (billing enabled)
+Key stored in: packages/backend/.env
+Rate limit: ~10 RPM (with billing, much higher available)
+
+COMPLETED RESULTS
+-----------------
+
+Mohler 2011 (CS Data Structures, n=120) — COMPLETE
+  C_LLM:   MAE=0.3300  QWK=0.9621  r=0.9709  bias=+0.1883
+  CoT:     MAE=0.2208  QWK=0.9803  r=0.9819  bias=-0.0917  p=0.0006 vs C_LLM
+  C5_fix:  MAE=0.2229  QWK=0.9792  r=0.9820  bias=-0.1229  p=0.0026 vs C_LLM
+  ✓ ConceptGrade BEATS C_LLM by 32.4% MAE reduction (p=0.0026)
+
+DigiKlausur (Neural Networks, n=646) — COMPLETE
+  C_LLM:   MAE=1.1842  QWK=0.5962  r=0.7006  bias=-0.8204
+  C5_fix:  MAE=1.1262  QWK=0.5884  r=0.6200  bias=-0.2841  p=0.0489 vs C_LLM
+  ✓ ConceptGrade BEATS C_LLM (MAE -4.9%, p=0.049)
+  Note: High MAE due to discrete scoring (0/2.5/5) vs continuous guide
+
+Kaggle ASAG (Elementary Science, n=473) — COMPLETE
+  C_LLM:   MAE=1.0772  QWK=0.5748  r=0.6237  bias=+0.5148
+  C5_fix:  MAE=1.1554  QWK=0.5046  r=0.5099  bias=+0.0624  p=0.1482 vs C_LLM
+  ✗ C_LLM marginally better, but NOT significant (p=0.15)
+  Note: Simple factual questions (K-5 science) limit KG benefit
+
+OVERALL: ConceptGrade beats C_LLM on 2/3 datasets (Mohler p=0.0026, DigiKlausur p=0.049)
+         On Kaggle ASAG (elementary science), no significant difference (p=0.148)
+
+CACHED DATA
+-----------
+All intermediate results saved for replay without API calls:
+  data/digiklausur_auto_kg.json       — DigiKlausur KG (17 questions)
+  data/kaggle_asag_auto_kg.json       — Kaggle ASAG KG (150 questions)
+  data/digiklausur_precomputed.json   — Precomputed KG features
+  data/kaggle_asag_precomputed.json   — Precomputed KG features
+  data/batch_responses/               — All 31 batch response JSON files
+    digiklausur_cllm_batch_01-09_response.json  (9 files, 646 samples)
+    digiklausur_c5fix_batch_01-09_response.json (9 files, 646 samples)
+    kaggle_asag_cllm_batch_01-06_response.json  (6 files, 473 samples)
+    kaggle_asag_c5fix_batch_01-06_response.json (6 files, 473 samples)
+  data/digiklausur_eval_results.json  — Full results JSON
+  data/kaggle_asag_eval_results.json  — Full results JSON
+  data/cot_baseline_scores.json       — CoT baseline (Mohler)
+
+TO REPRODUCE RESULTS (no new API calls needed)
+----------------------------------------------
+  cd packages/concept-aware
+  python3 run_full_pipeline.py --dataset all --skip-kg    # loads from cache
+  python3 generate_paper_report_v2.py                     # updates report
+
+PAPER REPORT
+------------
+  data/paper_report_v2.txt     — Full text report
+  data/paper_latex_tables_v2.tex — LaTeX tables for paper

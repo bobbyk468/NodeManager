@@ -26,7 +26,8 @@ Algorithm
    - confidence: How confident it is in the adjustment
 4. Final score = weighted blend of KG score and verified score:
      final = (1 - verifier_weight) × kg_score + verifier_weight × verified_score
-   Default verifier_weight = 0.25 (KG score dominates; LLM provides soft correction)
+   Default verifier_weight = 1.0 (LLM holistic judgment drives the score;
+   KG evidence is input to the prompt, not an arithmetic anchor)
 
 Effect on downstream evaluation
 ---------------------------------
@@ -67,18 +68,27 @@ Return ONLY valid JSON."""
 
 VERIFIER_SYSTEM = """You are an expert Computer Science educator grading a student's short answer.
 
-Your task:
-1. Read the question, reference answer, and student answer carefully.
-2. Use the concept evidence (covered/missing concepts from the knowledge graph) to ground your assessment.
-3. Assign a score from 0.0 to 5.0 using one decimal place (e.g. 1.5, 2.5, 3.5).
+Your task: Compare the student answer to the reference answer and assign a score from 0.0 to 5.0.
 
-HOW TO SCORE:
-- Compare the student answer directly to the reference answer.
-- The reference answer defines what 5.0 looks like.
-- Missing critical concepts lower the score; misconceptions lower it further.
-- Causal chain coverage tells you if the student understands concept relationships, not just isolated facts.
-- Partially correct or vague explanations merit partial credit (e.g. 1.5 not 1 or 2).
-- Be precise: use the full range 0.0–5.0 with one decimal place.
+SCORING GUIDE — based on proportion of reference answer content correctly demonstrated:
+- 5.0: Student correctly explains virtually all key ideas (≥90% of reference content)
+- 4.5: Student correctly explains the great majority (≥80%); only very minor omissions
+- 4.0: Student correctly explains most key ideas (≥70%); one clear gap
+- 3.5: Student correctly explains a solid majority (≥60%) with reasonable depth
+- 3.0: Student correctly explains about half the reference content (~50%)
+- 2.5: Student correctly explains several key ideas (30–50%); substantial content still missing
+- 2.0: Student correctly explains 1–2 key ideas accurately; most reference content missing
+- 1.5: Student shows partial understanding of 1 concept but cannot explain mechanisms
+- 1.0: Student shows awareness of the topic but no accurate explanations of mechanisms
+- 0.5: Single marginally relevant statement; no explanation
+- 0.0: No relevant content
+
+IMPORTANT:
+- "Some correct content with major gaps" = 2.0–2.5 range, NOT 1.0.
+- Score what the student got RIGHT; what is MISSING prevents reaching a higher band.
+- Misconceptions about core mechanisms lower the score; missing vocabulary alone does not.
+- Students often express correct understanding in different words — credit the understanding.
+- Use 0.25 increments.
 
 Return ONLY valid JSON."""
 
@@ -90,19 +100,20 @@ REFERENCE ANSWER (expert answer — defines 5.0):
 STUDENT ANSWER:
 {student_answer}
 
-CONCEPT ANALYSIS (from structured knowledge graph):
-- Concepts student COVERED: {covered_concepts}
-- Concepts student MISSED: {missing_concepts}
+KNOWLEDGE GRAPH EVIDENCE:
+- Concepts the student demonstrated: {covered_concepts}
+- Additional reference topics not addressed by student: {critical_missing}
+- Minor reference topics not mentioned: {minor_missing}
 - Causal chain coverage: {chain_coverage}
 - Bloom's cognitive level: {blooms_label} (level {blooms_level}/6)
 - SOLO level: {solo_label} (level {solo_level}/5)
 - Misconceptions detected: {misc_count}{misc_details}
 {kg_confidence_note}{topological_note}
-Grade the student answer compared to the reference. Use causal chain coverage to assess depth of understanding beyond keyword matching. Critical misconceptions about core mechanisms should significantly lower the score even if other content is correct.
+First identify what the student correctly explained (this sets the base score). Then note what is missing (this caps the maximum score). A student who correctly explains 1–2 key concepts earns 2.0–2.5 even if many other concepts are absent. Score based on the proportion of reference content correctly demonstrated, not on the count of missing items.
 
 Return ONLY valid JSON:
 {{
-  "verified_score": <float 0.0–5.0 with one decimal, e.g. 2.5>,
+  "verified_score": <float 0.0–5.0 in 0.25 increments, e.g. 2.25 or 2.75>,
   "adjustment_direction": "confirm|increase|decrease",
   "adjustment_reason": "2-3 sentence explanation comparing student to reference answer",
   "confidence": 0.0-1.0,
@@ -263,7 +274,7 @@ class LLMVerifier:
         self,
         api_key: str,
         model: str = "claude-haiku-4-5-20251001",
-        verifier_weight: float = 0.25,
+        verifier_weight: float = 1.0,
     ):
         self.client = Groq(api_key=api_key)
         self.model = model
@@ -304,7 +315,6 @@ class LLMVerifier:
         analysis = comparison_result.get("analysis", comparison_result)
 
         covered_str, critical_str, minor_str = self._extract_concept_strings(analysis)
-        missing_str = ", ".join(filter(None, [critical_str.replace("none", ""), minor_str.replace("none", "")])).strip(", ") or "none — full coverage"
         chain_str = comparison_result.get("scores", {}).get("chain_coverage", None)
         chain_coverage_str = (
             f"{chain_str:.0%} of causal concept chains covered" if chain_str is not None
@@ -335,11 +345,11 @@ class LLMVerifier:
         # Misconception details: surface critical misconceptions to the verifier
         misc_list = misconceptions.get("misconceptions", [])
         if misc_list:
-            critical = [m for m in misc_list if m.get("severity", "").lower() in ("critical", "persistent")]
-            if critical:
+            critical_misc = [m for m in misc_list if m.get("severity", "").lower() in ("critical", "persistent")]
+            if critical_misc:
                 details = "; ".join(
                     m.get("description", m.get("explanation", m.get("student_claim", "")))[:80]
-                    for m in critical[:3]
+                    for m in critical_misc[:3]
                 )
                 misc_details = f" — CRITICAL: {details}"
             else:
@@ -353,7 +363,8 @@ class LLMVerifier:
             reference_answer=reference_answer or "(not provided)",
             student_answer=student_answer,
             covered_concepts=covered_str,
-            missing_concepts=missing_str,
+            critical_missing=critical_str or "none",
+            minor_missing=minor_str or "none",
             chain_coverage=chain_coverage_str,
             blooms_label=blooms.get("label", "Remember"),
             blooms_level=blooms.get("level", 1),
@@ -371,8 +382,8 @@ class LLMVerifier:
             raw = self._call_llm(system_prompt, user_prompt)
             parsed = self._parse_json(raw)
             raw_score = float(parsed.get("verified_score", kg_score * 5))
-            # Round to nearest 0.5
-            verified_fine = round(raw_score * 2) / 2
+            # Round to nearest 0.25 (finer resolution matching human annotation increments)
+            verified_fine = round(raw_score * 4) / 4
             verified_fine = max(0.0, min(5.0, verified_fine))
             verified = verified_fine / 5.0   # 0-1 for blend arithmetic
             direction = parsed.get("adjustment_direction", "confirm")
@@ -457,7 +468,6 @@ class LLMVerifier:
         # Build the shared user prompt (identical across all personas)
         analysis = comparison_result.get("analysis", comparison_result)
         covered_str, critical_str, minor_str = self._extract_concept_strings(analysis)
-        missing_str = ", ".join(filter(None, [critical_str.replace("none", ""), minor_str.replace("none", "")])).strip(", ") or "none — full coverage"
         chain_str = comparison_result.get("scores", {}).get("chain_coverage", None)
         chain_coverage_str = (
             f"{chain_str:.0%} of causal concept chains covered" if chain_str is not None
@@ -484,11 +494,11 @@ class LLMVerifier:
 
         misc_list = misconceptions.get("misconceptions", [])
         if misc_list:
-            critical = [m for m in misc_list if m.get("severity", "").lower() in ("critical", "persistent")]
-            if critical:
+            critical_misc = [m for m in misc_list if m.get("severity", "").lower() in ("critical", "persistent")]
+            if critical_misc:
                 details = "; ".join(
                     m.get("description", m.get("explanation", m.get("student_claim", "")))[:80]
-                    for m in critical[:3]
+                    for m in critical_misc[:3]
                 )
                 misc_details = f" — CRITICAL: {details}"
             else:
@@ -502,7 +512,8 @@ class LLMVerifier:
             reference_answer=reference_answer or "(not provided)",
             student_answer=student_answer,
             covered_concepts=covered_str,
-            missing_concepts=missing_str,
+            critical_missing=critical_str or "none",
+            minor_missing=minor_str or "none",
             chain_coverage=chain_coverage_str,
             blooms_label=blooms.get("label", "Remember"),
             blooms_level=blooms.get("level", 1),
@@ -525,7 +536,8 @@ class LLMVerifier:
                 raw = self._call_llm(persona_system, user_prompt)
                 parsed = self._parse_json(raw)
                 raw_score = float(parsed.get("verified_score", kg_score * 5))
-                verified_fine = round(raw_score * 2) / 2
+                # Round to nearest 0.25 for finer resolution
+                verified_fine = round(raw_score * 4) / 4
                 verified_fine = max(0.0, min(5.0, verified_fine))
                 return verified_fine / 5.0, parsed.get("adjustment_direction", "confirm"), persona_name
             except Exception as e:

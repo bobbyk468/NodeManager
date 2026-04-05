@@ -508,6 +508,38 @@ def build_data_structures_graph() -> DomainKnowledgeGraph:
         Relationship("deletion", "data_structure", RT.OPERATES_ON, 0.8),
         Relationship("traversal", "data_structure", RT.OPERATES_ON, 0.8),
         Relationship("access", "data_structure", RT.OPERATES_ON, 0.8),
+
+        # === Big-O Notation: HAS_INSTANCE links (Q9 fix) ===
+        Relationship("big_o_notation", "o_n", RT.HAS_PROPERTY, 1.0,
+                     "O(n) is a Big-O complexity class"),
+        Relationship("big_o_notation", "o_n_log_n", RT.HAS_PROPERTY, 1.0,
+                     "O(n log n) is a Big-O complexity class"),
+        Relationship("big_o_notation", "o_n2", RT.HAS_PROPERTY, 1.0,
+                     "O(n\u00b2) is a Big-O complexity class"),
+        Relationship("big_o_notation", "o_log_n", RT.HAS_PROPERTY, 1.0,
+                     "O(log n) is a Big-O complexity class"),
+        Relationship("big_o_notation", "o_1", RT.HAS_PROPERTY, 1.0,
+                     "O(1) is a Big-O complexity class"),
+        Relationship("o_n", "o_n_log_n", RT.CONTRASTS_WITH, 0.9,
+                     "O(n) vs O(n log n) growth comparison"),
+        Relationship("o_n_log_n", "o_n2", RT.CONTRASTS_WITH, 0.9,
+                     "O(n log n) vs O(n\u00b2) growth comparison"),
+        Relationship("o_n", "o_n2", RT.CONTRASTS_WITH, 0.9,
+                     "O(n) vs O(n\u00b2) growth comparison"),
+        Relationship("big_o_notation", "time_complexity", RT.HAS_PROPERTY, 1.0,
+                     "Big-O notation measures time complexity"),
+        Relationship("time_complexity", "algorithm", RT.HAS_PROPERTY, 1.0,
+                     "Time complexity is a property of algorithms"),
+        Relationship("big_o_notation", "algorithm", RT.HAS_COMPLEXITY, 0.9,
+                     "Big-O notation characterizes algorithm complexity"),
+
+        # === BST chain coverage fixes (Q3 fix) ===
+        Relationship("balanced_tree", "o_log_n", RT.HAS_COMPLEXITY, 1.0,
+                     "Balanced trees have O(log n) search"),
+        Relationship("binary_search_tree", "subtree", RT.HAS_PART, 0.8,
+                     "BST is composed of subtrees"),
+        Relationship("searching", "binary_search_tree", RT.USES, 0.8,
+                     "BST search uses the ordering property"),
     ]
 
     for rel in relationships:

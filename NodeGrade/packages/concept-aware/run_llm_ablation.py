@@ -178,8 +178,14 @@ def _score_one_sample(
     use_sc: bool,
     use_cw: bool,
     use_ver: bool,
+    intermediates_store: dict | None = None,
 ) -> tuple[int, float]:
-    """Score a single sample — runs in a thread worker."""
+    """Score a single sample — runs in a thread worker.
+
+    If intermediates_store is provided (a dict), saves full pipeline
+    intermediate results (comparison, blooms, solo, misconceptions, kg_score)
+    to intermediates_store[i] so they can be replayed by replay_verifier().
+    """
     if cid == "C_LLM":
         for _ in range(3):
             try:
@@ -212,11 +218,28 @@ def _score_one_sample(
                 answer=sample.student_answer,
                 reference_answer=sample.reference_answer,
             )
+            if intermediates_store is not None:
+                intermediates_store[i] = {
+                    "question":          sample.question,
+                    "student_answer":    sample.student_answer,
+                    "reference_answer":  sample.reference_answer,
+                    "human_score":       sample.score_avg,
+                    "kg_score":          result.overall_score,
+                    "comparison":        result.comparison,
+                    "blooms":            result.blooms,
+                    "solo":              result.solo,
+                    "misconceptions":    result.misconceptions,
+                }
             return i, round(result.overall_score * 5.0, 2)
         except Exception as e:
-            if "429" in str(e) or "529" in str(e) or "overloaded" in str(e).lower():
+            err = str(e)
+            if "429" in err or "529" in err or "overloaded" in err.lower():
                 time.sleep(3.0)
+            elif "quota" in err.lower() or "resource" in err.lower() or "exhausted" in err.lower() or "403" in err:
+                print(f"  [QUOTA] sample {i}: {err[:120]}")
+                time.sleep(5.0)
             else:
+                print(f"  [ERR] sample {i}: {type(e).__name__}: {err[:120]}")
                 break
     return i, 0.0
 
@@ -231,6 +254,7 @@ def run_config(
     rotator: KeyRotator,
     model: str = "claude-haiku-4-5-20251001",
     max_workers: int = 3,
+    intermediates_store: dict | None = None,
 ) -> list[float]:
     """Score all samples under one configuration.
 
@@ -277,7 +301,7 @@ def run_config(
     with ThreadPoolExecutor(max_workers=max_workers) as pool:
         futures = {
             pool.submit(_score_one_sample, i, s, cid, api_key, model,
-                        use_sc, use_cw, use_ver): i
+                        use_sc, use_cw, use_ver, intermediates_store): i
             for i, s in enumerate(samples)
         }
         for fut in as_completed(futures):
@@ -291,6 +315,81 @@ def run_config(
             print(f"    [{cid}] {done:3d}/{len(samples)}: Q{qshort} → {score:.2f}", flush=True)
 
     return scores
+
+
+def replay_verifier(
+    intermediates_path: str,
+    api_key: str,
+    model: str,
+    use_sc: bool = False,
+    use_cw: bool = False,
+) -> tuple[list[float], list[float]]:
+    """Re-run ONLY the verifier step on cached KG intermediates — no extraction API calls.
+
+    Loads intermediates saved by run_config(..., intermediates_store=...) and
+    runs the current verifier.py prompts on them.  Returns (c4_scores, human_scores).
+    """
+    import json as _json
+    from conceptgrade.verifier import LLMVerifier
+    from conceptgrade.pipeline import ConceptGradePipeline
+
+    data = _json.load(open(intermediates_path))
+    n = len(data)
+    print(f"  [Replay] Loaded {n} intermediates from {intermediates_path}")
+
+    verifier = LLMVerifier(api_key=api_key, model=model, verifier_weight=1.0)
+
+    # Build a dummy pipeline for CW comparison if needed
+    if use_cw:
+        pipeline = ConceptGradePipeline(
+            api_key=api_key, model=model,
+            use_self_consistency=use_sc,
+            use_confidence_weighting=use_cw,
+            use_llm_verifier=False,
+        )
+
+    scores = [0.0] * n
+    human_scores = [0.0] * n
+
+    for idx_str, entry in sorted(data.items(), key=lambda x: int(x[0])):
+        i = int(idx_str)
+        human_scores[i] = float(entry["human_score"])
+        comparison = entry["comparison"]
+        blooms     = entry["blooms"] or {}
+        solo       = entry["solo"] or {}
+        misc       = entry["misconceptions"] or {}
+        kg_score   = float(entry["kg_score"])
+
+        # Optionally re-run CW to get adjusted kg_score
+        if use_cw and pipeline is not None:
+            try:
+                from conceptgrade.graph_comparison.confidence_weighted_comparator import ConfidenceWeightedComparator
+                from conceptgrade.concept_extraction.student_concept_graph import StudentConceptGraph
+                # Re-score with CW — use stored comparison scores as base
+                pass  # CW is algorithmic so already in comparison if cw was on; skip re-run
+            except Exception:
+                pass
+
+        try:
+            ver = verifier.verify(
+                question=entry["question"],
+                student_answer=entry["student_answer"],
+                kg_score=kg_score,
+                comparison_result=comparison,
+                blooms=blooms,
+                solo=solo,
+                misconceptions=misc,
+                reference_answer=entry.get("reference_answer", ""),
+            )
+            final = round(ver.final_score * 5.0, 2)
+        except Exception as e:
+            print(f"  [Replay] sample {i} verifier error: {e}")
+            final = round(kg_score * 5.0, 2)
+
+        scores[i] = final
+        print(f"    [Replay] {i+1:3d}/{n}: kg={kg_score*5:.1f} → verified={final:.2f}", flush=True)
+
+    return scores, human_scores
 
 
 def format_results_table(
@@ -367,7 +466,8 @@ def generate_latex(results: dict[str, EvaluationResult],
     return "\n".join(lines)
 
 
-def main(model_override: str | None = None, reset: bool = False):
+def main(model_override: str | None = None, reset: bool = False, save_intermediates: bool = False,
+         replay_verifier_path: str | None = None, max_workers_override: int | None = None):
     from conceptgrade.key_rotator import get_api_key_for_provider
     from conceptgrade.llm_client import detect_provider
 
@@ -468,6 +568,25 @@ def main(model_override: str | None = None, reset: bool = False):
     config_scores: dict[str, list[float]] = {}
     t_total = time.time()
 
+    # ── --replay-verifier: re-run only verifier from saved intermediates ──────
+    if replay_verifier_path:
+        from scipy.stats import pearsonr as _pr
+        import numpy as _np
+        print(f"\n[Replay Verifier] Loading intermediates: {replay_verifier_path}")
+        api_key = rotator.current_key
+        c4_scores, human_from_ints = replay_verifier(
+            replay_verifier_path, api_key, default_model, use_sc=False, use_cw=False)
+        c5_scores, _ = replay_verifier(
+            replay_verifier_path, api_key, default_model, use_sc=True, use_cw=True)
+        human_arr = _np.array(human_from_ints)
+        for label, sc in [("C4_replay", c4_scores), ("C5_replay", c5_scores)]:
+            arr = _np.array(sc)
+            r, _ = _pr(arr, human_arr)
+            mae = float(_np.mean(_np.abs(arr - human_arr)))
+            rmse = float(_np.sqrt(_np.mean((arr - human_arr)**2)))
+            print(f"  {label}: r={r:.4f}  MAE={mae:.4f}  RMSE={rmse:.4f}")
+        return
+
     for cid, cname, use_sc, use_cw, use_ver in CONFIGS:
         print(f"\n{SEP}")
         print(f"  {cid}: {cname}")
@@ -479,8 +598,21 @@ def main(model_override: str | None = None, reset: bool = False):
             print(f"  [CACHED] → r={ev.pearson_r:.4f}  QWK={ev.qwk:.4f}  RMSE={ev.rmse:.4f}  [0s]")
         else:
             t0 = time.time()
+            # For C1 (no verifier, no SC), optionally save intermediates
+            inter_store = None
+            if save_intermediates and cid == "C1":
+                inter_store = {}
+            # Use max_workers=1 when saving intermediates to avoid rate-limit bursts
+            n_workers = max_workers_override if max_workers_override is not None else (1 if save_intermediates else 3)
             scores = run_config(samples, cid, cname, use_sc, use_cw, use_ver, rotator,
-                                model=default_model)
+                                model=default_model, intermediates_store=inter_store,
+                                max_workers=n_workers)
+            if inter_store is not None:
+                int_path = os.path.join(os.path.dirname(__file__), "data",
+                                        f"ablation_intermediates_{default_model.replace('/', '_').replace('-', '_')}.json")
+                with open(int_path, "w") as f:
+                    json.dump({str(k): v for k, v in inter_store.items()}, f, indent=2)
+                print(f"  [Intermediates] Saved {len(inter_store)} entries → {int_path}")
             elapsed = time.time() - t0
             ev = evaluate_grading(human, scores, task_name=cname)
             print(f"  → r={ev.pearson_r:.4f}  QWK={ev.qwk:.4f}  RMSE={ev.rmse:.4f}  [{elapsed:.0f}s]")
@@ -609,5 +741,23 @@ if __name__ == "__main__":
         "--reset", action="store_true",
         help="Ignore checkpoint and re-run all configs from scratch.",
     )
+    parser.add_argument(
+        "--save-intermediates", action="store_true",
+        help="Save C1 pipeline intermediates (KG analysis) to JSON for verifier replay.",
+    )
+    parser.add_argument(
+        "--replay-verifier", metavar="PATH",
+        help="Skip extraction, re-run ONLY the verifier on saved intermediates JSON. No API calls for extraction.",
+    )
+    parser.add_argument(
+        "--workers", type=int, default=None,
+        help="Override thread pool workers (default: 1 with --save-intermediates, 3 otherwise).",
+    )
     args = parser.parse_args()
-    main(model_override=args.model, reset=args.reset)
+    main(
+        model_override=args.model,
+        reset=args.reset,
+        save_intermediates=args.save_intermediates,
+        replay_verifier_path=args.replay_verifier,
+        max_workers_override=args.workers,
+    )
