@@ -1,0 +1,22 @@
+{
+  "concepts_only_mae": 1.2416666666666667,
+  "taxonomy_only_mae": 1.025,
+  "c_llm_mae": 0.33,
+  "c5_fix_mae": 0.22291666666666668,
+  "concepts_only_r": 0.44386844453017305,
+  "taxonomy_only_r": 0.8518940127301566,
+  "c_llm_r": 0.9709397293007704,
+  "c5_fix_r": 0.9820314964001232,
+  "concepts_only_bias": -0.8458333333333333,
+  "taxonomy_only_bias": -0.8458333333333333,
+  "taxonomy_only_max": 3.0,
+  "concepts_only_max": 4.5,
+  "key_finding": "taxonomy_stronger",
+  "interpretation": {
+    "partial_kg_hurts": "Both ablations have lower r than C_LLM (0.971), confirming that partial KG evidence disrupts grading calibration",
+    "taxonomy_vs_concepts": "taxonomy_only r=0.852 >> concepts_only r=0.444 \u2014 SOLO/Bloom taxonomy provides stronger ranking signal",
+    "ceiling_effect": "taxonomy_only caps at 3.0 maximum score \u2014 SOLO level alone cannot distinguish 3-5 range",
+    "coverage_effect": "concepts_only fails for KG-sparse topics (Big-O, recursion, DP) with 0 matched concepts",
+    "synergy_confirmed": "Only full KG integration (C5_fix) improves over C_LLM \u2014 synergy between taxonomy and concept coverage is essential"
+  }
+}

@@ -55,6 +55,10 @@ yarn dev
 
 This will launch both the server and the frontend PWA in development mode.
 
+### Troubleshooting (Vite / `.pnp.cjs` ENOENT)
+
+If the browser shows an error about missing `.pnp.cjs`, your environment is still trying to load Yarn PnP while this project uses `node-modules`. See **[docs/TROUBLESHOOTING.md](./docs/TROUBLESHOOTING.md)** — usually `unset NODE_OPTIONS` fixes it.
+
 ### Benchmarking
 
 To run a benchmark, send a POST request to `http://localhost:5000/v1/benchmark` with the following body:

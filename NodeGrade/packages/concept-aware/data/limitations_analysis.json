@@ -1,0 +1,169 @@
+{
+  "identified_failure_cases": [
+    {
+      "question": "Big-O notation and O(n)/O(n log n)/O(n\u00b2)",
+      "q_index": "Q10",
+      "samples": [
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119
+      ],
+      "c_llm_mae": 0.1625,
+      "c5_mae": 0.3125,
+      "root_cause": "Big-O notation uses mathematical symbols (O(n log n), asymptotic) that resist natural-language KG concept extraction. Most answers show n_matched=1 even for high-quality answers. Impoverished KG evidence leads verifier to undergrade.",
+      "specific_cases": [
+        {
+          "id": 108,
+          "human": 0.0,
+          "cllm": 0.0,
+          "c5fix": 0.0,
+          "err_cl": 0.0,
+          "err_c5": 0.0,
+          "n_match": 1,
+          "answer": "I don't know what Big-O means."
+        },
+        {
+          "id": 109,
+          "human": 0.25,
+          "cllm": 0.5,
+          "c5fix": 0.5,
+          "err_cl": 0.25,
+          "err_c5": 0.25,
+          "n_match": 1,
+          "answer": "Big-O is a math concept."
+        },
+        {
+          "id": 110,
+          "human": 0.5,
+          "cllm": 1.0,
+          "c5fix": 0.5,
+          "err_cl": 0.5,
+          "err_c5": 0.0,
+          "n_match": 1,
+          "answer": "It measures how fast code runs."
+        },
+        {
+          "id": 111,
+          "human": 0.75,
+          "cllm": 0.5,
+          "c5fix": 0.5,
+          "err_cl": 0.25,
+          "err_c5": 0.25,
+          "n_match": 1,
+          "answer": "O(n\u00b2) is always bad. O(n) is always good."
+        },
+        {
+          "id": 112,
+          "human": 1.0,
+          "cllm": 1.0,
+          "c5fix": 0.5,
+          "err_cl": 0.0,
+          "err_c5": 0.5,
+          "n_match": 1,
+          "answer": "Big-O notation tells us how efficient code is."
+        },
+        {
+          "id": 113,
+          "human": 1.5,
+          "cllm": 1.5,
+          "c5fix": 1.0,
+          "err_cl": 0.0,
+          "err_c5": 0.5,
+          "n_match": 1,
+          "answer": "Big-O is how we measure algorithm speed. Smaller Big-O is better."
+        },
+        {
+          "id": 114,
+          "human": 2.0,
+          "cllm": 1.5,
+          "c5fix": 1.5,
+          "err_cl": 0.5,
+          "err_c5": 0.5,
+          "n_match": 1,
+          "answer": "Big-O measures how long an algorithm takes. O(n) is linear, O(n\u00b2) is slower."
+        },
+        {
+          "id": 115,
+          "human": 2.75,
+          "cllm": 2.5,
+          "c5fix": 2.5,
+          "err_cl": 0.25,
+          "err_c5": 0.25,
+          "n_match": 1,
+          "answer": "Big-O describes algorithm complexity. O(n) means linear, O(n\u00b2) means quadratic. "
+        },
+        {
+          "id": 116,
+          "human": 3.5,
+          "cllm": 3.5,
+          "c5fix": 3.0,
+          "err_cl": 0.0,
+          "err_c5": 0.5,
+          "n_match": 1,
+          "answer": "Big-O measures how fast an algorithm's time grows with input size. O(n) is linea"
+        },
+        {
+          "id": 117,
+          "human": 4.0,
+          "cllm": 4.2,
+          "c5fix": 3.5,
+          "err_cl": 0.20000000000000018,
+          "err_c5": 0.5,
+          "n_match": 1,
+          "answer": "Big-O gives the growth rate of an algorithm's time. O(n) is linear, O(n log n) a"
+        },
+        {
+          "id": 118,
+          "human": 4.5,
+          "cllm": 4.5,
+          "c5fix": 4.0,
+          "err_cl": 0.0,
+          "err_c5": 0.5,
+          "n_match": 2,
+          "answer": "Big-O describes worst-case growth rate as n increases. O(n) is linear, O(n log n"
+        },
+        {
+          "id": 119,
+          "human": 5.0,
+          "cllm": 5.0,
+          "c5fix": 5.0,
+          "err_cl": 0.0,
+          "err_c5": 0.0,
+          "n_match": 5,
+          "answer": "Big-O is the asymptotic upper bound on time growth. O(n) grows linearly \u2014 each a"
+        }
+      ]
+    },
+    {
+      "question": "Binary Search Tree operations",
+      "q_index": "Q4",
+      "samples": [
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47
+      ],
+      "c_llm_mae": 0.20833333333333334,
+      "c5_mae": 0.25,
+      "root_cause": "Minor: one outlier (ID 42) where verifier over-penalized vague answer."
+    }
+  ],
+  "general_limitation": "ConceptGrade's benefit depends on KG vocabulary coverage. Topics with formal mathematical notation or specialized symbols that resist natural-language concept extraction show reduced gains. The KG matching layer should be extended to include mathematical relationship nodes for notation-heavy topics."
+}

@@ -19,6 +19,7 @@ import {
 
 import ErrorBoundary from '@/components/ErrorBoundary'
 import Editor from '@/pages/Editor'
+import ValidationDashboard from '@/pages/ValidationDashboard'
 import { LtiRegister } from './lti/LtiRegister'
 import StudentView from './StudentView'
 
@@ -64,6 +65,9 @@ const DevHome = () => (
       </MuiLink>
       <MuiLink component={Link} to="/ws/student/local/1/1" variant="body1">
         Open student view — <code>/ws/student/local/1/1</code>
+      </MuiLink>
+      <MuiLink component={Link} to="/validation" variant="body1">
+        Validation dashboard — <code>/validation</code>
       </MuiLink>
     </Stack>
     <Typography variant="subtitle1" sx={{ mt: 3 }}>
@@ -123,6 +127,7 @@ const router = createBrowserRouter(
         }
       />
       <Route index element={<DevHome />} />
+      <Route path="validation" element={<ValidationDashboard />} />
       <Route path="lti/register" element={<LtiRegister />} />
       <Route path="lti/login" element={<LogRouteAccess />} />
       <Route path="lti/deeplink" element={<LogRouteAccess />} />

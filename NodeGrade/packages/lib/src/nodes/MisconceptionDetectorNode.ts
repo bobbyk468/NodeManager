@@ -268,14 +268,14 @@ export class MisconceptionDetectorNode extends LGraphNode {
 
     // Taxonomy matching — mirrors Python detector._find_taxonomy_matches
     const taxonomyMatches = findTaxonomyMatches(studentConcepts)
-    const taxonomyStr = taxonomyMatches.slice(0, 5).map(([taxId, tax]) =>
+    const taxonomyStr = taxonomyMatches.map(([taxId, tax]) =>
       `- ${taxId}: ${tax.description} (severity: ${tax.severity})\n` +
       `  Common claim: "${tax.common_claim}"\n` +
       `  Correct: "${tax.correct}"`
     ).join('\n') || 'No direct taxonomy matches found.'
 
     // Build misconception analysis prompt
-    const incorrectStr = incorrectRels.slice(0, 10).map((r: any) =>
+    const incorrectStr = incorrectRels.map((r: any) =>
       `- ${r.source || '?'} → ${r.target || '?'} (used: '${r.student_relation || '?'}'` +
       `${r.correct_relation ? `, correct: '${r.correct_relation}'` : ''}` +
       `)\n  Note: ${r.note || r.explanation || 'N/A'}`
@@ -359,7 +359,7 @@ Return ONLY valid JSON:
 
       // Build feedback string
       const feedbackParts: string[] = []
-      for (const m of misconceptions.slice(0, 5)) {
+      for (const m of misconceptions) {
         feedbackParts.push(`[${(m.severity || 'moderate').toUpperCase()}] ${m.explanation || 'Review this concept.'}`)
         if (m.remediation_hint) feedbackParts.push(`  → ${m.remediation_hint}`)
       }

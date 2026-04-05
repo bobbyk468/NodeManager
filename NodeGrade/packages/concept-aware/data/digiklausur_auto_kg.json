@@ -1,0 +1,1750 @@
+{
+  "question_kgs": {
+    "0": {
+      "question": "Give a definition for the term \"artificial neural network\" and mention, how it resembles the human brain!",
+      "concepts": [
+        {
+          "id": "artificial_neural_network",
+          "name": "Artificial Neural Network",
+          "description": "A massively parallel distributed processor made of simple processing units."
+        },
+        {
+          "id": "processing_unit",
+          "name": "Processing Unit",
+          "description": "Simple components that make up an artificial neural network."
+        },
+        {
+          "id": "experiential_knowledge",
+          "name": "Experiential Knowledge",
+          "description": "Knowledge acquired by a neural network from its environment."
+        },
+        {
+          "id": "human_brain",
+          "name": "Human Brain",
+          "description": "Biological system that artificial neural networks are modeled after."
+        },
+        {
+          "id": "learning_process",
+          "name": "Learning Process",
+          "description": "Mechanism by which neural networks acquire knowledge from their environment."
+        },
+        {
+          "id": "synaptic_weights",
+          "name": "Synaptic Weights",
+          "description": "Interneuron connection strengths used to store acquired knowledge in neural networks."
+        }
+      ],
+      "relationships": [
+        {
+          "from": "artificial_neural_network",
+          "to": "processing_unit",
+          "type": "HAS_PART",
+          "weight": 0.9,
+          "description": "An ANN is composed of simple processing units."
+        },
+        {
+          "from": "artificial_neural_network",
+          "to": "experiential_knowledge",
+          "type": "PRODUCES",
+          "weight": 0.8,
+          "description": "ANNs have a natural propensity for storing experiential knowledge."
+        },
+        {
+          "from": "artificial_neural_network",
+          "to": "human_brain",
+          "type": "RESEMBLES",
+          "weight": 0.9,
+          "description": "ANNs resemble the human brain in certain aspects."
+        },
+        {
+          "from": "artificial_neural_network",
+          "to": "learning_process",
+          "type": "USES",
+          "weight": 0.8,
+          "description": "Knowledge is acquired through a learning process."
+        },
+        {
+          "from": "learning_process",
+          "to": "experiential_knowledge",
+          "type": "PRODUCES",
+          "weight": 0.7,
+          "description": "The learning process results in acquired knowledge."
+        },
+        {
+          "from": "synaptic_weights",
+          "to": "experiential_knowledge",
+          "type": "STORES",
+          "weight": 0.9,
+          "description": "Synaptic weights are used to store acquired knowledge."
+        }
+      ],
+      "expected_concepts": [
+        "artificial_neural_network",
+        "processing_unit",
+        "experiential_knowledge",
+        "human_brain",
+        "learning_process",
+        "synaptic_weights"
+      ]
+    },
+    "1": {
+      "question": "Define the mathematical model of a neuron, use the appropriate technical terms!",
+      "concepts": [
+        {
+          "id": "mathematical_model_of_neuron",
+          "name": "Mathematical Model of a Neuron",
+          "description": "A model consisting of synapses, an adder function, and an activation function."
+        },
+        {
+          "id": "synapses",
+          "name": "Synapses",
+          "description": "Connecting links in a neuron model, each characterized by a weight."
+        },
+        {
+          "id": "weight",
+          "name": "Weight",
+          "description": "A characteristic value associated with each synaptic link."
+        },
+        {
+          "id": "adder_function",
+          "name": "Adder Function",
+          "description": "A linear combiner that computes the weighted sum of inputs plus bias."
+        },
+        {
+          "id": "weighted_sum",
+          "name": "Weighted Sum",
+          "description": "The local field computed by the adder function."
+        },
+        {
+          "id": "bias",
+          "name": "Bias",
+          "description": "An additional term added to the weighted sum of inputs."
+        },
+        {
+          "id": "activation_function",
+          "name": "Activation Function",
+          "description": "A squashing function that limits the amplitude of a neuron's output."
+        },
+        {
+          "id": "neuron_output",
+          "name": "Neuron Output",
+          "description": "The final output of the neuron after the activation function."
+        }
+      ],
+      "relationships": [
+        {
+          "from": "mathematical_model_of_neuron",
+          "to": "synapses",
+          "type": "HAS_PART",
+          "weight": 0.9,
+          "description": "The model includes a set of synapses."
+        },
+        {
+          "from": "synapses",
+          "to": "weight",
+          "type": "HAS_PROPERTY",
+          "weight": 0.8,
+          "description": "Each link (synapse) is characterized by a weight."
+        },
+        {
+          "from": "mathematical_model_of_neuron",
+          "to": "adder_function",
+          "type": "HAS_PART",
+          "weight": 0.9,
+          "description": "The model includes an adder function."
+        },
+        {
+          "from": "adder_function",
+          "to": "weighted_sum",
+          "type": "PRODUCES",
+          "weight": 0.8,
+          "description": "The adder function computes the weighted sum."
+        },
+        {
+          "from": "weighted_sum",
+          "to": "bias",
+          "type": "INCLUDES",
+          "weight": 0.7,
+          "description": "The weighted sum includes some bias."
+        },
+        {
+          "from": "mathematical_model_of_neuron",
+          "to": "activation_function",
+          "type": "HAS_PART",
+          "weight": 0.9,
+          "description": "The model includes an activation function."
+        },
+        {
+          "from": "activation_function",
+          "to": "neuron_output",
+          "type": "OPERATES_ON",
+          "weight": 0.8,
+          "description": "The activation function limits the amplitude of the neuron's output."
+        }
+      ],
+      "expected_concepts": [
+        "mathematical_model_of_neuron",
+        "synapses",
+        "weight",
+        "adder_function",
+        "weighted_sum",
+        "bias",
+        "activation_function",
+        "neuron_output"
+      ]
+    },
+    "2": {
+      "question": "Assume you want to binary classify linear separable data point using a perceptron. Write down the learning algorithm in pseudo code!",
+      "concepts": [
+        {
+          "id": "perceptron",
+          "name": "Perceptron",
+          "description": "A linear classifier used for binary classification of linearly separable data."
+        },
+        {
+          "id": "binary_classification",
+          "name": "Binary Classification",
+          "description": "The task of classifying data into two distinct categories."
+        },
+        {
+          "id": "linearly_separable_data",
+          "name": "Linearly Separable Data",
+          "description": "Data points that can be perfectly separated by a linear decision boundary."
+        },
+        {
+          "id": "learning_algorithm",
+          "name": "Learning Algorithm",
+          "description": "A set of rules for a perceptron to learn from data."
+        },
+        {
+          "id": "data_labeling",
+          "name": "Data Labeling",
+          "description": "Assigning positive and negative labels to data points."
+        },
+        {
+          "id": "weight_initialization",
+          "name": "Weight Initialization",
+          "description": "Randomly setting the initial values of the perceptron's weights."
+        },
+        {
+          "id": "update_rule",
+          "name": "Update Rule",
+          "description": "The rule for adjusting weights based on misclassifications (e.g., Dw = eta*x(n))."
+        },
+        {
+          "id": "convergence",
+          "name": "Convergence",
+          "description": "The state where weights no longer change significantly, indicating the algorithm has learned."
+        }
+      ],
+      "relationships": [
+        {
+          "from": "perceptron",
+          "to": "binary_classification",
+          "type": "IMPLEMENTS",
+          "weight": 0.9,
+          "description": "A perceptron is used for binary classification."
+        },
+        {
+          "from": "perceptron",
+          "to": "linearly_separable_data",
+          "type": "OPERATES_ON",
+          "weight": 0.9,
+          "description": "The perceptron algorithm is applied to linearly separable data."
+        },
+        {
+          "from": "perceptron",
+          "to": "learning_algorithm",
+          "type": "USES",
+          "weight": 0.9,
+          "description": "A perceptron employs a specific learning algorithm."
+        },
+        {
+          "from": "learning_algorithm",
+          "to": "data_labeling",
+          "type": "PREREQUISITE_FOR",
+          "weight": 0.8,
+          "description": "Data must be labeled before applying the algorithm."
+        },
+        {
+          "from": "learning_algorithm",
+          "to": "weight_initialization",
+          "type": "PREREQUISITE_FOR",
+          "weight": 0.8,
+          "description": "Weights must be initialized randomly."
+        },
+        {
+          "from": "learning_algorithm",
+          "to": "update_rule",
+          "type": "HAS_PART",
+          "weight": 0.9,
+          "description": "The algorithm includes an update rule for weights."
+        },
+        {
+          "from": "learning_algorithm",
+          "to": "convergence",
+          "type": "PRODUCES",
+          "weight": 0.8,
+          "description": "The algorithm repeats until convergence."
+        },
+        {
+          "from": "linearly_separable_data",
+          "to": "convergence",
+          "type": "PREREQUISITE_FOR",
+          "weight": 0.9,
+          "description": "The algorithm will converge if the data is linearly separable."
+        }
+      ],
+      "expected_concepts": [
+        "perceptron",
+        "binary_classification",
+        "linearly_separable_data",
+        "learning_algorithm",
+        "data_labeling",
+        "weight_initialization",
+        "update_rule",
+        "convergence"
+      ]
+    },
+    "3": {
+      "question": "Explain classification and regression; what is the difference?",
+      "concepts": [
+        {
+          "id": "classification",
+          "name": "Classification",
+          "description": "A machine learning task of mapping data to discrete labels."
+        },
+        {
+          "id": "regression",
+          "name": "Regression",
+          "description": "A machine learning task of mapping data to a continuous function or real values."
+        },
+        {
+          "id": "discrete_labels",
+          "name": "Discrete Labels",
+          "description": "Distinct, separate categories used in classification."
+        },
+        {
+          "id": "continuous_values",
+          "name": "Continuous Values",
+          "description": "Real numbers or a continuous function output used in regression."
+        },
+        {
+          "id": "classification_error",
+          "name": "Classification Error",
+          "description": "The number of misclassifications in a classification task."
+        },
+        {
+          "id": "regression_error",
+          "name": "Regression Error",
+          "description": "The summed distance between true and predicted values in a regression task."
+        }
+      ],
+      "relationships": [
+        {
+          "from": "classification",
+          "to": "discrete_labels",
+          "type": "PRODUCES",
+          "weight": 0.9,
+          "description": "Classification maps data to discrete labels."
+        },
+        {
+          "from": "regression",
+          "to": "continuous_values",
+          "type": "PRODUCES",
+          "weight": 0.9,
+          "description": "Regression maps data to continuous values."
+        },
+        {
+          "from": "classification",
+          "to": "regression",
+          "type": "CONTRASTS_WITH",
+          "weight": 0.9,
+          "description": "Classification and regression are distinct tasks."
+        },
+        {
+          "from": "classification",
+          "to": "classification_error",
+          "type": "HAS_PROPERTY",
+          "weight": 0.8,
+          "description": "Error in classification is measured by misclassifications."
+        },
+        {
+          "from": "regression",
+          "to": "regression_error",
+          "type": "HAS_PROPERTY",
+          "weight": 0.8,
+          "description": "Error in regression is measured by summed distance."
+        }
+      ],
+      "expected_concepts": [
+        "classification",
+        "regression",
+        "discrete_labels",
+        "continuous_values",
+        "classification_error",
+        "regression_error"
+      ]
+    },
+    "4": {
+      "question": "Write down the SOM learning in pseudo code.",
+      "concepts": [
+        {
+          "id": "som_learning",
+          "name": "SOM Learning",
+          "description": "The learning algorithm for Self-Organizing Maps."
+        },
+        {
+          "id": "weight_topology",
+          "name": "Weight Topology",
+          "description": "The arrangement of weights in the SOM lattice."
+        },
+        {
+          "id": "weight_initialization",
+          "name": "Weight Initialization",
+          "description": "Randomly setting initial, distinct weights for neurons."
+        },
+        {
+          "id": "input_sampling",
+          "name": "Input Sampling",
+          "description": "Drawing an input vector from the input space."
+        },
+        {
+          "id": "similarity_matching",
+          "name": "Similarity Matching",
+          "description": "Finding the Best Matching Unit (BMU) or winning neuron in the lattice."
+        },
+        {
+          "id": "winning_neuron",
+          "name": "Winning Neuron",
+          "description": "The neuron in the topological lattice that best matches the input."
+        },
+        {
+          "id": "weight_update",
+          "name": "Weight Update",
+          "description": "Adjusting the weights of the winning neuron and its neighbors."
+        },
+        {
+          "id": "neighborhood_function",
+          "name": "Neighborhood Function",
+          "description": "Determines the extent and influence of neighbors during weight updates."
+        },
+        {
+          "id": "learning_rate_decay",
+          "name": "Learning Rate Decay",
+          "description": "Gradually reducing the learning rate over time."
+        },
+        {
+          "id": "convergence",
+          "name": "Convergence",
+          "description": "The state where the SOM has learned the input distribution and ordering is complete."
+        }
+      ],
+      "relationships": [
+        {
+          "from": "som_learning",
+          "to": "weight_topology",
+          "type": "PREREQUISITE_FOR",
+          "weight": 0.8,
+          "description": "Weights must be arranged in a topology."
+        },
+        {
+          "from": "som_learning",
+          "to": "weight_initialization",
+          "type": "PREREQUISITE_FOR",
+          "weight": 0.8,
+          "description": "Weights must be initialized randomly."
+        },
+        {
+          "from": "som_learning",
+          "to": "input_sampling",
+          "type": "USES",
+          "weight": 0.7,
+          "description": "The algorithm samples input from the input space."
+        },
+        {
+          "from": "som_learning",
+          "to": "similarity_matching",
+          "type": "HAS_PART",
+          "weight": 0.9,
+          "description": "A key step is similarity matching to find the winning neuron."
+        },
+        {
+          "from": "similarity_matching",
+          "to": "winning_neuron",
+          "type": "PRODUCES",
+          "weight": 0.8,
+          "description": "Similarity matching identifies the winning neuron."
+        },
+        {
+          "from": "som_learning",
+          "to": "weight_update",
+          "type": "HAS_PART",
+          "weight": 0.9,
+          "description": "The algorithm updates weights of the winning neuron and neighbors."
+        },
+        {
+          "from": "weight_update",
+          "to": "neighborhood_function",
+          "type": "USES",
+          "weight": 0.8,
+          "description": "The neighborhood function determines which neighbors are updated."
+        },
+        {
+          "from": "som_learning",
+          "to": "learning_rate_decay",
+          "type": "HAS_PART",
+          "weight": 0.7,
+          "description": "The learning rate and neighborhood radius are reduced."
+        },
+        {
+          "from": "som_learning",
+          "to": "convergence",
+          "type": "PRODUCES",
+          "weight": 0.8,
+          "description": "The algorithm stops when ordering and convergence are complete."
+        }
+      ],
+      "expected_concepts": [
+        "som_learning",
+        "weight_topology",
+        "weight_initialization",
+        "input_sampling",
+        "similarity_matching",
+        "winning_neuron",
+        "weight_update",
+        "neighborhood_function",
+        "learning_rate_decay",
+        "convergence"
+      ]
+    },
+    "5": {
+      "question": "Give the basic idea of an SVM using the correct terminology!",
+      "concepts": [
+        {
+          "id": "support_vector_machine",
+          "name": "Support Vector Machine (SVM)",
+          "description": "A linear learnable machine that uses a decision boundary with maximum margin for classification."
+        },
+        {
+          "id": "linear_learnable_machine",
+          "name": "Linear Learnable Machine",
+          "description": "A type of machine learning model that can classify data using a linear function."
+        },
+        {
+          "id": "decision_boundary",
+          "name": "Decision Boundary",
+          "description": "A hyperplane that separates data points into different classes."
+        },
+        {
+          "id": "maximum_margin",
+          "name": "Maximum Margin",
+          "description": "The largest possible distance between the decision boundary and the nearest data points of any class."
+        },
+        {
+          "id": "support_vectors",
+          "name": "Support Vectors",
+          "description": "Data points that are closest to the decision boundary and determine the margin."
+        },
+        {
+          "id": "kernels",
+          "name": "Kernels",
+          "description": "Functions used to transform non-linearly separable data into a higher dimension where it becomes linearly separable."
+        },
+        {
+          "id": "quadratic_programming",
+          "name": "Quadratic Programming",
+          "description": "An optimization technique used to solve the SVM algorithm."
+        },
+        {
+          "id": "non_linearly_separable_data",
+          "name": "Non-Linearly Separable Data",
+          "description": "Data that cannot be separated by a single linear decision boundary in its original feature space."
+        }
+      ],
+      "relationships": [
+        {
+          "from": "support_vector_machine",
+          "to": "linear_learnable_machine",
+          "type": "IS_A",
+          "weight": 0.9,
+          "description": "SVMs are a type of linear learnable machine."
+        },
+        {
+          "from": "support_vector_machine",
+          "to": "decision_boundary",
+          "type": "USES",
+          "weight": 0.9,
+          "description": "SVMs use a decision boundary for classification."
+        },
+        {
+          "from": "decision_boundary",
+          "to": "maximum_margin",
+          "type": "HAS_PROPERTY",
+          "weight": 0.9,
+          "description": "The decision boundary in SVMs aims for maximum margin."
+        },
+        {
+          "from": "maximum_margin",
+          "to": "support_vectors",
+          "type": "DETERMINED_BY",
+          "weight": 0.9,
+          "description": "The margin is determined by support vectors."
+        },
+        {
+          "from": "support_vector_machine",
+          "to": "kernels",
+          "type": "USES",
+          "weight": 0.8,
+          "description": "Kernels are used in SVMs for non-linearly separable data."
+        },
+        {
+          "from": "kernels",
+          "to": "non_linearly_separable_data",
+          "type": "OPERATES_ON",
+          "weight": 0.8,
+          "description": "Kernels help separate non-linearly separable data."
+        },
+        {
+          "from": "support_vector_machine",
+          "to": "quadratic_programming",
+          "type": "SOLVED_BY",
+          "weight": 0.8,
+          "description": "The SVM algorithm is solved using Quadratic Programming."
+        }
+      ],
+      "expected_concepts": [
+        "support_vector_machine",
+        "linear_learnable_machine",
+        "decision_boundary",
+        "maximum_margin",
+        "support_vectors",
+        "kernels",
+        "quadratic_programming",
+        "non_linearly_separable_data"
+      ]
+    },
+    "6": {
+      "question": "What role does the method of steepest decent have when learning a network?",
+      "concepts": [
+        {
+          "id": "steepest_descent",
+          "name": "Steepest Descent",
+          "description": "An optimization method used to update weights in a neural network during learning."
+        },
+        {
+          "id": "neural_network_learning",
+          "name": "Neural Network Learning",
+          "description": "The process of adjusting weights in a neural network to minimize a cost function."
+        },
+        {
+          "id": "weight_update",
+          "name": "Weight Update",
+          "description": "The modification of synaptic weights in a neural network."
+        },
+        {
+          "id": "cost_function",
+          "name": "Cost Function",
+          "description": "A function that quantifies the error of a neural network's predictions."
+        },
+        {
+          "id": "gradient_vector",
+          "name": "Gradient Vector",
+          "description": "A vector pointing in the direction of the steepest increase of a function."
+        },
+        {
+          "id": "local_minima",
+          "name": "Local Minima",
+          "description": "Points in the cost function landscape where the gradient is zero, but it's not the global minimum."
+        },
+        {
+          "id": "instability",
+          "name": "Instability",
+          "description": "A potential issue where the learning process diverges instead of converging."
+        }
+      ],
+      "relationships": [
+        {
+          "from": "steepest_descent",
+          "to": "weight_update",
+          "type": "IMPLEMENTS",
+          "weight": 0.9,
+          "description": "Steepest descent is used to update weights."
+        },
+        {
+          "from": "steepest_descent",
+          "to": "neural_network_learning",
+          "type": "USES",
+          "weight": 0.9,
+          "description": "Steepest descent is a method for NN learning."
+        },
+        {
+          "from": "steepest_descent",
+          "to": "cost_function",
+          "type": "OPERATES_ON",
+          "weight": 0.8,
+          "description": "It helps navigate the cost function to find a minimum."
+        },
+        {
+          "from": "weight_update",
+          "to": "gradient_vector",
+          "type": "USES",
+          "weight": 0.8,
+          "description": "Weights are updated opposite to the gradient vector."
+        },
+        {
+          "from": "steepest_descent",
+          "to": "local_minima",
+          "type": "HAS_PROPERTY",
+          "weight": 0.7,
+          "description": "Steepest descent can suffer from local minima."
+        },
+        {
+          "from": "steepest_descent",
+          "to": "instability",
+          "type": "HAS_PROPERTY",
+          "weight": 0.7,
+          "description": "The method may become unstable under certain conditions."
+        }
+      ],
+      "expected_concepts": [
+        "steepest_descent",
+        "neural_network_learning",
+        "weight_update",
+        "cost_function",
+        "gradient_vector",
+        "local_minima",
+        "instability"
+      ]
+    },
+    "7": {
+      "question": "Define: a hypothesis $h \\in H$ shatters a dataset $A \\subseteq X \\Leftrightarrow \\ldots$",
+      "concepts": [
+        {
+          "id": "hypothesis",
+          "name": "Hypothesis (h)",
+          "description": "A function from a hypothesis space H that attempts to classify data."
+        },
+        {
+          "id": "hypothesis_space",
+          "name": "Hypothesis Space (H)",
+          "description": "The set of all possible hypotheses."
+        },
+        {
+          "id": "dataset",
+          "name": "Dataset (A)",
+          "description": "A subset of the input space X, consisting of N data points."
+        },
+        {
+          "id": "input_space",
+          "name": "Input Space (X)",
+          "description": "The domain from which data points are drawn."
+        },
+        {
+          "id": "shattering",
+          "name": "Shattering a Dataset",
+          "description": "The ability of a hypothesis to perfectly classify all possible binary labelings of a dataset."
+        },
+        {
+          "id": "binary_labeling",
+          "name": "Binary Labeling",
+          "description": "Assigning positive or negative labels to data points, resulting in 2^N possibilities for N points."
+        },
+        {
+          "id": "no_error_classification",
+          "name": "No Error Classification",
+          "description": "Perfectly splitting positive data from negative data without any misclassifications."
+        }
+      ],
+      "relationships": [
+        {
+          "from": "hypothesis",
+          "to": "hypothesis_space",
+          "type": "IS_A",
+          "weight": 0.9,
+          "description": "A hypothesis is an element of the hypothesis space."
+        },
+        {
+          "from": "dataset",
+          "to": "input_space",
+          "type": "IS_A",
+          "weight": 0.9,
+          "description": "A dataset is a subset of the input space."
+        },
+        {
+          "from": "hypothesis",
+          "to": "shattering",
+          "type": "IMPLEMENTS",
+          "weight": 0.9,
+          "description": "A hypothesis shatters a dataset."
+        },
+        {
+          "from": "shattering",
+          "to": "dataset",
+          "type": "OPERATES_ON",
+          "weight": 0.9,
+          "description": "Shattering applies to a dataset."
+        },
+        {
+          "from": "shattering",
+          "to": "binary_labeling",
+          "type": "PREREQUISITE_FOR",
+          "weight": 0.8,
+          "description": "Shattering implies classifying all possible binary labelings."
+        },
+        {
+          "from": "shattering",
+          "to": "no_error_classification",
+          "type": "PRODUCES",
+          "weight": 0.9,
+          "description": "Shattering means splitting data with no error."
+        }
+      ],
+      "expected_concepts": [
+        "hypothesis",
+        "hypothesis_space",
+        "dataset",
+        "input_space",
+        "shattering",
+        "binary_labeling",
+        "no_error_classification"
+      ]
+    },
+    "8": {
+      "question": "Write down and explain the Widrow-Hoff learning rule!",
+      "concepts": [
+        {
+          "id": "widrow_hoff_learning_rule",
+          "name": "Widrow-Hoff Learning Rule",
+          "description": "A learning rule where synaptic weight adjustment is proportional to the product of error and input signals."
+        },
+        {
+          "id": "synaptic_weight_adjustment",
+          "name": "Synaptic Weight Adjustment",
+          "description": "The change made to a synaptic weight during learning."
+        },
+        {
+          "id": "error_signal",
+          "name": "Error Signal",
+          "description": "The difference between the desired output and the actual output of a neuron."
+        },
+        {
+          "id": "input_signal",
+          "name": "Input Signal",
+          "description": "The signal received at a specific synapse."
+        },
+        {
+          "id": "steepest_descent_method",
+          "name": "Steepest Descent Method",
+          "description": "An optimization method from which the Widrow-Hoff rule is derived."
+        }
+      ],
+      "relationships": [
+        {
+          "from": "widrow_hoff_learning_rule",
+          "to": "synaptic_weight_adjustment",
+          "type": "PRODUCES",
+          "weight": 0.9,
+          "description": "The rule defines how synaptic weights are adjusted."
+        },
+        {
+          "from": "synaptic_weight_adjustment",
+          "to": "error_signal",
+          "type": "PROPORTIONAL_TO",
+          "weight": 0.8,
+          "description": "Adjustment is proportional to the error signal."
+        },
+        {
+          "from": "synaptic_weight_adjustment",
+          "to": "input_signal",
+          "type": "PROPORTIONAL_TO",
+          "weight": 0.8,
+          "description": "Adjustment is proportional to the input signal."
+        },
+        {
+          "from": "widrow_hoff_learning_rule",
+          "to": "steepest_descent_method",
+          "type": "DERIVED_FROM",
+          "weight": 0.9,
+          "description": "The rule is derived from the steepest descent method."
+        }
+      ],
+      "expected_concepts": [
+        "widrow_hoff_learning_rule",
+        "synaptic_weight_adjustment",
+        "error_signal",
+        "input_signal",
+        "steepest_descent_method"
+      ]
+    },
+    "9": {
+      "question": "Explain back propagation, use the correct technical terms!",
+      "concepts": [
+        {
+          "id": "backpropagation",
+          "name": "Backpropagation",
+          "description": "An algorithm that recursively lowers the error of a Multi-Layer Perceptron (MLP) by propagating error backwards."
+        },
+        {
+          "id": "multi_layer_perceptron",
+          "name": "Multi-Layer Perceptron (MLP)",
+          "description": "A type of feedforward artificial neural network with multiple layers of neurons."
+        },
+        {
+          "id": "error_reduction",
+          "name": "Error Reduction",
+          "description": "The process of minimizing the difference between predicted and actual outputs."
+        },
+        {
+          "id": "weight_update",
+          "name": "Weight Update",
+          "description": "Adjusting the synaptic weights of neurons in the network."
+        },
+        {
+          "id": "local_gradient",
+          "name": "Local Gradient",
+          "description": "The partial derivative of the error with respect to a specific weight at each layer."
+        },
+        {
+          "id": "partial_derivatives",
+          "name": "Partial Derivatives",
+          "description": "Mathematical tools used to compute the local gradient."
+        },
+        {
+          "id": "chain_rule",
+          "name": "Chain Rule",
+          "description": "A calculus rule used to compute derivatives of composite functions, essential for backpropagation."
+        }
+      ],
+      "relationships": [
+        {
+          "from": "backpropagation",
+          "to": "multi_layer_perceptron",
+          "type": "OPERATES_ON",
+          "weight": 0.9,
+          "description": "Backpropagation is used to train MLPs."
+        },
+        {
+          "from": "backpropagation",
+          "to": "error_reduction",
+          "type": "PRODUCES",
+          "weight": 0.9,
+          "description": "Backpropagation lowers the error level by level."
+        },
+        {
+          "from": "backpropagation",
+          "to": "weight_update",
+          "type": "IMPLEMENTS",
+          "weight": 0.9,
+          "description": "It updates weights by propagating error backwards."
+        },
+        {
+          "from": "weight_update",
+          "to": "local_gradient",
+          "type": "DETERMINED_BY",
+          "weight": 0.8,
+          "description": "Weight updates are determined by the local gradient."
+        },
+        {
+          "from": "local_gradient",
+          "to": "partial_derivatives",
+          "type": "COMPUTED_BY",
+          "weight": 0.8,
+          "description": "Local gradients are computed using partial derivatives."
+        },
+        {
+          "from": "local_gradient",
+          "to": "chain_rule",
+          "type": "COMPUTED_BY",
+          "weight": 0.8,
+          "description": "Local gradients are computed using the chain rule."
+        }
+      ],
+      "expected_concepts": [
+        "backpropagation",
+        "multi_layer_perceptron",
+        "error_reduction",
+        "weight_update",
+        "local_gradient",
+        "partial_derivatives",
+        "chain_rule"
+      ]
+    },
+    "10": {
+      "question": "When learning using steepest descent, explain the role of the learning rate? What is a danger?",
+      "concepts": [
+        {
+          "id": "steepest_descent_learning",
+          "name": "Steepest Descent Learning",
+          "description": "An optimization algorithm used in machine learning to find the minimum of a function."
+        },
+        {
+          "id": "learning_rate",
+          "name": "Learning Rate",
+          "description": "A hyperparameter that controls the step size during weight updates in steepest descent."
+        },
+        {
+          "id": "convergence_speed",
+          "name": "Convergence Speed",
+          "description": "How quickly the learning algorithm reaches a stable solution or minimum."
+        },
+        {
+          "id": "overdamped_convergence",
+          "name": "Overdamped Convergence",
+          "description": "Slow convergence due to a very low learning rate."
+        },
+        {
+          "id": "underdamped_convergence",
+          "name": "Underdamped Convergence",
+          "description": "Zigzagging convergence due to a high learning rate."
+        },
+        {
+          "id": "instability",
+          "name": "Instability",
+          "description": "A state where learning diverges, occurring when the learning rate exceeds a critical value."
+        }
+      ],
+      "relationships": [
+        {
+          "from": "learning_rate",
+          "to": "convergence_speed",
+          "type": "CONTROLS",
+          "weight": 0.9,
+          "description": "The learning rate controls the speed of convergence."
+        },
+        {
+          "from": "learning_rate",
+          "to": "overdamped_convergence",
+          "type": "PRODUCES",
+          "weight": 0.8,
+          "description": "A low learning rate leads to overdamped convergence."
+        },
+        {
+          "from": "learning_rate",
+          "to": "underdamped_convergence",
+          "type": "PRODUCES",
+          "weight": 0.8,
+          "description": "A high learning rate leads to underdamped convergence."
+        },
+        {
+          "from": "learning_rate",
+          "to": "instability",
+          "type": "PRODUCES",
+          "weight": 0.9,
+          "description": "Exceeding a critical learning rate causes instability."
+        },
+        {
+          "from": "steepest_descent_learning",
+          "to": "learning_rate",
+          "type": "USES",
+          "weight": 0.9,
+          "description": "Steepest descent learning utilizes a learning rate."
+        }
+      ],
+      "expected_concepts": [
+        "steepest_descent_learning",
+        "learning_rate",
+        "convergence_speed",
+        "overdamped_convergence",
+        "underdamped_convergence",
+        "instability"
+      ]
+    },
+    "11": {
+      "question": "How does a Reduced Boltzman Machine work (main idea)?",
+      "concepts": [
+        {
+          "id": "reduced_boltzmann_machine",
+          "name": "Reduced Boltzmann Machine (RBM)",
+          "description": "A bi-parted graph that works by flipping states of binary neurons based on activation probability."
+        },
+        {
+          "id": "bi_parted_graph",
+          "name": "Bi-Parted Graph",
+          "description": "A graph structure with two distinct sets of nodes (layers) where connections only exist between sets."
+        },
+        {
+          "id": "binary_neurons",
+          "name": "Binary Neurons",
+          "description": "Neurons that can exist in one of two states (e.g., 0 or 1)."
+        },
+        {
+          "id": "state_flipping",
+          "name": "State Flipping",
+          "description": "The process of changing the state of a binary neuron based on a probability."
+        },
+        {
+          "id": "activation_probability",
+          "name": "Activation Probability",
+          "description": "The probability that a neuron will be in an 'on' state, determined by its activation."
+        },
+        {
+          "id": "visible_layer",
+          "name": "Visible Layer",
+          "description": "The layer of neurons in an RBM that receives input."
+        },
+        {
+          "id": "hidden_layer",
+          "name": "Hidden Layer",
+          "description": "The layer of neurons in an RBM that learns features from the input."
+        },
+        {
+          "id": "clamped_state",
+          "name": "Clamped State",
+          "description": "A state where visible neurons are connected to the input."
+        },
+        {
+          "id": "free_running_state",
+          "name": "Free Running State",
+          "description": "A state where both visible and hidden layers run freely without external input."
+        }
+      ],
+      "relationships": [
+        {
+          "from": "reduced_boltzmann_machine",
+          "to": "bi_parted_graph",
+          "type": "IS_A",
+          "weight": 0.9,
+          "description": "An RBM is a bi-parted graph."
+        },
+        {
+          "from": "reduced_boltzmann_machine",
+          "to": "binary_neurons",
+          "type": "HAS_PART",
+          "weight": 0.9,
+          "description": "RBMs consist of binary neurons."
+        },
+        {
+          "from": "reduced_boltzmann_machine",
+          "to": "state_flipping",
+          "type": "IMPLEMENTS",
+          "weight": 0.9,
+          "description": "RBMs work by flipping neuron states."
+        },
+        {
+          "from": "state_flipping",
+          "to": "activation_probability",
+          "type": "DETERMINED_BY",
+          "weight": 0.8,
+          "description": "State flipping is based on activation probability."
+        },
+        {
+          "from": "reduced_boltzmann_machine",
+          "to": "visible_layer",
+          "type": "HAS_PART",
+          "weight": 0.9,
+          "description": "RBMs have a visible layer."
+        },
+        {
+          "from": "reduced_boltzmann_machine",
+          "to": "hidden_layer",
+          "type": "HAS_PART",
+          "weight": 0.9,
+          "description": "RBMs have a hidden layer."
+        },
+        {
+          "from": "visible_layer",
+          "to": "clamped_state",
+          "type": "OPERATES_IN",
+          "weight": 0.8,
+          "description": "Visible layer is connected to input in clamped state."
+        },
+        {
+          "from": "visible_layer",
+          "to": "free_running_state",
+          "type": "OPERATES_IN",
+          "weight": 0.8,
+          "description": "Both layers run free in free-running state."
+        },
+        {
+          "from": "hidden_layer",
+          "to": "free_running_state",
+          "type": "OPERATES_IN",
+          "weight": 0.8,
+          "description": "Both layers run free in free-running state."
+        }
+      ],
+      "expected_concepts": [
+        "reduced_boltzmann_machine",
+        "bi_parted_graph",
+        "binary_neurons",
+        "state_flipping",
+        "activation_probability",
+        "visible_layer",
+        "hidden_layer",
+        "clamped_state",
+        "free_running_state"
+      ]
+    },
+    "12": {
+      "question": "Define: Echo State Network (ESN), how are they different to FF NNs?",
+      "concepts": [
+        {
+          "id": "echo_state_network",
+          "name": "Echo State Network (ESN)",
+          "description": "A type of Recurrent Neural Network with at least one cyclic (feedback) connection."
+        },
+        {
+          "id": "recurrent_neural_network",
+          "name": "Recurrent Neural Network (RNN)",
+          "description": "A class of neural networks where connections between nodes form a directed graph along a temporal sequence."
+        },
+        {
+          "id": "cyclic_connection",
+          "name": "Cyclic Connection",
+          "description": "A feedback loop in a neural network, allowing information to persist."
+        },
+        {
+          "id": "feedforward_neural_network",
+          "name": "Feedforward Neural Network (FF NN)",
+          "description": "A type of neural network where connections between nodes do not form a cycle."
+        },
+        {
+          "id": "output_layer_weights",
+          "name": "Output Layer Weights",
+          "description": "The weights connecting the hidden layer to the output layer in an ESN, which are the only ones updated during learning."
+        },
+        {
+          "id": "dynamic_systems_approximation",
+          "name": "Dynamic Systems Approximation",
+          "description": "The ability to model systems whose state evolves over time."
+        }
+      ],
+      "relationships": [
+        {
+          "from": "echo_state_network",
+          "to": "recurrent_neural_network",
+          "type": "IS_A",
+          "weight": 0.9,
+          "description": "ESN is a type of RNN."
+        },
+        {
+          "from": "echo_state_network",
+          "to": "cyclic_connection",
+          "type": "HAS_PART",
+          "weight": 0.9,
+          "description": "ESNs have at least one cyclic connection."
+        },
+        {
+          "from": "echo_state_network",
+          "to": "output_layer_weights",
+          "type": "OPERATES_ON",
+          "weight": 0.8,
+          "description": "Only output layer weights are updated in ESN learning."
+        },
+        {
+          "from": "echo_state_network",
+          "to": "feedforward_neural_network",
+          "type": "CONTRASTS_WITH",
+          "weight": 0.9,
+          "description": "ESNs are different from FF NNs."
+        },
+        {
+          "from": "feedforward_neural_network",
+          "to": "cyclic_connection",
+          "type": "LACKS",
+          "weight": 0.9,
+          "description": "FF NNs do not have feedback connections."
+        },
+        {
+          "from": "echo_state_network",
+          "to": "dynamic_systems_approximation",
+          "type": "IMPLEMENTS",
+          "weight": 0.8,
+          "description": "ESNs can approximate dynamic systems."
+        },
+        {
+          "from": "feedforward_neural_network",
+          "to": "dynamic_systems_approximation",
+          "type": "LACKS",
+          "weight": 0.8,
+          "description": "FF NNs cannot approximate dynamic systems."
+        }
+      ],
+      "expected_concepts": [
+        "echo_state_network",
+        "recurrent_neural_network",
+        "cyclic_connection",
+        "feedforward_neural_network",
+        "output_layer_weights",
+        "dynamic_systems_approximation"
+      ]
+    },
+    "13": {
+      "question": "Describe: the structure on an CNN.",
+      "concepts": [
+        {
+          "id": "convolutional_neural_network",
+          "name": "Convolutional Neural Network (CNN)",
+          "description": "A type of neural network consisting of multiple specialized layers for processing structured data like images."
+        },
+        {
+          "id": "convolutional_layer",
+          "name": "Convolutional Layer",
+          "description": "A layer containing kernels that convolve over the input image to extract features."
+        },
+        {
+          "id": "kernel",
+          "name": "Kernel",
+          "description": "A small matrix that slides over the input image, performing convolution."
+        },
+        {
+          "id": "input_image",
+          "name": "Input Image",
+          "description": "The raw image data fed into the CNN."
+        },
+        {
+          "id": "activation_layer",
+          "name": "Activation Layer",
+          "description": "A layer that applies a non-linear activation function (e.g., ReLU) to the output of the convolutional layer."
+        },
+        {
+          "id": "relu_activation",
+          "name": "ReLU Activation",
+          "description": "Rectified Linear Unit, a common non-linear activation function."
+        },
+        {
+          "id": "pooling_layer",
+          "name": "Pooling Layer",
+          "description": "A layer that reduces the spatial dimensions of the feature maps (e.g., max or average pooling)."
+        },
+        {
+          "id": "max_pooling",
+          "name": "Max Pooling",
+          "description": "A type of pooling that takes the maximum value from each patch of the feature map."
+        },
+        {
+          "id": "average_pooling",
+          "name": "Average Pooling",
+          "description": "A type of pooling that takes the average value from each patch of the feature map."
+        },
+        {
+          "id": "fully_connected_layer",
+          "name": "Fully Connected Layer",
+          "description": "A traditional neural network layer where every neuron is connected to every neuron in the previous layer."
+        },
+        {
+          "id": "softmax_layer",
+          "name": "Softmax Layer",
+          "description": "An output layer that converts raw scores into probabilities for multi-class classification."
+        }
+      ],
+      "relationships": [
+        {
+          "from": "convolutional_neural_network",
+          "to": "convolutional_layer",
+          "type": "HAS_PART",
+          "weight": 0.9,
+          "description": "A CNN consists of convolutional layers."
+        },
+        {
+          "from": "convolutional_layer",
+          "to": "kernel",
+          "type": "HAS_PART",
+          "weight": 0.8,
+          "description": "Convolutional layers have kernels."
+        },
+        {
+          "from": "kernel",
+          "to": "input_image",
+          "type": "OPERATES_ON",
+          "weight": 0.8,
+          "description": "Kernels convolve over the input image."
+        },
+        {
+          "from": "convolutional_neural_network",
+          "to": "activation_layer",
+          "type": "HAS_PART",
+          "weight": 0.9,
+          "description": "A CNN includes activation layers."
+        },
+        {
+          "from": "activation_layer",
+          "to": "relu_activation",
+          "type": "IMPLEMENTS",
+          "weight": 0.7,
+          "description": "ReLU is a common activation used."
+        },
+        {
+          "from": "convolutional_neural_network",
+          "to": "pooling_layer",
+          "type": "HAS_PART",
+          "weight": 0.9,
+          "description": "A CNN includes pooling layers."
+        },
+        {
+          "from": "pooling_layer",
+          "to": "max_pooling",
+          "type": "VARIANT_OF",
+          "weight": 0.7,
+          "description": "Max pooling is a type of pooling."
+        },
+        {
+          "from": "pooling_layer",
+          "to": "average_pooling",
+          "type": "VARIANT_OF",
+          "weight": 0.7,
+          "description": "Average pooling is a type of pooling."
+        },
+        {
+          "from": "convolutional_neural_network",
+          "to": "fully_connected_layer",
+          "type": "HAS_PART",
+          "weight": 0.9,
+          "description": "A CNN typically has one or more fully connected layers."
+        },
+        {
+          "from": "convolutional_neural_network",
+          "to": "softmax_layer",
+          "type": "HAS_PART",
+          "weight": 0.9,
+          "description": "A CNN often ends with a softmax layer."
+        }
+      ],
+      "expected_concepts": [
+        "convolutional_neural_network",
+        "convolutional_layer",
+        "kernel",
+        "input_image",
+        "activation_layer",
+        "relu_activation",
+        "pooling_layer",
+        "max_pooling",
+        "average_pooling",
+        "fully_connected_layer",
+        "softmax_layer"
+      ]
+    },
+    "14": {
+      "question": "What are three items to be learned for an RBF network? Difference to other NNs, Pros/cons?",
+      "concepts": [
+        {
+          "id": "rbf_network",
+          "name": "RBF Network",
+          "description": "A type of neural network that uses radial basis functions as activation functions in its hidden layer."
+        },
+        {
+          "id": "centers",
+          "name": "Centers",
+          "description": "The central points of the radial basis functions, which are learned during training."
+        },
+        {
+          "id": "weights",
+          "name": "Weights",
+          "description": "The connection strengths between the hidden layer and the output layer, which are learned."
+        },
+        {
+          "id": "biases",
+          "name": "Biases",
+          "description": "Additional parameters that can be learned, affecting the output of neurons."
+        },
+        {
+          "id": "single_hidden_layer",
+          "name": "Single Hidden Layer",
+          "description": "A characteristic of RBF networks, having only one layer of hidden neurons."
+        },
+        {
+          "id": "linear_output_layer",
+          "name": "Linear Output Layer",
+          "description": "The output layer of an RBF network, which typically performs a linear combination."
+        },
+        {
+          "id": "other_neural_networks",
+          "name": "Other Neural Networks",
+          "description": "General term for neural networks that are not RBFNs, often having multiple hidden layers and non-linear outputs."
+        },
+        {
+          "id": "universal_approximator",
+          "name": "Universal Approximator",
+          "description": "The property of RBFNs to approximate any continuous function to an arbitrary degree of accuracy."
+        },
+        {
+          "id": "non_unique_bias",
+          "name": "Non-Unique Bias",
+          "description": "A disadvantage of RBFNs where the bias parameter might not have a single optimal value."
+        }
+      ],
+      "relationships": [
+        {
+          "from": "rbf_network",
+          "to": "centers",
+          "type": "LEARNS",
+          "weight": 0.9,
+          "description": "RBF networks learn centers."
+        },
+        {
+          "from": "rbf_network",
+          "to": "weights",
+          "type": "LEARNS",
+          "weight": 0.9,
+          "description": "RBF networks learn weights."
+        },
+        {
+          "from": "rbf_network",
+          "to": "biases",
+          "type": "LEARNS",
+          "weight": 0.9,
+          "description": "RBF networks learn biases."
+        },
+        {
+          "from": "rbf_network",
+          "to": "single_hidden_layer",
+          "type": "HAS_PROPERTY",
+          "weight": 0.9,
+          "description": "RBFNs have a single hidden layer."
+        },
+        {
+          "from": "rbf_network",
+          "to": "linear_output_layer",
+          "type": "HAS_PROPERTY",
+          "weight": 0.9,
+          "description": "RBFNs have a linear output layer."
+        },
+        {
+          "from": "rbf_network",
+          "to": "other_neural_networks",
+          "type": "CONTRASTS_WITH",
+          "weight": 0.9,
+          "description": "RBFNs differ from other NNs in structure."
+        },
+        {
+          "from": "rbf_network",
+          "to": "universal_approximator",
+          "type": "HAS_PROPERTY",
+          "weight": 0.8,
+          "description": "RBFNs are universal approximators (pro)."
+        },
+        {
+          "from": "rbf_network",
+          "to": "non_unique_bias",
+          "type": "HAS_PROPERTY",
+          "weight": 0.7,
+          "description": "The bias in RBFNs is not unique (con)."
+        }
+      ],
+      "expected_concepts": [
+        "rbf_network",
+        "centers",
+        "weights",
+        "biases",
+        "single_hidden_layer",
+        "linear_output_layer",
+        "other_neural_networks",
+        "universal_approximator",
+        "non_unique_bias"
+      ]
+    },
+    "15": {
+      "question": "Describe how learning based on k-nearest neighbors works, use pseudo code!",
+      "concepts": [
+        {
+          "id": "k_nearest_neighbors_learning",
+          "name": "K-Nearest Neighbors Learning (KNN)",
+          "description": "A non-parametric, instance-based learning algorithm used for classification and regression."
+        },
+        {
+          "id": "new_data_point",
+          "name": "New Data Point",
+          "description": "An unclassified data point that needs to be assigned a class."
+        },
+        {
+          "id": "training_data",
+          "name": "Training Data",
+          "description": "Pre-classified or colored data points used as a reference."
+        },
+        {
+          "id": "k_nearest_data_points",
+          "name": "K Nearest Data Points",
+          "description": "The 'k' data points in the training set that are closest to the new data point."
+        },
+        {
+          "id": "distance_metric",
+          "name": "Distance Metric",
+          "description": "A function used to measure the similarity or dissimilarity between data points (implied by 'construct a sphere')."
+        },
+        {
+          "id": "class_vote",
+          "name": "Class Vote",
+          "description": "The count of each class among the k nearest neighbors."
+        },
+        {
+          "id": "class_assignment",
+          "name": "Class Assignment",
+          "description": "Assigning the new data point to the class with the maximum vote."
+        },
+        {
+          "id": "unsupervised_manner",
+          "name": "Unsupervised Manner",
+          "description": "A characteristic of the KNN process as described, implying it doesn't explicitly learn a model but relies on data proximity."
+        }
+      ],
+      "relationships": [
+        {
+          "from": "k_nearest_neighbors_learning",
+          "to": "new_data_point",
+          "type": "OPERATES_ON",
+          "weight": 0.9,
+          "description": "KNN is used to classify new data points."
+        },
+        {
+          "from": "new_data_point",
+          "to": "training_data",
+          "type": "COMPARED_TO",
+          "weight": 0.9,
+          "description": "New data is added to the existing training data."
+        },
+        {
+          "from": "new_data_point",
+          "to": "k_nearest_data_points",
+          "type": "FINDS",
+          "weight": 0.9,
+          "description": "The algorithm finds the k nearest data points to the new one."
+        },
+        {
+          "from": "k_nearest_data_points",
+          "to": "distance_metric",
+          "type": "USES",
+          "weight": 0.8,
+          "description": "The 'sphere' implies a distance metric is used to find neighbors."
+        },
+        {
+          "from": "k_nearest_data_points",
+          "to": "class_vote",
+          "type": "PRODUCES",
+          "weight": 0.8,
+          "description": "The k nearest points contribute to a class vote."
+        },
+        {
+          "from": "class_vote",
+          "to": "class_assignment",
+          "type": "DETERMINES",
+          "weight": 0.9,
+          "description": "The class with the maximum vote determines the assignment."
+        },
+        {
+          "from": "k_nearest_neighbors_learning",
+          "to": "unsupervised_manner",
+          "type": "HAS_PROPERTY",
+          "weight": 0.7,
+          "description": "The process is described as working in an unsupervised manner."
+        }
+      ],
+      "expected_concepts": [
+        "k_nearest_neighbors_learning",
+        "new_data_point",
+        "training_data",
+        "k_nearest_data_points",
+        "distance_metric",
+        "class_vote",
+        "class_assignment",
+        "unsupervised_manner"
+      ]
+    },
+    "16": {
+      "question": "Explain the Bias Variance Dilemma!",
+      "concepts": [
+        {
+          "id": "bias_variance_dilemma",
+          "name": "Bias-Variance Dilemma",
+          "description": "A fundamental problem in supervised learning concerning the trade-off between model bias and variance."
+        },
+        {
+          "id": "supervised_learning",
+          "name": "Supervised Learning",
+          "description": "A type of machine learning where a model learns from labeled training data."
+        },
+        {
+          "id": "model_bias",
+          "name": "Model Bias",
+          "description": "The error introduced by approximating a real-world problem, which may be complex, by a simplified model."
+        },
+        {
+          "id": "model_variance",
+          "name": "Model Variance",
+          "description": "The amount that the estimate of the target function will change if different training data was used."
+        },
+        {
+          "id": "training_data_fit",
+          "name": "Training Data Fit",
+          "description": "How well a model performs on the data it was trained on."
+        },
+        {
+          "id": "generalizability",
+          "name": "Generalizability",
+          "description": "The ability of a model to perform well on unseen data."
+        },
+        {
+          "id": "high_bias",
+          "name": "High Bias",
+          "description": "A state where the model is too simple and underfits the data."
+        },
+        {
+          "id": "high_variance",
+          "name": "High Variance",
+          "description": "A state where the model is too complex and overfits the data."
+        }
+      ],
+      "relationships": [
+        {
+          "from": "bias_variance_dilemma",
+          "to": "supervised_learning",
+          "type": "IS_A",
+          "weight": 0.9,
+          "description": "The dilemma is a principle problem in supervised learning."
+        },
+        {
+          "from": "bias_variance_dilemma",
+          "to": "model_bias",
+          "type": "ARISES_DUE_TO",
+          "weight": 0.9,
+          "description": "The dilemma arises due to model bias."
+        },
+        {
+          "from": "bias_variance_dilemma",
+          "to": "model_variance",
+          "type": "ARISES_DUE_TO",
+          "weight": 0.9,
+          "description": "The dilemma arises due to model variance."
+        },
+        {
+          "from": "high_bias",
+          "to": "training_data_fit",
+          "type": "IMPACTS",
+          "weight": 0.8,
+          "description": "High bias means the model fits training data perfectly (implies overfitting)."
+        },
+        {
+          "from": "high_bias",
+          "to": "high_variance",
+          "type": "PRODUCES",
+          "weight": 0.8,
+          "description": "When bias is high, the model suffers from high variance."
+        },
+        {
+          "from": "model_bias",
+          "to": "model_variance",
+          "type": "CONTRASTS_WITH",
+          "weight": 0.9,
+          "description": "Bias and variance are often in opposition."
+        },
+        {
+          "from": "bias_variance_dilemma",
+          "to": "generalizability",
+          "type": "IMPACTS",
+          "weight": 0.9,
+          "description": "The dilemma makes generalizability difficult to achieve."
+        }
+      ],
+      "expected_concepts": [
+        "bias_variance_dilemma",
+        "supervised_learning",
+        "model_bias",
+        "model_variance",
+        "training_data_fit",
+        "generalizability",
+        "high_bias",
+        "high_variance"
+      ]
+    }
+  }
+}

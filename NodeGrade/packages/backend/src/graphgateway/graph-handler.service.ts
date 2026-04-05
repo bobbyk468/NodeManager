@@ -11,6 +11,7 @@ import {
   ServerEventPayload,
   OutputNode,
   QuestionNode,
+  MaxInputChars,
 } from '@haski/ta-lib';
 import { Socket } from 'socket.io';
 import { emitEvent } from 'utils/socket-emitter';
@@ -65,6 +66,7 @@ export class GraphHandlerService {
           OPENAI_API_KEY: process.env.OPENAI_API_KEY as unknown as string,
           BEARER_TOKEN: process.env.BEARER_TOKEN as unknown as string,
           SIMILARITY_WORKER_URL: process.env.SIMILARITY_WORKER_URL as unknown as string || 'http://localhost:8002',
+          GEMINI_API_KEY: process.env.GEMINI_API_KEY as unknown as string,
         };
 
         this.logger.debug(
@@ -149,6 +151,7 @@ export class GraphHandlerService {
           OPENAI_API_KEY: process.env.OPENAI_API_KEY as unknown as string,
           BEARER_TOKEN: process.env.BEARER_TOKEN as unknown as string,
           SIMILARITY_WORKER_URL: process.env.SIMILARITY_WORKER_URL as unknown as string || 'http://localhost:8002',
+          GEMINI_API_KEY: process.env.GEMINI_API_KEY as unknown as string,
         };
 
         this.logger.debug(
@@ -214,13 +217,25 @@ export class GraphHandlerService {
     payload: ClientEventPayload['runGraph'],
   ) {
     this.logger.log(`RunGraph event received from client id: ${client.id}`);
+    
+    // SECURITY FIX: Fetch graph from DB instead of executing client payload
+    const pathname = payload.path || 'UnnamedGraph';
+    this.logger.debug(`Fetching graph from DB for pathname: ${pathname}`);
+    
+    const dbGraph = await this.graphService.getGraph(pathname);
+    if (!dbGraph) {
+      this.logger.error(`Graph not found for path: ${pathname}`);
+      client.emit('error', { message: 'Graph not found' });
+      return;
+    }
+
     const lgraph = new LGraph();
 
     // Add the node execution handling BEFORE configuring
     this.addOnNodeAdded(lgraph, client);
 
-    this.logger.debug('Configuring graph from client payload');
-    lgraph.configure(JSON.parse(payload.graph));
+    this.logger.debug('Configuring graph from DB payload');
+    lgraph.configure(JSON.parse(dbGraph.graph));
 
     // Hydrate all nodes that were added during configure
     await this.hydrateExistingNodes(lgraph);
@@ -235,12 +250,19 @@ export class GraphHandlerService {
     for (const node of lgraph.findNodesByClass<AnswerInputNode>(
       AnswerInputNode,
     )) {
-      node.properties.value = payload.answer.substring(0, 1500);
+      node.properties.value = payload.answer;
     }
     const answer = lgraph
       .findNodesByClass<AnswerInputNode>(AnswerInputNode)
       .map((node) => node.properties.value)
       .join(' ');
+
+    if (payload.question) {
+      for (const node of lgraph.findNodesByClass(QuestionNode)) {
+        node.properties.value = payload.question;
+      }
+      this.logger.debug(`Question overridden from payload: ${payload.question.substring(0, 80)}`);
+    }
 
     try {
       // Extract LtiCookie data from the client's handshake (guarded for tests)
@@ -495,7 +517,11 @@ export class GraphHandlerService {
         );
         this.sendImages(client, lgraph);
         this.sendQuestion(client, lgraph);
-        emitEvent(client, 'maxInputChars', 1500);
+        // Only emit maxInputChars if the graph explicitly contains a MaxInputCharsNode
+        const maxInputCharsNodes = lgraph.findNodesByClass(MaxInputChars);
+        if (maxInputCharsNodes.length > 0) {
+          emitEvent(client, 'maxInputChars', maxInputCharsNodes[0].properties.value as number);
+        }
       } else {
         this.logger.warn(`Graph not found with pathname: ${pathname}`);
         client.emit('graphNotFound', {

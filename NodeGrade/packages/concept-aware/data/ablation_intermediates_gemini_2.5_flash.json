@@ -1,0 +1,3546 @@
+{
+  "2": {
+    "question": "Define a linked list and describe its basic operations.",
+    "student_answer": "Linked lists are data structures in programming.",
+    "reference_answer": "A linked list is a linear data structure where each element (node) contains data and a pointer to the next node. Basic operations include insertion (at head, tail, or position), deletion, traversal, and search. Insertion at head is O(1), while search requires O(n) traversal.",
+    "human_score": 0.5,
+    "kg_score": 0.119,
+    "comparison": {
+      "scores": {
+        "concept_coverage": 1.0,
+        "relationship_accuracy": 1.0,
+        "integration_quality": 0.0,
+        "overall": 0.7,
+        "chain_coverage": 0.0
+      },
+      "analysis": {
+        "matched_concepts": [],
+        "missing_concepts": [],
+        "extra_concepts": [],
+        "correct_relationships": [],
+        "incorrect_relationships": [],
+        "missing_relationships": []
+      },
+      "diagnostic": {
+        "depth_assessment": "surface",
+        "feedback_points": [
+          "Try to explain HOW concepts relate to each other, not just listing them"
+        ],
+        "strengths": [
+          "Good concept coverage",
+          "Accurate understanding of concept relationships"
+        ],
+        "weaknesses": [
+          "Concepts mentioned in isolation without showing connections"
+        ],
+        "topological_summary": ""
+      }
+    },
+    "blooms": {
+      "level": 1,
+      "label": "Remember",
+      "description": "Recall facts, definitions, and basic terminology",
+      "confidence": 0.8,
+      "justification": "The student provides a very basic, partially correct definition of a linked list, indicating minimal recall.",
+      "reasoning_steps": [
+        "The student attempts to define 'linked list'.",
+        "The definition 'data structures in programming' is a factual recall, albeit incomplete.",
+        "No further explanation, application, or analysis is present."
+      ],
+      "evidence": {
+        "cognitive_verbs": [],
+        "surface_indicators": [],
+        "depth_indicators": []
+      },
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "solo": {
+      "level": 1,
+      "label": "Prestructural",
+      "confidence": 0.9,
+      "justification": "The response offers a vague, generic statement that does not specifically define a linked list or its operations, showing no relevant understanding.",
+      "reasoning_steps": [
+        "The student's answer 'Linked lists are data structures in programming' is a generic statement.",
+        "It does not provide any specific information about what a linked list is or how it operates.",
+        "The concept graph evidence confirms no specific concepts related to linked lists were found, indicating irrelevant or no understanding of the specific topic."
+      ],
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "misconceptions": {
+      "total_misconceptions": 0,
+      "by_severity": {
+        "critical": 0,
+        "moderate": 0,
+        "minor": 0
+      },
+      "misconceptions": [],
+      "summary": "No misconceptions detected. All demonstrated relationships appear correct.",
+      "overall_accuracy": 1.0
+    }
+  },
+  "5": {
+    "question": "Define a linked list and describe its basic operations.",
+    "student_answer": "A linked list stores data in a sequence. You can access any element by its index number in O(1) time.",
+    "reference_answer": "A linked list is a linear data structure where each element (node) contains data and a pointer to the next node. Basic operations include insertion (at head, tail, or position), deletion, traversal, and search. Insertion at head is O(1), while search requires O(n) traversal.",
+    "human_score": 1.5,
+    "kg_score": 0.12545,
+    "comparison": {
+      "scores": {
+        "concept_coverage": 1.0,
+        "relationship_accuracy": 1.0,
+        "integration_quality": 0.7,
+        "overall": 0.91,
+        "chain_coverage": 0.0
+      },
+      "analysis": {
+        "matched_concepts": [
+          "data_structure",
+          "linked_list",
+          "o_1"
+        ],
+        "missing_concepts": [],
+        "extra_concepts": [],
+        "correct_relationships": [
+          {
+            "source": "linked_list",
+            "target": "data_structure",
+            "type": "is_a",
+            "confidence": 0.8
+          }
+        ],
+        "incorrect_relationships": [],
+        "missing_relationships": [
+          {
+            "source": "linked_list",
+            "target": "o_1",
+            "type": "has_complexity",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "linked_list",
+            "target": "o_1",
+            "type": "has_complexity",
+            "note": "Expected connection not demonstrated"
+          }
+        ]
+      },
+      "diagnostic": {
+        "depth_assessment": "deep",
+        "feedback_points": [],
+        "strengths": [
+          "Good concept coverage",
+          "Accurate understanding of concept relationships",
+          "Well-integrated knowledge showing connections between concepts"
+        ],
+        "weaknesses": [],
+        "topological_summary": ""
+      }
+    },
+    "blooms": {
+      "level": 1,
+      "label": "Remember",
+      "description": "Recall facts, definitions, and basic terminology",
+      "confidence": 0.9,
+      "justification": "The student attempts to recall a definition but includes a significant factual error, indicating a basic recall attempt.",
+      "reasoning_steps": [
+        "The student attempts to define a linked list, which is a recall task.",
+        "The definition provided is partially correct ('stores data in a sequence') but contains a major factual error regarding O(1) access by index, which is characteristic of arrays, not linked lists.",
+        "Despite the error, the intent is to retrieve information, placing it at the Remember level."
+      ],
+      "evidence": {
+        "cognitive_verbs": [],
+        "surface_indicators": [],
+        "depth_indicators": []
+      },
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "solo": {
+      "level": 2,
+      "label": "Unistructural",
+      "confidence": 0.8,
+      "justification": "The response identifies one relevant concept (linked list stores data sequentially) but introduces a significant misconception that prevents further meaningful connections.",
+      "reasoning_steps": [
+        "The student identifies one correct characteristic of a linked list (stores data in a sequence).",
+        "The subsequent statement about O(1) access by index is a fundamental misconception about linked lists, indicating a lack of understanding of how its components relate.",
+        "Only one correct, isolated piece of information is presented, with a critical error preventing any further structural integration, classifying it as Unistructural."
+      ],
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "misconceptions": {
+      "total_misconceptions": 0,
+      "by_severity": {
+        "critical": 0,
+        "moderate": 0,
+        "minor": 0
+      },
+      "misconceptions": [],
+      "summary": "No misconceptions detected. All demonstrated relationships appear correct.",
+      "overall_accuracy": 1.0
+    }
+  },
+  "6": {
+    "question": "Define a linked list and describe its basic operations.",
+    "student_answer": "It is a list where each element links to the next. You can add and remove elements from it.",
+    "reference_answer": "A linked list is a linear data structure where each element (node) contains data and a pointer to the next node. Basic operations include insertion (at head, tail, or position), deletion, traversal, and search. Insertion at head is O(1), while search requires O(n) traversal.",
+    "human_score": 1.75,
+    "kg_score": 0.22105000000000002,
+    "comparison": {
+      "scores": {
+        "concept_coverage": 1.0,
+        "relationship_accuracy": 1.0,
+        "integration_quality": 0.8,
+        "overall": 0.94,
+        "chain_coverage": 1.0
+      },
+      "analysis": {
+        "matched_concepts": [
+          "node",
+          "linked_list",
+          "pointer"
+        ],
+        "missing_concepts": [],
+        "extra_concepts": [],
+        "correct_relationships": [
+          {
+            "source": "linked_list",
+            "target": "node",
+            "type": "has_part",
+            "confidence": 0.9
+          },
+          {
+            "source": "node",
+            "target": "pointer",
+            "type": "uses",
+            "confidence": 0.5599999999999999,
+            "note": "Not in expert graph but plausible"
+          }
+        ],
+        "incorrect_relationships": [],
+        "missing_relationships": [
+          {
+            "source": "linked_list",
+            "target": "pointer",
+            "type": "has_part",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "pointer",
+            "target": "linked_list",
+            "type": "prerequisite_for",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "linked_list",
+            "target": "pointer",
+            "type": "has_part",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "pointer",
+            "target": "linked_list",
+            "type": "prerequisite_for",
+            "note": "Expected connection not demonstrated"
+          }
+        ]
+      },
+      "diagnostic": {
+        "depth_assessment": "deep",
+        "feedback_points": [],
+        "strengths": [
+          "Good concept coverage",
+          "Accurate understanding of concept relationships",
+          "Well-integrated knowledge showing connections between concepts"
+        ],
+        "weaknesses": [],
+        "topological_summary": ""
+      }
+    },
+    "blooms": {
+      "level": 1,
+      "label": "Remember",
+      "description": "Recall facts, definitions, and basic terminology",
+      "confidence": 0.9,
+      "justification": "The student recalls the definition of a linked list and names its basic operations without further explanation.",
+      "reasoning_steps": [
+        "The student provides a basic definition of a linked list.",
+        "The student lists two basic operations (add, remove).",
+        "No explanation or elaboration beyond simple recall is present."
+      ],
+      "evidence": {
+        "cognitive_verbs": [],
+        "surface_indicators": [],
+        "depth_indicators": []
+      },
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "solo": {
+      "level": 2,
+      "label": "Unistructural",
+      "confidence": 0.85,
+      "justification": "The response identifies the core concept of a linked list (elements linking) and mentions operations, but does not elaborate on how these concepts are connected or implemented.",
+      "reasoning_steps": [
+        "The student identifies one key aspect of a linked list: elements linking to the next.",
+        "The student mentions basic operations (add, remove) as separate points.",
+        "There is no integration or explanation of how these operations relate to the linked structure."
+      ],
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "misconceptions": {
+      "total_misconceptions": 0,
+      "by_severity": {
+        "critical": 0,
+        "moderate": 0,
+        "minor": 0
+      },
+      "misconceptions": [],
+      "summary": "No misconceptions detected. All demonstrated relationships appear correct.",
+      "overall_accuracy": 1.0
+    }
+  },
+  "10": {
+    "question": "Define a linked list and describe its basic operations.",
+    "student_answer": "A linked list stores elements as nodes. Each node contains data and a reference to the next. Main operations: push to head O(1), traversal O(n), deletion O(n) at arbitrary position. Unlike arrays, nodes don't need contiguous memory.",
+    "reference_answer": "A linked list is a linear data structure where each element (node) contains data and a pointer to the next node. Basic operations include insertion (at head, tail, or position), deletion, traversal, and search. Insertion at head is O(1), while search requires O(n) traversal.",
+    "human_score": 4.25,
+    "kg_score": 0.509105,
+    "comparison": {
+      "scores": {
+        "concept_coverage": 1.0,
+        "relationship_accuracy": 1.0,
+        "integration_quality": 0.5675,
+        "overall": 0.8703,
+        "chain_coverage": 1.0
+      },
+      "analysis": {
+        "matched_concepts": [
+          "node",
+          "array",
+          "data_structure",
+          "linked_list",
+          "pointer",
+          "o_n",
+          "head",
+          "o_1"
+        ],
+        "missing_concepts": [],
+        "extra_concepts": [],
+        "correct_relationships": [
+          {
+            "source": "linked_list",
+            "target": "node",
+            "type": "has_part",
+            "confidence": 1.0
+          },
+          {
+            "source": "node",
+            "target": "pointer",
+            "type": "has_part",
+            "confidence": 0.63,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "linked_list",
+            "target": "o_1",
+            "type": "has_complexity",
+            "confidence": 0.9
+          },
+          {
+            "source": "linked_list",
+            "target": "o_n",
+            "type": "has_complexity",
+            "confidence": 0.9
+          },
+          {
+            "source": "linked_list",
+            "target": "o_n",
+            "type": "has_complexity",
+            "confidence": 0.9
+          },
+          {
+            "source": "linked_list",
+            "target": "array",
+            "type": "contrasts_with",
+            "confidence": 1.0
+          }
+        ],
+        "incorrect_relationships": [],
+        "missing_relationships": [
+          {
+            "source": "array",
+            "target": "data_structure",
+            "type": "is_a",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "array",
+            "target": "o_1",
+            "type": "has_complexity",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "array",
+            "target": "data_structure",
+            "type": "is_a",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "linked_list",
+            "target": "data_structure",
+            "type": "is_a",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "linked_list",
+            "target": "data_structure",
+            "type": "is_a",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "linked_list",
+            "target": "pointer",
+            "type": "has_part",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "linked_list",
+            "target": "head",
+            "type": "has_part",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "pointer",
+            "target": "linked_list",
+            "type": "prerequisite_for",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "linked_list",
+            "target": "pointer",
+            "type": "has_part",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "pointer",
+            "target": "linked_list",
+            "type": "prerequisite_for",
+            "note": "Expected connection not demonstrated"
+          }
+        ]
+      },
+      "diagnostic": {
+        "depth_assessment": "moderate",
+        "feedback_points": [],
+        "strengths": [
+          "Good concept coverage",
+          "Accurate understanding of concept relationships",
+          "Identified 8 relevant concepts"
+        ],
+        "weaknesses": [],
+        "topological_summary": ""
+      }
+    },
+    "blooms": {
+      "level": 2,
+      "label": "Understand",
+      "description": "Explain ideas, paraphrase, interpret, or summarize",
+      "confidence": 0.9,
+      "justification": "The student defines a linked list and describes its operations, demonstrating understanding beyond simple recall by including characteristics and complexities.",
+      "reasoning_steps": [
+        "The student defines a linked list and its components (nodes, data, reference), which is a 'Remember' level task.",
+        "The student describes basic operations and their time complexities, indicating an ability to explain and interpret, moving into 'Understand'.",
+        "The comparison to arrays (non-contiguous memory) further demonstrates an understanding of the concept's implications, solidifying the 'Understand' level."
+      ],
+      "evidence": {
+        "cognitive_verbs": [],
+        "surface_indicators": [],
+        "depth_indicators": []
+      },
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "solo": {
+      "level": 3,
+      "label": "Multistructural",
+      "confidence": 0.85,
+      "justification": "The response lists several relevant concepts (definition, node structure, operations, complexities, comparison to arrays) but presents them as distinct points rather than a fully integrated explanation.",
+      "reasoning_steps": [
+        "The student identifies multiple relevant concepts: linked list definition, node components, specific operations (push, traversal, deletion), time complexities, and a key difference from arrays.",
+        "These concepts are presented as a list of characteristics and facts rather than being explicitly connected to form a cohesive, integrated explanation of how they interrelate.",
+        "While correct, the explanation lacks explicit connections between the definition and the implications for operations or the array comparison, placing it at 'Multistructural'."
+      ],
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "misconceptions": {
+      "total_misconceptions": 0,
+      "by_severity": {
+        "critical": 0,
+        "moderate": 0,
+        "minor": 0
+      },
+      "misconceptions": [],
+      "summary": "No misconceptions detected. All demonstrated relationships appear correct.",
+      "overall_accuracy": 1.0
+    }
+  },
+  "13": {
+    "question": "Compare arrays and linked lists in terms of time complexity for access and insertion.",
+    "student_answer": "They both store elements but differently.",
+    "reference_answer": "Arrays provide O(1) random access by index due to contiguous memory, but insertion requires O(n) shifting. Linked lists require O(n) for access by traversal, but insertion at the head is O(1) by pointer manipulation. Arrays are better for random access; linked lists for frequent insertions.",
+    "human_score": 0.25,
+    "kg_score": 0.12725,
+    "comparison": {
+      "scores": {
+        "concept_coverage": 1.0,
+        "relationship_accuracy": 1.0,
+        "integration_quality": 1.0,
+        "overall": 1.0,
+        "chain_coverage": 1.0
+      },
+      "analysis": {
+        "matched_concepts": [
+          "data_structure",
+          "array",
+          "linked_list"
+        ],
+        "missing_concepts": [],
+        "extra_concepts": [],
+        "correct_relationships": [
+          {
+            "source": "array",
+            "target": "data_structure",
+            "type": "is_a",
+            "confidence": 0.8
+          },
+          {
+            "source": "linked_list",
+            "target": "data_structure",
+            "type": "is_a",
+            "confidence": 0.8
+          },
+          {
+            "source": "array",
+            "target": "linked_list",
+            "type": "contrasts_with",
+            "confidence": 0.7
+          }
+        ],
+        "incorrect_relationships": [],
+        "missing_relationships": []
+      },
+      "diagnostic": {
+        "depth_assessment": "deep",
+        "feedback_points": [],
+        "strengths": [
+          "Good concept coverage",
+          "Accurate understanding of concept relationships",
+          "Well-integrated knowledge showing connections between concepts"
+        ],
+        "weaknesses": [],
+        "topological_summary": ""
+      }
+    },
+    "blooms": {
+      "level": 1,
+      "label": "Remember",
+      "description": "Recall facts, definitions, and basic terminology",
+      "confidence": 1.0,
+      "justification": "The student vaguely recalls that both arrays and linked lists store elements, which is a basic factual recall.",
+      "reasoning_steps": [
+        "The question asks for a comparison of time complexity, requiring analysis.",
+        "The student's answer only states that both 'store elements but differently'.",
+        "This statement is a very basic fact about data structures, indicating recall.",
+        "No explanation, application, or analysis of the requested comparison is present."
+      ],
+      "evidence": {
+        "cognitive_verbs": [],
+        "surface_indicators": [],
+        "depth_indicators": []
+      },
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "solo": {
+      "level": 2,
+      "label": "Unistructural",
+      "confidence": 1.0,
+      "justification": "The student identifies one relevant concept (both store elements) but does not elaborate or connect it to the specific comparison requested.",
+      "reasoning_steps": [
+        "The question requires comparing two data structures based on specific criteria.",
+        "The student's answer mentions a single, very general attribute common to both (storing elements).",
+        "There is no further elaboration or connection of this attribute to the comparison of access and insertion time complexity.",
+        "This indicates a single relevant idea without further development or integration."
+      ],
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "misconceptions": {
+      "total_misconceptions": 0,
+      "by_severity": {
+        "critical": 0,
+        "moderate": 0,
+        "minor": 0
+      },
+      "misconceptions": [],
+      "summary": "No misconceptions detected. All demonstrated relationships appear correct.",
+      "overall_accuracy": 1.0
+    }
+  },
+  "16": {
+    "question": "Compare arrays and linked lists in terms of time complexity for access and insertion.",
+    "student_answer": "Both arrays and linked lists store data. Arrays are faster because they use memory addresses.",
+    "reference_answer": "Arrays provide O(1) random access by index due to contiguous memory, but insertion requires O(n) shifting. Linked lists require O(n) for access by traversal, but insertion at the head is O(1) by pointer manipulation. Arrays are better for random access; linked lists for frequent insertions.",
+    "human_score": 1.5,
+    "kg_score": 0.3165358,
+    "comparison": {
+      "scores": {
+        "concept_coverage": 1.0,
+        "relationship_accuracy": 1.0,
+        "integration_quality": 0.5143,
+        "overall": 0.8543,
+        "chain_coverage": 1.0
+      },
+      "analysis": {
+        "matched_concepts": [
+          "insertion",
+          "array",
+          "data_structure",
+          "linked_list",
+          "pointer",
+          "access",
+          "time_complexity"
+        ],
+        "missing_concepts": [],
+        "extra_concepts": [],
+        "correct_relationships": [
+          {
+            "source": "array",
+            "target": "data_structure",
+            "type": "is_a",
+            "confidence": 0.8
+          },
+          {
+            "source": "linked_list",
+            "target": "data_structure",
+            "type": "is_a",
+            "confidence": 0.8
+          },
+          {
+            "source": "array",
+            "target": "pointer",
+            "type": "uses",
+            "confidence": 0.48999999999999994,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "array",
+            "target": "linked_list",
+            "type": "contrasts_with",
+            "confidence": 1.0
+          }
+        ],
+        "incorrect_relationships": [],
+        "missing_relationships": [
+          {
+            "source": "insertion",
+            "target": "data_structure",
+            "type": "operates_on",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "insertion",
+            "target": "data_structure",
+            "type": "operates_on",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "access",
+            "target": "data_structure",
+            "type": "operates_on",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "linked_list",
+            "target": "pointer",
+            "type": "has_part",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "pointer",
+            "target": "linked_list",
+            "type": "prerequisite_for",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "linked_list",
+            "target": "pointer",
+            "type": "has_part",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "pointer",
+            "target": "linked_list",
+            "type": "prerequisite_for",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "access",
+            "target": "data_structure",
+            "type": "operates_on",
+            "note": "Expected connection not demonstrated"
+          }
+        ]
+      },
+      "diagnostic": {
+        "depth_assessment": "moderate",
+        "feedback_points": [],
+        "strengths": [
+          "Good concept coverage",
+          "Accurate understanding of concept relationships",
+          "Identified 7 relevant concepts"
+        ],
+        "weaknesses": [],
+        "topological_summary": ""
+      }
+    },
+    "blooms": {
+      "level": 2,
+      "label": "Understand",
+      "description": "Explain ideas, paraphrase, interpret, or summarize",
+      "confidence": 0.8,
+      "justification": "The student attempts to explain a difference between arrays and linked lists, indicating a basic understanding beyond mere recall.",
+      "reasoning_steps": [
+        "The student states a commonality ('store data'), which is recall (Bloom 1).",
+        "The student attempts to explain why arrays are faster ('use memory addresses'), which is an attempt at understanding (Bloom 2).",
+        "However, the answer lacks specific details about time complexity for access and insertion for both data structures, which would be required for a higher Bloom's level like Analyze (Bloom 4)."
+      ],
+      "evidence": {
+        "cognitive_verbs": [],
+        "surface_indicators": [],
+        "depth_indicators": []
+      },
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "solo": {
+      "level": 2,
+      "label": "Unistructural",
+      "confidence": 0.8,
+      "justification": "The response identifies one relevant concept (arrays are faster due to memory addresses) but does not connect it to the requested comparison points (access and insertion time complexity for both structures).",
+      "reasoning_steps": [
+        "The student identifies 'arrays' and 'linked lists' as data structures.",
+        "The student provides one relevant piece of information about arrays ('faster because they use memory addresses').",
+        "The response fails to address the specific comparison points (access and insertion time complexity for both arrays and linked lists), indicating a lack of integrated understanding of the question's requirements."
+      ],
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "misconceptions": {
+      "total_misconceptions": 0,
+      "by_severity": {
+        "critical": 0,
+        "moderate": 0,
+        "minor": 0
+      },
+      "misconceptions": [],
+      "summary": "No misconceptions detected. All demonstrated relationships appear correct.",
+      "overall_accuracy": 1.0
+    }
+  },
+  "19": {
+    "question": "Compare arrays and linked lists in terms of time complexity for access and insertion.",
+    "student_answer": "Arrays are faster to access elements. Linked lists are better for inserting because you don't need to shift anything.",
+    "reference_answer": "Arrays provide O(1) random access by index due to contiguous memory, but insertion requires O(n) shifting. Linked lists require O(n) for access by traversal, but insertion at the head is O(1) by pointer manipulation. Arrays are better for random access; linked lists for frequent insertions.",
+    "human_score": 2.75,
+    "kg_score": 0.7036999999999999,
+    "comparison": {
+      "scores": {
+        "concept_coverage": 1.0,
+        "relationship_accuracy": 1.0,
+        "integration_quality": 0.6,
+        "overall": 0.88,
+        "chain_coverage": 0.0
+      },
+      "analysis": {
+        "matched_concepts": [
+          "insertion",
+          "array",
+          "linked_list",
+          "access",
+          "time_complexity"
+        ],
+        "missing_concepts": [],
+        "extra_concepts": [],
+        "correct_relationships": [
+          {
+            "source": "array",
+            "target": "access",
+            "type": "operates_on",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "array",
+            "target": "time_complexity",
+            "type": "has_complexity",
+            "confidence": 0.63,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "linked_list",
+            "target": "insertion",
+            "type": "operates_on",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "linked_list",
+            "target": "time_complexity",
+            "type": "has_complexity",
+            "confidence": 0.63,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "array",
+            "target": "insertion",
+            "type": "contrasts_with",
+            "confidence": 0.48999999999999994,
+            "note": "Not in expert graph but plausible"
+          }
+        ],
+        "incorrect_relationships": [],
+        "missing_relationships": [
+          {
+            "source": "array",
+            "target": "linked_list",
+            "type": "contrasts_with",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "array",
+            "target": "linked_list",
+            "type": "contrasts_with",
+            "note": "Expected connection not demonstrated"
+          }
+        ]
+      },
+      "diagnostic": {
+        "depth_assessment": "moderate",
+        "feedback_points": [],
+        "strengths": [
+          "Good concept coverage",
+          "Accurate understanding of concept relationships",
+          "Identified 5 relevant concepts"
+        ],
+        "weaknesses": [],
+        "topological_summary": ""
+      }
+    },
+    "blooms": {
+      "level": 4,
+      "label": "Analyze",
+      "description": "Break information into parts, identify relationships and patterns",
+      "confidence": 0.9,
+      "justification": "The student successfully differentiates between arrays and linked lists based on two specific criteria (access and insertion time complexity).",
+      "reasoning_steps": [
+        "The question asks to 'compare', which directly maps to Bloom's Analyze level.",
+        "The student identifies key differences in performance characteristics for arrays and linked lists.",
+        "The response provides a reason for the insertion advantage in linked lists, indicating a deeper understanding than mere recall."
+      ],
+      "evidence": {
+        "cognitive_verbs": [],
+        "surface_indicators": [],
+        "depth_indicators": []
+      },
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "solo": {
+      "level": 3,
+      "label": "Multistructural",
+      "confidence": 0.85,
+      "justification": "The student presents several relevant concepts (array access, linked list insertion) but does not explicitly connect them with specific time complexities (e.g., O(1), O(n)) or fully integrate the comparison.",
+      "reasoning_steps": [
+        "The student identifies two distinct relevant aspects for comparison: access and insertion.",
+        "For each aspect, a correct statement is made about one data structure's performance.",
+        "However, the response lacks explicit connections between the data structures for each operation (e.g., stating array insertion is slow) and does not use formal time complexity notation, indicating a listing of attributes rather than a fully integrated comparison."
+      ],
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "misconceptions": {
+      "total_misconceptions": 0,
+      "by_severity": {
+        "critical": 0,
+        "moderate": 0,
+        "minor": 0
+      },
+      "misconceptions": [],
+      "summary": "No misconceptions detected. All demonstrated relationships appear correct.",
+      "overall_accuracy": 1.0
+    }
+  },
+  "22": {
+    "question": "Compare arrays and linked lists in terms of time complexity for access and insertion.",
+    "student_answer": "Arrays have O(1) access since the index directly computes the memory address. Insertion into an array is O(n) due to shifting. Linked lists offer O(1) head insertion by pointer update but O(n) access since traversal is required.",
+    "reference_answer": "Arrays provide O(1) random access by index due to contiguous memory, but insertion requires O(n) shifting. Linked lists require O(n) for access by traversal, but insertion at the head is O(1) by pointer manipulation. Arrays are better for random access; linked lists for frequent insertions.",
+    "human_score": 4.75,
+    "kg_score": 0.8951646,
+    "comparison": {
+      "scores": {
+        "concept_coverage": 1.0,
+        "relationship_accuracy": 1.0,
+        "integration_quality": 0.4691,
+        "overall": 0.8407,
+        "chain_coverage": 1.0
+      },
+      "analysis": {
+        "matched_concepts": [
+          "insertion",
+          "time_complexity",
+          "array",
+          "index",
+          "linked_list",
+          "pointer",
+          "traversal",
+          "access",
+          "o_n",
+          "head",
+          "o_1"
+        ],
+        "missing_concepts": [],
+        "extra_concepts": [],
+        "correct_relationships": [
+          {
+            "source": "array",
+            "target": "access",
+            "type": "operates_on",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "access",
+            "target": "o_1",
+            "type": "has_complexity",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "access",
+            "target": "index",
+            "type": "uses",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "array",
+            "target": "insertion",
+            "type": "operates_on",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "insertion",
+            "target": "o_n",
+            "type": "has_complexity",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "linked_list",
+            "target": "insertion",
+            "type": "operates_on",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "insertion",
+            "target": "o_1",
+            "type": "has_complexity",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "insertion",
+            "target": "head",
+            "type": "uses",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "insertion",
+            "target": "pointer",
+            "type": "uses",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "linked_list",
+            "target": "access",
+            "type": "operates_on",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "access",
+            "target": "o_n",
+            "type": "has_complexity",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "access",
+            "target": "traversal",
+            "type": "uses",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          }
+        ],
+        "incorrect_relationships": [],
+        "missing_relationships": [
+          {
+            "source": "array",
+            "target": "o_1",
+            "type": "has_complexity",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "array",
+            "target": "linked_list",
+            "type": "contrasts_with",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "linked_list",
+            "target": "pointer",
+            "type": "has_part",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "linked_list",
+            "target": "head",
+            "type": "has_part",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "pointer",
+            "target": "linked_list",
+            "type": "prerequisite_for",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "linked_list",
+            "target": "o_n",
+            "type": "has_complexity",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "linked_list",
+            "target": "o_1",
+            "type": "has_complexity",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "array",
+            "target": "linked_list",
+            "type": "contrasts_with",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "linked_list",
+            "target": "pointer",
+            "type": "has_part",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "pointer",
+            "target": "linked_list",
+            "type": "prerequisite_for",
+            "note": "Expected connection not demonstrated"
+          }
+        ]
+      },
+      "diagnostic": {
+        "depth_assessment": "moderate",
+        "feedback_points": [],
+        "strengths": [
+          "Good concept coverage",
+          "Accurate understanding of concept relationships",
+          "Identified 11 relevant concepts"
+        ],
+        "weaknesses": [],
+        "topological_summary": ""
+      }
+    },
+    "blooms": {
+      "level": 4,
+      "label": "Analyze",
+      "description": "Break information into parts, identify relationships and patterns",
+      "confidence": 0.9,
+      "justification": "The student successfully differentiates arrays and linked lists by comparing their time complexities for specific operations, demonstrating an ability to break down and relate information.",
+      "reasoning_steps": [
+        "The question asks to 'compare' arrays and linked lists, which is a keyword for Analyze.",
+        "The student correctly identifies and explains the time complexities for both access and insertion for both data structures.",
+        "The response clearly differentiates the two structures based on these operational characteristics, fulfilling the 'differentiate' aspect of Analyze."
+      ],
+      "evidence": {
+        "cognitive_verbs": [],
+        "surface_indicators": [],
+        "depth_indicators": []
+      },
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "solo": {
+      "level": 4,
+      "label": "Relational",
+      "confidence": 0.9,
+      "justification": "The student connects multiple concepts (arrays, linked lists, access, insertion, O(1), O(n)) into a coherent comparison, explaining the reasons behind the time complexities.",
+      "reasoning_steps": [
+        "The student presents several relevant concepts for both arrays and linked lists.",
+        "The response goes beyond merely listing facts by explaining *why* certain complexities exist (e.g., 'index directly computes', 'due to shifting', 'traversal is required').",
+        "These explanations demonstrate a clear understanding of the relationships between the data structure's implementation and its performance characteristics, forming a coherent structure."
+      ],
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "misconceptions": {
+      "total_misconceptions": 0,
+      "by_severity": {
+        "critical": 0,
+        "moderate": 0,
+        "minor": 0
+      },
+      "misconceptions": [],
+      "summary": "No misconceptions detected. All demonstrated relationships appear correct.",
+      "overall_accuracy": 1.0
+    }
+  },
+  "25": {
+    "question": "Explain how a stack works and give a real-world example of its use.",
+    "student_answer": "Stacks are used in programming.",
+    "reference_answer": "A stack is a LIFO (Last In First Out) data structure. The main operations are push (add to top), pop (remove from top), and peek (view top without removing). Time complexity is O(1) for all operations. A real-world example is the undo function in text editors \u2014 each action is pushed onto a stack, and undo pops the most recent action.",
+    "human_score": 0.5,
+    "kg_score": 0.12425,
+    "comparison": {
+      "scores": {
+        "concept_coverage": 1.0,
+        "relationship_accuracy": 1.0,
+        "integration_quality": 0.5,
+        "overall": 0.85,
+        "chain_coverage": 0.0
+      },
+      "analysis": {
+        "matched_concepts": [
+          "stack"
+        ],
+        "missing_concepts": [],
+        "extra_concepts": [],
+        "correct_relationships": [],
+        "incorrect_relationships": [],
+        "missing_relationships": []
+      },
+      "diagnostic": {
+        "depth_assessment": "surface",
+        "feedback_points": [
+          "Try to explain HOW concepts relate to each other, not just listing them"
+        ],
+        "strengths": [
+          "Good concept coverage",
+          "Accurate understanding of concept relationships"
+        ],
+        "weaknesses": [],
+        "topological_summary": ""
+      }
+    },
+    "blooms": {
+      "level": 1,
+      "label": "Remember",
+      "description": "Recall facts, definitions, and basic terminology",
+      "confidence": 0.9,
+      "justification": "The student merely states a fact about stacks without explaining their mechanism or providing a specific example.",
+      "reasoning_steps": [
+        "The question asks to 'explain how a stack works' and 'give a real-world example'.",
+        "The student's answer 'Stacks are used in programming' is a simple factual recall.",
+        "No explanation of the mechanism (LIFO, push/pop) or specific example is provided, indicating a lack of understanding or application beyond basic recall."
+      ],
+      "evidence": {
+        "cognitive_verbs": [],
+        "surface_indicators": [],
+        "depth_indicators": []
+      },
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "solo": {
+      "level": 2,
+      "label": "Unistructural",
+      "confidence": 0.9,
+      "justification": "The response identifies one relevant concept (stacks) but provides no further details or connections to how it works or specific uses.",
+      "reasoning_steps": [
+        "The student identifies one relevant concept: 'stacks'.",
+        "The response does not elaborate on this concept or connect it to other ideas like 'how it works' or 'real-world examples'.",
+        "This single, isolated piece of information aligns with the Unistructural level."
+      ],
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "misconceptions": {
+      "total_misconceptions": 0,
+      "by_severity": {
+        "critical": 0,
+        "moderate": 0,
+        "minor": 0
+      },
+      "misconceptions": [],
+      "summary": "No misconceptions detected. All demonstrated relationships appear correct.",
+      "overall_accuracy": 1.0
+    }
+  },
+  "28": {
+    "question": "Explain how a stack works and give a real-world example of its use.",
+    "student_answer": "A stack is a data structure. Elements are added and removed in order.",
+    "reference_answer": "A stack is a LIFO (Last In First Out) data structure. The main operations are push (add to top), pop (remove from top), and peek (view top without removing). Time complexity is O(1) for all operations. A real-world example is the undo function in text editors \u2014 each action is pushed onto a stack, and undo pops the most recent action.",
+    "human_score": 1.25,
+    "kg_score": 0.12725,
+    "comparison": {
+      "scores": {
+        "concept_coverage": 1.0,
+        "relationship_accuracy": 1.0,
+        "integration_quality": 1.0,
+        "overall": 1.0,
+        "chain_coverage": 0.0
+      },
+      "analysis": {
+        "matched_concepts": [
+          "data_structure",
+          "stack",
+          "lifo"
+        ],
+        "missing_concepts": [],
+        "extra_concepts": [],
+        "correct_relationships": [
+          {
+            "source": "stack",
+            "target": "data_structure",
+            "type": "is_a",
+            "confidence": 1.0
+          },
+          {
+            "source": "stack",
+            "target": "lifo",
+            "type": "has_property",
+            "confidence": 0.7
+          }
+        ],
+        "incorrect_relationships": [],
+        "missing_relationships": []
+      },
+      "diagnostic": {
+        "depth_assessment": "deep",
+        "feedback_points": [],
+        "strengths": [
+          "Good concept coverage",
+          "Accurate understanding of concept relationships",
+          "Well-integrated knowledge showing connections between concepts"
+        ],
+        "weaknesses": [],
+        "topological_summary": ""
+      }
+    },
+    "blooms": {
+      "level": 1,
+      "label": "Remember",
+      "description": "Recall facts, definitions, and basic terminology",
+      "confidence": 0.9,
+      "justification": "The student recalls basic facts about a stack but does not explain its operation or provide an example.",
+      "reasoning_steps": [
+        "The student defines a stack as a data structure, which is a recall of a basic fact.",
+        "The student mentions elements are added and removed in order, which is a partial recall of the LIFO principle.",
+        "The response lacks any explanation of 'how it works' or a real-world example, preventing it from reaching 'Understand' or 'Apply'."
+      ],
+      "evidence": {
+        "cognitive_verbs": [],
+        "surface_indicators": [],
+        "depth_indicators": []
+      },
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "solo": {
+      "level": 2,
+      "label": "Unistructural",
+      "confidence": 0.9,
+      "justification": "The student identifies a stack and one key characteristic (ordered addition/removal) but does not connect these concepts to explain its operation.",
+      "reasoning_steps": [
+        "The student identifies 'stack' and 'data structure' as relevant concepts.",
+        "The student mentions 'elements are added and removed in order' which is a single relevant characteristic (LIFO).",
+        "There is no integration of these concepts to explain the mechanism or provide an example, indicating a lack of connections beyond a single idea."
+      ],
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "misconceptions": {
+      "total_misconceptions": 0,
+      "by_severity": {
+        "critical": 0,
+        "moderate": 0,
+        "minor": 0
+      },
+      "misconceptions": [],
+      "summary": "No misconceptions detected. All demonstrated relationships appear correct.",
+      "overall_accuracy": 1.0
+    }
+  },
+  "30": {
+    "question": "Explain how a stack works and give a real-world example of its use.",
+    "student_answer": "A stack stores elements and you can add or remove them from the top. It works like a pile of books.",
+    "reference_answer": "A stack is a LIFO (Last In First Out) data structure. The main operations are push (add to top), pop (remove from top), and peek (view top without removing). Time complexity is O(1) for all operations. A real-world example is the undo function in text editors \u2014 each action is pushed onto a stack, and undo pops the most recent action.",
+    "human_score": 2.25,
+    "kg_score": 0.3787,
+    "comparison": {
+      "scores": {
+        "concept_coverage": 1.0,
+        "relationship_accuracy": 1.0,
+        "integration_quality": 1.0,
+        "overall": 1.0,
+        "chain_coverage": 0.0
+      },
+      "analysis": {
+        "matched_concepts": [
+          "stack",
+          "pop",
+          "push"
+        ],
+        "missing_concepts": [],
+        "extra_concepts": [],
+        "correct_relationships": [
+          {
+            "source": "stack",
+            "target": "push",
+            "type": "operates_on",
+            "confidence": 0.9
+          },
+          {
+            "source": "stack",
+            "target": "pop",
+            "type": "operates_on",
+            "confidence": 0.9
+          }
+        ],
+        "incorrect_relationships": [],
+        "missing_relationships": []
+      },
+      "diagnostic": {
+        "depth_assessment": "deep",
+        "feedback_points": [],
+        "strengths": [
+          "Good concept coverage",
+          "Accurate understanding of concept relationships",
+          "Well-integrated knowledge showing connections between concepts"
+        ],
+        "weaknesses": [],
+        "topological_summary": ""
+      }
+    },
+    "blooms": {
+      "level": 2,
+      "label": "Understand",
+      "description": "Explain ideas, paraphrase, interpret, or summarize",
+      "confidence": 0.9,
+      "justification": "The student explains the core mechanism of a stack and provides a relevant analogy, demonstrating understanding beyond simple recall.",
+      "reasoning_steps": [
+        "The student defines a stack and its operations (add/remove from top), indicating 'Remember'.",
+        "The student provides an analogy ('pile of books') to explain how it works, which goes beyond mere recall and demonstrates 'Understand'."
+      ],
+      "evidence": {
+        "cognitive_verbs": [],
+        "surface_indicators": [],
+        "depth_indicators": []
+      },
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "solo": {
+      "level": 3,
+      "label": "Multistructural",
+      "confidence": 0.85,
+      "justification": "The response identifies key features of a stack (storage, LIFO operations) and provides an example, but the explanation of 'how it works' is a simple description rather than a deeply integrated explanation of its underlying principles.",
+      "reasoning_steps": [
+        "The student identifies multiple relevant concepts: stack, adding/removing elements, and the 'top' principle.",
+        "The student provides a real-world example, which is another distinct piece of information.",
+        "While the concepts are correct, they are presented as distinct facts and an analogy rather than a fully integrated explanation of the stack's operational flow or its implications, thus fitting 'Multistructural'."
+      ],
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "misconceptions": {
+      "total_misconceptions": 0,
+      "by_severity": {
+        "critical": 0,
+        "moderate": 0,
+        "minor": 0
+      },
+      "misconceptions": [],
+      "summary": "No misconceptions detected. All demonstrated relationships appear correct.",
+      "overall_accuracy": 1.0
+    }
+  },
+  "33": {
+    "question": "Explain how a stack works and give a real-world example of its use.",
+    "student_answer": "A stack is LIFO. You push and pop elements in O(1). It's like a stack of plates \u2014 you take from the top. Used for expression evaluation and undo functionality.",
+    "reference_answer": "A stack is a LIFO (Last In First Out) data structure. The main operations are push (add to top), pop (remove from top), and peek (view top without removing). Time complexity is O(1) for all operations. A real-world example is the undo function in text editors \u2014 each action is pushed onto a stack, and undo pops the most recent action.",
+    "human_score": 3.75,
+    "kg_score": 0.508323329,
+    "comparison": {
+      "scores": {
+        "concept_coverage": 1.0,
+        "relationship_accuracy": 0.6667,
+        "integration_quality": 1.0,
+        "overall": 0.9,
+        "chain_coverage": 1.0
+      },
+      "analysis": {
+        "matched_concepts": [
+          "pop",
+          "stack",
+          "lifo",
+          "push"
+        ],
+        "missing_concepts": [],
+        "extra_concepts": [],
+        "correct_relationships": [
+          {
+            "source": "push",
+            "target": "stack",
+            "type": "operates_on",
+            "confidence": 1.0
+          },
+          {
+            "source": "pop",
+            "target": "stack",
+            "type": "operates_on",
+            "confidence": 1.0
+          }
+        ],
+        "incorrect_relationships": [
+          {
+            "source": "stack",
+            "target": "lifo",
+            "student_relation": "is_a",
+            "correct_relation": "has_property",
+            "explanation": "Student used 'is_a' but the correct relationship is 'has_property'",
+            "severity": "moderate"
+          }
+        ],
+        "missing_relationships": []
+      },
+      "diagnostic": {
+        "depth_assessment": "moderate",
+        "feedback_points": [
+          "Review the relationship between 'stack' and 'lifo': Student used 'is_a' but the correct relationship is 'has_property'"
+        ],
+        "strengths": [
+          "Good concept coverage",
+          "Well-integrated knowledge showing connections between concepts",
+          "Identified 4 relevant concepts"
+        ],
+        "weaknesses": [
+          "1 misconception(s) detected"
+        ],
+        "topological_summary": ""
+      }
+    },
+    "blooms": {
+      "level": 2,
+      "label": "Understand",
+      "description": "Explain ideas, paraphrase, interpret, or summarize",
+      "confidence": 0.9,
+      "justification": "The student explains the core mechanism of a stack (LIFO, push/pop) and provides relevant examples, demonstrating understanding.",
+      "reasoning_steps": [
+        "The student defines a stack using LIFO and describes its operations (push/pop), indicating recall.",
+        "The student provides a clear analogy (stack of plates) and real-world uses, demonstrating an ability to explain and interpret the concept.",
+        "No evidence of applying the concept in a new problem, analyzing its components, evaluating its trade-offs, or creating something new is present."
+      ],
+      "evidence": {
+        "cognitive_verbs": [],
+        "surface_indicators": [],
+        "depth_indicators": []
+      },
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "solo": {
+      "level": 4,
+      "label": "Relational",
+      "confidence": 0.9,
+      "justification": "The response connects several concepts (LIFO, push/pop, analogy, examples) into a coherent explanation of how a stack works.",
+      "reasoning_steps": [
+        "The student identifies multiple relevant concepts: LIFO, push, pop, O(1) complexity, plate analogy, expression evaluation, and undo functionality.",
+        "These concepts are not merely listed but are integrated to explain the 'how' of a stack's operation and its practical applications.",
+        "The explanation forms a coherent structure, linking the definition to its mechanism and real-world relevance, indicating relational understanding."
+      ],
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "misconceptions": {
+      "total_misconceptions": 1,
+      "by_severity": {
+        "critical": 0,
+        "moderate": 0,
+        "minor": 1
+      },
+      "misconceptions": [
+        {
+          "misconception_id": "stack_lifo_relationship",
+          "taxonomy_category": "novel",
+          "type": "isolated",
+          "severity": "minor",
+          "source_concept": "stack",
+          "target_concept": "lifo",
+          "student_claim": "A stack is LIFO.",
+          "correct_understanding": "A stack has the property of LIFO (Last In, First Out).",
+          "explanation": "While it's true that a stack operates on a LIFO principle, it's more precise to say that LIFO is a 'property' or 'behavior' of a stack, rather than saying a stack 'is' LIFO. LIFO describes how elements are accessed and removed, not what a stack fundamentally 'is' as a data structure.",
+          "remediation_hint": "Review the definitions of data structures and their properties. Think about the difference between 'what something is' and 'how something behaves' or 'what characteristics it has'.",
+          "confidence": 0.9
+        }
+      ],
+      "summary": "The student demonstrates a good understanding of stacks, correctly identifying LIFO behavior, O(1) operations, and common real-world examples. The only detected 'misconception' is a minor imprecision in language regarding the relationship between a stack and LIFO, which is more of a semantic nuance than a fundamental misunderstanding of the concept itself. No critical misconceptions were found.",
+      "overall_accuracy": 0.983
+    }
+  },
+  "36": {
+    "question": "What is a binary search tree (BST) and what is the time complexity of search?",
+    "student_answer": "I am not sure what a BST is.",
+    "reference_answer": "A binary search tree is a binary tree where for each node, all values in the left subtree are less than the node and all values in the right subtree are greater. Search complexity is O(log n) for a balanced BST because each comparison halves the search space. In the worst case (degenerate/skewed tree), search is O(n).",
+    "human_score": 0.0,
+    "kg_score": 0.027000000000000003,
+    "comparison": {
+      "scores": {
+        "concept_coverage": 1.0,
+        "relationship_accuracy": 1.0,
+        "integration_quality": 0.5,
+        "overall": 0.85,
+        "chain_coverage": 0.0
+      },
+      "analysis": {
+        "matched_concepts": [
+          "binary_search_tree"
+        ],
+        "missing_concepts": [],
+        "extra_concepts": [],
+        "correct_relationships": [],
+        "incorrect_relationships": [],
+        "missing_relationships": []
+      },
+      "diagnostic": {
+        "depth_assessment": "surface",
+        "feedback_points": [
+          "Try to explain HOW concepts relate to each other, not just listing them"
+        ],
+        "strengths": [
+          "Good concept coverage",
+          "Accurate understanding of concept relationships"
+        ],
+        "weaknesses": [],
+        "topological_summary": ""
+      }
+    },
+    "blooms": {
+      "level": 1,
+      "label": "Remember",
+      "description": "Recall facts, definitions, and basic terminology",
+      "confidence": 1.0,
+      "justification": "The student explicitly states a lack of knowledge about the core concept, indicating no recall.",
+      "reasoning_steps": [
+        "The student's answer 'I am not sure what a BST is' directly indicates an inability to recall or define the term.",
+        "No facts, definitions, or terms related to BST are provided.",
+        "Therefore, the lowest level of Bloom's, Remember, is not met."
+      ],
+      "evidence": {
+        "cognitive_verbs": [],
+        "surface_indicators": [],
+        "depth_indicators": []
+      },
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "solo": {
+      "level": 1,
+      "label": "Prestructural",
+      "confidence": 1.0,
+      "justification": "The student's response indicates no understanding or relevant concepts, aligning with a prestructural level.",
+      "reasoning_steps": [
+        "The student explicitly states 'I am not sure what a BST is', showing no understanding.",
+        "No relevant concepts are mentioned or implied in the response.",
+        "The response provides no information, relevant or irrelevant, about the topic."
+      ],
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "misconceptions": {
+      "total_misconceptions": 0,
+      "by_severity": {
+        "critical": 0,
+        "moderate": 0,
+        "minor": 0
+      },
+      "misconceptions": [],
+      "summary": "No misconceptions detected. All demonstrated relationships appear correct.",
+      "overall_accuracy": 1.0
+    }
+  },
+  "38": {
+    "question": "What is a binary search tree (BST) and what is the time complexity of search?",
+    "student_answer": "A binary search tree lets you search quickly.",
+    "reference_answer": "A binary search tree is a binary tree where for each node, all values in the left subtree are less than the node and all values in the right subtree are greater. Search complexity is O(log n) for a balanced BST because each comparison halves the search space. In the worst case (degenerate/skewed tree), search is O(n).",
+    "human_score": 0.75,
+    "kg_score": 0.12485,
+    "comparison": {
+      "scores": {
+        "concept_coverage": 1.0,
+        "relationship_accuracy": 1.0,
+        "integration_quality": 0.6,
+        "overall": 0.88,
+        "chain_coverage": 0.0
+      },
+      "analysis": {
+        "matched_concepts": [
+          "searching",
+          "binary_search_tree"
+        ],
+        "missing_concepts": [],
+        "extra_concepts": [],
+        "correct_relationships": [
+          {
+            "source": "binary_search_tree",
+            "target": "searching",
+            "type": "uses",
+            "confidence": 0.63,
+            "note": "Not in expert graph but plausible"
+          }
+        ],
+        "incorrect_relationships": [],
+        "missing_relationships": []
+      },
+      "diagnostic": {
+        "depth_assessment": "surface",
+        "feedback_points": [
+          "Try to explain HOW concepts relate to each other, not just listing them"
+        ],
+        "strengths": [
+          "Good concept coverage",
+          "Accurate understanding of concept relationships"
+        ],
+        "weaknesses": [],
+        "topological_summary": ""
+      }
+    },
+    "blooms": {
+      "level": 1,
+      "label": "Remember",
+      "description": "Recall facts, definitions, and basic terminology",
+      "confidence": 0.9,
+      "justification": "The student recalls a single, basic characteristic of a BST without further explanation or detail.",
+      "reasoning_steps": [
+        "The student identifies 'binary search tree' and 'searching' as relevant concepts.",
+        "The response states a single, very high-level characteristic ('search quickly') related to a BST.",
+        "No definition, explanation, or deeper understanding of how a BST works or its complexity is provided.",
+        "This aligns with recalling a basic fact or term."
+      ],
+      "evidence": {
+        "cognitive_verbs": [],
+        "surface_indicators": [],
+        "depth_indicators": []
+      },
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "solo": {
+      "level": 2,
+      "label": "Unistructural",
+      "confidence": 0.9,
+      "justification": "The student identifies one relevant concept (BST) and one attribute (quick search) but makes no further connections or elaborations.",
+      "reasoning_steps": [
+        "The student mentions 'binary search tree' and 'search quickly'.",
+        "This indicates one relevant concept (BST) and one related idea (its search speed).",
+        "There are no other concepts or details provided, nor any explanation of the 'quickness' or the time complexity.",
+        "This represents a single relevant point without further elaboration or integration."
+      ],
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "misconceptions": {
+      "total_misconceptions": 0,
+      "by_severity": {
+        "critical": 0,
+        "moderate": 0,
+        "minor": 0
+      },
+      "misconceptions": [],
+      "summary": "No misconceptions detected. All demonstrated relationships appear correct.",
+      "overall_accuracy": 1.0
+    }
+  },
+  "41": {
+    "question": "What is a binary search tree (BST) and what is the time complexity of search?",
+    "student_answer": "It is a tree with a specific ordering. Search involves comparing nodes.",
+    "reference_answer": "A binary search tree is a binary tree where for each node, all values in the left subtree are less than the node and all values in the right subtree are greater. Search complexity is O(log n) for a balanced BST because each comparison halves the search space. In the worst case (degenerate/skewed tree), search is O(n).",
+    "human_score": 1.5,
+    "kg_score": 0.12467,
+    "comparison": {
+      "scores": {
+        "concept_coverage": 1.0,
+        "relationship_accuracy": 1.0,
+        "integration_quality": 0.57,
+        "overall": 0.871,
+        "chain_coverage": 0.0
+      },
+      "analysis": {
+        "matched_concepts": [
+          "node",
+          "searching",
+          "binary_search_tree",
+          "tree",
+          "sorting"
+        ],
+        "missing_concepts": [],
+        "extra_concepts": [],
+        "correct_relationships": [
+          {
+            "source": "binary_search_tree",
+            "target": "tree",
+            "type": "is_a",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "binary_search_tree",
+            "target": "sorting",
+            "type": "has_property",
+            "confidence": 0.5599999999999999,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "searching",
+            "target": "node",
+            "type": "operates_on",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          }
+        ],
+        "incorrect_relationships": [],
+        "missing_relationships": [
+          {
+            "source": "tree",
+            "target": "node",
+            "type": "has_part",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "tree",
+            "target": "node",
+            "type": "has_part",
+            "note": "Expected connection not demonstrated"
+          }
+        ]
+      },
+      "diagnostic": {
+        "depth_assessment": "moderate",
+        "feedback_points": [],
+        "strengths": [
+          "Good concept coverage",
+          "Accurate understanding of concept relationships",
+          "Identified 5 relevant concepts"
+        ],
+        "weaknesses": [],
+        "topological_summary": ""
+      }
+    },
+    "blooms": {
+      "level": 1,
+      "label": "Remember",
+      "description": "Recall facts, definitions, and basic terminology",
+      "confidence": 0.9,
+      "justification": "The student recalls basic facts about a BST and its search mechanism without explaining or elaborating.",
+      "reasoning_steps": [
+        "The student defines a BST as 'a tree with a specific ordering,' which is a direct recall of a definition.",
+        "The student states 'Search involves comparing nodes,' which is a factual recall of a search operation.",
+        "No explanation, application, analysis, evaluation, or creation is demonstrated beyond basic recall."
+      ],
+      "evidence": {
+        "cognitive_verbs": [],
+        "surface_indicators": [],
+        "depth_indicators": []
+      },
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "solo": {
+      "level": 2,
+      "label": "Unistructural",
+      "confidence": 0.85,
+      "justification": "The response identifies two relevant concepts (BST definition, search mechanism) but does not connect them or address the time complexity.",
+      "reasoning_steps": [
+        "The student identifies 'binary_search_tree' and 'tree' as relevant concepts.",
+        "The student identifies 'searching' and 'node' as relevant concepts related to the search process.",
+        "While two distinct ideas are present (what a BST is, how search works), they are presented as separate statements without integration or addressing the time complexity aspect of the question."
+      ],
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "misconceptions": {
+      "total_misconceptions": 0,
+      "by_severity": {
+        "critical": 0,
+        "moderate": 0,
+        "minor": 0
+      },
+      "misconceptions": [],
+      "summary": "No misconceptions detected. All demonstrated relationships appear correct.",
+      "overall_accuracy": 1.0
+    }
+  },
+  "44": {
+    "question": "What is a binary search tree (BST) and what is the time complexity of search?",
+    "student_answer": "A BST is an ordered binary tree. For each node, left < node < right. Search takes O(log n) in the average case.",
+    "reference_answer": "A binary search tree is a binary tree where for each node, all values in the left subtree are less than the node and all values in the right subtree are greater. Search complexity is O(log n) for a balanced BST because each comparison halves the search space. In the worst case (degenerate/skewed tree), search is O(n).",
+    "human_score": 3.5,
+    "kg_score": 0.5109002,
+    "comparison": {
+      "scores": {
+        "concept_coverage": 1.0,
+        "relationship_accuracy": 1.0,
+        "integration_quality": 0.8667,
+        "overall": 0.96,
+        "chain_coverage": 1.0
+      },
+      "analysis": {
+        "matched_concepts": [
+          "node",
+          "binary_search_tree",
+          "searching",
+          "o_log_n",
+          "binary_tree",
+          "time_complexity"
+        ],
+        "missing_concepts": [],
+        "extra_concepts": [],
+        "correct_relationships": [
+          {
+            "source": "binary_search_tree",
+            "target": "binary_tree",
+            "type": "is_a",
+            "confidence": 1.0
+          },
+          {
+            "source": "binary_search_tree",
+            "target": "node",
+            "type": "has_part",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "binary_search_tree",
+            "target": "searching",
+            "type": "operates_on",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "searching",
+            "target": "o_log_n",
+            "type": "has_complexity",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "binary_search_tree",
+            "target": "time_complexity",
+            "type": "has_property",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          }
+        ],
+        "incorrect_relationships": [],
+        "missing_relationships": [
+          {
+            "source": "binary_search_tree",
+            "target": "o_log_n",
+            "type": "has_complexity",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "binary_search_tree",
+            "target": "o_log_n",
+            "type": "has_complexity",
+            "note": "Expected connection not demonstrated"
+          }
+        ]
+      },
+      "diagnostic": {
+        "depth_assessment": "deep",
+        "feedback_points": [],
+        "strengths": [
+          "Good concept coverage",
+          "Accurate understanding of concept relationships",
+          "Well-integrated knowledge showing connections between concepts",
+          "Identified 6 relevant concepts"
+        ],
+        "weaknesses": [],
+        "topological_summary": ""
+      }
+    },
+    "blooms": {
+      "level": 2,
+      "label": "Understand",
+      "description": "Explain ideas, paraphrase, interpret, or summarize",
+      "confidence": 0.9,
+      "justification": "The student defines a BST and explains its ordering property, demonstrating understanding beyond simple recall.",
+      "reasoning_steps": [
+        "The student defines a BST as an 'ordered binary tree' and states its core property 'left < node < right', which goes beyond mere recall of a definition.",
+        "The student also correctly states the average time complexity for search, indicating factual recall.",
+        "The combination of defining the structure and explaining its ordering rule indicates an 'Understand' level, as they can interpret and explain the concept."
+      ],
+      "evidence": {
+        "cognitive_verbs": [],
+        "surface_indicators": [],
+        "depth_indicators": []
+      },
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "solo": {
+      "level": 3,
+      "label": "Multistructural",
+      "confidence": 0.85,
+      "justification": "The response lists several correct concepts (definition, ordering, time complexity) but does not explicitly connect how the ordering property leads to the O(log n) search time.",
+      "reasoning_steps": [
+        "The student identifies multiple relevant concepts: the definition of a BST, its ordering rule, and the time complexity of search.",
+        "These concepts are presented as distinct pieces of information without explicitly linking how the 'left < node < right' property enables the O(log n) search efficiency.",
+        "While all information is correct and relevant, the lack of explicit integration between the structural property and the algorithmic efficiency places it at the Multistructural level."
+      ],
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "misconceptions": {
+      "total_misconceptions": 0,
+      "by_severity": {
+        "critical": 0,
+        "moderate": 0,
+        "minor": 0
+      },
+      "misconceptions": [],
+      "summary": "No misconceptions detected. All demonstrated relationships appear correct.",
+      "overall_accuracy": 1.0
+    }
+  },
+  "47": {
+    "question": "What is a binary search tree (BST) and what is the time complexity of search?",
+    "student_answer": "A BST is a binary tree with the ordering property: left child < parent < right child for every node. Search is O(log n) on average because each comparison eliminates half the remaining nodes. However, if the tree is unbalanced (e.g., all nodes inserted in sorted order), it degenerates to a linked list with O(n) search.",
+    "reference_answer": "A binary search tree is a binary tree where for each node, all values in the left subtree are less than the node and all values in the right subtree are greater. Search complexity is O(log n) for a balanced BST because each comparison halves the search space. In the worst case (degenerate/skewed tree), search is O(n).",
+    "human_score": 5.0,
+    "kg_score": 0.8966784,
+    "comparison": {
+      "scores": {
+        "concept_coverage": 1.0,
+        "relationship_accuracy": 1.0,
+        "integration_quality": 0.7214,
+        "overall": 0.9164,
+        "chain_coverage": 1.0
+      },
+      "analysis": {
+        "matched_concepts": [
+          "node",
+          "linked_list",
+          "o_n",
+          "binary_search_tree",
+          "searching",
+          "o_log_n",
+          "balanced_tree",
+          "binary_tree",
+          "time_complexity"
+        ],
+        "missing_concepts": [],
+        "extra_concepts": [],
+        "correct_relationships": [
+          {
+            "source": "binary_search_tree",
+            "target": "binary_tree",
+            "type": "is_a",
+            "confidence": 1.0
+          },
+          {
+            "source": "binary_search_tree",
+            "target": "node",
+            "type": "has_part",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "binary_search_tree",
+            "target": "searching",
+            "type": "operates_on",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "searching",
+            "target": "o_log_n",
+            "type": "has_complexity",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "o_log_n",
+            "target": "time_complexity",
+            "type": "is_a",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "binary_search_tree",
+            "target": "balanced_tree",
+            "type": "has_property",
+            "confidence": 1.0
+          },
+          {
+            "source": "binary_search_tree",
+            "target": "linked_list",
+            "type": "variant_of",
+            "confidence": 0.5599999999999999,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "linked_list",
+            "target": "searching",
+            "type": "operates_on",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "searching",
+            "target": "o_n",
+            "type": "has_complexity",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "o_n",
+            "target": "time_complexity",
+            "type": "is_a",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          }
+        ],
+        "incorrect_relationships": [],
+        "missing_relationships": [
+          {
+            "source": "linked_list",
+            "target": "node",
+            "type": "has_part",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "node",
+            "target": "linked_list",
+            "type": "prerequisite_for",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "linked_list",
+            "target": "node",
+            "type": "has_part",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "node",
+            "target": "linked_list",
+            "type": "prerequisite_for",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "linked_list",
+            "target": "o_n",
+            "type": "has_complexity",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "linked_list",
+            "target": "o_n",
+            "type": "has_complexity",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "binary_search_tree",
+            "target": "o_log_n",
+            "type": "has_complexity",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "binary_search_tree",
+            "target": "o_log_n",
+            "type": "has_complexity",
+            "note": "Expected connection not demonstrated"
+          }
+        ]
+      },
+      "diagnostic": {
+        "depth_assessment": "deep",
+        "feedback_points": [],
+        "strengths": [
+          "Good concept coverage",
+          "Accurate understanding of concept relationships",
+          "Well-integrated knowledge showing connections between concepts",
+          "Identified 9 relevant concepts"
+        ],
+        "weaknesses": [],
+        "topological_summary": ""
+      }
+    },
+    "blooms": {
+      "level": 4,
+      "label": "Analyze",
+      "description": "Break information into parts, identify relationships and patterns",
+      "confidence": 0.9,
+      "justification": "The student defines a BST, states its average search complexity, and then differentiates this from the worst-case complexity by explaining the condition of an unbalanced tree and its impact.",
+      "reasoning_steps": [
+        "The student recalls the definition of a BST (Remember).",
+        "The student states the average time complexity and explains the reason (Understand).",
+        "The student differentiates between average and worst-case scenarios, explaining the conditions that lead to O(n) complexity, which requires breaking down the concept of search complexity under different tree structures (Analyze)."
+      ],
+      "evidence": {
+        "cognitive_verbs": [],
+        "surface_indicators": [],
+        "depth_indicators": []
+      },
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "solo": {
+      "level": 4,
+      "label": "Relational",
+      "confidence": 0.9,
+      "justification": "The response connects the definition of a BST with its average search complexity, then integrates the concept of tree balance to explain the worst-case complexity, showing a coherent understanding of how these concepts interrelate.",
+      "reasoning_steps": [
+        "The student identifies the core concept of a BST definition (Unistructural).",
+        "The student adds the concept of average time complexity and its explanation (Multistructural).",
+        "The student connects the concept of tree balance to explain the variation in time complexity (O(log n) vs O(n)), demonstrating an integrated understanding of how different factors influence performance (Relational)."
+      ],
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "misconceptions": {
+      "total_misconceptions": 0,
+      "by_severity": {
+        "critical": 0,
+        "moderate": 0,
+        "minor": 0
+      },
+      "misconceptions": [],
+      "summary": "No misconceptions detected. All demonstrated relationships appear correct.",
+      "overall_accuracy": 1.0
+    }
+  },
+  "50": {
+    "question": "Explain the difference between BFS and DFS graph traversal algorithms.",
+    "student_answer": "They are graph algorithms.",
+    "reference_answer": "BFS (Breadth-First Search) explores all neighbors at the current depth before moving deeper, using a queue. DFS (Depth-First Search) explores as deep as possible before backtracking, using a stack or recursion. BFS finds the shortest path in unweighted graphs and uses O(V) space for the queue. DFS uses O(V) space for the recursion stack and is useful for topological sorting and cycle detection.",
+    "human_score": 0.5,
+    "kg_score": 0.1269074,
+    "comparison": {
+      "scores": {
+        "concept_coverage": 1.0,
+        "relationship_accuracy": 1.0,
+        "integration_quality": 0.9429,
+        "overall": 0.9829,
+        "chain_coverage": 1.0
+      },
+      "analysis": {
+        "matched_concepts": [
+          "graph",
+          "algorithm",
+          "dfs",
+          "bfs"
+        ],
+        "missing_concepts": [],
+        "extra_concepts": [],
+        "correct_relationships": [
+          {
+            "source": "bfs",
+            "target": "algorithm",
+            "type": "is_a",
+            "confidence": 1.0
+          },
+          {
+            "source": "dfs",
+            "target": "algorithm",
+            "type": "is_a",
+            "confidence": 1.0
+          },
+          {
+            "source": "bfs",
+            "target": "graph",
+            "type": "operates_on",
+            "confidence": 1.0
+          },
+          {
+            "source": "dfs",
+            "target": "graph",
+            "type": "operates_on",
+            "confidence": 1.0
+          }
+        ],
+        "incorrect_relationships": [],
+        "missing_relationships": [
+          {
+            "source": "bfs",
+            "target": "dfs",
+            "type": "contrasts_with",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "bfs",
+            "target": "dfs",
+            "type": "contrasts_with",
+            "note": "Expected connection not demonstrated"
+          }
+        ]
+      },
+      "diagnostic": {
+        "depth_assessment": "deep",
+        "feedback_points": [],
+        "strengths": [
+          "Good concept coverage",
+          "Accurate understanding of concept relationships",
+          "Well-integrated knowledge showing connections between concepts",
+          "Identified 4 relevant concepts"
+        ],
+        "weaknesses": [],
+        "topological_summary": ""
+      }
+    },
+    "blooms": {
+      "level": 1,
+      "label": "Remember",
+      "description": "Recall facts, definitions, and basic terminology",
+      "confidence": 0.95,
+      "justification": "The student merely identifies BFS and DFS as graph algorithms without explaining their differences or characteristics.",
+      "reasoning_steps": [
+        "The question asks to 'explain the difference', requiring understanding and analysis.",
+        "The student's answer 'They are graph algorithms' only recalls a basic fact about BFS and DFS.",
+        "No explanation, comparison, or differentiation is provided, indicating a low cognitive demand."
+      ],
+      "evidence": {
+        "cognitive_verbs": [],
+        "surface_indicators": [],
+        "depth_indicators": []
+      },
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "solo": {
+      "level": 2,
+      "label": "Unistructural",
+      "confidence": 0.9,
+      "justification": "The response identifies a single relevant concept (that BFS and DFS are graph algorithms) but makes no connections or elaborations regarding their differences.",
+      "reasoning_steps": [
+        "The student identifies 'graph algorithms' as a relevant concept related to BFS and DFS.",
+        "However, the response does not elaborate on BFS or DFS individually, nor does it connect them to explain their differences.",
+        "Only one aspect of the algorithms (their category) is mentioned without further structural complexity."
+      ],
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "misconceptions": {
+      "total_misconceptions": 0,
+      "by_severity": {
+        "critical": 0,
+        "moderate": 0,
+        "minor": 0
+      },
+      "misconceptions": [],
+      "summary": "No misconceptions detected. All demonstrated relationships appear correct.",
+      "overall_accuracy": 1.0
+    }
+  },
+  "53": {
+    "question": "Explain the difference between BFS and DFS graph traversal algorithms.",
+    "student_answer": "BFS is breadth first and DFS is depth first. BFS is better for shortest path.",
+    "reference_answer": "BFS (Breadth-First Search) explores all neighbors at the current depth before moving deeper, using a queue. DFS (Depth-First Search) explores as deep as possible before backtracking, using a stack or recursion. BFS finds the shortest path in unweighted graphs and uses O(V) space for the queue. DFS uses O(V) space for the recursion stack and is useful for topological sorting and cycle detection.",
+    "human_score": 2.0,
+    "kg_score": 0.3196498,
+    "comparison": {
+      "scores": {
+        "concept_coverage": 1.0,
+        "relationship_accuracy": 1.0,
+        "integration_quality": 0.6583,
+        "overall": 0.8975,
+        "chain_coverage": 1.0
+      },
+      "analysis": {
+        "matched_concepts": [
+          "algorithm",
+          "dfs",
+          "bfs",
+          "shortest_path"
+        ],
+        "missing_concepts": [],
+        "extra_concepts": [],
+        "correct_relationships": [
+          {
+            "source": "bfs",
+            "target": "dfs",
+            "type": "contrasts_with",
+            "confidence": 1.0
+          },
+          {
+            "source": "bfs",
+            "target": "shortest_path",
+            "type": "uses",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          }
+        ],
+        "incorrect_relationships": [],
+        "missing_relationships": [
+          {
+            "source": "bfs",
+            "target": "algorithm",
+            "type": "is_a",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "dfs",
+            "target": "algorithm",
+            "type": "is_a",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "dfs",
+            "target": "algorithm",
+            "type": "is_a",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "bfs",
+            "target": "algorithm",
+            "type": "is_a",
+            "note": "Expected connection not demonstrated"
+          }
+        ]
+      },
+      "diagnostic": {
+        "depth_assessment": "deep",
+        "feedback_points": [],
+        "strengths": [
+          "Good concept coverage",
+          "Accurate understanding of concept relationships",
+          "Well-integrated knowledge showing connections between concepts",
+          "Identified 4 relevant concepts"
+        ],
+        "weaknesses": [],
+        "topological_summary": ""
+      }
+    },
+    "blooms": {
+      "level": 2,
+      "label": "Understand",
+      "description": "Explain ideas, paraphrase, interpret, or summarize",
+      "confidence": 0.9,
+      "justification": "The student provides basic definitions and a correct application scenario, indicating an understanding beyond mere recall.",
+      "reasoning_steps": [
+        "The student defines BFS as 'breadth first' and DFS as 'depth first', which is a basic recall of terms.",
+        "The statement 'BFS is better for shortest path' demonstrates an understanding of a key characteristic and application of BFS.",
+        "This goes beyond simple recall by associating a specific use case with one algorithm, indicating a basic understanding of its properties."
+      ],
+      "evidence": {
+        "cognitive_verbs": [],
+        "surface_indicators": [],
+        "depth_indicators": []
+      },
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "solo": {
+      "level": 3,
+      "label": "Multistructural",
+      "confidence": 0.85,
+      "justification": "The response lists several correct concepts related to BFS and DFS but does not integrate them into a coherent explanation of their differences.",
+      "reasoning_steps": [
+        "The student identifies BFS and DFS as distinct algorithms.",
+        "They provide a characteristic for each ('breadth first', 'depth first').",
+        "They add another characteristic for BFS ('better for shortest path').",
+        "These concepts are listed sequentially without explicit connections or comparisons that would explain the *difference* as requested by the question."
+      ],
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "misconceptions": {
+      "total_misconceptions": 0,
+      "by_severity": {
+        "critical": 0,
+        "moderate": 0,
+        "minor": 0
+      },
+      "misconceptions": [],
+      "summary": "No misconceptions detected. All demonstrated relationships appear correct.",
+      "overall_accuracy": 1.0
+    }
+  },
+  "56": {
+    "question": "Explain the difference between BFS and DFS graph traversal algorithms.",
+    "student_answer": "BFS visits all neighbors before going deeper using a queue. DFS explores paths as deep as possible using recursion or a stack.",
+    "reference_answer": "BFS (Breadth-First Search) explores all neighbors at the current depth before moving deeper, using a queue. DFS (Depth-First Search) explores as deep as possible before backtracking, using a stack or recursion. BFS finds the shortest path in unweighted graphs and uses O(V) space for the queue. DFS uses O(V) space for the recursion stack and is useful for topological sorting and cycle detection.",
+    "human_score": 3.5,
+    "kg_score": 0.703447034,
+    "comparison": {
+      "scores": {
+        "concept_coverage": 1.0,
+        "relationship_accuracy": 0.875,
+        "integration_quality": 0.8106,
+        "overall": 0.9057,
+        "chain_coverage": 1.0
+      },
+      "analysis": {
+        "matched_concepts": [
+          "graph",
+          "queue",
+          "dfs",
+          "traversal",
+          "algorithm",
+          "recursion",
+          "stack",
+          "bfs"
+        ],
+        "missing_concepts": [],
+        "extra_concepts": [],
+        "correct_relationships": [
+          {
+            "source": "bfs",
+            "target": "traversal",
+            "type": "is_a",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "dfs",
+            "target": "traversal",
+            "type": "is_a",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "bfs",
+            "target": "graph",
+            "type": "operates_on",
+            "confidence": 1.0
+          },
+          {
+            "source": "dfs",
+            "target": "graph",
+            "type": "operates_on",
+            "confidence": 1.0
+          },
+          {
+            "source": "bfs",
+            "target": "queue",
+            "type": "uses",
+            "confidence": 1.0
+          },
+          {
+            "source": "dfs",
+            "target": "stack",
+            "type": "uses",
+            "confidence": 1.0
+          },
+          {
+            "source": "bfs",
+            "target": "dfs",
+            "type": "contrasts_with",
+            "confidence": 1.0
+          }
+        ],
+        "incorrect_relationships": [
+          {
+            "source": "dfs",
+            "target": "recursion",
+            "student_relation": "uses",
+            "correct_relation": "prerequisite_for",
+            "explanation": "Student used 'uses' but the correct relationship is 'prerequisite_for'",
+            "severity": "moderate"
+          }
+        ],
+        "missing_relationships": [
+          {
+            "source": "stack",
+            "target": "queue",
+            "type": "contrasts_with",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "dfs",
+            "target": "algorithm",
+            "type": "is_a",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "bfs",
+            "target": "algorithm",
+            "type": "is_a",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "dfs",
+            "target": "algorithm",
+            "type": "is_a",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "stack",
+            "target": "queue",
+            "type": "contrasts_with",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "bfs",
+            "target": "algorithm",
+            "type": "is_a",
+            "note": "Expected connection not demonstrated"
+          }
+        ]
+      },
+      "diagnostic": {
+        "depth_assessment": "deep",
+        "feedback_points": [
+          "Review the relationship between 'dfs' and 'recursion': Student used 'uses' but the correct relationship is 'prerequisite_for'"
+        ],
+        "strengths": [
+          "Good concept coverage",
+          "Accurate understanding of concept relationships",
+          "Well-integrated knowledge showing connections between concepts",
+          "Identified 8 relevant concepts"
+        ],
+        "weaknesses": [
+          "1 misconception(s) detected"
+        ],
+        "topological_summary": ""
+      }
+    },
+    "blooms": {
+      "level": 4,
+      "label": "Analyze",
+      "description": "Break information into parts, identify relationships and patterns",
+      "confidence": 0.9,
+      "justification": "The student successfully differentiates BFS and DFS by highlighting their core operational differences and data structures, indicating an analytical understanding.",
+      "reasoning_steps": [
+        "The question asks to 'explain the difference', which aligns with Bloom's Analyze level.",
+        "The student correctly identifies key distinguishing features for both BFS (neighbors first, queue) and DFS (deep first, recursion/stack).",
+        "This demonstrates the ability to break down the algorithms and differentiate their characteristics, fulfilling the criteria for Analyze."
+      ],
+      "evidence": {
+        "cognitive_verbs": [],
+        "surface_indicators": [],
+        "depth_indicators": []
+      },
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "solo": {
+      "level": 4,
+      "label": "Relational",
+      "confidence": 0.9,
+      "justification": "The response connects multiple concepts for both BFS and DFS, showing how their traversal strategy relates to the data structure used, forming a coherent understanding of their differences.",
+      "reasoning_steps": [
+        "The student presents more than one relevant concept for each algorithm (e.g., BFS: neighbors, queue; DFS: deep, recursion/stack).",
+        "These concepts are not merely listed but are explicitly linked to explain the 'difference' between the two algorithms.",
+        "The answer integrates the traversal strategy with the underlying data structure for each algorithm, demonstrating a connected and coherent understanding of their relationship and distinction."
+      ],
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "misconceptions": {
+      "total_misconceptions": 1,
+      "by_severity": {
+        "critical": 0,
+        "moderate": 0,
+        "minor": 1
+      },
+      "misconceptions": [
+        {
+          "misconception_id": "mc-1",
+          "taxonomy_category": "novel",
+          "type": "isolated",
+          "severity": "minor",
+          "source_concept": "dfs",
+          "target_concept": "recursion",
+          "student_claim": "DFS uses recursion",
+          "correct_understanding": "Recursion is a common implementation technique for DFS, making it a prerequisite for understanding how DFS often works, rather than DFS 'using' recursion as a component.",
+          "explanation": "While it's true that DFS is very commonly implemented using recursion, it's more accurate to say that recursion is a *technique* or *prerequisite* for understanding a common way to implement DFS, rather than DFS 'using' recursion in the same way it 'uses' a stack (either implicitly through the call stack or explicitly). The algorithm itself defines the traversal logic, and recursion is one powerful way to achieve that logic.",
+          "remediation_hint": "Think about the relationship between an algorithm (like DFS) and the tools or techniques (like recursion or a stack) used to implement it. How does recursion help achieve the depth-first exploration?",
+          "confidence": 0.9
+        }
+      ],
+      "summary": "The student has a good foundational understanding of BFS and DFS, correctly identifying their core behaviors (level-by-level vs. depth-first) and the primary data structures used (queue for BFS, stack/recursion for DFS). The only detected issue is a minor imprecision in describing the relationship between DFS and recursion, which is more of a semantic nuance than a fundamental misunderstanding of the algorithms themselves. No critical misconceptions were identified based on the provided information.",
+      "overall_accuracy": 0.994
+    }
+  },
+  "59": {
+    "question": "Explain the difference between BFS and DFS graph traversal algorithms.",
+    "student_answer": "BFS uses a queue to explore all neighbors at each level before going deeper, making it ideal for finding shortest paths in unweighted graphs. DFS uses a stack (or recursion) to go as deep as possible before backtracking. BFS space is O(V) for the queue; DFS space is O(V) for the recursion stack. DFS is preferred for topological sorting and detecting cycles.",
+    "reference_answer": "BFS (Breadth-First Search) explores all neighbors at the current depth before moving deeper, using a queue. DFS (Depth-First Search) explores as deep as possible before backtracking, using a stack or recursion. BFS finds the shortest path in unweighted graphs and uses O(V) space for the queue. DFS uses O(V) space for the recursion stack and is useful for topological sorting and cycle detection.",
+    "human_score": 5.0,
+    "kg_score": 0.794226262,
+    "comparison": {
+      "scores": {
+        "concept_coverage": 1.0,
+        "relationship_accuracy": 0.9167,
+        "integration_quality": 0.7117,
+        "overall": 0.8885,
+        "chain_coverage": 1.0
+      },
+      "analysis": {
+        "matched_concepts": [
+          "graph",
+          "topological_sort",
+          "queue",
+          "dfs",
+          "traversal",
+          "algorithm",
+          "recursion",
+          "weighted_graph",
+          "stack",
+          "bfs",
+          "shortest_path"
+        ],
+        "missing_concepts": [],
+        "extra_concepts": [],
+        "correct_relationships": [
+          {
+            "source": "bfs",
+            "target": "queue",
+            "type": "uses",
+            "confidence": 1.0
+          },
+          {
+            "source": "bfs",
+            "target": "shortest_path",
+            "type": "produces",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "bfs",
+            "target": "weighted_graph",
+            "type": "operates_on",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "dfs",
+            "target": "stack",
+            "type": "uses",
+            "confidence": 1.0
+          },
+          {
+            "source": "dfs",
+            "target": "topological_sort",
+            "type": "uses",
+            "confidence": 1.0
+          },
+          {
+            "source": "bfs",
+            "target": "dfs",
+            "type": "contrasts_with",
+            "confidence": 1.0
+          },
+          {
+            "source": "bfs",
+            "target": "traversal",
+            "type": "is_a",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "dfs",
+            "target": "traversal",
+            "type": "is_a",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "traversal",
+            "target": "graph",
+            "type": "operates_on",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "bfs",
+            "target": "algorithm",
+            "type": "is_a",
+            "confidence": 1.0
+          },
+          {
+            "source": "dfs",
+            "target": "algorithm",
+            "type": "is_a",
+            "confidence": 1.0
+          }
+        ],
+        "incorrect_relationships": [
+          {
+            "source": "dfs",
+            "target": "recursion",
+            "student_relation": "uses",
+            "correct_relation": "prerequisite_for",
+            "explanation": "Student used 'uses' but the correct relationship is 'prerequisite_for'",
+            "severity": "moderate"
+          }
+        ],
+        "missing_relationships": [
+          {
+            "source": "weighted_graph",
+            "target": "graph",
+            "type": "is_a",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "graph",
+            "target": "bfs",
+            "type": "prerequisite_for",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "graph",
+            "target": "dfs",
+            "type": "prerequisite_for",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "bfs",
+            "target": "graph",
+            "type": "operates_on",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "dfs",
+            "target": "graph",
+            "type": "operates_on",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "stack",
+            "target": "queue",
+            "type": "contrasts_with",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "graph",
+            "target": "dfs",
+            "type": "prerequisite_for",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "dfs",
+            "target": "graph",
+            "type": "operates_on",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "weighted_graph",
+            "target": "graph",
+            "type": "is_a",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "stack",
+            "target": "queue",
+            "type": "contrasts_with",
+            "note": "Expected connection not demonstrated"
+          }
+        ]
+      },
+      "diagnostic": {
+        "depth_assessment": "deep",
+        "feedback_points": [
+          "Review the relationship between 'dfs' and 'recursion': Student used 'uses' but the correct relationship is 'prerequisite_for'"
+        ],
+        "strengths": [
+          "Good concept coverage",
+          "Accurate understanding of concept relationships",
+          "Well-integrated knowledge showing connections between concepts",
+          "Identified 11 relevant concepts"
+        ],
+        "weaknesses": [
+          "1 misconception(s) detected"
+        ],
+        "topological_summary": ""
+      }
+    },
+    "blooms": {
+      "level": 4,
+      "label": "Analyze",
+      "description": "Break information into parts, identify relationships and patterns",
+      "confidence": 0.9,
+      "justification": "The student successfully differentiates BFS and DFS by comparing their mechanisms, data structures, use cases, and space complexities.",
+      "reasoning_steps": [
+        "The student defines both BFS and DFS, indicating understanding (Understand).",
+        "The student explicitly states differences in their exploration strategies (level-by-level vs. depth-first) and data structures (queue vs. stack/recursion).",
+        "The student compares their optimal use cases (shortest path vs. topological sort/cycle detection) and space complexities, demonstrating an ability to break down and differentiate the algorithms (Analyze)."
+      ],
+      "evidence": {
+        "cognitive_verbs": [],
+        "surface_indicators": [],
+        "depth_indicators": []
+      },
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "solo": {
+      "level": 4,
+      "label": "Relational",
+      "confidence": 0.9,
+      "justification": "The response connects multiple concepts for both BFS and DFS, integrating them into a coherent comparison that highlights their differences.",
+      "reasoning_steps": [
+        "The student identifies several relevant concepts for both BFS and DFS (Multistructural).",
+        "The response goes beyond merely listing features by explicitly comparing and contrasting the algorithms based on their mechanisms, data structures, and applications.",
+        "The concepts are integrated to form a structured explanation of the differences, showing a clear understanding of the relationships between the attributes of each algorithm and how they distinguish the two (Relational)."
+      ],
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "misconceptions": {
+      "total_misconceptions": 1,
+      "by_severity": {
+        "critical": 1,
+        "moderate": 0,
+        "minor": 0
+      },
+      "misconceptions": [
+        {
+          "misconception_id": "M-fallback-1",
+          "taxonomy_category": "DS-GRAPH-02",
+          "type": "isolated",
+          "severity": "critical",
+          "source_concept": "dfs",
+          "target_concept": "recursion",
+          "student_claim": "Used relationship 'uses'",
+          "correct_understanding": "BFS uses a queue (level-by-level); DFS uses a stack (depth-first via recursion or explicit stack)",
+          "explanation": "Student used 'uses' but the correct relationship is 'prerequisite_for'",
+          "remediation_hint": "Review: DFS uses a queue / BFS uses a stack",
+          "confidence": 0.4
+        }
+      ],
+      "summary": "Detected 1 potential misconception(s) (rule-based fallback)",
+      "overall_accuracy": 0.975
+    }
+  },
+  "63": {
+    "question": "What is a hash table and how are collisions handled?",
+    "student_answer": "Hash tables are fast for storing data. They always take O(1) time.",
+    "reference_answer": "A hash table maps keys to values using a hash function that converts keys to array indices. Average operations are O(1). Collisions occur when two keys hash to the same index. Common resolution methods: chaining (linked list at each bucket) and open addressing (probing for next empty slot \u2014 linear, quadratic, or double hashing).",
+    "human_score": 1.25,
+    "kg_score": 0.21538000000000002,
+    "comparison": {
+      "scores": {
+        "concept_coverage": 1.0,
+        "relationship_accuracy": 0.5,
+        "integration_quality": 1.0,
+        "overall": 0.85,
+        "chain_coverage": 0.0
+      },
+      "analysis": {
+        "matched_concepts": [
+          "hash_table",
+          "data_structure",
+          "o_1"
+        ],
+        "missing_concepts": [],
+        "extra_concepts": [],
+        "correct_relationships": [
+          {
+            "source": "hash_table",
+            "target": "data_structure",
+            "type": "is_a",
+            "confidence": 0.8
+          }
+        ],
+        "incorrect_relationships": [
+          {
+            "source": "hash_table",
+            "target": "o_1",
+            "student_relation": "has_complexity",
+            "correct_relation": "has_complexity",
+            "explanation": "Hash tables have an average time complexity of O(1) for operations like insertion, deletion, and lookup, but in the worst case (e.g., due to collisions), it can degrade to O(n).",
+            "severity": "critical"
+          }
+        ],
+        "missing_relationships": []
+      },
+      "diagnostic": {
+        "depth_assessment": "moderate",
+        "feedback_points": [
+          "Review the relationship between 'hash_table' and 'o_1': Hash tables have an average time complexity of O(1) for operations like insertion, deletion, and lookup, but in the worst case (e.g., due to collisions), it can degrade to O(n)."
+        ],
+        "strengths": [
+          "Good concept coverage",
+          "Well-integrated knowledge showing connections between concepts"
+        ],
+        "weaknesses": [
+          "1 misconception(s) detected"
+        ],
+        "topological_summary": ""
+      }
+    },
+    "blooms": {
+      "level": 1,
+      "label": "Remember",
+      "description": "Recall facts, definitions, and basic terminology",
+      "confidence": 0.9,
+      "justification": "The student recalls a single, partially correct fact about hash tables but demonstrates a significant misconception regarding their time complexity.",
+      "reasoning_steps": [
+        "The student states 'Hash tables are fast for storing data,' which is a recall of a characteristic.",
+        "The statement 'They always take O(1) time' is a factual claim, albeit incorrect, indicating an attempt at recall.",
+        "No explanation, application, analysis, evaluation, or creation is present, limiting the level to Remember."
+      ],
+      "evidence": {
+        "cognitive_verbs": [],
+        "surface_indicators": [],
+        "depth_indicators": []
+      },
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "solo": {
+      "level": 2,
+      "label": "Unistructural",
+      "confidence": 0.85,
+      "justification": "The student identifies one relevant concept (hash tables for data storage) but includes a significant misconception and fails to address the second part of the question.",
+      "reasoning_steps": [
+        "The student mentions 'hash tables' and 'storing data,' which are relevant concepts.",
+        "The response provides only one aspect of hash tables (speed/time complexity) without further elaboration or connection to other concepts.",
+        "The significant misconception about O(1) time and the complete omission of collision handling prevent it from reaching Multistructural or higher."
+      ],
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "misconceptions": {
+      "total_misconceptions": 1,
+      "by_severity": {
+        "critical": 0,
+        "moderate": 1,
+        "minor": 0
+      },
+      "misconceptions": [
+        {
+          "misconception_id": "hash_table_complexity_overgeneralization",
+          "taxonomy_category": "DS-HASH-01",
+          "type": "overgeneralization",
+          "severity": "moderate",
+          "source_concept": "hash_table",
+          "target_concept": "o_1",
+          "student_claim": "Hash tables always take O(1) time.",
+          "correct_understanding": "Hash table operations (insertion, deletion, lookup) have an average time complexity of O(1), but in the worst-case scenario (due to many collisions), their complexity can degrade to O(n).",
+          "explanation": "You're right that hash tables are generally very fast, often achieving O(1) time complexity for operations like adding, removing, or finding data. However, this O(1) is an *average case* performance. In the worst-case scenario, especially when many keys map to the same index (a situation called a 'collision') and the collision resolution strategy is inefficient, the time complexity can degrade to O(n), where 'n' is the number of items in the table. This happens because the operation might need to traverse a significant portion of the stored elements to find the correct one.",
+          "remediation_hint": "Review the concepts of average-case vs. worst-case time complexity for hash tables, specifically focusing on how different collision resolution strategies (like separate chaining or open addressing) impact performance in the worst case.",
+          "confidence": 1.0
+        }
+      ],
+      "summary": "The student correctly identifies hash tables as fast but overgeneralizes their time complexity. They state that hash tables 'always' take O(1) time, indicating a lack of understanding regarding the worst-case O(n) scenario caused by collisions. This is a common misconception (DS-HASH-01) and is moderate in severity as it misrepresents a fundamental aspect of hash table performance.",
+      "overall_accuracy": 0.925
+    }
+  },
+  "66": {
+    "question": "What is a hash table and how are collisions handled?",
+    "student_answer": "A hash table stores data using a hash function. If two things go to the same place it's a collision and we handle it with chaining.",
+    "reference_answer": "A hash table maps keys to values using a hash function that converts keys to array indices. Average operations are O(1). Collisions occur when two keys hash to the same index. Common resolution methods: chaining (linked list at each bucket) and open addressing (probing for next empty slot \u2014 linear, quadratic, or double hashing).",
+    "human_score": 2.25,
+    "kg_score": 0.407676,
+    "comparison": {
+      "scores": {
+        "concept_coverage": 1.0,
+        "relationship_accuracy": 0.5,
+        "integration_quality": 1.0,
+        "overall": 0.85,
+        "chain_coverage": 0.0
+      },
+      "analysis": {
+        "matched_concepts": [
+          "chaining",
+          "collision",
+          "hash_table",
+          "data_structure",
+          "hash_function"
+        ],
+        "missing_concepts": [],
+        "extra_concepts": [],
+        "correct_relationships": [
+          {
+            "source": "hash_table",
+            "target": "data_structure",
+            "type": "is_a",
+            "confidence": 0.8
+          },
+          {
+            "source": "collision",
+            "target": "hash_table",
+            "type": "has_part",
+            "confidence": 0.63,
+            "note": "Not in expert graph but plausible"
+          }
+        ],
+        "incorrect_relationships": [
+          {
+            "source": "hash_table",
+            "target": "hash_function",
+            "student_relation": "uses",
+            "correct_relation": "has_part",
+            "explanation": "Student used 'uses' but the correct relationship is 'has_part'",
+            "severity": "moderate"
+          },
+          {
+            "source": "chaining",
+            "target": "collision",
+            "student_relation": "operates_on",
+            "correct_relation": "implements",
+            "explanation": "Student used 'operates_on' but the correct relationship is 'implements'",
+            "severity": "moderate"
+          }
+        ],
+        "missing_relationships": []
+      },
+      "diagnostic": {
+        "depth_assessment": "moderate",
+        "feedback_points": [
+          "Review the relationship between 'hash_table' and 'hash_function': Student used 'uses' but the correct relationship is 'has_part'",
+          "Review the relationship between 'chaining' and 'collision': Student used 'operates_on' but the correct relationship is 'implements'"
+        ],
+        "strengths": [
+          "Good concept coverage",
+          "Well-integrated knowledge showing connections between concepts",
+          "Identified 5 relevant concepts"
+        ],
+        "weaknesses": [
+          "2 misconception(s) detected"
+        ],
+        "topological_summary": ""
+      }
+    },
+    "blooms": {
+      "level": 2,
+      "label": "Understand",
+      "description": "Explain ideas, paraphrase, interpret, or summarize",
+      "confidence": 0.9,
+      "justification": "The student defines a hash table and explains a method for collision handling, demonstrating basic comprehension.",
+      "reasoning_steps": [
+        "The student defines a hash table by stating its purpose and mechanism (stores data using a hash function), indicating 'Remember'.",
+        "The student explains what a collision is and how it is handled (chaining), moving beyond simple recall to 'Understand'."
+      ],
+      "evidence": {
+        "cognitive_verbs": [],
+        "surface_indicators": [],
+        "depth_indicators": []
+      },
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "solo": {
+      "level": 3,
+      "label": "Multistructural",
+      "confidence": 0.85,
+      "justification": "The response identifies multiple relevant concepts (hash table, hash function, collision, chaining) but presents them as separate ideas without fully integrating their interdependencies.",
+      "reasoning_steps": [
+        "The student identifies 'hash table' and 'hash function' as distinct concepts.",
+        "The student identifies 'collision' and 'chaining' as separate concepts related to handling collisions.",
+        "While concepts are relevant, the explanation lacks deeper integration of how the hash function directly leads to the collision problem and how chaining specifically resolves it within the hash table structure, presenting them more as a list of facts."
+      ],
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "misconceptions": {
+      "total_misconceptions": 2,
+      "by_severity": {
+        "critical": 0,
+        "moderate": 2,
+        "minor": 0
+      },
+      "misconceptions": [
+        {
+          "misconception_id": "M-fallback-1",
+          "taxonomy_category": "DS-HASH-01",
+          "type": "isolated",
+          "severity": "moderate",
+          "source_concept": "hash_table",
+          "target_concept": "hash_function",
+          "student_claim": "Used relationship 'uses'",
+          "correct_understanding": "Hash table operations are O(1) AVERAGE case; worst case with many collisions is O(n)",
+          "explanation": "Student used 'uses' but the correct relationship is 'has_part'",
+          "remediation_hint": "Review: Hash table operations are always O(1)",
+          "confidence": 0.4
+        },
+        {
+          "misconception_id": "M-fallback-2",
+          "taxonomy_category": "DS-HASH-01",
+          "type": "isolated",
+          "severity": "moderate",
+          "source_concept": "chaining",
+          "target_concept": "collision",
+          "student_claim": "Used relationship 'operates_on'",
+          "correct_understanding": "Hash table operations are O(1) AVERAGE case; worst case with many collisions is O(n)",
+          "explanation": "Student used 'operates_on' but the correct relationship is 'implements'",
+          "remediation_hint": "Review: Hash table operations are always O(1)",
+          "confidence": 0.4
+        }
+      ],
+      "summary": "Detected 2 potential misconception(s) (rule-based fallback)",
+      "overall_accuracy": 0.85
+    }
+  },
+  "69": {
+    "question": "What is a hash table and how are collisions handled?",
+    "student_answer": "Hash tables use hash functions to store key-value pairs. Collisions are handled by chaining (lists at each position) or open addressing (finding another slot).",
+    "reference_answer": "A hash table maps keys to values using a hash function that converts keys to array indices. Average operations are O(1). Collisions occur when two keys hash to the same index. Common resolution methods: chaining (linked list at each bucket) and open addressing (probing for next empty slot \u2014 linear, quadratic, or double hashing).",
+    "human_score": 4.0,
+    "kg_score": 0.4991408,
+    "comparison": {
+      "scores": {
+        "concept_coverage": 1.0,
+        "relationship_accuracy": 0.4,
+        "integration_quality": 0.84,
+        "overall": 0.772,
+        "chain_coverage": 1.0
+      },
+      "analysis": {
+        "matched_concepts": [
+          "open_addressing",
+          "chaining",
+          "collision",
+          "hash_table",
+          "linked_list",
+          "hash_function"
+        ],
+        "missing_concepts": [],
+        "extra_concepts": [],
+        "correct_relationships": [
+          {
+            "source": "hash_table",
+            "target": "collision",
+            "type": "has_part",
+            "confidence": 0.7,
+            "note": "Not in expert graph but plausible"
+          },
+          {
+            "source": "chaining",
+            "target": "linked_list",
+            "type": "uses",
+            "confidence": 0.63,
+            "note": "Not in expert graph but plausible"
+          }
+        ],
+        "incorrect_relationships": [
+          {
+            "source": "hash_table",
+            "target": "hash_function",
+            "student_relation": "uses",
+            "correct_relation": "has_part",
+            "explanation": "Student used 'uses' but the correct relationship is 'has_part'",
+            "severity": "moderate"
+          },
+          {
+            "source": "collision",
+            "target": "chaining",
+            "student_relation": "contrasts_with",
+            "correct_relation": "implements",
+            "explanation": "Student used 'contrasts_with' but the correct relationship is 'implements'",
+            "severity": "moderate"
+          },
+          {
+            "source": "collision",
+            "target": "open_addressing",
+            "student_relation": "contrasts_with",
+            "correct_relation": "implements",
+            "explanation": "Student used 'contrasts_with' but the correct relationship is 'implements'",
+            "severity": "moderate"
+          }
+        ],
+        "missing_relationships": [
+          {
+            "source": "chaining",
+            "target": "open_addressing",
+            "type": "contrasts_with",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "chaining",
+            "target": "open_addressing",
+            "type": "contrasts_with",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "hash_table",
+            "target": "linked_list",
+            "type": "uses",
+            "note": "Expected connection not demonstrated"
+          },
+          {
+            "source": "hash_table",
+            "target": "linked_list",
+            "type": "uses",
+            "note": "Expected connection not demonstrated"
+          }
+        ]
+      },
+      "diagnostic": {
+        "depth_assessment": "moderate",
+        "feedback_points": [
+          "Review the relationship between 'hash_table' and 'hash_function': Student used 'uses' but the correct relationship is 'has_part'",
+          "Review the relationship between 'collision' and 'chaining': Student used 'contrasts_with' but the correct relationship is 'implements'",
+          "Review the relationship between 'collision' and 'open_addressing': Student used 'contrasts_with' but the correct relationship is 'implements'"
+        ],
+        "strengths": [
+          "Good concept coverage",
+          "Well-integrated knowledge showing connections between concepts",
+          "Identified 6 relevant concepts"
+        ],
+        "weaknesses": [
+          "3 misconception(s) detected"
+        ],
+        "topological_summary": ""
+      }
+    },
+    "blooms": {
+      "level": 2,
+      "label": "Understand",
+      "description": "Explain ideas, paraphrase, interpret, or summarize",
+      "confidence": 0.9,
+      "justification": "The student defines hash tables and explains two methods for collision handling, demonstrating understanding beyond simple recall.",
+      "reasoning_steps": [
+        "The student defines a hash table by stating its purpose and mechanism ('use hash functions to store key-value pairs'), indicating 'Remember'.",
+        "The student explains how collisions are handled by describing two distinct methods ('chaining (lists at each position) or open addressing (finding another slot)'), which goes beyond mere recall to 'Understand'."
+      ],
+      "evidence": {
+        "cognitive_verbs": [],
+        "surface_indicators": [],
+        "depth_indicators": []
+      },
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "solo": {
+      "level": 3,
+      "label": "Multistructural",
+      "confidence": 0.85,
+      "justification": "The response lists several relevant concepts (hash tables, hash functions, collisions, chaining, open addressing) but presents them as separate ideas without explicitly integrating how they interrelate beyond direct association.",
+      "reasoning_steps": [
+        "The student identifies hash tables and hash functions as distinct concepts, showing 'Unistructural' for the first part of the question.",
+        "The student then lists two methods for collision handling (chaining and open addressing) as separate, relevant concepts, moving to 'Multistructural'.",
+        "While the concepts are relevant to the question, the explanation lacks explicit connections or an integrated structure showing how chaining and open addressing are specific strategies within the broader collision handling problem, thus remaining 'Multistructural'."
+      ],
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "misconceptions": {
+      "total_misconceptions": 3,
+      "by_severity": {
+        "critical": 0,
+        "moderate": 3,
+        "minor": 0
+      },
+      "misconceptions": [
+        {
+          "misconception_id": "M-fallback-1",
+          "taxonomy_category": "DS-HASH-01",
+          "type": "isolated",
+          "severity": "moderate",
+          "source_concept": "hash_table",
+          "target_concept": "hash_function",
+          "student_claim": "Used relationship 'uses'",
+          "correct_understanding": "Hash table operations are O(1) AVERAGE case; worst case with many collisions is O(n)",
+          "explanation": "Student used 'uses' but the correct relationship is 'has_part'",
+          "remediation_hint": "Review: Hash table operations are always O(1)",
+          "confidence": 0.4
+        },
+        {
+          "misconception_id": "M-fallback-2",
+          "taxonomy_category": "DS-HASH-01",
+          "type": "isolated",
+          "severity": "moderate",
+          "source_concept": "collision",
+          "target_concept": "chaining",
+          "student_claim": "Used relationship 'contrasts_with'",
+          "correct_understanding": "Hash table operations are O(1) AVERAGE case; worst case with many collisions is O(n)",
+          "explanation": "Student used 'contrasts_with' but the correct relationship is 'implements'",
+          "remediation_hint": "Review: Hash table operations are always O(1)",
+          "confidence": 0.4
+        },
+        {
+          "misconception_id": "M-fallback-3",
+          "taxonomy_category": "DS-HASH-01",
+          "type": "isolated",
+          "severity": "moderate",
+          "source_concept": "collision",
+          "target_concept": "open_addressing",
+          "student_claim": "Used relationship 'contrasts_with'",
+          "correct_understanding": "Hash table operations are O(1) AVERAGE case; worst case with many collisions is O(n)",
+          "explanation": "Student used 'contrasts_with' but the correct relationship is 'implements'",
+          "remediation_hint": "Review: Hash table operations are always O(1)",
+          "confidence": 0.4
+        }
+      ],
+      "summary": "Detected 3 potential misconception(s) (rule-based fallback)",
+      "overall_accuracy": 0.73
+    }
+  },
+  "72": {
+    "question": "Explain recursion and the role of the base case. Give an example.",
+    "student_answer": "I don't understand recursion.",
+    "reference_answer": "Recursion is a technique where a function calls itself to solve smaller instances of the same problem. Every recursive function must have a base case \u2014 a condition that terminates the recursion without further calls \u2014 to prevent infinite recursion. Example: factorial(n) = n \u00d7 factorial(n-1) with base case factorial(0)=1.",
+    "human_score": 0.0,
+    "kg_score": 0.027000000000000003,
+    "comparison": {
+      "scores": {
+        "concept_coverage": 1.0,
+        "relationship_accuracy": 1.0,
+        "integration_quality": 0.5,
+        "overall": 0.85,
+        "chain_coverage": 0.0
+      },
+      "analysis": {
+        "matched_concepts": [
+          "recursion"
+        ],
+        "missing_concepts": [],
+        "extra_concepts": [],
+        "correct_relationships": [],
+        "incorrect_relationships": [],
+        "missing_relationships": []
+      },
+      "diagnostic": {
+        "depth_assessment": "surface",
+        "feedback_points": [
+          "Try to explain HOW concepts relate to each other, not just listing them"
+        ],
+        "strengths": [
+          "Good concept coverage",
+          "Accurate understanding of concept relationships"
+        ],
+        "weaknesses": [],
+        "topological_summary": ""
+      }
+    },
+    "blooms": {
+      "level": 1,
+      "label": "Remember",
+      "description": "Recall facts, definitions, and basic terminology",
+      "confidence": 1.0,
+      "justification": "The student explicitly states a lack of understanding, indicating they cannot recall or define the concept.",
+      "reasoning_steps": [
+        "The student's answer is 'I don't understand recursion.'",
+        "This statement indicates an inability to recall or define the concept of recursion.",
+        "The lowest Bloom's level, Remember, involves recalling facts or definitions.",
+        "A stated lack of understanding means the student cannot perform even the most basic recall."
+      ],
+      "evidence": {
+        "cognitive_verbs": [],
+        "surface_indicators": [],
+        "depth_indicators": []
+      },
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "solo": {
+      "level": 1,
+      "label": "Prestructural",
+      "confidence": 1.0,
+      "justification": "The student's response indicates no relevant understanding or engagement with the question's concepts.",
+      "reasoning_steps": [
+        "The student's answer is 'I don't understand recursion.'",
+        "This response provides no information about recursion or the base case.",
+        "The Prestructural SOLO level is characterized by irrelevant or no understanding.",
+        "The student's statement directly aligns with having no understanding of the topic."
+      ],
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "misconceptions": {
+      "total_misconceptions": 0,
+      "by_severity": {
+        "critical": 0,
+        "moderate": 0,
+        "minor": 0
+      },
+      "misconceptions": [],
+      "summary": "No misconceptions detected. All demonstrated relationships appear correct.",
+      "overall_accuracy": 1.0
+    }
+  },
+  "74": {
+    "question": "Explain recursion and the role of the base case. Give an example.",
+    "student_answer": "Recursion means doing something again and again.",
+    "reference_answer": "Recursion is a technique where a function calls itself to solve smaller instances of the same problem. Every recursive function must have a base case \u2014 a condition that terminates the recursion without further calls \u2014 to prevent infinite recursion. Example: factorial(n) = n \u00d7 factorial(n-1) with base case factorial(0)=1.",
+    "human_score": 0.75,
+    "kg_score": 0.12425,
+    "comparison": {
+      "scores": {
+        "concept_coverage": 1.0,
+        "relationship_accuracy": 1.0,
+        "integration_quality": 0.5,
+        "overall": 0.85,
+        "chain_coverage": 0.0
+      },
+      "analysis": {
+        "matched_concepts": [
+          "recursion"
+        ],
+        "missing_concepts": [],
+        "extra_concepts": [],
+        "correct_relationships": [],
+        "incorrect_relationships": [],
+        "missing_relationships": []
+      },
+      "diagnostic": {
+        "depth_assessment": "surface",
+        "feedback_points": [
+          "Try to explain HOW concepts relate to each other, not just listing them"
+        ],
+        "strengths": [
+          "Good concept coverage",
+          "Accurate understanding of concept relationships"
+        ],
+        "weaknesses": [],
+        "topological_summary": ""
+      }
+    },
+    "blooms": {
+      "level": 1,
+      "label": "Remember",
+      "description": "Recall facts, definitions, and basic terminology",
+      "confidence": 0.9,
+      "justification": "The student provides a very basic, partial definition of recursion, indicating recall of a single characteristic without deeper understanding.",
+      "reasoning_steps": [
+        "The student's answer 'doing something again and again' is a simplistic and incomplete definition of recursion.",
+        "This response only touches upon a surface-level characteristic of recursion (repetition) without explaining the mechanism or purpose.",
+        "The answer does not demonstrate understanding, application, or any higher-order cognitive skills, aligning with basic recall."
+      ],
+      "evidence": {
+        "cognitive_verbs": [],
+        "surface_indicators": [],
+        "depth_indicators": []
+      },
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "solo": {
+      "level": 2,
+      "label": "Unistructural",
+      "confidence": 0.9,
+      "justification": "The student identifies one relevant concept (recursion) and provides a single, albeit incomplete, idea about it without connecting it to other necessary concepts like the base case.",
+      "reasoning_steps": [
+        "The student mentions 'recursion' and provides one characteristic ('doing something again and again').",
+        "The response does not address the 'base case' or provide an example, which were explicitly asked for.",
+        "Only one relevant concept is present without any connections or integration, fitting the Unistructural level."
+      ],
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "misconceptions": {
+      "total_misconceptions": 0,
+      "by_severity": {
+        "critical": 0,
+        "moderate": 0,
+        "minor": 0
+      },
+      "misconceptions": [],
+      "summary": "No misconceptions detected. All demonstrated relationships appear correct.",
+      "overall_accuracy": 1.0
+    }
+  },
+  "77": {
+    "question": "Explain recursion and the role of the base case. Give an example.",
+    "student_answer": "Recursion means a function calls itself. It needs a stop condition.",
+    "reference_answer": "Recursion is a technique where a function calls itself to solve smaller instances of the same problem. Every recursive function must have a base case \u2014 a condition that terminates the recursion without further calls \u2014 to prevent infinite recursion. Example: factorial(n) = n \u00d7 factorial(n-1) with base case factorial(0)=1.",
+    "human_score": 2.25,
+    "kg_score": 0.40925,
+    "comparison": {
+      "scores": {
+        "concept_coverage": 1.0,
+        "relationship_accuracy": 1.0,
+        "integration_quality": 0.5,
+        "overall": 0.85,
+        "chain_coverage": 0.0
+      },
+      "analysis": {
+        "matched_concepts": [
+          "recursion"
+        ],
+        "missing_concepts": [],
+        "extra_concepts": [],
+        "correct_relationships": [],
+        "incorrect_relationships": [],
+        "missing_relationships": []
+      },
+      "diagnostic": {
+        "depth_assessment": "surface",
+        "feedback_points": [
+          "Try to explain HOW concepts relate to each other, not just listing them"
+        ],
+        "strengths": [
+          "Good concept coverage",
+          "Accurate understanding of concept relationships"
+        ],
+        "weaknesses": [],
+        "topological_summary": ""
+      }
+    },
+    "blooms": {
+      "level": 1,
+      "label": "Remember",
+      "description": "Recall facts, definitions, and basic terminology",
+      "confidence": 0.9,
+      "justification": "The student provides a basic definition of recursion and mentions the need for a stop condition, indicating recall of fundamental facts.",
+      "reasoning_steps": [
+        "The student defines recursion as 'a function calls itself,' which is a direct recall of a definition.",
+        "The mention of a 'stop condition' is also a factual recall related to recursion.",
+        "No explanation, application, or analysis is provided beyond these basic facts."
+      ],
+      "evidence": {
+        "cognitive_verbs": [],
+        "surface_indicators": [],
+        "depth_indicators": []
+      },
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "solo": {
+      "level": 2,
+      "label": "Unistructural",
+      "confidence": 0.9,
+      "justification": "The response identifies one key concept (recursion) and a related but unelaborated concept (stop condition) without explaining their connection or the role of the base case.",
+      "reasoning_steps": [
+        "The student identifies 'recursion' as a function calling itself, representing one relevant concept.",
+        "The mention of a 'stop condition' is a second relevant concept, but it is not connected to recursion's operation or the base case's role.",
+        "There is no elaboration on the 'role of the base case' or an example, indicating a lack of structural integration."
+      ],
+      "source": "combined_classifier",
+      "from_cache": false
+    },
+    "misconceptions": {
+      "total_misconceptions": 0,
+      "by_severity": {
+        "critical": 0,
+        "moderate": 0,
+        "minor": 0
+      },
+      "misconceptions": [],
+      "summary": "No misconceptions detected. All demonstrated relationships appear correct.",
+      "overall_accuracy": 1.0
+    }
+  }
+}

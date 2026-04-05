@@ -268,6 +268,7 @@ export const Editor = () => {
             onSubmit={handleSubmit}
             outputs={memoizedOutputs}
             maxInputChars={maxInputChars}
+            processingPercentage={processingPercentage}
           />
         </Drawer>
       </Box>

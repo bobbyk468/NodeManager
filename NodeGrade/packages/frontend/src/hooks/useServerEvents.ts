@@ -1,7 +1,7 @@
 import { ServerEventPayload } from '@haski/ta-lib'
 import { AlertColor } from '@mui/material'
 import { LGraph } from 'litegraph.js'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Socket } from 'socket.io-client'
 
 type EventHandlerArray<T> = [keyof T, (payload: T[keyof T]) => void | Promise<void>][]
@@ -36,7 +36,8 @@ export function useServerEvents({
   const [outputs, setOutputs] = useState<
     Record<string, ServerEventPayload['outputSet']> | undefined
   >(undefined)
-  const [maxInputChars, setMaxInputChars] = useState<number>(700)
+  const [maxInputChars, setMaxInputChars] = useState<number>(Infinity)
+  const serverSetMaxInputChars = useRef(false)
   const [image, setImage] = useState<string | undefined>()
   const [processingPercentage, setProcessingPercentage] = useState<number>(0)
   const [snackbar, setSnackbar] = useState<{
@@ -69,6 +70,12 @@ export function useServerEvents({
     lgraph.getNodeById(nodeId)!.color = '#FFFFFF00'
     lgraph.setDirtyCanvas(true, true)
   }
+
+  useEffect(() => {
+    // When socket changes, clear any previously server-set limit
+    serverSetMaxInputChars.current = false
+    setMaxInputChars(Infinity)
+  }, [socket])
 
   useEffect(() => {
     if (!socket) return
@@ -115,6 +122,7 @@ export function useServerEvents({
         })
       },
       maxInputChars(maxChars) {
+        serverSetMaxInputChars.current = true
         setMaxInputChars(maxChars)
       },
       percentageUpdated(payload) {

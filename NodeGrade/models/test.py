@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-# Datensatz
+# Dataset
 data = [
     10,
     0,
@@ -36,22 +36,22 @@ data = [
     108,
 ]
 
-# Berechnung des Mittelwerts und der Standardabweichung
+# Mean and standard deviation
 mean = np.mean(data)
 std_dev = np.std(data)
 
-# Berechnung der Grenzen für die zweite Standardabweichung
+# Bounds for ±2 standard deviations
 lower_bound = mean - 2 * std_dev
 upper_bound = mean + 2 * std_dev
 
-# Erstellen des Plots
+# Plot
 plt.figure(figsize=(10, 6))
 plt.hist(data, bins=20, color="blue", alpha=0.7, edgecolor="black")
 plt.axvline(mean, color="red", linestyle="dashed", linewidth=2)
 plt.axvline(lower_bound, color="green", linestyle="dashed", linewidth=2)
 plt.axvline(upper_bound, color="green", linestyle="dashed", linewidth=2)
-plt.title("Verteilung der Datenpunkte")
-plt.xlabel("Werte")
-plt.ylabel("Häufigkeit")
+plt.title("Distribution of data points")
+plt.xlabel("Values")
+plt.ylabel("Frequency")
 plt.grid(True)
 plt.show()

@@ -1,0 +1,136 @@
+{
+  "n_samples": 120,
+  "configs": {
+    "C0": {
+      "r": 0.731934847272815,
+      "mae": 1.7113333333333334,
+      "rmse": 2.1400661983530633,
+      "qwk": 0.18538444835822332
+    },
+    "C_LLM": {
+      "r": 0.9709397293007704,
+      "mae": 0.33,
+      "rmse": 0.4667261866805133,
+      "qwk": 0.9560834533401569
+    },
+    "C1": {
+      "r": 0.8674699371744873,
+      "mae": 0.7405,
+      "rmse": 0.9264043393680752,
+      "qwk": 0.828095658897603
+    },
+    "C1_fix": {
+      "r": 0.9236518364968466,
+      "mae": 0.3458333333333333,
+      "rmse": 0.673918887305191,
+      "qwk": 0.9085034059304841
+    },
+    "C5_fix": {
+      "r": 0.9820314964001232,
+      "mae": 0.22291666666666668,
+      "rmse": 0.33150540468193473,
+      "qwk": 0.9748013180849002
+    }
+  },
+  "core_claim": {
+    "c5_fix_vs_c_llm_mae_delta": 0.10708333333333334,
+    "c5_fix_vs_c_llm_mae_pct": 32.44949494949495,
+    "c5_fix_vs_c_llm_r_delta": 0.011091767099352778,
+    "c5_fix_vs_c_llm_rmse_delta": 0.13522078199857857
+  },
+  "significance": {
+    "C1_fix vs C_LLM": {
+      "statistic": 896.5,
+      "p_value": 0.19612060798002723,
+      "significant": false
+    },
+    "C5_fix vs C_LLM": {
+      "statistic": 930.5,
+      "p_value": 0.0013196841777978862,
+      "significant": true
+    },
+    "C5_fix vs C1": {
+      "statistic": 6722.5,
+      "p_value": 2.7407831841356114e-16,
+      "significant": true
+    },
+    "C5_fix vs C1_fix": {
+      "statistic": 55.0,
+      "p_value": 0.0022409900782254743,
+      "significant": true
+    }
+  },
+  "per_question": [
+    {
+      "q": 1,
+      "c_llm": 0.4375,
+      "c1_fix": 0.5625,
+      "c5_fix": 0.2708333333333333,
+      "winner": "C5_fix"
+    },
+    {
+      "q": 2,
+      "c_llm": 0.5416666666666666,
+      "c1_fix": 0.625,
+      "c5_fix": 0.125,
+      "winner": "C5_fix"
+    },
+    {
+      "q": 3,
+      "c_llm": 0.3541666666666667,
+      "c1_fix": 0.3125,
+      "c5_fix": 0.2708333333333333,
+      "winner": "C5_fix"
+    },
+    {
+      "q": 4,
+      "c_llm": 0.20833333333333334,
+      "c1_fix": 0.5416666666666666,
+      "c5_fix": 0.25,
+      "winner": "C_LLM"
+    },
+    {
+      "q": 5,
+      "c_llm": 0.27499999999999997,
+      "c1_fix": 0.20833333333333334,
+      "c5_fix": 0.16666666666666666,
+      "winner": "C5_fix"
+    },
+    {
+      "q": 6,
+      "c_llm": 0.35833333333333334,
+      "c1_fix": 0.25,
+      "c5_fix": 0.25,
+      "winner": "C1_fix"
+    },
+    {
+      "q": 7,
+      "c_llm": 0.1875,
+      "c1_fix": 0.14583333333333334,
+      "c5_fix": 0.125,
+      "winner": "C5_fix"
+    },
+    {
+      "q": 8,
+      "c_llm": 0.20833333333333334,
+      "c1_fix": 0.125,
+      "c5_fix": 0.125,
+      "winner": "C1_fix"
+    },
+    {
+      "q": 9,
+      "c_llm": 0.5666666666666667,
+      "c1_fix": 0.3333333333333333,
+      "c5_fix": 0.3333333333333333,
+      "winner": "C1_fix"
+    },
+    {
+      "q": 10,
+      "c_llm": 0.1625,
+      "c1_fix": 0.3541666666666667,
+      "c5_fix": 0.3125,
+      "winner": "C_LLM"
+    }
+  ],
+  "latex": "% ConceptGrade Offline Ablation \u2014 Mohler (n=120)\n\\begin{table}[h]\\centering\n\\caption{Ablation results on Mohler et al.\\ (2011) ($n=120$). C\\textsubscript{LLM} = Pure LLM Zero-Shot; C\\textsubscript{1,fix} = KG Evidence $\\to$ Concept Score; C\\textsubscript{5,fix} = KG Evidence $\\to$ Holistic Score (ConceptGrade). $\\Delta$ vs.\\ C\\textsubscript{LLM}. Bold = best.}\n\\label{tab:offline_ablation}\n\\begin{tabular}{@{}llrrrrrr@{}}\\toprule\n\\textbf{ID} & \\textbf{System} & \\textbf{$r$} & \\textbf{$\\Delta r$} & \\textbf{QWK} & \\textbf{RMSE} & \\textbf{MAE} & \\textbf{$\\Delta$MAE} \\\\\\midrule\nC0 & Cosine-Only Baseline & 0.7319 & -- & 0.1854 & 2.1401 & 1.7113 & -- \\\\\nC_LLM & Pure LLM Zero-Shot & 0.9709 & -- & 0.9561 & 0.4667 & 0.3300 & -- \\\\\n\\midrule\nC1 & ConceptGrade KG Raw (broken) & 0.8675 & -- & 0.8281 & 0.9264 & 0.7405 & -- \\\\\nC1_fix & KG Evidence \u2192 Concept Score & 0.9237 & -0.0473 & 0.9085 & 0.6739 & 0.3458 & +0.0158 \\\\\nC5_fix & KG Evidence \u2192 Holistic Score & \\textbf{0.9820} & +0.0111 & 0.9748 & \\textbf{0.3315} & \\textbf{0.2229} & -0.1071 \\\\\n\\bottomrule\\end{tabular}\\end{table}"
+}

@@ -1,0 +1,32 @@
+{
+  "dataset": "Mohler et al. (2011) embedded benchmark",
+  "n_samples": 120,
+  "n_questions": 10,
+  "answers_per_question": 12,
+  "score_range": "0.0\u20135.0",
+  "systems": {
+    "C0": "TF-IDF cosine similarity \u00d7 5.0",
+    "C_LLM": "Gemini gemini-flash-latest, pure LLM zero-shot",
+    "C1": "ConceptGrade pipeline, raw KG score (broken)",
+    "C1_fix": "Gemini Pro chat, KG evidence only, no answer text",
+    "C5_fix": "Gemini Pro chat, student answer + full KG evidence"
+  },
+  "files": {
+    "checkpoint": "data/ablation_checkpoint_gemini_flash_latest.json",
+    "intermediates": "data/ablation_intermediates_gemini_flash_latest.json",
+    "dual_scores": "data/gemini_kg_dual_scores.json"
+  },
+  "methodology": {
+    "C1_fix_prompt": "Gemini Pro chat, 120 samples in 5 batches, KG evidence only",
+    "C5_fix_prompt": "Gemini Pro chat, 120 samples combined, answer + KG evidence",
+    "both_scored_at_same_time": true,
+    "date": "2026-04-04"
+  },
+  "reproducibility": {
+    "zero_api_calls_needed": true,
+    "scripts": [
+      "run_offline_eval.py",
+      "run_deep_analysis.py"
+    ]
+  }
+}

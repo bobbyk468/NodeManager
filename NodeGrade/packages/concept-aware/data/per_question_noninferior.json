@@ -1,0 +1,128 @@
+{
+  "n_wins_point_estimate": 8,
+  "n_noninferior": 10,
+  "overall_mae_c5": 0.22291666666666668,
+  "overall_mae_llm": 0.33,
+  "rows": [
+    {
+      "question": 1,
+      "label": "Linked List",
+      "mae_c5": 0.2708333333333333,
+      "mae_llm": 0.4375,
+      "delta": -0.16666666666666669,
+      "ci_lo": -0.32500000000000007,
+      "ci_hi": 0.00020833333333030094,
+      "p_worse": 0.96875,
+      "sig_worse": false,
+      "win": true
+    },
+    {
+      "question": 2,
+      "label": "Array vs. Linked List",
+      "mae_c5": 0.125,
+      "mae_llm": 0.5416666666666666,
+      "delta": -0.41666666666666663,
+      "ci_lo": -0.7083333333333334,
+      "ci_hi": -0.16666666666666666,
+      "p_worse": 1.0,
+      "sig_worse": false,
+      "win": true
+    },
+    {
+      "question": 3,
+      "label": "Stack",
+      "mae_c5": 0.2708333333333333,
+      "mae_llm": 0.3541666666666667,
+      "delta": -0.08333333333333337,
+      "ci_lo": -0.20833333333333331,
+      "ci_hi": 0.0,
+      "p_worse": 1.0,
+      "sig_worse": false,
+      "win": true
+    },
+    {
+      "question": 4,
+      "label": "BST",
+      "mae_c5": 0.25,
+      "mae_llm": 0.20833333333333334,
+      "delta": 0.04166666666666666,
+      "ci_lo": -0.08333333333333334,
+      "ci_hi": 0.16666666666666669,
+      "p_worse": 0.5,
+      "sig_worse": false,
+      "win": false
+    },
+    {
+      "question": 5,
+      "label": "BFS vs. DFS",
+      "mae_c5": 0.16666666666666666,
+      "mae_llm": 0.27499999999999997,
+      "delta": -0.10833333333333331,
+      "ci_lo": -0.29166666666666663,
+      "ci_hi": 0.05833333333333336,
+      "p_worse": 0.890625,
+      "sig_worse": false,
+      "win": true
+    },
+    {
+      "question": 6,
+      "label": "Hash Table",
+      "mae_c5": 0.25,
+      "mae_llm": 0.35833333333333334,
+      "delta": -0.10833333333333334,
+      "ci_lo": -0.3416666666666667,
+      "ci_hi": 0.12499999999999997,
+      "p_worse": 0.828125,
+      "sig_worse": false,
+      "win": true
+    },
+    {
+      "question": 7,
+      "label": "Recursion",
+      "mae_c5": 0.125,
+      "mae_llm": 0.1875,
+      "delta": -0.0625,
+      "ci_lo": -0.20833333333333331,
+      "ci_hi": 0.08333333333333333,
+      "p_worse": 0.875,
+      "sig_worse": false,
+      "win": true
+    },
+    {
+      "question": 8,
+      "label": "Quicksort",
+      "mae_c5": 0.125,
+      "mae_llm": 0.20833333333333334,
+      "delta": -0.08333333333333334,
+      "ci_lo": -0.25,
+      "ci_hi": 0.08333333333333331,
+      "p_worse": 0.9375,
+      "sig_worse": false,
+      "win": true
+    },
+    {
+      "question": 9,
+      "label": "Dynamic Programming",
+      "mae_c5": 0.3333333333333333,
+      "mae_llm": 0.5666666666666667,
+      "delta": -0.23333333333333334,
+      "ci_lo": -0.4916666666666666,
+      "ci_hi": 0.0,
+      "p_worse": 0.984375,
+      "sig_worse": false,
+      "win": true
+    },
+    {
+      "question": 10,
+      "label": "Big-O Notation",
+      "mae_c5": 0.3125,
+      "mae_llm": 0.1625,
+      "delta": 0.15,
+      "ci_lo": -0.01666666666666669,
+      "ci_hi": 0.31666666666666665,
+      "p_worse": 0.109375,
+      "sig_worse": false,
+      "win": false
+    }
+  ]
+}

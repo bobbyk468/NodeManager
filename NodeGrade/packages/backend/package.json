@@ -9,8 +9,8 @@
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "dev": "nest start",
-    "start:dev": "nest start --watch",
+    "dev": "env -u NODE_OPTIONS nest start",
+    "start:dev": "env -u NODE_OPTIONS nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
@@ -19,6 +19,7 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
+    "test:integration": "node scripts/integration-test.cjs",
     "test:report": "mkdir -p ../../reports && jest --json --outputFile=../../reports/jest-results.json --testLocationInResults"
   },
   "dependencies": {
@@ -29,14 +30,14 @@
     "@nestjs/platform-express": "^11.0.1",
     "@nestjs/platform-socket.io": "^11.0.12",
     "@nestjs/websockets": "^11.0.12",
-    "@prisma/client": "^6.5.0",
+    "@prisma/client": "6.5.0",
     "@xapi/xapi": "^3.0.1",
     "cookie": "^1.0.2",
     "cookie-parser": "^1.4.7",
     "dotenv": "^16.4.7",
-    "prisma": "^6.5.0",
     "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "socket.io": "^4.8.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
@@ -58,6 +59,7 @@
     "globals": "^16.0.0",
     "jest": "^29.7.0",
     "prettier": "^3.4.2",
+    "prisma": "6.5.0",
     "socket.io-client": "4.7.2",
     "source-map-support": "^0.5.21",
     "supertest": "^7.0.0",

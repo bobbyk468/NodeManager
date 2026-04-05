@@ -38,7 +38,7 @@ export class OutputNode extends LGraphNode {
       (t) => {
         this.properties.type = t
       },
-      { values: Object.values<OutputType>(['text', 'score', 'classifications']) }
+      { values: Object.values<OutputType>(['text', 'score', 'classifications', 'feedback']) }
     )
     this.serialize_widgets = true
   }

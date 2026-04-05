@@ -1,0 +1,58 @@
+% Table 1: Main ConceptGrade Ablation
+% Mohler (2011), n=120
+\begin{table}[ht]\centering
+\caption{Ablation results on Mohler et al.\ (2011) ($n=120$).
+$C_0$: TF-IDF cosine baseline.
+$C_{\text{LLM}}$: pure LLM zero-shot (no KG).
+$C_1$: ConceptGrade with raw KG score (broken due to score compression).
+$C_1^{\dagger}$: LLM graded using KG evidence only, without student answer text.
+$C_5^{*}$: \textbf{ConceptGrade} --- student answer + full KG evidence
+(matched concepts, causal chain coverage, SOLO taxonomy, Bloom's taxonomy, misconceptions).
+$\Delta$ = improvement over $C_{\text{LLM}}$. Bold = best.
+$^{\ddagger}$~95\% bootstrap CI.}
+\label{tab:ablation_main}
+\begin{tabular}{@{}llrrrrrr@{}}\toprule
+\textbf{ID} & \textbf{System} & \textbf{$r$} & \textbf{$\Delta r$} &
+\textbf{RMSE} & \textbf{MAE} & \textbf{$\Delta$MAE} & \textbf{Bias} \\\midrule
+$C_0$ & Cosine Similarity & 0.7319 & -- & 2.1401 & 1.7113 & -- & -1.6820 \\
+$C_{\text{LLM}}$ & Pure LLM Zero-Shot & 0.9709$^{\ddagger}$ & -- & 0.4667 & 0.3300 & -- & +0.1883 \\
+\midrule
+$C_1$ & ConceptGrade KG Raw & 0.8675 & -- & 0.9264 & 0.7405 & -- & -0.4583 \\
+$C_1^{\dagger}$ & KG Evidence Only & 0.9237 & -0.0473 & 0.6739 & 0.3458 & +0.0158 & -0.2583 \\
+$C_5^{*}$ & \textbf{ConceptGrade} & \textbf{0.9820}$^{\ddagger}$ & +0.0111 & \textbf{0.3315} & \textbf{0.2229} & -0.1071 & -0.1229 \\
+\bottomrule
+\end{tabular}\end{table}
+
+% Table 2: SOLO Level Breakdown
+\begin{table}[ht]\centering
+\caption{Per-SOLO-level grading accuracy on Mohler et al.\ (2011).
+SOLO taxonomy levels: Prestructural (no relevant content), Unistructural (one concept),
+Multistructural (several concepts), Relational (integrated understanding).
+$\Delta$MAE = improvement of ConceptGrade over Pure LLM. Bias = mean(predicted $-$ human).}
+\label{tab:solo_breakdown}
+\begin{tabular}{@{}lrrrrrrrr@{}}\toprule
+\textbf{SOLO Level} & \textbf{$n$} & \textbf{Avg Score} &
+\textbf{$C_{\text{LLM}}$ MAE} & \textbf{$C_5^{*}$ MAE} & \textbf{$\Delta$MAE} &
+\textbf{$C_{\text{LLM}}$ Bias} & \textbf{$C_5^{*}$ Bias} \\\midrule
+  Prestructural (1) & 12 & 0.38 & 0.1667 & 0.2083 & -0.0417 & -0.1250 & -0.1667 \\
+  Unistructural (2) & 47 & 1.01 & 0.2713 & 0.2447 & +0.0266 & +0.1011 & -0.1064 \\
+  Multistructural (3) & 27 & 2.71 & 0.4907 & 0.3426 & +0.1481 & +0.2870 & -0.2500 \\
+  Relational (4) & 34 & 4.26 & 0.3412 & 0.1029 & +0.2382 & +0.3412 & -0.0294 \\
+\bottomrule
+\end{tabular}\end{table}
+
+% Table 3: Statistical Validation
+\begin{table}[ht]\centering
+\caption{Statistical validation of ConceptGrade ($C_5^{*}$) vs.\
+Pure LLM baseline ($C_{\text{LLM}}$) on Mohler (2011), $n=120$.
+All tests compare absolute errors. Wilcoxon: one-sided (H$_1$: lower MAE).}
+\label{tab:statistics}
+\begin{tabular}{@{}lrrr@{}}\toprule
+\textbf{Test} & \textbf{Statistic} & \textbf{$p$-value} & \textbf{Result} \\\midrule
+Wilcoxon signed-rank & $W=930$ & $0.0013$ & Significant ($p<0.01$) \\
+Paired $t$-test & $t=3.2268$ & $0.0016$ & Significant ($p<0.01$) \\
+Cohen's $d$ & $d=0.3667$ & & Small--Medium effect \\
+MAE 95\% CI ($C_{\text{LLM}}$) & [0.2725, 0.3908] & & Bootstrap \\
+MAE 95\% CI ($C_5^{*}$) & [0.1792, 0.2687] & & Non-overlapping \\
+\bottomrule
+\end{tabular}\end{table}

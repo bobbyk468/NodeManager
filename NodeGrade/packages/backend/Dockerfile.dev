@@ -1,0 +1,32 @@
+# Backend dev image — hot-reload via nest start --watch
+# Build context must be the monorepo root:
+#   docker build . -f packages/backend/Dockerfile.dev -t nodegrade-backend-dev
+
+FROM node:20-bullseye
+WORKDIR /app
+
+RUN corepack enable && yarn set version 4.5.0
+RUN apt-get update && apt-get install -y tini --no-install-recommends && rm -rf /var/lib/apt/lists/*
+
+# Install dependencies (layer-cached until lockfile changes)
+COPY package.json yarn.lock .yarnrc.yml ./
+COPY packages/backend/package.json ./packages/backend/
+COPY packages/lib/package.json ./packages/lib/
+
+RUN yarn install
+
+# Copy source
+COPY packages/backend ./packages/backend
+COPY packages/lib ./packages/lib
+
+# Build lib so backend can import it
+RUN yarn workspace @haski/ta-lib build
+
+# Generate Prisma client
+RUN yarn workspace backend exec prisma generate
+
+EXPOSE 5001
+
+ENTRYPOINT ["/usr/bin/tini", "--"]
+# migrate then start; migrations are idempotent so safe on every restart
+CMD ["sh", "-c", "yarn workspace backend exec prisma migrate deploy && yarn workspace backend dev"]

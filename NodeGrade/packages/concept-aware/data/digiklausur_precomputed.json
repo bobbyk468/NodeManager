@@ -1,0 +1,7845 @@
+{
+  "0": {
+    "matched_concepts": [
+      "human_brain",
+      "experiential_knowledge",
+      "synaptic_weights",
+      "artificial_neural_network",
+      "processing_unit",
+      "learning_process"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "1": {
+    "matched_concepts": [
+      "human_brain",
+      "experiential_knowledge",
+      "synaptic_weights",
+      "artificial_neural_network",
+      "processing_unit",
+      "learning_process"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "2": {
+    "matched_concepts": [
+      "learning_process",
+      "experiential_knowledge",
+      "processing_unit",
+      "artificial_neural_network"
+    ],
+    "chain_pct": "67%",
+    "solo": "Relational",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "3": {
+    "matched_concepts": [
+      "synaptic_weights",
+      "human_brain",
+      "artificial_neural_network"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "4": {
+    "matched_concepts": [
+      "human_brain",
+      "experiential_knowledge",
+      "synaptic_weights",
+      "artificial_neural_network",
+      "processing_unit",
+      "learning_process"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "5": {
+    "matched_concepts": [
+      "human_brain",
+      "artificial_neural_network"
+    ],
+    "chain_pct": "33%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "6": {
+    "matched_concepts": [
+      "synaptic_weights",
+      "processing_unit",
+      "human_brain",
+      "learning_process"
+    ],
+    "chain_pct": "67%",
+    "solo": "Relational",
+    "bloom": "Analyze",
+    "n_kg_concepts": 6
+  },
+  "7": {
+    "matched_concepts": [
+      "human_brain",
+      "experiential_knowledge",
+      "synaptic_weights",
+      "processing_unit",
+      "learning_process"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "8": {
+    "matched_concepts": [
+      "learning_process",
+      "human_brain",
+      "artificial_neural_network"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "9": {
+    "matched_concepts": [
+      "human_brain",
+      "synaptic_weights",
+      "artificial_neural_network",
+      "processing_unit",
+      "learning_process"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Analyze",
+    "n_kg_concepts": 6
+  },
+  "10": {
+    "matched_concepts": [
+      "learning_process",
+      "processing_unit",
+      "human_brain",
+      "artificial_neural_network"
+    ],
+    "chain_pct": "67%",
+    "solo": "Relational",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "11": {
+    "matched_concepts": [
+      "human_brain",
+      "experiential_knowledge",
+      "synaptic_weights",
+      "processing_unit",
+      "learning_process"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "12": {
+    "matched_concepts": [
+      "processing_unit",
+      "human_brain",
+      "learning_process"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "13": {
+    "matched_concepts": [
+      "human_brain",
+      "experiential_knowledge",
+      "synaptic_weights",
+      "artificial_neural_network",
+      "processing_unit",
+      "learning_process"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "14": {
+    "matched_concepts": [
+      "human_brain",
+      "experiential_knowledge",
+      "artificial_neural_network",
+      "processing_unit",
+      "learning_process"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "15": {
+    "matched_concepts": [
+      "human_brain",
+      "experiential_knowledge",
+      "synaptic_weights",
+      "artificial_neural_network",
+      "processing_unit",
+      "learning_process"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "16": {
+    "matched_concepts": [
+      "human_brain",
+      "experiential_knowledge",
+      "synaptic_weights",
+      "artificial_neural_network",
+      "processing_unit",
+      "learning_process"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "17": {
+    "matched_concepts": [
+      "human_brain",
+      "experiential_knowledge",
+      "synaptic_weights",
+      "artificial_neural_network",
+      "processing_unit",
+      "learning_process"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "18": {
+    "matched_concepts": [
+      "human_brain",
+      "learning_process"
+    ],
+    "chain_pct": "33%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "19": {
+    "matched_concepts": [
+      "human_brain",
+      "experiential_knowledge",
+      "synaptic_weights",
+      "artificial_neural_network",
+      "processing_unit",
+      "learning_process"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "20": {
+    "matched_concepts": [
+      "human_brain",
+      "experiential_knowledge",
+      "synaptic_weights",
+      "artificial_neural_network",
+      "learning_process"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "21": {
+    "matched_concepts": [
+      "human_brain",
+      "experiential_knowledge",
+      "synaptic_weights",
+      "artificial_neural_network",
+      "processing_unit",
+      "learning_process"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "22": {
+    "matched_concepts": [
+      "experiential_knowledge",
+      "processing_unit",
+      "human_brain",
+      "learning_process"
+    ],
+    "chain_pct": "67%",
+    "solo": "Relational",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "23": {
+    "matched_concepts": [
+      "human_brain",
+      "synaptic_weights",
+      "artificial_neural_network",
+      "processing_unit",
+      "learning_process"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "24": {
+    "matched_concepts": [
+      "human_brain",
+      "experiential_knowledge",
+      "synaptic_weights",
+      "artificial_neural_network",
+      "learning_process"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "25": {
+    "matched_concepts": [
+      "synaptic_weights",
+      "processing_unit",
+      "human_brain",
+      "artificial_neural_network"
+    ],
+    "chain_pct": "67%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "26": {
+    "matched_concepts": [
+      "human_brain",
+      "experiential_knowledge",
+      "synaptic_weights",
+      "artificial_neural_network",
+      "processing_unit",
+      "learning_process"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "27": {
+    "matched_concepts": [
+      "human_brain",
+      "synaptic_weights",
+      "artificial_neural_network",
+      "processing_unit",
+      "learning_process"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Analyze",
+    "n_kg_concepts": 6
+  },
+  "28": {
+    "matched_concepts": [
+      "experiential_knowledge",
+      "processing_unit",
+      "learning_process"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "29": {
+    "matched_concepts": [
+      "synaptic_weights",
+      "human_brain",
+      "artificial_neural_network"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Analyze",
+    "n_kg_concepts": 6
+  },
+  "30": {
+    "matched_concepts": [
+      "learning_process",
+      "human_brain",
+      "artificial_neural_network"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "31": {
+    "matched_concepts": [
+      "human_brain",
+      "synaptic_weights",
+      "artificial_neural_network",
+      "processing_unit",
+      "learning_process"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "32": {
+    "matched_concepts": [
+      "processing_unit",
+      "human_brain"
+    ],
+    "chain_pct": "33%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "33": {
+    "matched_concepts": [
+      "human_brain",
+      "experiential_knowledge",
+      "artificial_neural_network",
+      "processing_unit",
+      "learning_process"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "34": {
+    "matched_concepts": [
+      "processing_unit",
+      "learning_process"
+    ],
+    "chain_pct": "33%",
+    "solo": "Multistructural",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "35": {
+    "matched_concepts": [
+      "human_brain",
+      "experiential_knowledge",
+      "synaptic_weights",
+      "artificial_neural_network",
+      "processing_unit",
+      "learning_process"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "36": {
+    "matched_concepts": [
+      "human_brain",
+      "experiential_knowledge",
+      "synaptic_weights",
+      "artificial_neural_network",
+      "processing_unit",
+      "learning_process"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "37": {
+    "matched_concepts": [
+      "experiential_knowledge",
+      "processing_unit",
+      "human_brain",
+      "learning_process"
+    ],
+    "chain_pct": "67%",
+    "solo": "Relational",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "38": {
+    "matched_concepts": [
+      "mathematical_model_of_neuron",
+      "weighted_sum",
+      "weight",
+      "neuron_output",
+      "activation_function",
+      "adder_function"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Understand",
+    "n_kg_concepts": 8
+  },
+  "39": {
+    "matched_concepts": [
+      "mathematical_model_of_neuron",
+      "bias",
+      "weighted_sum",
+      "weight",
+      "neuron_output",
+      "activation_function",
+      "adder_function"
+    ],
+    "chain_pct": "88%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "40": {
+    "matched_concepts": [
+      "mathematical_model_of_neuron",
+      "weight",
+      "neuron_output",
+      "activation_function",
+      "adder_function"
+    ],
+    "chain_pct": "62%",
+    "solo": "Relational",
+    "bloom": "Understand",
+    "n_kg_concepts": 8
+  },
+  "41": {
+    "matched_concepts": [
+      "neuron_output",
+      "weight"
+    ],
+    "chain_pct": "25%",
+    "solo": "Unistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "42": {
+    "matched_concepts": [
+      "mathematical_model_of_neuron",
+      "weight",
+      "neuron_output",
+      "activation_function",
+      "adder_function"
+    ],
+    "chain_pct": "62%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "43": {
+    "matched_concepts": [
+      "adder_function",
+      "neuron_output",
+      "activation_function",
+      "weight"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "44": {
+    "matched_concepts": [
+      "mathematical_model_of_neuron",
+      "bias",
+      "weighted_sum",
+      "weight",
+      "neuron_output",
+      "activation_function",
+      "adder_function"
+    ],
+    "chain_pct": "88%",
+    "solo": "Extended Abstract",
+    "bloom": "Understand",
+    "n_kg_concepts": 8
+  },
+  "45": {
+    "matched_concepts": [
+      "mathematical_model_of_neuron",
+      "synapses",
+      "weight",
+      "weighted_sum",
+      "neuron_output",
+      "activation_function",
+      "adder_function"
+    ],
+    "chain_pct": "88%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "46": {
+    "matched_concepts": [
+      "mathematical_model_of_neuron",
+      "bias",
+      "weight",
+      "neuron_output",
+      "activation_function",
+      "adder_function"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "47": {
+    "matched_concepts": [
+      "mathematical_model_of_neuron",
+      "bias",
+      "weight",
+      "neuron_output",
+      "activation_function",
+      "adder_function"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "48": {
+    "matched_concepts": [
+      "mathematical_model_of_neuron",
+      "bias",
+      "weight",
+      "neuron_output",
+      "activation_function",
+      "adder_function"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "49": {
+    "matched_concepts": [
+      "mathematical_model_of_neuron",
+      "bias",
+      "weight",
+      "neuron_output",
+      "activation_function",
+      "adder_function"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Understand",
+    "n_kg_concepts": 8
+  },
+  "50": {
+    "matched_concepts": [
+      "mathematical_model_of_neuron",
+      "synapses",
+      "bias",
+      "weight",
+      "weighted_sum",
+      "neuron_output",
+      "activation_function",
+      "adder_function"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Analyze",
+    "n_kg_concepts": 8
+  },
+  "51": {
+    "matched_concepts": [
+      "mathematical_model_of_neuron",
+      "bias",
+      "weight",
+      "neuron_output",
+      "activation_function",
+      "adder_function"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Understand",
+    "n_kg_concepts": 8
+  },
+  "52": {
+    "matched_concepts": [
+      "mathematical_model_of_neuron",
+      "weighted_sum",
+      "weight",
+      "neuron_output",
+      "activation_function",
+      "adder_function"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Understand",
+    "n_kg_concepts": 8
+  },
+  "53": {
+    "matched_concepts": [
+      "mathematical_model_of_neuron",
+      "bias",
+      "weighted_sum",
+      "weight",
+      "neuron_output",
+      "activation_function",
+      "adder_function"
+    ],
+    "chain_pct": "88%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "54": {
+    "matched_concepts": [
+      "mathematical_model_of_neuron",
+      "weight",
+      "neuron_output",
+      "activation_function",
+      "adder_function"
+    ],
+    "chain_pct": "62%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "55": {
+    "matched_concepts": [
+      "mathematical_model_of_neuron",
+      "weighted_sum",
+      "weight",
+      "neuron_output",
+      "activation_function",
+      "adder_function"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "56": {
+    "matched_concepts": [
+      "mathematical_model_of_neuron",
+      "bias",
+      "weighted_sum",
+      "weight",
+      "neuron_output",
+      "activation_function",
+      "adder_function"
+    ],
+    "chain_pct": "88%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "57": {
+    "matched_concepts": [
+      "mathematical_model_of_neuron",
+      "bias",
+      "weighted_sum",
+      "weight",
+      "neuron_output",
+      "activation_function",
+      "adder_function"
+    ],
+    "chain_pct": "88%",
+    "solo": "Extended Abstract",
+    "bloom": "Understand",
+    "n_kg_concepts": 8
+  },
+  "58": {
+    "matched_concepts": [
+      "mathematical_model_of_neuron",
+      "bias",
+      "weight",
+      "neuron_output",
+      "activation_function",
+      "adder_function"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "59": {
+    "matched_concepts": [
+      "mathematical_model_of_neuron",
+      "synapses",
+      "bias",
+      "weight",
+      "weighted_sum",
+      "neuron_output",
+      "activation_function",
+      "adder_function"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "60": {
+    "matched_concepts": [
+      "mathematical_model_of_neuron",
+      "bias",
+      "neuron_output",
+      "weight"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "61": {
+    "matched_concepts": [
+      "mathematical_model_of_neuron",
+      "bias",
+      "weight",
+      "neuron_output",
+      "activation_function",
+      "adder_function"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "62": {
+    "matched_concepts": [
+      "mathematical_model_of_neuron",
+      "bias",
+      "weighted_sum",
+      "weight",
+      "neuron_output",
+      "activation_function",
+      "adder_function"
+    ],
+    "chain_pct": "88%",
+    "solo": "Extended Abstract",
+    "bloom": "Understand",
+    "n_kg_concepts": 8
+  },
+  "63": {
+    "matched_concepts": [
+      "mathematical_model_of_neuron",
+      "weight",
+      "neuron_output",
+      "activation_function",
+      "adder_function"
+    ],
+    "chain_pct": "62%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "64": {
+    "matched_concepts": [
+      "mathematical_model_of_neuron",
+      "weighted_sum",
+      "weight",
+      "neuron_output",
+      "activation_function",
+      "adder_function"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Understand",
+    "n_kg_concepts": 8
+  },
+  "65": {
+    "matched_concepts": [
+      "mathematical_model_of_neuron",
+      "weighted_sum",
+      "weight",
+      "neuron_output",
+      "activation_function",
+      "adder_function"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "66": {
+    "matched_concepts": [
+      "mathematical_model_of_neuron",
+      "bias",
+      "weight",
+      "neuron_output",
+      "activation_function",
+      "adder_function"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "67": {
+    "matched_concepts": [
+      "bias",
+      "weight",
+      "neuron_output",
+      "activation_function",
+      "adder_function"
+    ],
+    "chain_pct": "62%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "68": {
+    "matched_concepts": [
+      "mathematical_model_of_neuron",
+      "neuron_output",
+      "activation_function",
+      "adder_function"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Understand",
+    "n_kg_concepts": 8
+  },
+  "69": {
+    "matched_concepts": [
+      "mathematical_model_of_neuron",
+      "bias",
+      "weight",
+      "neuron_output",
+      "activation_function",
+      "adder_function"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Understand",
+    "n_kg_concepts": 8
+  },
+  "70": {
+    "matched_concepts": [
+      "mathematical_model_of_neuron",
+      "bias",
+      "weight",
+      "neuron_output",
+      "activation_function",
+      "adder_function"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "71": {
+    "matched_concepts": [
+      "mathematical_model_of_neuron",
+      "weighted_sum",
+      "weight",
+      "neuron_output",
+      "activation_function",
+      "adder_function"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "72": {
+    "matched_concepts": [
+      "mathematical_model_of_neuron",
+      "bias",
+      "weight",
+      "neuron_output",
+      "activation_function",
+      "adder_function"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "73": {
+    "matched_concepts": [
+      "mathematical_model_of_neuron",
+      "weight",
+      "neuron_output",
+      "activation_function",
+      "adder_function"
+    ],
+    "chain_pct": "62%",
+    "solo": "Relational",
+    "bloom": "Understand",
+    "n_kg_concepts": 8
+  },
+  "74": {
+    "matched_concepts": [
+      "mathematical_model_of_neuron",
+      "weight",
+      "neuron_output",
+      "activation_function",
+      "adder_function"
+    ],
+    "chain_pct": "62%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "75": {
+    "matched_concepts": [
+      "mathematical_model_of_neuron",
+      "synapses",
+      "bias",
+      "weight",
+      "weighted_sum",
+      "neuron_output",
+      "activation_function",
+      "adder_function"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "76": {
+    "matched_concepts": [
+      "linearly_separable_data",
+      "update_rule",
+      "data_labeling",
+      "weight_initialization"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "77": {
+    "matched_concepts": [
+      "weight_initialization",
+      "perceptron"
+    ],
+    "chain_pct": "25%",
+    "solo": "Unistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "78": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "79": {
+    "matched_concepts": [
+      "linearly_separable_data",
+      "data_labeling",
+      "weight_initialization",
+      "convergence"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "80": {
+    "matched_concepts": [
+      "linearly_separable_data",
+      "update_rule",
+      "data_labeling",
+      "weight_initialization"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "81": {
+    "matched_concepts": [
+      "learning_algorithm",
+      "weight_initialization"
+    ],
+    "chain_pct": "25%",
+    "solo": "Unistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "82": {
+    "matched_concepts": [
+      "learning_algorithm",
+      "convergence"
+    ],
+    "chain_pct": "25%",
+    "solo": "Unistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "83": {
+    "matched_concepts": [
+      "learning_algorithm",
+      "linearly_separable_data",
+      "data_labeling",
+      "weight_initialization"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "84": {
+    "matched_concepts": [
+      "linearly_separable_data",
+      "update_rule",
+      "data_labeling",
+      "weight_initialization"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "85": {
+    "matched_concepts": [
+      "learning_algorithm",
+      "linearly_separable_data",
+      "data_labeling",
+      "weight_initialization"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Understand",
+    "n_kg_concepts": 8
+  },
+  "86": {
+    "matched_concepts": [
+      "linearly_separable_data",
+      "data_labeling",
+      "weight_initialization"
+    ],
+    "chain_pct": "38%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "87": {
+    "matched_concepts": [
+      "weight_initialization",
+      "convergence"
+    ],
+    "chain_pct": "25%",
+    "solo": "Unistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "88": {
+    "matched_concepts": [
+      "linearly_separable_data",
+      "update_rule",
+      "data_labeling",
+      "weight_initialization"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "89": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "90": {
+    "matched_concepts": [
+      "update_rule",
+      "weight_initialization",
+      "perceptron"
+    ],
+    "chain_pct": "38%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "91": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "92": {
+    "matched_concepts": [
+      "learning_algorithm",
+      "update_rule",
+      "convergence"
+    ],
+    "chain_pct": "38%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "93": {
+    "matched_concepts": [
+      "learning_algorithm",
+      "weight_initialization",
+      "perceptron"
+    ],
+    "chain_pct": "38%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "94": {
+    "matched_concepts": [
+      "update_rule",
+      "weight_initialization",
+      "data_labeling",
+      "binary_classification",
+      "linearly_separable_data",
+      "convergence"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "95": {
+    "matched_concepts": [
+      "update_rule",
+      "weight_initialization",
+      "perceptron"
+    ],
+    "chain_pct": "38%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "96": {
+    "matched_concepts": [
+      "linearly_separable_data",
+      "update_rule",
+      "data_labeling",
+      "weight_initialization"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "97": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "98": {
+    "matched_concepts": [
+      "linearly_separable_data",
+      "data_labeling",
+      "weight_initialization"
+    ],
+    "chain_pct": "38%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "99": {
+    "matched_concepts": [
+      "update_rule",
+      "weight_initialization"
+    ],
+    "chain_pct": "25%",
+    "solo": "Unistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "100": {
+    "matched_concepts": [
+      "update_rule",
+      "weight_initialization",
+      "perceptron"
+    ],
+    "chain_pct": "38%",
+    "solo": "Multistructural",
+    "bloom": "Understand",
+    "n_kg_concepts": 8
+  },
+  "101": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "102": {
+    "matched_concepts": [
+      "linearly_separable_data",
+      "data_labeling",
+      "weight_initialization"
+    ],
+    "chain_pct": "38%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "103": {
+    "matched_concepts": [
+      "linearly_separable_data",
+      "data_labeling",
+      "weight_initialization"
+    ],
+    "chain_pct": "38%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "104": {
+    "matched_concepts": [
+      "weight_initialization",
+      "perceptron",
+      "convergence"
+    ],
+    "chain_pct": "38%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "105": {
+    "matched_concepts": [
+      "learning_algorithm",
+      "update_rule",
+      "weight_initialization",
+      "perceptron"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Understand",
+    "n_kg_concepts": 8
+  },
+  "106": {
+    "matched_concepts": [
+      "linearly_separable_data",
+      "data_labeling",
+      "weight_initialization"
+    ],
+    "chain_pct": "38%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "107": {
+    "matched_concepts": [
+      "linearly_separable_data",
+      "update_rule",
+      "data_labeling"
+    ],
+    "chain_pct": "38%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "108": {
+    "matched_concepts": [
+      "update_rule",
+      "weight_initialization",
+      "data_labeling",
+      "learning_algorithm",
+      "linearly_separable_data"
+    ],
+    "chain_pct": "62%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "109": {
+    "matched_concepts": [
+      "learning_algorithm",
+      "linearly_separable_data",
+      "data_labeling",
+      "weight_initialization"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "110": {
+    "matched_concepts": [
+      "binary_classification",
+      "weight_initialization"
+    ],
+    "chain_pct": "25%",
+    "solo": "Unistructural",
+    "bloom": "Understand",
+    "n_kg_concepts": 8
+  },
+  "111": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "112": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Understand",
+    "n_kg_concepts": 8
+  },
+  "113": {
+    "matched_concepts": [
+      "update_rule"
+    ],
+    "chain_pct": "12%",
+    "solo": "Unistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "114": {
+    "matched_concepts": [
+      "classification",
+      "regression",
+      "discrete_labels",
+      "continuous_values",
+      "classification_error",
+      "regression_error"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "115": {
+    "matched_concepts": [
+      "classification",
+      "regression",
+      "discrete_labels",
+      "continuous_values",
+      "classification_error",
+      "regression_error"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "116": {
+    "matched_concepts": [
+      "classification_error",
+      "regression",
+      "classification",
+      "regression_error"
+    ],
+    "chain_pct": "67%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "117": {
+    "matched_concepts": [
+      "classification",
+      "regression",
+      "discrete_labels",
+      "continuous_values",
+      "classification_error",
+      "regression_error"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "118": {
+    "matched_concepts": [
+      "classification",
+      "regression",
+      "discrete_labels",
+      "continuous_values",
+      "classification_error",
+      "regression_error"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "119": {
+    "matched_concepts": [
+      "classification_error",
+      "regression",
+      "classification",
+      "regression_error"
+    ],
+    "chain_pct": "67%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "120": {
+    "matched_concepts": [
+      "classification_error",
+      "regression",
+      "classification",
+      "regression_error"
+    ],
+    "chain_pct": "67%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "121": {
+    "matched_concepts": [
+      "classification",
+      "regression",
+      "discrete_labels",
+      "continuous_values",
+      "classification_error",
+      "regression_error"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "122": {
+    "matched_concepts": [
+      "classification_error",
+      "regression",
+      "classification",
+      "regression_error"
+    ],
+    "chain_pct": "67%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "123": {
+    "matched_concepts": [
+      "classification",
+      "regression",
+      "continuous_values",
+      "classification_error",
+      "regression_error"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "124": {
+    "matched_concepts": [
+      "classification",
+      "regression",
+      "discrete_labels",
+      "continuous_values",
+      "classification_error",
+      "regression_error"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "125": {
+    "matched_concepts": [
+      "classification_error",
+      "regression",
+      "classification",
+      "regression_error"
+    ],
+    "chain_pct": "67%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "126": {
+    "matched_concepts": [
+      "classification",
+      "regression",
+      "discrete_labels",
+      "classification_error",
+      "regression_error"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "127": {
+    "matched_concepts": [
+      "classification",
+      "regression",
+      "continuous_values",
+      "classification_error",
+      "regression_error"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "128": {
+    "matched_concepts": [
+      "classification",
+      "regression",
+      "continuous_values",
+      "classification_error",
+      "regression_error"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "129": {
+    "matched_concepts": [
+      "classification",
+      "regression",
+      "discrete_labels",
+      "continuous_values",
+      "classification_error",
+      "regression_error"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "130": {
+    "matched_concepts": [
+      "classification_error",
+      "regression",
+      "classification",
+      "regression_error"
+    ],
+    "chain_pct": "67%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "131": {
+    "matched_concepts": [
+      "classification",
+      "regression",
+      "discrete_labels",
+      "continuous_values",
+      "classification_error",
+      "regression_error"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "132": {
+    "matched_concepts": [
+      "classification",
+      "regression",
+      "discrete_labels",
+      "continuous_values",
+      "classification_error",
+      "regression_error"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "133": {
+    "matched_concepts": [
+      "classification",
+      "regression",
+      "discrete_labels",
+      "continuous_values",
+      "classification_error",
+      "regression_error"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "134": {
+    "matched_concepts": [
+      "classification",
+      "regression",
+      "continuous_values",
+      "classification_error",
+      "regression_error"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "135": {
+    "matched_concepts": [
+      "classification_error",
+      "regression",
+      "classification",
+      "regression_error"
+    ],
+    "chain_pct": "67%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "136": {
+    "matched_concepts": [
+      "classification_error",
+      "regression",
+      "classification",
+      "regression_error"
+    ],
+    "chain_pct": "67%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "137": {
+    "matched_concepts": [
+      "classification",
+      "regression",
+      "discrete_labels",
+      "continuous_values",
+      "classification_error",
+      "regression_error"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "138": {
+    "matched_concepts": [
+      "classification",
+      "regression",
+      "continuous_values",
+      "classification_error",
+      "regression_error"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "139": {
+    "matched_concepts": [
+      "classification",
+      "regression",
+      "discrete_labels",
+      "continuous_values",
+      "classification_error",
+      "regression_error"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "140": {
+    "matched_concepts": [
+      "classification",
+      "regression",
+      "discrete_labels",
+      "continuous_values",
+      "classification_error",
+      "regression_error"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "141": {
+    "matched_concepts": [
+      "classification",
+      "regression",
+      "discrete_labels",
+      "classification_error",
+      "regression_error"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "142": {
+    "matched_concepts": [
+      "classification",
+      "regression",
+      "continuous_values",
+      "classification_error",
+      "regression_error"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "143": {
+    "matched_concepts": [
+      "classification",
+      "regression",
+      "discrete_labels",
+      "continuous_values",
+      "classification_error",
+      "regression_error"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "144": {
+    "matched_concepts": [
+      "classification",
+      "regression",
+      "discrete_labels",
+      "continuous_values",
+      "classification_error",
+      "regression_error"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "145": {
+    "matched_concepts": [
+      "classification",
+      "regression",
+      "discrete_labels",
+      "classification_error",
+      "regression_error"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "146": {
+    "matched_concepts": [
+      "classification",
+      "regression",
+      "continuous_values",
+      "classification_error",
+      "regression_error"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "147": {
+    "matched_concepts": [
+      "classification",
+      "regression",
+      "discrete_labels",
+      "continuous_values",
+      "classification_error",
+      "regression_error"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "148": {
+    "matched_concepts": [
+      "classification",
+      "regression",
+      "continuous_values",
+      "classification_error",
+      "regression_error"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "149": {
+    "matched_concepts": [
+      "classification_error",
+      "regression",
+      "classification",
+      "regression_error"
+    ],
+    "chain_pct": "67%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "150": {
+    "matched_concepts": [
+      "classification",
+      "regression",
+      "continuous_values",
+      "classification_error",
+      "regression_error"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "151": {
+    "matched_concepts": [
+      "classification_error",
+      "regression",
+      "classification",
+      "regression_error"
+    ],
+    "chain_pct": "67%",
+    "solo": "Relational",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "152": {
+    "matched_concepts": [
+      "neighborhood_function",
+      "weight_initialization",
+      "winning_neuron",
+      "weight_topology",
+      "learning_rate_decay",
+      "input_sampling",
+      "similarity_matching",
+      "weight_update",
+      "som_learning",
+      "convergence"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 10
+  },
+  "153": {
+    "matched_concepts": [
+      "neighborhood_function",
+      "weight_initialization",
+      "winning_neuron",
+      "weight_topology",
+      "learning_rate_decay",
+      "input_sampling",
+      "weight_update",
+      "som_learning"
+    ],
+    "chain_pct": "80%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 10
+  },
+  "154": {
+    "matched_concepts": [
+      "neighborhood_function",
+      "weight_initialization",
+      "weight_topology",
+      "weight_update",
+      "winning_neuron"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 10
+  },
+  "155": {
+    "matched_concepts": [
+      "neighborhood_function",
+      "weight_initialization",
+      "winning_neuron",
+      "weight_topology",
+      "learning_rate_decay",
+      "input_sampling",
+      "weight_update",
+      "som_learning"
+    ],
+    "chain_pct": "80%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 10
+  },
+  "156": {
+    "matched_concepts": [
+      "neighborhood_function",
+      "weight_initialization",
+      "winning_neuron",
+      "weight_topology",
+      "learning_rate_decay",
+      "input_sampling",
+      "weight_update",
+      "som_learning"
+    ],
+    "chain_pct": "80%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 10
+  },
+  "157": {
+    "matched_concepts": [
+      "neighborhood_function",
+      "weight_initialization",
+      "weight_topology",
+      "learning_rate_decay",
+      "input_sampling",
+      "weight_update",
+      "som_learning"
+    ],
+    "chain_pct": "70%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 10
+  },
+  "158": {
+    "matched_concepts": [
+      "neighborhood_function",
+      "weight_initialization",
+      "winning_neuron",
+      "weight_topology",
+      "learning_rate_decay",
+      "input_sampling",
+      "weight_update",
+      "som_learning"
+    ],
+    "chain_pct": "80%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 10
+  },
+  "159": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 10
+  },
+  "160": {
+    "matched_concepts": [
+      "neighborhood_function",
+      "weight_initialization",
+      "winning_neuron",
+      "weight_topology",
+      "learning_rate_decay",
+      "input_sampling",
+      "weight_update",
+      "som_learning"
+    ],
+    "chain_pct": "80%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 10
+  },
+  "161": {
+    "matched_concepts": [
+      "neighborhood_function",
+      "weight_initialization",
+      "weight_topology",
+      "input_sampling",
+      "weight_update",
+      "winning_neuron"
+    ],
+    "chain_pct": "60%",
+    "solo": "Multistructural",
+    "bloom": "Understand",
+    "n_kg_concepts": 10
+  },
+  "162": {
+    "matched_concepts": [
+      "weight_initialization",
+      "weight_topology",
+      "input_sampling",
+      "weight_update",
+      "winning_neuron"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 10
+  },
+  "163": {
+    "matched_concepts": [
+      "winning_neuron"
+    ],
+    "chain_pct": "10%",
+    "solo": "Unistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 10
+  },
+  "164": {
+    "matched_concepts": [
+      "weight_topology",
+      "weight_update",
+      "input_sampling",
+      "winning_neuron"
+    ],
+    "chain_pct": "40%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 10
+  },
+  "165": {
+    "matched_concepts": [
+      "weight_initialization",
+      "winning_neuron",
+      "weight_topology",
+      "learning_rate_decay",
+      "input_sampling",
+      "weight_update",
+      "som_learning"
+    ],
+    "chain_pct": "70%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 10
+  },
+  "166": {
+    "matched_concepts": [
+      "neighborhood_function",
+      "weight_initialization",
+      "winning_neuron",
+      "weight_topology",
+      "learning_rate_decay",
+      "input_sampling",
+      "weight_update",
+      "som_learning"
+    ],
+    "chain_pct": "80%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 10
+  },
+  "167": {
+    "matched_concepts": [
+      "weight_initialization",
+      "weight_topology",
+      "input_sampling",
+      "similarity_matching",
+      "weight_update",
+      "winning_neuron",
+      "convergence"
+    ],
+    "chain_pct": "70%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 10
+  },
+  "168": {
+    "matched_concepts": [
+      "weight_initialization",
+      "weight_topology",
+      "input_sampling",
+      "weight_update",
+      "winning_neuron"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 10
+  },
+  "169": {
+    "matched_concepts": [
+      "weight_initialization",
+      "winning_neuron",
+      "weight_topology",
+      "learning_rate_decay",
+      "input_sampling",
+      "similarity_matching",
+      "weight_update",
+      "som_learning"
+    ],
+    "chain_pct": "80%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 10
+  },
+  "170": {
+    "matched_concepts": [
+      "neighborhood_function",
+      "weight_initialization",
+      "winning_neuron",
+      "weight_topology",
+      "learning_rate_decay",
+      "input_sampling",
+      "weight_update",
+      "som_learning"
+    ],
+    "chain_pct": "80%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 10
+  },
+  "171": {
+    "matched_concepts": [
+      "weight_initialization",
+      "weight_topology",
+      "input_sampling",
+      "similarity_matching",
+      "weight_update",
+      "winning_neuron"
+    ],
+    "chain_pct": "60%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 10
+  },
+  "172": {
+    "matched_concepts": [
+      "neighborhood_function",
+      "weight_initialization",
+      "weight_topology",
+      "input_sampling",
+      "similarity_matching",
+      "weight_update",
+      "winning_neuron"
+    ],
+    "chain_pct": "70%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 10
+  },
+  "173": {
+    "matched_concepts": [
+      "weight_initialization",
+      "weight_topology",
+      "input_sampling",
+      "similarity_matching",
+      "weight_update"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Understand",
+    "n_kg_concepts": 10
+  },
+  "174": {
+    "matched_concepts": [
+      "neighborhood_function",
+      "weight_initialization",
+      "weight_topology",
+      "input_sampling",
+      "weight_update",
+      "winning_neuron"
+    ],
+    "chain_pct": "60%",
+    "solo": "Multistructural",
+    "bloom": "Analyze",
+    "n_kg_concepts": 10
+  },
+  "175": {
+    "matched_concepts": [
+      "weight_initialization",
+      "weight_topology",
+      "learning_rate_decay",
+      "input_sampling",
+      "weight_update",
+      "winning_neuron"
+    ],
+    "chain_pct": "60%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 10
+  },
+  "176": {
+    "matched_concepts": [
+      "neighborhood_function",
+      "weight_initialization",
+      "winning_neuron",
+      "weight_topology",
+      "learning_rate_decay",
+      "input_sampling",
+      "weight_update",
+      "som_learning"
+    ],
+    "chain_pct": "80%",
+    "solo": "Relational",
+    "bloom": "Understand",
+    "n_kg_concepts": 10
+  },
+  "177": {
+    "matched_concepts": [
+      "weight_initialization",
+      "winning_neuron",
+      "weight_topology",
+      "learning_rate_decay",
+      "input_sampling",
+      "weight_update",
+      "som_learning"
+    ],
+    "chain_pct": "70%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 10
+  },
+  "178": {
+    "matched_concepts": [
+      "neighborhood_function",
+      "weight_initialization",
+      "weight_topology",
+      "weight_update",
+      "winning_neuron"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 10
+  },
+  "179": {
+    "matched_concepts": [
+      "neighborhood_function",
+      "weight_initialization",
+      "weight_topology",
+      "learning_rate_decay",
+      "input_sampling",
+      "weight_update",
+      "som_learning"
+    ],
+    "chain_pct": "70%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 10
+  },
+  "180": {
+    "matched_concepts": [
+      "neighborhood_function",
+      "weight_initialization",
+      "weight_topology",
+      "input_sampling",
+      "similarity_matching",
+      "weight_update",
+      "winning_neuron"
+    ],
+    "chain_pct": "70%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 10
+  },
+  "181": {
+    "matched_concepts": [
+      "neighborhood_function",
+      "weight_initialization",
+      "winning_neuron",
+      "weight_topology",
+      "learning_rate_decay",
+      "input_sampling",
+      "weight_update",
+      "som_learning"
+    ],
+    "chain_pct": "80%",
+    "solo": "Relational",
+    "bloom": "Understand",
+    "n_kg_concepts": 10
+  },
+  "182": {
+    "matched_concepts": [
+      "neighborhood_function",
+      "weight_initialization",
+      "weight_topology",
+      "weight_update",
+      "winning_neuron"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 10
+  },
+  "183": {
+    "matched_concepts": [
+      "neighborhood_function",
+      "weight_initialization",
+      "weight_topology",
+      "input_sampling",
+      "weight_update",
+      "winning_neuron"
+    ],
+    "chain_pct": "60%",
+    "solo": "Multistructural",
+    "bloom": "Understand",
+    "n_kg_concepts": 10
+  },
+  "184": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 10
+  },
+  "185": {
+    "matched_concepts": [
+      "neighborhood_function",
+      "weight_initialization",
+      "winning_neuron",
+      "weight_topology",
+      "learning_rate_decay",
+      "similarity_matching",
+      "weight_update",
+      "som_learning"
+    ],
+    "chain_pct": "80%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 10
+  },
+  "186": {
+    "matched_concepts": [
+      "weight_initialization",
+      "weight_topology",
+      "input_sampling",
+      "weight_update",
+      "winning_neuron"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Understand",
+    "n_kg_concepts": 10
+  },
+  "187": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 10
+  },
+  "188": {
+    "matched_concepts": [
+      "weight_initialization",
+      "winning_neuron",
+      "weight_topology",
+      "learning_rate_decay",
+      "input_sampling",
+      "weight_update",
+      "som_learning"
+    ],
+    "chain_pct": "70%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 10
+  },
+  "189": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 10
+  },
+  "190": {
+    "matched_concepts": [
+      "linear_learnable_machine",
+      "maximum_margin",
+      "support_vector_machine",
+      "decision_boundary",
+      "support_vectors"
+    ],
+    "chain_pct": "62%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "191": {
+    "matched_concepts": [
+      "maximum_margin",
+      "non_linearly_separable_data",
+      "decision_boundary"
+    ],
+    "chain_pct": "38%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "192": {
+    "matched_concepts": [
+      "linear_learnable_machine",
+      "maximum_margin",
+      "non_linearly_separable_data",
+      "support_vector_machine",
+      "support_vectors"
+    ],
+    "chain_pct": "62%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "193": {
+    "matched_concepts": [
+      "linear_learnable_machine",
+      "quadratic_programming",
+      "non_linearly_separable_data",
+      "support_vector_machine",
+      "decision_boundary",
+      "support_vectors"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "194": {
+    "matched_concepts": [
+      "maximum_margin",
+      "support_vector_machine",
+      "support_vectors",
+      "decision_boundary"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "195": {
+    "matched_concepts": [
+      "maximum_margin",
+      "non_linearly_separable_data",
+      "support_vector_machine",
+      "support_vectors"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Analyze",
+    "n_kg_concepts": 8
+  },
+  "196": {
+    "matched_concepts": [
+      "maximum_margin",
+      "non_linearly_separable_data",
+      "quadratic_programming"
+    ],
+    "chain_pct": "38%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "197": {
+    "matched_concepts": [
+      "linear_learnable_machine",
+      "maximum_margin",
+      "non_linearly_separable_data",
+      "support_vector_machine",
+      "decision_boundary",
+      "support_vectors"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "198": {
+    "matched_concepts": [
+      "linear_learnable_machine",
+      "maximum_margin",
+      "non_linearly_separable_data",
+      "support_vector_machine",
+      "support_vectors"
+    ],
+    "chain_pct": "62%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "199": {
+    "matched_concepts": [
+      "linear_learnable_machine",
+      "maximum_margin",
+      "non_linearly_separable_data",
+      "support_vector_machine",
+      "support_vectors"
+    ],
+    "chain_pct": "62%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "200": {
+    "matched_concepts": [
+      "linear_learnable_machine",
+      "maximum_margin",
+      "non_linearly_separable_data",
+      "support_vector_machine",
+      "support_vectors"
+    ],
+    "chain_pct": "62%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "201": {
+    "matched_concepts": [
+      "linear_learnable_machine",
+      "maximum_margin",
+      "support_vector_machine",
+      "decision_boundary",
+      "support_vectors"
+    ],
+    "chain_pct": "62%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "202": {
+    "matched_concepts": [
+      "maximum_margin",
+      "non_linearly_separable_data",
+      "support_vector_machine",
+      "decision_boundary",
+      "support_vectors"
+    ],
+    "chain_pct": "62%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "203": {
+    "matched_concepts": [
+      "linear_learnable_machine",
+      "maximum_margin",
+      "support_vector_machine",
+      "decision_boundary",
+      "support_vectors"
+    ],
+    "chain_pct": "62%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "204": {
+    "matched_concepts": [
+      "linear_learnable_machine",
+      "maximum_margin",
+      "non_linearly_separable_data",
+      "support_vector_machine",
+      "support_vectors"
+    ],
+    "chain_pct": "62%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "205": {
+    "matched_concepts": [
+      "linear_learnable_machine",
+      "maximum_margin",
+      "non_linearly_separable_data",
+      "support_vector_machine",
+      "support_vectors"
+    ],
+    "chain_pct": "62%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "206": {
+    "matched_concepts": [
+      "linear_learnable_machine",
+      "support_vector_machine",
+      "maximum_margin",
+      "support_vectors"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "207": {
+    "matched_concepts": [
+      "linear_learnable_machine",
+      "maximum_margin",
+      "non_linearly_separable_data",
+      "support_vector_machine",
+      "decision_boundary",
+      "support_vectors"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "208": {
+    "matched_concepts": [
+      "maximum_margin",
+      "non_linearly_separable_data",
+      "support_vector_machine",
+      "kernels",
+      "support_vectors"
+    ],
+    "chain_pct": "62%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "209": {
+    "matched_concepts": [
+      "linear_learnable_machine",
+      "maximum_margin",
+      "non_linearly_separable_data",
+      "support_vector_machine",
+      "decision_boundary"
+    ],
+    "chain_pct": "62%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "210": {
+    "matched_concepts": [
+      "maximum_margin",
+      "non_linearly_separable_data",
+      "support_vector_machine",
+      "decision_boundary",
+      "support_vectors"
+    ],
+    "chain_pct": "62%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "211": {
+    "matched_concepts": [
+      "linear_learnable_machine",
+      "non_linearly_separable_data",
+      "support_vector_machine",
+      "decision_boundary",
+      "support_vectors"
+    ],
+    "chain_pct": "62%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "212": {
+    "matched_concepts": [
+      "maximum_margin",
+      "decision_boundary"
+    ],
+    "chain_pct": "25%",
+    "solo": "Unistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "213": {
+    "matched_concepts": [
+      "maximum_margin",
+      "decision_boundary"
+    ],
+    "chain_pct": "25%",
+    "solo": "Unistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "214": {
+    "matched_concepts": [
+      "maximum_margin",
+      "non_linearly_separable_data",
+      "support_vector_machine",
+      "support_vectors"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "215": {
+    "matched_concepts": [
+      "linear_learnable_machine",
+      "non_linearly_separable_data",
+      "maximum_margin"
+    ],
+    "chain_pct": "38%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "216": {
+    "matched_concepts": [
+      "maximum_margin",
+      "non_linearly_separable_data",
+      "support_vector_machine",
+      "decision_boundary",
+      "support_vectors"
+    ],
+    "chain_pct": "62%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "217": {
+    "matched_concepts": [
+      "linear_learnable_machine",
+      "quadratic_programming",
+      "maximum_margin",
+      "non_linearly_separable_data",
+      "support_vector_machine",
+      "decision_boundary",
+      "support_vectors"
+    ],
+    "chain_pct": "88%",
+    "solo": "Extended Abstract",
+    "bloom": "Analyze",
+    "n_kg_concepts": 8
+  },
+  "218": {
+    "matched_concepts": [
+      "linear_learnable_machine",
+      "support_vector_machine",
+      "maximum_margin",
+      "support_vectors"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "219": {
+    "matched_concepts": [
+      "linear_learnable_machine",
+      "maximum_margin",
+      "non_linearly_separable_data",
+      "support_vector_machine",
+      "decision_boundary",
+      "support_vectors"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "220": {
+    "matched_concepts": [
+      "linear_learnable_machine",
+      "maximum_margin",
+      "non_linearly_separable_data",
+      "support_vector_machine",
+      "support_vectors"
+    ],
+    "chain_pct": "62%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "221": {
+    "matched_concepts": [
+      "linear_learnable_machine",
+      "maximum_margin",
+      "non_linearly_separable_data",
+      "support_vector_machine",
+      "kernels",
+      "support_vectors"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "222": {
+    "matched_concepts": [
+      "linear_learnable_machine",
+      "maximum_margin",
+      "non_linearly_separable_data",
+      "support_vector_machine",
+      "decision_boundary",
+      "support_vectors"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "223": {
+    "matched_concepts": [
+      "linear_learnable_machine",
+      "maximum_margin",
+      "non_linearly_separable_data",
+      "support_vector_machine",
+      "decision_boundary",
+      "support_vectors"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "224": {
+    "matched_concepts": [
+      "linear_learnable_machine",
+      "support_vector_machine",
+      "support_vectors",
+      "decision_boundary"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "225": {
+    "matched_concepts": [
+      "linear_learnable_machine",
+      "non_linearly_separable_data",
+      "support_vector_machine",
+      "support_vectors"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "226": {
+    "matched_concepts": [
+      "linear_learnable_machine",
+      "maximum_margin"
+    ],
+    "chain_pct": "25%",
+    "solo": "Unistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "227": {
+    "matched_concepts": [
+      "linear_learnable_machine",
+      "maximum_margin",
+      "non_linearly_separable_data",
+      "support_vector_machine",
+      "support_vectors"
+    ],
+    "chain_pct": "62%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "228": {
+    "matched_concepts": [
+      "gradient_vector",
+      "steepest_descent",
+      "cost_function",
+      "weight_update"
+    ],
+    "chain_pct": "57%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "229": {
+    "matched_concepts": [
+      "gradient_vector",
+      "steepest_descent",
+      "weight_update"
+    ],
+    "chain_pct": "43%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "230": {
+    "matched_concepts": [
+      "gradient_vector",
+      "steepest_descent"
+    ],
+    "chain_pct": "29%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "231": {
+    "matched_concepts": [
+      "gradient_vector",
+      "neural_network_learning",
+      "cost_function",
+      "steepest_descent",
+      "weight_update"
+    ],
+    "chain_pct": "71%",
+    "solo": "Relational",
+    "bloom": "Understand",
+    "n_kg_concepts": 7
+  },
+  "232": {
+    "matched_concepts": [
+      "steepest_descent",
+      "weight_update"
+    ],
+    "chain_pct": "29%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "233": {
+    "matched_concepts": [
+      "gradient_vector",
+      "neural_network_learning",
+      "cost_function",
+      "weight_update"
+    ],
+    "chain_pct": "57%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "234": {
+    "matched_concepts": [
+      "gradient_vector",
+      "steepest_descent",
+      "cost_function",
+      "weight_update"
+    ],
+    "chain_pct": "57%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "235": {
+    "matched_concepts": [
+      "gradient_vector",
+      "neural_network_learning",
+      "cost_function",
+      "steepest_descent",
+      "weight_update"
+    ],
+    "chain_pct": "71%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "236": {
+    "matched_concepts": [
+      "gradient_vector",
+      "steepest_descent",
+      "cost_function",
+      "weight_update"
+    ],
+    "chain_pct": "57%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "237": {
+    "matched_concepts": [
+      "gradient_vector",
+      "steepest_descent",
+      "local_minima",
+      "neural_network_learning"
+    ],
+    "chain_pct": "57%",
+    "solo": "Multistructural",
+    "bloom": "Understand",
+    "n_kg_concepts": 7
+  },
+  "238": {
+    "matched_concepts": [
+      "steepest_descent",
+      "cost_function",
+      "weight_update"
+    ],
+    "chain_pct": "43%",
+    "solo": "Multistructural",
+    "bloom": "Analyze",
+    "n_kg_concepts": 7
+  },
+  "239": {
+    "matched_concepts": [
+      "gradient_vector",
+      "steepest_descent",
+      "cost_function"
+    ],
+    "chain_pct": "43%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "240": {
+    "matched_concepts": [
+      "steepest_descent",
+      "weight_update"
+    ],
+    "chain_pct": "29%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "241": {
+    "matched_concepts": [
+      "gradient_vector",
+      "local_minima",
+      "cost_function",
+      "steepest_descent",
+      "weight_update"
+    ],
+    "chain_pct": "71%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "242": {
+    "matched_concepts": [
+      "gradient_vector",
+      "neural_network_learning",
+      "cost_function",
+      "steepest_descent",
+      "weight_update"
+    ],
+    "chain_pct": "71%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "243": {
+    "matched_concepts": [
+      "gradient_vector",
+      "neural_network_learning",
+      "cost_function",
+      "steepest_descent",
+      "weight_update"
+    ],
+    "chain_pct": "71%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "244": {
+    "matched_concepts": [
+      "gradient_vector",
+      "steepest_descent",
+      "local_minima",
+      "neural_network_learning"
+    ],
+    "chain_pct": "57%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "245": {
+    "matched_concepts": [
+      "gradient_vector",
+      "steepest_descent",
+      "neural_network_learning"
+    ],
+    "chain_pct": "43%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "246": {
+    "matched_concepts": [
+      "gradient_vector",
+      "neural_network_learning",
+      "cost_function",
+      "steepest_descent",
+      "weight_update"
+    ],
+    "chain_pct": "71%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "247": {
+    "matched_concepts": [
+      "gradient_vector",
+      "neural_network_learning",
+      "cost_function",
+      "steepest_descent",
+      "weight_update"
+    ],
+    "chain_pct": "71%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "248": {
+    "matched_concepts": [
+      "steepest_descent",
+      "weight_update",
+      "neural_network_learning"
+    ],
+    "chain_pct": "43%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "249": {
+    "matched_concepts": [
+      "gradient_vector",
+      "steepest_descent",
+      "cost_function"
+    ],
+    "chain_pct": "43%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "250": {
+    "matched_concepts": [
+      "gradient_vector",
+      "neural_network_learning",
+      "cost_function",
+      "steepest_descent",
+      "weight_update"
+    ],
+    "chain_pct": "71%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "251": {
+    "matched_concepts": [
+      "steepest_descent",
+      "weight_update"
+    ],
+    "chain_pct": "29%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "252": {
+    "matched_concepts": [
+      "gradient_vector",
+      "local_minima",
+      "cost_function",
+      "steepest_descent",
+      "weight_update"
+    ],
+    "chain_pct": "71%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "253": {
+    "matched_concepts": [
+      "gradient_vector",
+      "steepest_descent",
+      "weight_update"
+    ],
+    "chain_pct": "43%",
+    "solo": "Multistructural",
+    "bloom": "Understand",
+    "n_kg_concepts": 7
+  },
+  "254": {
+    "matched_concepts": [
+      "gradient_vector",
+      "steepest_descent",
+      "cost_function"
+    ],
+    "chain_pct": "43%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "255": {
+    "matched_concepts": [
+      "steepest_descent",
+      "weight_update",
+      "neural_network_learning"
+    ],
+    "chain_pct": "43%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "256": {
+    "matched_concepts": [
+      "cost_function",
+      "steepest_descent",
+      "weight_update",
+      "neural_network_learning"
+    ],
+    "chain_pct": "57%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "257": {
+    "matched_concepts": [
+      "gradient_vector",
+      "steepest_descent",
+      "cost_function"
+    ],
+    "chain_pct": "43%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "258": {
+    "matched_concepts": [
+      "gradient_vector",
+      "steepest_descent",
+      "neural_network_learning"
+    ],
+    "chain_pct": "43%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "259": {
+    "matched_concepts": [
+      "local_minima",
+      "neural_network_learning",
+      "cost_function",
+      "steepest_descent",
+      "weight_update"
+    ],
+    "chain_pct": "71%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "260": {
+    "matched_concepts": [
+      "gradient_vector",
+      "neural_network_learning",
+      "cost_function",
+      "steepest_descent",
+      "weight_update"
+    ],
+    "chain_pct": "71%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "261": {
+    "matched_concepts": [
+      "steepest_descent",
+      "cost_function",
+      "weight_update"
+    ],
+    "chain_pct": "43%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "262": {
+    "matched_concepts": [
+      "steepest_descent",
+      "cost_function",
+      "neural_network_learning"
+    ],
+    "chain_pct": "43%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "263": {
+    "matched_concepts": [
+      "steepest_descent",
+      "weight_update",
+      "neural_network_learning"
+    ],
+    "chain_pct": "43%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "264": {
+    "matched_concepts": [
+      "steepest_descent",
+      "weight_update",
+      "neural_network_learning"
+    ],
+    "chain_pct": "43%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "265": {
+    "matched_concepts": [
+      "gradient_vector",
+      "steepest_descent",
+      "cost_function",
+      "weight_update"
+    ],
+    "chain_pct": "57%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "266": {
+    "matched_concepts": [
+      "shattering",
+      "no_error_classification",
+      "binary_labeling",
+      "hypothesis",
+      "hypothesis_space",
+      "dataset"
+    ],
+    "chain_pct": "86%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "267": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "268": {
+    "matched_concepts": [
+      "shattering",
+      "no_error_classification",
+      "hypothesis",
+      "hypothesis_space",
+      "dataset"
+    ],
+    "chain_pct": "71%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "269": {
+    "matched_concepts": [
+      "shattering",
+      "no_error_classification",
+      "binary_labeling",
+      "dataset"
+    ],
+    "chain_pct": "57%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "270": {
+    "matched_concepts": [
+      "shattering",
+      "no_error_classification",
+      "binary_labeling",
+      "input_space",
+      "hypothesis",
+      "hypothesis_space",
+      "dataset"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "271": {
+    "matched_concepts": [
+      "input_space"
+    ],
+    "chain_pct": "14%",
+    "solo": "Unistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "272": {
+    "matched_concepts": [
+      "shattering",
+      "no_error_classification",
+      "hypothesis",
+      "hypothesis_space",
+      "dataset"
+    ],
+    "chain_pct": "71%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "273": {
+    "matched_concepts": [
+      "no_error_classification",
+      "hypothesis",
+      "hypothesis_space"
+    ],
+    "chain_pct": "43%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "274": {
+    "matched_concepts": [
+      "shattering",
+      "dataset"
+    ],
+    "chain_pct": "29%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "275": {
+    "matched_concepts": [
+      "no_error_classification",
+      "input_space"
+    ],
+    "chain_pct": "29%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "276": {
+    "matched_concepts": [
+      "shattering",
+      "no_error_classification",
+      "dataset"
+    ],
+    "chain_pct": "43%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "277": {
+    "matched_concepts": [
+      "no_error_classification"
+    ],
+    "chain_pct": "14%",
+    "solo": "Unistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "278": {
+    "matched_concepts": [
+      "shattering",
+      "hypothesis",
+      "dataset",
+      "hypothesis_space"
+    ],
+    "chain_pct": "57%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "279": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "280": {
+    "matched_concepts": [
+      "shattering",
+      "no_error_classification",
+      "hypothesis",
+      "hypothesis_space",
+      "dataset"
+    ],
+    "chain_pct": "71%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "281": {
+    "matched_concepts": [
+      "shattering",
+      "input_space",
+      "dataset",
+      "hypothesis_space"
+    ],
+    "chain_pct": "57%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "282": {
+    "matched_concepts": [
+      "shattering",
+      "no_error_classification",
+      "hypothesis",
+      "hypothesis_space",
+      "dataset"
+    ],
+    "chain_pct": "71%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "283": {
+    "matched_concepts": [
+      "shattering",
+      "hypothesis",
+      "dataset",
+      "hypothesis_space"
+    ],
+    "chain_pct": "57%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "284": {
+    "matched_concepts": [
+      "shattering",
+      "hypothesis",
+      "dataset",
+      "hypothesis_space"
+    ],
+    "chain_pct": "57%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "285": {
+    "matched_concepts": [
+      "shattering",
+      "no_error_classification",
+      "hypothesis",
+      "hypothesis_space",
+      "dataset"
+    ],
+    "chain_pct": "71%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "286": {
+    "matched_concepts": [
+      "no_error_classification",
+      "input_space"
+    ],
+    "chain_pct": "29%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "287": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "288": {
+    "matched_concepts": [
+      "shattering",
+      "binary_labeling",
+      "hypothesis",
+      "hypothesis_space",
+      "dataset"
+    ],
+    "chain_pct": "71%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "289": {
+    "matched_concepts": [
+      "no_error_classification",
+      "hypothesis",
+      "hypothesis_space"
+    ],
+    "chain_pct": "43%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "290": {
+    "matched_concepts": [
+      "shattering",
+      "input_space",
+      "hypothesis",
+      "hypothesis_space",
+      "dataset"
+    ],
+    "chain_pct": "71%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "291": {
+    "matched_concepts": [
+      "no_error_classification",
+      "hypothesis",
+      "hypothesis_space"
+    ],
+    "chain_pct": "43%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "292": {
+    "matched_concepts": [
+      "shattering",
+      "no_error_classification"
+    ],
+    "chain_pct": "29%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "293": {
+    "matched_concepts": [
+      "shattering",
+      "hypothesis",
+      "dataset",
+      "hypothesis_space"
+    ],
+    "chain_pct": "57%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "294": {
+    "matched_concepts": [
+      "no_error_classification"
+    ],
+    "chain_pct": "14%",
+    "solo": "Unistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "295": {
+    "matched_concepts": [
+      "no_error_classification"
+    ],
+    "chain_pct": "14%",
+    "solo": "Unistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "296": {
+    "matched_concepts": [
+      "shattering",
+      "hypothesis",
+      "dataset",
+      "hypothesis_space"
+    ],
+    "chain_pct": "57%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "297": {
+    "matched_concepts": [
+      "binary_labeling",
+      "hypothesis",
+      "hypothesis_space"
+    ],
+    "chain_pct": "43%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "298": {
+    "matched_concepts": [
+      "no_error_classification"
+    ],
+    "chain_pct": "14%",
+    "solo": "Unistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "299": {
+    "matched_concepts": [
+      "no_error_classification"
+    ],
+    "chain_pct": "14%",
+    "solo": "Unistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "300": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "301": {
+    "matched_concepts": [
+      "binary_labeling",
+      "no_error_classification",
+      "hypothesis",
+      "hypothesis_space"
+    ],
+    "chain_pct": "57%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "302": {
+    "matched_concepts": [
+      "no_error_classification",
+      "input_space"
+    ],
+    "chain_pct": "29%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "303": {
+    "matched_concepts": [
+      "shattering",
+      "no_error_classification",
+      "hypothesis",
+      "hypothesis_space",
+      "dataset"
+    ],
+    "chain_pct": "71%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "304": {
+    "matched_concepts": [
+      "input_signal",
+      "error_signal",
+      "widrow_hoff_learning_rule",
+      "synaptic_weight_adjustment"
+    ],
+    "chain_pct": "80%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 5
+  },
+  "305": {
+    "matched_concepts": [
+      "input_signal",
+      "error_signal",
+      "widrow_hoff_learning_rule",
+      "synaptic_weight_adjustment"
+    ],
+    "chain_pct": "80%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 5
+  },
+  "306": {
+    "matched_concepts": [
+      "input_signal",
+      "error_signal",
+      "synaptic_weight_adjustment"
+    ],
+    "chain_pct": "60%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 5
+  },
+  "307": {
+    "matched_concepts": [
+      "input_signal",
+      "widrow_hoff_learning_rule"
+    ],
+    "chain_pct": "40%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 5
+  },
+  "308": {
+    "matched_concepts": [
+      "input_signal",
+      "error_signal",
+      "widrow_hoff_learning_rule",
+      "synaptic_weight_adjustment"
+    ],
+    "chain_pct": "80%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 5
+  },
+  "309": {
+    "matched_concepts": [
+      "input_signal",
+      "error_signal",
+      "widrow_hoff_learning_rule",
+      "synaptic_weight_adjustment"
+    ],
+    "chain_pct": "80%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 5
+  },
+  "310": {
+    "matched_concepts": [
+      "widrow_hoff_learning_rule",
+      "synaptic_weight_adjustment",
+      "steepest_descent_method",
+      "input_signal",
+      "error_signal"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 5
+  },
+  "311": {
+    "matched_concepts": [
+      "error_signal",
+      "widrow_hoff_learning_rule",
+      "synaptic_weight_adjustment"
+    ],
+    "chain_pct": "60%",
+    "solo": "Multistructural",
+    "bloom": "Understand",
+    "n_kg_concepts": 5
+  },
+  "312": {
+    "matched_concepts": [
+      "error_signal",
+      "widrow_hoff_learning_rule",
+      "synaptic_weight_adjustment",
+      "steepest_descent_method"
+    ],
+    "chain_pct": "80%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 5
+  },
+  "313": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 5
+  },
+  "314": {
+    "matched_concepts": [
+      "input_signal",
+      "widrow_hoff_learning_rule",
+      "synaptic_weight_adjustment"
+    ],
+    "chain_pct": "60%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 5
+  },
+  "315": {
+    "matched_concepts": [
+      "widrow_hoff_learning_rule",
+      "synaptic_weight_adjustment",
+      "steepest_descent_method"
+    ],
+    "chain_pct": "60%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 5
+  },
+  "316": {
+    "matched_concepts": [
+      "input_signal",
+      "error_signal",
+      "widrow_hoff_learning_rule"
+    ],
+    "chain_pct": "60%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 5
+  },
+  "317": {
+    "matched_concepts": [
+      "error_signal",
+      "widrow_hoff_learning_rule",
+      "synaptic_weight_adjustment"
+    ],
+    "chain_pct": "60%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 5
+  },
+  "318": {
+    "matched_concepts": [
+      "input_signal",
+      "error_signal",
+      "widrow_hoff_learning_rule",
+      "synaptic_weight_adjustment"
+    ],
+    "chain_pct": "80%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 5
+  },
+  "319": {
+    "matched_concepts": [
+      "input_signal",
+      "error_signal",
+      "widrow_hoff_learning_rule",
+      "synaptic_weight_adjustment"
+    ],
+    "chain_pct": "80%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 5
+  },
+  "320": {
+    "matched_concepts": [
+      "error_signal",
+      "widrow_hoff_learning_rule",
+      "synaptic_weight_adjustment",
+      "steepest_descent_method"
+    ],
+    "chain_pct": "80%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 5
+  },
+  "321": {
+    "matched_concepts": [
+      "input_signal",
+      "error_signal",
+      "widrow_hoff_learning_rule",
+      "synaptic_weight_adjustment"
+    ],
+    "chain_pct": "80%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 5
+  },
+  "322": {
+    "matched_concepts": [
+      "input_signal",
+      "error_signal",
+      "widrow_hoff_learning_rule",
+      "synaptic_weight_adjustment"
+    ],
+    "chain_pct": "80%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 5
+  },
+  "323": {
+    "matched_concepts": [
+      "input_signal",
+      "error_signal",
+      "widrow_hoff_learning_rule",
+      "synaptic_weight_adjustment"
+    ],
+    "chain_pct": "80%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 5
+  },
+  "324": {
+    "matched_concepts": [
+      "input_signal",
+      "error_signal",
+      "widrow_hoff_learning_rule",
+      "synaptic_weight_adjustment"
+    ],
+    "chain_pct": "80%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 5
+  },
+  "325": {
+    "matched_concepts": [
+      "input_signal",
+      "error_signal",
+      "widrow_hoff_learning_rule",
+      "synaptic_weight_adjustment"
+    ],
+    "chain_pct": "80%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 5
+  },
+  "326": {
+    "matched_concepts": [
+      "input_signal",
+      "error_signal",
+      "widrow_hoff_learning_rule",
+      "synaptic_weight_adjustment"
+    ],
+    "chain_pct": "80%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 5
+  },
+  "327": {
+    "matched_concepts": [
+      "input_signal",
+      "error_signal",
+      "widrow_hoff_learning_rule",
+      "synaptic_weight_adjustment"
+    ],
+    "chain_pct": "80%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 5
+  },
+  "328": {
+    "matched_concepts": [
+      "input_signal",
+      "error_signal",
+      "widrow_hoff_learning_rule",
+      "synaptic_weight_adjustment"
+    ],
+    "chain_pct": "80%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 5
+  },
+  "329": {
+    "matched_concepts": [
+      "input_signal",
+      "error_signal",
+      "widrow_hoff_learning_rule",
+      "synaptic_weight_adjustment"
+    ],
+    "chain_pct": "80%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 5
+  },
+  "330": {
+    "matched_concepts": [
+      "input_signal",
+      "error_signal",
+      "widrow_hoff_learning_rule",
+      "synaptic_weight_adjustment"
+    ],
+    "chain_pct": "80%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 5
+  },
+  "331": {
+    "matched_concepts": [
+      "input_signal",
+      "error_signal",
+      "widrow_hoff_learning_rule",
+      "synaptic_weight_adjustment"
+    ],
+    "chain_pct": "80%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 5
+  },
+  "332": {
+    "matched_concepts": [
+      "error_signal",
+      "widrow_hoff_learning_rule",
+      "synaptic_weight_adjustment"
+    ],
+    "chain_pct": "60%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 5
+  },
+  "333": {
+    "matched_concepts": [
+      "input_signal",
+      "error_signal",
+      "widrow_hoff_learning_rule",
+      "synaptic_weight_adjustment"
+    ],
+    "chain_pct": "80%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 5
+  },
+  "334": {
+    "matched_concepts": [
+      "widrow_hoff_learning_rule",
+      "synaptic_weight_adjustment"
+    ],
+    "chain_pct": "40%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 5
+  },
+  "335": {
+    "matched_concepts": [
+      "input_signal",
+      "error_signal",
+      "widrow_hoff_learning_rule",
+      "synaptic_weight_adjustment"
+    ],
+    "chain_pct": "80%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 5
+  },
+  "336": {
+    "matched_concepts": [
+      "widrow_hoff_learning_rule",
+      "synaptic_weight_adjustment",
+      "steepest_descent_method",
+      "input_signal",
+      "error_signal"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 5
+  },
+  "337": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 5
+  },
+  "338": {
+    "matched_concepts": [
+      "error_signal",
+      "synaptic_weight_adjustment"
+    ],
+    "chain_pct": "40%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 5
+  },
+  "339": {
+    "matched_concepts": [
+      "input_signal",
+      "error_signal",
+      "widrow_hoff_learning_rule",
+      "synaptic_weight_adjustment"
+    ],
+    "chain_pct": "80%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 5
+  },
+  "340": {
+    "matched_concepts": [
+      "input_signal",
+      "error_signal",
+      "synaptic_weight_adjustment"
+    ],
+    "chain_pct": "60%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 5
+  },
+  "341": {
+    "matched_concepts": [
+      "input_signal",
+      "error_signal",
+      "widrow_hoff_learning_rule",
+      "steepest_descent_method"
+    ],
+    "chain_pct": "80%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 5
+  },
+  "342": {
+    "matched_concepts": [
+      "local_gradient",
+      "backpropagation",
+      "partial_derivatives",
+      "error_reduction",
+      "weight_update"
+    ],
+    "chain_pct": "71%",
+    "solo": "Relational",
+    "bloom": "Analyze",
+    "n_kg_concepts": 7
+  },
+  "343": {
+    "matched_concepts": [
+      "local_gradient",
+      "error_reduction",
+      "weight_update"
+    ],
+    "chain_pct": "43%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "344": {
+    "matched_concepts": [
+      "local_gradient",
+      "error_reduction"
+    ],
+    "chain_pct": "29%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "345": {
+    "matched_concepts": [
+      "local_gradient",
+      "backpropagation",
+      "error_reduction",
+      "chain_rule",
+      "weight_update"
+    ],
+    "chain_pct": "71%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "346": {
+    "matched_concepts": [
+      "local_gradient",
+      "error_reduction",
+      "weight_update"
+    ],
+    "chain_pct": "43%",
+    "solo": "Multistructural",
+    "bloom": "Understand",
+    "n_kg_concepts": 7
+  },
+  "347": {
+    "matched_concepts": [
+      "local_gradient",
+      "error_reduction",
+      "weight_update"
+    ],
+    "chain_pct": "43%",
+    "solo": "Multistructural",
+    "bloom": "Understand",
+    "n_kg_concepts": 7
+  },
+  "348": {
+    "matched_concepts": [
+      "backpropagation",
+      "error_reduction",
+      "weight_update",
+      "local_gradient"
+    ],
+    "chain_pct": "57%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "349": {
+    "matched_concepts": [
+      "backpropagation",
+      "error_reduction",
+      "weight_update",
+      "local_gradient"
+    ],
+    "chain_pct": "57%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "350": {
+    "matched_concepts": [
+      "local_gradient",
+      "error_reduction",
+      "multi_layer_perceptron",
+      "weight_update"
+    ],
+    "chain_pct": "57%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "351": {
+    "matched_concepts": [
+      "local_gradient",
+      "error_reduction",
+      "weight_update"
+    ],
+    "chain_pct": "43%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "352": {
+    "matched_concepts": [
+      "local_gradient",
+      "error_reduction",
+      "partial_derivatives",
+      "weight_update"
+    ],
+    "chain_pct": "57%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "353": {
+    "matched_concepts": [
+      "backpropagation",
+      "error_reduction",
+      "weight_update",
+      "local_gradient"
+    ],
+    "chain_pct": "57%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "354": {
+    "matched_concepts": [
+      "backpropagation",
+      "error_reduction",
+      "weight_update",
+      "local_gradient"
+    ],
+    "chain_pct": "57%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "355": {
+    "matched_concepts": [
+      "local_gradient",
+      "error_reduction",
+      "weight_update"
+    ],
+    "chain_pct": "43%",
+    "solo": "Multistructural",
+    "bloom": "Understand",
+    "n_kg_concepts": 7
+  },
+  "356": {
+    "matched_concepts": [
+      "local_gradient",
+      "backpropagation",
+      "partial_derivatives",
+      "error_reduction",
+      "weight_update"
+    ],
+    "chain_pct": "71%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "357": {
+    "matched_concepts": [
+      "local_gradient",
+      "error_reduction",
+      "multi_layer_perceptron",
+      "weight_update"
+    ],
+    "chain_pct": "57%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "358": {
+    "matched_concepts": [
+      "error_reduction",
+      "weight_update"
+    ],
+    "chain_pct": "29%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "359": {
+    "matched_concepts": [
+      "local_gradient",
+      "multi_layer_perceptron",
+      "backpropagation",
+      "error_reduction",
+      "weight_update"
+    ],
+    "chain_pct": "71%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "360": {
+    "matched_concepts": [
+      "local_gradient",
+      "error_reduction",
+      "weight_update"
+    ],
+    "chain_pct": "43%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "361": {
+    "matched_concepts": [
+      "local_gradient",
+      "error_reduction",
+      "weight_update",
+      "chain_rule"
+    ],
+    "chain_pct": "57%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "362": {
+    "matched_concepts": [
+      "local_gradient",
+      "partial_derivatives",
+      "error_reduction",
+      "chain_rule",
+      "weight_update"
+    ],
+    "chain_pct": "71%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "363": {
+    "matched_concepts": [
+      "backpropagation",
+      "error_reduction",
+      "weight_update",
+      "local_gradient"
+    ],
+    "chain_pct": "57%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "364": {
+    "matched_concepts": [
+      "local_gradient",
+      "error_reduction",
+      "weight_update",
+      "chain_rule"
+    ],
+    "chain_pct": "57%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "365": {
+    "matched_concepts": [
+      "error_reduction",
+      "weight_update",
+      "chain_rule"
+    ],
+    "chain_pct": "43%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "366": {
+    "matched_concepts": [
+      "local_gradient",
+      "backpropagation",
+      "partial_derivatives",
+      "error_reduction",
+      "weight_update"
+    ],
+    "chain_pct": "71%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "367": {
+    "matched_concepts": [
+      "local_gradient",
+      "error_reduction",
+      "weight_update"
+    ],
+    "chain_pct": "43%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "368": {
+    "matched_concepts": [
+      "local_gradient",
+      "weight_update"
+    ],
+    "chain_pct": "29%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "369": {
+    "matched_concepts": [
+      "local_gradient",
+      "error_reduction",
+      "multi_layer_perceptron",
+      "weight_update"
+    ],
+    "chain_pct": "57%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "370": {
+    "matched_concepts": [
+      "local_gradient",
+      "multi_layer_perceptron",
+      "backpropagation",
+      "error_reduction",
+      "weight_update"
+    ],
+    "chain_pct": "71%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "371": {
+    "matched_concepts": [
+      "local_gradient",
+      "error_reduction",
+      "weight_update"
+    ],
+    "chain_pct": "43%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "372": {
+    "matched_concepts": [
+      "local_gradient",
+      "error_reduction",
+      "weight_update"
+    ],
+    "chain_pct": "43%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "373": {
+    "matched_concepts": [
+      "error_reduction",
+      "weight_update",
+      "chain_rule"
+    ],
+    "chain_pct": "43%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "374": {
+    "matched_concepts": [
+      "local_gradient",
+      "error_reduction",
+      "weight_update"
+    ],
+    "chain_pct": "43%",
+    "solo": "Multistructural",
+    "bloom": "Analyze",
+    "n_kg_concepts": 7
+  },
+  "375": {
+    "matched_concepts": [
+      "local_gradient",
+      "partial_derivatives",
+      "error_reduction",
+      "chain_rule",
+      "weight_update"
+    ],
+    "chain_pct": "71%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "376": {
+    "matched_concepts": [
+      "local_gradient",
+      "weight_update"
+    ],
+    "chain_pct": "29%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 7
+  },
+  "377": {
+    "matched_concepts": [
+      "error_reduction",
+      "multi_layer_perceptron",
+      "weight_update"
+    ],
+    "chain_pct": "43%",
+    "solo": "Multistructural",
+    "bloom": "Understand",
+    "n_kg_concepts": 7
+  },
+  "378": {
+    "matched_concepts": [
+      "error_reduction",
+      "partial_derivatives",
+      "weight_update",
+      "chain_rule"
+    ],
+    "chain_pct": "57%",
+    "solo": "Multistructural",
+    "bloom": "Understand",
+    "n_kg_concepts": 7
+  },
+  "379": {
+    "matched_concepts": [
+      "local_gradient",
+      "backpropagation",
+      "error_reduction",
+      "chain_rule",
+      "weight_update"
+    ],
+    "chain_pct": "71%",
+    "solo": "Relational",
+    "bloom": "Analyze",
+    "n_kg_concepts": 7
+  },
+  "380": {
+    "matched_concepts": [
+      "steepest_descent_learning",
+      "learning_rate",
+      "overdamped_convergence",
+      "convergence_speed",
+      "underdamped_convergence"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "381": {
+    "matched_concepts": [
+      "steepest_descent_learning",
+      "learning_rate"
+    ],
+    "chain_pct": "33%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "382": {
+    "matched_concepts": [
+      "steepest_descent_learning",
+      "learning_rate"
+    ],
+    "chain_pct": "33%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "383": {
+    "matched_concepts": [
+      "steepest_descent_learning",
+      "overdamped_convergence",
+      "learning_rate"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "384": {
+    "matched_concepts": [
+      "steepest_descent_learning",
+      "learning_rate",
+      "overdamped_convergence",
+      "convergence_speed",
+      "underdamped_convergence"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "385": {
+    "matched_concepts": [
+      "steepest_descent_learning",
+      "learning_rate",
+      "overdamped_convergence",
+      "convergence_speed",
+      "underdamped_convergence"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "386": {
+    "matched_concepts": [
+      "steepest_descent_learning",
+      "learning_rate"
+    ],
+    "chain_pct": "33%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "387": {
+    "matched_concepts": [
+      "steepest_descent_learning",
+      "learning_rate",
+      "overdamped_convergence",
+      "convergence_speed",
+      "underdamped_convergence"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "388": {
+    "matched_concepts": [
+      "steepest_descent_learning",
+      "learning_rate"
+    ],
+    "chain_pct": "33%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "389": {
+    "matched_concepts": [
+      "steepest_descent_learning",
+      "learning_rate"
+    ],
+    "chain_pct": "33%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "390": {
+    "matched_concepts": [
+      "steepest_descent_learning",
+      "learning_rate"
+    ],
+    "chain_pct": "33%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "391": {
+    "matched_concepts": [
+      "steepest_descent_learning",
+      "learning_rate",
+      "overdamped_convergence",
+      "convergence_speed",
+      "underdamped_convergence"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "392": {
+    "matched_concepts": [
+      "underdamped_convergence",
+      "steepest_descent_learning",
+      "overdamped_convergence",
+      "learning_rate"
+    ],
+    "chain_pct": "67%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "393": {
+    "matched_concepts": [
+      "steepest_descent_learning"
+    ],
+    "chain_pct": "17%",
+    "solo": "Unistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "394": {
+    "matched_concepts": [
+      "steepest_descent_learning",
+      "instability",
+      "learning_rate"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "395": {
+    "matched_concepts": [
+      "steepest_descent_learning",
+      "learning_rate",
+      "overdamped_convergence",
+      "convergence_speed",
+      "underdamped_convergence"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "396": {
+    "matched_concepts": [
+      "steepest_descent_learning",
+      "learning_rate",
+      "overdamped_convergence",
+      "convergence_speed",
+      "underdamped_convergence"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "397": {
+    "matched_concepts": [
+      "steepest_descent_learning",
+      "learning_rate"
+    ],
+    "chain_pct": "33%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "398": {
+    "matched_concepts": [
+      "underdamped_convergence",
+      "steepest_descent_learning",
+      "overdamped_convergence",
+      "learning_rate"
+    ],
+    "chain_pct": "67%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "399": {
+    "matched_concepts": [
+      "steepest_descent_learning",
+      "learning_rate",
+      "overdamped_convergence",
+      "convergence_speed",
+      "underdamped_convergence"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "400": {
+    "matched_concepts": [
+      "steepest_descent_learning",
+      "learning_rate",
+      "overdamped_convergence",
+      "convergence_speed",
+      "underdamped_convergence"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "401": {
+    "matched_concepts": [
+      "steepest_descent_learning",
+      "learning_rate",
+      "overdamped_convergence",
+      "convergence_speed",
+      "underdamped_convergence"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "402": {
+    "matched_concepts": [
+      "steepest_descent_learning",
+      "learning_rate",
+      "overdamped_convergence",
+      "convergence_speed",
+      "underdamped_convergence"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "403": {
+    "matched_concepts": [
+      "steepest_descent_learning",
+      "learning_rate"
+    ],
+    "chain_pct": "33%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "404": {
+    "matched_concepts": [
+      "steepest_descent_learning",
+      "learning_rate"
+    ],
+    "chain_pct": "33%",
+    "solo": "Multistructural",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "405": {
+    "matched_concepts": [
+      "steepest_descent_learning",
+      "convergence_speed",
+      "learning_rate"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "406": {
+    "matched_concepts": [
+      "underdamped_convergence",
+      "steepest_descent_learning",
+      "overdamped_convergence",
+      "learning_rate"
+    ],
+    "chain_pct": "67%",
+    "solo": "Relational",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "407": {
+    "matched_concepts": [
+      "steepest_descent_learning",
+      "learning_rate",
+      "overdamped_convergence",
+      "convergence_speed",
+      "underdamped_convergence"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "408": {
+    "matched_concepts": [
+      "steepest_descent_learning",
+      "learning_rate",
+      "overdamped_convergence",
+      "convergence_speed",
+      "underdamped_convergence"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "409": {
+    "matched_concepts": [
+      "steepest_descent_learning",
+      "learning_rate",
+      "overdamped_convergence",
+      "convergence_speed",
+      "underdamped_convergence"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "410": {
+    "matched_concepts": [
+      "steepest_descent_learning",
+      "learning_rate",
+      "overdamped_convergence",
+      "convergence_speed",
+      "underdamped_convergence"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "411": {
+    "matched_concepts": [
+      "steepest_descent_learning",
+      "convergence_speed",
+      "learning_rate"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "412": {
+    "matched_concepts": [
+      "steepest_descent_learning",
+      "learning_rate",
+      "overdamped_convergence",
+      "convergence_speed",
+      "underdamped_convergence"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "413": {
+    "matched_concepts": [
+      "steepest_descent_learning",
+      "learning_rate"
+    ],
+    "chain_pct": "33%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "414": {
+    "matched_concepts": [
+      "steepest_descent_learning",
+      "learning_rate"
+    ],
+    "chain_pct": "33%",
+    "solo": "Multistructural",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "415": {
+    "matched_concepts": [
+      "steepest_descent_learning",
+      "convergence_speed",
+      "learning_rate"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "416": {
+    "matched_concepts": [
+      "steepest_descent_learning",
+      "learning_rate"
+    ],
+    "chain_pct": "33%",
+    "solo": "Multistructural",
+    "bloom": "Analyze",
+    "n_kg_concepts": 6
+  },
+  "417": {
+    "matched_concepts": [
+      "steepest_descent_learning",
+      "convergence_speed",
+      "learning_rate"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Analyze",
+    "n_kg_concepts": 6
+  },
+  "418": {
+    "matched_concepts": [
+      "activation_probability",
+      "free_running_state",
+      "hidden_layer",
+      "reduced_boltzmann_machine",
+      "clamped_state",
+      "binary_neurons",
+      "visible_layer",
+      "state_flipping"
+    ],
+    "chain_pct": "89%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "419": {
+    "matched_concepts": [
+      "free_running_state",
+      "hidden_layer",
+      "clamped_state",
+      "binary_neurons",
+      "visible_layer",
+      "state_flipping"
+    ],
+    "chain_pct": "67%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "420": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "421": {
+    "matched_concepts": [
+      "hidden_layer",
+      "activation_probability",
+      "bi_parted_graph",
+      "visible_layer"
+    ],
+    "chain_pct": "44%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "422": {
+    "matched_concepts": [
+      "free_running_state",
+      "hidden_layer",
+      "reduced_boltzmann_machine",
+      "clamped_state",
+      "visible_layer",
+      "state_flipping"
+    ],
+    "chain_pct": "67%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "423": {
+    "matched_concepts": [
+      "hidden_layer",
+      "visible_layer"
+    ],
+    "chain_pct": "22%",
+    "solo": "Unistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "424": {
+    "matched_concepts": [
+      "activation_probability",
+      "hidden_layer",
+      "reduced_boltzmann_machine",
+      "binary_neurons",
+      "visible_layer",
+      "state_flipping"
+    ],
+    "chain_pct": "67%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "425": {
+    "matched_concepts": [
+      "activation_probability",
+      "free_running_state",
+      "hidden_layer",
+      "bi_parted_graph",
+      "clamped_state",
+      "binary_neurons",
+      "visible_layer",
+      "state_flipping"
+    ],
+    "chain_pct": "89%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "426": {
+    "matched_concepts": [
+      "free_running_state",
+      "hidden_layer",
+      "clamped_state",
+      "binary_neurons",
+      "visible_layer",
+      "state_flipping"
+    ],
+    "chain_pct": "67%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "427": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "428": {
+    "matched_concepts": [
+      "binary_neurons",
+      "visible_layer",
+      "hidden_layer"
+    ],
+    "chain_pct": "33%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "429": {
+    "matched_concepts": [
+      "free_running_state",
+      "reduced_boltzmann_machine",
+      "clamped_state",
+      "binary_neurons",
+      "state_flipping"
+    ],
+    "chain_pct": "56%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "430": {
+    "matched_concepts": [
+      "hidden_layer",
+      "reduced_boltzmann_machine",
+      "visible_layer"
+    ],
+    "chain_pct": "33%",
+    "solo": "Multistructural",
+    "bloom": "Analyze",
+    "n_kg_concepts": 9
+  },
+  "431": {
+    "matched_concepts": [
+      "hidden_layer",
+      "visible_layer"
+    ],
+    "chain_pct": "22%",
+    "solo": "Unistructural",
+    "bloom": "Analyze",
+    "n_kg_concepts": 9
+  },
+  "432": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "433": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "434": {
+    "matched_concepts": [
+      "free_running_state",
+      "hidden_layer",
+      "clamped_state",
+      "binary_neurons",
+      "visible_layer",
+      "state_flipping"
+    ],
+    "chain_pct": "67%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "435": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "436": {
+    "matched_concepts": [
+      "clamped_state",
+      "binary_neurons",
+      "state_flipping",
+      "free_running_state"
+    ],
+    "chain_pct": "44%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "437": {
+    "matched_concepts": [
+      "activation_probability",
+      "free_running_state",
+      "hidden_layer",
+      "reduced_boltzmann_machine",
+      "clamped_state",
+      "binary_neurons",
+      "visible_layer",
+      "state_flipping"
+    ],
+    "chain_pct": "89%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "438": {
+    "matched_concepts": [
+      "activation_probability",
+      "free_running_state",
+      "hidden_layer",
+      "reduced_boltzmann_machine",
+      "clamped_state",
+      "binary_neurons",
+      "visible_layer",
+      "state_flipping"
+    ],
+    "chain_pct": "89%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "439": {
+    "matched_concepts": [
+      "clamped_state",
+      "state_flipping",
+      "reduced_boltzmann_machine",
+      "free_running_state"
+    ],
+    "chain_pct": "44%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "440": {
+    "matched_concepts": [
+      "free_running_state",
+      "hidden_layer",
+      "clamped_state",
+      "binary_neurons",
+      "visible_layer",
+      "state_flipping"
+    ],
+    "chain_pct": "67%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "441": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Understand",
+    "n_kg_concepts": 9
+  },
+  "442": {
+    "matched_concepts": [
+      "activation_probability",
+      "free_running_state",
+      "reduced_boltzmann_machine",
+      "clamped_state",
+      "state_flipping"
+    ],
+    "chain_pct": "56%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "443": {
+    "matched_concepts": [
+      "binary_neurons",
+      "state_flipping",
+      "reduced_boltzmann_machine",
+      "free_running_state"
+    ],
+    "chain_pct": "44%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "444": {
+    "matched_concepts": [
+      "free_running_state",
+      "hidden_layer",
+      "clamped_state",
+      "binary_neurons",
+      "visible_layer",
+      "state_flipping"
+    ],
+    "chain_pct": "67%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "445": {
+    "matched_concepts": [
+      "binary_neurons",
+      "reduced_boltzmann_machine",
+      "visible_layer",
+      "hidden_layer"
+    ],
+    "chain_pct": "44%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "446": {
+    "matched_concepts": [
+      "activation_probability",
+      "free_running_state",
+      "hidden_layer",
+      "clamped_state",
+      "binary_neurons",
+      "state_flipping"
+    ],
+    "chain_pct": "67%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "447": {
+    "matched_concepts": [
+      "activation_probability",
+      "free_running_state",
+      "hidden_layer",
+      "reduced_boltzmann_machine",
+      "clamped_state",
+      "visible_layer",
+      "state_flipping"
+    ],
+    "chain_pct": "78%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "448": {
+    "matched_concepts": [
+      "hidden_layer",
+      "visible_layer"
+    ],
+    "chain_pct": "22%",
+    "solo": "Unistructural",
+    "bloom": "Understand",
+    "n_kg_concepts": 9
+  },
+  "449": {
+    "matched_concepts": [
+      "activation_probability",
+      "free_running_state",
+      "clamped_state",
+      "binary_neurons",
+      "state_flipping"
+    ],
+    "chain_pct": "56%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "450": {
+    "matched_concepts": [
+      "activation_probability",
+      "free_running_state",
+      "clamped_state",
+      "binary_neurons",
+      "state_flipping"
+    ],
+    "chain_pct": "56%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "451": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "452": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "453": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "454": {
+    "matched_concepts": [
+      "binary_neurons",
+      "state_flipping",
+      "visible_layer",
+      "hidden_layer"
+    ],
+    "chain_pct": "44%",
+    "solo": "Multistructural",
+    "bloom": "Understand",
+    "n_kg_concepts": 9
+  },
+  "455": {
+    "matched_concepts": [
+      "free_running_state",
+      "hidden_layer",
+      "reduced_boltzmann_machine",
+      "clamped_state",
+      "binary_neurons",
+      "visible_layer",
+      "state_flipping"
+    ],
+    "chain_pct": "78%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "456": {
+    "matched_concepts": [
+      "recurrent_neural_network",
+      "dynamic_systems_approximation",
+      "cyclic_connection",
+      "feedforward_neural_network",
+      "echo_state_network",
+      "output_layer_weights"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "457": {
+    "matched_concepts": [
+      "recurrent_neural_network",
+      "output_layer_weights",
+      "feedforward_neural_network",
+      "echo_state_network"
+    ],
+    "chain_pct": "67%",
+    "solo": "Relational",
+    "bloom": "Analyze",
+    "n_kg_concepts": 6
+  },
+  "458": {
+    "matched_concepts": [
+      "recurrent_neural_network",
+      "cyclic_connection",
+      "feedforward_neural_network",
+      "echo_state_network",
+      "output_layer_weights"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "459": {
+    "matched_concepts": [
+      "recurrent_neural_network",
+      "dynamic_systems_approximation",
+      "output_layer_weights"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "460": {
+    "matched_concepts": [
+      "recurrent_neural_network",
+      "cyclic_connection",
+      "feedforward_neural_network",
+      "echo_state_network",
+      "output_layer_weights"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "461": {
+    "matched_concepts": [
+      "recurrent_neural_network",
+      "dynamic_systems_approximation",
+      "cyclic_connection",
+      "feedforward_neural_network",
+      "echo_state_network",
+      "output_layer_weights"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Analyze",
+    "n_kg_concepts": 6
+  },
+  "462": {
+    "matched_concepts": [
+      "recurrent_neural_network",
+      "cyclic_connection",
+      "feedforward_neural_network",
+      "echo_state_network",
+      "output_layer_weights"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Analyze",
+    "n_kg_concepts": 6
+  },
+  "463": {
+    "matched_concepts": [
+      "recurrent_neural_network",
+      "dynamic_systems_approximation",
+      "feedforward_neural_network",
+      "echo_state_network",
+      "output_layer_weights"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "464": {
+    "matched_concepts": [
+      "recurrent_neural_network",
+      "cyclic_connection",
+      "feedforward_neural_network",
+      "echo_state_network",
+      "output_layer_weights"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "465": {
+    "matched_concepts": [
+      "recurrent_neural_network",
+      "dynamic_systems_approximation",
+      "cyclic_connection",
+      "feedforward_neural_network",
+      "echo_state_network",
+      "output_layer_weights"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Analyze",
+    "n_kg_concepts": 6
+  },
+  "466": {
+    "matched_concepts": [
+      "recurrent_neural_network",
+      "output_layer_weights",
+      "feedforward_neural_network",
+      "echo_state_network"
+    ],
+    "chain_pct": "67%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "467": {
+    "matched_concepts": [
+      "recurrent_neural_network",
+      "dynamic_systems_approximation",
+      "feedforward_neural_network",
+      "echo_state_network",
+      "output_layer_weights"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "468": {
+    "matched_concepts": [
+      "recurrent_neural_network",
+      "cyclic_connection",
+      "feedforward_neural_network",
+      "echo_state_network"
+    ],
+    "chain_pct": "67%",
+    "solo": "Relational",
+    "bloom": "Analyze",
+    "n_kg_concepts": 6
+  },
+  "469": {
+    "matched_concepts": [
+      "recurrent_neural_network",
+      "dynamic_systems_approximation",
+      "cyclic_connection",
+      "feedforward_neural_network",
+      "echo_state_network",
+      "output_layer_weights"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "470": {
+    "matched_concepts": [
+      "recurrent_neural_network",
+      "output_layer_weights",
+      "feedforward_neural_network",
+      "echo_state_network"
+    ],
+    "chain_pct": "67%",
+    "solo": "Relational",
+    "bloom": "Analyze",
+    "n_kg_concepts": 6
+  },
+  "471": {
+    "matched_concepts": [
+      "recurrent_neural_network",
+      "feedforward_neural_network",
+      "echo_state_network"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "472": {
+    "matched_concepts": [
+      "recurrent_neural_network",
+      "dynamic_systems_approximation",
+      "feedforward_neural_network",
+      "echo_state_network",
+      "output_layer_weights"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "473": {
+    "matched_concepts": [
+      "recurrent_neural_network",
+      "output_layer_weights",
+      "feedforward_neural_network",
+      "echo_state_network"
+    ],
+    "chain_pct": "67%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "474": {
+    "matched_concepts": [
+      "dynamic_systems_approximation",
+      "cyclic_connection",
+      "output_layer_weights"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "475": {
+    "matched_concepts": [
+      "recurrent_neural_network",
+      "dynamic_systems_approximation",
+      "cyclic_connection",
+      "feedforward_neural_network",
+      "echo_state_network",
+      "output_layer_weights"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "476": {
+    "matched_concepts": [
+      "recurrent_neural_network",
+      "cyclic_connection",
+      "feedforward_neural_network",
+      "echo_state_network",
+      "output_layer_weights"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "477": {
+    "matched_concepts": [
+      "recurrent_neural_network",
+      "output_layer_weights",
+      "feedforward_neural_network",
+      "echo_state_network"
+    ],
+    "chain_pct": "67%",
+    "solo": "Relational",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "478": {
+    "matched_concepts": [
+      "recurrent_neural_network",
+      "dynamic_systems_approximation",
+      "output_layer_weights",
+      "echo_state_network"
+    ],
+    "chain_pct": "67%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "479": {
+    "matched_concepts": [
+      "output_layer_weights"
+    ],
+    "chain_pct": "17%",
+    "solo": "Unistructural",
+    "bloom": "Analyze",
+    "n_kg_concepts": 6
+  },
+  "480": {
+    "matched_concepts": [
+      "recurrent_neural_network",
+      "dynamic_systems_approximation",
+      "feedforward_neural_network",
+      "echo_state_network",
+      "output_layer_weights"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "481": {
+    "matched_concepts": [
+      "dynamic_systems_approximation"
+    ],
+    "chain_pct": "17%",
+    "solo": "Unistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "482": {
+    "matched_concepts": [
+      "recurrent_neural_network",
+      "dynamic_systems_approximation",
+      "cyclic_connection",
+      "feedforward_neural_network",
+      "echo_state_network",
+      "output_layer_weights"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "483": {
+    "matched_concepts": [
+      "recurrent_neural_network",
+      "output_layer_weights",
+      "feedforward_neural_network",
+      "echo_state_network"
+    ],
+    "chain_pct": "67%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "484": {
+    "matched_concepts": [
+      "recurrent_neural_network",
+      "dynamic_systems_approximation",
+      "cyclic_connection",
+      "feedforward_neural_network",
+      "echo_state_network",
+      "output_layer_weights"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "485": {
+    "matched_concepts": [
+      "recurrent_neural_network",
+      "cyclic_connection",
+      "feedforward_neural_network",
+      "echo_state_network",
+      "output_layer_weights"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "486": {
+    "matched_concepts": [
+      "recurrent_neural_network",
+      "dynamic_systems_approximation",
+      "cyclic_connection",
+      "feedforward_neural_network",
+      "echo_state_network",
+      "output_layer_weights"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "487": {
+    "matched_concepts": [
+      "recurrent_neural_network",
+      "dynamic_systems_approximation",
+      "cyclic_connection",
+      "feedforward_neural_network",
+      "echo_state_network",
+      "output_layer_weights"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "488": {
+    "matched_concepts": [
+      "recurrent_neural_network",
+      "feedforward_neural_network",
+      "echo_state_network"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "489": {
+    "matched_concepts": [
+      "recurrent_neural_network",
+      "dynamic_systems_approximation",
+      "cyclic_connection",
+      "echo_state_network",
+      "feedforward_neural_network"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "490": {
+    "matched_concepts": [
+      "recurrent_neural_network",
+      "output_layer_weights",
+      "feedforward_neural_network",
+      "echo_state_network"
+    ],
+    "chain_pct": "67%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "491": {
+    "matched_concepts": [
+      "recurrent_neural_network",
+      "dynamic_systems_approximation",
+      "feedforward_neural_network",
+      "echo_state_network",
+      "output_layer_weights"
+    ],
+    "chain_pct": "83%",
+    "solo": "Relational",
+    "bloom": "Understand",
+    "n_kg_concepts": 6
+  },
+  "492": {
+    "matched_concepts": [
+      "recurrent_neural_network",
+      "output_layer_weights",
+      "feedforward_neural_network",
+      "echo_state_network"
+    ],
+    "chain_pct": "67%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "493": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 6
+  },
+  "494": {
+    "matched_concepts": [
+      "pooling_layer",
+      "average_pooling",
+      "convolutional_layer",
+      "relu_activation",
+      "activation_layer",
+      "max_pooling",
+      "kernel",
+      "convolutional_neural_network",
+      "input_image",
+      "softmax_layer",
+      "fully_connected_layer"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 11
+  },
+  "495": {
+    "matched_concepts": [
+      "pooling_layer",
+      "average_pooling",
+      "convolutional_layer",
+      "relu_activation",
+      "activation_layer",
+      "max_pooling",
+      "input_image",
+      "softmax_layer",
+      "fully_connected_layer"
+    ],
+    "chain_pct": "82%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 11
+  },
+  "496": {
+    "matched_concepts": [
+      "pooling_layer",
+      "convolutional_layer",
+      "activation_layer",
+      "kernel",
+      "convolutional_neural_network",
+      "input_image",
+      "softmax_layer",
+      "fully_connected_layer"
+    ],
+    "chain_pct": "73%",
+    "solo": "Relational",
+    "bloom": "Understand",
+    "n_kg_concepts": 11
+  },
+  "497": {
+    "matched_concepts": [
+      "pooling_layer",
+      "average_pooling",
+      "convolutional_layer",
+      "relu_activation",
+      "activation_layer",
+      "max_pooling",
+      "convolutional_neural_network",
+      "input_image",
+      "softmax_layer",
+      "fully_connected_layer"
+    ],
+    "chain_pct": "91%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 11
+  },
+  "498": {
+    "matched_concepts": [
+      "pooling_layer",
+      "average_pooling",
+      "relu_activation",
+      "max_pooling"
+    ],
+    "chain_pct": "36%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 11
+  },
+  "499": {
+    "matched_concepts": [
+      "pooling_layer",
+      "average_pooling",
+      "convolutional_layer",
+      "relu_activation",
+      "activation_layer",
+      "max_pooling",
+      "kernel",
+      "convolutional_neural_network",
+      "input_image",
+      "softmax_layer",
+      "fully_connected_layer"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 11
+  },
+  "500": {
+    "matched_concepts": [
+      "pooling_layer",
+      "convolutional_layer",
+      "activation_layer",
+      "convolutional_neural_network",
+      "input_image",
+      "softmax_layer",
+      "fully_connected_layer"
+    ],
+    "chain_pct": "64%",
+    "solo": "Relational",
+    "bloom": "Analyze",
+    "n_kg_concepts": 11
+  },
+  "501": {
+    "matched_concepts": [
+      "pooling_layer",
+      "average_pooling",
+      "convolutional_layer",
+      "max_pooling",
+      "activation_layer",
+      "kernel",
+      "convolutional_neural_network",
+      "input_image",
+      "softmax_layer",
+      "fully_connected_layer"
+    ],
+    "chain_pct": "91%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 11
+  },
+  "502": {
+    "matched_concepts": [
+      "pooling_layer",
+      "average_pooling",
+      "convolutional_layer",
+      "max_pooling",
+      "activation_layer",
+      "convolutional_neural_network",
+      "input_image",
+      "softmax_layer",
+      "fully_connected_layer"
+    ],
+    "chain_pct": "82%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 11
+  },
+  "503": {
+    "matched_concepts": [
+      "pooling_layer",
+      "average_pooling",
+      "convolutional_layer",
+      "max_pooling",
+      "activation_layer",
+      "convolutional_neural_network",
+      "input_image",
+      "softmax_layer",
+      "fully_connected_layer"
+    ],
+    "chain_pct": "82%",
+    "solo": "Relational",
+    "bloom": "Analyze",
+    "n_kg_concepts": 11
+  },
+  "504": {
+    "matched_concepts": [
+      "pooling_layer",
+      "convolutional_layer",
+      "activation_layer",
+      "convolutional_neural_network",
+      "softmax_layer",
+      "fully_connected_layer"
+    ],
+    "chain_pct": "55%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 11
+  },
+  "505": {
+    "matched_concepts": [
+      "pooling_layer",
+      "average_pooling",
+      "convolutional_layer",
+      "max_pooling",
+      "activation_layer",
+      "input_image",
+      "softmax_layer",
+      "fully_connected_layer"
+    ],
+    "chain_pct": "73%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 11
+  },
+  "506": {
+    "matched_concepts": [
+      "pooling_layer",
+      "average_pooling",
+      "max_pooling",
+      "convolutional_neural_network",
+      "input_image"
+    ],
+    "chain_pct": "45%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 11
+  },
+  "507": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 11
+  },
+  "508": {
+    "matched_concepts": [
+      "pooling_layer",
+      "average_pooling",
+      "convolutional_layer",
+      "max_pooling",
+      "activation_layer",
+      "convolutional_neural_network",
+      "softmax_layer",
+      "fully_connected_layer"
+    ],
+    "chain_pct": "73%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 11
+  },
+  "509": {
+    "matched_concepts": [
+      "pooling_layer",
+      "average_pooling",
+      "convolutional_layer",
+      "relu_activation",
+      "activation_layer",
+      "max_pooling",
+      "input_image",
+      "softmax_layer",
+      "fully_connected_layer"
+    ],
+    "chain_pct": "82%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 11
+  },
+  "510": {
+    "matched_concepts": [
+      "pooling_layer",
+      "average_pooling",
+      "convolutional_layer",
+      "max_pooling",
+      "activation_layer",
+      "kernel",
+      "input_image",
+      "softmax_layer",
+      "fully_connected_layer"
+    ],
+    "chain_pct": "82%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 11
+  },
+  "511": {
+    "matched_concepts": [
+      "pooling_layer",
+      "convolutional_layer",
+      "activation_layer",
+      "convolutional_neural_network",
+      "input_image",
+      "softmax_layer",
+      "fully_connected_layer"
+    ],
+    "chain_pct": "64%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 11
+  },
+  "512": {
+    "matched_concepts": [
+      "pooling_layer",
+      "average_pooling",
+      "convolutional_layer",
+      "relu_activation",
+      "activation_layer",
+      "max_pooling",
+      "kernel",
+      "input_image",
+      "softmax_layer",
+      "fully_connected_layer"
+    ],
+    "chain_pct": "91%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 11
+  },
+  "513": {
+    "matched_concepts": [
+      "pooling_layer",
+      "average_pooling",
+      "convolutional_layer",
+      "relu_activation",
+      "activation_layer",
+      "max_pooling",
+      "convolutional_neural_network",
+      "softmax_layer",
+      "fully_connected_layer"
+    ],
+    "chain_pct": "82%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 11
+  },
+  "514": {
+    "matched_concepts": [
+      "pooling_layer",
+      "average_pooling",
+      "convolutional_layer",
+      "relu_activation",
+      "activation_layer",
+      "max_pooling",
+      "convolutional_neural_network",
+      "softmax_layer",
+      "fully_connected_layer"
+    ],
+    "chain_pct": "82%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 11
+  },
+  "515": {
+    "matched_concepts": [
+      "pooling_layer",
+      "average_pooling",
+      "convolutional_layer",
+      "max_pooling",
+      "activation_layer",
+      "softmax_layer",
+      "fully_connected_layer"
+    ],
+    "chain_pct": "64%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 11
+  },
+  "516": {
+    "matched_concepts": [
+      "pooling_layer",
+      "average_pooling",
+      "convolutional_layer",
+      "max_pooling",
+      "activation_layer",
+      "relu_activation",
+      "softmax_layer",
+      "fully_connected_layer"
+    ],
+    "chain_pct": "73%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 11
+  },
+  "517": {
+    "matched_concepts": [
+      "pooling_layer",
+      "convolutional_layer",
+      "activation_layer",
+      "input_image",
+      "softmax_layer",
+      "fully_connected_layer"
+    ],
+    "chain_pct": "55%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 11
+  },
+  "518": {
+    "matched_concepts": [
+      "pooling_layer",
+      "convolutional_layer",
+      "activation_layer",
+      "input_image",
+      "softmax_layer",
+      "fully_connected_layer"
+    ],
+    "chain_pct": "55%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 11
+  },
+  "519": {
+    "matched_concepts": [
+      "pooling_layer",
+      "average_pooling",
+      "convolutional_layer",
+      "relu_activation",
+      "activation_layer",
+      "max_pooling",
+      "convolutional_neural_network",
+      "softmax_layer",
+      "fully_connected_layer"
+    ],
+    "chain_pct": "82%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 11
+  },
+  "520": {
+    "matched_concepts": [
+      "pooling_layer",
+      "convolutional_layer",
+      "activation_layer",
+      "convolutional_neural_network",
+      "input_image",
+      "softmax_layer",
+      "fully_connected_layer"
+    ],
+    "chain_pct": "64%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 11
+  },
+  "521": {
+    "matched_concepts": [
+      "pooling_layer",
+      "convolutional_layer",
+      "activation_layer",
+      "kernel",
+      "convolutional_neural_network",
+      "softmax_layer",
+      "fully_connected_layer"
+    ],
+    "chain_pct": "64%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 11
+  },
+  "522": {
+    "matched_concepts": [
+      "pooling_layer",
+      "average_pooling",
+      "convolutional_layer",
+      "max_pooling",
+      "activation_layer",
+      "convolutional_neural_network",
+      "input_image",
+      "softmax_layer",
+      "fully_connected_layer"
+    ],
+    "chain_pct": "82%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 11
+  },
+  "523": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 11
+  },
+  "524": {
+    "matched_concepts": [
+      "pooling_layer",
+      "average_pooling",
+      "convolutional_layer",
+      "relu_activation",
+      "activation_layer",
+      "max_pooling",
+      "input_image",
+      "softmax_layer",
+      "fully_connected_layer"
+    ],
+    "chain_pct": "82%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 11
+  },
+  "525": {
+    "matched_concepts": [
+      "convolutional_layer",
+      "kernel",
+      "convolutional_neural_network",
+      "input_image",
+      "fully_connected_layer"
+    ],
+    "chain_pct": "45%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 11
+  },
+  "526": {
+    "matched_concepts": [
+      "pooling_layer",
+      "average_pooling",
+      "convolutional_layer",
+      "max_pooling",
+      "activation_layer",
+      "kernel",
+      "input_image",
+      "softmax_layer",
+      "fully_connected_layer"
+    ],
+    "chain_pct": "82%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 11
+  },
+  "527": {
+    "matched_concepts": [
+      "pooling_layer",
+      "convolutional_layer",
+      "relu_activation",
+      "activation_layer",
+      "convolutional_neural_network",
+      "softmax_layer",
+      "fully_connected_layer"
+    ],
+    "chain_pct": "64%",
+    "solo": "Relational",
+    "bloom": "Analyze",
+    "n_kg_concepts": 11
+  },
+  "528": {
+    "matched_concepts": [
+      "pooling_layer",
+      "convolutional_layer",
+      "activation_layer",
+      "softmax_layer",
+      "fully_connected_layer"
+    ],
+    "chain_pct": "45%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 11
+  },
+  "529": {
+    "matched_concepts": [
+      "pooling_layer",
+      "average_pooling",
+      "convolutional_layer",
+      "max_pooling",
+      "activation_layer",
+      "convolutional_neural_network",
+      "softmax_layer",
+      "fully_connected_layer"
+    ],
+    "chain_pct": "73%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 11
+  },
+  "530": {
+    "matched_concepts": [
+      "convolutional_neural_network",
+      "input_image",
+      "relu_activation"
+    ],
+    "chain_pct": "27%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 11
+  },
+  "531": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 11
+  },
+  "532": {
+    "matched_concepts": [
+      "linear_output_layer",
+      "weights",
+      "single_hidden_layer"
+    ],
+    "chain_pct": "33%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "533": {
+    "matched_concepts": [
+      "linear_output_layer",
+      "rbf_network",
+      "other_neural_networks",
+      "weights",
+      "single_hidden_layer"
+    ],
+    "chain_pct": "56%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "534": {
+    "matched_concepts": [
+      "rbf_network",
+      "other_neural_networks"
+    ],
+    "chain_pct": "22%",
+    "solo": "Unistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "535": {
+    "matched_concepts": [
+      "linear_output_layer",
+      "weights",
+      "single_hidden_layer",
+      "centers"
+    ],
+    "chain_pct": "44%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "536": {
+    "matched_concepts": [
+      "linear_output_layer",
+      "weights"
+    ],
+    "chain_pct": "22%",
+    "solo": "Unistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "537": {
+    "matched_concepts": [
+      "linear_output_layer",
+      "rbf_network",
+      "other_neural_networks",
+      "weights",
+      "single_hidden_layer"
+    ],
+    "chain_pct": "56%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "538": {
+    "matched_concepts": [
+      "linear_output_layer",
+      "weights",
+      "single_hidden_layer",
+      "rbf_network"
+    ],
+    "chain_pct": "44%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "539": {
+    "matched_concepts": [
+      "linear_output_layer",
+      "other_neural_networks",
+      "weights",
+      "centers",
+      "single_hidden_layer"
+    ],
+    "chain_pct": "56%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "540": {
+    "matched_concepts": [
+      "linear_output_layer",
+      "rbf_network",
+      "other_neural_networks",
+      "weights",
+      "centers",
+      "single_hidden_layer"
+    ],
+    "chain_pct": "67%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "541": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "542": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "543": {
+    "matched_concepts": [
+      "universal_approximator"
+    ],
+    "chain_pct": "11%",
+    "solo": "Unistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "544": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "545": {
+    "matched_concepts": [
+      "linear_output_layer",
+      "single_hidden_layer",
+      "universal_approximator"
+    ],
+    "chain_pct": "33%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "546": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "547": {
+    "matched_concepts": [
+      "linear_output_layer",
+      "other_neural_networks",
+      "single_hidden_layer",
+      "centers"
+    ],
+    "chain_pct": "44%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "548": {
+    "matched_concepts": [
+      "linear_output_layer"
+    ],
+    "chain_pct": "11%",
+    "solo": "Unistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "549": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "550": {
+    "matched_concepts": [
+      "linear_output_layer",
+      "weights",
+      "single_hidden_layer",
+      "centers"
+    ],
+    "chain_pct": "44%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "551": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "552": {
+    "matched_concepts": [
+      "weights",
+      "rbf_network",
+      "centers"
+    ],
+    "chain_pct": "33%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "553": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "554": {
+    "matched_concepts": [
+      "linear_output_layer",
+      "weights",
+      "single_hidden_layer",
+      "centers"
+    ],
+    "chain_pct": "44%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "555": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "556": {
+    "matched_concepts": [
+      "linear_output_layer"
+    ],
+    "chain_pct": "11%",
+    "solo": "Unistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "557": {
+    "matched_concepts": [
+      "linear_output_layer",
+      "weights",
+      "single_hidden_layer"
+    ],
+    "chain_pct": "33%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "558": {
+    "matched_concepts": [
+      "linear_output_layer",
+      "single_hidden_layer",
+      "rbf_network"
+    ],
+    "chain_pct": "33%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "559": {
+    "matched_concepts": [
+      "weights",
+      "rbf_network",
+      "other_neural_networks"
+    ],
+    "chain_pct": "33%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "560": {
+    "matched_concepts": [
+      "linear_output_layer",
+      "weights",
+      "other_neural_networks",
+      "centers"
+    ],
+    "chain_pct": "44%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "561": {
+    "matched_concepts": [
+      "linear_output_layer",
+      "weights"
+    ],
+    "chain_pct": "22%",
+    "solo": "Unistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "562": {
+    "matched_concepts": [
+      "weights"
+    ],
+    "chain_pct": "11%",
+    "solo": "Unistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "563": {
+    "matched_concepts": [
+      "linear_output_layer",
+      "centers"
+    ],
+    "chain_pct": "22%",
+    "solo": "Unistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "564": {
+    "matched_concepts": [
+      "linear_output_layer",
+      "single_hidden_layer"
+    ],
+    "chain_pct": "22%",
+    "solo": "Unistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "565": {
+    "matched_concepts": [
+      "linear_output_layer",
+      "single_hidden_layer",
+      "other_neural_networks"
+    ],
+    "chain_pct": "33%",
+    "solo": "Multistructural",
+    "bloom": "Analyze",
+    "n_kg_concepts": 9
+  },
+  "566": {
+    "matched_concepts": [
+      "linear_output_layer",
+      "other_neural_networks"
+    ],
+    "chain_pct": "22%",
+    "solo": "Unistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "567": {
+    "matched_concepts": [
+      "linear_output_layer",
+      "single_hidden_layer",
+      "other_neural_networks"
+    ],
+    "chain_pct": "33%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "568": {
+    "matched_concepts": [
+      "linear_output_layer",
+      "single_hidden_layer",
+      "rbf_network",
+      "other_neural_networks"
+    ],
+    "chain_pct": "44%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "569": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 9
+  },
+  "570": {
+    "matched_concepts": [
+      "class_vote",
+      "distance_metric",
+      "training_data",
+      "new_data_point",
+      "k_nearest_neighbors_learning",
+      "class_assignment",
+      "k_nearest_data_points"
+    ],
+    "chain_pct": "88%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "571": {
+    "matched_concepts": [
+      "new_data_point",
+      "distance_metric",
+      "k_nearest_data_points"
+    ],
+    "chain_pct": "38%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "572": {
+    "matched_concepts": [
+      "k_nearest_neighbors_learning",
+      "k_nearest_data_points"
+    ],
+    "chain_pct": "25%",
+    "solo": "Unistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "573": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "574": {
+    "matched_concepts": [
+      "class_vote",
+      "distance_metric",
+      "k_nearest_data_points",
+      "class_assignment"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "575": {
+    "matched_concepts": [
+      "new_data_point",
+      "k_nearest_data_points",
+      "training_data"
+    ],
+    "chain_pct": "38%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "576": {
+    "matched_concepts": [
+      "new_data_point",
+      "class_vote",
+      "class_assignment",
+      "k_nearest_data_points"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "577": {
+    "matched_concepts": [
+      "class_vote",
+      "training_data",
+      "new_data_point",
+      "class_assignment",
+      "k_nearest_data_points"
+    ],
+    "chain_pct": "62%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "578": {
+    "matched_concepts": [
+      "unsupervised_manner",
+      "training_data",
+      "new_data_point",
+      "k_nearest_neighbors_learning",
+      "k_nearest_data_points"
+    ],
+    "chain_pct": "62%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "579": {
+    "matched_concepts": [
+      "new_data_point",
+      "distance_metric",
+      "k_nearest_data_points",
+      "training_data"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Understand",
+    "n_kg_concepts": 8
+  },
+  "580": {
+    "matched_concepts": [
+      "k_nearest_neighbors_learning",
+      "k_nearest_data_points"
+    ],
+    "chain_pct": "25%",
+    "solo": "Unistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "581": {
+    "matched_concepts": [
+      "k_nearest_neighbors_learning",
+      "k_nearest_data_points"
+    ],
+    "chain_pct": "25%",
+    "solo": "Unistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "582": {
+    "matched_concepts": [
+      "distance_metric"
+    ],
+    "chain_pct": "12%",
+    "solo": "Unistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "583": {
+    "matched_concepts": [
+      "class_vote",
+      "distance_metric",
+      "training_data",
+      "new_data_point",
+      "k_nearest_neighbors_learning",
+      "class_assignment",
+      "k_nearest_data_points"
+    ],
+    "chain_pct": "88%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "584": {
+    "matched_concepts": [
+      "class_vote",
+      "distance_metric",
+      "training_data",
+      "new_data_point",
+      "class_assignment",
+      "k_nearest_data_points"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "585": {
+    "matched_concepts": [
+      "distance_metric",
+      "training_data",
+      "new_data_point",
+      "k_nearest_neighbors_learning",
+      "k_nearest_data_points"
+    ],
+    "chain_pct": "62%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "586": {
+    "matched_concepts": [
+      "class_vote",
+      "training_data",
+      "new_data_point",
+      "class_assignment",
+      "k_nearest_data_points"
+    ],
+    "chain_pct": "62%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "587": {
+    "matched_concepts": [
+      "class_vote",
+      "training_data",
+      "k_nearest_neighbors_learning",
+      "class_assignment",
+      "k_nearest_data_points"
+    ],
+    "chain_pct": "62%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "588": {
+    "matched_concepts": [
+      "class_vote",
+      "distance_metric",
+      "training_data",
+      "new_data_point",
+      "class_assignment",
+      "k_nearest_data_points"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "589": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "590": {
+    "matched_concepts": [
+      "class_vote",
+      "training_data",
+      "new_data_point",
+      "class_assignment",
+      "k_nearest_data_points"
+    ],
+    "chain_pct": "62%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "591": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "592": {
+    "matched_concepts": [
+      "k_nearest_neighbors_learning",
+      "class_vote",
+      "class_assignment",
+      "k_nearest_data_points"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "593": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "594": {
+    "matched_concepts": [
+      "k_nearest_neighbors_learning",
+      "class_vote",
+      "class_assignment"
+    ],
+    "chain_pct": "38%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "595": {
+    "matched_concepts": [
+      "new_data_point",
+      "k_nearest_data_points",
+      "training_data"
+    ],
+    "chain_pct": "38%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "596": {
+    "matched_concepts": [
+      "new_data_point",
+      "k_nearest_data_points",
+      "training_data"
+    ],
+    "chain_pct": "38%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "597": {
+    "matched_concepts": [
+      "new_data_point",
+      "k_nearest_data_points",
+      "training_data"
+    ],
+    "chain_pct": "38%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "598": {
+    "matched_concepts": [
+      "k_nearest_neighbors_learning",
+      "class_vote",
+      "class_assignment",
+      "k_nearest_data_points"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "599": {
+    "matched_concepts": [
+      "class_vote",
+      "distance_metric",
+      "training_data",
+      "new_data_point",
+      "k_nearest_neighbors_learning",
+      "class_assignment",
+      "k_nearest_data_points"
+    ],
+    "chain_pct": "88%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "600": {
+    "matched_concepts": [
+      "class_vote",
+      "distance_metric",
+      "training_data",
+      "new_data_point",
+      "k_nearest_neighbors_learning",
+      "class_assignment",
+      "k_nearest_data_points"
+    ],
+    "chain_pct": "88%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "601": {
+    "matched_concepts": [
+      "class_vote",
+      "distance_metric",
+      "new_data_point",
+      "class_assignment",
+      "k_nearest_data_points"
+    ],
+    "chain_pct": "62%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "602": {
+    "matched_concepts": [
+      "new_data_point",
+      "distance_metric",
+      "k_nearest_data_points",
+      "training_data"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "603": {
+    "matched_concepts": [
+      "class_vote",
+      "distance_metric",
+      "training_data",
+      "new_data_point",
+      "k_nearest_neighbors_learning",
+      "class_assignment",
+      "k_nearest_data_points"
+    ],
+    "chain_pct": "88%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "604": {
+    "matched_concepts": [
+      "distance_metric",
+      "training_data",
+      "new_data_point",
+      "k_nearest_neighbors_learning",
+      "k_nearest_data_points"
+    ],
+    "chain_pct": "62%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "605": {
+    "matched_concepts": [
+      "k_nearest_neighbors_learning",
+      "k_nearest_data_points"
+    ],
+    "chain_pct": "25%",
+    "solo": "Unistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "606": {
+    "matched_concepts": [
+      "new_data_point",
+      "class_vote",
+      "k_nearest_data_points"
+    ],
+    "chain_pct": "38%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "607": {
+    "matched_concepts": [
+      "class_vote",
+      "distance_metric",
+      "training_data",
+      "new_data_point",
+      "class_assignment",
+      "k_nearest_data_points"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "608": {
+    "matched_concepts": [
+      "model_bias",
+      "training_data_fit",
+      "model_variance",
+      "bias_variance_dilemma",
+      "supervised_learning",
+      "high_bias",
+      "high_variance"
+    ],
+    "chain_pct": "88%",
+    "solo": "Extended Abstract",
+    "bloom": "Understand",
+    "n_kg_concepts": 8
+  },
+  "609": {
+    "matched_concepts": [
+      "model_bias",
+      "model_variance",
+      "bias_variance_dilemma",
+      "high_bias",
+      "high_variance"
+    ],
+    "chain_pct": "62%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "610": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "611": {
+    "matched_concepts": [
+      "model_bias",
+      "training_data_fit",
+      "model_variance",
+      "high_bias",
+      "high_variance"
+    ],
+    "chain_pct": "62%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "612": {
+    "matched_concepts": [
+      "model_bias",
+      "training_data_fit",
+      "model_variance",
+      "bias_variance_dilemma",
+      "supervised_learning",
+      "high_bias",
+      "high_variance"
+    ],
+    "chain_pct": "88%",
+    "solo": "Extended Abstract",
+    "bloom": "Understand",
+    "n_kg_concepts": 8
+  },
+  "613": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "614": {
+    "matched_concepts": [
+      "model_bias",
+      "training_data_fit",
+      "model_variance",
+      "supervised_learning",
+      "high_bias",
+      "high_variance"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Understand",
+    "n_kg_concepts": 8
+  },
+  "615": {
+    "matched_concepts": [
+      "model_bias",
+      "training_data_fit",
+      "model_variance",
+      "high_bias",
+      "high_variance"
+    ],
+    "chain_pct": "62%",
+    "solo": "Relational",
+    "bloom": "Analyze",
+    "n_kg_concepts": 8
+  },
+  "616": {
+    "matched_concepts": [
+      "model_bias",
+      "training_data_fit",
+      "model_variance",
+      "supervised_learning",
+      "high_bias",
+      "high_variance"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "617": {
+    "matched_concepts": [
+      "model_variance",
+      "model_bias",
+      "high_bias",
+      "high_variance"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "618": {
+    "matched_concepts": [
+      "model_bias",
+      "model_variance",
+      "bias_variance_dilemma",
+      "high_bias",
+      "high_variance"
+    ],
+    "chain_pct": "62%",
+    "solo": "Relational",
+    "bloom": "Analyze",
+    "n_kg_concepts": 8
+  },
+  "619": {
+    "matched_concepts": [
+      "model_bias",
+      "training_data_fit",
+      "model_variance",
+      "supervised_learning",
+      "high_bias",
+      "high_variance"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "620": {
+    "matched_concepts": [
+      "model_bias",
+      "training_data_fit",
+      "model_variance",
+      "supervised_learning",
+      "high_bias",
+      "high_variance"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "621": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "622": {
+    "matched_concepts": [
+      "model_bias",
+      "model_variance",
+      "bias_variance_dilemma",
+      "high_bias",
+      "high_variance"
+    ],
+    "chain_pct": "62%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "623": {
+    "matched_concepts": [
+      "model_bias",
+      "training_data_fit",
+      "model_variance",
+      "supervised_learning",
+      "high_bias",
+      "high_variance"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Understand",
+    "n_kg_concepts": 8
+  },
+  "624": {
+    "matched_concepts": [
+      "model_bias",
+      "training_data_fit",
+      "model_variance",
+      "high_bias",
+      "high_variance"
+    ],
+    "chain_pct": "62%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "625": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "626": {
+    "matched_concepts": [
+      "model_bias",
+      "training_data_fit",
+      "model_variance",
+      "bias_variance_dilemma",
+      "supervised_learning",
+      "high_bias",
+      "high_variance"
+    ],
+    "chain_pct": "88%",
+    "solo": "Extended Abstract",
+    "bloom": "Analyze",
+    "n_kg_concepts": 8
+  },
+  "627": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "628": {
+    "matched_concepts": [
+      "model_bias",
+      "training_data_fit",
+      "model_variance",
+      "bias_variance_dilemma",
+      "high_bias",
+      "high_variance"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "629": {
+    "matched_concepts": [
+      "model_bias",
+      "training_data_fit",
+      "model_variance",
+      "bias_variance_dilemma",
+      "high_bias",
+      "high_variance"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Understand",
+    "n_kg_concepts": 8
+  },
+  "630": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "631": {
+    "matched_concepts": [
+      "model_bias",
+      "training_data_fit",
+      "model_variance",
+      "bias_variance_dilemma",
+      "supervised_learning",
+      "high_bias",
+      "high_variance"
+    ],
+    "chain_pct": "88%",
+    "solo": "Extended Abstract",
+    "bloom": "Understand",
+    "n_kg_concepts": 8
+  },
+  "632": {
+    "matched_concepts": [
+      "model_bias",
+      "high_bias"
+    ],
+    "chain_pct": "25%",
+    "solo": "Unistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "633": {
+    "matched_concepts": [
+      "model_bias",
+      "training_data_fit",
+      "model_variance",
+      "high_bias",
+      "high_variance"
+    ],
+    "chain_pct": "62%",
+    "solo": "Relational",
+    "bloom": "Understand",
+    "n_kg_concepts": 8
+  },
+  "634": {
+    "matched_concepts": [
+      "model_bias",
+      "training_data_fit",
+      "model_variance",
+      "high_bias",
+      "high_variance"
+    ],
+    "chain_pct": "62%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "635": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "636": {
+    "matched_concepts": [
+      "model_variance",
+      "model_bias",
+      "high_bias",
+      "high_variance"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "637": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "638": {
+    "matched_concepts": [
+      "model_bias",
+      "model_variance",
+      "bias_variance_dilemma",
+      "supervised_learning",
+      "high_bias",
+      "high_variance"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Understand",
+    "n_kg_concepts": 8
+  },
+  "639": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "640": {
+    "matched_concepts": [
+      "model_bias",
+      "training_data_fit",
+      "model_variance",
+      "high_bias",
+      "high_variance"
+    ],
+    "chain_pct": "62%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "641": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "642": {
+    "matched_concepts": [
+      "model_bias",
+      "high_bias"
+    ],
+    "chain_pct": "25%",
+    "solo": "Unistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "643": {
+    "matched_concepts": [
+      "model_bias",
+      "training_data_fit",
+      "model_variance",
+      "bias_variance_dilemma",
+      "high_bias",
+      "high_variance"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  },
+  "644": {
+    "matched_concepts": [
+      "model_bias",
+      "training_data_fit",
+      "model_variance",
+      "bias_variance_dilemma",
+      "supervised_learning",
+      "high_bias",
+      "high_variance"
+    ],
+    "chain_pct": "88%",
+    "solo": "Extended Abstract",
+    "bloom": "Understand",
+    "n_kg_concepts": 8
+  },
+  "645": {
+    "matched_concepts": [],
+    "chain_pct": "0%",
+    "solo": "Prestructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 8
+  }
+}

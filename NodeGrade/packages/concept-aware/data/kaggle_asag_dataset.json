@@ -1,0 +1,4259 @@
+[
+  {
+    "id": 0,
+    "question": "What is respiration in plants?",
+    "reference_answer": "Respiration in plants is the process of breaking down food to release energy and carbon dioxide.",
+    "student_answer": "Respiration is how plants and animals take in oxygen and great energy.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 1,
+    "question": "What is a habitat?",
+    "reference_answer": "A habitat is the natural home of a plant or an animal.",
+    "student_answer": "A habitat is like a home for animals and plants. Its where they live and find everything they need to survive, like food, water, and shelter.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 2,
+    "question": "What is soil erosion?",
+    "reference_answer": "Soil erosion is the removal of soil by wind, water or human activity.",
+    "student_answer": "Soil erosion is when the top layer of soil, which is really important for plants, gets carried away by wind or water. Its like the ground is washing or blowing away.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 3,
+    "question": "What are microorganisms?",
+    "reference_answer": "Microorganisms are tiny living things that cannot be seen with the naked eye.",
+    "student_answer": "micro organisms are small things seen with naked eye",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 4,
+    "question": "Are all microorganisms harmful?",
+    "reference_answer": "No, some microorganisms are helpful and others are harmful.",
+    "student_answer": "No, not all microorganisms are bad. Some are usefull",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 5,
+    "question": "Name a disease caused by a virus.",
+    "reference_answer": "Flu is caused by a virus.",
+    "student_answer": "Flu is viral fever.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 6,
+    "question": "What is pollination?",
+    "reference_answer": "Pollination is the transfer of pollen from one flower to another.",
+    "student_answer": "Transfer of pollens in flowers",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 7,
+    "question": "What is the role of petals in a flower?",
+    "reference_answer": "Petals attract insects to help with pollination.",
+    "student_answer": "Petals are beautiful",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 8,
+    "question": "Name three types of microorganisms.",
+    "reference_answer": "Bacteria, viruses, and fungi are three types of microorganisms.",
+    "student_answer": "fungus, virus, bacteria",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 9,
+    "question": "Are all microorganisms harmful?",
+    "reference_answer": "No, some are helpful, while others can cause diseases.",
+    "student_answer": "some are good and bad",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 10,
+    "question": "Name a disease caused by a virus.",
+    "reference_answer": "Flu is caused by a virus.",
+    "student_answer": "Covid-19",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 11,
+    "question": "What is pollination?",
+    "reference_answer": "Pollination is the transfer of pollen from the stamen to the pistil.",
+    "student_answer": "Pollen move to pistil",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 12,
+    "question": "How do seeds spread?",
+    "reference_answer": "Seeds spread by wind, water, and animals.",
+    "student_answer": "Wind, water, animals spread them.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 13,
+    "question": "What is water pollution?",
+    "reference_answer": "Water pollution is when harmful substances are added to water bodies.",
+    "student_answer": "Dirty things in water.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 14,
+    "question": "What are fossil fuels?",
+    "reference_answer": "Fossil fuels are energy sources like coal, oil, and gas formed from dead plants and animals.",
+    "student_answer": "Coal, oil from dead things.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 15,
+    "question": "What are greenhouse gases?",
+    "reference_answer": "Gases that trap heat in Earths atmosphere.",
+    "student_answer": "Gases that heat Earth.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 16,
+    "question": "Name two greenhouse gases.",
+    "reference_answer": "Carbon dioxide and methane.",
+    "student_answer": "CO2 and methane.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 17,
+    "question": "What is global warming?",
+    "reference_answer": "A rise in Earths temperature due to greenhouse gases.",
+    "student_answer": "Earth getting hotter.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 18,
+    "question": "What is the greenhouse effect?",
+    "reference_answer": "It is the warming of Earth by trapped heat due to greenhouse gases.",
+    "student_answer": "Gases trap suns heat.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 19,
+    "question": "What is composting?",
+    "reference_answer": "Turning food and garden waste into natural fertilizer.",
+    "student_answer": "Making dirt from food scraps.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 20,
+    "question": "What is noise pollution?",
+    "reference_answer": "Unwanted or harmful sound that disturbs people and animals.",
+    "student_answer": "Too much loud noise.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 21,
+    "question": "What is melting?",
+    "reference_answer": "The process of changing a solid to a liquid.",
+    "student_answer": "Solid becomes liquid.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 22,
+    "question": "What is freezing?",
+    "reference_answer": "The process of changing a liquid to a solid.",
+    "student_answer": "Liquid becomes solid.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 23,
+    "question": "What is boiling?",
+    "reference_answer": "The process of turning a liquid into gas by heating.",
+    "student_answer": "Liquid to gas with heat.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 24,
+    "question": "What is evaporation?",
+    "reference_answer": "The slow change of liquid into gas at any temperature.",
+    "student_answer": "Liquid dries to gas.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 25,
+    "question": "What is condensation?",
+    "reference_answer": "The change of gas into liquid.",
+    "student_answer": "Gas turns to liquid.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 26,
+    "question": "What is light?",
+    "reference_answer": "Light is a form of energy that helps us see.",
+    "student_answer": "Energy for seeing.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 27,
+    "question": "What is reflection of light?",
+    "reference_answer": "Bouncing back of light from a surface.",
+    "student_answer": "Light bounces back.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 28,
+    "question": "What is refraction of light?",
+    "reference_answer": "Bending of light when it passes through different materials.",
+    "student_answer": "Light bends.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 29,
+    "question": "What is a shadow?",
+    "reference_answer": "A dark area formed when light is blocked.",
+    "student_answer": "shadow",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 30,
+    "question": "What is sound?",
+    "reference_answer": "Sound is energy produced by vibrations.",
+    "student_answer": "Sound is something we hear.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 31,
+    "question": "How does sound travel?",
+    "reference_answer": "Sound travels in waves through air, water, or solids.",
+    "student_answer": "It flies through space.",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 32,
+    "question": "What is volume?",
+    "reference_answer": "Volume is how loud or soft a sound is.",
+    "student_answer": "The size of something",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 33,
+    "question": "What is noise pollution?",
+    "reference_answer": "Too much unpleasant sound in the environment.",
+    "student_answer": "Loud sounds everywhere",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 34,
+    "question": "What is the speed of sound in air?",
+    "reference_answer": "Around 343 meters per second.",
+    "student_answer": "Very fast",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 35,
+    "question": "What is the speed of light?",
+    "reference_answer": "About 300,000 kilometers per second.",
+    "student_answer": "km",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 36,
+    "question": "What is a prism?",
+    "reference_answer": "A prism splits white light into different colors.",
+    "student_answer": "A triangle glass",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 37,
+    "question": "What is static electricity?",
+    "reference_answer": "Static electricity is the build-up of electric charge on a surface.",
+    "student_answer": "built_up",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 38,
+    "question": "What is electric current?",
+    "reference_answer": "The flow of electric charge (electrons) in a circuit.",
+    "student_answer": "Fast electricity",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 39,
+    "question": "What is an open circuit?",
+    "reference_answer": "A circuit that is broken or not complete; current cannot flow.",
+    "student_answer": "    ",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 40,
+    "question": "What is a closed circuit?",
+    "reference_answer": "A complete circuit where electricity flows freely.",
+    "student_answer": "Circuit work good",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 41,
+    "question": "What is a conductor?",
+    "reference_answer": "A material that allows electricity to flow through it.",
+    "student_answer": "Let electric go",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 42,
+    "question": "What is an insulator?",
+    "reference_answer": "A material that does not allow electricity to flow through it.",
+    "student_answer": "Stop electric",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 43,
+    "question": "What is a fuse?",
+    "reference_answer": "A safety device that stops current if it gets too high.",
+    "student_answer": "Thing stop too much electric",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 44,
+    "question": "What is a magnet?",
+    "reference_answer": "An object that attracts materials like iron.",
+    "student_answer": "Thing pull metal",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 45,
+    "question": "What is a magnetic field?",
+    "reference_answer": "The area around a magnet where magnetic force is felt.",
+    "student_answer": "  ",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 46,
+    "question": "What is an electromagnet?",
+    "reference_answer": "A magnet made by passing electric current through a wire wrapped around iron.",
+    "student_answer": "Electric make magnet",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 47,
+    "question": "What is lightning?",
+    "reference_answer": "A natural form of static electricity.",
+    "student_answer": "Sky electric",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 48,
+    "question": "What is a series circuit?",
+    "reference_answer": "A circuit where components are connected in a single path.",
+    "student_answer": "One path",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 49,
+    "question": "What is a parallel circuit?",
+    "reference_answer": "A circuit where components are connected in multiple paths.",
+    "student_answer": "Many path",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 50,
+    "question": "What is a short circuit?",
+    "reference_answer": "An unintended path of low resistance that can cause damage.",
+    "student_answer": "Bad electric",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 51,
+    "question": "What is a resistor?",
+    "reference_answer": "A device that limits the flow of electric current.",
+    "student_answer": "Slow electric",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 52,
+    "question": "What is groundwater?",
+    "reference_answer": "Water stored under the Earths surface.",
+    "student_answer": "Underground water",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 53,
+    "question": "What is soil erosion?",
+    "reference_answer": "The removal of topsoil by wind or water.",
+    "student_answer": "Dirt blows",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 54,
+    "question": "What is water pollution?",
+    "reference_answer": "Contamination of water by harmful substances.",
+    "student_answer": "Dirty water",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 55,
+    "question": "What is the water cycle?",
+    "reference_answer": "The process of evaporation, condensation, and precipitation.",
+    "student_answer": "Water goes round",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 56,
+    "question": "What is evaporation?",
+    "reference_answer": "The process of water turning into vapor.",
+    "student_answer": "Water disappears",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 57,
+    "question": "What is condensation?",
+    "reference_answer": "The process of vapor turning into liquid.",
+    "student_answer": "Drops form",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 58,
+    "question": "What is precipitation?",
+    "reference_answer": "Rain, snow, or hail falling from clouds.",
+    "student_answer": "Rain falls",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 59,
+    "question": "What is composting?",
+    "reference_answer": "Making natural fertilizer from organic waste.",
+    "student_answer": "Rotting food helps plants",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 60,
+    "question": "What is space?",
+    "reference_answer": "Space is the vast area beyond Earths atmosphere.",
+    "student_answer": "Sky above",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 61,
+    "question": "What is a satellite?",
+    "reference_answer": "A satellite is an object that revolves around a planet.",
+    "student_answer": "Thing going round",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 62,
+    "question": "Which planet has the most moons?",
+    "reference_answer": "Jupiter.",
+    "student_answer": "Big planet",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 63,
+    "question": "How many moons does Earth have?",
+    "reference_answer": "One.",
+    "student_answer": "  one",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 64,
+    "question": "What is a space probe?",
+    "reference_answer": "A spacecraft sent to collect information without humans.",
+    "student_answer": "Robot spaceship",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 65,
+    "question": "What is the Sun?",
+    "reference_answer": "A star at the center of our solar system.",
+    "student_answer": "Big fire ball",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 66,
+    "question": "What is a comet?",
+    "reference_answer": "A ball of ice and dust that orbits the Sun.",
+    "student_answer": "Space snowball",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 67,
+    "question": "What is an asteroid?",
+    "reference_answer": "A rocky object orbiting the Sun, mostly between Mars and Jupiter.",
+    "student_answer": "Space rock",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 68,
+    "question": "What is a galaxy?",
+    "reference_answer": "A large system of stars, planets, and gas held by gravity.",
+    "student_answer": "Star group",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 69,
+    "question": "What is the name of our galaxy?",
+    "reference_answer": "Milky Way.",
+    "student_answer": "Our galaxy",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 70,
+    "question": "What is a weather satellite?",
+    "reference_answer": "A satellite used to monitor and forecast weather.",
+    "student_answer": "Checks weather",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 71,
+    "question": "What is the main function of the respiratory system?",
+    "reference_answer": "To take in oxygen and remove carbon dioxide.",
+    "student_answer": "Breathing oxygen in and carbon dioxide out.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 72,
+    "question": "What does the circulatory system do?",
+    "reference_answer": "It transports oxygen, nutrients, and wastes through the body.",
+    "student_answer": "Moves oxygen and food in body.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 73,
+    "question": "What is plasma?",
+    "reference_answer": "Plasma is the liquid part of blood that carries nutrients and hormones.",
+    "student_answer": "Liquid in blood that moves food and messages.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 74,
+    "question": "What is food spoilage?",
+    "reference_answer": "When food becomes unsafe/unpleasant to eat",
+    "student_answer": "Rotten food",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 75,
+    "question": "What is pasteurization?",
+    "reference_answer": "Heating liquids to kill bacteria",
+    "student_answer": "Milk heating",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 76,
+    "question": "What is mass?",
+    "reference_answer": "Mass is the amount of matter contained in an object.",
+    "student_answer": "Mass means how much stuff is inside something.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 77,
+    "question": "What is weight?",
+    "reference_answer": "Weight is the force with which gravity pulls an object downward.",
+    "student_answer": "Weight is how heavy something feels when you hold it.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 78,
+    "question": "What tool measures liquid volume?",
+    "reference_answer": "We use a measuring cylinder with marked lines to measure how much liquid there is.",
+    "student_answer": "A special cup with numbers measures juice or water amounts.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 79,
+    "question": "What is volume?",
+    "reference_answer": "Volume is the amount of space that an object or substance takes up.",
+    "student_answer": "Volume means how much room something fills.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 80,
+    "question": "What instrument measures temperature?",
+    "reference_answer": "A thermometer measures temperature by showing how much liquid inside expands when heated.",
+    "student_answer": "A temperature checker has colored liquid that goes up when hot.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 81,
+    "question": "What is speed?",
+    "reference_answer": "Speed tells us how much distance an object covers in a certain amount of time.",
+    "student_answer": "Speed is how far something goes in how much time.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 82,
+    "question": "What is speed?",
+    "reference_answer": "Speed is the rate of change of distance with time.",
+    "student_answer": "How fast object moves.",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 83,
+    "question": "What is velocity?",
+    "reference_answer": "Velocity is the rate of change of displacement.",
+    "student_answer": "Speed in a direction.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 84,
+    "question": "What is acceleration?",
+    "reference_answer": "Acceleration is the rate of change of velocity.",
+    "student_answer": "Change in velocity.",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 85,
+    "question": "What is Newton's First Law of Motion?",
+    "reference_answer": "An object at rest stays at rest, and an object in motion stays in motion unless acted upon by a force.",
+    "student_answer": "Object stays same unless pushed.",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 86,
+    "question": "Define force.",
+    "reference_answer": "Force is a push or pull on an object.",
+    "student_answer": "Push or pull.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 87,
+    "question": "What is the SI unit of force?",
+    "reference_answer": "Newton (N).",
+    "student_answer": "Newton.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 88,
+    "question": "When is no work done?",
+    "reference_answer": "When there is no displacement.",
+    "student_answer": "If nothing moves.",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 89,
+    "question": "What is heat?",
+    "reference_answer": "Heat is a form of energy that makes things warm.",
+    "student_answer": "heat make things hot.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 90,
+    "question": "What is conduction?",
+    "reference_answer": "Conduction is the transfer of heat through solids.",
+    "student_answer": "heat moves in solid",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 91,
+    "question": "What is convection?",
+    "reference_answer": "Convection is the transfer of heat through liquids and gases.",
+    "student_answer": "heat go in air and water",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 92,
+    "question": "What is radiation?",
+    "reference_answer": "Radiation is the transfer of heat without any medium.",
+    "student_answer": "heat go with no touch.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 93,
+    "question": "What is thermal expansion?",
+    "reference_answer": "Thermal expansion is the increase in size when heated.",
+    "student_answer": "it get big with hot",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 94,
+    "question": "What is dew?",
+    "reference_answer": "Dew is water droplets formed by condensation.",
+    "student_answer": "dew is water in morning",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 95,
+    "question": "What is a conductor?",
+    "reference_answer": "A material that allows heat to pass.",
+    "student_answer": "pass heat",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 96,
+    "question": "What is an insulator?",
+    "reference_answer": "A material that does not allow heat to pass.",
+    "student_answer": "no heat pass",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 97,
+    "question": "What is lightning?",
+    "reference_answer": "Lightning is a sudden flash of electricity in the sky, usually during storms.",
+    "student_answer": "Lightning is the fire in sky.",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 98,
+    "question": "What should you do during lightning?",
+    "reference_answer": "Stay indoors and avoid metal objects and trees.",
+    "student_answer": "Run in house and dont touch wires.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 99,
+    "question": "What should you do during lightning?",
+    "reference_answer": "Stay inside, dont use metal or phones.",
+    "student_answer": "Hide in house.",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 100,
+    "question": "What connects muscles to bones?",
+    "reference_answer": "Tough fibrous tissues called tendons",
+    "student_answer": "rope",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 101,
+    "question": "When is no work done?",
+    "reference_answer": "When there is no displacement.",
+    "student_answer": "if no work done no move then.",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 102,
+    "question": "What is velocity?",
+    "reference_answer": "Velocity is speed with direction.",
+    "student_answer": "speed goes fast",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 103,
+    "question": "What is force?",
+    "reference_answer": "A push or pull on an object is called force.",
+    "student_answer": "when you push or pul thig its forc.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 104,
+    "question": "What is convection?",
+    "reference_answer": "Heat transfer in liquid or gas is convection.",
+    "student_answer": "heat go in air and also in soup.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 105,
+    "question": "What is radiation?",
+    "reference_answer": "Radiation is the transfer of heat without any medium.",
+    "student_answer": "heat fly from sun to house.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 106,
+    "question": "What is speed?",
+    "reference_answer": "Speed is distance covered per time.",
+    "student_answer": "speed is how fast somethin run in time.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 107,
+    "question": "What is food spoilage?",
+    "reference_answer": "When food gets bad and unsafe to eat.",
+    "student_answer": "food be smelly and not good now.",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 108,
+    "question": "What is inertia?",
+    "reference_answer": "The resistance of an object to change in motion.",
+    "student_answer": "things dont want move or stop if its in motion",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 109,
+    "question": "Why copper wires?",
+    "reference_answer": "Excellent electrical conductor",
+    "student_answer": "Color looks nice",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 110,
+    "question": "What are natural resources?",
+    "reference_answer": "Materials from nature used by humans",
+    "student_answer": "Things what grow outside",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 111,
+    "question": "Why copper wires?",
+    "reference_answer": "Excellent conductor, flexible",
+    "student_answer": "Color nice",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 112,
+    "question": "What is a galaxy?",
+    "reference_answer": "A galaxy is a massive system of stars, gas, dust, and dark matter bound by gravity.",
+    "student_answer": "Galaxy is big star group in space.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 113,
+    "question": "What is the Milky Way?",
+    "reference_answer": "Our home galaxy, a barred spiral containing ~100 billion stars.",
+    "student_answer": "Our galaxy with Sun and Earth.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 114,
+    "question": "What is a comet?",
+    "reference_answer": "An icy object with a tail that orbits the Sun.",
+    "student_answer": "Icy thing with tail in sky.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 115,
+    "question": "What is an asteroid?",
+    "reference_answer": "A rocky body orbiting the Sun, mostly in the asteroid belt.",
+    "student_answer": "Space rock near Mars.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 116,
+    "question": "What is energy?",
+    "reference_answer": "Energy is the ability to do work.",
+    "student_answer": "Enerjy is what helps living do things.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 117,
+    "question": "What is photosynthesis?",
+    "reference_answer": "Photosynthesis is the process in which plants use sunlight, carbon dioxide, and water to make oxygen and sugar.",
+    "student_answer": "Plants do photosynthesis with light and water to make sugar and oxgen.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 118,
+    "question": "What is respiration in plants?",
+    "reference_answer": "Respiration is the process of breaking down sugar to release energy.",
+    "student_answer": "Plants make energy from sugar.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 119,
+    "question": "What is transpiration?",
+    "reference_answer": "Evaporation of water through pores in the leaves.",
+    "student_answer": "Water going from leave is transpiration",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 120,
+    "question": "What is weathering?",
+    "reference_answer": "Weathering is the process that breaks down rocks into smaller pieces without moving them.",
+    "student_answer": "Weathering is the process that breaks down rocks into smaller pieces without moving them.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 121,
+    "question": "What is weather?",
+    "reference_answer": "Weather is the condition of the atmosphere at a particular time and place.",
+    "student_answer": "Weather is the condition of the atmosphere at a particular place.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 122,
+    "question": "What instrument measures temperature?",
+    "reference_answer": "A thermometer measures temperature.",
+    "student_answer": "Thermometer measure temperature.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 123,
+    "question": "What is precipitation?",
+    "reference_answer": "Precipitation is water that falls from clouds in the form of rain, snow, sleet, or hail.",
+    "student_answer": "Precipitation is water falling from clouds as rain or snow or hail.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 124,
+    "question": "What causes wind?",
+    "reference_answer": "Wind is caused by differences in air pressure.",
+    "student_answer": "Wind is caused by difference in air pressure.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 125,
+    "question": "What is humidity?",
+    "reference_answer": "Humidity is the amount of water vapor in the air.",
+    "student_answer": "Humidity means water vapor present in air.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 126,
+    "question": "What is fog?",
+    "reference_answer": "Fog is a thick cloud of tiny water droplets near the ground.",
+    "student_answer": "Fog is a cloud of tiny water droplets near ground.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 127,
+    "question": "What is the water cycle?",
+    "reference_answer": "The water cycle is the continuous movement of water through evaporation, condensation, and precipitation.",
+    "student_answer": "Water cycle is continuous movement of water through evaporation and condensation and rain.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 128,
+    "question": "What is climate?",
+    "reference_answer": "Climate is the average weather in a place over a long period.",
+    "student_answer": "Climate is average weather over long time.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 129,
+    "question": "What is lightning?",
+    "reference_answer": "Lightning is a sudden flash of electricity in the atmosphere.",
+    "student_answer": "Lightning is sudden electric flash in sky.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 130,
+    "question": "What is a tornado?",
+    "reference_answer": "A tornado is a rotating column of air extending from a thunderstorm to the ground.",
+    "student_answer": "A tornado is spinning air column from thunderstorm to ground.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 131,
+    "question": "What is a hurricane?",
+    "reference_answer": "A hurricane is a large storm with strong winds and heavy rain.",
+    "student_answer": "Hurricane is large storm with heavy rain and strong wind.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 132,
+    "question": "What is dew?",
+    "reference_answer": "Dew is water droplets that form on cool surfaces at night.",
+    "student_answer": "Dew is water drops on cool surface in night.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 133,
+    "question": "What is evaporation?",
+    "reference_answer": "Evaporation is the process of water turning into vapor.",
+    "student_answer": "Evaporation is when water turns into gas.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 134,
+    "question": "What is condensation?",
+    "reference_answer": "Condensation is the process where water vapor becomes liquid.",
+    "student_answer": "Condensation is when vapor become liquid water.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 135,
+    "question": "What is a drought?",
+    "reference_answer": "A drought is a long period of little or no rainfall.",
+    "student_answer": "Drought is long time without rain.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 136,
+    "question": "What is a blizzard?",
+    "reference_answer": "A blizzard is a severe snowstorm with strong winds and low visibility.",
+    "student_answer": "Blizzard is heavy snow with strong wind and poor visibility.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 137,
+    "question": "What is a weather satellite?",
+    "reference_answer": "A weather satellite observes and gathers data about the Earth's weather.",
+    "student_answer": "Weather satellite collects Earth's weather data.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 138,
+    "question": "What is sleet?",
+    "reference_answer": "Sleet is frozen raindrops.",
+    "student_answer": "Sleet is rain that gets frozen.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 139,
+    "question": "What is a cold front?",
+    "reference_answer": "A cold front is when cold air pushes warm air upwards.",
+    "student_answer": "Cold front happens when cold air moves under warm air.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 140,
+    "question": "What is a warm front?",
+    "reference_answer": "A warm front is when warm air moves over cold air.",
+    "student_answer": "Warm front is when warm air rises over cold air.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 141,
+    "question": "What is weathering?",
+    "reference_answer": "Weathering is the breaking down of rocks by natural forces.",
+    "student_answer": "Weathering means breaking of rocks by rain or wind.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 142,
+    "question": "What is pollination?",
+    "reference_answer": "Pollination is the transfer of pollen from the anther to the stigma.",
+    "student_answer": "Pollination is the transfer of pollen from the anther to the stygma.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 143,
+    "question": "What is germination?",
+    "reference_answer": "Germination is when a seed starts to grow into a plant.",
+    "student_answer": "Germination is when a seed starts to grow into plant.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 144,
+    "question": "What is metamorphosis?",
+    "reference_answer": "Metamorphosis is a major change in the life cycle of some animals.",
+    "student_answer": "Metamorphosis is a big change in the life cycle of some animals.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 145,
+    "question": "What is a food chain?",
+    "reference_answer": "A food chain shows how energy moves from one organism to another.",
+    "student_answer": "A food chain show how energy moves from one organism to another.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 146,
+    "question": "What is a habitat?",
+    "reference_answer": "A habitat is the natural home of an organism.",
+    "student_answer": "A habitat is the natural home of a organism.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 147,
+    "question": "What is an ecosystem?",
+    "reference_answer": "An ecosystem is a community of living and non-living things.",
+    "student_answer": "An ecosystem is a comunity of living and non-living things.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 148,
+    "question": "What is photosynthesis?",
+    "reference_answer": "Photosynthesis is how plants make food using sunlight.",
+    "student_answer": "Photosynthesis is how plant make food using sunlight.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 149,
+    "question": "What is the Sun?",
+    "reference_answer": "A star at the center of our solar system.",
+    "student_answer": "A burning planet.",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 150,
+    "question": "Which planet is closest to the Sun?",
+    "reference_answer": "Mercury.",
+    "student_answer": "Earth.",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 151,
+    "question": "What is a moon?",
+    "reference_answer": "A natural satellite that orbits a planet.",
+    "student_answer": "A star that died.",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 152,
+    "question": "What is an asteroid?",
+    "reference_answer": "A rocky object orbiting the Sun.",
+    "student_answer": "A flying comet.",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 153,
+    "question": "What is a comet?",
+    "reference_answer": "A body of ice, dust, and rock that orbits the Sun.",
+    "student_answer": "A shooting star.",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 154,
+    "question": "What is the name of our galaxy?",
+    "reference_answer": "Milky Way.",
+    "student_answer": "Solar Galaxy.",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 155,
+    "question": "What is the name of our galaxy?",
+    "reference_answer": "Milky Way",
+    "student_answer": "Andromeda",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 156,
+    "question": "Which planet is closest to the Sun?",
+    "reference_answer": "Mercury",
+    "student_answer": "Venus",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 157,
+    "question": "What is a moon?",
+    "reference_answer": "A natural satellite that orbits a planet",
+    "student_answer": "A planet that shines at night",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 158,
+    "question": "How many moons does Earth have?",
+    "reference_answer": "One",
+    "student_answer": "Two",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 159,
+    "question": "What is an asteroid?",
+    "reference_answer": "A small rocky body orbiting the Sun",
+    "student_answer": "A ball of fire in space",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 160,
+    "question": "What is a comet?",
+    "reference_answer": "A space object made of ice and dust that orbits the Sun",
+    "student_answer": "A planet with ice rings",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 161,
+    "question": "What is germination?",
+    "reference_answer": "The process by which a seed begins to grow",
+    "student_answer": "It is when a seed starts sprouting",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 162,
+    "question": "What is pollination?",
+    "reference_answer": "Transfer of pollen from one flower to another",
+    "student_answer": "Movement of pollen between plants",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 163,
+    "question": "What is photosynthesis?",
+    "reference_answer": "Process by which plants make food using sunlight",
+    "student_answer": "Plants make food using sunlight and water",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 164,
+    "question": "What is metamorphosis?",
+    "reference_answer": "A big change in body form during life cycle",
+    "student_answer": "A big body change in animal's life",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 165,
+    "question": "What does the circulatory system do?",
+    "reference_answer": "Carries oxygen and nutrients around the body",
+    "student_answer": "It moves blood around body",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 166,
+    "question": "What is an ecosystem?",
+    "reference_answer": "A community of living and nonliving things in an area",
+    "student_answer": "Place with animals and plants living together",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 167,
+    "question": "What is a food chain?",
+    "reference_answer": "A sequence that shows who eats whom",
+    "student_answer": "A list of who eats who in nature",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 168,
+    "question": "What is pollination?",
+    "reference_answer": "The transfer of pollen from the stamen to the pistil",
+    "student_answer": "The transfer of pollen from the stamen to the pistil",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 169,
+    "question": "What is metamorphosis?",
+    "reference_answer": "A process of transformation in an animal's life cycle",
+    "student_answer": "A process of transformation in an animal's life cycle",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 170,
+    "question": "What is the main function of the respiratory system?",
+    "reference_answer": "To take in oxygen and remove carbon dioxide",
+    "student_answer": "To take in oxygen and remove carbon dioxide",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 171,
+    "question": "What is a food chain?",
+    "reference_answer": "A sequence that shows how energy passes from one living thing to another",
+    "student_answer": "A sequence that shows how energy passes from one living thing to another",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 172,
+    "question": "What is an ecosystem?",
+    "reference_answer": "A community of living and non-living things interacting together",
+    "student_answer": "A community of living and non-living things interacting together",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 173,
+    "question": "What is evaporation?",
+    "reference_answer": "Evaporation is when a liquid turns into a gas at temperatures below boiling.",
+    "student_answer": "It's when a liquid changes to gas slowly, like water drying.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 174,
+    "question": "What is condensation?",
+    "reference_answer": "Condensation is when a gas turns into a liquid upon cooling.",
+    "student_answer": "It's when gas cools and becomes liquid, like dew forming.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 175,
+    "question": "What is plasma?",
+    "reference_answer": "Plasma is a high-energy state of matter with charged particles.",
+    "student_answer": "Plasma is like superheated gas with ions, found in stars.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 176,
+    "question": "What is force?",
+    "reference_answer": "A push or pull that can change an object's motion or shape.",
+    "student_answer": "Force is a push or pull that makes things move or stop.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 177,
+    "question": "What is the SI unit of force?",
+    "reference_answer": "Newton (N).",
+    "student_answer": "The unit of force is the Newton.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 178,
+    "question": "What is Newton's First Law of Motion?",
+    "reference_answer": "An object in motion stays in motion unless acted upon by an unbalanced force.",
+    "student_answer": "Objects keep moving unless something stops them.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 179,
+    "question": "What is inertia?",
+    "reference_answer": "The tendency of an object to resist changes in its motion.",
+    "student_answer": "Inertia means objects like to keep doing what they're doing.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 180,
+    "question": "What is acceleration?",
+    "reference_answer": "The rate at which an object's velocity changes over time.",
+    "student_answer": "Acceleration is speeding up, slowing down, or changing direction.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 181,
+    "question": "What is weight?",
+    "reference_answer": "The force of gravity acting on an object's mass (W = mg).",
+    "student_answer": "Weight is how heavy something is due to gravity.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 182,
+    "question": "What is mass?",
+    "reference_answer": "The amount of matter in an object (measured in kg).",
+    "student_answer": "Mass is how much \"stuff\" is in an object.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 183,
+    "question": "What is velocity?",
+    "reference_answer": "Speed in a given direction (vector quantity).",
+    "student_answer": "Velocity is speed with direction, like 20 m/s north.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 184,
+    "question": "What is speed?",
+    "reference_answer": "Distance traveled per unit time (scalar quantity).",
+    "student_answer": "Speed is how fast something moves (e.g., 10 m/s).",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 185,
+    "question": "What is energy?",
+    "reference_answer": "The ability to do work (measured in joules).",
+    "student_answer": "Energy is what makes things move or change.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 186,
+    "question": "What is energy?",
+    "reference_answer": "The ability to do work or cause change.",
+    "student_answer": "Energy is a type of liquid that flows.",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 187,
+    "question": "What is conduction?",
+    "reference_answer": "Heat transfer through direct contact.",
+    "student_answer": "Conduction is when energy moves through air.",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 188,
+    "question": "What is convection?",
+    "reference_answer": "Heat transfer via fluid movement (liquids/gases).",
+    "student_answer": "Convection is the same as radiation.",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 189,
+    "question": "What is radiation?",
+    "reference_answer": "Heat transfer via electromagnetic waves.",
+    "student_answer": "Radiation only happens in solids.",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 190,
+    "question": "What is an insulator?",
+    "reference_answer": "A material that resists energy transfer.",
+    "student_answer": "Insulators are the best conductors of heat.",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 191,
+    "question": "What is a conductor?",
+    "reference_answer": "A material that allows energy transfer.",
+    "student_answer": "Conductors block all energy flow.",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 192,
+    "question": "What is the greenhouse effect?",
+    "reference_answer": "Trapping of heat by atmospheric gases.",
+    "student_answer": "The greenhouse effect makes Earth colder.",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 193,
+    "question": "What is global warming?",
+    "reference_answer": "Long-term rise in Earth's temperature.",
+    "student_answer": "Global warming is caused by too much ice.",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 194,
+    "question": "What is photosynthesis?",
+    "reference_answer": "Plants convert sunlight ? chemical energy.",
+    "student_answer": "Photosynthesis is how animals breathe.",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 195,
+    "question": "What is heat?",
+    "reference_answer": "Heat is the transfer of thermal energy between objects due to temperature difference.",
+    "student_answer": "Heat is when something feels warm.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 196,
+    "question": "What is conduction?",
+    "reference_answer": "Heat transfer through direct molecular contact in solids.",
+    "student_answer": "Heat moving through metal.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 197,
+    "question": "What is convection?",
+    "reference_answer": "Heat transfer through fluid movement (liquids/gases).",
+    "student_answer": "Hot air rising.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 198,
+    "question": "What is radiation?",
+    "reference_answer": "Heat transfer via electromagnetic waves (no medium needed).",
+    "student_answer": "Heat from the sun.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 199,
+    "question": "What is thermal expansion?",
+    "reference_answer": "The tendency of matter to change volume with temperature.",
+    "student_answer": "Things get bigger when hot.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 200,
+    "question": "What is a conductor?",
+    "reference_answer": "Material that readily transfers heat/energy.",
+    "student_answer": "Metal is a conductor.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 201,
+    "question": "What is an insulator?",
+    "reference_answer": "Material that resists heat transfer.",
+    "student_answer": "Wood is an insulator.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 202,
+    "question": "What is the greenhouse effect?",
+    "reference_answer": "Trapping of heat by atmospheric gases.",
+    "student_answer": "Makes Earth warmer.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 203,
+    "question": "What is global warming?",
+    "reference_answer": "Long-term increase in Earth's temperature.",
+    "student_answer": "Earth getting hotter.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 204,
+    "question": "What is evaporation?",
+    "reference_answer": "Liquid to gas transition at surface below boiling point.",
+    "student_answer": "Water drying up.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 205,
+    "question": "What is condensation?",
+    "reference_answer": "Gas to liquid transition.",
+    "student_answer": "Dew forming.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 206,
+    "question": "What is boiling?",
+    "reference_answer": "Rapid vaporization throughout liquid at boiling point.",
+    "student_answer": "Water bubbling.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 207,
+    "question": "What is freezing?",
+    "reference_answer": "Liquid to solid transition.",
+    "student_answer": "Water turning to ice.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 208,
+    "question": "What is melting?",
+    "reference_answer": "Solid to liquid transition.",
+    "student_answer": "Ice turning to water.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 209,
+    "question": "What is sound?",
+    "reference_answer": "Vibrations that travel through a medium as waves.",
+    "student_answer": "Sound is vibrations moving through air or objects.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 210,
+    "question": "What is light?",
+    "reference_answer": "Electromagnetic radiation visible to the human eye.",
+    "student_answer": "Light is energy that makes things visible.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 211,
+    "question": "How does sound travel?",
+    "reference_answer": "As longitudinal waves through matter (solid, liquid, gas).",
+    "student_answer": "Sound moves as waves through solids, liquids and gases.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 212,
+    "question": "What is the speed of sound in air?",
+    "reference_answer": "~343 m/s at 20'C.",
+    "student_answer": "Sound travels about 343 meters per second in air.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 213,
+    "question": "What is the speed of light?",
+    "reference_answer": "~300,000 km/s in vacuum.",
+    "student_answer": "Light moves very fast - about 300,000 km per second.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 214,
+    "question": "What is reflection of light?",
+    "reference_answer": "Light bouncing off surfaces (mirrors).",
+    "student_answer": "Light bounces off mirrors to show images.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 215,
+    "question": "What is refraction of light?",
+    "reference_answer": "Light bending when passing through different materials.",
+    "student_answer": "Light bends when moving between air and water.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 216,
+    "question": "What is a shadow?",
+    "reference_answer": "Area where light is blocked by an object.",
+    "student_answer": "Shadows form when objects block light.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 217,
+    "question": "What is a prism?",
+    "reference_answer": "Glass object that splits white light into colors.",
+    "student_answer": "A prism breaks white light into rainbow colors.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 218,
+    "question": "What is electric current?",
+    "reference_answer": "Flow of electric charge (electrons).",
+    "student_answer": "The movement of electrons through a conductor.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 219,
+    "question": "What is a conductor?",
+    "reference_answer": "Material that allows current flow (e.g., copper).",
+    "student_answer": "Metals that let electricity pass through.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 220,
+    "question": "What is an insulator?",
+    "reference_answer": "Material that blocks current flow (e.g., rubber).",
+    "student_answer": "Materials that stop electricity.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 221,
+    "question": "What is a series circuit?",
+    "reference_answer": "Components connected in a single path.",
+    "student_answer": "One after another like Christmas lights.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 222,
+    "question": "What is a parallel circuit?",
+    "reference_answer": "Components connected in multiple paths.",
+    "student_answer": "Branched paths like house wiring.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 223,
+    "question": "What is static electricity?",
+    "reference_answer": "Build-up of charge on surfaces.",
+    "student_answer": "Rubbing a balloon creates static cling.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 224,
+    "question": "What is a magnet?",
+    "reference_answer": "Object producing a magnetic field.",
+    "student_answer": "Something that attracts iron or steel.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 225,
+    "question": "What is a magnetic field?",
+    "reference_answer": "Area around a magnet with magnetic force.",
+    "student_answer": "The invisible space where magnets work.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 226,
+    "question": "What is an electromagnet?",
+    "reference_answer": "Magnet created by current in a coil.",
+    "student_answer": "A coil with electricity acts like a magnet.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 227,
+    "question": "What is a fuse?",
+    "reference_answer": "Safety device melting to stop excess current.",
+    "student_answer": "Protects circuits by breaking if overloaded.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 228,
+    "question": "What is a resistor?",
+    "reference_answer": "Limits current in a circuit.",
+    "student_answer": "Slows down electrons to control flow.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 229,
+    "question": "What is a short circuit?",
+    "reference_answer": "A low-resistance path bypassing the intended circuit.",
+    "student_answer": "Electricity takes a shortcut, causing overheating.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 230,
+    "question": "What is an open circuit?",
+    "reference_answer": "A broken path where current cannot flow.",
+    "student_answer": "The circuit is incomplete, so no current flows.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 231,
+    "question": "What is a closed circuit?",
+    "reference_answer": "A complete path allowing current flow.",
+    "student_answer": "Electricity can travel in a full loop.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 232,
+    "question": "What tool measures liquid volume?",
+    "reference_answer": "Graduated cylinder.",
+    "student_answer": "A mesuring cup.",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 233,
+    "question": "What instrument measures temperature?",
+    "reference_answer": "Thermometer.",
+    "student_answer": "A termometer.",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 234,
+    "question": "What are natural resources?",
+    "reference_answer": "Resources that are obtained from nature like air, water, and minerals.",
+    "student_answer": "Natural resources are things we use.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 235,
+    "question": "What are fossil fuels?",
+    "reference_answer": "Fuels formed from ancient plants and animals like coal and oil.",
+    "student_answer": "Old fuels.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 236,
+    "question": "What is weather?",
+    "reference_answer": "The daily condition of the atmosphere at a place.",
+    "student_answer": "The air outside today.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 237,
+    "question": "What is climate?",
+    "reference_answer": "The average weather pattern in a region over a long time.",
+    "student_answer": "Weather over many weeks.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 238,
+    "question": "What is humidity?",
+    "reference_answer": "The amount of water vapor in the air.",
+    "student_answer": "Moisture in the air.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 239,
+    "question": "What is precipitation?",
+    "reference_answer": "Any form of water falling from clouds to Earth.",
+    "student_answer": "Rain or snow that comes down.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 240,
+    "question": "What causes wind?",
+    "reference_answer": "Movement of air from high to low pressure.",
+    "student_answer": "Air moves around.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 241,
+    "question": "What is a cold front?",
+    "reference_answer": "A boundary where a cold air mass replaces a warm one.",
+    "student_answer": "Cold air pushing warm air.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 242,
+    "question": "What is a warm front?",
+    "reference_answer": "A boundary where warm air moves over cold air.",
+    "student_answer": "Warm air goes over cold.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 243,
+    "question": "What is a tornado?",
+    "reference_answer": "A rotating column of air extending from a storm to the ground.",
+    "student_answer": "Big spinning air storm.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 244,
+    "question": "What is a hurricane?",
+    "reference_answer": "A large tropical storm with strong winds and rain.",
+    "student_answer": "A big storm with wind.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 245,
+    "question": "What is a drought?",
+    "reference_answer": "A long period without rain.",
+    "student_answer": "When there is no rain.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 246,
+    "question": "What is a blizzard?",
+    "reference_answer": "A severe snowstorm with strong winds.",
+    "student_answer": "Snow falling with strong wind.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 247,
+    "question": "What is fog?",
+    "reference_answer": "A cloud that forms near the ground.",
+    "student_answer": "Mist close to the ground.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 248,
+    "question": "What is dew?",
+    "reference_answer": "Water droplets that form on surfaces in the morning.",
+    "student_answer": "Drops seen on grass in morning.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 249,
+    "question": "What is the water cycle?",
+    "reference_answer": "The continuous movement of water through evaporation, condensation, and precipitation.",
+    "student_answer": "Water goes up and comes down.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 250,
+    "question": "What is evaporation?",
+    "reference_answer": "The process where liquid water turns into vapor.",
+    "student_answer": "Water drying up.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 251,
+    "question": "What is condensation?",
+    "reference_answer": "Water vapor turning into liquid.",
+    "student_answer": "Water forming from air.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 252,
+    "question": "What is global warming?",
+    "reference_answer": "The increase in Earth's average temperature.",
+    "student_answer": "Earth getting hotter.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 253,
+    "question": "What are greenhouse gases?",
+    "reference_answer": "Gases that trap heat in the atmosphere.",
+    "student_answer": "Bad gases in the air.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 254,
+    "question": "Name two greenhouse gases.",
+    "reference_answer": "Carbon dioxide and methane.",
+    "student_answer": "Smoke and dust.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 255,
+    "question": "What is the greenhouse effect?",
+    "reference_answer": "The process by which greenhouse gases trap heat.",
+    "student_answer": "Earth becoming warm like a greenhouse.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 256,
+    "question": "What is a weather satellite?",
+    "reference_answer": "A satellite that monitors weather patterns from space.",
+    "student_answer": "It sees weather from above.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 257,
+    "question": "What is weathering?",
+    "reference_answer": "Breaking down of rocks by weather.",
+    "student_answer": "Rocks break by air or water.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 258,
+    "question": "Which planet is closest to the Sun?",
+    "reference_answer": "Mercury.",
+    "student_answer": "Mercury, I think.",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 259,
+    "question": "What is the Sun?",
+    "reference_answer": "The Sun is a star at the center of our solar system.",
+    "student_answer": "Sun gives light.",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 260,
+    "question": "How many moons does Earth have?",
+    "reference_answer": "One.",
+    "student_answer": "Just one moon.",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 261,
+    "question": "What is a moon?",
+    "reference_answer": "A moon is a natural satellite that orbits a planet.",
+    "student_answer": "Moon goes around Earth.",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 262,
+    "question": "What is a comet?",
+    "reference_answer": "A small icy body that orbits the Sun and has a tail.",
+    "student_answer": "Has a tail.",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 263,
+    "question": "Which planet has the most moons?",
+    "reference_answer": "Jupiter.",
+    "student_answer": "Jupiter has many.",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 264,
+    "question": "What is a satellite?",
+    "reference_answer": "A natural or artificial object that orbits a planet.",
+    "student_answer": "Something that goes around.",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 265,
+    "question": "What is a space probe?",
+    "reference_answer": "An unmanned spacecraft sent to explore space.",
+    "student_answer": "It goes to space.",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 266,
+    "question": "What is the Milky Way?",
+    "reference_answer": "The galaxy that contains our solar system.",
+    "student_answer": "A big group of stars.",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 267,
+    "question": "What is space?",
+    "reference_answer": "The vast, empty region beyond Earth's atmosphere.",
+    "student_answer": "Big and empty.",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 268,
+    "question": "What is the water cycle?",
+    "reference_answer": "The water cycle is the continuous movement of water through evaporation, condensation, precipitation, and collection.",
+    "student_answer": "It's a circle of water.",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 269,
+    "question": "What is condensation?",
+    "reference_answer": "The process where water vapor cools and changes back into liquid.",
+    "student_answer": "Water turns into gas.",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 270,
+    "question": "What is precipitation?",
+    "reference_answer": "Water falling from the sky as rain, snow, sleet, or hail.",
+    "student_answer": "It's when water goes up.",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 271,
+    "question": "What is evaporation?",
+    "reference_answer": "The process by which water changes into vapor due to heat.",
+    "student_answer": "Water becomes ice.",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 272,
+    "question": "What is transpiration?",
+    "reference_answer": "Water released by plants into the air.",
+    "student_answer": "When plants eat water.",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 273,
+    "question": "What is groundwater?",
+    "reference_answer": "Water stored beneath the Earth's surface.",
+    "student_answer": "Water above ground.",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 274,
+    "question": "What is fog?",
+    "reference_answer": "A cloud that forms near the ground.",
+    "student_answer": "Rain in the sky.",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 275,
+    "question": "What is sleet?",
+    "reference_answer": "Frozen raindrops.",
+    "student_answer": "Warm ice.",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 276,
+    "question": "What is condensation?",
+    "reference_answer": "The process where water vapor cools and turns into liquid.",
+    "student_answer": "It makes water hot.",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 277,
+    "question": "What is transpiration?",
+    "reference_answer": "Release of water vapor by plants.",
+    "student_answer": "Trees drink water.",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 278,
+    "question": "What are microorganisms?",
+    "reference_answer": "Microorganisms are tiny living organisms that can only be seen under a microscope.",
+    "student_answer": "Tiny things we can't see.",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 279,
+    "question": "Are all microorganisms harmful?",
+    "reference_answer": "No, some microorganisms are helpful while others can cause diseases.",
+    "student_answer": "Some are bad.",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 280,
+    "question": "Name one harmful effect of microorganisms.",
+    "reference_answer": "They cause diseases like cholera and typhoid.",
+    "student_answer": "They make us sick.",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 281,
+    "question": "Name a disease caused by a virus.",
+    "reference_answer": "Influenza (flu) is caused by a virus.",
+    "student_answer": "Cold is from virus.",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 282,
+    "question": "What is fermentation?",
+    "reference_answer": "A process where microorganisms convert sugars into alcohol or acids.",
+    "student_answer": "It changes food.",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 283,
+    "question": "What is pasteurization?",
+    "reference_answer": "Heating food to kill harmful microorganisms without affecting the taste.",
+    "student_answer": "Heat food.",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 284,
+    "question": "What connects muscles to bones?",
+    "reference_answer": "Tendons.",
+    "student_answer": "Muscles.",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 285,
+    "question": "What is weather?",
+    "reference_answer": "When it rains sometimes",
+    "student_answer": "The short-term atmospheric conditions in a specific place",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 286,
+    "question": "What is climate?",
+    "reference_answer": "How hot or cold a place is",
+    "student_answer": "The long-term average of weather patterns over decades",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 287,
+    "question": "What causes wind?",
+    "reference_answer": "Trees moving",
+    "student_answer": "Differences in air pressure due to uneven heating of Earth's surface",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 288,
+    "question": "What is humidity?",
+    "reference_answer": "When you sweat a lot",
+    "student_answer": "The amount of water vapor in the air",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 289,
+    "question": "What is a hurricane?",
+    "reference_answer": "A really big storm",
+    "student_answer": "A tropical cyclone with sustained winds over 74 mph",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 290,
+    "question": "What is global warming?",
+    "reference_answer": "Summers getting hotter",
+    "student_answer": "Long-term rise in Earth's average temperature",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 291,
+    "question": "What is precipitation?",
+    "reference_answer": "Anything falling from sky",
+    "student_answer": "Rain, snow, sleet or hail falling from clouds",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 292,
+    "question": "What is a cold front?",
+    "reference_answer": "When winter comes",
+    "student_answer": "Boundary where cold air replaces warm air",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 293,
+    "question": "What is a tornado?",
+    "reference_answer": "A spinning cloud",
+    "student_answer": "Violently rotating column of air touching ground",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 294,
+    "question": "What is the greenhouse effect?",
+    "reference_answer": "Plants growing faster",
+    "student_answer": "Trapping of heat by atmospheric gases",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 295,
+    "question": "What is a drought?",
+    "reference_answer": "No swimming pools",
+    "student_answer": "Prolonged period of abnormally low rainfall",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 296,
+    "question": "What is sleet?",
+    "reference_answer": "Half rain half snow",
+    "student_answer": "Ice pellets formed when snow melts and refreezes",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 297,
+    "question": "What is a weather satellite?",
+    "reference_answer": "A flying camera",
+    "student_answer": "Spacecraft observing Earth's atmospheric conditions",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 298,
+    "question": "What is a blizzard?",
+    "reference_answer": "Lots of snow",
+    "student_answer": "Severe snowstorm with strong winds",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 299,
+    "question": "What is evaporation?",
+    "reference_answer": "When water disappears",
+    "student_answer": "The process where liquid water changes to water vapor due to heat",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 300,
+    "question": "What is the water cycle?",
+    "reference_answer": "Water moving around",
+    "student_answer": "Continuous movement of water between atmosphere, land, and oceans",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 301,
+    "question": "What is a warm front?",
+    "reference_answer": "When warm weather comes",
+    "student_answer": "Boundary where warm air mass replaces cooler air mass",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 302,
+    "question": "What is respiration in plants?",
+    "reference_answer": "Respiration in plants is the process of breaking down food to release energy and carbon dioxide.",
+    "student_answer": "Respiration is how plants and animals take in oxygen and great energy.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 303,
+    "question": "What is a habitat?",
+    "reference_answer": "A habitat is the natural home of a plant or an animal.",
+    "student_answer": "A habitat is like a home for animals and plants. It's where they live and find everything they need to survive, like food, water, and shelter.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 304,
+    "question": "Define force.",
+    "reference_answer": "A force is a push or pull acting on an object.",
+    "student_answer": "Force is a push or a pull. It's what makes things move, stop, or change direction. Like when you push a swing or pull a wagon!",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 305,
+    "question": "What is soil erosion?",
+    "reference_answer": "Soil erosion is the removal of soil by wind, water or human activity.",
+    "student_answer": "Soil erosion is when the top layer of soil, which is really important for plants, gets carried away by wind or water. It's like the ground is washing or blowing away.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 306,
+    "question": "What is inertia?",
+    "reference_answer": "Inertia is the tendency of an object to resist change in its motion.",
+    "student_answer": "Inertia is like a thing's laziness! It means that an object that is not moving wants to stay not moving, and an object that is moving wants to keep moving in the same direction, unless something pushes or pulls it to change.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 307,
+    "question": "What are microorganisms?",
+    "reference_answer": "Microorganisms are tiny living things that cannot be seen with the naked eye.",
+    "student_answer": "micro organisms are small things seen with naked eye",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 308,
+    "question": "Name three types of microorganisms.",
+    "reference_answer": "Bacteria, viruses, and fungi.",
+    "student_answer": "Fungi, bacteria, and yeasts",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 309,
+    "question": "Are all microorganisms harmful?",
+    "reference_answer": "No, some microorganisms are helpful and others are harmful.",
+    "student_answer": "No, not all microorganisms are bad. Some are usefull",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 310,
+    "question": "Name a disease caused by a virus.",
+    "reference_answer": "Flu is caused by a virus.",
+    "student_answer": "Flu is viral fever.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 311,
+    "question": "Name one harmful effect of microorganisms.",
+    "reference_answer": "They can cause diseases like typhoid and cholera.",
+    "student_answer": "They make people sick",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 312,
+    "question": "What is germination?",
+    "reference_answer": "Germination is the process by which a seed grows into a new plant.",
+    "student_answer": "it is when seed start growing",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 313,
+    "question": "How do seeds spread?",
+    "reference_answer": "Seeds spread through wind, water, and animals.",
+    "student_answer": "Wind and animals take seed away",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 314,
+    "question": "What is pollination?",
+    "reference_answer": "Pollination is the transfer of pollen from one flower to another.",
+    "student_answer": "Transfer of pollens in flowers",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 315,
+    "question": "What is the role of petals in a flower?",
+    "reference_answer": "Petals attract insects to help with pollination.",
+    "student_answer": "Petals are beautiful",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 316,
+    "question": "What are microorganisms?",
+    "reference_answer": "Microorganisms are tiny living things that cannot be seen without a microscope.",
+    "student_answer": "Very small living being",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 317,
+    "question": "Name three types of microorganisms.",
+    "reference_answer": "Bacteria, viruses, and fungi are three types of microorganisms.",
+    "student_answer": "fungus, virus, bacteria",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 318,
+    "question": "Are all microorganisms harmful?",
+    "reference_answer": "No, some are helpful, while others can cause diseases.",
+    "student_answer": "some are good and bad",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 319,
+    "question": "Name a disease caused by a virus.",
+    "reference_answer": "Flu is caused by a virus.",
+    "student_answer": "Covid-19",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 320,
+    "question": "What is fermentation?",
+    "reference_answer": "Fermentation is a process where microorganisms break down sugars to produce energy, often used in food making.",
+    "student_answer": "Make food using germs",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 321,
+    "question": "What is the role of petals in a flower?",
+    "reference_answer": "Petals attract insects for pollination.",
+    "student_answer": "Attract bugs",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 322,
+    "question": "What is pollination?",
+    "reference_answer": "Pollination is the transfer of pollen from the stamen to the pistil.",
+    "student_answer": "Pollen move to pistil",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 323,
+    "question": "What is germination?",
+    "reference_answer": "Germination is the growth of a seed into a new plant.",
+    "student_answer": "Seed grows into plant.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 324,
+    "question": "How do seeds spread?",
+    "reference_answer": "Seeds spread by wind, water, and animals.",
+    "student_answer": "Wind, water, animals spread them.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 325,
+    "question": "What is water pollution?",
+    "reference_answer": "Water pollution is when harmful substances are added to water bodies.",
+    "student_answer": "Dirty things in water.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 326,
+    "question": "What are fossil fuels?",
+    "reference_answer": "Fossil fuels are energy sources like coal, oil, and gas formed from dead plants and animals.",
+    "student_answer": "Coal, oil from dead things.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 327,
+    "question": "What are greenhouse gases?",
+    "reference_answer": "Gases that trap heat in Earth's atmosphere.",
+    "student_answer": "Gases that heat Earth.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 328,
+    "question": "Name two greenhouse gases.",
+    "reference_answer": "Carbon dioxide and methane.",
+    "student_answer": "CO2 and methane.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 329,
+    "question": "What is global warming?",
+    "reference_answer": "A rise in Earth's temperature due to greenhouse gases.",
+    "student_answer": "Earth getting hotter.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 330,
+    "question": "What is the greenhouse effect?",
+    "reference_answer": "It is the warming of Earth by trapped heat due to greenhouse gases.",
+    "student_answer": "Gases trap sun's heat.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 331,
+    "question": "What is composting?",
+    "reference_answer": "Turning food and garden waste into natural fertilizer.",
+    "student_answer": "Making dirt from food scraps.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 332,
+    "question": "What is noise pollution?",
+    "reference_answer": "Unwanted or harmful sound that disturbs people and animals.",
+    "student_answer": "Too much loud noise.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 333,
+    "question": "What is melting?",
+    "reference_answer": "The process of changing a solid to a liquid.",
+    "student_answer": "Solid becomes liquid.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 334,
+    "question": "What is freezing?",
+    "reference_answer": "The process of changing a liquid to a solid.",
+    "student_answer": "Liquid becomes solid.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 335,
+    "question": "What is boiling?",
+    "reference_answer": "The process of turning a liquid into gas by heating.",
+    "student_answer": "Liquid to gas with heat.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 336,
+    "question": "What is evaporation?",
+    "reference_answer": "The slow change of liquid into gas at any temperature.",
+    "student_answer": "Liquid dries to gas.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 337,
+    "question": "What is condensation?",
+    "reference_answer": "The change of gas into liquid.",
+    "student_answer": "Gas turns to liquid.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 338,
+    "question": "What is light?",
+    "reference_answer": "Light is a form of energy that helps us see.",
+    "student_answer": "Energy for seeing.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 339,
+    "question": "What is reflection of light?",
+    "reference_answer": "Bouncing back of light from a surface.",
+    "student_answer": "Light bounces back.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 340,
+    "question": "What is refraction of light?",
+    "reference_answer": "Bending of light when it passes through different materials.",
+    "student_answer": "Light bends.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 341,
+    "question": "What is a shadow?",
+    "reference_answer": "A dark area formed when light is blocked.",
+    "student_answer": "shadow",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 342,
+    "question": "What is sound?",
+    "reference_answer": "Sound is energy produced by vibrations.",
+    "student_answer": "Sound is something we hear.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 343,
+    "question": "How does sound travel?",
+    "reference_answer": "Sound travels in waves through air, water, or solids.",
+    "student_answer": "It flies through space.",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 344,
+    "question": "What is volume?",
+    "reference_answer": "Volume is how loud or soft a sound is.",
+    "student_answer": "The size of something",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 345,
+    "question": "What is noise pollution?",
+    "reference_answer": "Too much unpleasant sound in the environment.",
+    "student_answer": "Loud sounds everywhere",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 346,
+    "question": "What is the speed of sound in air?",
+    "reference_answer": "Around 343 meters per second.",
+    "student_answer": "Very fast",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 347,
+    "question": "What is the speed of light?",
+    "reference_answer": "About 300,000 kilometers per second.",
+    "student_answer": "km",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 348,
+    "question": "What is a prism?",
+    "reference_answer": "A prism splits white light into different colors.",
+    "student_answer": "A triangle glass",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 349,
+    "question": "What is static electricity?",
+    "reference_answer": "Static electricity is the build-up of electric charge on a surface.",
+    "student_answer": "built_up",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 350,
+    "question": "What is electric current?",
+    "reference_answer": "The flow of electric charge (electrons) in a circuit.",
+    "student_answer": "Fast electricity",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 351,
+    "question": "What is an open circuit?",
+    "reference_answer": "A circuit that is broken or not complete; current cannot flow.",
+    "student_answer": "    ",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 352,
+    "question": "What is a closed circuit?",
+    "reference_answer": "A complete circuit where electricity flows freely.",
+    "student_answer": "Circuit work good",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 353,
+    "question": "What is a conductor?",
+    "reference_answer": "A material that allows electricity to flow through it.",
+    "student_answer": "Let electric go",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 354,
+    "question": "What is an insulator?",
+    "reference_answer": "A material that does not allow electricity to flow through it.",
+    "student_answer": "Stop electric",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 355,
+    "question": "What is a fuse?",
+    "reference_answer": "A safety device that stops current if it gets too high.",
+    "student_answer": "Thing stop too much electric",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 356,
+    "question": "What is a magnet?",
+    "reference_answer": "An object that attracts materials like iron.",
+    "student_answer": "Thing pull metal",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 357,
+    "question": "What is a magnetic field?",
+    "reference_answer": "The area around a magnet where magnetic force is felt.",
+    "student_answer": "  ",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 358,
+    "question": "What is an electromagnet?",
+    "reference_answer": "A magnet made by passing electric current through a wire wrapped around iron.",
+    "student_answer": "Electric make magnet",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 359,
+    "question": "What is lightning?",
+    "reference_answer": "A natural form of static electricity.",
+    "student_answer": "Sky electric",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 360,
+    "question": "What is a series circuit?",
+    "reference_answer": "A circuit where components are connected in a single path.",
+    "student_answer": "One path",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 361,
+    "question": "What is a parallel circuit?",
+    "reference_answer": "A circuit where components are connected in multiple paths.",
+    "student_answer": "Many path",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 362,
+    "question": "What is a short circuit?",
+    "reference_answer": "An unintended path of low resistance that can cause damage.",
+    "student_answer": "Bad electric",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 363,
+    "question": "What is a resistor?",
+    "reference_answer": "A device that limits the flow of electric current.",
+    "student_answer": "Slow electric",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 364,
+    "question": "What is groundwater?",
+    "reference_answer": "Water stored under the Earth's surface.",
+    "student_answer": "Underground water",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 365,
+    "question": "What is soil erosion?",
+    "reference_answer": "The removal of topsoil by wind or water.",
+    "student_answer": "Dirt blows",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 366,
+    "question": "What is water pollution?",
+    "reference_answer": "Contamination of water by harmful substances.",
+    "student_answer": "Dirty water",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 367,
+    "question": "What is the water cycle?",
+    "reference_answer": "The process of evaporation, condensation, and precipitation.",
+    "student_answer": "Water goes round",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 368,
+    "question": "What is evaporation?",
+    "reference_answer": "The process of water turning into vapor.",
+    "student_answer": "Water disappears",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 369,
+    "question": "What is condensation?",
+    "reference_answer": "The process of vapor turning into liquid.",
+    "student_answer": "Drops form",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 370,
+    "question": "What is precipitation?",
+    "reference_answer": "Rain, snow, or hail falling from clouds.",
+    "student_answer": "Rain falls",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 371,
+    "question": "What is composting?",
+    "reference_answer": "Making natural fertilizer from organic waste.",
+    "student_answer": "Rotting food helps plants",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 372,
+    "question": "What is space?",
+    "reference_answer": "Space is the vast area beyond Earth's atmosphere.",
+    "student_answer": "Sky above",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 373,
+    "question": "What is a satellite?",
+    "reference_answer": "A satellite is an object that revolves around a planet.",
+    "student_answer": "Thing going round",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 374,
+    "question": "Which planet has the most moons?",
+    "reference_answer": "Jupiter.",
+    "student_answer": "Big planet",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 375,
+    "question": "How many moons does Earth have?",
+    "reference_answer": "One.",
+    "student_answer": "1",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 376,
+    "question": "What is a space probe?",
+    "reference_answer": "A spacecraft sent to collect information without humans.",
+    "student_answer": "Robot spaceship",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 377,
+    "question": "What is the Sun?",
+    "reference_answer": "A star at the center of our solar system.",
+    "student_answer": "Big fire ball",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 378,
+    "question": "What is a comet?",
+    "reference_answer": "A ball of ice and dust that orbits the Sun.",
+    "student_answer": "Space snowball",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 379,
+    "question": "What is an asteroid?",
+    "reference_answer": "A rocky object orbiting the Sun, mostly between Mars and Jupiter.",
+    "student_answer": "Space rock",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 380,
+    "question": "What is a galaxy?",
+    "reference_answer": "A large system of stars, planets, and gas held by gravity.",
+    "student_answer": "Star group",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 381,
+    "question": "What is the name of our galaxy?",
+    "reference_answer": "Milky Way.",
+    "student_answer": "Our galaxy",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 382,
+    "question": "What is a weather satellite?",
+    "reference_answer": "A satellite used to monitor and forecast weather.",
+    "student_answer": "Checks weather",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 383,
+    "question": "What is the main function of the respiratory system?",
+    "reference_answer": "To take in oxygen and remove carbon dioxide.",
+    "student_answer": "Breathing oxygen in and carbon dioxide out.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 384,
+    "question": "What does the circulatory system do?",
+    "reference_answer": "It transports oxygen, nutrients, and wastes through the body.",
+    "student_answer": "Moves oxygen and food in body.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 385,
+    "question": "What is plasma?",
+    "reference_answer": "Plasma is the liquid part of blood that carries nutrients and hormones.",
+    "student_answer": "Liquid in blood that moves food and messages.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 386,
+    "question": "What is food spoilage?",
+    "reference_answer": "When food becomes unsafe/unpleasant to eat",
+    "student_answer": "Rotten food",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 387,
+    "question": "What is pasteurization?",
+    "reference_answer": "Heating liquids to kill bacteria",
+    "student_answer": "Milk heating",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 388,
+    "question": "What is mass?",
+    "reference_answer": "Mass is the amount of matter contained in an object.",
+    "student_answer": "Mass means how much stuff is inside something.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 389,
+    "question": "What is weight?",
+    "reference_answer": "Weight is the force with which gravity pulls an object downward.",
+    "student_answer": "Weight is how heavy something feels when you hold it.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 390,
+    "question": "What tool measures liquid volume?",
+    "reference_answer": "We use a measuring cylinder with marked lines to measure how much liquid there is.",
+    "student_answer": "A special cup with numbers measures juice or water amounts.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 391,
+    "question": "What is volume?",
+    "reference_answer": "Volume is the amount of space that an object or substance takes up.",
+    "student_answer": "Volume means how much room something fills.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 392,
+    "question": "What instrument measures temperature?",
+    "reference_answer": "A thermometer measures temperature by showing how much liquid inside expands when heated.",
+    "student_answer": "A temperature checker has colored liquid that goes up when hot.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 393,
+    "question": "What is speed?",
+    "reference_answer": "Speed tells us how much distance an object covers in a certain amount of time.",
+    "student_answer": "Speed is how far something goes in how much time.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 394,
+    "question": "What is speed?",
+    "reference_answer": "Speed is the rate of change of distance with time.",
+    "student_answer": "How fast object moves.",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 395,
+    "question": "What is velocity?",
+    "reference_answer": "Velocity is the rate of change of displacement.",
+    "student_answer": "Speed in a direction.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 396,
+    "question": "What is acceleration?",
+    "reference_answer": "Acceleration is the rate of change of velocity.",
+    "student_answer": "Change in velocity.",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 397,
+    "question": "What is Newton's First Law of Motion?",
+    "reference_answer": "An object at rest stays at rest, and an object in motion stays in motion unless acted upon by a force.",
+    "student_answer": "Object stays same unless pushed.",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 398,
+    "question": "Define force.",
+    "reference_answer": "Force is a push or pull on an object.",
+    "student_answer": "Push or pull.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 399,
+    "question": "What is the SI unit of force?",
+    "reference_answer": "Newton (N).",
+    "student_answer": "Newton.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 400,
+    "question": "When is no work done?",
+    "reference_answer": "When there is no displacement.",
+    "student_answer": "If nothing moves.",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 401,
+    "question": "What is heat?",
+    "reference_answer": "Heat is a form of energy that makes things warm.",
+    "student_answer": "heat make things hot.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 402,
+    "question": "What is conduction?",
+    "reference_answer": "Conduction is the transfer of heat through solids.",
+    "student_answer": "heat moves in solid",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 403,
+    "question": "What is convection?",
+    "reference_answer": "Convection is the transfer of heat through liquids and gases.",
+    "student_answer": "heat go in air and water",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 404,
+    "question": "What is radiation?",
+    "reference_answer": "Radiation is the transfer of heat without any medium.",
+    "student_answer": "heat go with no touch.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 405,
+    "question": "What is thermal expansion?",
+    "reference_answer": "Thermal expansion is the increase in size when heated.",
+    "student_answer": "it get big with hot",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 406,
+    "question": "What is dew?",
+    "reference_answer": "Dew is water droplets formed by condensation.",
+    "student_answer": "dew is water in morning",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 407,
+    "question": "What is a conductor?",
+    "reference_answer": "A material that allows heat to pass.",
+    "student_answer": "pass heat",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 408,
+    "question": "What is an insulator?",
+    "reference_answer": "A material that does not allow heat to pass.",
+    "student_answer": "no heat pass",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 409,
+    "question": "What is lightning?",
+    "reference_answer": "Lightning is a sudden flash of electricity in the sky, usually during storms.",
+    "student_answer": "Lightning is the fire in sky.",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 410,
+    "question": "What should you do during lightning?",
+    "reference_answer": "Stay indoors and avoid metal objects and trees.",
+    "student_answer": "Run in house and dont touch wires.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 411,
+    "question": "What should you do during lightning?",
+    "reference_answer": "Stay inside, don't use metal or phones.",
+    "student_answer": "Hide in house.",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 412,
+    "question": "What connects muscles to bones?",
+    "reference_answer": "Tough fibrous tissues called tendons",
+    "student_answer": "rope",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 413,
+    "question": "When is no work done?",
+    "reference_answer": "When there is no displacement.",
+    "student_answer": "if no work done no move then.",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 414,
+    "question": "What is velocity?",
+    "reference_answer": "Velocity is speed with direction.",
+    "student_answer": "speed goes fast",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 415,
+    "question": "What is force?",
+    "reference_answer": "A push or pull on an object is called force.",
+    "student_answer": "when you push or pul thig its forc.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 416,
+    "question": "What is convection?",
+    "reference_answer": "Heat transfer in liquid or gas is convection.",
+    "student_answer": "heat go in air and also in soup.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 417,
+    "question": "What is radiation?",
+    "reference_answer": "Radiation is the transfer of heat without any medium.",
+    "student_answer": "heat fly from sun to house.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 418,
+    "question": "What is speed?",
+    "reference_answer": "Speed is distance covered per time.",
+    "student_answer": "speed is how fast somethin run in time.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 419,
+    "question": "What is food spoilage?",
+    "reference_answer": "When food gets bad and unsafe to eat.",
+    "student_answer": "food be smelly and not good now.",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 420,
+    "question": "What is inertia?",
+    "reference_answer": "The resistance of an object to change in motion.",
+    "student_answer": "things dont want move or stop if its in motion",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 421,
+    "question": "Why copper wires?",
+    "reference_answer": "Excellent electrical conductor",
+    "student_answer": "Color looks nice",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 422,
+    "question": "What are natural resources?",
+    "reference_answer": "Materials from nature used by humans",
+    "student_answer": "Things what grow outside",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 423,
+    "question": "Why copper wires?",
+    "reference_answer": "Excellent conductor, flexible",
+    "student_answer": "Color nice",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 424,
+    "question": "What is a galaxy?",
+    "reference_answer": "A galaxy is a massive system of stars, gas, dust, and dark matter bound by gravity.",
+    "student_answer": "Galaxy is big star group in space.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 425,
+    "question": "What is the Milky Way?",
+    "reference_answer": "Our home galaxy, a barred spiral containing ~100 billion stars.",
+    "student_answer": "Our galaxy with Sun and Earth.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 426,
+    "question": "Define force.",
+    "reference_answer": "A force is a push or pull acting on an object.",
+    "student_answer": "Force is when you eat a lot of food.",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 427,
+    "question": "What is inertia?",
+    "reference_answer": "Inertia is the tendency of an object to resist change in its motion.",
+    "student_answer": "It is when you feel sleepy in class.",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 428,
+    "question": "Name three types of microorganisms.",
+    "reference_answer": "Bacteria, viruses, and fungi.",
+    "student_answer": "Bacteria and viruses.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 429,
+    "question": "Name one harmful effect of microorganisms.",
+    "reference_answer": "They can cause diseases like typhoid and cholera.",
+    "student_answer": "They can give you fever.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 430,
+    "question": "What is germination?",
+    "reference_answer": "Germination is the process by which a seed grows into a new plant.",
+    "student_answer": "When seeds start to grow a little.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 431,
+    "question": "How do seeds spread?",
+    "reference_answer": "Seeds spread through wind, water, and animals.",
+    "student_answer": "They move by wind or water.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 432,
+    "question": "What are microorganisms?",
+    "reference_answer": "Microorganisms are tiny living things that cannot be seen without a microscope.",
+    "student_answer": "They are very small things.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 433,
+    "question": "What is fermentation?",
+    "reference_answer": "Fermentation is a process where microorganisms break down sugars to produce energy, often used in food making.",
+    "student_answer": "It\u2019s how food is made using germs.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 434,
+    "question": "What is the role of petals in a flower?",
+    "reference_answer": "Petals attract insects for pollination.",
+    "student_answer": "They are colourful.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 435,
+    "question": "What is germination?",
+    "reference_answer": "Germination is the growth of a seed into a new plant.",
+    "student_answer": "Seed starts growing.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 436,
+    "question": "What is a meridian?",
+    "reference_answer": "A circle passing through zenith, nadir, and celestial poles.",
+    "student_answer": "A circle in the sky that goes from top to bottom.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 437,
+    "question": "What is the celestial equator?",
+    "reference_answer": "Earth's equator projected onto the celestial sphere.",
+    "student_answer": "The line across the middle of the sky like Earth\u2019s equator.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 438,
+    "question": "What is the ecliptic?",
+    "reference_answer": "The Sun's apparent yearly path across the celestial sphere.",
+    "student_answer": "The path the Sun follows through the stars.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 439,
+    "question": "What is a constellation?",
+    "reference_answer": "A group of stars forming a recognizable pattern, often named after myths.",
+    "student_answer": "A group of stars making a shape like Orion.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 440,
+    "question": "Name 3 constellations.",
+    "reference_answer": "Orion, Ursa Major, Scorpius.",
+    "student_answer": "Orion, the Big Dipper, and Scorpius.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 441,
+    "question": "Why do constellations seem to move?",
+    "reference_answer": "Earth's rotation and orbit around the Sun.",
+    "student_answer": "Because the Earth spins and moves around the Sun.",
+    "human_score": 4.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 442,
+    "question": "What is the zodiac?",
+    "reference_answer": "12 constellations along the ecliptic, used in astrology.",
+    "student_answer": "The twelve constellations along the Sun\u2019s path.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 443,
+    "question": "How did ancient people use constellations?",
+    "reference_answer": "For navigation, calendars, and storytelling.",
+    "student_answer": "They used stars to travel, tell stories, and make calendars.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 444,
+    "question": "What tools are used for sky watching?",
+    "reference_answer": "Telescopes, binoculars, star maps.",
+    "student_answer": "We use telescopes, binoculars, and star maps.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 445,
+    "question": "Why avoid city lights for stargazing?",
+    "reference_answer": "Light pollution hides faint stars.",
+    "student_answer": "City lights make it too bright to see faint stars.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 446,
+    "question": "Do planets/stars affect human life?",
+    "reference_answer": "No, astrology isn't science; stars are too distant to impact us physically.",
+    "student_answer": "They don\u2019t really affect us because they are too far away.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 447,
+    "question": "What is Polaris?",
+    "reference_answer": "The North Star, aligned with Earth's North Pole.",
+    "student_answer": "The star that shows where north is.",
+    "human_score": 5.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 448,
+    "question": "What is a red giant?",
+    "reference_answer": "An old, expanded star cooling down (e.g., Betelgeuse).",
+    "student_answer": "A very big, old red star that has cooled down.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 449,
+    "question": "What is a white dwarf?",
+    "reference_answer": "A dead star's hot, dense core.",
+    "student_answer": "A small, very hot star remnant.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 450,
+    "question": "What is a neutron star?",
+    "reference_answer": "A super-dense remnant of a supernova.",
+    "student_answer": "A very tiny, dense star left after an explosion.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 451,
+    "question": "How is a star's color related to temperature?",
+    "reference_answer": "Blue = hottest; Red = coolest.",
+    "student_answer": "Hot stars look blue, cooler stars look red.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 452,
+    "question": "What is a binary star?",
+    "reference_answer": "Two stars orbiting each other.",
+    "student_answer": "Two stars that go around each other.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 453,
+    "question": "What is a light-year?",
+    "reference_answer": "Distance light travels in a year (~9.46 trillion km).",
+    "student_answer": "How far light goes in one year.",
+    "human_score": 3.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 454,
+    "question": "Why is the Sun a star?",
+    "reference_answer": "It's a medium-sized, main-sequence star.",
+    "student_answer": "Because it\u2019s a big ball of gas like other stars.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 455,
+    "question": "What is a pulsar?",
+    "reference_answer": "A rotating neutron star that emits beams of radiation.",
+    "student_answer": "A star that flashes light.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 456,
+    "question": "Why are some stars brighter than others?",
+    "reference_answer": "Due to size, temperature, and distance from Earth.",
+    "student_answer": "Because some are bigger and closer.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 457,
+    "question": "How do scientists study distant stars?",
+    "reference_answer": "Using telescopes, spectroscopy, and space probes.",
+    "student_answer": "They use telescopes to look at them.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 458,
+    "question": "What is a star cluster?",
+    "reference_answer": "A group of stars held together by gravity.",
+    "student_answer": "Stars close together in space.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 459,
+    "question": "What is an open cluster?",
+    "reference_answer": "A loosely bound group of young stars.",
+    "student_answer": "A group of young stars in space.",
+    "human_score": 2.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 460,
+    "question": "What is a globular cluster?",
+    "reference_answer": "A tight, spherical group of old stars.",
+    "student_answer": "It\u2019s a group of old stars all close together, I think.",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 461,
+    "question": "What is cosmic dust?",
+    "reference_answer": "Tiny particles in space made of silicates, carbon, and ice.",
+    "student_answer": "Dust floating somewhere in space.",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 462,
+    "question": "What are exoplanets?",
+    "reference_answer": "Planets outside our solar system orbiting other stars.",
+    "student_answer": "Planets that are not in our solar system.",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 463,
+    "question": "How do we detect exoplanets?",
+    "reference_answer": "Using transit method, radial velocity, and direct imaging.",
+    "student_answer": "We can spot them when stars flicker a bit.",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 464,
+    "question": "What is the Hubble Space Telescope?",
+    "reference_answer": "A telescope in orbit that captures clear space images.",
+    "student_answer": "It\u2019s a big telescope up in space.",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 465,
+    "question": "Why is the night sky dark?",
+    "reference_answer": "Because the universe is expanding and light hasn't reached us from all directions.",
+    "student_answer": "Because some places in space don\u2019t have light.",
+    "human_score": 1.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 466,
+    "question": "What causes a shooting star?",
+    "reference_answer": "A meteoroid burning in Earth's atmosphere.",
+    "student_answer": "I love sunlight",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 467,
+    "question": "What is a comet?",
+    "reference_answer": "An icy object with a tail that orbits the Sun.",
+    "student_answer": "A space dragon with fire tail.",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 468,
+    "question": "What is an asteroid?",
+    "reference_answer": "A rocky body orbiting the Sun, mostly in the asteroid belt.",
+    "student_answer": "comet good sky",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 469,
+    "question": "What is a meteorite?",
+    "reference_answer": "A meteoroid that survives and lands on Earth.",
+    "student_answer": "A space candy fals on Earth.",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 470,
+    "question": "What is the difference between a star and a planet?",
+    "reference_answer": "Stars produce light; planets reflect it and orbit stars.",
+    "student_answer": "Stars are happy, planets are sad.",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 471,
+    "question": "Why do stars seem to move across the sky?",
+    "reference_answer": "Due to Earth's rotation.",
+    "student_answer": "Because they are drunk.",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  },
+  {
+    "id": 472,
+    "question": "What happens when a star dies?",
+    "reference_answer": "It can become a white dwarf, neutron star, or black hole.",
+    "student_answer": "It explodes into dust.",
+    "human_score": 0.0,
+    "dataset": "kaggle_asag",
+    "language": "en"
+  }
+]

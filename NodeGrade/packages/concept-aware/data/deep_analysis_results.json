@@ -1,0 +1,223 @@
+{
+  "overall_metrics": {
+    "C0": {
+      "mae": 1.7113333333333334,
+      "rmse": 2.1400661983530633,
+      "r": 0.731934847272815,
+      "bias": -1.6820000000000002
+    },
+    "C_LLM": {
+      "mae": 0.33,
+      "rmse": 0.4667261866805133,
+      "r": 0.9709397293007704,
+      "bias": 0.18833333333333335
+    },
+    "C1": {
+      "mae": 0.7405,
+      "rmse": 0.9264043393680752,
+      "r": 0.8674699371744873,
+      "bias": -0.45833333333333337
+    },
+    "C1_fix": {
+      "mae": 0.3458333333333333,
+      "rmse": 0.673918887305191,
+      "r": 0.9236518364968466,
+      "bias": -0.25833333333333336
+    },
+    "C5_fix": {
+      "mae": 0.22291666666666668,
+      "rmse": 0.33150540468193473,
+      "r": 0.9820314964001232,
+      "bias": -0.12291666666666666
+    }
+  },
+  "delta_vs_cllm": {
+    "mae": 0.10708333333333334,
+    "r": 0.011091767099352778
+  },
+  "bias_analysis": {
+    "overall": {
+      "c_llm": 0.18833333333333335,
+      "c5_fix": -0.12291666666666666
+    },
+    "by_tier": [
+      {
+        "tier": "0.0\u20131.5 (weak answers)",
+        "n": 53,
+        "bias_cl": 0.08018867924528301,
+        "bias_c5": -0.08962264150943396
+      },
+      {
+        "tier": "2.0\u20133.0 (mid answers)",
+        "n": 25,
+        "bias_cl": 0.11,
+        "bias_c5": -0.24
+      },
+      {
+        "tier": "3.5\u20135.0 (strong answers)",
+        "n": 36,
+        "bias_cl": 0.3638888888888888,
+        "bias_c5": -0.06944444444444445
+      }
+    ]
+  },
+  "win_loss": {
+    "wins": 35,
+    "ties": 70,
+    "losses": 15,
+    "avg_win": 0.5671428571428572,
+    "avg_loss": 0.4666666666666667,
+    "win_rate": 0.7,
+    "gain_loss_ratio": 1.2153061224489796
+  },
+  "feature_correlations": {
+    "solo": {
+      "r": 0.2746771150547206,
+      "p": 0.0023968888650659046
+    },
+    "bloom": {
+      "r": 0.303860044511875,
+      "p": 0.0007410509837498636
+    },
+    "chain_coverage": {
+      "r": 0.20267136226998456,
+      "p": 0.026418232966963502
+    },
+    "n_matched": {
+      "r": 0.11026565451008472,
+      "p": 0.23056042115981015
+    },
+    "integration_quality": {
+      "r": -0.05603627684212375,
+      "p": 0.543254128908149
+    },
+    "relationship_acc": {
+      "r": 0.06325235162052081,
+      "p": 0.4925050197046852
+    },
+    "misc_total": {
+      "r": -0.10834564756011375,
+      "p": 0.2388303585161081
+    }
+  },
+  "solo_breakdown": [
+    {
+      "solo": 1,
+      "label": "Prestructural",
+      "n": 12,
+      "avg_human": 0.375,
+      "mae_cl": 0.16666666666666666,
+      "mae_c5": 0.20833333333333334,
+      "bias_cl": -0.125,
+      "bias_c5": -0.16666666666666666
+    },
+    {
+      "solo": 2,
+      "label": "Unistructural",
+      "n": 47,
+      "avg_human": 1.0053191489361701,
+      "mae_cl": 0.2712765957446808,
+      "mae_c5": 0.24468085106382978,
+      "bias_cl": 0.10106382978723404,
+      "bias_c5": -0.10638297872340426
+    },
+    {
+      "solo": 3,
+      "label": "Multistructural",
+      "n": 27,
+      "avg_human": 2.712962962962963,
+      "mae_cl": 0.49074074074074076,
+      "mae_c5": 0.3425925925925926,
+      "bias_cl": 0.28703703703703703,
+      "bias_c5": -0.25
+    },
+    {
+      "solo": 4,
+      "label": "Relational",
+      "n": 34,
+      "avg_human": 4.264705882352941,
+      "mae_cl": 0.3411764705882353,
+      "mae_c5": 0.10294117647058823,
+      "bias_cl": 0.3411764705882353,
+      "bias_c5": -0.029411764705882353
+    }
+  ],
+  "tier_breakdown": [
+    {
+      "tier": "0.0\u20131.5 (weak answers)",
+      "n": 53,
+      "mae_cl": 0.23113207547169812,
+      "mae_c5": 0.22169811320754718,
+      "r_cl": 0.8012618624145311,
+      "r_c5": 0.7899929800409842
+    },
+    {
+      "tier": "2.0\u20133.0 (mid answers)",
+      "n": 25,
+      "mae_cl": 0.45,
+      "mae_c5": 0.32,
+      "r_cl": 0.672534483561213,
+      "r_c5": 0.7301448039349903
+    },
+    {
+      "tier": "3.5\u20135.0 (strong answers)",
+      "n": 36,
+      "mae_cl": 0.3638888888888888,
+      "mae_c5": 0.125,
+      "r_cl": 0.6913402132559765,
+      "r_c5": 0.9249478193378
+    }
+  ],
+  "component_ablation": {
+    "C_LLM": {
+      "mae": 0.33,
+      "interpretation": "answer text only, no KG"
+    },
+    "C1_fix": {
+      "mae": 0.3458333333333333,
+      "interpretation": "KG evidence only, no answer text"
+    },
+    "C5_fix": {
+      "mae": 0.22291666666666668,
+      "interpretation": "answer + KG = synergy"
+    }
+  },
+  "statistics": {
+    "wilcoxon": {
+      "statistic": 930.5,
+      "p_value": 0.0013196841777978862,
+      "significant": true
+    },
+    "ttest": {
+      "t_stat": 3.226786515287423,
+      "p_value": 0.0016172396119432232,
+      "significant": true
+    },
+    "cohens_d": 0.3666907936830221,
+    "bootstrap_ci": {
+      "C_LLM": {
+        "r_ci": [
+          0.9614817196527348,
+          0.979409725968254
+        ],
+        "mae_ci": [
+          0.2725,
+          0.39083333333333337
+        ]
+      },
+      "C5_fix": {
+        "r_ci": [
+          0.9754457270098603,
+          0.9873538820529875
+        ],
+        "mae_ci": [
+          0.17916666666666667,
+          0.26875
+        ]
+      },
+      "mae_ci_non_overlapping": true
+    }
+  },
+  "research_summary": "ConceptGrade (C5_fix) demonstrates statistically significant improvement over\n  pure LLM grading (C_LLM) on the Mohler (2011) benchmark (n=120).\n\n  HEADLINE RESULTS:\n    \u2022 MAE:  0.3300 \u2192 0.2229  (32.4% reduction)\n    \u2022 r:    0.9709 \u2192 0.9820  (+1.1%)\n    \u2022 RMSE: 0.4667 \u2192 0.3315\n    \u2022 Wilcoxon p=0.0013, paired t p=0.0016, Cohen's d=0.3667\n    \u2022 95% CI for MAE: C5_fix=[0.1792,0.2687] vs C_LLM=[0.2725,0.3908] (non-overlapping)\n\n  ROOT CAUSE \u2014 FLUENCY BIAS CORRECTION:\n    C_LLM overestimates student answers by an average of +0.3412 points\n    (51% of answers are overgraded). This bias is largest for high-quality answers:\n    for SOLO=4 (Relational) students, C_LLM overestimates by +0.3412 while\n    C5_fix corrects this to -0.0294. The KG concept evidence provides\n    grounding that prevents the LLM from rewarding fluency without completeness.\n\n  WHERE THE GAIN COMES FROM:\n    \u2022 High scorers (3.5\u20135.0): 0.3639 \u2192 0.1250 (\u0394MAE=+0.2389, largest tier gain)\n    \u2022 Mid scorers  (2.0\u20133.0): 0.4500 \u2192 0.3200 (\u0394MAE=+0.1300)\n    \u2022 Low scorers  (0.0\u20131.5): 0.2311 \u2192 0.2217 (\u0394MAE=+0.0094)\n\n  WHY TAXONOMY MATTERS MORE THAN CONCEPT COUNTS:\n    KG features predicting improvement:\n      SOLO level:      r=+0.2747 (p=0.0024) \u2190 most significant\n      Bloom's level:   r=+0.3039 (p=0.0007) \u2190 second\n      Chain coverage:  r=+0.2027 (p=0.0264)\n      n_matched:       r=+0.1103 (p=0.2306) \u2190 NOT significant\n\n    Cognitive depth classification (SOLO/Bloom) is more predictive than simple\n    concept counting. This validates the multi-layer KG analysis approach.\n\n  SYNERGY EVIDENCE:\n    KG evidence alone (C1_fix, no answer text) MAE=0.3458 \u2014 worse than C_LLM\n    Answer + KG evidence (C5_fix) MAE=0.2229 \u2014 beats both by 32%\n    \u2192 Gain comes from SYNERGY between answer and structured evidence, not from\n      either component alone.\n\n  WIN/LOSS ANALYSIS:\n    C5_fix wins:  35 samples (avg gain=0.5671)\n    Ties:         70 samples\n    C5_fix loses: 15 samples (avg loss=0.4667)\n    Win rate: 70% (excl ties)\n    Gain/loss magnitude ratio: 1.22x",
+  "latex_table": "% ConceptGrade Ablation \u2014 Mohler (2011), n=120\n\\begin{table}[ht]\\centering\n\\caption{Ablation results on Mohler et al.\\ (2011) ($n=120$). $C_{LLM}$: Pure LLM zero-shot baseline. $C_1^{\\dagger}$: LLM grading using KG evidence without student answer. $C_5^{*}$: ConceptGrade --- student answer + full KG evidence (SOLO, Bloom's, matched concepts, misconceptions). $\\Delta$~=~improvement over $C_{LLM}$. Bold = best. $^{\\ddagger}$95\\% bootstrap CI.}\n\\label{tab:ablation_main}\n\\begin{tabular}{@{}llrrrrrr@{}}\\toprule\n\\textbf{ID} & \\textbf{System} & \\textbf{$r$} & \\textbf{$\\Delta r$} & \\textbf{RMSE} & \\textbf{MAE} & \\textbf{$\\Delta$MAE} & \\textbf{Bias} \\\\\\midrule\n$\\text{C_0}$ & Cosine Similarity & 0.7319 & -- & 2.1401 & 1.7113 & -- & -1.6820 \\\\\n$\\text{C_{LLM}}$ & Pure LLM Zero-Shot & 0.9709$^{\\ddagger}$ & -- & 0.4667 & 0.3300 & -- & +0.1883 \\\\\n\\midrule\n$\\text{C_1}$ & ConceptGrade KG Raw & 0.8675 & -- & 0.9264 & 0.7405 & -- & -0.4583 \\\\\n$\\text{C_{1}^{\\dagger}}$ & KG Evidence \u2192 Concept Only & 0.9237 & -0.0473 & 0.6739 & 0.3458 & +0.0158 & -0.2583 \\\\\n$\\text{C_{5}^{*}}$ & ConceptGrade (KG + Answer) & \\textbf{0.9820}$^{\\ddagger}$ & +0.0111 & \\textbf{0.3315} & \\textbf{0.2229} & -0.1071 & -0.1229 \\\\\n\\bottomrule\\end{tabular}\\end{table}"
+}

@@ -1,0 +1,21 @@
+% Table: Per-Question Comparison — ConceptGrade vs. C_LLM
+\begin{table}[ht]\centering
+\caption{Per-question MAE comparison on Mohler et al.\ (2011) ($n=12$ per question). $C_5^{*}$: ConceptGrade (full KG); $C_{\text{LLM}}$: pure LLM baseline. Bold: lower MAE (better). 95\% bootstrap CI for $\Delta$MAE. $p_{\text{worse}}$: one-sided Wilcoxon $p$-value testing whether ConceptGrade is significantly worse. $\checkmark$: C5 wins; $\approx$: statistically equivalent ($p>0.05$).}
+\label{tab:per_question}
+\begin{tabular}{@{}llrrrrrr@{}}\toprule
+\textbf{Q} & \textbf{Topic} & $C_5^{*}$ & $C_{\text{LLM}}$ & $\Delta$MAE & 95\%~CI & $p_{\text{worse}}$ & \textbf{Result} \\\midrule
+Q1 & Linked List & \textbf{0.2708} & 0.4375 & -0.1667 & [-0.3250, +0.0002] & 0.97 & $\checkmark$ \\
+Q2 & Array vs. Linked List & \textbf{0.1250} & 0.5417 & -0.4167 & [-0.7083, -0.1667] & 1.00 & $\checkmark$ \\
+Q3 & Stack & \textbf{0.2708} & 0.3542 & -0.0833 & [-0.2083, +0.0000] & 1.00 & $\checkmark$ \\
+Q4 & BST & 0.2500 & \textbf{0.2083} & +0.0417 & [-0.0833, +0.1667] & 0.50 & $\approx$ \\
+Q5 & BFS vs. DFS & \textbf{0.1667} & 0.2750 & -0.1083 & [-0.2917, +0.0583] & 0.89 & $\checkmark$ \\
+Q6 & Hash Table & \textbf{0.2500} & 0.3583 & -0.1083 & [-0.3417, +0.1250] & 0.83 & $\checkmark$ \\
+Q7 & Recursion & \textbf{0.1250} & 0.1875 & -0.0625 & [-0.2083, +0.0833] & 0.88 & $\checkmark$ \\
+Q8 & Quicksort & \textbf{0.1250} & 0.2083 & -0.0833 & [-0.2500, +0.0833] & 0.94 & $\checkmark$ \\
+Q9 & Dynamic Programming & \textbf{0.3333} & 0.5667 & -0.2333 & [-0.4917, +0.0000] & 0.98 & $\checkmark$ \\
+Q10 & Big-O Notation & 0.3125 & \textbf{0.1625} & +0.1500 & [-0.0167, +0.3167] & 0.11 & $\approx$ \\
+\midrule
+Overall & All topics & \textbf{0.2229} & 0.3300 & -0.1071 & --- & --- & $\checkmark$ \\
+\bottomrule
+\end{tabular}
+\end{table}

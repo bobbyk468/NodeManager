@@ -1,0 +1,28 @@
+{
+  "scores": {
+    "640": {
+      "cllm_score": 3.0,
+      "c5fix_score": 3.0
+    },
+    "641": {
+      "cllm_score": 0.0,
+      "c5fix_score": 0.0
+    },
+    "642": {
+      "cllm_score": 0.5,
+      "c5fix_score": 0.5
+    },
+    "643": {
+      "cllm_score": 2.5,
+      "c5fix_score": 2.5
+    },
+    "644": {
+      "cllm_score": 4.0,
+      "c5fix_score": 4.0
+    },
+    "645": {
+      "cllm_score": 0.0,
+      "c5fix_score": 0.0
+    }
+  }
+}

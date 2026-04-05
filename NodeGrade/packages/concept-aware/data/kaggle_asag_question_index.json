@@ -1,0 +1,752 @@
+[
+  {
+    "question_id": "0",
+    "question": "What is respiration in plants?",
+    "reference_answer": "Respiration in plants is the process of breaking down food to release energy and carbon dioxide."
+  },
+  {
+    "question_id": "1",
+    "question": "What is a habitat?",
+    "reference_answer": "A habitat is the natural home of a plant or an animal."
+  },
+  {
+    "question_id": "2",
+    "question": "What is soil erosion?",
+    "reference_answer": "Soil erosion is the removal of soil by wind, water or human activity."
+  },
+  {
+    "question_id": "3",
+    "question": "What are microorganisms?",
+    "reference_answer": "Microorganisms are tiny living things that cannot be seen with the naked eye."
+  },
+  {
+    "question_id": "4",
+    "question": "Are all microorganisms harmful?",
+    "reference_answer": "No, some microorganisms are helpful and others are harmful."
+  },
+  {
+    "question_id": "5",
+    "question": "Name a disease caused by a virus.",
+    "reference_answer": "Flu is caused by a virus."
+  },
+  {
+    "question_id": "6",
+    "question": "What is pollination?",
+    "reference_answer": "Pollination is the transfer of pollen from one flower to another."
+  },
+  {
+    "question_id": "7",
+    "question": "What is the role of petals in a flower?",
+    "reference_answer": "Petals attract insects to help with pollination."
+  },
+  {
+    "question_id": "8",
+    "question": "Name three types of microorganisms.",
+    "reference_answer": "Bacteria, viruses, and fungi are three types of microorganisms."
+  },
+  {
+    "question_id": "9",
+    "question": "How do seeds spread?",
+    "reference_answer": "Seeds spread by wind, water, and animals."
+  },
+  {
+    "question_id": "10",
+    "question": "What is water pollution?",
+    "reference_answer": "Water pollution is when harmful substances are added to water bodies."
+  },
+  {
+    "question_id": "11",
+    "question": "What are fossil fuels?",
+    "reference_answer": "Fossil fuels are energy sources like coal, oil, and gas formed from dead plants and animals."
+  },
+  {
+    "question_id": "12",
+    "question": "What are greenhouse gases?",
+    "reference_answer": "Gases that trap heat in Earths atmosphere."
+  },
+  {
+    "question_id": "13",
+    "question": "Name two greenhouse gases.",
+    "reference_answer": "Carbon dioxide and methane."
+  },
+  {
+    "question_id": "14",
+    "question": "What is global warming?",
+    "reference_answer": "A rise in Earths temperature due to greenhouse gases."
+  },
+  {
+    "question_id": "15",
+    "question": "What is the greenhouse effect?",
+    "reference_answer": "It is the warming of Earth by trapped heat due to greenhouse gases."
+  },
+  {
+    "question_id": "16",
+    "question": "What is composting?",
+    "reference_answer": "Turning food and garden waste into natural fertilizer."
+  },
+  {
+    "question_id": "17",
+    "question": "What is noise pollution?",
+    "reference_answer": "Unwanted or harmful sound that disturbs people and animals."
+  },
+  {
+    "question_id": "18",
+    "question": "What is melting?",
+    "reference_answer": "The process of changing a solid to a liquid."
+  },
+  {
+    "question_id": "19",
+    "question": "What is freezing?",
+    "reference_answer": "The process of changing a liquid to a solid."
+  },
+  {
+    "question_id": "20",
+    "question": "What is boiling?",
+    "reference_answer": "The process of turning a liquid into gas by heating."
+  },
+  {
+    "question_id": "21",
+    "question": "What is evaporation?",
+    "reference_answer": "The slow change of liquid into gas at any temperature."
+  },
+  {
+    "question_id": "22",
+    "question": "What is condensation?",
+    "reference_answer": "The change of gas into liquid."
+  },
+  {
+    "question_id": "23",
+    "question": "What is light?",
+    "reference_answer": "Light is a form of energy that helps us see."
+  },
+  {
+    "question_id": "24",
+    "question": "What is reflection of light?",
+    "reference_answer": "Bouncing back of light from a surface."
+  },
+  {
+    "question_id": "25",
+    "question": "What is refraction of light?",
+    "reference_answer": "Bending of light when it passes through different materials."
+  },
+  {
+    "question_id": "26",
+    "question": "What is a shadow?",
+    "reference_answer": "A dark area formed when light is blocked."
+  },
+  {
+    "question_id": "27",
+    "question": "What is sound?",
+    "reference_answer": "Sound is energy produced by vibrations."
+  },
+  {
+    "question_id": "28",
+    "question": "How does sound travel?",
+    "reference_answer": "Sound travels in waves through air, water, or solids."
+  },
+  {
+    "question_id": "29",
+    "question": "What is volume?",
+    "reference_answer": "Volume is how loud or soft a sound is."
+  },
+  {
+    "question_id": "30",
+    "question": "What is the speed of sound in air?",
+    "reference_answer": "Around 343 meters per second."
+  },
+  {
+    "question_id": "31",
+    "question": "What is the speed of light?",
+    "reference_answer": "About 300,000 kilometers per second."
+  },
+  {
+    "question_id": "32",
+    "question": "What is a prism?",
+    "reference_answer": "A prism splits white light into different colors."
+  },
+  {
+    "question_id": "33",
+    "question": "What is static electricity?",
+    "reference_answer": "Static electricity is the build-up of electric charge on a surface."
+  },
+  {
+    "question_id": "34",
+    "question": "What is electric current?",
+    "reference_answer": "The flow of electric charge (electrons) in a circuit."
+  },
+  {
+    "question_id": "35",
+    "question": "What is an open circuit?",
+    "reference_answer": "A circuit that is broken or not complete; current cannot flow."
+  },
+  {
+    "question_id": "36",
+    "question": "What is a closed circuit?",
+    "reference_answer": "A complete circuit where electricity flows freely."
+  },
+  {
+    "question_id": "37",
+    "question": "What is a conductor?",
+    "reference_answer": "A material that allows electricity to flow through it."
+  },
+  {
+    "question_id": "38",
+    "question": "What is an insulator?",
+    "reference_answer": "A material that does not allow electricity to flow through it."
+  },
+  {
+    "question_id": "39",
+    "question": "What is a fuse?",
+    "reference_answer": "A safety device that stops current if it gets too high."
+  },
+  {
+    "question_id": "40",
+    "question": "What is a magnet?",
+    "reference_answer": "An object that attracts materials like iron."
+  },
+  {
+    "question_id": "41",
+    "question": "What is a magnetic field?",
+    "reference_answer": "The area around a magnet where magnetic force is felt."
+  },
+  {
+    "question_id": "42",
+    "question": "What is an electromagnet?",
+    "reference_answer": "A magnet made by passing electric current through a wire wrapped around iron."
+  },
+  {
+    "question_id": "43",
+    "question": "What is lightning?",
+    "reference_answer": "A natural form of static electricity."
+  },
+  {
+    "question_id": "44",
+    "question": "What is a series circuit?",
+    "reference_answer": "A circuit where components are connected in a single path."
+  },
+  {
+    "question_id": "45",
+    "question": "What is a parallel circuit?",
+    "reference_answer": "A circuit where components are connected in multiple paths."
+  },
+  {
+    "question_id": "46",
+    "question": "What is a short circuit?",
+    "reference_answer": "An unintended path of low resistance that can cause damage."
+  },
+  {
+    "question_id": "47",
+    "question": "What is a resistor?",
+    "reference_answer": "A device that limits the flow of electric current."
+  },
+  {
+    "question_id": "48",
+    "question": "What is groundwater?",
+    "reference_answer": "Water stored under the Earths surface."
+  },
+  {
+    "question_id": "49",
+    "question": "What is the water cycle?",
+    "reference_answer": "The process of evaporation, condensation, and precipitation."
+  },
+  {
+    "question_id": "50",
+    "question": "What is precipitation?",
+    "reference_answer": "Rain, snow, or hail falling from clouds."
+  },
+  {
+    "question_id": "51",
+    "question": "What is space?",
+    "reference_answer": "Space is the vast area beyond Earths atmosphere."
+  },
+  {
+    "question_id": "52",
+    "question": "What is a satellite?",
+    "reference_answer": "A satellite is an object that revolves around a planet."
+  },
+  {
+    "question_id": "53",
+    "question": "Which planet has the most moons?",
+    "reference_answer": "Jupiter."
+  },
+  {
+    "question_id": "54",
+    "question": "How many moons does Earth have?",
+    "reference_answer": "One."
+  },
+  {
+    "question_id": "55",
+    "question": "What is a space probe?",
+    "reference_answer": "A spacecraft sent to collect information without humans."
+  },
+  {
+    "question_id": "56",
+    "question": "What is the Sun?",
+    "reference_answer": "A star at the center of our solar system."
+  },
+  {
+    "question_id": "57",
+    "question": "What is a comet?",
+    "reference_answer": "A ball of ice and dust that orbits the Sun."
+  },
+  {
+    "question_id": "58",
+    "question": "What is an asteroid?",
+    "reference_answer": "A rocky object orbiting the Sun, mostly between Mars and Jupiter."
+  },
+  {
+    "question_id": "59",
+    "question": "What is a galaxy?",
+    "reference_answer": "A large system of stars, planets, and gas held by gravity."
+  },
+  {
+    "question_id": "60",
+    "question": "What is the name of our galaxy?",
+    "reference_answer": "Milky Way."
+  },
+  {
+    "question_id": "61",
+    "question": "What is a weather satellite?",
+    "reference_answer": "A satellite used to monitor and forecast weather."
+  },
+  {
+    "question_id": "62",
+    "question": "What is the main function of the respiratory system?",
+    "reference_answer": "To take in oxygen and remove carbon dioxide."
+  },
+  {
+    "question_id": "63",
+    "question": "What does the circulatory system do?",
+    "reference_answer": "It transports oxygen, nutrients, and wastes through the body."
+  },
+  {
+    "question_id": "64",
+    "question": "What is plasma?",
+    "reference_answer": "Plasma is the liquid part of blood that carries nutrients and hormones."
+  },
+  {
+    "question_id": "65",
+    "question": "What is food spoilage?",
+    "reference_answer": "When food becomes unsafe/unpleasant to eat"
+  },
+  {
+    "question_id": "66",
+    "question": "What is pasteurization?",
+    "reference_answer": "Heating liquids to kill bacteria"
+  },
+  {
+    "question_id": "67",
+    "question": "What is mass?",
+    "reference_answer": "Mass is the amount of matter contained in an object."
+  },
+  {
+    "question_id": "68",
+    "question": "What is weight?",
+    "reference_answer": "Weight is the force with which gravity pulls an object downward."
+  },
+  {
+    "question_id": "69",
+    "question": "What tool measures liquid volume?",
+    "reference_answer": "We use a measuring cylinder with marked lines to measure how much liquid there is."
+  },
+  {
+    "question_id": "70",
+    "question": "What instrument measures temperature?",
+    "reference_answer": "A thermometer measures temperature by showing how much liquid inside expands when heated."
+  },
+  {
+    "question_id": "71",
+    "question": "What is speed?",
+    "reference_answer": "Speed tells us how much distance an object covers in a certain amount of time."
+  },
+  {
+    "question_id": "72",
+    "question": "What is velocity?",
+    "reference_answer": "Velocity is the rate of change of displacement."
+  },
+  {
+    "question_id": "73",
+    "question": "What is acceleration?",
+    "reference_answer": "Acceleration is the rate of change of velocity."
+  },
+  {
+    "question_id": "74",
+    "question": "What is Newton's First Law of Motion?",
+    "reference_answer": "An object at rest stays at rest, and an object in motion stays in motion unless acted upon by a force."
+  },
+  {
+    "question_id": "75",
+    "question": "Define force.",
+    "reference_answer": "Force is a push or pull on an object."
+  },
+  {
+    "question_id": "76",
+    "question": "What is the SI unit of force?",
+    "reference_answer": "Newton (N)."
+  },
+  {
+    "question_id": "77",
+    "question": "When is no work done?",
+    "reference_answer": "When there is no displacement."
+  },
+  {
+    "question_id": "78",
+    "question": "What is heat?",
+    "reference_answer": "Heat is a form of energy that makes things warm."
+  },
+  {
+    "question_id": "79",
+    "question": "What is conduction?",
+    "reference_answer": "Conduction is the transfer of heat through solids."
+  },
+  {
+    "question_id": "80",
+    "question": "What is convection?",
+    "reference_answer": "Convection is the transfer of heat through liquids and gases."
+  },
+  {
+    "question_id": "81",
+    "question": "What is radiation?",
+    "reference_answer": "Radiation is the transfer of heat without any medium."
+  },
+  {
+    "question_id": "82",
+    "question": "What is thermal expansion?",
+    "reference_answer": "Thermal expansion is the increase in size when heated."
+  },
+  {
+    "question_id": "83",
+    "question": "What is dew?",
+    "reference_answer": "Dew is water droplets formed by condensation."
+  },
+  {
+    "question_id": "84",
+    "question": "What should you do during lightning?",
+    "reference_answer": "Stay indoors and avoid metal objects and trees."
+  },
+  {
+    "question_id": "85",
+    "question": "What connects muscles to bones?",
+    "reference_answer": "Tough fibrous tissues called tendons"
+  },
+  {
+    "question_id": "86",
+    "question": "What is force?",
+    "reference_answer": "A push or pull on an object is called force."
+  },
+  {
+    "question_id": "87",
+    "question": "What is inertia?",
+    "reference_answer": "The resistance of an object to change in motion."
+  },
+  {
+    "question_id": "88",
+    "question": "Why copper wires?",
+    "reference_answer": "Excellent electrical conductor"
+  },
+  {
+    "question_id": "89",
+    "question": "What are natural resources?",
+    "reference_answer": "Materials from nature used by humans"
+  },
+  {
+    "question_id": "90",
+    "question": "What is the Milky Way?",
+    "reference_answer": "Our home galaxy, a barred spiral containing ~100 billion stars."
+  },
+  {
+    "question_id": "91",
+    "question": "What is energy?",
+    "reference_answer": "Energy is the ability to do work."
+  },
+  {
+    "question_id": "92",
+    "question": "What is photosynthesis?",
+    "reference_answer": "Photosynthesis is the process in which plants use sunlight, carbon dioxide, and water to make oxygen and sugar."
+  },
+  {
+    "question_id": "93",
+    "question": "What is transpiration?",
+    "reference_answer": "Evaporation of water through pores in the leaves."
+  },
+  {
+    "question_id": "94",
+    "question": "What is weathering?",
+    "reference_answer": "Weathering is the process that breaks down rocks into smaller pieces without moving them."
+  },
+  {
+    "question_id": "95",
+    "question": "What is weather?",
+    "reference_answer": "Weather is the condition of the atmosphere at a particular time and place."
+  },
+  {
+    "question_id": "96",
+    "question": "What causes wind?",
+    "reference_answer": "Wind is caused by differences in air pressure."
+  },
+  {
+    "question_id": "97",
+    "question": "What is humidity?",
+    "reference_answer": "Humidity is the amount of water vapor in the air."
+  },
+  {
+    "question_id": "98",
+    "question": "What is fog?",
+    "reference_answer": "Fog is a thick cloud of tiny water droplets near the ground."
+  },
+  {
+    "question_id": "99",
+    "question": "What is climate?",
+    "reference_answer": "Climate is the average weather in a place over a long period."
+  },
+  {
+    "question_id": "100",
+    "question": "What is a tornado?",
+    "reference_answer": "A tornado is a rotating column of air extending from a thunderstorm to the ground."
+  },
+  {
+    "question_id": "101",
+    "question": "What is a hurricane?",
+    "reference_answer": "A hurricane is a large storm with strong winds and heavy rain."
+  },
+  {
+    "question_id": "102",
+    "question": "What is a drought?",
+    "reference_answer": "A drought is a long period of little or no rainfall."
+  },
+  {
+    "question_id": "103",
+    "question": "What is a blizzard?",
+    "reference_answer": "A blizzard is a severe snowstorm with strong winds and low visibility."
+  },
+  {
+    "question_id": "104",
+    "question": "What is sleet?",
+    "reference_answer": "Sleet is frozen raindrops."
+  },
+  {
+    "question_id": "105",
+    "question": "What is a cold front?",
+    "reference_answer": "A cold front is when cold air pushes warm air upwards."
+  },
+  {
+    "question_id": "106",
+    "question": "What is a warm front?",
+    "reference_answer": "A warm front is when warm air moves over cold air."
+  },
+  {
+    "question_id": "107",
+    "question": "What is germination?",
+    "reference_answer": "Germination is when a seed starts to grow into a plant."
+  },
+  {
+    "question_id": "108",
+    "question": "What is metamorphosis?",
+    "reference_answer": "Metamorphosis is a major change in the life cycle of some animals."
+  },
+  {
+    "question_id": "109",
+    "question": "What is a food chain?",
+    "reference_answer": "A food chain shows how energy moves from one organism to another."
+  },
+  {
+    "question_id": "110",
+    "question": "What is an ecosystem?",
+    "reference_answer": "An ecosystem is a community of living and non-living things."
+  },
+  {
+    "question_id": "111",
+    "question": "Which planet is closest to the Sun?",
+    "reference_answer": "Mercury."
+  },
+  {
+    "question_id": "112",
+    "question": "What is a moon?",
+    "reference_answer": "A natural satellite that orbits a planet."
+  },
+  {
+    "question_id": "113",
+    "question": "Name one harmful effect of microorganisms.",
+    "reference_answer": "They cause diseases like cholera and typhoid."
+  },
+  {
+    "question_id": "114",
+    "question": "What is fermentation?",
+    "reference_answer": "A process where microorganisms convert sugars into alcohol or acids."
+  },
+  {
+    "question_id": "115",
+    "question": "What is a meridian?",
+    "reference_answer": "A circle passing through zenith, nadir, and celestial poles."
+  },
+  {
+    "question_id": "116",
+    "question": "What is the celestial equator?",
+    "reference_answer": "Earth's equator projected onto the celestial sphere."
+  },
+  {
+    "question_id": "117",
+    "question": "What is the ecliptic?",
+    "reference_answer": "The Sun's apparent yearly path across the celestial sphere."
+  },
+  {
+    "question_id": "118",
+    "question": "What is a constellation?",
+    "reference_answer": "A group of stars forming a recognizable pattern, often named after myths."
+  },
+  {
+    "question_id": "119",
+    "question": "Name 3 constellations.",
+    "reference_answer": "Orion, Ursa Major, Scorpius."
+  },
+  {
+    "question_id": "120",
+    "question": "Why do constellations seem to move?",
+    "reference_answer": "Earth's rotation and orbit around the Sun."
+  },
+  {
+    "question_id": "121",
+    "question": "What is the zodiac?",
+    "reference_answer": "12 constellations along the ecliptic, used in astrology."
+  },
+  {
+    "question_id": "122",
+    "question": "How did ancient people use constellations?",
+    "reference_answer": "For navigation, calendars, and storytelling."
+  },
+  {
+    "question_id": "123",
+    "question": "What tools are used for sky watching?",
+    "reference_answer": "Telescopes, binoculars, star maps."
+  },
+  {
+    "question_id": "124",
+    "question": "Why avoid city lights for stargazing?",
+    "reference_answer": "Light pollution hides faint stars."
+  },
+  {
+    "question_id": "125",
+    "question": "Do planets/stars affect human life?",
+    "reference_answer": "No, astrology isn't science; stars are too distant to impact us physically."
+  },
+  {
+    "question_id": "126",
+    "question": "What is Polaris?",
+    "reference_answer": "The North Star, aligned with Earth's North Pole."
+  },
+  {
+    "question_id": "127",
+    "question": "What is a red giant?",
+    "reference_answer": "An old, expanded star cooling down (e.g., Betelgeuse)."
+  },
+  {
+    "question_id": "128",
+    "question": "What is a white dwarf?",
+    "reference_answer": "A dead star's hot, dense core."
+  },
+  {
+    "question_id": "129",
+    "question": "What is a neutron star?",
+    "reference_answer": "A super-dense remnant of a supernova."
+  },
+  {
+    "question_id": "130",
+    "question": "How is a star's color related to temperature?",
+    "reference_answer": "Blue = hottest; Red = coolest."
+  },
+  {
+    "question_id": "131",
+    "question": "What is a binary star?",
+    "reference_answer": "Two stars orbiting each other."
+  },
+  {
+    "question_id": "132",
+    "question": "What is a light-year?",
+    "reference_answer": "Distance light travels in a year (~9.46 trillion km)."
+  },
+  {
+    "question_id": "133",
+    "question": "Why is the Sun a star?",
+    "reference_answer": "It's a medium-sized, main-sequence star."
+  },
+  {
+    "question_id": "134",
+    "question": "What is a pulsar?",
+    "reference_answer": "A rotating neutron star that emits beams of radiation."
+  },
+  {
+    "question_id": "135",
+    "question": "Why are some stars brighter than others?",
+    "reference_answer": "Due to size, temperature, and distance from Earth."
+  },
+  {
+    "question_id": "136",
+    "question": "How do scientists study distant stars?",
+    "reference_answer": "Using telescopes, spectroscopy, and space probes."
+  },
+  {
+    "question_id": "137",
+    "question": "What is a star cluster?",
+    "reference_answer": "A group of stars held together by gravity."
+  },
+  {
+    "question_id": "138",
+    "question": "What is an open cluster?",
+    "reference_answer": "A loosely bound group of young stars."
+  },
+  {
+    "question_id": "139",
+    "question": "What is a globular cluster?",
+    "reference_answer": "A tight, spherical group of old stars."
+  },
+  {
+    "question_id": "140",
+    "question": "What is cosmic dust?",
+    "reference_answer": "Tiny particles in space made of silicates, carbon, and ice."
+  },
+  {
+    "question_id": "141",
+    "question": "What are exoplanets?",
+    "reference_answer": "Planets outside our solar system orbiting other stars."
+  },
+  {
+    "question_id": "142",
+    "question": "How do we detect exoplanets?",
+    "reference_answer": "Using transit method, radial velocity, and direct imaging."
+  },
+  {
+    "question_id": "143",
+    "question": "What is the Hubble Space Telescope?",
+    "reference_answer": "A telescope in orbit that captures clear space images."
+  },
+  {
+    "question_id": "144",
+    "question": "Why is the night sky dark?",
+    "reference_answer": "Because the universe is expanding and light hasn't reached us from all directions."
+  },
+  {
+    "question_id": "145",
+    "question": "What causes a shooting star?",
+    "reference_answer": "A meteoroid burning in Earth's atmosphere."
+  },
+  {
+    "question_id": "146",
+    "question": "What is a meteorite?",
+    "reference_answer": "A meteoroid that survives and lands on Earth."
+  },
+  {
+    "question_id": "147",
+    "question": "What is the difference between a star and a planet?",
+    "reference_answer": "Stars produce light; planets reflect it and orbit stars."
+  },
+  {
+    "question_id": "148",
+    "question": "Why do stars seem to move across the sky?",
+    "reference_answer": "Due to Earth's rotation."
+  },
+  {
+    "question_id": "149",
+    "question": "What happens when a star dies?",
+    "reference_answer": "It can become a white dwarf, neutron star, or black hole."
+  }
+]

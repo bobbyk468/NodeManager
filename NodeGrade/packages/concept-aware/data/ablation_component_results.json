@@ -1,0 +1,43 @@
+{
+  "version": "v2_fixed",
+  "n": 120,
+  "systems": {
+    "C5_fix": {
+      "mae": 0.22291666666666668,
+      "r": 0.9820314964001232,
+      "bias": -0.12291666666666666
+    },
+    "C_LLM": {
+      "mae": 0.33,
+      "r": 0.9709397293007704,
+      "bias": 0.18833333333333335
+    },
+    "concepts_only": {
+      "mae": 0.21666666666666667,
+      "r": 0.9830530470535557,
+      "bias": -0.0875
+    },
+    "taxonomy_only": {
+      "mae": 0.22916666666666666,
+      "r": 0.9818764151766374,
+      "bias": -0.1125
+    }
+  },
+  "statistics": {
+    "concepts_vs_cllm_wilcoxon_p": 0.00014579627351010848,
+    "taxonomy_vs_cllm_wilcoxon_p": 0.0007700502610119277,
+    "concepts_vs_taxonomy_wilcoxon_p": 0.08985624743949988,
+    "concepts_beats_cllm_significant": true,
+    "taxonomy_beats_cllm_significant": true,
+    "concepts_vs_taxonomy_significant": false
+  },
+  "solo4_breakdown": {
+    "n": 34,
+    "avg_human": 4.264705882352941,
+    "mae_cllm": 0.3411764705882353,
+    "mae_concepts": 0.1323529411764706,
+    "mae_taxonomy": 0.1323529411764706,
+    "mae_c5fix": 0.10294117647058823
+  },
+  "key_finding": "Both KG components independently and significantly outperform C_LLM (p<0.001). Concept coverage is marginally stronger (p=0.09, NS). Full KG (C5_fix) achieves best SOLO=4 performance."
+}

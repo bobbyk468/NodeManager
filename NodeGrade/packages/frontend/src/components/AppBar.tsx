@@ -91,7 +91,7 @@ export const AppBar = (props: AppBarProps) => {
 
   const loadTemplate = (file: string) => {
     setTemplateMenuAnchor(null)
-    fetch(`./templates/${file}`)
+    fetch(`/templates/${file}`)
       .then((res) => res.json())
       .then((data: object) => props.handleLoadTemplate?.(data))
       .catch((err) => console.error('Failed to load template:', err))

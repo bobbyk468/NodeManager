@@ -149,7 +149,7 @@ const getRegistrationEndpoint = async (
     const open_id_registration_endpoint_url =
       registration_endpoint_json.registration_endpoint
 
-    //TODO: check harmfull input
+    //TODO: check harmful input
 
     // visit registration_endpoint with post request to register the tool
     // https://www.imsglobal.org/spec/lti-dr/v1p0#lti-open-id-connect-dynamic-registration-protocol
@@ -165,16 +165,14 @@ const getRegistrationEndpoint = async (
         grant_types: ['client_credentials', 'implicit'],
         response_types: ['id_token'],
         client_name: 'Task Assessment',
-        'client_name#de': 'Aufgabenbewertung',
         redirect_uris: [
-          'http://localhost:5173/ws/editor/lol/1/2',
+          'http://localhost:5173/lti/launch',
           'http://localhost:5000',
           'http://localhost:5000/v1/lti/register',
           'http://localhost:5173',
           'http://localhost:5173/lti/register'
         ],
         policy_uri: 'http://localhost:5000/policy',
-        'policy_uri#de': 'http://localhost:5000/policy',
         initiate_login_uri: 'http://localhost:5173/lti/login',
         jwks_uri: 'http://localhost:5000/.well-known/jwks',
         token_endpoint_auth_method: 'private_key_jwt',
@@ -185,18 +183,14 @@ const getRegistrationEndpoint = async (
           domain: 'http://localhost:5173',
           description: 'Automated short answer assessment',
           target_link_uri: 'http://localhost:5173/lti/login', //TODO: set to frontend url
-          claims: ['iss', 'sub', 'name', 'given_name'], // 	An array of claims indicating which information this tool desire to be included in each idtoken
+          claims: ['iss', 'sub', 'name', 'given_name'], // Claims indicating which user information this tool requests in each id_token
           messages: [
             {
               type: 'LtiDeepLinkingRequest',
               target_link_uri: 'http://localhost:5173/lti/deeplink',
               label:
                 'Select the graph template for this exercise. Also enter the question for the exercise.',
-              'label#de':
-                'Wählen Sie die Graphenvorlage für diese Übung aus. Geben Sie zudem die Frage für die Übung ein.',
-              custom_parameters: {
-                botanical_set: '12943,49023,50013'
-              },
+              custom_parameters: {},
               placements: ['ContentArea'],
               supported_types: ['ltiResourceLink']
             }

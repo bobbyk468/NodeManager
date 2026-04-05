@@ -1,0 +1,212 @@
+{
+  "last_node_id": 6,
+  "last_link_id": 5,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "input/question",
+      "pos": [60, 200],
+      "size": [200, 80],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "string",
+          "type": "string",
+          "links": [2],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "value": "Explain the concept of a Stack data structure, its core operations, implementations, trade-offs, and applications."
+      },
+      "color": "#333",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 2,
+      "type": "input/answer",
+      "pos": [60, 340],
+      "size": [200, 80],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "string",
+          "type": "string",
+          "links": [1],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "value": ""
+      },
+      "color": "#333",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 3,
+      "type": "concept-aware/conceptgrade",
+      "pos": [360, 250],
+      "size": [220, 180],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "student answer",
+          "type": "string",
+          "link": 1,
+          "slot_index": 0
+        },
+        {
+          "name": "question",
+          "type": "string",
+          "link": 2,
+          "slot_index": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "overall score",
+          "type": "string",
+          "links": [3],
+          "slot_index": 0
+        },
+        {
+          "name": "depth category",
+          "type": "string",
+          "links": [4],
+          "slot_index": 1
+        },
+        {
+          "name": "blooms label",
+          "type": "string",
+          "links": [],
+          "slot_index": 2
+        },
+        {
+          "name": "solo label",
+          "type": "string",
+          "links": [],
+          "slot_index": 3
+        },
+        {
+          "name": "num misconceptions",
+          "type": "string",
+          "links": [],
+          "slot_index": 4
+        },
+        {
+          "name": "full report (JSON)",
+          "type": "string",
+          "links": [5],
+          "slot_index": 5
+        }
+      ],
+      "properties": {
+        "overall_score": 0,
+        "depth_category": "surface",
+        "blooms_label": "",
+        "solo_label": ""
+      },
+      "color": "#333"
+    },
+    {
+      "id": 4,
+      "type": "output/output",
+      "pos": [680, 200],
+      "size": [210, 82],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "link": 3,
+          "slot_index": 0
+        }
+      ],
+      "outputs": [],
+      "title": "score output",
+      "properties": {
+        "uniqueId": "-1",
+        "type": "score",
+        "label": "overall score",
+        "value": 0
+      },
+      "widgets_values": ["overall score", "score"],
+      "color": "#333"
+    },
+    {
+      "id": 5,
+      "type": "output/output",
+      "pos": [680, 340],
+      "size": [210, 82],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "link": 4,
+          "slot_index": 0
+        }
+      ],
+      "outputs": [],
+      "title": "depth output",
+      "properties": {
+        "uniqueId": "-2",
+        "type": "text",
+        "label": "depth category",
+        "value": ""
+      },
+      "widgets_values": ["depth category", "text"],
+      "color": "#333"
+    },
+    {
+      "id": 6,
+      "type": "output/output",
+      "pos": [680, 480],
+      "size": [210, 82],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "link": 5,
+          "slot_index": 0
+        }
+      ],
+      "outputs": [],
+      "title": "feedback output",
+      "properties": {
+        "uniqueId": "-3",
+        "type": "feedback",
+        "label": "feedback",
+        "value": ""
+      },
+      "widgets_values": ["feedback", "feedback"],
+      "color": "#333"
+    }
+  ],
+  "links": [
+    [1, 2, 0, 3, 0, "string"],
+    [2, 1, 0, 3, 1, "string"],
+    [3, 3, 0, 4, 0, "string"],
+    [4, 3, 1, 5, 0, "string"],
+    [5, 3, 5, 6, 0, "string"]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+}

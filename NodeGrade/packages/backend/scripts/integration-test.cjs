@@ -55,13 +55,13 @@ function buildLlmGraphJson() {
   pm.properties.value = { role: 'user', content: '' };
 
   const llm = new LLMNode();
-  llm.properties.model = 'groq/llama-3.1-8b-instant';
+  llm.properties.model = 'gemini/gemini-2.5-flash';
   llm.properties.max_tokens = 256;
   llm.properties.temperature = 0.3;
   llm.properties.top_p = 0.9;
-  llm.properties.available_models = ['groq/llama-3.1-8b-instant'];
+  llm.properties.available_models = ['gemini/gemini-2.5-flash'];
   llm.properties.available_model_sources = {
-    'groq/llama-3.1-8b-instant': 'local',
+    'gemini/gemini-2.5-flash': 'local',
   };
 
   const out = new OutputNode();

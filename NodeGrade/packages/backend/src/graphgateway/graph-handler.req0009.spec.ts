@@ -24,11 +24,11 @@ jest.mock('src/core/Graph', () => ({
 
 /**
  * Requirement-focused tests for HASKI-REQ-0009
- * "Unmittelbares Feedback zu Aufgaben"
+ * "Immediate feedback on tasks"
  *
  * These tests assert that the graph execution pipeline returns
  * immediate, comprehensible feedback (score + text) for the
- * supported task types (quiz, freitext – keyword & LLM, code, diagram)
+ * supported task types (quiz, free-text – keyword & LLM, code, diagram)
  * and reports the computed duration in xAPI statements.
  */
 describe('[HASKI-REQ-0009] GraphHandlerService', () => {
@@ -58,7 +58,7 @@ describe('[HASKI-REQ-0009] GraphHandlerService', () => {
           provide: GraphService,
           useValue: {
             saveGraph: jest.fn(),
-            getGraph: jest.fn(),
+            getGraph: jest.fn().mockResolvedValue({ graph: stringifiedMockGraph }),
           },
         },
         {
@@ -80,7 +80,7 @@ describe('[HASKI-REQ-0009] GraphHandlerService', () => {
       handshake: {
         auth: {
           ltiCookie: {
-            lis_person_name_full: 'Max Mustermann',
+            lis_person_name_full: 'John Doe',
             user_id: 'student-42',
             isEditor: false,
           },
@@ -100,7 +100,7 @@ describe('[HASKI-REQ-0009] GraphHandlerService', () => {
     tool_consumer_info_product_family_code: 'moodle',
     custom_activityname: 'demo-activity',
     resource_link_title: 'Demo Task',
-    launch_presentation_locale: 'de-DE',
+    launch_presentation_locale: 'en-US',
     context_id: 'course-123',
     context_title: 'SE Lab',
     context_type: 'course',
@@ -119,24 +119,24 @@ describe('[HASKI-REQ-0009] GraphHandlerService', () => {
     {
       type: 'quiz',
       answer: 'A',
-      feedback: 'Richtig: Option A ist korrekt.',
+      feedback: 'Correct: option A is right.',
       score: 100,
       durationMs: 3000,
       maxSeconds: 10,
     },
     {
-      type: 'freitext-keyword',
-      answer: 'Verwendet die Schlüsselbegriffe Architektur und Skalierbarkeit.',
+      type: 'free-text-keyword',
+      answer: 'Uses the key terms architecture and scalability.',
       feedback:
-        'Keywords erkannt: Architektur, Skalierbarkeit; fehlend: Latenz.',
+        'Keywords found: architecture, scalability; missing: latency.',
       score: 85,
       durationMs: 4500,
       maxSeconds: 10,
     },
     {
-      type: 'freitext-llm',
-      answer: 'Eine längere Argumentation zur Entwurfsmusterwahl.',
-      feedback: 'LLM-Einschätzung: gute Struktur, bitte Beispiele ergänzen.',
+      type: 'free-text-llm',
+      answer: 'A longer argument about choosing design patterns.',
+      feedback: 'LLM assessment: good structure; please add examples.',
       score: 92,
       durationMs: 45000,
       maxSeconds: 60,
@@ -144,15 +144,15 @@ describe('[HASKI-REQ-0009] GraphHandlerService', () => {
     {
       type: 'code',
       answer: 'function add(a,b){return a+b}',
-      feedback: 'Alle Unit-Tests bestanden, Stil prüfen (lint).',
+      feedback: 'All unit tests passed; check style (lint).',
       score: 98,
       durationMs: 5200,
       maxSeconds: 10,
     },
     {
       type: 'diagram',
-      answer: 'Klassendiagramm mit Controller, Service, Repository.',
-      feedback: 'Struktur korrekt, fehlende Beziehung Service -> Repository.',
+      answer: 'Class diagram with controller, service, repository.',
+      feedback: 'Structure correct; missing relationship service -> repository.',
       score: 76,
       durationMs: 6200,
       maxSeconds: 10,
@@ -224,6 +224,7 @@ describe('[HASKI-REQ-0009] GraphHandlerService', () => {
       const payload = {
         graph: stringifiedMockGraph,
         answer: scenario.answer,
+        path: '/task/run',
         xapi: baseXapiPayload,
       };
 
@@ -284,6 +285,7 @@ describe('[HASKI-REQ-0009] GraphHandlerService', () => {
     await service.handleRunGraph(mockSocket, {
       graph: stringifiedMockGraph,
       answer: 'broken graph',
+      path: '/task/run',
       xapi: baseXapiPayload,
     });
 

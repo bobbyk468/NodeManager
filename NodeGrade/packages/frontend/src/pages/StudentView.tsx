@@ -45,12 +45,15 @@ export const StudentView = () => {
 
   const memoizedOutputs = useMemo(() => outputs, [outputs])
 
+  const questionOverride = searchParams.get('question') || undefined
+
   // Handle form submission
   const handleSubmit = useCallback(
     (answer: string) => {
       try {
         runGraph({
           answer,
+          ...(questionOverride && { question: questionOverride }),
           xapi: {
             custom_activityname: searchParams.get('custom_activityname') || '',
             resource_link_title: searchParams.get('resource_link_title') || '',
@@ -106,11 +109,12 @@ export const StudentView = () => {
           padding={2}
         >
           <TaskView
-            question={question}
+            question={questionOverride ?? question}
             questionImage={image}
             onSubmit={handleSubmit}
             outputs={memoizedOutputs}
             maxInputChars={maxInputChars}
+            processingPercentage={processingPercentage}
           />
         </Box>
       </Container>

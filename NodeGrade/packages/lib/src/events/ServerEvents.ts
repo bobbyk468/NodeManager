@@ -12,7 +12,7 @@ export type SerializedGraph = serializedLGraph<
   SerializedLGraphGroup
 >
 
-export type OutputType = 'text' | 'score' | 'classifications'
+export type OutputType = 'text' | 'score' | 'classifications' | 'feedback'
 
 // type that matches ServerEventName with payload
 export type ServerEventPayload = {
@@ -51,6 +51,7 @@ export type ClientEventPayload = {
   // runs a graph
   runGraph: {
     answer: string
+    question?: string // Optional: override the question node value at runtime (e.g. from URL query param)
     path: string // The ID/path of the graph to run securely from the DB
     graph?: string // Deprecated: SerializedGraph (kept for type compatibility but ignored by backend for security)
     xapi?: {

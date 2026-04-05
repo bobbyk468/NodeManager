@@ -198,7 +198,14 @@ export class KnowledgeGraphCompareNode extends LGraphNode {
           }
         }
         if (!hasAnyRel) {
-          correctRels++ // Plausible but not in expert graph
+          // Relationship not found in expert graph — treat as hallucination/incorrect
+          incorrectRels++
+          misconceptions.push({
+            source, target,
+            student_relation: relType,
+            correct_relation: null,
+            note: `Relationship '${relType}' between '${source}' and '${target}' is not present in the expert knowledge graph`
+          })
         }
       }
     }
@@ -292,7 +299,6 @@ export class KnowledgeGraphCompareNode extends LGraphNode {
     
     if (missingConcepts.length > 0) {
       const names = missingConcepts
-        .slice(0, 3)
         .map(id => expertConcepts[id]?.name || id)
         .join(', ')
       feedbackLines.push(`Missing concepts: ${names}`)

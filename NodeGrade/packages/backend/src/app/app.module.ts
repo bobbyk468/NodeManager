@@ -10,6 +10,7 @@ import { LtiService } from '../lti/lti.service';
 import { XapiService } from '../xapi.service';
 import { HealthController } from '../health/health.controller';
 import { HealthService } from '../health/health.service';
+import { ReportsController } from '../reports/reports.controller';
 
 @Module({
   imports: [GraphModule],
@@ -18,6 +19,7 @@ import { HealthService } from '../health/health.service';
     BenchmarkController,
     LtiController,
     HealthController,
+    ReportsController,
   ],
   providers: [
     GraphService,

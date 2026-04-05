@@ -1,0 +1,91 @@
+version: '3.9'
+
+# NodeGrade — full development stack
+# Usage:
+#   cp .env.docker .env.docker.local   # fill in GEMINI_API_KEY
+#   docker compose --env-file .env.docker.local up --build
+#
+# Services:
+#   postgres  — PostgreSQL 16 database
+#   litellm   — OpenAI-compatible proxy (Gemini 2.5 Flash)
+#   backend   — NestJS API + Socket.IO (port 5001)
+#   frontend  — Vite dev server (port 5173)
+
+services:
+
+  # ── Database ────────────────────────────────────────────────────────────────
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: nodegrade
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-nodegrade}
+      POSTGRES_DB: nodegrade
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U nodegrade"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # ── LiteLLM proxy (Gemini) ──────────────────────────────────────────────────
+  litellm:
+    image: ghcr.io/berriai/litellm:main-stable
+    environment:
+      GEMINI_API_KEY: ${GEMINI_API_KEY}
+    command: >
+      --model gemini/gemini-2.5-flash
+      --port 8000
+      --host 0.0.0.0
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:8000/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 20s
+
+  # ── NestJS Backend ───────────────────────────────────────────────────────────
+  backend:
+    build:
+      context: .
+      dockerfile: packages/backend/Dockerfile.dev
+    environment:
+      DATABASE_URL: postgresql://nodegrade:${POSTGRES_PASSWORD:-nodegrade}@postgres:5432/nodegrade?schema=public
+      MODEL_WORKER_URL: http://litellm:8000
+      PORT: 5001
+      WS_PORT: 5001
+      CORS_ORIGIN: http://localhost:5173
+      FRONTEND_URL: http://localhost:5173
+      GEMINI_API_KEY: ${GEMINI_API_KEY}
+      NODE_ENV: development
+    ports:
+      - "5001:5001"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      litellm:
+        condition: service_healthy
+    volumes:
+      # reports/ shared so test scripts can write and backend can serve them
+      - reports:/app/reports
+
+  # ── Vite Frontend ────────────────────────────────────────────────────────────
+  frontend:
+    build:
+      context: .
+      dockerfile: packages/frontend/Dockerfile.dev
+    environment:
+      VITE_BACKEND_URL: http://localhost:5001
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+
+# ── Volumes ──────────────────────────────────────────────────────────────────
+volumes:
+  pgdata:
+  reports:

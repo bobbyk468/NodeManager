@@ -1,0 +1,20 @@
+% Table 4: KG Component Ablation (v2 — fixed calibration)
+\begin{table}[ht]\centering
+\caption{KG component ablation on Mohler et al.\ (2011) ($n=120$).
+$C_{\text{con}}$: LLM grades student answer using matched KG concepts + chain coverage (SOLO/Bloom's withheld).
+$C_{\text{tax}}$: LLM grades student answer using SOLO cognitive level + Bloom's level (concept lists withheld).
+$C_5^{*}$: full ConceptGrade.
+All three systems receive the full student answer text.
+$\Delta$MAE relative to $C_{\text{LLM}}$. Bold = best. $p$-values: Wilcoxon one-sided vs $C_{\text{LLM}}$.}
+\label{tab:component_ablation}
+\begin{tabular}{@{}llrrrrl@{}}\toprule
+\textbf{ID} & \textbf{System} & \textbf{$r$} & \textbf{MAE} & \textbf{$\Delta$MAE} & \textbf{Bias} & \textbf{$p$ vs $C_{\text{LLM}}$} \\\midrule
+$C_{\text{LLM}}$ & Pure LLM (no KG) & 0.9709 & 0.3300 & -- & $+0.188$ & -- \\
+\midrule
+$C_{\text{con}}$ & Concepts-only (match+chain) & \textbf{0.9831} & \textbf{0.2167} & $-0.1133$ & $-0.088$ & $<0.001$ \\
+$C_{\text{tax}}$ & Taxonomy-only (SOLO+Bloom) & 0.9819 & 0.2292 & $-0.1008$ & $-0.113$ & $<0.001$ \\
+$C_5^{*}$        & \textbf{ConceptGrade} (full KG) & 0.9820 & 0.2229 & $-0.1071$ & $-0.123$ & $<0.01$ \\
+\bottomrule
+\end{tabular}
+\\\small Note: $C_{\text{con}}$ vs $C_{\text{tax}}$ difference is not statistically significant ($p=0.090$).
+\end{table}

@@ -1,0 +1,324 @@
+{
+  "scores": {
+    "480": {
+      "cllm_score": 4.5,
+      "c5fix_score": 4.5
+    },
+    "481": {
+      "cllm_score": 1.5,
+      "c5fix_score": 1.5
+    },
+    "482": {
+      "cllm_score": 4.5,
+      "c5fix_score": 4.5
+    },
+    "483": {
+      "cllm_score": 4.0,
+      "c5fix_score": 4.0
+    },
+    "484": {
+      "cllm_score": 4.5,
+      "c5fix_score": 4.5
+    },
+    "485": {
+      "cllm_score": 3.5,
+      "c5fix_score": 3.5
+    },
+    "486": {
+      "cllm_score": 4.5,
+      "c5fix_score": 4.5
+    },
+    "487": {
+      "cllm_score": 3.5,
+      "c5fix_score": 3.5
+    },
+    "488": {
+      "cllm_score": 1.5,
+      "c5fix_score": 1.5
+    },
+    "489": {
+      "cllm_score": 3.5,
+      "c5fix_score": 3.5
+    },
+    "490": {
+      "cllm_score": 3.0,
+      "c5fix_score": 3.0
+    },
+    "491": {
+      "cllm_score": 4.0,
+      "c5fix_score": 4.0
+    },
+    "492": {
+      "cllm_score": 3.0,
+      "c5fix_score": 3.0
+    },
+    "493": {
+      "cllm_score": 0.0,
+      "c5fix_score": 0.0
+    },
+    "494": {
+      "cllm_score": 5.0,
+      "c5fix_score": 5.0
+    },
+    "495": {
+      "cllm_score": 3.5,
+      "c5fix_score": 3.5
+    },
+    "496": {
+      "cllm_score": 1.0,
+      "c5fix_score": 1.0
+    },
+    "497": {
+      "cllm_score": 4.5,
+      "c5fix_score": 4.5
+    },
+    "498": {
+      "cllm_score": 2.0,
+      "c5fix_score": 2.0
+    },
+    "499": {
+      "cllm_score": 5.0,
+      "c5fix_score": 5.0
+    },
+    "500": {
+      "cllm_score": 2.5,
+      "c5fix_score": 2.5
+    },
+    "501": {
+      "cllm_score": 3.5,
+      "c5fix_score": 3.5
+    },
+    "502": {
+      "cllm_score": 3.0,
+      "c5fix_score": 3.0
+    },
+    "503": {
+      "cllm_score": 2.0,
+      "c5fix_score": 2.0
+    },
+    "504": {
+      "cllm_score": 2.0,
+      "c5fix_score": 2.0
+    },
+    "505": {
+      "cllm_score": 2.5,
+      "c5fix_score": 2.5
+    },
+    "506": {
+      "cllm_score": 2.0,
+      "c5fix_score": 2.0
+    },
+    "507": {
+      "cllm_score": 0.5,
+      "c5fix_score": 0.5
+    },
+    "508": {
+      "cllm_score": 3.0,
+      "c5fix_score": 3.0
+    },
+    "509": {
+      "cllm_score": 2.5,
+      "c5fix_score": 2.5
+    },
+    "510": {
+      "cllm_score": 3.0,
+      "c5fix_score": 3.0
+    },
+    "511": {
+      "cllm_score": 2.0,
+      "c5fix_score": 2.0
+    },
+    "512": {
+      "cllm_score": 4.0,
+      "c5fix_score": 4.0
+    },
+    "513": {
+      "cllm_score": 2.0,
+      "c5fix_score": 2.0
+    },
+    "514": {
+      "cllm_score": 3.5,
+      "c5fix_score": 3.5
+    },
+    "515": {
+      "cllm_score": 1.5,
+      "c5fix_score": 1.5
+    },
+    "516": {
+      "cllm_score": 2.5,
+      "c5fix_score": 2.5
+    },
+    "517": {
+      "cllm_score": 1.0,
+      "c5fix_score": 1.0
+    },
+    "518": {
+      "cllm_score": 1.0,
+      "c5fix_score": 1.0
+    },
+    "519": {
+      "cllm_score": 3.5,
+      "c5fix_score": 3.5
+    },
+    "520": {
+      "cllm_score": 2.0,
+      "c5fix_score": 2.0
+    },
+    "521": {
+      "cllm_score": 2.5,
+      "c5fix_score": 2.5
+    },
+    "522": {
+      "cllm_score": 3.0,
+      "c5fix_score": 3.0
+    },
+    "523": {
+      "cllm_score": 0.0,
+      "c5fix_score": 0.0
+    },
+    "524": {
+      "cllm_score": 3.5,
+      "c5fix_score": 3.5
+    },
+    "525": {
+      "cllm_score": 2.0,
+      "c5fix_score": 2.0
+    },
+    "526": {
+      "cllm_score": 3.5,
+      "c5fix_score": 3.5
+    },
+    "527": {
+      "cllm_score": 2.5,
+      "c5fix_score": 2.5
+    },
+    "528": {
+      "cllm_score": 0.5,
+      "c5fix_score": 0.5
+    },
+    "529": {
+      "cllm_score": 1.5,
+      "c5fix_score": 1.5
+    },
+    "530": {
+      "cllm_score": 2.0,
+      "c5fix_score": 2.0
+    },
+    "531": {
+      "cllm_score": 0.0,
+      "c5fix_score": 0.0
+    },
+    "532": {
+      "cllm_score": 2.0,
+      "c5fix_score": 2.0
+    },
+    "533": {
+      "cllm_score": 3.0,
+      "c5fix_score": 3.0
+    },
+    "534": {
+      "cllm_score": 1.0,
+      "c5fix_score": 1.0
+    },
+    "535": {
+      "cllm_score": 2.5,
+      "c5fix_score": 2.5
+    },
+    "536": {
+      "cllm_score": 1.5,
+      "c5fix_score": 1.5
+    },
+    "537": {
+      "cllm_score": 3.0,
+      "c5fix_score": 3.0
+    },
+    "538": {
+      "cllm_score": 2.0,
+      "c5fix_score": 2.0
+    },
+    "539": {
+      "cllm_score": 2.5,
+      "c5fix_score": 2.5
+    },
+    "540": {
+      "cllm_score": 3.0,
+      "c5fix_score": 3.0
+    },
+    "541": {
+      "cllm_score": 1.0,
+      "c5fix_score": 1.0
+    },
+    "542": {
+      "cllm_score": 0.0,
+      "c5fix_score": 0.0
+    },
+    "543": {
+      "cllm_score": 0.5,
+      "c5fix_score": 0.5
+    },
+    "544": {
+      "cllm_score": 1.0,
+      "c5fix_score": 1.0
+    },
+    "545": {
+      "cllm_score": 1.5,
+      "c5fix_score": 1.5
+    },
+    "546": {
+      "cllm_score": 0.5,
+      "c5fix_score": 0.5
+    },
+    "547": {
+      "cllm_score": 2.0,
+      "c5fix_score": 2.0
+    },
+    "548": {
+      "cllm_score": 0.5,
+      "c5fix_score": 0.5
+    },
+    "549": {
+      "cllm_score": 0.5,
+      "c5fix_score": 0.5
+    },
+    "550": {
+      "cllm_score": 2.5,
+      "c5fix_score": 2.5
+    },
+    "551": {
+      "cllm_score": 0.0,
+      "c5fix_score": 0.0
+    },
+    "552": {
+      "cllm_score": 1.5,
+      "c5fix_score": 1.5
+    },
+    "553": {
+      "cllm_score": 0.5,
+      "c5fix_score": 0.5
+    },
+    "554": {
+      "cllm_score": 2.0,
+      "c5fix_score": 2.0
+    },
+    "555": {
+      "cllm_score": 0.0,
+      "c5fix_score": 0.0
+    },
+    "556": {
+      "cllm_score": 1.0,
+      "c5fix_score": 1.0
+    },
+    "557": {
+      "cllm_score": 2.0,
+      "c5fix_score": 2.0
+    },
+    "558": {
+      "cllm_score": 2.0,
+      "c5fix_score": 2.0
+    },
+    "559": {
+      "cllm_score": 1.5,
+      "c5fix_score": 1.5
+    }
+  }
+}
