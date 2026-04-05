@@ -134,7 +134,7 @@ packages/concept-aware/
 
 ```
 File: packages/backend/.env
-GEMINI_API_KEY="AIzaSyAZ17Jqc7MFAIdPjMFls-iSZqvsc0QMhQo"
+GEMINI_API_KEY="<set in packages/backend/.env — never commit real keys>"
 ```
 
 - **Model**: `gemini-2.5-flash` (billing enabled)
@@ -315,10 +315,14 @@ This will run the 3-extension ablation using LLM-based SOLO/Bloom classification
 ```bash
 cd /Users/brahmajikatragadda/Desktop/PHD/NodeGrade/NodeManager/NodeGrade/packages/concept-aware
 
-# Step 1: Verify API key works
+# Step 1: Verify API key works (export GEMINI_API_KEY first, or load from backend .env)
 python3 -c "
+import os
 from google import genai
-client = genai.Client(api_key='AIzaSyAZ17Jqc7MFAIdPjMFls-iSZqvsc0QMhQo')
+key = os.environ.get('GEMINI_API_KEY')
+if not key:
+    raise SystemExit('Set GEMINI_API_KEY in the environment')
+client = genai.Client(api_key=key)
 r = client.models.generate_content(model='gemini-2.5-flash', contents='Say OK')
 print(r.text)
 "
