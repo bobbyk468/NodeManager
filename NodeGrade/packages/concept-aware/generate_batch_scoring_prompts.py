@@ -282,6 +282,70 @@ Grade all {len(batch)} samples. {increment_note}"""
     return header + body + footer
 
 
+def build_c5fix_coverage_prompt(batch: list[dict], features: dict) -> str:
+    """C5_fix variant using coverage-ratio framing instead of concept lists.
+
+    Instead of listing detected concept names (which inflates scores via keyword
+    presence), this variant shows only the numeric coverage ratio and emphasises
+    that a concept mention is only credited when the student explains it CORRECTLY.
+    Designed for short-answer datasets (Kaggle ASAG) where concept-name leakage
+    causes systematic over-scoring in the standard c5fix prompt.
+    """
+    system = f"""{SCORING_GUIDE}
+
+You are an expert grader. Some samples include a KG COVERAGE SIGNAL — an automated estimate of how much of the expected conceptual content the student's answer covers. Use this signal as a rough guide only:
+
+- Coverage ≥ 70%: student likely addressed most key ideas; verify this in the answer before scoring high
+- Coverage 30–70%: partial coverage; score based on what is actually correct in the answer
+- Coverage < 30%: few key ideas addressed; likely scores 0–2
+
+IMPORTANT: Coverage is keyword-based and can be wrong. A student who MENTIONS a concept but explains it INCORRECTLY should NOT receive credit for it. Always verify against the reference answer.
+
+When NO KG COVERAGE SIGNAL is shown, grade using only the question, reference answer, and student answer.
+
+Return a JSON object:
+{{
+  "scores": {{
+    "<id>": X.X,
+    ...
+  }}
+}}
+
+Grade all {len(batch)} samples. Use 0.25 increments."""
+
+    parts = []
+    for r in batch:
+        sid = str(r["id"])
+        feat = features.get(sid, {})
+        use_kg = feat.get("use_kg", True)
+        cov = feat.get("coverage_ratio", 0.0)
+
+        if not use_kg:
+            parts.append(
+                f"--- SAMPLE ID: {sid} ---\n"
+                f"QUESTION: {r['question']}\n\n"
+                f"REFERENCE ANSWER:\n{r['reference_answer']}\n\n"
+                f"STUDENT ANSWER:\n{r['student_answer']}"
+            )
+            continue
+
+        cov_pct = int(round(cov * 100))
+        cov_label = "High" if cov >= 0.7 else ("Medium" if cov >= 0.3 else "Low")
+
+        parts.append(
+            f"--- SAMPLE ID: {sid} ---\n"
+            f"QUESTION: {r['question']}\n\n"
+            f"REFERENCE ANSWER:\n{r['reference_answer']}\n\n"
+            f"KG COVERAGE SIGNAL: {cov_pct}% ({cov_label}) — verify correctness in answer\n\n"
+            f"STUDENT ANSWER:\n{r['student_answer']}"
+        )
+
+    header = f"{system}\n\n{'='*70}\n\n"
+    body = "\n\n".join(parts)
+    footer = f"\n\n{'='*70}\nGrade all {len(batch)} samples. Coverage is a guide — always verify against the reference. Return only the JSON object."
+    return header + body + footer
+
+
 def run(dataset: str, mode: str = "split") -> None:
     """Generate batch prompts. mode='split' generates separate cllm/c5fix batches (recommended).
     mode='dual' generates combined dual-score batches (legacy, causes anchoring).
@@ -355,7 +419,11 @@ def run(dataset: str, mode: str = "split") -> None:
             with open(cllm_path, "w") as f:
                 f.write(cllm_prompt)
 
-            c5fix_prompt = build_c5fix_prompt(batch, features, scoring_guide=scoring_guide)
+            # Kaggle ASAG: use coverage-ratio framing to prevent concept-name inflation
+            if dataset == "kaggle_asag":
+                c5fix_prompt = build_c5fix_coverage_prompt(batch, features)
+            else:
+                c5fix_prompt = build_c5fix_prompt(batch, features, scoring_guide=scoring_guide)
             c5fix_path = os.path.join(OUT_DIR, f"{dataset}_c5fix_batch_{b+1:02d}.txt")
             with open(c5fix_path, "w") as f:
                 f.write(c5fix_prompt)
