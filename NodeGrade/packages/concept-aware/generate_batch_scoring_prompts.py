@@ -342,8 +342,8 @@ def run(dataset: str, mode: str = "split") -> None:
     n_batches = (len(records) + BATCH_SIZE - 1) // BATCH_SIZE
     total_chars = 0
 
-    # Use strict scoring guide for Kaggle ASAG (integer 0-5 scale, elementary answers)
-    scoring_guide = SCORING_GUIDE_STRICT if dataset == "kaggle_asag" else None
+    # Standard scoring guide for all datasets
+    scoring_guide = None
 
     if mode == "split":
         # Generate separate cllm and c5fix batch files (prevents anchoring)
