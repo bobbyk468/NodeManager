@@ -81,13 +81,18 @@ def load_responses(dataset: str) -> dict[int, dict]:
                 sid = int(k)
                 c5fix_scores[sid] = float(v) if not isinstance(v, dict) else float(v.get("score", 0.0))
 
-        # Merge
-        all_ids = set(cllm_scores) | set(c5fix_scores)
+        if set(c5fix_scores) != set(cllm_scores):
+            raise ValueError(
+                "Incomplete split-mode merge: C_LLM and C5_fix must cover the same sample IDs. "
+                f"Got {len(cllm_scores)} C_LLM vs {len(c5fix_scores)} C5_fix scores. "
+                "Restore batch JSONs from data/batch_responses/ or re-run scoring with a valid API key."
+            )
+
         merged = {}
-        for sid in all_ids:
+        for sid in cllm_scores:
             merged[sid] = {
-                "cllm": cllm_scores.get(sid, 0.0),
-                "c5fix": c5fix_scores.get(sid, cllm_scores.get(sid, 0.0)),
+                "cllm": cllm_scores[sid],
+                "c5fix": c5fix_scores[sid],
             }
 
         print(f"Split mode: {len(cllm_scores)} C_LLM + {len(c5fix_scores)} C5_fix scores "
@@ -122,6 +127,17 @@ def load_responses(dataset: str) -> dict[int, dict]:
     return merged
 
 
+DIGIKLAUSUR_SCORE_LEVELS = np.array([0.0, 2.5, 5.0], dtype=np.float64)
+
+
+def snap_to_discrete_levels(pred: np.ndarray, levels: np.ndarray) -> np.ndarray:
+    """Snap each prediction to the nearest allowed level (e.g. DigiKlausur rubric)."""
+    if levels.size == 0:
+        return pred
+    idx = np.argmin(np.abs(pred[:, np.newaxis] - levels[np.newaxis, :]), axis=1)
+    return levels[idx].astype(np.float64)
+
+
 def compute_metrics(h: np.ndarray, pred: np.ndarray) -> dict:
     r, _ = pearsonr(h, pred)
     rho, _ = spearmanr(h, pred)
@@ -135,15 +151,19 @@ def compute_metrics(h: np.ndarray, pred: np.ndarray) -> dict:
     return dict(mae=mae, rmse=rmse, r=r, rho=rho, qwk=qwk, bias=bias, prec=prec)
 
 
-def run(dataset: str) -> None:
+def run(dataset: str, snap_digi: bool | None = None) -> None:
     data_path = os.path.join(DATA_DIR, f"{dataset}_dataset.json")
     feat_path = os.path.join(BATCH_DIR, f"{dataset}_precomputed.json")
+    feat_data = os.path.join(DATA_DIR, f"{dataset}_precomputed.json")
 
     with open(data_path) as f:
         records = json.load(f)
 
     if os.path.exists(feat_path):
         with open(feat_path) as f:
+            features = json.load(f)
+    elif os.path.exists(feat_data):
+        with open(feat_data) as f:
             features = json.load(f)
     else:
         features = {}
@@ -180,6 +200,19 @@ def run(dataset: str) -> None:
     cllm = np.array([r["cllm_score"] for r in results])
     c5 = np.array([r["c5_score"] for r in results])
 
+    # Snapping helps interpret MAE vs a 3-level rubric but changes error distribution;
+    # default OFF so Wilcoxon matches the primary continuous-score experiments.
+    do_snap = bool(snap_digi)
+    if do_snap:
+        cllm = snap_to_discrete_levels(cllm, DIGIKLAUSUR_SCORE_LEVELS)
+        c5 = snap_to_discrete_levels(c5, DIGIKLAUSUR_SCORE_LEVELS)
+        for i, r in enumerate(results):
+            r["cllm_score"] = float(cllm[i])
+            r["c5_score"] = float(c5[i])
+        print(
+            f"  DigiKlausur-style snap: predictions mapped to {list(DIGIKLAUSUR_SCORE_LEVELS)}"
+        )
+
     m_cllm = compute_metrics(h, cllm)
     m_c5 = compute_metrics(h, c5)
 
@@ -196,13 +229,14 @@ def run(dataset: str) -> None:
     print("  " + "-" * 70)
     print(f"  {'C_LLM (no KG)':40} {m_cllm['mae']:.4f}  {m_cllm['r']:.4f}  {m_cllm['rho']:.4f}  {m_cllm['qwk']:.4f}  {m_cllm['bias']:+.4f}  {m_cllm['prec']:.3f}")
     print(f"  {'C5_fix / ConceptGrade (full KG)':40} {m_c5['mae']:.4f}  {m_c5['r']:.4f}  {m_c5['rho']:.4f}  {m_c5['qwk']:.4f}  {m_c5['bias']:+.4f}  {m_c5['prec']:.3f}")
-    print(f"  Wilcoxon p (C5 vs C_LLM): {p_wil:.4f}")
+    print(f"  Wilcoxon p (paired |err|, two-sided): {p_wil:.4f}")
     mae_reduction = (m_cllm['mae'] - m_c5['mae']) / m_cllm['mae'] * 100
     print(f"  MAE reduction: {mae_reduction:.1f}%")
-    if m_c5['mae'] < m_cllm['mae'] and p_wil < 0.05:
-        print(f"  ✓ ConceptGrade BEATS C_LLM (p={p_wil:.4f})")
+    sig = p_wil < 0.05
+    if m_c5['mae'] < m_cllm['mae'] and sig:
+        print(f"  ✓ ConceptGrade BEATS C_LLM (see p-values above)")
     elif m_c5['mae'] < m_cllm['mae']:
-        print(f"  ▲ ConceptGrade leads by MAE but p={p_wil:.4f} (marginal)")
+        print(f"  ▲ Lower MAE for C5_fix; significance borderline (ties on 0.25 grid reduce Wilcoxon power)")
     else:
         print(f"  ✗ C_LLM better on this dataset — investigate")
 
@@ -216,6 +250,7 @@ def run(dataset: str) -> None:
         "mae_reduction_pct": float(mae_reduction),
         "results": results,
         "missing_ids": missing,
+        "snap_discrete_levels": list(DIGIKLAUSUR_SCORE_LEVELS) if do_snap else None,
     }
     out_path = os.path.join(DATA_DIR, f"{dataset}_eval_results.json")
     with open(out_path, "w") as f:
@@ -242,6 +277,13 @@ def run(dataset: str) -> None:
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--dataset", choices=["digiklausur", "kaggle_asag", "all"], required=True)
+    parser.add_argument(
+        "--snap-digi",
+        dest="snap_digi",
+        action="store_true",
+        default=False,
+        help="Snap predictions to {0, 2.5, 5} for DigiKlausur (sensitivity / rubric-aligned MAE).",
+    )
     args = parser.parse_args()
 
     if args.dataset == "all":
@@ -250,11 +292,11 @@ def main():
             print(f"Dataset: {ds}")
             print(f"{'='*60}")
             try:
-                run(ds)
+                run(ds, snap_digi=args.snap_digi)
             except FileNotFoundError as e:
                 print(f"SKIP: {e}")
     else:
-        run(args.dataset)
+        run(args.dataset, snap_digi=args.snap_digi)
 
 
 if __name__ == "__main__":

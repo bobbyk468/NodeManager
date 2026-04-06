@@ -18,6 +18,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import sys
@@ -30,13 +31,15 @@ DATA_DIR = os.path.join(BASE_DIR, "data")
 BATCH_DIR = "/tmp/batch_scoring"
 BACKEND_ENV = os.path.join(BASE_DIR, "..", "backend", ".env")
 
-# Use gemini-2.5-flash — confirmed working with new API key
-KG_MODEL = "gemini-2.5-flash"
-SCORING_MODEL = "gemini-2.5-flash"
+# Override with GEMINI_KG_MODEL / GEMINI_SCORING_MODEL / GEMINI_RATE_SLEEP_SEC if needed.
+KG_MODEL = os.environ.get("GEMINI_KG_MODEL", "gemini-2.5-flash")
+SCORING_MODEL = os.environ.get("GEMINI_SCORING_MODEL", "gemini-2.5-flash")
 
-# Rate limits: gemini-2.5-flash free tier ~10 RPM
-# Use 15s between requests → ~4 RPM (safe margin below 10 RPM)
-RATE_SLEEP = 15
+# Space batch calls to avoid 429; lower only if your quota allows (e.g. 5–8).
+RATE_SLEEP = float(os.environ.get("GEMINI_RATE_SLEEP_SEC", "15"))
+
+# Reuse API responses for identical (model + prompt) — set GEMINI_SCORING_CACHE=0 to disable.
+SCORING_CACHE_DIR = os.path.join(DATA_DIR, "gemini_scoring_cache")
 
 
 def load_api_key() -> str:
@@ -225,8 +228,30 @@ def generate_batch_prompts(dataset: str) -> tuple[list[str], list[str]]:
 
 # ─── STAGE 3: Batch Scoring ───────────────────────────────────────────────────
 
-def score_batch(client, prompt_text: str, batch_name: str) -> dict:
-    """Score one batch. Returns parsed scores dict."""
+def _scoring_cache_path(prompt_text: str) -> str:
+    key = hashlib.sha256(
+        (SCORING_MODEL + "\n" + prompt_text).encode("utf-8")
+    ).hexdigest()
+    os.makedirs(SCORING_CACHE_DIR, exist_ok=True)
+    return os.path.join(SCORING_CACHE_DIR, f"{key}.json")
+
+
+def score_batch(
+    client, prompt_text: str, batch_name: str, *, bypass_cache_read: bool = False
+) -> dict:
+    """Score one batch. Caches read/write by model+prompt unless GEMINI_SCORING_CACHE=0.
+    bypass_cache_read=True skips only the read (e.g. --force still writes cache)."""
+    use_cache = os.environ.get("GEMINI_SCORING_CACHE", "1").strip() not in (
+        "0",
+        "false",
+        "no",
+    )
+    cpath = _scoring_cache_path(prompt_text)
+    if use_cache and not bypass_cache_read and os.path.isfile(cpath):
+        with open(cpath) as f:
+            wrapped = json.load(f)
+        return wrapped["result"]
+
     from google.genai import types
     config = types.GenerateContentConfig(
         temperature=0.1,
@@ -243,7 +268,19 @@ def score_batch(client, prompt_text: str, batch_name: str) -> dict:
             if response.text is None:
                 raise ValueError("Empty response")
             from conceptgrade.llm_client import parse_llm_json
-            return parse_llm_json(response.text)
+            parsed = parse_llm_json(response.text)
+            if use_cache:
+                with open(cpath, "w") as f:
+                    json.dump(
+                        {
+                            "batch_name": batch_name,
+                            "model": SCORING_MODEL,
+                            "result": parsed,
+                        },
+                        f,
+                        indent=2,
+                    )
+            return parsed
         except Exception as e:
             err = str(e)
             if "429" in err or "RESOURCE_EXHAUSTED" in err:
@@ -255,11 +292,20 @@ def score_batch(client, prompt_text: str, batch_name: str) -> dict:
     raise RuntimeError("All retries exhausted")
 
 
-def run_batch_scoring(client, dataset: str, force: bool = False) -> list[str]:
-    """Score all split batch files (cllm + c5fix separately). Returns list of response JSON paths."""
+def run_batch_scoring(
+    client,
+    dataset: str,
+    force: bool = False,
+    only_system: str = "both",
+) -> list[str]:
+    """Score split batch files. only_system: 'both' | 'cllm' | 'c5fix'. Returns response JSON paths."""
     cllm_files = sorted(glob.glob(os.path.join(BATCH_DIR, f"{dataset}_cllm_batch_*.txt")))
     c5fix_files = sorted(glob.glob(os.path.join(BATCH_DIR, f"{dataset}_c5fix_batch_*.txt")))
     all_files = [(f, "cllm") for f in cllm_files] + [(f, "c5fix") for f in c5fix_files]
+    if only_system == "cllm":
+        all_files = [x for x in all_files if x[1] == "cllm"]
+    elif only_system == "c5fix":
+        all_files = [x for x in all_files if x[1] == "c5fix"]
 
     if not all_files:
         print(f"  No split batch files found.")
@@ -296,7 +342,9 @@ def run_batch_scoring(client, dataset: str, force: bool = False) -> list[str]:
             prompt_text = f.read()
 
         try:
-            result = score_batch(client, prompt_text, batch_name)
+            result = score_batch(
+                client, prompt_text, batch_name, bypass_cache_read=force
+            )
             scores = result.get("scores", {})
             n = len(scores)
             print(f"OK ({n} scores)")
@@ -343,13 +391,19 @@ def main():
     parser.add_argument("--skip-kg", action="store_true", help="Skip KG generation (use existing files)")
     parser.add_argument("--skip-scoring", action="store_true", help="Skip scoring (compute metrics from existing responses)")
     parser.add_argument("--force", action="store_true", help="Re-do all steps even if files exist")
+    parser.add_argument(
+        "--only-system",
+        choices=["both", "cllm", "c5fix"],
+        default="both",
+        help="Score only C_LLM batches, only C5_fix batches, or both (saves API when refreshing C5 only).",
+    )
     args = parser.parse_args()
 
     datasets = ["digiklausur", "kaggle_asag"] if args.dataset == "all" else [args.dataset]
 
     print("Loading Gemini API key...")
     api_key = load_api_key()
-    print(f"  Key: {api_key[:12]}...")
+    print(f"  Key loaded ({len(api_key)} chars, not shown)")
 
     from google import genai
     client = genai.Client(api_key=api_key)
@@ -377,12 +431,19 @@ def main():
         cllm_files, c5fix_files = generate_batch_prompts(dataset)
         print(f"  {len(cllm_files)} C_LLM + {len(c5fix_files)} C5_fix batch files ready")
 
-        # Stage 3: Batch scoring
+        n_total = len(cllm_files) + len(c5fix_files)
+        if args.only_system == "cllm":
+            n_total = len(cllm_files)
+        elif args.only_system == "c5fix":
+            n_total = len(c5fix_files)
+
+        saved: list[str] = []
         if not args.skip_scoring:
-            print(f"\n[Stage 3] Scoring batches for {dataset}...")
-            saved = run_batch_scoring(client, dataset, force=args.force)
-            n_total = len(cllm_files) + len(c5fix_files)
-        print(f"  {len(saved)}/{n_total} batches scored")
+            print(f"\n[Stage 3] Scoring batches for {dataset} (--only-system {args.only_system})...")
+            saved = run_batch_scoring(
+                client, dataset, force=args.force, only_system=args.only_system
+            )
+        print(f"  {len(saved)}/{n_total} batches scored this run")
 
         # Stage 4: Metrics
         print(f"\n[Stage 4] Computing metrics for {dataset}...")

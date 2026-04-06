@@ -34,6 +34,8 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, "data")
 sys.path.insert(0, BASE_DIR)
 
+from concept_matching import ConceptEmbeddingCache, unified_concept_match
+
 BACKEND_ENV = os.path.join(BASE_DIR, "..", "backend", ".env")
 
 SCORING_GUIDE = """SCORING GUIDE — based on proportion of reference answer content correctly demonstrated:
@@ -112,22 +114,6 @@ def call_gemini(client, prompt: str, model: str = "gemini-2.0-flash") -> float:
     return float(parsed.get("holistic_score", parsed.get("score", 0.0)))
 
 
-def simple_concept_match(student_answer: str, kg_concepts: list[dict]) -> list[str]:
-    """Lightweight concept matching: checks if concept name/id words appear in answer."""
-    matched = []
-    answer_lower = student_answer.lower()
-    for c in kg_concepts:
-        cid = c["id"]
-        name = c.get("name", cid).lower()
-        # Check if any significant word from name appears in answer
-        words = [w for w in name.replace("_", " ").split() if len(w) > 3]
-        if any(w in answer_lower for w in words):
-            matched.append(cid)
-        elif cid.replace("_", " ") in answer_lower:
-            matched.append(cid)
-    return list(set(matched))
-
-
 def classify_solo(matched: list[str], total_expected: int) -> tuple[str, int]:
     ratio = len(matched) / max(total_expected, 1)
     if ratio == 0:
@@ -191,13 +177,17 @@ def main(dataset: str, n_samples: int | None, dry_run: bool = False) -> None:
 
     print(f"Loaded {len(records)} samples, {len(q_to_kg)} KGs")
 
+    embed_cache = ConceptEmbeddingCache(q_to_kg)
+
     if dry_run:
         print("DRY RUN — showing first 3 prompt pairs")
         for r in records[:3]:
             q = r["question"].strip()
             kg = q_to_kg.get(q, {})
             concepts = kg.get("concepts", [])
-            matched = simple_concept_match(r["student_answer"], concepts)
+            matched = unified_concept_match(
+                r["student_answer"], concepts, cache=embed_cache
+            )
             solo_label, _ = classify_solo(matched, len(concepts))
             bloom_label, _ = classify_bloom(r["student_answer"])
             print(f"  ID {r['id']}: matched={matched}, solo={solo_label}, bloom={bloom_label}")
@@ -219,7 +209,9 @@ def main(dataset: str, n_samples: int | None, dry_run: bool = False) -> None:
         kg = q_to_kg.get(q, {})
         concepts = kg.get("concepts", [])
         expected = kg.get("expected_concepts", [c["id"] for c in concepts])
-        matched = simple_concept_match(r["student_answer"], concepts)
+        matched = unified_concept_match(
+            r["student_answer"], concepts, cache=embed_cache
+        )
         chain_pct = f"{min(len(matched)/max(len(expected),1), 1.0):.0%}"
         solo_label, _ = classify_solo(matched, len(expected))
         bloom_label, _ = classify_bloom(r["student_answer"])

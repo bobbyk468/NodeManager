@@ -27,7 +27,15 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import shutil
 import sys
+
+from concept_matching import (
+    ConceptEmbeddingCache,
+    coverage_ratio,
+    should_use_kg_evidence,
+    unified_concept_match,
+)
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, "data")
@@ -50,60 +58,6 @@ SCORING_GUIDE = """SCORING GUIDE — based on proportion of reference answer con
 
 Score what the student got RIGHT. Missing vocabulary alone does not lower the score.
 Use 0.25 increments only."""
-
-
-def simple_concept_match(student_answer: str, kg_concepts: list[dict]) -> list[str]:
-    """
-    Match KG concepts against student answer using multi-strategy matching:
-    1. Exact name/id words (>3 chars)
-    2. Description keywords from the KG concept description
-    3. Short meaningful words (>2 chars) from concept name
-    4. Concept synonyms embedded in description text
-
-    This is more robust than strict keyword matching, catching paraphrases
-    like "good" → "helpful_microorganisms" (description: "helpful living things").
-    """
-    matched = []
-    answer_lower = student_answer.lower()
-    # Pre-tokenize answer for faster membership checks
-    answer_words = set(answer_lower.replace(",", " ").replace(".", " ").split())
-
-    for c in kg_concepts:
-        cid = c["id"]
-        name = c.get("name", cid).lower()
-        desc = c.get("description", "").lower()
-
-        # Strategy 1: words from concept name/id (>3 chars)
-        name_words = [w for w in name.replace("_", " ").split() if len(w) > 3]
-        id_words = [w for w in cid.replace("_", " ").split() if len(w) > 3]
-        all_kw = set(name_words + id_words)
-
-        if any(w in answer_lower for w in all_kw):
-            matched.append(cid)
-            continue
-
-        # Strategy 2: short meaningful words from name (>2 chars, not stop words)
-        stop = {"the", "and", "for", "are", "that", "this", "with", "from", "not"}
-        short_words = [w for w in name.replace("_", " ").split()
-                       if len(w) > 2 and w not in stop]
-        if short_words and any(w in answer_lower for w in short_words):
-            matched.append(cid)
-            continue
-
-        # Strategy 3: key words from KG description (>4 chars, not stop words)
-        if desc:
-            desc_words = [w for w in desc.split() if len(w) > 4 and w not in stop]
-            # Require at least 2 description words to match (avoids false positives)
-            desc_hits = sum(1 for w in desc_words if w in answer_lower)
-            if desc_hits >= 2:
-                matched.append(cid)
-                continue
-
-        # Strategy 4: full concept id appears as substring
-        if cid.replace("_", " ") in answer_lower:
-            matched.append(cid)
-
-    return list(set(matched))
 
 
 def classify_solo(matched: list[str], total_expected: int) -> str:
@@ -129,15 +83,23 @@ def classify_bloom(student_answer: str) -> str:
     return "Remember"
 
 
-def precompute_features(records, q_to_kg):
+def precompute_features(
+    records,
+    q_to_kg: dict,
+    embed_cache: ConceptEmbeddingCache | None = None,
+):
     features = {}
     for r in records:
         q = r["question"].strip()
         kg = q_to_kg.get(q, {})
         concepts = kg.get("concepts", [])
         expected = kg.get("expected_concepts", [c["id"] for c in concepts])
-        matched = simple_concept_match(r["student_answer"], concepts)
-        chain_pct = f"{min(len(matched)/max(len(expected),1), 1.0):.0%}"
+        matched = unified_concept_match(
+            r["student_answer"], concepts, cache=embed_cache
+        )
+        cov = coverage_ratio(matched, expected)
+        use_kg = should_use_kg_evidence(cov)
+        chain_pct = f"{min(len(matched) / max(len(expected), 1), 1.0):.0%}"
         solo_label = classify_solo(matched, len(expected))
         bloom_label = classify_bloom(r["student_answer"])
         features[str(r["id"])] = {
@@ -146,6 +108,8 @@ def precompute_features(records, q_to_kg):
             "solo": solo_label,
             "bloom": bloom_label,
             "n_kg_concepts": len(concepts),
+            "coverage_ratio": round(cov, 4),
+            "use_kg": use_kg,
         }
     return features
 
@@ -235,12 +199,15 @@ def build_c5fix_prompt(batch: list[dict], features: dict) -> str:
     The KG evidence is framed as a POSITIVE guide (key concepts expected) rather than
     a penalty (concepts not detected). This avoids systematic underscoring when
     keyword matching misses paraphrased correct answers.
+
+    When automatic concept coverage is below KG_MIN_COVERAGE, the sample is graded
+    like C_LLM (no KG block) so weak extractions do not mislead the model.
     """
     system = f"""{SCORING_GUIDE}
 
-You are an expert grader with access to a Knowledge Graph (KG) that identifies the key concepts expected in a complete answer. Use the KG as a conceptual checklist: does the student's answer address these concepts (even if not using exact terminology)? The KG guides what to look for; it does NOT mechanically penalize for missing keywords.
+You are an expert grader. Some samples include optional KG GUIDANCE (expected concepts from a knowledge graph). When KG GUIDANCE is present, use it as a conceptual checklist: does the student's answer address these ideas (even in their own words)? The KG guides what to look for; it does NOT mechanically penalize missing keywords.
 
-Important: A student who expresses a concept correctly in their own words should receive full credit for that concept, even if they don't use the technical term.
+When a sample has NO KG GUIDANCE section (reference-only block), grade using ONLY the question, reference answer, and student answer — same as a plain LLM grader.
 
 Return a JSON object:
 {{
@@ -256,13 +223,22 @@ Grade all {len(batch)} samples. Use 0.25 increments."""
     for r in batch:
         sid = str(r["id"])
         feat = features.get(sid, {})
+        use_kg = feat.get("use_kg", True)
+
+        if not use_kg:
+            parts.append(
+                f"--- SAMPLE ID: {sid} ---\n"
+                f"QUESTION: {r['question']}\n\n"
+                f"REFERENCE ANSWER:\n{r['reference_answer']}\n\n"
+                f"STUDENT ANSWER:\n{r['student_answer']}"
+            )
+            continue
+
         covered = ", ".join(feat.get("matched_concepts", [])) or "assess from student text"
         chain_pct = feat.get("chain_pct", "0%")
         bloom = feat.get("bloom", "Remember")
         n_kg = feat.get("n_kg_concepts", 0)
 
-        # Load KG concepts list for this question to show as positive guide
-        # (Only show if we have KG data)
         kg_guide = f"Detected concept keywords: {covered}" if covered != "assess from student text" else "Use reference answer to identify key concepts"
 
         parts.append(
@@ -290,6 +266,7 @@ def run(dataset: str, mode: str = "split") -> None:
 
     data_path = os.path.join(DATA_DIR, f"{dataset}_dataset.json")
     kg_path = f"/tmp/auto_kg_response_{dataset}.json"
+    persistent_kg = os.path.join(DATA_DIR, f"{dataset}_auto_kg.json")
     q_idx_path = os.path.join(DATA_DIR, f"{dataset}_question_index.json")
 
     with open(data_path) as f:
@@ -297,13 +274,20 @@ def run(dataset: str, mode: str = "split") -> None:
     with open(q_idx_path) as f:
         q_index = json.load(f)
 
-    # Build KG map
+    # Build KG map (/tmp first, else copy from data/)
     if os.path.exists(kg_path):
         with open(kg_path) as f:
             kg_raw = json.load(f)
         question_kgs = kg_raw.get("question_kgs", kg_raw)
+    elif os.path.exists(persistent_kg):
+        with open(persistent_kg) as f:
+            kg_raw = json.load(f)
+        question_kgs = kg_raw.get("question_kgs", kg_raw)
+        os.makedirs(os.path.dirname(kg_path) or ".", exist_ok=True)
+        shutil.copy2(persistent_kg, kg_path)
+        print(f"  Restored KG from {persistent_kg} → {kg_path}")
     else:
-        print(f"WARNING: No KG file at {kg_path} — running with empty KG features")
+        print(f"WARNING: No KG file at {kg_path} or {persistent_kg} — empty KG features")
         question_kgs = {}
 
     q_to_kg: dict[str, dict] = {}
@@ -311,12 +295,25 @@ def run(dataset: str, mode: str = "split") -> None:
         kg_entry = question_kgs.get(str(qi), question_kgs.get(qi, {}))
         q_to_kg[q_entry["question"].strip()] = kg_entry
 
+    embed_cache = ConceptEmbeddingCache(q_to_kg)
+    if embed_cache.active:
+        print(
+            f"  Semantic: sentence-transformers ON ({len(embed_cache.ids)} unique concepts)"
+        )
+    else:
+        print(
+            "  Semantic: TF-IDF (sklearn) + keywords "
+            "(optional: pip install sentence-transformers for embeddings)"
+        )
+
     # Precompute KG features
-    features = precompute_features(records, q_to_kg)
+    features = precompute_features(records, q_to_kg, embed_cache=embed_cache)
     feat_path = os.path.join(OUT_DIR, f"{dataset}_precomputed.json")
     with open(feat_path, "w") as f:
         json.dump(features, f, indent=2)
-    print(f"Precomputed KG features → {feat_path}")
+    persist_pre = os.path.join(DATA_DIR, f"{dataset}_precomputed.json")
+    shutil.copy2(feat_path, persist_pre)
+    print(f"Precomputed KG features → {feat_path} (+ {persist_pre})")
 
     n_batches = (len(records) + BATCH_SIZE - 1) // BATCH_SIZE
     total_chars = 0

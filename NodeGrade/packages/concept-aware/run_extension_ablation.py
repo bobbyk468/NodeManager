@@ -19,9 +19,9 @@ Two modes
                     extension effects. Use for quick iteration and paper
                     layout testing. No API calls.
 
-  --mode llm        Slow (~30 min, 30 samples × 3-4 LLM calls).
+  --mode llm        Slow (many LLM calls per sample × configs).
                     Uses the real ConceptGrade pipeline for each config.
-                    Requires GROQ_API_KEY. Produces publishable results.
+                    Set GEMINI_API_KEY (recommended) or GROQ_API_KEY; use --model accordingly.
 
 Usage
 -----
@@ -50,6 +50,29 @@ from sklearn.metrics.pairwise import cosine_similarity as sk_cosine
 from scipy.stats import pearsonr
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+BACKEND_ENV = os.path.join(os.path.dirname(__file__), "..", "backend", ".env")
+
+
+def load_ablation_api_key() -> str:
+    if os.environ.get("GEMINI_API_KEY"):
+        return os.environ["GEMINI_API_KEY"].strip()
+    if os.environ.get("GROQ_API_KEY"):
+        return os.environ["GROQ_API_KEY"].strip()
+    env_path = os.path.abspath(BACKEND_ENV)
+    if os.path.exists(env_path):
+        with open(env_path) as f:
+            for line in f:
+                line = line.strip()
+                for prefix in ("GEMINI_API_KEY=", "GROQ_API_KEY="):
+                    if line.startswith(prefix):
+                        key = line.split("=", 1)[1].strip().strip('"').strip("'")
+                        if key:
+                            return key
+    raise RuntimeError(
+        "Set GEMINI_API_KEY or GROQ_API_KEY (env or packages/backend/.env) for --mode llm"
+    )
+
 
 from datasets.mohler_loader import load_mohler_sample, MohlerSample
 from evaluation.metrics import (
@@ -248,6 +271,7 @@ def run_llm_config(
     config_id: str,
     config_name: str,
     api_key: str,
+    model: str,
 ) -> list[float]:
     """Run a single config using the real ConceptGrade pipeline."""
     from conceptgrade.pipeline import ConceptGradePipeline
@@ -272,6 +296,7 @@ def run_llm_config(
 
     pipeline = ConceptGradePipeline(
         api_key=api_key,
+        model=model,
         use_self_consistency=use_sc,
         use_confidence_weighting=use_cw,
         use_llm_verifier=use_ver,
@@ -299,12 +324,14 @@ def run_llm_config(
     return scores
 
 
-def run_llm(samples: list[MohlerSample], api_key: str) -> dict[str, list[float]]:
+def run_llm(
+    samples: list[MohlerSample], api_key: str, model: str
+) -> dict[str, list[float]]:
     """Run all configs using the real pipeline (slow)."""
     config_scores = {}
     for cid, cname in CONFIGS:
         print(f"\n  Running config {cid}: {cname}")
-        config_scores[cid] = run_llm_config(samples, cid, cname, api_key)
+        config_scores[cid] = run_llm_config(samples, cid, cname, api_key, model)
     return config_scores
 
 
@@ -452,6 +479,7 @@ def generate_latex_table(results: dict[str, EvaluationResult]) -> str:
 def print_per_question(
     dataset,
     config_scores: dict[str, list[float]],
+    samples: list[MohlerSample],
 ) -> str:
     print(f"\n{'─'*72}")
     print("  Per-question Pearson r: Baseline vs Full Extensions")
@@ -459,11 +487,10 @@ def print_per_question(
     rows = [f"{'QID':<5}  {'Question (truncated)':<50}  {'C1 r':>6}  {'C5 r':>6}  Δ"]
     rows.append("─" * 72)
     for qid in sorted(dataset.questions.keys()):
-        q_samples = dataset.get_by_question(qid)
-        if len(q_samples) < 3:
+        q_idx = [i for i, s in enumerate(samples) if s.question_id == qid]
+        if len(q_idx) < 3:
             continue
-        q_human = [s.score_avg for s in q_samples]
-        q_idx   = [i for i, s in enumerate(dataset.samples) if s.question_id == qid]
+        q_human = [samples[i].score_avg for i in q_idx]
         for cfg in ("C1", "C5"):
             q_pred = [config_scores[cfg][i] for i in q_idx]
             r, _ = pearsonr(q_human, q_pred)
@@ -492,9 +519,13 @@ def main():
         help="Number of Mohler samples to evaluate (LLM mode only)"
     )
     parser.add_argument(
-        "--api_key", type=str,
-        default=os.environ.get("GROQ_API_KEY"),
-        help="Groq API key (LLM mode only, or set GROQ_API_KEY env var)"
+        "--api_key", type=str, default=None,
+        help="API key (optional if GEMINI_API_KEY or GROQ_API_KEY is set)"
+    )
+    parser.add_argument(
+        "--model", type=str,
+        default=os.environ.get("CONCEPTGRADE_ABLATION_MODEL", "gemini-2.5-flash"),
+        help="LLM model for pipeline (default: gemini-2.5-flash; use Groq model names with GROQ_API_KEY)",
     )
     args = parser.parse_args()
 
@@ -516,9 +547,11 @@ def main():
         print("Running heuristic feature extraction (no LLM)...")
         config_scores = run_heuristic(samples)
     else:
+        api_key = args.api_key or load_ablation_api_key()
         print("Running real ConceptGrade pipeline (LLM mode)...")
-        print("NOTE: This will consume Groq API tokens. Estimated time: 20-40 min.\n")
-        config_scores = run_llm(samples, args.api_key)
+        print(f"  Model: {args.model}")
+        print("NOTE: This uses many LLM calls (all configs × samples). Estimated time: 20–90 min.\n")
+        config_scores = run_llm(samples, api_key, args.model)
     elapsed = time.time() - t0
     print(f"\nScoring complete in {elapsed:.1f}s.\n")
 
@@ -541,7 +574,7 @@ def main():
     print(f"{'='*72}\n")
     sig_table = print_significance(human, config_scores, results)
 
-    per_q = print_per_question(dataset, config_scores)
+    per_q = print_per_question(dataset, config_scores, samples)
 
     # ── 95% CI detail ─────────────────────────────────────────────────────────
     print(f"\n{'='*72}")

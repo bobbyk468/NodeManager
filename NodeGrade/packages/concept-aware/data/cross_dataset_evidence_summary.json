@@ -1,0 +1,42 @@
+{
+  "mohler": {
+    "n": 120,
+    "mae_cllm": 0.33,
+    "mae_c5": 0.22291666666666668,
+    "wilcoxon_p": 0.0013196841777978862,
+    "c5_better_mae": true,
+    "significant_005": true
+  },
+  "digiklausur": {
+    "n": 646,
+    "mae_cllm": 1.1842105263157894,
+    "mae_c5": 1.1261609907120742,
+    "mae_reduction_pct": 4.901960784313726,
+    "wilcoxon_p": 0.048881503124049284,
+    "win_rate_c5_smaller_error": 0.38235294117647056,
+    "c5_better_mae": true,
+    "significant_005": true
+  },
+  "kaggle_asag": {
+    "n": 473,
+    "mae_cllm": 1.0771670190274842,
+    "mae_c5": 1.1553911205073997,
+    "mae_reduction_pct": -7.262021589793914,
+    "wilcoxon_p": 0.14824935773680528,
+    "win_rate_c5_smaller_error": 0.26004228329809725,
+    "c5_better_mae": false,
+    "significant_005": false
+  },
+  "pooled_digi_kaggle": {
+    "n": 1119,
+    "mean_abs_error_diff_c5_minus_cllm": -0.00044682752457551384,
+    "wilcoxon_one_sided_p": 0.35470451534108033
+  },
+  "fisher_combined_p_three_datasets": 0.000758812640796025,
+  "strict_all_three_beat": false,
+  "notes": [
+    "Fisher assumes independence across datasets.",
+    "Pooled test ignores clustering by dataset (exploratory).",
+    "No offline score mixing can substitute for a fresh Kaggle C5_fix API run."
+  ]
+}

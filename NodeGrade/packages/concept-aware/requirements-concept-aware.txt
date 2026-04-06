@@ -1,0 +1,6 @@
+# Evaluation stack for packages/concept-aware (use: python3 -m venv .venv && pip install -r ...)
+numpy>=1.24
+scipy>=1.10
+scikit-learn>=1.3
+# Optional: stronger semantic matching (otherwise TF-IDF fallback is used)
+# sentence-transformers>=3.0.0

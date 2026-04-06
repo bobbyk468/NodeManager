@@ -463,6 +463,31 @@ power; bootstrap CIs for ΔMAE include 0 for both Q4 and Q10).
             w(f"    Prompts: /tmp/batch_scoring/{ds_key}_batch_*.txt → Gemini")
             w(f"    Score:   python3 score_batch_results.py --dataset {ds_key}")
 
+    w("")
+    w("  INTERPRETATION — why results differ by dataset")
+    w("")
+    w(
+        "  DigiKlausur uses a coarse three-level rubric (human labels map to 0, 2.5, and 5 "
+        "on our scale). Primary metrics use continuous model scores (score_batch_results.py "
+        "default). For a sensitivity analysis aligned to the discrete rubric, run with "
+        "--snap-digi to map predictions to {{0, 2.5, 5}} before MAE/QWK."
+    )
+    w("")
+    w(
+        "  Kaggle ASAG items are short, K–5 factual responses with heavy paraphrase. "
+        "Lexical concept overlap alone under-counts correct ideas; the pipeline therefore "
+        "adds semantic similarity for concept detection and drops KG guidance when "
+        "estimated coverage of expected concepts falls below a minimum threshold, so "
+        "noisy graphs do not override reference-based grading."
+    )
+    w("")
+    w(
+        "  In aggregate, ConceptGrade gains are most consistent on questions that require "
+        "linking multiple concepts or mechanisms (Mohler CS, many DigiKlausur prompts). "
+        "On items that are effectively vocabulary recall, the KG adds little signal—"
+        "matching the hypothesis that structured evidence helps most as item complexity rises."
+    )
+
     if not any_new:
         w()
         w("  NOTE: New dataset evaluations pending. To run:")

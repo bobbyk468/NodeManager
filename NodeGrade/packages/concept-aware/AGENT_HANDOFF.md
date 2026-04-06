@@ -13,6 +13,7 @@
 | All Mohler 2011 scores (C_LLM, CoT, C5_fix) | `data/evaluation_results.json`, `data/cot_baseline_scores.json` | ❌ NO |
 | All DigiKlausur scores (646 samples, C_LLM + C5_fix) | `data/batch_responses/digiklausur_cllm_batch_01-09_response.json` + `c5fix_batch_01-09_response.json` | ❌ NO |
 | All Kaggle ASAG scores (473 samples, C_LLM + C5_fix) | `data/batch_responses/kaggle_asag_cllm_batch_01-06_response.json` + `c5fix_batch_01-06_response.json` | ❌ NO |
+| **Merged metrics + per-sample rows (Digi + Kaggle)** | `data/digiklausur_eval_results.json`, **`data/kaggle_asag_eval_results.json`** | ❌ NO |
 | DigiKlausur KG (17 questions) | `data/digiklausur_auto_kg.json` | ❌ NO |
 | Kaggle ASAG KG (150 questions) | `data/kaggle_asag_auto_kg.json` | ❌ NO |
 | Precomputed KG features | `data/digiklausur_precomputed.json`, `data/kaggle_asag_precomputed.json` | ❌ NO |
@@ -26,6 +27,24 @@ python3 score_batch_results.py --dataset kaggle_asag    # reads from data/batch_
 python3 generate_paper_report_v2.py                     # generates paper_report_v2.txt
 ```
 
+**To verify stored JSON is internally consistent** (metrics match recomputation from `results[]`, batch IDs align):
+```bash
+cd packages/concept-aware
+python3 validate_stored_eval.py --check-batches
+```
+
+**To summarize cross-dataset evidence** (MAE, Wilcoxon, win rates, pooled Digi+Kaggle test, Fisher combo — see script docstring for limits):
+```bash
+python3 prove_cross_dataset_evidence.py
+# → data/cross_dataset_evidence_summary.json
+```
+A **strict** claim “C5 beats C_LLM on every benchmark (lower MAE and p<0.05 each)” is **false on stored data** because Kaggle ASAG does not meet that bar; removing that limitation **requires a new Kaggle C5_fix scoring run** (API) after prompt/KGE tuning, then `validate_stored_eval.py`.
+
+**If `kaggle_asag_c5fix_batch_*_response.json` files are missing** but `kaggle_asag_eval_results.json` still has `c5_score` per row, rebuild batch files with:
+`python3 reconstruct_c5fix_batches_from_eval.py --dataset kaggle_asag`
+
+**Semantic concept matching:** `generate_batch_scoring_prompts.py` uses **TF-IDF cosine** (sklearn) when `sentence-transformers` is not installed; set `SKLEARN_SIM_THRESHOLD`, `KG_MIN_COVERAGE`, or `CONCEPT_SIM_THRESHOLD` to tune. After changing prompts, re-score with a **valid** `GEMINI_API_KEY` (rotate keys if leaked).
+
 ---
 
 ## 1. What Is ConceptGrade?
@@ -38,11 +57,11 @@ Student Answer + Question + Reference Answer
     ↓
 [Stage 0] Auto-KG Generation (Gemini API → JSON)
     ↓
-[Stage 1] KG Feature Extraction (local, heuristic)
-          - Concept matching (keyword-based)
-          - Causal chain coverage %
-          - SOLO taxonomy level
-          - Bloom's taxonomy level
+[Stage 1] KG Feature Extraction (local, no grading API)
+          - Concept matching: keywords + **TF–IDF cosine** (sklearn); optional `sentence-transformers`
+          - Causal chain coverage % (matched vs expected concepts)
+          - SOLO / Bloom heuristics from matched coverage + answer text
+          - **KG_MIN_COVERAGE**: omit KG block in C5 prompt when coverage is low
     ↓
 [Stage 2] LLM Scoring Prompt (2 systems)
           - C_LLM: grades with question + reference + student answer only
@@ -114,7 +133,7 @@ packages/concept-aware/
 │   ├── kaggle_asag_precomputed.json     # Kaggle ASAG KG features
 │   ├── paper_report_v2.txt         # Full paper-ready report (200 lines)
 │   ├── paper_latex_tables_v2.tex   # LaTeX tables for paper
-│   └── batch_responses/            # All 39 batch API responses (CACHED)
+│   └── batch_responses/            # 39 split batch API response JSONs (CACHED; Digi 18 + Kaggle 12 + legacy dual 9)
 │       ├── digiklausur_cllm_batch_01-09_response.json
 │       ├── digiklausur_c5fix_batch_01-09_response.json
 │       ├── kaggle_asag_cllm_batch_01-06_response.json
@@ -123,6 +142,9 @@ packages/concept-aware/
 ├── run_full_pipeline.py            # END-TO-END pipeline (use this)
 ├── generate_batch_scoring_prompts.py  # Batch prompt generator (split mode)
 ├── score_batch_results.py          # Metric computation from batch responses
+├── validate_stored_eval.py         # Verify eval_results.json vs results[] + optional batch ID check
+├── prove_cross_dataset_evidence.py # Summarize beats/MAE/p across Mohler+Digi+Kaggle from JSON
+├── reconstruct_c5fix_batches_from_eval.py  # Rebuild c5fix batch JSONs from eval_results
 ├── generate_paper_report_v2.py     # Paper report generator
 ├── score_cot_baseline.py           # CoT baseline evaluation
 └── EVALUATION_STATUS.txt           # Full status summary
@@ -157,9 +179,9 @@ python3 score_batch_results.py --dataset digiklausur    # reads data/batch_respo
 python3 score_batch_results.py --dataset kaggle_asag    # reads data/batch_responses/
 python3 generate_paper_report_v2.py                     # generates full paper report
 
-# Alternative: use pipeline with all caching flags
+# Alternative: use pipeline with all caching flags (still requires a valid GEMINI_API_KEY in .env to start)
 python3 run_full_pipeline.py --dataset all --skip-kg --skip-scoring
-# ↑ Stages 1 and 3 are skipped. Loads KGs + responses from data/, computes metrics only.
+# ↑ Skips KG gen and batch API scoring; still regenerates prompts and runs score_batch_results.
 ```
 
 **The `score_batch_results.py` cache fallback logic** (from `load_responses()`):

@@ -7,31 +7,37 @@
     "chain_pct": "50%",
     "solo": "Multistructural",
     "bloom": "Understand",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.5,
+    "use_kg": true
   },
   "1": {
     "matched_concepts": [
+      "habitat",
       "plant",
       "natural_home",
-      "animal",
-      "habitat"
+      "animal"
     ],
     "chain_pct": "100%",
     "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "2": {
     "matched_concepts": [
-      "water",
-      "wind",
       "soil_erosion",
-      "soil"
+      "wind",
+      "soil",
+      "water"
     ],
     "chain_pct": "80%",
     "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.8,
+    "use_kg": true
   },
   "3": {
     "matched_concepts": [
@@ -41,18 +47,22 @@
     "chain_pct": "67%",
     "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "4": {
     "matched_concepts": [
+      "microorganisms",
       "harmful_microorganisms",
-      "helpful_microorganisms",
-      "microorganisms"
+      "helpful_microorganisms"
     ],
     "chain_pct": "100%",
     "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "5": {
     "matched_concepts": [
@@ -61,17 +71,22 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "6": {
     "matched_concepts": [
-      "flower",
-      "pollen"
+      "pollination",
+      "pollen",
+      "flower"
     ],
-    "chain_pct": "67%",
-    "solo": "Relational",
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "7": {
     "matched_concepts": [
@@ -80,7 +95,9 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "8": {
     "matched_concepts": [
@@ -89,72 +106,90 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "9": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "10": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "11": {
     "matched_concepts": [
+      "pollination",
       "pollen"
     ],
-    "chain_pct": "33%",
-    "solo": "Multistructural",
+    "chain_pct": "67%",
+    "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "12": {
     "matched_concepts": [
-      "water",
       "wind",
+      "water",
       "animals"
     ],
     "chain_pct": "60%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.6,
+    "use_kg": true
   },
   "13": {
     "matched_concepts": [
-      "water_bodies",
-      "water_pollution"
+      "water_pollution",
+      "water_bodies"
     ],
     "chain_pct": "67%",
     "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "14": {
     "matched_concepts": [
+      "coal",
       "oil",
-      "dead_plants_animals",
-      "coal"
+      "dead_plants_animals"
     ],
     "chain_pct": "50%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 6
+    "n_kg_concepts": 6,
+    "coverage_ratio": 0.5,
+    "use_kg": true
   },
   "15": {
     "matched_concepts": [
+      "earths_atmosphere",
       "heat_trapping",
       "greenhouse_gases"
     ],
-    "chain_pct": "67%",
-    "solo": "Relational",
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "16": {
     "matched_concepts": [
@@ -163,14 +198,18 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "17": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "18": {
     "matched_concepts": [
@@ -180,7 +219,9 @@
     "chain_pct": "50%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.5,
+    "use_kg": true
   },
   "19": {
     "matched_concepts": [
@@ -189,7 +230,9 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "20": {
     "matched_concepts": [
@@ -198,74 +241,99 @@
     "chain_pct": "20%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.2,
+    "use_kg": false
   },
   "21": {
     "matched_concepts": [
-      "solid_state",
-      "liquid_state"
-    ],
-    "chain_pct": "50%",
-    "solo": "Multistructural",
-    "bloom": "Remember",
-    "n_kg_concepts": 4
-  },
-  "22": {
-    "matched_concepts": [
-      "solid_state",
-      "liquid_state"
-    ],
-    "chain_pct": "50%",
-    "solo": "Multistructural",
-    "bloom": "Remember",
-    "n_kg_concepts": 4
-  },
-  "23": {
-    "matched_concepts": [
-      "liquid_state"
-    ],
-    "chain_pct": "20%",
-    "solo": "Unistructural",
-    "bloom": "Remember",
-    "n_kg_concepts": 5
-  },
-  "24": {
-    "matched_concepts": [
-      "liquid_state"
-    ],
-    "chain_pct": "20%",
-    "solo": "Unistructural",
-    "bloom": "Remember",
-    "n_kg_concepts": 5
-  },
-  "25": {
-    "matched_concepts": [
-      "liquid_state"
-    ],
-    "chain_pct": "25%",
-    "solo": "Unistructural",
-    "bloom": "Remember",
-    "n_kg_concepts": 4
-  },
-  "26": {
-    "matched_concepts": [
-      "energy"
-    ],
-    "chain_pct": "33%",
-    "solo": "Multistructural",
-    "bloom": "Remember",
-    "n_kg_concepts": 3
-  },
-  "27": {
-    "matched_concepts": [
-      "light",
-      "light_reflection",
-      "bouncing_back"
+      "liquid_state",
+      "melting",
+      "solid_state"
     ],
     "chain_pct": "75%",
     "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.75,
+    "use_kg": true
+  },
+  "22": {
+    "matched_concepts": [
+      "liquid_state",
+      "solid_state",
+      "freezing"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.75,
+    "use_kg": true
+  },
+  "23": {
+    "matched_concepts": [
+      "liquid_state",
+      "gas_state",
+      "boiling"
+    ],
+    "chain_pct": "60%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.6,
+    "use_kg": true
+  },
+  "24": {
+    "matched_concepts": [
+      "liquid_state",
+      "evaporation",
+      "gas_state"
+    ],
+    "chain_pct": "60%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.6,
+    "use_kg": true
+  },
+  "25": {
+    "matched_concepts": [
+      "gas_state",
+      "condensation",
+      "liquid_state"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.75,
+    "use_kg": true
+  },
+  "26": {
+    "matched_concepts": [
+      "energy",
+      "light"
+    ],
+    "chain_pct": "67%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
+  },
+  "27": {
+    "matched_concepts": [
+      "light_reflection",
+      "bouncing_back",
+      "light"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.75,
+    "use_kg": true
   },
   "28": {
     "matched_concepts": [
@@ -275,7 +343,9 @@
     "chain_pct": "50%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.5,
+    "use_kg": true
   },
   "29": {
     "matched_concepts": [
@@ -284,7 +354,9 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "30": {
     "matched_concepts": [
@@ -293,21 +365,27 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "31": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 6
+    "n_kg_concepts": 6,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "32": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "33": {
     "matched_concepts": [
@@ -317,77 +395,101 @@
     "chain_pct": "40%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.4,
+    "use_kg": true
   },
   "34": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "35": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "36": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "37": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "38": {
     "matched_concepts": [
+      "electric_charge",
       "electric_circuit",
-      "electric_current",
-      "electric_charge"
+      "electric_current"
     ],
     "chain_pct": "75%",
     "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.75,
+    "use_kg": true
   },
   "39": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "40": {
     "matched_concepts": [
-      "closed_circuit",
-      "electric_circuit"
+      "electric_circuit",
+      "closed_circuit"
     ],
     "chain_pct": "67%",
     "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "41": {
-    "matched_concepts": [],
-    "chain_pct": "0%",
-    "solo": "Prestructural",
+    "matched_concepts": [
+      "electricity_flow"
+    ],
+    "chain_pct": "33%",
+    "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "42": {
-    "matched_concepts": [],
-    "chain_pct": "0%",
-    "solo": "Prestructural",
+    "matched_concepts": [
+      "electricity_flow"
+    ],
+    "chain_pct": "33%",
+    "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "43": {
     "matched_concepts": [
@@ -396,54 +498,77 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "44": {
-    "matched_concepts": [],
-    "chain_pct": "0%",
-    "solo": "Prestructural",
+    "matched_concepts": [
+      "material"
+    ],
+    "chain_pct": "33%",
+    "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "45": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "46": {
     "matched_concepts": [
-      "electric_current",
-      "magnet"
+      "electromagnet",
+      "magnet",
+      "electric_current"
     ],
-    "chain_pct": "40%",
+    "chain_pct": "60%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.6,
+    "use_kg": true
   },
   "47": {
-    "matched_concepts": [],
-    "chain_pct": "0%",
-    "solo": "Prestructural",
+    "matched_concepts": [
+      "static_electricity"
+    ],
+    "chain_pct": "33%",
+    "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "48": {
     "matched_concepts": [
+      "series_circuit",
+      "electric_circuit",
       "single_path"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.75,
+    "use_kg": true
+  },
+  "49": {
+    "matched_concepts": [
+      "electric_circuit"
     ],
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
-  },
-  "49": {
-    "matched_concepts": [],
-    "chain_pct": "0%",
-    "solo": "Prestructural",
-    "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "50": {
     "matched_concepts": [
@@ -452,7 +577,9 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "51": {
     "matched_concepts": [
@@ -461,34 +588,43 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "52": {
     "matched_concepts": [
-      "water",
-      "underground_storage"
+      "groundwater",
+      "underground_storage",
+      "water"
     ],
-    "chain_pct": "67%",
-    "solo": "Relational",
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "53": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "54": {
     "matched_concepts": [
-      "water_bodies",
-      "water_pollution"
+      "water_pollution",
+      "water_bodies"
     ],
     "chain_pct": "67%",
     "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "55": {
     "matched_concepts": [
@@ -497,30 +633,39 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "56": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "57": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "58": {
     "matched_concepts": [
+      "precipitation",
       "rain"
     ],
-    "chain_pct": "20%",
-    "solo": "Unistructural",
+    "chain_pct": "40%",
+    "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.4,
+    "use_kg": true
   },
   "59": {
     "matched_concepts": [
@@ -529,21 +674,27 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "60": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "61": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "62": {
     "matched_concepts": [
@@ -552,14 +703,18 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "63": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "64": {
     "matched_concepts": [
@@ -568,28 +723,38 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "65": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "66": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 6
+    "n_kg_concepts": 6,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "67": {
-    "matched_concepts": [],
-    "chain_pct": "0%",
-    "solo": "Prestructural",
+    "matched_concepts": [
+      "rocky_object"
+    ],
+    "chain_pct": "14%",
+    "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 7
+    "n_kg_concepts": 7,
+    "coverage_ratio": 0.1429,
+    "use_kg": false
   },
   "68": {
     "matched_concepts": [
@@ -598,37 +763,47 @@
     "chain_pct": "17%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 6
+    "n_kg_concepts": 6,
+    "coverage_ratio": 0.1667,
+    "use_kg": false
   },
   "69": {
     "matched_concepts": [
-      "galaxy"
+      "galaxy",
+      "milky_way"
     ],
     "chain_pct": "100%",
     "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 2
+    "n_kg_concepts": 2,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "70": {
     "matched_concepts": [
-      "weather_monitoring",
       "weather_forecasting",
+      "weather_monitoring",
       "weather_satellite"
     ],
     "chain_pct": "100%",
     "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "71": {
     "matched_concepts": [
+      "gas_exchange",
       "carbon_dioxide_removal",
       "oxygen_intake"
     ],
-    "chain_pct": "67%",
-    "solo": "Relational",
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "72": {
     "matched_concepts": [
@@ -637,27 +812,34 @@
     "chain_pct": "20%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.2,
+    "use_kg": false
   },
   "73": {
     "matched_concepts": [
-      "blood"
+      "blood",
+      "plasma"
     ],
-    "chain_pct": "25%",
-    "solo": "Unistructural",
+    "chain_pct": "50%",
+    "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.5,
+    "use_kg": true
   },
   "74": {
     "matched_concepts": [
-      "unpleasant_food",
       "unsafe_food",
+      "unpleasant_food",
       "food_spoilage"
     ],
     "chain_pct": "100%",
     "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "75": {
     "matched_concepts": [
@@ -666,7 +848,9 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "76": {
     "matched_concepts": [
@@ -675,7 +859,9 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Understand",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "77": {
     "matched_concepts": [
@@ -684,14 +870,18 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Understand",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "78": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "79": {
     "matched_concepts": [
@@ -700,17 +890,21 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Understand",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "80": {
     "matched_concepts": [
-      "temperature",
-      "liquid_expansion"
+      "liquid_expansion",
+      "temperature"
     ],
     "chain_pct": "67%",
     "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "81": {
     "matched_concepts": [
@@ -720,7 +914,9 @@
     "chain_pct": "67%",
     "solo": "Relational",
     "bloom": "Understand",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "82": {
     "matched_concepts": [
@@ -729,44 +925,57 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Understand",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "83": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "84": {
     "matched_concepts": [
+      "rate_of_change",
       "velocity",
-      "rate_of_change"
+      "acceleration"
     ],
-    "chain_pct": "67%",
-    "solo": "Relational",
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "85": {
     "matched_concepts": [
       "object_at_rest",
+      "newtons_first_law",
       "object_in_motion"
     ],
-    "chain_pct": "50%",
-    "solo": "Multistructural",
+    "chain_pct": "75%",
+    "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.75,
+    "use_kg": true
   },
   "86": {
     "matched_concepts": [
-      "push",
-      "pull"
+      "force",
+      "pull",
+      "push"
     ],
-    "chain_pct": "50%",
-    "solo": "Multistructural",
+    "chain_pct": "75%",
+    "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.75,
+    "use_kg": true
   },
   "87": {
     "matched_concepts": [
@@ -775,14 +984,18 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "88": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "89": {
     "matched_concepts": [
@@ -791,7 +1004,9 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "90": {
     "matched_concepts": [
@@ -800,7 +1015,9 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "91": {
     "matched_concepts": [
@@ -809,23 +1026,30 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "92": {
     "matched_concepts": [
-      "heat_transfer"
+      "heat_transfer",
+      "radiation"
     ],
-    "chain_pct": "33%",
-    "solo": "Multistructural",
+    "chain_pct": "67%",
+    "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "93": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "94": {
     "matched_concepts": [
@@ -835,21 +1059,27 @@
     "chain_pct": "67%",
     "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "95": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "96": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "97": {
     "matched_concepts": [
@@ -858,28 +1088,36 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "98": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "99": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "100": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "101": {
     "matched_concepts": [
@@ -888,14 +1126,18 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "102": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "103": {
     "matched_concepts": [
@@ -904,7 +1146,9 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "104": {
     "matched_concepts": [
@@ -913,7 +1157,9 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "105": {
     "matched_concepts": [
@@ -922,7 +1168,9 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "106": {
     "matched_concepts": [
@@ -932,18 +1180,22 @@
     "chain_pct": "67%",
     "solo": "Relational",
     "bloom": "Understand",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "107": {
     "matched_concepts": [
-      "unpleasant_food",
+      "food_spoilage",
       "unsafe_food",
-      "food_spoilage"
+      "unpleasant_food"
     ],
     "chain_pct": "100%",
     "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "108": {
     "matched_concepts": [
@@ -952,55 +1204,71 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "109": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "110": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "111": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "112": {
     "matched_concepts": [
-      "galaxy",
-      "star"
+      "star",
+      "galaxy"
     ],
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 6
+    "n_kg_concepts": 6,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "113": {
     "matched_concepts": [
-      "galaxy",
-      "barred_spiral_galaxy"
+      "barred_spiral_galaxy",
+      "galaxy"
     ],
     "chain_pct": "50%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.5,
+    "use_kg": true
   },
   "114": {
-    "matched_concepts": [],
-    "chain_pct": "0%",
-    "solo": "Prestructural",
+    "matched_concepts": [
+      "comet"
+    ],
+    "chain_pct": "20%",
+    "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 6
+    "n_kg_concepts": 6,
+    "coverage_ratio": 0.2,
+    "use_kg": false
   },
   "115": {
     "matched_concepts": [
@@ -1009,26 +1277,32 @@
     "chain_pct": "14%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 7
+    "n_kg_concepts": 7,
+    "coverage_ratio": 0.1429,
+    "use_kg": false
   },
   "116": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 2
+    "n_kg_concepts": 2,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "117": {
     "matched_concepts": [
       "water",
+      "sugar",
       "photosynthesis",
-      "plants",
-      "sugar"
+      "plants"
     ],
     "chain_pct": "57%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 7
+    "n_kg_concepts": 7,
+    "coverage_ratio": 0.5714,
+    "use_kg": true
   },
   "118": {
     "matched_concepts": [
@@ -1038,39 +1312,47 @@
     "chain_pct": "50%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.5,
+    "use_kg": true
   },
   "119": {
     "matched_concepts": [
-      "water",
-      "transpiration"
+      "transpiration",
+      "water"
     ],
     "chain_pct": "40%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.4,
+    "use_kg": true
   },
   "120": {
     "matched_concepts": [
       "rock_pieces",
-      "rocks",
-      "weathering"
+      "weathering",
+      "rocks"
     ],
     "chain_pct": "100%",
     "solo": "Extended Abstract",
     "bloom": "Understand",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "121": {
     "matched_concepts": [
       "weather",
-      "place",
-      "atmosphere"
+      "atmosphere",
+      "place"
     ],
     "chain_pct": "75%",
     "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.75,
+    "use_kg": true
   },
   "122": {
     "matched_concepts": [
@@ -1080,30 +1362,36 @@
     "chain_pct": "67%",
     "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "123": {
     "matched_concepts": [
+      "snow",
       "hail",
       "cloud",
       "precipitation",
-      "rain",
-      "snow"
+      "rain"
     ],
     "chain_pct": "100%",
     "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "124": {
     "matched_concepts": [
-      "wind",
-      "air_pressure_differences"
+      "air_pressure_differences",
+      "wind"
     ],
     "chain_pct": "100%",
     "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 2
+    "n_kg_concepts": 2,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "125": {
     "matched_concepts": [
@@ -1114,41 +1402,50 @@
     "chain_pct": "100%",
     "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "126": {
     "matched_concepts": [
       "ground",
-      "water_droplets",
       "cloud",
+      "water_droplets",
       "fog"
     ],
     "chain_pct": "100%",
     "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "127": {
     "matched_concepts": [
+      "evaporation",
       "condensation",
-      "water_cycle",
-      "evaporation"
+      "precipitation",
+      "water_cycle"
     ],
-    "chain_pct": "75%",
-    "solo": "Relational",
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "128": {
     "matched_concepts": [
       "long_period",
-      "weather",
-      "climate"
+      "climate",
+      "weather"
     ],
     "chain_pct": "75%",
     "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.75,
+    "use_kg": true
   },
   "129": {
     "matched_concepts": [
@@ -1157,31 +1454,37 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "130": {
     "matched_concepts": [
       "tornado",
-      "thunderstorm",
+      "ground",
       "rotating_air_column",
-      "ground"
+      "thunderstorm"
     ],
     "chain_pct": "100%",
     "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "131": {
     "matched_concepts": [
-      "heavy_rain",
       "storm",
+      "hurricane",
       "strong_winds",
-      "hurricane"
+      "heavy_rain"
     ],
     "chain_pct": "100%",
     "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "132": {
     "matched_concepts": [
@@ -1191,91 +1494,114 @@
     "chain_pct": "67%",
     "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "133": {
     "matched_concepts": [
+      "gas_state",
       "evaporation"
     ],
-    "chain_pct": "20%",
-    "solo": "Unistructural",
+    "chain_pct": "40%",
+    "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.4,
+    "use_kg": true
   },
   "134": {
     "matched_concepts": [
-      "condensation",
-      "liquid_state"
+      "liquid_state",
+      "condensation"
     ],
     "chain_pct": "50%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.5,
+    "use_kg": true
   },
   "135": {
     "matched_concepts": [
       "long_period",
+      "rainfall",
       "drought"
     ],
-    "chain_pct": "67%",
-    "solo": "Relational",
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "136": {
     "matched_concepts": [
-      "blizzard",
       "strong_winds",
+      "blizzard",
       "low_visibility"
     ],
     "chain_pct": "75%",
     "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.75,
+    "use_kg": true
   },
   "137": {
     "matched_concepts": [
       "weather_monitoring",
-      "satellite",
       "weather_forecasting",
+      "satellite",
       "weather_satellite"
     ],
     "chain_pct": "100%",
     "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "138": {
     "matched_concepts": [
-      "sleet",
-      "frozen_water"
+      "frozen_water",
+      "raindrops",
+      "sleet"
     ],
-    "chain_pct": "67%",
-    "solo": "Relational",
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "139": {
     "matched_concepts": [
       "cold_front",
-      "cold_air",
-      "warm_air"
+      "air_mass_interaction",
+      "warm_air",
+      "cold_air"
     ],
-    "chain_pct": "75%",
-    "solo": "Relational",
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "140": {
     "matched_concepts": [
+      "air_mass_interaction",
       "warm_air",
-      "cold_air",
-      "warm_front"
+      "warm_front",
+      "cold_air"
     ],
-    "chain_pct": "75%",
-    "solo": "Relational",
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "141": {
     "matched_concepts": [
@@ -1286,7 +1612,9 @@
     "chain_pct": "100%",
     "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "142": {
     "matched_concepts": [
@@ -1296,30 +1624,36 @@
     "chain_pct": "67%",
     "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "143": {
     "matched_concepts": [
-      "plant",
-      "seed",
+      "germination",
       "plant_growth",
-      "germination"
+      "plant",
+      "seed"
     ],
     "chain_pct": "100%",
     "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "144": {
     "matched_concepts": [
+      "metamorphosis",
       "life_cycle",
-      "animals",
-      "metamorphosis"
+      "animals"
     ],
     "chain_pct": "100%",
     "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "145": {
     "matched_concepts": [
@@ -1330,96 +1664,124 @@
     "chain_pct": "100%",
     "solo": "Extended Abstract",
     "bloom": "Understand",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "146": {
     "matched_concepts": [
-      "natural_home",
-      "habitat"
+      "habitat",
+      "natural_home"
     ],
     "chain_pct": "50%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.5,
+    "use_kg": true
   },
   "147": {
     "matched_concepts": [
-      "non_living_things",
+      "ecosystem",
       "living_things",
-      "ecosystem"
+      "non_living_things"
     ],
     "chain_pct": "75%",
     "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.75,
+    "use_kg": true
   },
   "148": {
     "matched_concepts": [
       "photosynthesis",
-      "sunlight"
+      "sunlight",
+      "plants"
     ],
-    "chain_pct": "29%",
+    "chain_pct": "43%",
     "solo": "Multistructural",
     "bloom": "Understand",
-    "n_kg_concepts": 7
+    "n_kg_concepts": 7,
+    "coverage_ratio": 0.4286,
+    "use_kg": true
   },
   "149": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "150": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "151": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "152": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 7
+    "n_kg_concepts": 7,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "153": {
-    "matched_concepts": [],
-    "chain_pct": "0%",
-    "solo": "Prestructural",
+    "matched_concepts": [
+      "sun"
+    ],
+    "chain_pct": "20%",
+    "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 6
+    "n_kg_concepts": 6,
+    "coverage_ratio": 0.2,
+    "use_kg": false
   },
   "154": {
     "matched_concepts": [
-      "galaxy"
+      "galaxy",
+      "milky_way"
     ],
     "chain_pct": "100%",
     "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 2
+    "n_kg_concepts": 2,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "155": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 2
+    "n_kg_concepts": 2,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "156": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "157": {
     "matched_concepts": [
@@ -1428,21 +1790,27 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "158": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "159": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 7
+    "n_kg_concepts": 7,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "160": {
     "matched_concepts": [
@@ -1451,7 +1819,9 @@
     "chain_pct": "20%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 6
+    "n_kg_concepts": 6,
+    "coverage_ratio": 0.2,
+    "use_kg": false
   },
   "161": {
     "matched_concepts": [
@@ -1460,7 +1830,9 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "162": {
     "matched_concepts": [
@@ -1469,78 +1841,104 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "163": {
     "matched_concepts": [
       "water",
-      "plants",
-      "sunlight"
+      "sunlight",
+      "photosynthesis",
+      "plants"
     ],
-    "chain_pct": "43%",
+    "chain_pct": "57%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 7
+    "n_kg_concepts": 7,
+    "coverage_ratio": 0.5714,
+    "use_kg": true
   },
   "164": {
     "matched_concepts": [
+      "metamorphosis",
       "life_cycle"
     ],
-    "chain_pct": "33%",
-    "solo": "Multistructural",
+    "chain_pct": "67%",
+    "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "165": {
-    "matched_concepts": [],
-    "chain_pct": "0%",
-    "solo": "Prestructural",
+    "matched_concepts": [
+      "circulatory_system"
+    ],
+    "chain_pct": "20%",
+    "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.2,
+    "use_kg": false
   },
   "166": {
     "matched_concepts": [
-      "living_things"
+      "living_things",
+      "non_living_things"
     ],
-    "chain_pct": "25%",
-    "solo": "Unistructural",
+    "chain_pct": "50%",
+    "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.5,
+    "use_kg": true
   },
   "167": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "168": {
     "matched_concepts": [
+      "pollination",
       "pollen"
-    ],
-    "chain_pct": "33%",
-    "solo": "Multistructural",
-    "bloom": "Remember",
-    "n_kg_concepts": 3
-  },
-  "169": {
-    "matched_concepts": [
-      "life_cycle"
-    ],
-    "chain_pct": "33%",
-    "solo": "Multistructural",
-    "bloom": "Understand",
-    "n_kg_concepts": 3
-  },
-  "170": {
-    "matched_concepts": [
-      "carbon_dioxide_removal",
-      "oxygen_intake"
     ],
     "chain_pct": "67%",
     "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
+  },
+  "169": {
+    "matched_concepts": [
+      "metamorphosis",
+      "life_cycle"
+    ],
+    "chain_pct": "67%",
+    "solo": "Relational",
+    "bloom": "Understand",
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
+  },
+  "170": {
+    "matched_concepts": [
+      "gas_exchange",
+      "carbon_dioxide_removal",
+      "oxygen_intake"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "171": {
     "matched_concepts": [
@@ -1549,37 +1947,50 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Understand",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "172": {
     "matched_concepts": [
-      "non_living_things",
+      "ecosystem",
       "living_things",
+      "non_living_things",
       "community"
     ],
-    "chain_pct": "75%",
-    "solo": "Relational",
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "173": {
     "matched_concepts": [
       "liquid_state",
-      "phase_change"
+      "evaporation",
+      "phase_change",
+      "gas_state"
     ],
-    "chain_pct": "40%",
-    "solo": "Multistructural",
+    "chain_pct": "80%",
+    "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.8,
+    "use_kg": true
   },
   "174": {
     "matched_concepts": [
+      "gas_state",
+      "condensation",
       "liquid_state"
     ],
-    "chain_pct": "25%",
-    "solo": "Unistructural",
+    "chain_pct": "75%",
+    "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.75,
+    "use_kg": true
   },
   "175": {
     "matched_concepts": [
@@ -1588,18 +1999,22 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "176": {
     "matched_concepts": [
       "force",
-      "push",
-      "pull"
+      "pull",
+      "push"
     ],
     "chain_pct": "75%",
     "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.75,
+    "use_kg": true
   },
   "177": {
     "matched_concepts": [
@@ -1610,17 +2025,22 @@
     "chain_pct": "100%",
     "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "178": {
     "matched_concepts": [
       "object_at_rest",
+      "newtons_first_law",
       "object_in_motion"
     ],
-    "chain_pct": "50%",
-    "solo": "Multistructural",
+    "chain_pct": "75%",
+    "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.75,
+    "use_kg": true
   },
   "179": {
     "matched_concepts": [
@@ -1630,7 +2050,9 @@
     "chain_pct": "67%",
     "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "180": {
     "matched_concepts": [
@@ -1639,27 +2061,33 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "181": {
     "matched_concepts": [
-      "weight",
-      "gravity"
+      "gravity",
+      "weight"
     ],
     "chain_pct": "50%",
     "solo": "Multistructural",
     "bloom": "Understand",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.5,
+    "use_kg": true
   },
   "182": {
     "matched_concepts": [
-      "object",
-      "mass"
+      "mass",
+      "object"
     ],
     "chain_pct": "67%",
     "solo": "Relational",
     "bloom": "Understand",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "183": {
     "matched_concepts": [
@@ -1668,7 +2096,9 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "184": {
     "matched_concepts": [
@@ -1677,7 +2107,9 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Understand",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "185": {
     "matched_concepts": [
@@ -1686,7 +2118,9 @@
     "chain_pct": "50%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 2
+    "n_kg_concepts": 2,
+    "coverage_ratio": 0.5,
+    "use_kg": true
   },
   "186": {
     "matched_concepts": [
@@ -1695,7 +2129,9 @@
     "chain_pct": "50%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 2
+    "n_kg_concepts": 2,
+    "coverage_ratio": 0.5,
+    "use_kg": true
   },
   "187": {
     "matched_concepts": [
@@ -1704,7 +2140,9 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "188": {
     "matched_concepts": [
@@ -1713,7 +2151,9 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "189": {
     "matched_concepts": [
@@ -1722,7 +2162,9 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "190": {
     "matched_concepts": [
@@ -1731,17 +2173,21 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "191": {
     "matched_concepts": [
-      "conductor",
-      "electricity_flow"
+      "electricity_flow",
+      "conductor"
     ],
     "chain_pct": "67%",
     "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "192": {
     "matched_concepts": [
@@ -1751,7 +2197,9 @@
     "chain_pct": "50%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.5,
+    "use_kg": true
   },
   "193": {
     "matched_concepts": [
@@ -1760,7 +2208,9 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "194": {
     "matched_concepts": [
@@ -1769,7 +2219,9 @@
     "chain_pct": "14%",
     "solo": "Unistructural",
     "bloom": "Understand",
-    "n_kg_concepts": 7
+    "n_kg_concepts": 7,
+    "coverage_ratio": 0.1429,
+    "use_kg": false
   },
   "195": {
     "matched_concepts": [
@@ -1778,7 +2230,9 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "196": {
     "matched_concepts": [
@@ -1787,30 +2241,39 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "197": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "198": {
     "matched_concepts": [
-      "heat_transfer"
+      "heat_transfer",
+      "radiation"
     ],
-    "chain_pct": "33%",
-    "solo": "Multistructural",
+    "chain_pct": "67%",
+    "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "199": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "200": {
     "matched_concepts": [
@@ -1819,7 +2282,9 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "201": {
     "matched_concepts": [
@@ -1828,119 +2293,149 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "202": {
-    "matched_concepts": [],
-    "chain_pct": "0%",
-    "solo": "Prestructural",
+    "matched_concepts": [
+      "earths_warming"
+    ],
+    "chain_pct": "25%",
+    "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "203": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "204": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "205": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "206": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "207": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "208": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "209": {
     "matched_concepts": [
-      "sound",
-      "vibrations"
+      "vibrations",
+      "sound"
     ],
     "chain_pct": "67%",
     "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "210": {
     "matched_concepts": [
-      "light",
-      "energy"
+      "energy",
+      "light"
     ],
     "chain_pct": "67%",
     "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "211": {
     "matched_concepts": [
-      "sound",
+      "sound_travel",
       "waves",
       "solids",
-      "sound_travel"
+      "sound"
     ],
     "chain_pct": "67%",
     "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 6
+    "n_kg_concepts": 6,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "212": {
     "matched_concepts": [
-      "meters_per_second",
+      "air",
       "speed_of_sound",
-      "air"
+      "meters_per_second"
     ],
     "chain_pct": "100%",
     "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "213": {
     "matched_concepts": [
-      "speed_of_light",
-      "kilometers_per_second"
+      "kilometers_per_second",
+      "speed_of_light"
     ],
     "chain_pct": "100%",
     "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "214": {
     "matched_concepts": [
-      "light",
-      "light_reflection"
+      "light_reflection",
+      "light"
     ],
     "chain_pct": "50%",
     "solo": "Multistructural",
     "bloom": "Understand",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.5,
+    "use_kg": true
   },
   "215": {
     "matched_concepts": [
@@ -1950,30 +2445,36 @@
     "chain_pct": "50%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.5,
+    "use_kg": true
   },
   "216": {
     "matched_concepts": [
-      "light_blocking",
+      "shadow",
       "light",
-      "shadow"
+      "light_blocking"
     ],
     "chain_pct": "75%",
     "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.75,
+    "use_kg": true
   },
   "217": {
     "matched_concepts": [
       "prism",
-      "light_spectrum",
       "color_separation",
+      "light_spectrum",
       "white_light"
     ],
     "chain_pct": "100%",
     "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "218": {
     "matched_concepts": [
@@ -1982,33 +2483,43 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "219": {
     "matched_concepts": [
-      "electricity_flow"
-    ],
-    "chain_pct": "33%",
-    "solo": "Multistructural",
-    "bloom": "Remember",
-    "n_kg_concepts": 3
-  },
-  "220": {
-    "matched_concepts": [
-      "material",
-      "electricity_flow"
+      "electricity_flow",
+      "conductor"
     ],
     "chain_pct": "67%",
     "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
+  },
+  "220": {
+    "matched_concepts": [
+      "electricity_flow",
+      "insulator",
+      "material"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 3,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "221": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "222": {
     "matched_concepts": [
@@ -2017,7 +2528,9 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "223": {
     "matched_concepts": [
@@ -2026,7 +2539,9 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "224": {
     "matched_concepts": [
@@ -2035,40 +2550,54 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "225": {
     "matched_concepts": [
-      "magnet"
+      "magnet",
+      "area"
+    ],
+    "chain_pct": "67%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
+  },
+  "226": {
+    "matched_concepts": [
+      "electromagnet",
+      "magnet",
+      "electric_current"
+    ],
+    "chain_pct": "60%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.6,
+    "use_kg": true
+  },
+  "227": {
+    "matched_concepts": [
+      "fuse"
     ],
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
-  },
-  "226": {
-    "matched_concepts": [
-      "electric_current",
-      "magnet"
-    ],
-    "chain_pct": "40%",
-    "solo": "Multistructural",
-    "bloom": "Remember",
-    "n_kg_concepts": 5
-  },
-  "227": {
-    "matched_concepts": [],
-    "chain_pct": "0%",
-    "solo": "Prestructural",
-    "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "228": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "229": {
     "matched_concepts": [
@@ -2078,52 +2607,65 @@
     "chain_pct": "50%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.5,
+    "use_kg": true
   },
   "230": {
     "matched_concepts": [
       "open_circuit",
-      "electric_current",
+      "current_flow",
       "electric_circuit",
-      "current_flow"
+      "electric_current"
     ],
     "chain_pct": "100%",
     "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "231": {
     "matched_concepts": [
-      "electric_circuit",
-      "electricity_flow"
+      "electricity_flow",
+      "electric_circuit"
     ],
     "chain_pct": "67%",
     "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "232": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "233": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "234": {
     "matched_concepts": [
+      "human_use",
       "natural_resources"
     ],
-    "chain_pct": "33%",
-    "solo": "Multistructural",
+    "chain_pct": "67%",
+    "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "235": {
     "matched_concepts": [
@@ -2132,14 +2674,18 @@
     "chain_pct": "17%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 6
+    "n_kg_concepts": 6,
+    "coverage_ratio": 0.1667,
+    "use_kg": false
   },
   "236": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "237": {
     "matched_concepts": [
@@ -2148,16 +2694,21 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "238": {
     "matched_concepts": [
+      "humidity",
       "air"
     ],
-    "chain_pct": "33%",
-    "solo": "Multistructural",
+    "chain_pct": "67%",
+    "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "239": {
     "matched_concepts": [
@@ -2167,43 +2718,59 @@
     "chain_pct": "40%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.4,
+    "use_kg": true
   },
   "240": {
-    "matched_concepts": [],
-    "chain_pct": "0%",
-    "solo": "Prestructural",
+    "matched_concepts": [
+      "air_pressure_differences"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 2
+    "n_kg_concepts": 2,
+    "coverage_ratio": 0.5,
+    "use_kg": true
   },
   "241": {
     "matched_concepts": [
       "cold_front",
       "cold_air",
+      "air_mass_interaction",
       "warm_air"
     ],
-    "chain_pct": "75%",
-    "solo": "Relational",
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "242": {
     "matched_concepts": [
+      "air_mass_interaction",
       "warm_air",
-      "cold_air",
-      "warm_front"
+      "warm_front",
+      "cold_air"
     ],
-    "chain_pct": "75%",
-    "solo": "Relational",
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "243": {
-    "matched_concepts": [],
-    "chain_pct": "0%",
-    "solo": "Prestructural",
+    "matched_concepts": [
+      "rotating_air_column"
+    ],
+    "chain_pct": "25%",
+    "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "244": {
     "matched_concepts": [
@@ -2212,14 +2779,20 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "245": {
-    "matched_concepts": [],
-    "chain_pct": "0%",
-    "solo": "Prestructural",
+    "matched_concepts": [
+      "rainfall"
+    ],
+    "chain_pct": "33%",
+    "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "246": {
     "matched_concepts": [
@@ -2228,7 +2801,9 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "247": {
     "matched_concepts": [
@@ -2237,14 +2812,18 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "248": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "249": {
     "matched_concepts": [
@@ -2253,28 +2832,36 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "250": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "251": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "252": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "253": {
     "matched_concepts": [
@@ -2283,14 +2870,18 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "254": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "255": {
     "matched_concepts": [
@@ -2300,18 +2891,22 @@
     "chain_pct": "50%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.5,
+    "use_kg": true
   },
   "256": {
     "matched_concepts": [
-      "weather_monitoring",
       "weather_forecasting",
+      "weather_monitoring",
       "weather_satellite"
     ],
     "chain_pct": "100%",
     "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "257": {
     "matched_concepts": [
@@ -2321,7 +2916,9 @@
     "chain_pct": "67%",
     "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "258": {
     "matched_concepts": [
@@ -2330,7 +2927,9 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "259": {
     "matched_concepts": [
@@ -2339,7 +2938,9 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "260": {
     "matched_concepts": [
@@ -2348,7 +2949,9 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "261": {
     "matched_concepts": [
@@ -2357,14 +2960,20 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "262": {
-    "matched_concepts": [],
-    "chain_pct": "0%",
-    "solo": "Prestructural",
+    "matched_concepts": [
+      "comet"
+    ],
+    "chain_pct": "20%",
+    "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 6
+    "n_kg_concepts": 6,
+    "coverage_ratio": 0.2,
+    "use_kg": false
   },
   "263": {
     "matched_concepts": [
@@ -2373,14 +2982,18 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "264": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "265": {
     "matched_concepts": [
@@ -2389,7 +3002,9 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "266": {
     "matched_concepts": [
@@ -2398,83 +3013,116 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "267": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "268": {
     "matched_concepts": [
-      "water_cycle"
+      "water_cycle",
+      "condensation"
+    ],
+    "chain_pct": "50%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.5,
+    "use_kg": true
+  },
+  "269": {
+    "matched_concepts": [
+      "gas_state"
     ],
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
-  },
-  "269": {
-    "matched_concepts": [],
-    "chain_pct": "0%",
-    "solo": "Prestructural",
-    "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "270": {
-    "matched_concepts": [],
-    "chain_pct": "0%",
-    "solo": "Prestructural",
+    "matched_concepts": [
+      "rain"
+    ],
+    "chain_pct": "20%",
+    "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.2,
+    "use_kg": false
   },
   "271": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "272": {
     "matched_concepts": [
+      "transpiration",
+      "leaves",
       "water"
     ],
-    "chain_pct": "20%",
-    "solo": "Unistructural",
+    "chain_pct": "60%",
+    "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.6,
+    "use_kg": true
   },
   "273": {
     "matched_concepts": [
+      "underground_storage",
+      "groundwater",
       "water"
     ],
-    "chain_pct": "33%",
-    "solo": "Multistructural",
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "274": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "275": {
-    "matched_concepts": [],
-    "chain_pct": "0%",
-    "solo": "Prestructural",
+    "matched_concepts": [
+      "frozen_water"
+    ],
+    "chain_pct": "33%",
+    "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "276": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "277": {
     "matched_concepts": [
@@ -2483,30 +3131,39 @@
     "chain_pct": "20%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.2,
+    "use_kg": false
   },
   "278": {
     "matched_concepts": [
+      "microorganisms",
       "living_things"
     ],
-    "chain_pct": "33%",
-    "solo": "Multistructural",
+    "chain_pct": "67%",
+    "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "279": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "280": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "281": {
     "matched_concepts": [
@@ -2515,49 +3172,66 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "282": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "283": {
-    "matched_concepts": [],
-    "chain_pct": "0%",
-    "solo": "Prestructural",
-    "bloom": "Remember",
-    "n_kg_concepts": 4
-  },
-  "284": {
     "matched_concepts": [
-      "muscles"
-    ],
-    "chain_pct": "33%",
-    "solo": "Multistructural",
-    "bloom": "Remember",
-    "n_kg_concepts": 4
-  },
-  "285": {
-    "matched_concepts": [
-      "place"
+      "heating"
     ],
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
-  "286": {
+  "284": {
     "matched_concepts": [
-      "long_period",
-      "weather"
+      "muscles",
+      "tendons"
+    ],
+    "chain_pct": "67%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
+  },
+  "285": {
+    "matched_concepts": [
+      "weather",
+      "place"
     ],
     "chain_pct": "50%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.5,
+    "use_kg": true
+  },
+  "286": {
+    "matched_concepts": [
+      "long_period",
+      "climate",
+      "weather"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.75,
+    "use_kg": true
   },
   "287": {
     "matched_concepts": [
@@ -2566,17 +3240,22 @@
     "chain_pct": "50%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 2
+    "n_kg_concepts": 2,
+    "coverage_ratio": 0.5,
+    "use_kg": true
   },
   "288": {
     "matched_concepts": [
       "water_vapor",
+      "humidity",
       "air"
     ],
-    "chain_pct": "67%",
-    "solo": "Relational",
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "289": {
     "matched_concepts": [
@@ -2585,16 +3264,21 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "290": {
     "matched_concepts": [
-      "earths_temperature"
+      "earths_temperature",
+      "global_warming"
     ],
-    "chain_pct": "33%",
-    "solo": "Multistructural",
+    "chain_pct": "67%",
+    "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "291": {
     "matched_concepts": [
@@ -2606,28 +3290,36 @@
     "chain_pct": "80%",
     "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.8,
+    "use_kg": true
   },
   "292": {
     "matched_concepts": [
       "cold_front",
-      "cold_air",
-      "warm_air"
+      "air_mass_interaction",
+      "warm_air",
+      "cold_air"
+    ],
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
+    "bloom": "Remember",
+    "n_kg_concepts": 4,
+    "coverage_ratio": 1.0,
+    "use_kg": true
+  },
+  "293": {
+    "matched_concepts": [
+      "tornado",
+      "ground",
+      "rotating_air_column"
     ],
     "chain_pct": "75%",
     "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 4
-  },
-  "293": {
-    "matched_concepts": [
-      "rotating_air_column",
-      "ground"
-    ],
-    "chain_pct": "50%",
-    "solo": "Multistructural",
-    "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.75,
+    "use_kg": true
   },
   "294": {
     "matched_concepts": [
@@ -2637,51 +3329,68 @@
     "chain_pct": "50%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.5,
+    "use_kg": true
   },
   "295": {
     "matched_concepts": [
       "long_period",
-      "rainfall"
+      "rainfall",
+      "drought"
     ],
-    "chain_pct": "67%",
-    "solo": "Relational",
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "296": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "297": {
-    "matched_concepts": [],
-    "chain_pct": "0%",
-    "solo": "Prestructural",
+    "matched_concepts": [
+      "weather_monitoring"
+    ],
+    "chain_pct": "33%",
+    "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "298": {
     "matched_concepts": [
-      "strong_winds",
-      "snowstorm"
+      "snowstorm",
+      "blizzard",
+      "strong_winds"
     ],
-    "chain_pct": "50%",
-    "solo": "Multistructural",
+    "chain_pct": "75%",
+    "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.75,
+    "use_kg": true
   },
   "299": {
     "matched_concepts": [
       "liquid_state",
+      "evaporation",
       "phase_change"
     ],
-    "chain_pct": "40%",
+    "chain_pct": "60%",
     "solo": "Multistructural",
     "bloom": "Understand",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.6,
+    "use_kg": true
   },
   "300": {
     "matched_concepts": [
@@ -2690,18 +3399,23 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "301": {
     "matched_concepts": [
-      "warm_air",
       "air_mass_interaction",
-      "warm_front"
+      "warm_air",
+      "warm_front",
+      "cold_air"
     ],
-    "chain_pct": "75%",
-    "solo": "Relational",
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "302": {
     "matched_concepts": [
@@ -2711,53 +3425,63 @@
     "chain_pct": "50%",
     "solo": "Multistructural",
     "bloom": "Understand",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.5,
+    "use_kg": true
   },
   "303": {
     "matched_concepts": [
+      "habitat",
       "plant",
       "natural_home",
-      "animal",
-      "habitat"
+      "animal"
     ],
     "chain_pct": "100%",
     "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "304": {
     "matched_concepts": [
       "force",
-      "push",
-      "pull"
+      "pull",
+      "push"
     ],
     "chain_pct": "75%",
     "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.75,
+    "use_kg": true
   },
   "305": {
     "matched_concepts": [
-      "water",
-      "wind",
       "soil_erosion",
-      "soil"
+      "wind",
+      "soil",
+      "water"
     ],
     "chain_pct": "80%",
     "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.8,
+    "use_kg": true
   },
   "306": {
     "matched_concepts": [
+      "change_in_motion",
       "inertia",
-      "object",
-      "change_in_motion"
+      "object"
     ],
     "chain_pct": "100%",
     "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "307": {
     "matched_concepts": [
@@ -2767,7 +3491,9 @@
     "chain_pct": "67%",
     "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "308": {
     "matched_concepts": [
@@ -2777,18 +3503,22 @@
     "chain_pct": "50%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.5,
+    "use_kg": true
   },
   "309": {
     "matched_concepts": [
+      "microorganisms",
       "harmful_microorganisms",
-      "helpful_microorganisms",
-      "microorganisms"
+      "helpful_microorganisms"
     ],
     "chain_pct": "100%",
     "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "310": {
     "matched_concepts": [
@@ -2797,14 +3527,18 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "311": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "312": {
     "matched_concepts": [
@@ -2813,28 +3547,35 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "313": {
     "matched_concepts": [
-      "seed_dispersal",
+      "animals",
       "wind",
-      "animals"
+      "seed_dispersal"
     ],
     "chain_pct": "60%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.6,
+    "use_kg": true
   },
   "314": {
     "matched_concepts": [
-      "flower",
-      "pollen"
+      "pollination",
+      "pollen",
+      "flower"
     ],
-    "chain_pct": "67%",
-    "solo": "Relational",
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "315": {
     "matched_concepts": [
@@ -2843,16 +3584,21 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "316": {
     "matched_concepts": [
+      "microorganisms",
       "living_things"
     ],
-    "chain_pct": "33%",
-    "solo": "Multistructural",
+    "chain_pct": "67%",
+    "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "317": {
     "matched_concepts": [
@@ -2861,97 +3607,122 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "318": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "319": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "320": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "321": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "322": {
     "matched_concepts": [
+      "pollination",
       "pollen"
     ],
-    "chain_pct": "33%",
-    "solo": "Multistructural",
+    "chain_pct": "67%",
+    "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "323": {
     "matched_concepts": [
+      "germination",
+      "plant_growth",
       "plant",
-      "seed",
-      "plant_growth"
+      "seed"
     ],
-    "chain_pct": "75%",
-    "solo": "Relational",
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "324": {
     "matched_concepts": [
-      "water",
       "wind",
+      "water",
       "animals"
     ],
     "chain_pct": "60%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.6,
+    "use_kg": true
   },
   "325": {
     "matched_concepts": [
-      "water_bodies",
-      "water_pollution"
+      "water_pollution",
+      "water_bodies"
     ],
     "chain_pct": "67%",
     "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "326": {
     "matched_concepts": [
+      "coal",
       "oil",
-      "dead_plants_animals",
-      "coal"
+      "dead_plants_animals"
     ],
     "chain_pct": "50%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 6
+    "n_kg_concepts": 6,
+    "coverage_ratio": 0.5,
+    "use_kg": true
   },
   "327": {
     "matched_concepts": [
+      "earths_atmosphere",
       "heat_trapping",
       "greenhouse_gases"
     ],
-    "chain_pct": "67%",
-    "solo": "Relational",
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "328": {
     "matched_concepts": [
@@ -2960,14 +3731,18 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "329": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "330": {
     "matched_concepts": [
@@ -2977,7 +3752,9 @@
     "chain_pct": "50%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.5,
+    "use_kg": true
   },
   "331": {
     "matched_concepts": [
@@ -2986,7 +3763,9 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "332": {
     "matched_concepts": [
@@ -2995,74 +3774,99 @@
     "chain_pct": "20%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.2,
+    "use_kg": false
   },
   "333": {
     "matched_concepts": [
-      "solid_state",
-      "liquid_state"
-    ],
-    "chain_pct": "50%",
-    "solo": "Multistructural",
-    "bloom": "Remember",
-    "n_kg_concepts": 4
-  },
-  "334": {
-    "matched_concepts": [
-      "solid_state",
-      "liquid_state"
-    ],
-    "chain_pct": "50%",
-    "solo": "Multistructural",
-    "bloom": "Remember",
-    "n_kg_concepts": 4
-  },
-  "335": {
-    "matched_concepts": [
-      "liquid_state"
-    ],
-    "chain_pct": "20%",
-    "solo": "Unistructural",
-    "bloom": "Remember",
-    "n_kg_concepts": 5
-  },
-  "336": {
-    "matched_concepts": [
-      "liquid_state"
-    ],
-    "chain_pct": "20%",
-    "solo": "Unistructural",
-    "bloom": "Remember",
-    "n_kg_concepts": 5
-  },
-  "337": {
-    "matched_concepts": [
-      "liquid_state"
-    ],
-    "chain_pct": "25%",
-    "solo": "Unistructural",
-    "bloom": "Remember",
-    "n_kg_concepts": 4
-  },
-  "338": {
-    "matched_concepts": [
-      "energy"
-    ],
-    "chain_pct": "33%",
-    "solo": "Multistructural",
-    "bloom": "Remember",
-    "n_kg_concepts": 3
-  },
-  "339": {
-    "matched_concepts": [
-      "light",
-      "light_reflection",
-      "bouncing_back"
+      "liquid_state",
+      "melting",
+      "solid_state"
     ],
     "chain_pct": "75%",
     "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.75,
+    "use_kg": true
+  },
+  "334": {
+    "matched_concepts": [
+      "liquid_state",
+      "solid_state",
+      "freezing"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.75,
+    "use_kg": true
+  },
+  "335": {
+    "matched_concepts": [
+      "liquid_state",
+      "gas_state",
+      "boiling"
+    ],
+    "chain_pct": "60%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.6,
+    "use_kg": true
+  },
+  "336": {
+    "matched_concepts": [
+      "liquid_state",
+      "evaporation",
+      "gas_state"
+    ],
+    "chain_pct": "60%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.6,
+    "use_kg": true
+  },
+  "337": {
+    "matched_concepts": [
+      "gas_state",
+      "condensation",
+      "liquid_state"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.75,
+    "use_kg": true
+  },
+  "338": {
+    "matched_concepts": [
+      "energy",
+      "light"
+    ],
+    "chain_pct": "67%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
+  },
+  "339": {
+    "matched_concepts": [
+      "light_reflection",
+      "bouncing_back",
+      "light"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.75,
+    "use_kg": true
   },
   "340": {
     "matched_concepts": [
@@ -3072,7 +3876,9 @@
     "chain_pct": "50%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.5,
+    "use_kg": true
   },
   "341": {
     "matched_concepts": [
@@ -3081,7 +3887,9 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "342": {
     "matched_concepts": [
@@ -3090,21 +3898,27 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "343": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 6
+    "n_kg_concepts": 6,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "344": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "345": {
     "matched_concepts": [
@@ -3114,77 +3928,101 @@
     "chain_pct": "40%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.4,
+    "use_kg": true
   },
   "346": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "347": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "348": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "349": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "350": {
     "matched_concepts": [
+      "electric_charge",
       "electric_circuit",
-      "electric_current",
-      "electric_charge"
+      "electric_current"
     ],
     "chain_pct": "75%",
     "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.75,
+    "use_kg": true
   },
   "351": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "352": {
     "matched_concepts": [
-      "closed_circuit",
-      "electric_circuit"
+      "electric_circuit",
+      "closed_circuit"
     ],
     "chain_pct": "67%",
     "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "353": {
-    "matched_concepts": [],
-    "chain_pct": "0%",
-    "solo": "Prestructural",
+    "matched_concepts": [
+      "electricity_flow"
+    ],
+    "chain_pct": "33%",
+    "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "354": {
-    "matched_concepts": [],
-    "chain_pct": "0%",
-    "solo": "Prestructural",
+    "matched_concepts": [
+      "electricity_flow"
+    ],
+    "chain_pct": "33%",
+    "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "355": {
     "matched_concepts": [
@@ -3193,54 +4031,77 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "356": {
-    "matched_concepts": [],
-    "chain_pct": "0%",
-    "solo": "Prestructural",
+    "matched_concepts": [
+      "material"
+    ],
+    "chain_pct": "33%",
+    "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "357": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "358": {
     "matched_concepts": [
-      "electric_current",
-      "magnet"
+      "electromagnet",
+      "magnet",
+      "electric_current"
     ],
-    "chain_pct": "40%",
+    "chain_pct": "60%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.6,
+    "use_kg": true
   },
   "359": {
-    "matched_concepts": [],
-    "chain_pct": "0%",
-    "solo": "Prestructural",
+    "matched_concepts": [
+      "static_electricity"
+    ],
+    "chain_pct": "33%",
+    "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "360": {
     "matched_concepts": [
+      "series_circuit",
+      "electric_circuit",
       "single_path"
+    ],
+    "chain_pct": "75%",
+    "solo": "Relational",
+    "bloom": "Remember",
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.75,
+    "use_kg": true
+  },
+  "361": {
+    "matched_concepts": [
+      "electric_circuit"
     ],
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
-  },
-  "361": {
-    "matched_concepts": [],
-    "chain_pct": "0%",
-    "solo": "Prestructural",
-    "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "362": {
     "matched_concepts": [
@@ -3249,7 +4110,9 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "363": {
     "matched_concepts": [
@@ -3258,34 +4121,43 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "364": {
     "matched_concepts": [
-      "water",
-      "underground_storage"
+      "groundwater",
+      "underground_storage",
+      "water"
     ],
-    "chain_pct": "67%",
-    "solo": "Relational",
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "365": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "366": {
     "matched_concepts": [
-      "water_bodies",
-      "water_pollution"
+      "water_pollution",
+      "water_bodies"
     ],
     "chain_pct": "67%",
     "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "367": {
     "matched_concepts": [
@@ -3294,30 +4166,39 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "368": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "369": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "370": {
     "matched_concepts": [
+      "precipitation",
       "rain"
     ],
-    "chain_pct": "20%",
-    "solo": "Unistructural",
+    "chain_pct": "40%",
+    "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.4,
+    "use_kg": true
   },
   "371": {
     "matched_concepts": [
@@ -3326,21 +4207,27 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "372": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "373": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "374": {
     "matched_concepts": [
@@ -3349,14 +4236,18 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "375": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "376": {
     "matched_concepts": [
@@ -3365,28 +4256,38 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "377": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "378": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 6
+    "n_kg_concepts": 6,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "379": {
-    "matched_concepts": [],
-    "chain_pct": "0%",
-    "solo": "Prestructural",
+    "matched_concepts": [
+      "rocky_object"
+    ],
+    "chain_pct": "14%",
+    "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 7
+    "n_kg_concepts": 7,
+    "coverage_ratio": 0.1429,
+    "use_kg": false
   },
   "380": {
     "matched_concepts": [
@@ -3395,37 +4296,47 @@
     "chain_pct": "17%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 6
+    "n_kg_concepts": 6,
+    "coverage_ratio": 0.1667,
+    "use_kg": false
   },
   "381": {
     "matched_concepts": [
-      "galaxy"
+      "galaxy",
+      "milky_way"
     ],
     "chain_pct": "100%",
     "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 2
+    "n_kg_concepts": 2,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "382": {
     "matched_concepts": [
-      "weather_monitoring",
       "weather_forecasting",
+      "weather_monitoring",
       "weather_satellite"
     ],
     "chain_pct": "100%",
     "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "383": {
     "matched_concepts": [
+      "gas_exchange",
       "carbon_dioxide_removal",
       "oxygen_intake"
     ],
-    "chain_pct": "67%",
-    "solo": "Relational",
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "384": {
     "matched_concepts": [
@@ -3434,27 +4345,34 @@
     "chain_pct": "20%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.2,
+    "use_kg": false
   },
   "385": {
     "matched_concepts": [
-      "blood"
+      "blood",
+      "plasma"
     ],
-    "chain_pct": "25%",
-    "solo": "Unistructural",
+    "chain_pct": "50%",
+    "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.5,
+    "use_kg": true
   },
   "386": {
     "matched_concepts": [
-      "unpleasant_food",
       "unsafe_food",
+      "unpleasant_food",
       "food_spoilage"
     ],
     "chain_pct": "100%",
     "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "387": {
     "matched_concepts": [
@@ -3463,7 +4381,9 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "388": {
     "matched_concepts": [
@@ -3472,7 +4392,9 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Understand",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "389": {
     "matched_concepts": [
@@ -3481,14 +4403,18 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Understand",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "390": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "391": {
     "matched_concepts": [
@@ -3497,17 +4423,21 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Understand",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "392": {
     "matched_concepts": [
-      "temperature",
-      "liquid_expansion"
+      "liquid_expansion",
+      "temperature"
     ],
     "chain_pct": "67%",
     "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "393": {
     "matched_concepts": [
@@ -3517,7 +4447,9 @@
     "chain_pct": "67%",
     "solo": "Relational",
     "bloom": "Understand",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "394": {
     "matched_concepts": [
@@ -3526,44 +4458,57 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Understand",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "395": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "396": {
     "matched_concepts": [
+      "rate_of_change",
       "velocity",
-      "rate_of_change"
+      "acceleration"
     ],
-    "chain_pct": "67%",
-    "solo": "Relational",
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "397": {
     "matched_concepts": [
       "object_at_rest",
+      "newtons_first_law",
       "object_in_motion"
     ],
-    "chain_pct": "50%",
-    "solo": "Multistructural",
+    "chain_pct": "75%",
+    "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.75,
+    "use_kg": true
   },
   "398": {
     "matched_concepts": [
-      "push",
-      "pull"
+      "force",
+      "pull",
+      "push"
     ],
-    "chain_pct": "50%",
-    "solo": "Multistructural",
+    "chain_pct": "75%",
+    "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.75,
+    "use_kg": true
   },
   "399": {
     "matched_concepts": [
@@ -3572,14 +4517,18 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "400": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "401": {
     "matched_concepts": [
@@ -3588,7 +4537,9 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "402": {
     "matched_concepts": [
@@ -3597,7 +4548,9 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "403": {
     "matched_concepts": [
@@ -3606,23 +4559,30 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "404": {
     "matched_concepts": [
-      "heat_transfer"
+      "heat_transfer",
+      "radiation"
     ],
-    "chain_pct": "33%",
-    "solo": "Multistructural",
+    "chain_pct": "67%",
+    "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "405": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "406": {
     "matched_concepts": [
@@ -3632,21 +4592,27 @@
     "chain_pct": "67%",
     "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "407": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "408": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "409": {
     "matched_concepts": [
@@ -3655,28 +4621,36 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "410": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "411": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "412": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "413": {
     "matched_concepts": [
@@ -3685,14 +4659,18 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "414": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "415": {
     "matched_concepts": [
@@ -3701,7 +4679,9 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "416": {
     "matched_concepts": [
@@ -3710,7 +4690,9 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "417": {
     "matched_concepts": [
@@ -3719,7 +4701,9 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "418": {
     "matched_concepts": [
@@ -3729,18 +4713,22 @@
     "chain_pct": "67%",
     "solo": "Relational",
     "bloom": "Understand",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "419": {
     "matched_concepts": [
-      "unpleasant_food",
+      "food_spoilage",
       "unsafe_food",
-      "food_spoilage"
+      "unpleasant_food"
     ],
     "chain_pct": "100%",
     "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "420": {
     "matched_concepts": [
@@ -3749,48 +4737,60 @@
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "421": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "422": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "423": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "424": {
     "matched_concepts": [
-      "galaxy",
-      "star"
+      "star",
+      "galaxy"
     ],
     "chain_pct": "33%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 6
+    "n_kg_concepts": 6,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "425": {
     "matched_concepts": [
-      "galaxy",
-      "barred_spiral_galaxy"
+      "barred_spiral_galaxy",
+      "galaxy"
     ],
     "chain_pct": "50%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.5,
+    "use_kg": true
   },
   "426": {
     "matched_concepts": [
@@ -3799,31 +4799,41 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "427": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "428": {
     "matched_concepts": [
-      "viruses",
-      "bacteria"
+      "bacteria",
+      "viruses"
     ],
     "chain_pct": "50%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.5,
+    "use_kg": true
   },
   "429": {
-    "matched_concepts": [],
-    "chain_pct": "0%",
-    "solo": "Prestructural",
+    "matched_concepts": [
+      "typhoid"
+    ],
+    "chain_pct": "25%",
+    "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "430": {
     "matched_concepts": [
@@ -3832,40 +4842,51 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "431": {
     "matched_concepts": [
-      "water",
-      "wind"
+      "wind",
+      "water"
     ],
     "chain_pct": "40%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.4,
+    "use_kg": true
   },
   "432": {
     "matched_concepts": [
+      "microorganisms",
       "living_things"
     ],
-    "chain_pct": "33%",
-    "solo": "Multistructural",
+    "chain_pct": "67%",
+    "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "433": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Understand",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "434": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "435": {
     "matched_concepts": [
@@ -3874,7 +4895,9 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "436": {
     "matched_concepts": [
@@ -3883,64 +4906,85 @@
     "chain_pct": "20%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.2,
+    "use_kg": false
   },
   "437": {
     "matched_concepts": [
-      "earth_equator",
-      "celestial_equator"
+      "celestial_equator",
+      "earth_equator"
     ],
     "chain_pct": "50%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.5,
+    "use_kg": true
   },
   "438": {
     "matched_concepts": [
-      "sun",
-      "apparent_path"
+      "ecliptic",
+      "apparent_path",
+      "sun"
     ],
-    "chain_pct": "40%",
+    "chain_pct": "60%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.6,
+    "use_kg": true
   },
   "439": {
     "matched_concepts": [
+      "constellation",
       "stars"
     ],
-    "chain_pct": "25%",
-    "solo": "Unistructural",
+    "chain_pct": "50%",
+    "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.5,
+    "use_kg": true
   },
   "440": {
     "matched_concepts": [
       "orion",
+      "ursa_major",
       "scorpius"
     ],
-    "chain_pct": "50%",
-    "solo": "Multistructural",
+    "chain_pct": "75%",
+    "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.75,
+    "use_kg": true
   },
   "441": {
     "matched_concepts": [
-      "sun"
+      "sun",
+      "earth_rotation",
+      "earth_orbit"
     ],
-    "chain_pct": "50%",
-    "solo": "Multistructural",
+    "chain_pct": "100%",
+    "solo": "Extended Abstract",
     "bloom": "Analyze",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "442": {
     "matched_concepts": [
-      "constellations"
+      "constellations",
+      "ecliptic",
+      "zodiac"
     ],
-    "chain_pct": "25%",
-    "solo": "Unistructural",
+    "chain_pct": "75%",
+    "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.75,
+    "use_kg": true
   },
   "443": {
     "matched_concepts": [
@@ -3949,64 +4993,81 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "444": {
     "matched_concepts": [
+      "binoculars",
       "star_maps",
-      "telescopes",
-      "binoculars"
+      "telescopes"
     ],
     "chain_pct": "100%",
     "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "445": {
     "matched_concepts": [
-      "light_pollution",
+      "city_lights",
       "faint_stars",
-      "city_lights"
+      "light_pollution"
     ],
     "chain_pct": "100%",
     "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "446": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Analyze",
-    "n_kg_concepts": 7
+    "n_kg_concepts": 7,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "447": {
     "matched_concepts": [
+      "earth_north_pole",
       "north_star",
-      "earth_north_pole"
+      "polaris"
     ],
-    "chain_pct": "50%",
-    "solo": "Multistructural",
+    "chain_pct": "75%",
+    "solo": "Relational",
     "bloom": "Understand",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.75,
+    "use_kg": true
   },
   "448": {
     "matched_concepts": [
-      "star"
+      "star",
+      "red_giant"
     ],
-    "chain_pct": "17%",
-    "solo": "Unistructural",
+    "chain_pct": "33%",
+    "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 6
+    "n_kg_concepts": 6,
+    "coverage_ratio": 0.3333,
+    "use_kg": true
   },
   "449": {
     "matched_concepts": [
+      "white_dwarf",
       "dead_star"
     ],
-    "chain_pct": "20%",
-    "solo": "Unistructural",
+    "chain_pct": "40%",
+    "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.4,
+    "use_kg": true
   },
   "450": {
     "matched_concepts": [
@@ -4015,50 +5076,61 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "451": {
     "matched_concepts": [
-      "star_color",
       "star_temperature",
-      "blue_stars",
-      "hottest_stars",
+      "red_stars",
       "coolest_stars",
-      "red_stars"
+      "hottest_stars",
+      "star_color",
+      "blue_stars"
     ],
     "chain_pct": "100%",
     "solo": "Extended Abstract",
     "bloom": "Remember",
-    "n_kg_concepts": 6
+    "n_kg_concepts": 6,
+    "coverage_ratio": 1.0,
+    "use_kg": true
   },
   "452": {
     "matched_concepts": [
-      "star_system",
-      "binary_star"
+      "binary_star",
+      "star_system"
     ],
     "chain_pct": "50%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.5,
+    "use_kg": true
   },
   "453": {
     "matched_concepts": [
+      "light_year",
       "light_speed"
     ],
-    "chain_pct": "20%",
-    "solo": "Unistructural",
+    "chain_pct": "40%",
+    "solo": "Multistructural",
     "bloom": "Understand",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.4,
+    "use_kg": true
   },
   "454": {
     "matched_concepts": [
-      "main_sequence_star",
-      "star"
+      "star",
+      "main_sequence_star"
     ],
     "chain_pct": "50%",
     "solo": "Multistructural",
     "bloom": "Analyze",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.5,
+    "use_kg": true
   },
   "455": {
     "matched_concepts": [
@@ -4067,14 +5139,18 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "456": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Analyze",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "457": {
     "matched_concepts": [
@@ -4083,75 +5159,94 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "458": {
     "matched_concepts": [
-      "stars",
-      "star_cluster"
+      "star_cluster",
+      "stars"
     ],
     "chain_pct": "67%",
     "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.6667,
+    "use_kg": true
   },
   "459": {
     "matched_concepts": [
       "young_stars",
-      "star_cluster"
+      "star_cluster",
+      "open_cluster"
     ],
-    "chain_pct": "50%",
-    "solo": "Multistructural",
+    "chain_pct": "75%",
+    "solo": "Relational",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.75,
+    "use_kg": true
   },
   "460": {
     "matched_concepts": [
+      "star_cluster",
       "old_stars",
-      "star_cluster"
+      "globular_cluster"
     ],
-    "chain_pct": "40%",
+    "chain_pct": "60%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.6,
+    "use_kg": true
   },
   "461": {
     "matched_concepts": [
-      "space",
-      "cosmic_dust"
+      "cosmic_dust",
+      "space"
     ],
     "chain_pct": "40%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.4,
+    "use_kg": true
   },
   "462": {
     "matched_concepts": [
-      "planets",
-      "solar_system"
+      "solar_system",
+      "exoplanets",
+      "planets"
     ],
-    "chain_pct": "40%",
+    "chain_pct": "60%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.6,
+    "use_kg": true
   },
   "463": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "464": {
     "matched_concepts": [
+      "hubble_space_telescope",
       "space_telescope",
-      "space_images",
-      "hubble_space_telescope"
+      "space_images"
     ],
     "chain_pct": "60%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.6,
+    "use_kg": true
   },
   "465": {
     "matched_concepts": [
@@ -4160,58 +5255,77 @@
     "chain_pct": "25%",
     "solo": "Unistructural",
     "bloom": "Analyze",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.25,
+    "use_kg": true
   },
   "466": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 4
+    "n_kg_concepts": 4,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "467": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 6
+    "n_kg_concepts": 6,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "468": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 7
+    "n_kg_concepts": 7,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "469": {
-    "matched_concepts": [],
-    "chain_pct": "0%",
-    "solo": "Prestructural",
-    "bloom": "Remember",
-    "n_kg_concepts": 5
-  },
-  "470": {
     "matched_concepts": [
-      "planet",
-      "star"
+      "earth_atmosphere",
+      "earth_surface"
     ],
     "chain_pct": "40%",
     "solo": "Multistructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.4,
+    "use_kg": true
+  },
+  "470": {
+    "matched_concepts": [
+      "star",
+      "planet"
+    ],
+    "chain_pct": "40%",
+    "solo": "Multistructural",
+    "bloom": "Remember",
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.4,
+    "use_kg": true
   },
   "471": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Analyze",
-    "n_kg_concepts": 3
+    "n_kg_concepts": 3,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   },
   "472": {
     "matched_concepts": [],
     "chain_pct": "0%",
     "solo": "Prestructural",
     "bloom": "Remember",
-    "n_kg_concepts": 5
+    "n_kg_concepts": 5,
+    "coverage_ratio": 0.0,
+    "use_kg": false
   }
 }

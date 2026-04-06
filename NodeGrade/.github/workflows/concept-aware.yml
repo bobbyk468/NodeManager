@@ -1,0 +1,38 @@
+name: Concept-aware (Python)
+
+on:
+  push:
+    paths:
+      - "NodeGrade/packages/concept-aware/**"
+      - "packages/concept-aware/**"
+  pull_request:
+    paths:
+      - "NodeGrade/packages/concept-aware/**"
+      - "packages/concept-aware/**"
+  workflow_dispatch:
+
+jobs:
+  concept-matching-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install numeric deps
+        run: pip install "numpy>=1.24" "scipy>=1.10" "scikit-learn>=1.3"
+
+      - name: Run concept_matching tests (keyword-only)
+        env:
+          CONCEPTGRADE_SEMANTIC: "0"
+        run: |
+          if [ -d NodeGrade/packages/concept-aware ]; then
+            cd NodeGrade/packages/concept-aware
+          else
+            cd packages/concept-aware
+          fi
+          python3 tests/test_concept_matching.py
+          python3 tests/test_score_batch_merge.py
+          python3 validate_stored_eval.py --check-batches
