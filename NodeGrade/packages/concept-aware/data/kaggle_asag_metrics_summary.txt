@@ -2,6 +2,6 @@
 ConceptGrade Evaluation — KAGGLE_ASAG
 n=473 samples
 ======================================================================
-  C_LLM:   MAE=1.0772  r=0.6237  QWK=0.5748  bias=+0.5148
-  C5_fix:  MAE=1.1247  r=0.6235  QWK=0.5445  bias=+0.6554
-  MAE reduction: -4.4%  Wilcoxon p=0.0734
+  C_LLM:   MAE=1.1575  r=0.5989  QWK=0.5869  bias=+0.7474
+  C5_fix:  MAE=1.2146  r=0.5699  QWK=0.5590  bias=+0.6374
+  MAE reduction: -4.9%  Wilcoxon p=0.0639

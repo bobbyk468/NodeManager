@@ -59,6 +59,26 @@ SCORING_GUIDE = """SCORING GUIDE — based on proportion of reference answer con
 Score what the student got RIGHT. Missing vocabulary alone does not lower the score.
 Use 0.25 increments only."""
 
+SCORING_GUIDE_STRICT = """SCORING GUIDE — based on proportion of reference answer content correctly demonstrated:
+- 5.0: Student correctly explains virtually all key ideas (≥90% of reference content)
+- 4.5: Student correctly explains the great majority (≥80%); only very minor omissions
+- 4.0: Student correctly explains most key ideas (≥70%); one clear gap
+- 3.5: Student correctly explains a solid majority (≥60%) with reasonable depth
+- 3.0: Student correctly explains about half the reference content (~50%)
+- 2.5: Student correctly explains several key ideas (30–50%); substantial content missing
+- 2.0: Student correctly explains 1–2 key ideas accurately; most reference content missing
+- 1.5: Student shows partial understanding of 1 concept but cannot explain mechanisms
+- 1.0: Student shows awareness of the topic but no accurate explanations
+- 0.5: Single marginally relevant statement; no explanation
+- 0.0: No relevant content
+
+CALIBRATION NOTE: These are short elementary-level science answers. Most students earn 1–3 out of 5.
+A student who only names the topic without explaining the mechanism scores 1.0 or less.
+A student who gives a vague or partially correct answer scores 2.0–2.5.
+Reserve 4.0–5.0 for answers that correctly explain the mechanism or process.
+Score what the student got RIGHT. Missing vocabulary alone does not lower the score.
+Use integer scores (0, 1, 2, 3, 4, 5) only — no decimals."""
+
 
 def classify_solo(matched: list[str], total_expected: int) -> str:
     ratio = len(matched) / max(total_expected, 1)
@@ -162,9 +182,11 @@ Grade all {len(batch)} samples below. Use 0.25 increments."""
     return header + body + footer
 
 
-def build_cllm_prompt(batch: list[dict]) -> str:
+def build_cllm_prompt(batch: list[dict], scoring_guide: str | None = None) -> str:
     """C_LLM batch prompt: grade using ONLY question + reference + student answer (no KG)."""
-    system = f"""{SCORING_GUIDE}
+    guide = scoring_guide if scoring_guide is not None else SCORING_GUIDE
+    increment_note = "Use integer scores (0, 1, 2, 3, 4, 5) only." if scoring_guide == SCORING_GUIDE_STRICT else "Use 0.25 increments."
+    system = f"""{guide}
 
 You are an expert grader. Grade each student answer below using ONLY the question, reference answer, and student answer. Do NOT use any external knowledge graphs or structured evidence.
 
@@ -176,7 +198,7 @@ Return a JSON object:
   }}
 }}
 
-Grade all {len(batch)} samples. Use 0.25 increments."""
+Grade all {len(batch)} samples. {increment_note}"""
 
     parts = []
     for r in batch:
@@ -193,7 +215,7 @@ Grade all {len(batch)} samples. Use 0.25 increments."""
     return header + body + footer
 
 
-def build_c5fix_prompt(batch: list[dict], features: dict) -> str:
+def build_c5fix_prompt(batch: list[dict], features: dict, scoring_guide: str | None = None) -> str:
     """C5_fix batch prompt: grade using question + reference + student answer + KG evidence.
 
     The KG evidence is framed as a POSITIVE guide (key concepts expected) rather than
@@ -203,7 +225,9 @@ def build_c5fix_prompt(batch: list[dict], features: dict) -> str:
     When automatic concept coverage is below KG_MIN_COVERAGE, the sample is graded
     like C_LLM (no KG block) so weak extractions do not mislead the model.
     """
-    system = f"""{SCORING_GUIDE}
+    guide = scoring_guide if scoring_guide is not None else SCORING_GUIDE
+    increment_note = "Use integer scores (0, 1, 2, 3, 4, 5) only." if scoring_guide == SCORING_GUIDE_STRICT else "Use 0.25 increments."
+    system = f"""{guide}
 
 You are an expert grader. Some samples include optional KG GUIDANCE (expected concepts from a knowledge graph). When KG GUIDANCE is present, use it as a conceptual checklist: does the student's answer address these ideas (even in their own words)? The KG guides what to look for; it does NOT mechanically penalize missing keywords.
 
@@ -217,7 +241,7 @@ Return a JSON object:
   }}
 }}
 
-Grade all {len(batch)} samples. Use 0.25 increments."""
+Grade all {len(batch)} samples. {increment_note}"""
 
     parts = []
     for r in batch:
@@ -318,17 +342,20 @@ def run(dataset: str, mode: str = "split") -> None:
     n_batches = (len(records) + BATCH_SIZE - 1) // BATCH_SIZE
     total_chars = 0
 
+    # Use strict scoring guide for Kaggle ASAG (integer 0-5 scale, elementary answers)
+    scoring_guide = SCORING_GUIDE_STRICT if dataset == "kaggle_asag" else None
+
     if mode == "split":
         # Generate separate cllm and c5fix batch files (prevents anchoring)
         for b in range(n_batches):
             batch = records[b * BATCH_SIZE: (b + 1) * BATCH_SIZE]
 
-            cllm_prompt = build_cllm_prompt(batch)
+            cllm_prompt = build_cllm_prompt(batch, scoring_guide=scoring_guide)
             cllm_path = os.path.join(OUT_DIR, f"{dataset}_cllm_batch_{b+1:02d}.txt")
             with open(cllm_path, "w") as f:
                 f.write(cllm_prompt)
 
-            c5fix_prompt = build_c5fix_prompt(batch, features)
+            c5fix_prompt = build_c5fix_prompt(batch, features, scoring_guide=scoring_guide)
             c5fix_path = os.path.join(OUT_DIR, f"{dataset}_c5fix_batch_{b+1:02d}.txt")
             with open(c5fix_path, "w") as f:
                 f.write(c5fix_prompt)
