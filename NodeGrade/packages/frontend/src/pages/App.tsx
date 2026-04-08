@@ -22,6 +22,7 @@ import Editor from '@/pages/Editor'
 import ValidationDashboard from '@/pages/ValidationDashboard'
 import { LtiRegister } from './lti/LtiRegister'
 import StudentView from './StudentView'
+import InstructorDashboard from './InstructorDashboard'
 
 const LogRouteAccess = () => {
   console.log('Current route: ', window.location.pathname)
@@ -68,6 +69,9 @@ const DevHome = () => (
       </MuiLink>
       <MuiLink component={Link} to="/validation" variant="body1">
         Validation dashboard — <code>/validation</code>
+      </MuiLink>
+      <MuiLink component={Link} to="/dashboard" variant="body1">
+        Instructor analytics dashboard — <code>/dashboard</code>
       </MuiLink>
     </Stack>
     <Typography variant="subtitle1" sx={{ mt: 3 }}>
@@ -128,6 +132,7 @@ const router = createBrowserRouter(
       />
       <Route index element={<DevHome />} />
       <Route path="validation" element={<ValidationDashboard />} />
+      <Route path="dashboard" element={<InstructorDashboard />} />
       <Route path="lti/register" element={<LtiRegister />} />
       <Route path="lti/login" element={<LogRouteAccess />} />
       <Route path="lti/deeplink" element={<LogRouteAccess />} />

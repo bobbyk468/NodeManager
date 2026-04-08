@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { GraphModule } from '../graphgateway/graph.module';
+import { VisualizationModule } from '../visualization/visualization.module';
 import { PrismaService } from '../prisma.service';
 import { GraphController } from '../graph/graph.controller';
 import { GraphService } from '../graph/graph.service';
@@ -13,7 +14,7 @@ import { HealthService } from '../health/health.service';
 import { ReportsController } from '../reports/reports.controller';
 
 @Module({
-  imports: [GraphModule],
+  imports: [GraphModule, VisualizationModule],
   controllers: [
     GraphController,
     BenchmarkController,
