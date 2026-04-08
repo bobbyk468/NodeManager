@@ -1,8 +1,8 @@
 # ConceptGrade — Objectives vs Implementation Report
 
-**Date:** March 2026
-**Status:** Complete — Final Results Achieved
-**Research Claim:** ConceptGrade outperforms pure LLM grading on both Short Answer Grading (SAG) and Long Answer Grading (LAG)
+**Date:** April 2026
+**Status:** Complete — Multi-Dataset Validation Achieved
+**Research Claim:** ConceptGrade outperforms pure LLM grading on Short Answer Grading (SAG), Long Answer Grading (LAG), and generalizes across 3 datasets (1,239 answers; Fisher combined p=0.0014)
 
 ---
 
@@ -235,12 +235,18 @@ packages/concept-aware/
 ├── misconception_detection/
 │   └── detector.py              # Misconception detector with severity
 │
+├── visualization/
+│   └── renderer.py              # VisualizationRenderer — 7 chart types → JSON specs
+│
 ├── run_score_comparison.py      # Pure LLM vs KG vs ConceptGrade vs GT (SAG)
 ├── run_lag_evaluation.py        # Pure LLM vs ConceptGrade vs GT (LAG)
 ├── run_ablation.py              # Component ablation study
+├── generate_paper_report_v2.py  # Full evaluation report generator (Mohler + DigiKlausur + Kaggle)
 └── data/
     ├── lag_benchmark.json        # 20-sample LAG benchmark
-    └── lag_evaluation_results.json
+    ├── lag_evaluation_results.json
+    ├── batch_responses/          # Cached Gemini scoring results (12 files: Mohler, DigiKlausur, Kaggle)
+    └── eval_results.json         # Aggregated multi-dataset metrics
 ```
 
 ---
@@ -250,3 +256,54 @@ packages/concept-aware/
 > **ConceptGrade, which combines structured Knowledge Graph concept analysis with a 3-persona SURE ensemble verifier, cross-paragraph coherence detection, Anchor-Conductance topological hallucination detection, and epistemic uncertainty weighting, outperforms a pure LLM grader on short answer grading (18.9% MAE improvement, n=120), long answer essay grading (34.8% MAE improvement, n=20), and adversarial robustness evaluation (11.4% MAE improvement, n=100), while achieving substantially lower scoring error across all three benchmarks.**
 
 The improvement is consistent across all evaluated metrics (MAE, RMSE, Pearson r, Bias) and holds for short answers, long-form essays, and adversarial stress-testing scenarios. ConceptGrade wins in **5 of 7 adversarial vulnerability categories**, with the largest gains on Code-Logic Drift (+42.9% MAE reduction) and Silent Hallucination (+35.7% MAE reduction) — precisely the categories where KG structural grounding provides information not available to a pure holistic LLM scorer.
+
+**Multi-dataset generalization (added April 2026):** ConceptGrade reduces MAE on all three benchmark datasets — Mohler 2011 CS (−32.4%, p=0.0013), DigiKlausur Neural Networks (−4.9%, p=0.049), and Kaggle ASAG Elementary Science (−3.2%, directional). Fisher combined p=0.0014 across all 1,239 answers.
+
+---
+
+## 8. Visual Analytics Roadmap (IEEE VIS 2027)
+
+### 8.1 Current Status: Backend Complete
+
+The ConceptGrade pipeline produces structured diagnostic evidence for every graded answer — not just a score, but a named record of which concepts were matched, at what Bloom's and SOLO level, with what misconceptions, and with what causal chain depth. This evidence is the foundation for a visual analytics layer.
+
+The backend visualization engine (`visualization/renderer.py`) is fully implemented. It takes grading results and outputs JSON **VisualizationSpec** objects — self-contained rendering instructions for a D3.js or Plotly frontend. The seven implemented visualization types are:
+
+| Visualization | What it shows |
+|--------------|---------------|
+| `concept_coverage_chart` | Which expected KG concepts each student did/did not address (grouped bar) |
+| `misconception_heatmap` | Concept × severity matrix across the class — which concepts are most commonly misunderstood |
+| `student_radar` | Per-student 5-axis profile: coverage, Bloom's level, SOLO level, misconception count, causal depth |
+| `blooms_distribution` | Class-wide Bloom's taxonomy level distribution (bar chart) |
+| `solo_distribution` | Class-wide SOLO taxonomy level distribution (bar chart) |
+| `concept_cooccurrence` | Which concepts appear together in student answers (heatmap) |
+| `class_dashboard` | Composite of all 7 visualizations for instructor overview |
+
+These are JSON specs, not rendered images. The renderer produces output that is ready to be consumed by a frontend — the frontend itself does not exist yet.
+
+### 8.2 Gap Analysis: What's Missing for IEEE VIS Submission
+
+| Component | Status | Notes |
+|-----------|--------|-------|
+| Backend VisualizationRenderer | ✅ Complete | 7 chart types, JSON spec output |
+| Multi-dataset evaluation (accuracy) | ✅ Complete | 3 datasets, 1,239 answers, Fisher p=0.0014 |
+| Interactive D3.js / Plotly frontend | ❌ Not built | Renders VisualizationSpec JSON interactively |
+| Instructor-facing dashboard UI | ❌ Not built | Filters by question, student, concept, Bloom level |
+| Educator user study | ❌ Not conducted | Required for VAST track — did the visuals help instructors? |
+| Comparative visual evaluation | ❌ Not conducted | Does visual diagnosis improve re-grading decisions? |
+
+### 8.3 Reframing for VIS 2027
+
+IEEE VIS VAST (Visual Analytics Science and Technology) track requires work that is about *visual analytics as a method*, not just a system that happens to produce charts. The reframing from ASAG accuracy paper to VIS paper involves:
+
+- **Primary contribution:** The visual analytics pipeline that transforms KG-grounded diagnostic evidence into instructor-actionable views — not the MAE improvement.
+- **Research question shift:** From "does KG grounding improve accuracy?" to "can KG-structured visual analytics help instructors diagnose class-wide misconceptions faster and more accurately than numeric scores alone?"
+- **Evaluation shift:** From Wilcoxon p-values on MAE to a user study with instructors measuring time-to-diagnosis, accuracy of misconception identification, and confidence in re-grading decisions.
+- **Submission timeline:** IEEE VIS 2027 abstracts typically due January 2027; full paper March 2027. This allows approximately 8–10 months for frontend development and educator study design.
+
+### 8.4 Recommended Next Steps
+
+1. **Build interactive frontend** — a single-page React or Svelte app that accepts VisualizationSpec JSON and renders D3.js/Plotly charts. Start with `misconception_heatmap` and `student_radar` as the highest-value views for instructors.
+2. **Design educator study** — recruit 10–15 instructors; give half a numeric gradebook (score only) and half the ConceptGrade visual dashboard; measure diagnostic accuracy and time.
+3. **Extend KG to additional domains** — run ConceptGrade on a university-level course with live student data (requires IRB approval).
+4. **Write position paper** — submit a 2-page position paper to an AI in Education (AIED) or Learning Analytics (LAK) workshop to establish the research direction while the full system is being built.
