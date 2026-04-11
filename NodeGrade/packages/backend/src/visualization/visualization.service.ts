@@ -7,12 +7,9 @@ import {
   VisualizationSpec,
 } from './visualization.types';
 
-// Resolve concept-aware/data/ relative to compiled output location:
-// dist/src/visualization/ → up 4 dirs → NodeGrade root → packages/concept-aware/data/
-const DATA_DIR = path.resolve(
-  __dirname,
-  '../../../../packages/concept-aware/data',
-);
+// Resolve concept-aware/data/ relative to compiled output:
+// __dirname = packages/backend/dist/src/visualization → four levels up = packages/
+const DATA_DIR = path.resolve(__dirname, '../../../../concept-aware/data');
 
 // Bloom's taxonomy level mapping
 const BLOOM_LEVEL_MAP: Record<string, number> = {
@@ -84,7 +81,27 @@ export class VisualizationService {
     return fs
       .readdirSync(DATA_DIR)
       .filter((f) => f.endsWith('_eval_results.json'))
+      .filter((f) => this.isPerSampleEvalFile(path.join(DATA_DIR, f)))
       .map((f) => f.replace('_eval_results.json', ''));
+  }
+
+  /** Skip ablation-style JSON (e.g. offline_eval_results.json) with no per-sample scores. */
+  private isPerSampleEvalFile(filePath: string): boolean {
+    try {
+      const raw = JSON.parse(fs.readFileSync(filePath, 'utf8')) as EvalResults;
+      const results = raw.results;
+      if (!Array.isArray(results) || results.length === 0) {
+        return false;
+      }
+      const s0 = results[0];
+      return (
+        typeof s0.human_score === 'number' &&
+        typeof s0.cllm_score === 'number' &&
+        typeof s0.c5_score === 'number'
+      );
+    } catch {
+      return false;
+    }
   }
 
   async getDatasetVisualization(dataset: string): Promise<DatasetSummaryResponse> {
@@ -154,7 +171,37 @@ export class VisualizationService {
       this.buildConceptFrequency(results),
       this.buildChainCoverageDist(results),
       this.buildScoreScatter(results),
+      this.buildStudentRadarPlaceholder(),
+      this.buildMisconceptionHeatmapPlaceholder(),
     ];
+  }
+
+  private buildStudentRadarPlaceholder(): VisualizationSpec {
+    return {
+      viz_id: 'student_radar',
+      viz_type: 'radar',
+      title: 'Student Coverage Radar',
+      subtitle: 'Per-student concept mastery (extended pipeline only)',
+      data: { dimensions: [], students: [] },
+      config: {},
+      insights: [
+        'Requires per-student concept vectors from a full ConceptGrade export; cached batch eval JSON does not include this field.',
+      ],
+    };
+  }
+
+  private buildMisconceptionHeatmapPlaceholder(): VisualizationSpec {
+    return {
+      viz_id: 'misconception_heatmap',
+      viz_type: 'heatmap',
+      title: 'Misconception Severity Heatmap',
+      subtitle: 'Concept × severity counts (extended pipeline only)',
+      data: { cells: [], x_labels: ['critical', 'moderate', 'minor'], y_labels: [] },
+      config: {},
+      insights: [
+        'Requires per-concept misconception counts from the grading pipeline; standard *_eval_results.json files omit this structure.',
+      ],
+    };
   }
 
   // Spec 1: class_summary (summary_card)

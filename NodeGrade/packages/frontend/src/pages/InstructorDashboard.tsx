@@ -27,6 +27,7 @@ import {
   ConceptFrequencyChart,
   MisconceptionHeatmap,
   ScoreComparisonChart,
+  ScoreSamplesTable,
   SoloBarChart,
   StudentRadarChart,
 } from '../components/charts';
@@ -39,6 +40,7 @@ import {
 
 const DATASET_LABELS: Record<string, string> = {
   mohler: 'Mohler 2011 (CS)',
+  offline: 'Mohler 2011 (CS)',
   digiklausur: 'DigiKlausur (NN)',
   kaggle_asag: 'Kaggle ASAG (Science)',
 };
@@ -455,46 +457,47 @@ export default function InstructorDashboard() {
                 </Grid>
               </Grid>
 
-              {/* Radar + Misconception heatmap */}
+              {/* Per-sample score table (API spec score_scatter) */}
+              {findSpec(specs, 'score_scatter') && (
+                <Grid container mb={3}>
+                  <Grid item xs={12}>
+                    <Card variant="outlined" sx={{ p: 2 }}>
+                      <ScoreSamplesTable
+                        spec={findSpec(specs, 'score_scatter')!}
+                        condition={condition}
+                        dataset={selectedDataset}
+                      />
+                      {findSpec(specs, 'score_scatter')?.insights?.map((ins, i) => (
+                        <Typography key={i} variant="caption" color="text.secondary" display="block" mt={1}>
+                          {ins}
+                        </Typography>
+                      ))}
+                    </Card>
+                  </Grid>
+                </Grid>
+              )}
+
+              {/* Radar + Misconception heatmap (backend always sends specs; may be empty placeholders) */}
               <Grid container spacing={3} mb={3}>
                 <Grid item xs={12} md={6}>
                   <Card variant="outlined" sx={{ p: 2 }}>
-                    {findSpec(specs, 'student_radar') ? (
+                    {findSpec(specs, 'student_radar') && (
                       <StudentRadarChart
                         spec={findSpec(specs, 'student_radar')!}
                         condition={condition}
                         dataset={selectedDataset}
                       />
-                    ) : (
-                      <Box>
-                        <Typography variant="subtitle2" gutterBottom sx={{ fontWeight: 600 }}>
-                          Student Coverage Radar
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                          Radar chart requires live pipeline output with per-student concept data.
-                        </Typography>
-                      </Box>
                     )}
                   </Card>
                 </Grid>
                 <Grid item xs={12} md={6}>
                   <Card variant="outlined" sx={{ p: 2 }}>
-                    {findSpec(specs, 'misconception_heatmap') ? (
+                    {findSpec(specs, 'misconception_heatmap') && (
                       <MisconceptionHeatmap
                         spec={findSpec(specs, 'misconception_heatmap')!}
                         condition={condition}
                         dataset={selectedDataset}
                       />
-                    ) : (
-                      <Box>
-                        <Typography variant="subtitle2" gutterBottom sx={{ fontWeight: 600 }}>
-                          Misconception Heatmap
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                          Misconception heatmap requires live pipeline output with per-concept
-                          error data.
-                        </Typography>
-                      </Box>
                     )}
                   </Card>
                 </Grid>

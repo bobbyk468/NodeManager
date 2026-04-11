@@ -14,7 +14,13 @@
     "lint": "yarn workspaces foreach --parallel --all run lint",
     "test": "yarn workspaces foreach --parallel --all run jest",
     "build": "yarn workspaces foreach --parallel --all run build",
-    "test:report": "yarn workspace backend test:report"
+    "test:report": "yarn workspace backend test:report",
+    "check:dashboard-test-env": "yarn workspace backend run check:dashboard-test-env",
+    "test:dashboard": "yarn workspace backend run test:dashboard",
+    "test:dashboard:full": "yarn workspace backend run test:dashboard:full",
+    "test:dashboard:wait": "yarn workspace backend run test:dashboard:wait",
+    "request:e2e-test": "yarn workspace backend run request:e2e-test",
+    "request:e2e-test:full": "yarn workspace backend run request:e2e-test:full"
   },
   "pre-commit": "lint",
   "license": "MIT",

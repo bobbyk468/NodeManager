@@ -1,7 +1,13 @@
 # ConceptGrade Visualization Dashboard — Implementation Guide
 
-**Status:** Complete (committed `46eb12e`, pushed to origin/main — April 2026)**
-**Goal:** Instructor-facing visual analytics dashboard for explainable AI grading (IEEE VIS 2027 VAST track)
+**Status:** Implemented in-repo (local workspace; not tied to a specific git revision)
+**Goal:** Instructor-facing visual analytics dashboard for explainable AI grading (IEEE VIS 2027 VAST track — dates TBD per official CfP)
+
+**QA — local:** [ConceptGrade_Dashboard_Manual_Test_Guide.md](./ConceptGrade_Dashboard_Manual_Test_Guide.md) · **QA — remote AI browser (tunnel URLs):** [ConceptGrade_Dashboard_E2E_Remote_Browser.md](./ConceptGrade_Dashboard_E2E_Remote_Browser.md) · **Status (done vs pending):** [ConceptGrade_Pending_vs_Implemented.md](./ConceptGrade_Pending_vs_Implemented.md)
+
+**Latest recorded run (manual guide changelog):** 2026-04-08 — Comet AI browser on co-located localhost: **13 PASS**, **1 CONDITIONAL** (TC-UI-008: full “API down” `Alert` needs manual Nest stop; structured **404** for bad slug confirmed).
+
+**Request E2E test run:** `cd packages/backend && npm run request:e2e-test` (or `request:e2e-test:full` with Vite check) — runs automated gates and prints copy-paste instructions for testers.
 
 ---
 
@@ -18,7 +24,7 @@ packages/backend/src/visualization/
         ↓
 packages/frontend/src/
   pages/InstructorDashboard.tsx  ← main dashboard page (/dashboard)
-  components/charts/             ← 7 Recharts chart components
+  components/charts/             ← Recharts charts + MUI per-sample table
   utils/studyLogger.ts           ← user study event logging
 ```
 
@@ -35,7 +41,7 @@ Data flows one-way: **Python eval results → NestJS adapter → React charts**.
 | Addition | Purpose |
 |----------|---------|
 | `REL_TYPE_REMAP` (20 entries) | Maps non-standard Gemini relationship types to canonical types (e.g. `STORES→HAS_PART`, `RESEMBLES→VARIANT_OF`, `LEADS_TO→PRODUCES`) |
-| `GENERIC_CONCEPT_STOPLIST` (35 terms) | Removes domain-generic concepts like "process", "method", "thing" that pollute KG matching signal |
+| `GENERIC_CONCEPT_STOPLIST` (~40 terms) | Removes domain-generic concepts like "process", "method", "thing" that pollute KG matching signal |
 | `validate_and_clean_kg()` | Cleans a raw Gemini KG response: fixes concept IDs (spaces→underscores), removes stop-words, remaps relationships, flags questions with <4 concepts for retry |
 | `build_retry_prompt()` | Builds a focused re-prompt for questions that survived with too few concepts |
 | `--process-response PATH` CLI arg | Point at a Gemini response JSON → produces cleaned `data/{dataset}_auto_kg.json` |
@@ -86,7 +92,7 @@ Adding a 4th dataset was skipped — three datasets (1,239 answers) are sufficie
 | File | Purpose |
 |------|---------|
 | `visualization.types.ts` | TypeScript interfaces: `VisualizationSpec`, `DatasetSummaryResponse`, `DatasetMetrics` |
-| `visualization.service.ts` | Reads `*_eval_results.json`, adapts to 7 VisualizationSpec objects |
+| `visualization.service.ts` | Reads `*_eval_results.json`, adapts to 9 VisualizationSpec objects (7 data views + 2 extended placeholders) |
 | `visualization.controller.ts` | REST controller at `@Controller('api/visualization')` |
 | `visualization.module.ts` | NestJS module, imported in `AppModule` |
 
@@ -99,7 +105,7 @@ Adding a 4th dataset was skipped — three datasets (1,239 answers) are sufficie
 | `GET` | `/api/visualization/datasets/:dataset/specs` | `{ specs: VisualizationSpec[] }` |
 | `GET` | `/api/visualization` | `{ datasets: DatasetSummaryResponse[] }` |
 
-**Dataset names** correspond to filename prefixes of `*_eval_results.json` in `packages/concept-aware/data/`. Currently: `mohler`, `digiklausur`, `kaggle_asag`.
+**Dataset names** correspond to filename prefixes of `*_eval_results.json` in `packages/concept-aware/data/`, **but only files that contain a non-empty `results[]` with per-sample `human_score`, `cllm_score`, and `c5_score`**. Ablation-style files such as `offline_eval_results.json` (aggregate metrics only) are **omitted** from `GET /api/visualization/datasets`. Typical dashboard datasets: `digiklausur`, `kaggle_asag`. To show Mohler-style batch data, add or generate `mohler_eval_results.json` (or any `*_eval_results.json`) in that schema.
 
 ### VisualizationSpec schema
 
@@ -117,7 +123,9 @@ Every spec shares this top-level shape (matching `visualization/renderer.py`):
 }
 ```
 
-### The 7 generated specs
+### API specs (9 total)
+
+**Primary (7)** — derived from per-sample `results[]`:
 
 | `viz_id` | `viz_type` | Data fields | Source fields |
 |----------|------------|-------------|---------------|
@@ -128,6 +136,13 @@ Every spec shares this top-level shape (matching `visualization/renderer.py`):
 | `concept_frequency` | `bar_chart` | `bars[]{label, concept, count, percentage, color}` — top 15 | `matched_concepts[]` per sample |
 | `chain_coverage_dist` | `bar_chart` | `bars[]{label, count, percentage, color}` — 5 buckets 0-20%…80-100% | `chain_pct` per sample |
 | `score_scatter` | `table` | `columns[]`, `rows[]{id, human_score, cllm_score, c5_score, cllm_error, c5_error, solo, bloom, chain_pct}` | all fields |
+
+**Extended placeholders (2)** — always present so the frontend can render one code path; data is empty until the pipeline exports richer structures:
+
+| `viz_id` | `viz_type` | Notes |
+|----------|------------|--------|
+| `student_radar` | `radar` | `dimensions: []`, `students: []` — `StudentRadarChart` shows empty state |
+| `misconception_heatmap` | `heatmap` | `cells: []` — `MisconceptionHeatmap` shows empty state |
 
 ### Data path resolution
 
@@ -156,6 +171,7 @@ This works from the compiled output at `dist/src/visualization/` → up 4 dirs �
 | [src/components/charts/ConceptFrequencyChart.tsx](../../frontend/src/components/charts/ConceptFrequencyChart.tsx) | Horizontal bar chart: top 15 KG concepts |
 | [src/components/charts/ScoreComparisonChart.tsx](../../frontend/src/components/charts/ScoreComparisonChart.tsx) | Grouped bar: C_LLM vs C5_fix MAE per score bucket |
 | [src/components/charts/ChainCoverageChart.tsx](../../frontend/src/components/charts/ChainCoverageChart.tsx) | KG causal chain coverage distribution |
+| [src/components/charts/ScoreSamplesTable.tsx](../../frontend/src/components/charts/ScoreSamplesTable.tsx) | Scrollable MUI table for `score_scatter` |
 | [src/components/charts/StudentRadarChart.tsx](../../frontend/src/components/charts/StudentRadarChart.tsx) | 5-axis radar for up to 5 students |
 | [src/components/charts/MisconceptionHeatmap.tsx](../../frontend/src/components/charts/MisconceptionHeatmap.tsx) | Concept × severity grid (MUI boxes) |
 | [src/pages/InstructorDashboard.tsx](../../frontend/src/pages/InstructorDashboard.tsx) | Main dashboard page |
@@ -165,7 +181,7 @@ This works from the compiled output at `dist/src/visualization/` → up 4 dirs �
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │  ConceptGrade — Instructor Analytics Dashboard            [↻]   │
-│  Tabs: [Mohler 2011 (CS)] [DigiKlausur (NN)] [Kaggle ASAG (Sci)]│
+│  Tabs: one per compatible *_eval_results.json (e.g. DigiKlausur, Kaggle ASAG) │
 ├──────────────────────────────────────────────────────────────── │
 │  [Study Task Panel] — only if ?condition= param is present      │
 ├─────────────────────────────────────────────────────────────────│
@@ -178,6 +194,8 @@ This works from the compiled output at `dist/src/visualization/` → up 4 dirs �
 │  Score Comparison MAE (md=7)  │  Chain Coverage (md=5)          │
 ├──────────────────────────────────────────────────────────────── │
 │  Concept Frequency — Top 15 (full width)                        │
+├──────────────────────────────────────────────────────────────── │
+│  Per-sample score table (score_scatter, scrollable)             │
 ├──────────────────────────────────────────────────────────────── │
 │  Student Radar (md=6)         │  Misconception Heatmap (md=6)   │
 ├──────────────────────────────────────────────────────────────── │
@@ -201,7 +219,7 @@ Each component calls `logEvent(condition, dataset, 'chart_hover', { viz_id })` o
 
 ### Visualization library
 
-**Recharts 2.12.7** is used for all charts. It was added to `package.json` and copied to `node_modules` manually (the project uses yarn 4 workspaces which requires `corepack`, unavailable in this environment). When yarn 4 is properly available, run:
+**Recharts 2.12.7** is used for bar/radar charts; the per-sample view uses **MUI `Table`**. Recharts was added to `package.json` and may be installed with yarn/npm in your environment. When yarn 4 is properly available, run:
 
 ```bash
 yarn workspace @haski/ta-frontend add recharts
@@ -220,7 +238,7 @@ Navigate to `/dashboard?condition=A` or `/dashboard?condition=B`:
 | Condition | What the instructor sees |
 |-----------|--------------------------|
 | `A` (Control) | Summary metric cards only (N, MAE, reduction %, Wilcoxon p) |
-| `B` (Treatment) | Full dashboard: all 7 charts + summary cards |
+| `B` (Treatment) | Full dashboard: summary cards + Recharts views + per-sample table + radar/heatmap slots |
 
 Both conditions show the **Study Task Panel** at the top when a `condition` param is present.
 
@@ -277,7 +295,7 @@ print("Charts explored:", hovers.value_counts().to_dict())
 
 ### Prerequisites
 
-1. NestJS backend running at port 5000 (or as configured in `env.development.json`):
+1. **Same port for API and frontend config.** NestJS uses **`process.env.PORT ?? 5000`** (`packages/backend/src/main.ts`); `.env` may set **5001**. The dashboard loads `public/config/env.development.json`; **`API` and `WS` must match** the port Nest logs on startup.
    ```bash
    cd packages/backend && npm run start:dev
    ```
@@ -287,17 +305,39 @@ print("Charts explored:", hovers.value_counts().to_dict())
    cd packages/frontend && npx vite --host 0.0.0.0
    ```
 
-3. Eval results files present in `packages/concept-aware/data/`:
-   - `mohler_eval_results.json` (or `kaggle_asag_eval_results.json`, `digiklausur_eval_results.json`)
-   - These are pre-computed — no API calls needed
+3. Eval results: at least one `*_eval_results.json` under `packages/concept-aware/data/` with a non-empty `results[]` and per-sample scores (e.g. `kaggle_asag_eval_results.json`, `digiklausur_eval_results.json`). No live Gemini calls needed for viewing.
+
+### Automated smoke test
+
+1. **Confirm services are up** (backend required; add `--frontend` for UI work):
+
+   ```bash
+   cd packages/backend && npm run check:dashboard-test-env
+   # with Vite:
+   npm run check:dashboard-test-env -- --frontend http://localhost:5173
+   ```
+
+   From monorepo root: `yarn check:dashboard-test-env`. Combined check + smoke: `yarn test:dashboard` or `yarn test:dashboard:full` (includes frontend). Boot polling: `yarn test:dashboard:wait`.
+
+2. **API contract** (after step 1 passes):
+
+   ```bash
+   cd packages/backend && npm run verify:visualization
+   ```
+
+   Optional: `python3 scripts/verify_visualization_api.py --base http://127.0.0.1:<PORT>` (match Nest’s port).
+
+The verify script asserts a non-empty dataset list and **exactly 9** `visualizations` per dataset with the expected `viz_id` keys. See [ConceptGrade_Dashboard_Manual_Test_Guide.md](./ConceptGrade_Dashboard_Manual_Test_Guide.md) for the full prerequisite flow.
 
 ### Verification checklist
 
-- [ ] `curl http://localhost:5000/api/visualization/datasets` returns `{"datasets":["kaggle_asag","digiklausur"]}`
-- [ ] `curl http://localhost:5000/api/visualization/datasets/kaggle_asag` returns JSON with 7 `visualizations`
-- [ ] Navigate to `http://localhost:5173/dashboard` — dataset tabs appear, charts render
+- [ ] `npm run check:dashboard-test-env` exits 0 (and with `--frontend http://localhost:5173` before UI checks)
+- [ ] `npm run verify:visualization` exits 0
+- [ ] `curl http://localhost:<PORT>/api/visualization/datasets` returns e.g. `{"datasets":["digiklausur","kaggle_asag"]}` (order may vary; `offline` omitted)
+- [ ] `curl http://localhost:<PORT>/api/visualization/datasets/kaggle_asag` returns JSON with **9** `visualizations`
+- [ ] Navigate to `http://localhost:5173/dashboard` — dataset tabs appear, charts and per-sample table render
 - [ ] Navigate to `http://localhost:5173/dashboard?condition=A` — only summary cards visible, study panel shown
-- [ ] Navigate to `http://localhost:5173/dashboard?condition=B` — all charts visible
+- [ ] Navigate to `http://localhost:5173/dashboard?condition=B` — charts, table, and radar/heatmap areas visible (latter two may show empty-state copy)
 - [ ] Fill in study task, click Submit, click "Export study log" — JSON file downloaded with all events
 
 ---
@@ -306,12 +346,12 @@ print("Charts explored:", hovers.value_counts().to_dict())
 
 | Component | Status | Notes |
 |-----------|--------|-------|
-| Backend API + 7 chart types | ✅ Complete | |
+| Backend API + 9 spec types | ✅ Complete | 7 data-driven + 2 empty extended placeholders |
 | Study condition scaffolding | ✅ Complete | |
-| Recharts interactive dashboard | ✅ Complete | |
-| Misconception Heatmap | ⚠️ Partial | Shows "no data" for cached datasets — requires live pipeline output with per-concept misconception data |
-| Student Radar Chart | ⚠️ Partial | Same — requires live pipeline output with per-student concept vectors |
+| Recharts + MUI table dashboard | ✅ Complete | Per-sample `score_scatter` rendered as `ScoreSamplesTable` |
+| Misconception Heatmap | ⚠️ Partial | Empty cells until pipeline exports `cells` / `y_labels` |
+| Student Radar Chart | ⚠️ Partial | Empty until pipeline exports `dimensions` + `students` |
 | Educator user study (full) | ❌ Not started | Recruit 10–15 instructors; IRB if at a university; run A/B study |
 | VIS paper submission | ❌ Not started | IEEE VIS 2027 abstracts ~January 2027 |
 
-The radar and heatmap are wired and ready — they just show graceful empty states because the cached eval results don't include per-student concept vectors. To populate them, run the full ConceptGrade pipeline on a live class and pass the output through `visualization/renderer.py`.
+The radar and heatmap always receive API specs; components show empty states until extended fields are populated (e.g. from `visualization/renderer.py` or a future pipeline export).

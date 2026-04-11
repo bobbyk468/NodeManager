@@ -186,11 +186,29 @@ export const App = () => {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <GlobalStyles
-          styles={{
+          styles={(theme) => ({
             '.lgraphcanvas': {
               color: '#121212'
+            },
+            /* Keyboard focus — clearer than default MUI ring (WCAG focus-visible) */
+            '.MuiButtonBase-root.Mui-focusVisible': {
+              outline: `2px solid ${theme.palette.primary.main}`,
+              outlineOffset: 2
+            },
+            '.MuiSlider-thumb.Mui-focusVisible': {
+              boxShadow: `0 0 0 2px ${theme.palette.background.paper}, 0 0 0 4px ${theme.palette.primary.main}`
+            },
+            '.MuiTypography-root.MuiLink-root:focus-visible': {
+              outline: `2px solid ${theme.palette.primary.main}`,
+              outlineOffset: 2,
+              borderRadius: 2
+            },
+            'input.MuiInputBase-input:focus-visible, textarea.MuiInputBase-input:focus-visible': {
+              outline: `2px solid ${theme.palette.primary.main}`,
+              outlineOffset: 1,
+              borderRadius: 4
             }
-          }}
+          })}
         />
         <BasicApp />
       </ThemeProvider>
