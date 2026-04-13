@@ -1,7 +1,20 @@
 """
 Build ConceptGrade_System_Overview.docx
-Generates diagram images with matplotlib, then assembles a formatted Word document
-using python-docx with proper heading styles, TOC field, tables, and embedded images.
+
+This module generates the complete ConceptGrade System Overview Word document.
+It creates four matplotlib diagrams (architecture, KG example, brushing flow, pipeline)
+as PNG images, then embeds them into a formatted Word document with:
+  - Heading hierarchy (H1–H4) for automatic TOC generation
+  - Captions with bold labels and italic descriptions
+  - Tables with colour-coded headers and alternating row shading
+  - Callout boxes for key insights
+  - Proper spacing and alignment throughout
+
+Key design principles:
+  - Diagrams use 150 DPI for clarity in both screen and print
+  - Node positions calculated to avoid overlaps (e.g. KG nodes spread to corners)
+  - Arrows sized for visibility at Word document scale (lw=3.5, mutation_scale=28)
+  - Colour palette aligned across all diagrams for visual consistency
 """
 
 import io
@@ -91,7 +104,16 @@ def diagram_architecture() -> str:
 
 
 def diagram_kg_example() -> str:
-    """KG ego-graph — nodes well spread, edge labels clear, no overlaps."""
+    """
+    Knowledge Graph ego-graph showing concept relationships around "Backpropagation".
+
+    Design:
+    - Central node (Backpropagation) at (5, 3.5) with larger font & border
+    - Supporting nodes positioned at corners and edges to maximize spacing
+    - Edges drawn to node perimeters (using numpy to avoid clipping)
+    - Edge labels placed at midpoints with white background for contrast
+    - Legend positioned at bottom-center (2 columns) to avoid node overlaps
+    """
     fig, ax = plt.subplots(figsize=(10, 7))
     fig.patch.set_facecolor(BG)
     ax.set_facecolor(BG)
@@ -99,14 +121,16 @@ def diagram_kg_example() -> str:
     ax.set_ylim(0, 7)
     ax.axis('off')
 
-    # Central node at (5, 3.5); surrounding nodes pushed further out
+    # Node positions: (x, y, border_color, fill_color)
+    # Central node at (5, 3.5); supporting nodes pushed to corners and edges
+    # to maximize visual separation and avoid label overlaps
     nodes = {
-        'Backpropagation': (5.0, 3.5, '#1e40af', '#dbeafe'),
-        'Gradient\nDescent': (1.8, 5.5, '#15803d', '#dcfce7'),
-        'Learning\nRate':    (1.8, 1.5, '#15803d', '#dcfce7'),
-        'Neural\nNetwork':   (8.2, 5.5, '#15803d', '#dcfce7'),
-        'Weight\nUpdate':    (8.2, 1.5, '#b45309', '#fef3c7'),
-        'Chain\nRule':       (5.0, 1.0, '#6b21a8', '#f3e8ff'),
+        'Backpropagation': (5.0, 3.5, '#1e40af', '#dbeafe'),  # centre (blue)
+        'Gradient\nDescent': (1.8, 5.5, '#15803d', '#dcfce7'),  # top-left
+        'Learning\nRate':    (1.8, 1.5, '#15803d', '#dcfce7'),  # bottom-left
+        'Neural\nNetwork':   (8.2, 5.5, '#15803d', '#dcfce7'),  # top-right
+        'Weight\nUpdate':    (8.2, 1.5, '#b45309', '#fef3c7'),  # bottom-right
+        'Chain\nRule':       (5.0, 1.0, '#6b21a8', '#f3e8ff'),  # bottom-centre
     }
 
     # (src, dst, label, text_offset_x, text_offset_y)
@@ -124,46 +148,58 @@ def diagram_kg_example() -> str:
         'PRODUCES':         '#2563eb',
     }
 
-    # Node radii
+    # Node radii (central node larger for emphasis)
     R = {'Backpropagation': 0.85}
 
     def node_r(label):
+        """Return the radius for a given node label (0.70 or 0.85)."""
         return R.get(label, 0.70)
 
-    # Draw edges — shorten endpoints so arrows land on node perimeter
+    # Draw edges with proper perimeter anchoring
+    # Arrow endpoints are calculated by moving inward from each node's centre
+    # by its radius (unit vector × radius). This avoids cutting through node
+    # boundaries and produces clean arrow-to-perimeter endpoints.
     import numpy as np
     for src, dst, rel, tx, ty in edges:
         sx, sy = nodes[src][:2]
         dx, dy = nodes[dst][:2]
+        # Compute unit vector from source to destination
         vec = np.array([dx - sx, dy - sy])
         length = np.linalg.norm(vec)
         unit = vec / length
+        # Shorten arrow endpoints by node radii to land on perimeters
         src_r = node_r(src)
         dst_r = node_r(dst)
         start = np.array([sx, sy]) + unit * src_r
         end   = np.array([dx, dy]) - unit * dst_r
         color = edge_colors.get(rel, GREY)
+        # Draw arrow with consistent styling
         ax.annotate('', xy=(end[0], end[1]), xytext=(start[0], start[1]),
             arrowprops=dict(arrowstyle='->', color=color, lw=1.8,
                             mutation_scale=16))
-        # Place label at midpoint with manual offset
+        # Place label at edge midpoint with manual offset (tx, ty)
+        # White background ensures label is readable over crossing edges
         mx, my = (sx + dx) / 2 + tx, (sy + dy) / 2 + ty
         ax.text(mx, my, rel, fontsize=8, color=color,
                 ha='center', va='center', fontweight='bold',
                 bbox=dict(fc='white', ec='none', alpha=0.75, pad=1.5))
 
-    # Draw nodes on top of edges
+    # Draw nodes on top of edges (zorder=3) with text labels above (zorder=4)
+    # Central node gets larger border and bold text for visual emphasis
     for label, (x, y, border, fill) in nodes.items():
         r = node_r(label)
         is_central = label == 'Backpropagation'
+        # Circle with solid fill and coloured border
         ax.add_patch(plt.Circle((x, y), r, color=fill, ec=border,
                                 lw=3.0 if is_central else 1.8, zorder=3))
+        # Centred text label, bold and larger for central node
         ax.text(x, y, label, ha='center', va='center',
                 fontsize=9.5 if is_central else 8.5,
                 fontweight='bold' if is_central else 'normal',
                 color=border, zorder=4, linespacing=1.35)
 
-    # Legend
+    # Legend positioned at bottom-center (2 columns) to avoid overlapping nodes
+    # Explains the colour coding used for node categories
     legend_items = [
         mpatches.Patch(fc='#dbeafe', ec='#1e40af', label='Central concept (selected)'),
         mpatches.Patch(fc='#dcfce7', ec='#15803d', label='Expected in rubric'),
@@ -179,7 +215,23 @@ def diagram_kg_example() -> str:
 
 
 def diagram_brushing_flow() -> str:
-    """Two clearly separated interaction flows with section backgrounds."""
+    """
+    Two independent interaction flows with coloured band backgrounds.
+
+    Design principle: In ConceptGrade's dashboard, instructor interactions with
+    different charts (heatmap, radar) can simultaneously filter the Answer Panel,
+    but these are independent flows—not a single sequential chain. Each flow
+    has its own visual band (blue for heatmap, purple for radar) with:
+    - Separate starting point (heatmap click vs. radar quartile select)
+    - Independent action sequence (boxes in each flow)
+    - Clear label stating independence
+    - Gap between bands for visual separation
+
+    Layout ensures no label-box overlaps:
+    - Tall bands (3.2 units) provide breathing room
+    - Labels positioned 0.3 units below band top, 0.7 units above box tops
+    - Divider note placed in the 0.7-unit gap between flows
+    """
     fig, ax = plt.subplots(figsize=(13, 8.0))
     fig.patch.set_facecolor(BG)
     ax.set_facecolor(BG)
@@ -187,14 +239,14 @@ def diagram_brushing_flow() -> str:
     ax.set_ylim(0, 8.0)
     ax.axis('off')
 
-    BW, BH = 1.9, 1.7
+    BW, BH = 1.9, 1.7  # box width and height (consistent across flows)
+    # Large arrows (lw=3.5, mutation_scale=28) remain visible at document scale
     ARROW = dict(arrowstyle='->', color='#374151', lw=3.5, mutation_scale=28)
 
-    # Layout:
-    #   Flow 1 band : y = 4.4 → 7.6   (height 3.2)  boxes centred at y=5.7
-    #   gap / divider : y ≈ 3.9
-    #   Flow 2 band : y = 0.5 → 3.7   (height 3.2)  boxes centred at y=1.9
-    # Label sits 0.7 units above top of boxes — well clear of box borders.
+    # Coordinate layout for two-band design:
+    #   Flow 1 (blue band, y=4.4–7.6): 4 boxes at y=5.7 connected by arrows
+    #   gap with divider text at y≈4.0
+    #   Flow 2 (purple band, y=0.5–3.7): 2 boxes at y=1.9 connected by arrow
 
     FLOW1_Y   = 5.7
     FLOW1_TOP = 7.6
@@ -204,25 +256,30 @@ def diagram_brushing_flow() -> str:
     FLOW2_TOP = 3.7
     FLOW2_BOT = 0.5
 
-    # ── Flow 1 background band ────────────────────────────────────────
+    # ── Flow 1 background band (blue) ────────────────────────────────
+    # Light blue rounded rectangle (zorder=1) behind Flow 1 boxes
     ax.add_patch(mpatches.FancyBboxPatch(
         (0.15, FLOW1_BOT), 12.7, FLOW1_TOP - FLOW1_BOT,
         boxstyle='round,pad=0.05', lw=1.5, ec='#93c5fd', fc='#eff6ff', zorder=1))
-    # Label sits 0.25 units below band top → well above box tops (FLOW1_Y+BH/2=6.55)
+    # Flow 1 label at top of band: positioned 0.3 units below band top (y=7.3)
+    # This places it 0.7+ units above the highest box edge (y=6.55), ensuring clear separation
     ax.text(0.50, FLOW1_TOP - 0.30,
             'Flow 1 — Main Drill-Down',
             ha='left', va='center', fontsize=10.5, fontweight='bold', color='#1e40af')
 
-    # ── Flow 2 background band ────────────────────────────────────────
+    # ── Flow 2 background band (purple) ──────────────────────────────
+    # Light purple rounded rectangle (zorder=1) behind Flow 2 boxes
     ax.add_patch(mpatches.FancyBboxPatch(
         (0.15, FLOW2_BOT), 12.7, FLOW2_TOP - FLOW2_BOT,
         boxstyle='round,pad=0.05', lw=1.5, ec='#c4b5fd', fc='#f5f3ff', zorder=1))
-    # Label sits 0.25 units below band top → well above box tops (FLOW2_Y+BH/2=2.75)
+    # Flow 2 label at top of band: positioned 0.3 units below band top (y=3.4)
+    # This places it 0.65+ units above the highest box edge (y=2.75), ensuring clear separation
     ax.text(0.50, FLOW2_TOP - 0.30,
             'Flow 2 — Radar Quartile Filter  (independent of Flow 1)',
             ha='left', va='center', fontsize=10.5, fontweight='bold', color='#6b21a8')
 
-    # ── Flow 1 boxes ─────────────────────────────────────────────────
+    # ── Flow 1 boxes: 4-step interaction sequence ─────────────────────
+    # Spacing: 1.4 → 4.4 → 7.4 → 10.4 (gaps of 3.0, box width 1.9 → net gap 1.1)
     FLOW1_CX = [1.4, 4.4, 7.4, 10.4]
     flow1 = [
         ('#1e40af', '#dbeafe', 'Click Heatmap Cell',    'Selects concept + severity'),
@@ -231,7 +288,8 @@ def diagram_brushing_flow() -> str:
         ('#15803d', '#dcfce7', 'KG Panel Updates',       'Nodes turn green / red / grey'),
     ]
 
-    # ── Flow 2 boxes ─────────────────────────────────────────────────
+    # ── Flow 2 boxes: 2-step independent filter ──────────────────────
+    # Spacing: 1.4 → 4.4 (same x-positions as Flow 1 for visual alignment)
     FLOW2_CX = [1.4, 4.4]
     flow2 = [
         ('#6b21a8', '#f3e8ff', 'Click Radar Quartile',   'Select score range Q1\u2013Q4'),
@@ -239,31 +297,48 @@ def diagram_brushing_flow() -> str:
     ]
 
     def draw_box(cx, cy, border, fill, title, sub):
+        """
+        Draw a single action box with rounded borders, coloured background, and text.
+
+        Args:
+            cx, cy: centre coordinates
+            border: border colour (also used for title text)
+            fill: background fill colour
+            title: main action text (bold)
+            sub: supporting description (smaller, grey)
+        """
+        # Rounded box (zorder=2) behind text
         ax.add_patch(mpatches.FancyBboxPatch(
             (cx - BW / 2, cy - BH / 2), BW, BH,
             boxstyle='round,pad=0.12', lw=2.5, ec=border, fc=fill, zorder=2))
+        # Bold title text slightly above centre
         ax.text(cx, cy + 0.28, title, ha='center', va='center', fontsize=9.5,
                 fontweight='bold', color=border, linespacing=1.3, zorder=3)
+        # Smaller description text slightly below centre
         ax.text(cx, cy - 0.36, sub, ha='center', va='center', fontsize=8.5,
                 color=GREY, linespacing=1.3, zorder=3)
 
+    # Draw all boxes for both flows
     for cx, (b, f, t, s) in zip(FLOW1_CX, flow1):
         draw_box(cx, FLOW1_Y, b, f, t, s)
     for cx, (b, f, t, s) in zip(FLOW2_CX, flow2):
         draw_box(cx, FLOW2_Y, b, f, t, s)
 
-    # Flow 1 arrows
+    # Flow 1 arrows: connect 4 boxes in sequence (3 arrows total)
+    # Large arrows (lw=3.5, mutation_scale=28) ensure visibility at document scale
     for i in range(3):
         ax.annotate('', xy=(FLOW1_CX[i + 1] - BW / 2, FLOW1_Y),
                     xytext=(FLOW1_CX[i] + BW / 2, FLOW1_Y),
                     arrowprops=ARROW, zorder=4)
 
-    # Flow 2 arrow
+    # Flow 2 arrow: connect 2 boxes in sequence (1 arrow total)
     ax.annotate('', xy=(FLOW2_CX[1] - BW / 2, FLOW2_Y),
                 xytext=(FLOW2_CX[0] + BW / 2, FLOW2_Y),
                 arrowprops=ARROW, zorder=4)
 
-    # Divider note in the gap between bands
+    # Divider note in the gap between flows (y ≈ 4.0)
+    # Clarifies that the two flows are independent and both update the Answer Panel
+    # This is the key message: there is NO link from box Flow1-4 to box Flow2-1
     ax.text(6.5, (FLOW1_BOT + FLOW2_TOP) / 2,
             '↕  These two flows are independent — both filter the Answer Panel separately.',
             ha='center', va='center', fontsize=9, color='#6b7280', style='italic')
@@ -274,18 +349,26 @@ def diagram_brushing_flow() -> str:
 
 
 def diagram_pipeline() -> str:
-    """Five-stage grading pipeline — wide gaps so arrows are clearly visible."""
+    """
+    Five-stage grading pipeline with wide box spacing.
+
+    Design principle: The pipeline is a sequential 5-stage process where each
+    stage takes the previous stage's output and produces refined grades.
+    Spacing is generous (gap = 1.0 unit between boxes) so arrows remain
+    clearly visible even when the figure is scaled down to fit in a Word document.
+    """
     fig, ax = plt.subplots(figsize=(13, 4.5))
     fig.patch.set_facecolor(BG)
     ax.set_facecolor(BG)
-    # spacing 2.6 → gap = 2.6 - 1.6 = 1.0 per arrow
     ax.set_xlim(0, 13)
     ax.set_ylim(0, 4.5)
     ax.axis('off')
 
-    BW, BH = 1.6, 2.4
-    BOT = 0.8
-    MID = BOT + BH / 2
+    # Layout parameters
+    BW, BH = 1.6, 2.4  # box dimensions (width 1.6, height 2.4)
+    BOT = 0.8          # baseline (y-coord of box bottoms)
+    MID = BOT + BH / 2  # midline for arrow placement (y ≈ 1.9)
+    # x-centres: spacing 2.6 units apart → gap = 2.6 - 1.6 = 1.0 per arrow
     CX  = [1.0, 3.6, 6.2, 8.8, 11.4]
 
     stages = [
@@ -296,19 +379,26 @@ def diagram_pipeline() -> str:
         ('#7c3aed', '#f3e8ff', 'Stage 5', 'Final Score\n+ Explanation'),
     ]
 
+    # Draw all 5 stage boxes
     for cx, (border, fill, label, name) in zip(CX, stages):
+        # Rounded box (zorder=2) behind text
         ax.add_patch(mpatches.FancyBboxPatch(
             (cx - BW / 2, BOT), BW, BH,
             boxstyle='round,pad=0.12', lw=2.5, ec=border, fc=fill, zorder=2))
+        # Stage label (e.g. "Stage 1") at top in bold
         ax.text(cx, BOT + BH - 0.28, label,
                 ha='center', va='center', fontsize=11, fontweight='bold',
                 color=border, zorder=3)
+        # Stage name (e.g. "Self-Consistent Extractor") below label
         ax.text(cx, MID - 0.12, name,
                 ha='center', va='center', fontsize=10, color=GREY,
                 linespacing=1.5, zorder=3)
 
+    # Connect all 5 boxes with 4 sequential arrows
+    # Large arrows (lw=3.5, mutation_scale=28) remain visible at document scale
     ARROW = dict(arrowstyle='->', color='#374151', lw=3.5, mutation_scale=28)
     for i in range(4):
+        # Arrow from right edge of stage i to left edge of stage i+1
         ax.annotate('', xy=(CX[i + 1] - BW / 2, MID),
                     xytext=(CX[i] + BW / 2, MID),
                     arrowprops=ARROW, zorder=4)
@@ -387,7 +477,21 @@ def add_bullet(doc: Document, text: str, level: int = 0):
 
 
 def add_image(doc: Document, path: str, width_inches: float = 5.8, caption: str = ''):
-    # Breathing room before the figure block
+    """
+    Add a centred image with formatted caption to the document.
+
+    Caption format: "Figure N — Description text"
+    - "Figure N" is rendered in bold
+    - "— Description text" is rendered in italic
+    - Spacing: 10pt before image, 14pt after caption for visual separation
+
+    Args:
+        doc: python-docx Document object
+        path: file path to PNG image
+        width_inches: image width (default 5.8", leaves ~1" margins on A4)
+        caption: text in format "Figure N — Description" or "Figure N - Description"
+    """
+    # Breathing room before the figure block (10pt space)
     p = doc.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
     p.paragraph_format.space_before = Pt(10)
@@ -396,12 +500,14 @@ def add_image(doc: Document, path: str, width_inches: float = 5.8, caption: str 
     run.add_picture(path, width=Inches(width_inches))
 
     if caption:
+        # Caption paragraph (centred, smaller font)
         cap = doc.add_paragraph()
         cap.alignment = WD_ALIGN_PARAGRAPH.CENTER
         cap.paragraph_format.space_before = Pt(3)
         cap.paragraph_format.space_after = Pt(14)
 
-        # Split "Figure N — rest of title" so Figure N is bold, rest is italic
+        # Parse caption: split on em-dash or hyphen to separate label from description
+        # "Figure N — Description" → label="Figure N" (bold), title="Description" (italic)
         if ' \u2014 ' in caption:
             label, _, title = caption.partition(' \u2014 ')
         elif ' - ' in caption:
@@ -409,6 +515,7 @@ def add_image(doc: Document, path: str, width_inches: float = 5.8, caption: str 
         else:
             label, title = caption, ''
 
+        # Label in bold (e.g. "Figure 1")
         bold_run = cap.add_run(label)
         bold_run.font.bold = True
         bold_run.font.size = Pt(9)
@@ -528,7 +635,20 @@ def add_info_box(doc: Document, text: str, color_hex: str = '1e40af'):
 # ═══════════════════════════════════════════════════════════════════════════════
 
 def build_document():
+    """
+    Generate and assemble the complete ConceptGrade System Overview Word document.
+
+    Steps:
+    1. Generate all 5 matplotlib diagrams as PNG files in the current directory
+    2. Create a Word document with proper style hierarchy
+    3. Add table of contents (auto-generated from heading styles)
+    4. Populate content sections: overview, problem statement, architecture, design details
+    5. Embed diagrams with proper captions and spacing
+    6. Add evaluation tables and results summaries
+    7. Save as ConceptGrade_System_Overview.docx
+    """
     print("Generating diagrams...")
+    # Generate all diagrams as PNG files (saved to OUT_DIR)
     img_arch       = diagram_architecture()
     img_kg         = diagram_kg_example()
     img_brushing   = diagram_brushing_flow()
