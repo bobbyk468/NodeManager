@@ -1,0 +1,36 @@
+{
+  "mohler": {
+    "n": 120,
+    "mae_cllm": 2.25,
+    "mae_c5": 2.25,
+    "mae_lrm_raw": 2.0717,
+    "mae_lrm_calibrated": 2.0717,
+    "mae_lrm_gate": 2.25,
+    "lrm_scale": 1.0,
+    "c5_vs_cllm_pct": 0.0,
+    "lrm_raw_vs_c5_pct": 7.93,
+    "lrm_cal_vs_c5_pct": 7.92,
+    "lrm_gate_vs_c5_pct": 0.0,
+    "stats_c5_vs_cllm": {
+      "wilcoxon_p": null,
+      "rank_biserial_r": null,
+      "cohens_d": null,
+      "note": "too few non-zero diffs (0)"
+    },
+    "stats_gate_vs_c5": {
+      "wilcoxon_p": null,
+      "rank_biserial_r": null,
+      "cohens_d": null,
+      "note": "too few non-zero diffs (0)"
+    },
+    "stats_cal_vs_c5": {
+      "wilcoxon_p": 0.0,
+      "rank_biserial_r": 1.0,
+      "cohens_d": -0.6279,
+      "n_nonzero_diffs": 48
+    },
+    "valid_rate": 0.725,
+    "dataset": "mohler",
+    "elapsed_s": 0.0
+  }
+}
