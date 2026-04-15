@@ -1,8 +1,15 @@
 export { BloomsBarChart } from './BloomsBarChart';
 export { ChainCoverageChart } from './ChainCoverageChart';
 export { ConceptFrequencyChart } from './ConceptFrequencyChart';
+export { ConceptKGPanel } from './ConceptKGPanel';
+export { CrossDatasetComparisonChart } from './CrossDatasetComparisonChart';
 export { MisconceptionHeatmap } from './MisconceptionHeatmap';
 export { ScoreComparisonChart } from './ScoreComparisonChart';
 export { ScoreSamplesTable } from './ScoreSamplesTable';
 export { SoloBarChart } from './SoloBarChart';
+export { StudentAnswerPanel } from './StudentAnswerPanel';
 export { StudentRadarChart } from './StudentRadarChart';
+export { VerifierReasoningPanel } from './VerifierReasoningPanel';
+export type { ParsedStep, TraceSummary } from './VerifierReasoningPanel';
+export { SUSQuestionnaire } from './SUSQuestionnaire';
+export { RubricEditorPanel } from './RubricEditorPanel';

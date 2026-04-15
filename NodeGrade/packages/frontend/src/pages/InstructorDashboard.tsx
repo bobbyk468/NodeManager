@@ -7,6 +7,7 @@ import {
   Card,
   CardContent,
   CircularProgress,
+  Collapse,
   Container,
   Divider,
   Grid,
@@ -25,17 +26,24 @@ import {
   BloomsBarChart,
   ChainCoverageChart,
   ConceptFrequencyChart,
+  ConceptKGPanel,
+  CrossDatasetComparisonChart,
   MisconceptionHeatmap,
   ScoreComparisonChart,
   ScoreSamplesTable,
   SoloBarChart,
+  StudentAnswerPanel,
   StudentRadarChart,
 } from '../components/charts';
+import { SUSQuestionnaire } from '../components/charts/SUSQuestionnaire';
+import { RubricEditorPanel } from '../components/charts/RubricEditorPanel';
 import { DatasetSummaryResponse, VisualizationSpec } from '../common/visualization.types';
+import { DashboardProvider, useDashboard } from '../contexts/DashboardContext';
 import {
   SESSION_ID,
   exportStudyLog,
   logEvent,
+  setStudyApiBase,
 } from '../utils/studyLogger';
 
 const DATASET_LABELS: Record<string, string> = {
@@ -97,10 +105,12 @@ function StudyTaskPanel({
   condition,
   dataset,
   sessionStart,
+  onTaskSubmitted,
 }: {
   condition: string;
   dataset: string;
   sessionStart: number;
+  onTaskSubmitted: () => void;
 }) {
   const [answer, setAnswer] = useState('');
   const [confidence, setConfidence] = useState<number>(3);
@@ -117,8 +127,9 @@ function StudyTaskPanel({
   const handleSubmit = () => {
     if (!answer.trim()) return;
     const elapsed = Date.now() - sessionStart;
-    logEvent(condition, dataset, 'task_submit', { answer, confidence, time_to_answer_ms: elapsed });
+    logEvent(condition, dataset, 'task_submit', { answer, confidence, time_to_answer_ms: elapsed, event_subtype: 'main_task' });
     setSubmitted(true);
+    onTaskSubmitted();
   };
 
   return (
@@ -162,7 +173,7 @@ function StudyTaskPanel({
           </>
         ) : (
           <Alert severity="success">
-            Answer recorded. Thank you! You can continue exploring the dashboard.
+            Answer recorded. Please complete the usability questionnaire below.
           </Alert>
         )}
       </CardContent>
@@ -170,7 +181,8 @@ function StudyTaskPanel({
   );
 }
 
-export default function InstructorDashboard() {
+/** Inner dashboard — must be inside DashboardProvider */
+function InstructorDashboardInner() {
   const [searchParams] = useSearchParams();
   const condition = searchParams.get('condition') ?? 'B';
   const isControlCondition = condition === 'A';
@@ -183,6 +195,37 @@ export default function InstructorDashboard() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  // KG panel visibility — local UI state (not shared selection state)
+  const [showKG, setShowKG] = useState(false);
+  // Onboarding guide — collapsed by default to avoid cognitive overload on first view
+  const [helpOpen, setHelpOpen] = useState(false);
+  // Backend reachability — shown as a banner so the study facilitator can act before wasting a participant's time
+  const [backendDown, setBackendDown] = useState(false);
+  // Whether the main study task has been submitted — triggers SUS questionnaire + rubric editor
+  const [taskSubmitted, setTaskSubmitted] = useState(false);
+  // Accumulated set of CONTRADICTS node IDs seen across all trace expansions this session.
+  // Updated whenever a CONTRADICTS step is interacted with in VerifierReasoningPanel.
+  // Passed to RubricEditorPanel for causal proximity attribution on rubric edits.
+  const [sessionContradictsNodes, setSessionContradictsNodes] = useState<string[]>([]);
+
+  // Linking & brushing via DashboardContext
+  const { selectedConcept, selectedSeverity, selectConcept, clearAll, recentContradicts } = useDashboard();
+
+  // Mirror new entries from the rolling recentContradicts window into the session-scoped
+  // accumulated set. recentContradicts only holds the last 60 s; we use timestamps to
+  // detect entries we haven't yet added to sessionContradictsNodes.
+  const seenContradictTimestamps = React.useRef(new Set<number>());
+  React.useEffect(() => {
+    for (const entry of recentContradicts) {
+      if (!seenContradictTimestamps.current.has(entry.timestamp_ms)) {
+        seenContradictTimestamps.current.add(entry.timestamp_ms);
+        setSessionContradictsNodes(prev =>
+          prev.includes(entry.nodeId) ? prev : [...prev, entry.nodeId],
+        );
+      }
+    }
+  }, [recentContradicts]);
+
   // Load available datasets on mount
   useEffect(() => {
     const api = getApiBase();
@@ -192,14 +235,23 @@ export default function InstructorDashboard() {
         setDatasets(data.datasets);
       })
       .catch(() => {
-        // Fallback to known datasets
         setDatasets(['mohler', 'digiklausur', 'kaggle_asag']);
       });
   }, []);
 
-  // Load selected dataset
   const selectedDataset = datasets[selectedTab] ?? '';
 
+  const handleConceptClick = (concept: string, severity: string) => {
+    if (selectedConcept === concept) {
+      selectConcept(null, null);
+      setShowKG(false);
+    } else {
+      selectConcept(concept, severity);
+      setShowKG(false);
+    }
+  };
+
+  // Load selected dataset — reset linking state when dataset changes
   useEffect(() => {
     if (!selectedDataset) return;
     setLoading(true);
@@ -213,17 +265,25 @@ export default function InstructorDashboard() {
       .then((data: DatasetSummaryResponse) => {
         setVizData(data);
         setLoading(false);
+        clearAll();
+        setShowKG(false);
         logEvent(condition, selectedDataset, 'tab_change', { dataset: selectedDataset });
       })
       .catch((e: Error) => {
         setError(e.message);
         setLoading(false);
       });
-  }, [selectedDataset, condition]);
+  }, [selectedDataset, condition]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Log page view on mount
+  // Register backend log endpoint, emit page_view, and run a health probe on mount.
+  // The health probe gives the study facilitator an immediate signal if the backend
+  // is unreachable before investing a participant's time in the session.
   useEffect(() => {
+    setStudyApiBase(apiBase);
     logEvent(condition, '', 'page_view', { session_id: SESSION_ID, is_study: isStudyMode });
+    fetch(`${apiBase}/api/study/health`)
+      .then((r) => setBackendDown(!r.ok))
+      .catch(() => setBackendDown(true));
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleExportLog = () => {
@@ -244,9 +304,23 @@ export default function InstructorDashboard() {
   const wilcoxonP = summaryData.wilcoxon_p ?? vizData?.wilcoxon_p ?? 1;
   const c5Mae = summaryData.c5_mae ?? vizData?.metrics.C5_fix.mae ?? 0;
   const cllmMae = summaryData.c_llm_mae ?? vizData?.metrics.C_LLM.mae ?? 0;
+  const apiBase = getApiBase();
+
+  const handleCloseAnswerPanel = () => {
+    selectConcept(null, null);
+    setShowKG(false);
+  };
 
   return (
     <Container maxWidth="xl" sx={{ py: 3 }}>
+      {/* Backend health banner — visible only to the study facilitator when the backend is unreachable */}
+      {backendDown && (
+        <Alert severity="error" sx={{ mb: 2 }}>
+          <strong>Backend unreachable.</strong> The NestJS API at <code>{apiBase}</code> did not respond.
+          Study log events will be stored in localStorage only — server-side backup is offline.
+          Check that the backend is running before beginning a participant session.
+        </Alert>
+      )}
       {/* Header */}
       <Box display="flex" alignItems="center" justifyContent="space-between" mb={2}>
         <Box>
@@ -263,7 +337,7 @@ export default function InstructorDashboard() {
             <IconButton
               onClick={() => {
                 setVizData(null);
-                setSelectedTab((t) => t); // trigger reload
+                setSelectedTab((t) => t);
               }}
               size="small"
             >
@@ -292,6 +366,7 @@ export default function InstructorDashboard() {
           condition={condition}
           dataset={selectedDataset}
           sessionStart={sessionStart.current}
+          onTaskSubmitted={() => setTaskSubmitted(true)}
         />
       )}
 
@@ -369,6 +444,49 @@ export default function InstructorDashboard() {
           {!isControlCondition && (
             <>
               <Divider sx={{ my: 2 }} />
+
+              {/* Onboarding guide — collapsed by default to reduce first-impression overload */}
+              <Box mb={2}>
+                <Box display="flex" alignItems="center" gap={1} mb={0.5}>
+                  <Typography variant="caption" color="text.secondary" sx={{ fontStyle: 'italic' }}>
+                    New to this dashboard?
+                  </Typography>
+                  <Button
+                    size="small"
+                    variant="text"
+                    onClick={() => setHelpOpen((o) => !o)}
+                    sx={{ fontSize: 10, py: 0.25, px: 0.75, minWidth: 'auto', textTransform: 'none' }}
+                  >
+                    {helpOpen ? 'Hide guide ▲' : 'Show interaction guide ▼'}
+                  </Button>
+                </Box>
+                <Collapse in={helpOpen}>
+                  <Alert severity="info" sx={{ py: 0.75 }}>
+                    <Typography variant="caption" sx={{ fontWeight: 700, display: 'block', mb: 0.5 }}>
+                      4 key interactions — start here:
+                    </Typography>
+                    {[
+                      '1.  To investigate a class-wide misconception, click its heatmap cell → see affected students, pre-filtered by severity.',
+                      '2.  To understand why a concept was missed, click the KG button → explore its prerequisites in the knowledge graph (drag nodes to rearrange).',
+                      '3.  To see which concepts drove a score gap, expand any score table row → concept gap analysis loads and KG nodes colour green / red / grey.',
+                      '4.  To focus on a specific score range, click a Radar quartile chip → the answer list filters to that group.',
+                    ].map((tip) => (
+                      <Typography key={tip} variant="caption" display="block" sx={{ lineHeight: 1.7 }}>
+                        {tip}
+                      </Typography>
+                    ))}
+                  </Alert>
+                </Collapse>
+              </Box>
+
+              {/* Cross-dataset slopegraph — domain complexity narrative */}
+              <Grid container mb={3}>
+                <Grid item xs={12}>
+                  <Card variant="outlined" sx={{ p: 2 }}>
+                    <CrossDatasetComparisonChart apiBase={apiBase} condition={condition} />
+                  </Card>
+                </Grid>
+              </Grid>
 
               {/* Bloom's + SOLO row */}
               <Grid container spacing={3} mb={3}>
@@ -457,7 +575,7 @@ export default function InstructorDashboard() {
                 </Grid>
               </Grid>
 
-              {/* Per-sample score table (API spec score_scatter) */}
+              {/* Per-sample score table with XAI provenance */}
               {findSpec(specs, 'score_scatter') && (
                 <Grid container mb={3}>
                   <Grid item xs={12}>
@@ -466,6 +584,7 @@ export default function InstructorDashboard() {
                         spec={findSpec(specs, 'score_scatter')!}
                         condition={condition}
                         dataset={selectedDataset}
+                        apiBase={apiBase}
                       />
                       {findSpec(specs, 'score_scatter')?.insights?.map((ins, i) => (
                         <Typography key={i} variant="caption" color="text.secondary" display="block" mt={1}>
@@ -477,9 +596,9 @@ export default function InstructorDashboard() {
                 </Grid>
               )}
 
-              {/* Radar + Misconception heatmap (backend always sends specs; may be empty placeholders) */}
-              <Grid container spacing={3} mb={3}>
-                <Grid item xs={12} md={6}>
+              {/* Radar + Misconception heatmap (linked — heatmap drives answer panel) */}
+              <Grid container spacing={3} mb={2}>
+                <Grid item xs={12} md={5}>
                   <Card variant="outlined" sx={{ p: 2 }}>
                     {findSpec(specs, 'student_radar') && (
                       <StudentRadarChart
@@ -490,19 +609,77 @@ export default function InstructorDashboard() {
                     )}
                   </Card>
                 </Grid>
-                <Grid item xs={12} md={6}>
+                <Grid item xs={12} md={7}>
                   <Card variant="outlined" sx={{ p: 2 }}>
                     {findSpec(specs, 'misconception_heatmap') && (
                       <MisconceptionHeatmap
                         spec={findSpec(specs, 'misconception_heatmap')!}
                         condition={condition}
                         dataset={selectedDataset}
+                        selectedConcept={selectedConcept}
+                        onCellClick={handleConceptClick}
                       />
                     )}
+                    {findSpec(specs, 'misconception_heatmap')?.insights?.map((ins, i) => (
+                      <Typography key={i} variant="caption" color="text.secondary" display="block" mt={1}>
+                        {ins}
+                      </Typography>
+                    ))}
                   </Card>
                 </Grid>
               </Grid>
+
+              {/* Linking panels — shown when a concept cell is selected */}
+              {selectedConcept && (
+                <Grid container spacing={3} mb={3}>
+                  {/* Student Answer Panel */}
+                  <Grid item xs={12} md={showKG ? 6 : 12}>
+                    <StudentAnswerPanel
+                      dataset={selectedDataset}
+                      conceptId={selectedConcept}
+                      defaultSeverity={selectedSeverity}
+                      apiBase={apiBase}
+                      onClose={handleCloseAnswerPanel}
+                      onShowKG={() => setShowKG(true)}
+                    />
+                  </Grid>
+
+                  {/* KG Subgraph Panel */}
+                  {showKG && (
+                    <Grid item xs={12} md={6}>
+                      <ConceptKGPanel
+                        dataset={selectedDataset}
+                        conceptId={selectedConcept}
+                        apiBase={apiBase}
+                        onClose={() => setShowKG(false)}
+                      />
+                    </Grid>
+                  )}
+                </Grid>
+              )}
             </>
+          )}
+
+          {/* Rubric editor — shown after task submitted in BOTH conditions.
+              Condition B: passes accumulated sessionContradictsNodes for trace attribution.
+              Condition A: passes empty array (no trace context) — provides a true
+              between-condition comparison of what educators edit without trace guidance. */}
+          {isStudyMode && taskSubmitted && (
+            <RubricEditorPanel
+              condition={condition as 'A' | 'B'}
+              dataset={selectedDataset}
+              specs={vizData?.visualizations ?? []}
+              sessionContradictsNodes={condition === 'B' ? sessionContradictsNodes : []}
+            />
+          )}
+
+          {/* SUS questionnaire — appears once main task is submitted */}
+          {isStudyMode && taskSubmitted && (
+            <SUSQuestionnaire
+              condition={condition}
+              dataset={selectedDataset}
+              sessionStart={sessionStart.current}
+            />
           )}
 
           {/* Study log export — only in study mode */}
@@ -524,5 +701,14 @@ export default function InstructorDashboard() {
         </>
       )}
     </Container>
+  );
+}
+
+/** Wrap the inner dashboard with DashboardProvider so all child components share selection state */
+export default function InstructorDashboard() {
+  return (
+    <DashboardProvider>
+      <InstructorDashboardInner />
+    </DashboardProvider>
   );
 }
