@@ -56,8 +56,8 @@ export interface RubricEditPayload {
   // Full set of CONTRADICTS node IDs accumulated this session.
   session_contradicts_nodes: string[];
   // ── Panel timing ────────────────────────────────────────────────────────────
-  // Unix ms when the RubricEditorPanel first rendered (panel_focus = first view).
-  panel_focus_ms: number;
+  // Unix ms when the RubricEditorPanel first rendered (panel_mount_timestamp = first view).
+  panel_mount_timestamp_ms: number;
   // True if the panel was shown BEFORE the educator had interacted with any trace.
   // Distinguishes "rubric-first" from "trace-first" reasoning strategies.
   panel_focus_before_trace: boolean;

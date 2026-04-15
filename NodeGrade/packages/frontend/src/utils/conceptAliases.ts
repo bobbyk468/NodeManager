@@ -134,9 +134,9 @@ const DOMAIN_ALIASES: Record<string, string[]> = {
 
 // ── Normalisation ─────────────────────────────────────────────────────────────
 
-/** Lowercase, replace underscores with spaces, collapse whitespace, trim. */
+/** Lowercase, replace underscores and hyphens with spaces, collapse whitespace, trim. */
 export function normalizeConceptId(id: string): string {
-  return id.toLowerCase().replace(/_/g, ' ').replace(/\s+/g, ' ').trim();
+  return id.toLowerCase().replace(/[-_]/g, ' ').replace(/\s+/g, ' ').trim();
 }
 
 // ── Levenshtein distance ──────────────────────────────────────────────────────

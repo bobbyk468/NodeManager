@@ -38,7 +38,7 @@ Expected event schema (from studyLogger.ts)
     //   time_since_last_contradicts_ms, source_contradicts_nodes_60s,
     //   concept_in_contradicts_exact, concept_in_contradicts_semantic,
     //   semantic_match_score, semantic_match_node, session_contradicts_nodes,
-    //   panel_focus_ms, panel_focus_before_trace, interaction_source,
+    //   panel_mount_timestamp_ms, panel_focus_before_trace, interaction_source,
     //   trace_gap_count (v7+: # structural leaps in most recent LRM trace)
     // task_submit (main_task):  answer, confidence, time_to_answer_ms, event_subtype
     // task_submit (sus):        sus_responses, sus_score, sus_instrument, event_subtype
@@ -560,31 +560,31 @@ def print_report(agg: dict[str, dict], session_metrics: list[dict]) -> None:
     print(f'  {"Metric":<30} {"Cond A":>10} {"Cond B":>10} {"p-value":>10}')
     print(f'  {LINE}')
 
-    def row(label: str, key: str, fmt: str = '.2f'):
-        a_vals = [m[key] for m in session_metrics if m['condition'] == 'A' and m.get(key) is not None]
-        b_vals = [m[key] for m in session_metrics if m['condition'] == 'B' and m.get(key) is not None]
-        a_str  = f'{cond_a.get(key.replace("_s","_mean_s").replace("_score","_mean").replace("_words","_words_mean").replace("_hovers","_hovers_mean").replace("_charts","_charts_mean"), "—"):{fmt}}' if cond_a.get(key.replace("_s","_mean_s").replace("_score","_mean").replace("_words","_words_mean").replace("_hovers","_hovers_mean").replace("_charts","_charts_mean")) is not None else '—'
-        b_str  = '—'
-        p_str  = '—'
-        # Simplest approach: use raw key as agg key
-        a_mean = cond_a.get(key) if key in cond_a else None
-        b_mean = cond_b.get(key) if key in cond_b else None
+    def row(label: str, agg_key: str, raw_key: Optional[str] = None, fmt: str = '.2f'):
+        if raw_key:
+            a_vals = [m[raw_key] for m in session_metrics if m['condition'] == 'A' and m.get(raw_key) is not None]
+            b_vals = [m[raw_key] for m in session_metrics if m['condition'] == 'B' and m.get(raw_key) is not None]
+            p = mann_whitney_u(a_vals, b_vals)
+        else:
+            p = None
+
+        a_mean = cond_a.get(agg_key)
+        b_mean = cond_b.get(agg_key)
         a_str  = f'{a_mean:{fmt}}' if a_mean is not None else '—'
         b_str  = f'{b_mean:{fmt}}' if b_mean is not None else '—'
-        p      = mann_whitney_u(a_vals, b_vals)
         p_str  = f'{p:.4f}' if p is not None else '—'
         sig    = ' *' if (p is not None and p < 0.05) else ('**' if (p is not None and p < 0.01) else '')
         print(f'  {label:<30} {a_str:>10} {b_str:>10} {p_str:>10}{sig}')
 
-    row('SUS score (mean)',        'sus_mean',              '.1f')
-    row('SUS SD',                  'sus_sd',                '.1f')
-    row('Time to answer (s, mean)','time_to_answer_mean_s', '.1f')
-    row('Time to answer (s, SD)',  'time_to_answer_sd_s',   '.1f')
-    row('Chart hovers (mean)',     'chart_hovers_mean',     '.1f')
-    row('Unique charts (mean)',    'unique_charts_mean',    '.1f')
-    row('Confidence (mean, 1–5)',  'confidence_mean',       '.2f')
-    row('Answer words (mean)',     'answer_words_mean',     '.1f')
-    row('Task completion rate',    'task_completion_rate',  '.3f')
+    row('SUS score (mean)',        'sus_mean',              'sus_score', '.1f')
+    row('SUS SD',                  'sus_sd',                None,        '.1f')
+    row('Time to answer (s, mean)','time_to_answer_mean_s', 'time_to_answer_s', '.1f')
+    row('Time to answer (s, SD)',  'time_to_answer_sd_s',   None,        '.1f')
+    row('Chart hovers (mean)',     'chart_hovers_mean',     'chart_hovers', '.1f')
+    row('Unique charts (mean)',    'unique_charts_mean',    'unique_charts', '.1f')
+    row('Confidence (mean, 1–5)',  'confidence_mean',       'confidence', '.2f')
+    row('Answer words (mean)',     'answer_words_mean',     'answer_words', '.1f')
+    row('Task completion rate',    'task_completion_rate',  None, '.3f')
 
     # Rubric edit section — now shown for both conditions
     print(f'\n  {"Rubric Edit Metrics":<38} {"Cond A":>8} {"Cond B":>8}')

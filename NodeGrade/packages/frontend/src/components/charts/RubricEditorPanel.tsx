@@ -179,7 +179,7 @@ export function RubricEditorPanel({
       semantic_match_node:             bestMatch,
       session_contradicts_nodes:       sessionContradictsNodes,
       // Panel timing
-      panel_focus_ms:           panelMountMs.current,
+      panel_mount_timestamp_ms: panelMountMs.current,
       panel_focus_before_trace: panelBeforeTrace.current,
       // Source
       interaction_source: source,
