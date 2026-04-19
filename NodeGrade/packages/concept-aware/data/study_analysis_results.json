@@ -1,0 +1,37 @@
+{
+  "timestamp": "2026-04-19T22:40:33.631632",
+  "tests": {
+    "dwell_summary": {
+      "total_events": 1,
+      "condition_A_events": 0,
+      "condition_B_events": 1,
+      "bounce_filtered": "< 2000ms excluded"
+    },
+    "benchmark_trap_analysis": {
+      "fluent_hallucination": {
+        "trap_type": "fluent_hallucination",
+        "n_events_A": 0,
+        "n_events_B": 0,
+        "note": "insufficient events for Mann-Whitney U (< 2 per condition)"
+      },
+      "unorthodox_genius": {
+        "trap_type": "unorthodox_genius",
+        "n_events_A": 0,
+        "n_events_B": 1,
+        "note": "insufficient events for Mann-Whitney U (< 2 per condition)"
+      },
+      "lexical_bluffer": {
+        "trap_type": "lexical_bluffer",
+        "n_events_A": 0,
+        "n_events_B": 0,
+        "note": "insufficient events for Mann-Whitney U (< 2 per condition)"
+      },
+      "partial_credit_needle": {
+        "trap_type": "partial_credit_needle",
+        "n_events_A": 0,
+        "n_events_B": 0,
+        "note": "insufficient events for Mann-Whitney U (< 2 per condition)"
+      }
+    }
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "_meta": {
+    "dataset": "digiklausur",
+    "created": "2026-04-17",
+    "description": "Strategic seeding config for ConceptGrade Co-Auditing Benchmark (VIS 2027). Each entry maps a student_answer_id to one of four pedagogical trap types. Seeds are identified from the DigiKlausur Neural Networks dataset (646 answers). Selection criteria documented per entry.",
+    "trap_types": {
+      "fluent_hallucination": "LRM trace has structural topological gaps (leap_count >= 1) despite appearing logically coherent. Tests whether educators catch reasoning discontinuities.",
+      "unorthodox_genius": "Student understands the concept but uses colloquial/non-standard vocabulary — low AI score despite high human score (net_delta < -1.5, human >= 4.0). Tests automation bias mitigation.",
+      "lexical_bluffer": "Student keyword-stuffs the answer; LRM overestimates (net_delta > 0.8) despite CONTRADICTS steps in the verifier trace. Tests whether educators catch surface-level plausibility.",
+      "partial_credit_needle": "Partial-credit answer (human = 2.5/5) with mixed SUPPORTS/CONTRADICTS trace. Missing concept is visually obvious only via unhighlighted KG nodes. Tests time-to-insight."
+    }
+  },
+  "seeds": {
+    "0": {
+      "trap_type": "fluent_hallucination",
+      "human_score": 5.0,
+      "c5_score": 5.0,
+      "net_delta": -0.10,
+      "topological_gap_count": 3,
+      "grounding_density": 0.35,
+      "selection_rationale": "Only answer in DigiKlausur with 3 topological gaps. AI scored correctly (5.0) despite structural leaps — the 'fluent hallucination' pattern: correct score for potentially wrong reasoning. Study metric: does Condition B inspect the trace and note the leaps even when the score looks fine?"
+    },
+    "9": {
+      "trap_type": "fluent_hallucination",
+      "human_score": 5.0,
+      "c5_score": 4.0,
+      "net_delta": -0.55,
+      "topological_gap_count": 1,
+      "grounding_density": 0.35,
+      "selection_rationale": "Second fluent_hallucination seed. 1 topological gap + AI slightly underestimates (4.0 vs human 5.0). Backup if id=0 is not encountered by participant."
+    },
+    "276": {
+      "trap_type": "unorthodox_genius",
+      "human_score": 5.0,
+      "c5_score": 1.0,
+      "net_delta": -2.35,
+      "contradicts_steps": 17,
+      "supports_steps": 2,
+      "selection_rationale": "Extreme unorthodox_genius: human=5.0, c5=1.0 — AI gives only 1 point for a 5-point answer. 17 CONTRADICTS steps dominate the trace, likely because the student explained in colloquial terms. Study metric: does Condition B override the low AI score and add this answer's concepts to the rubric?"
+    },
+    "269": {
+      "trap_type": "unorthodox_genius",
+      "human_score": 5.0,
+      "c5_score": 3.0,
+      "net_delta": -2.30,
+      "contradicts_steps": 16,
+      "supports_steps": 1,
+      "selection_rationale": "Strong unorthodox_genius: human=5.0, c5=3.0. Similar pattern to id=276 but less extreme — better as a secondary seed where the educator sees a borderline case."
+    },
+    "484": {
+      "trap_type": "lexical_bluffer",
+      "human_score": 2.5,
+      "c5_score": 5.0,
+      "net_delta": 1.10,
+      "contradicts_steps": 2,
+      "supports_steps": 12,
+      "selection_rationale": "Strongest lexical_bluffer: human=2.5 but AI gives 5.0 (full marks). Student used correct terminology but made conceptual errors. The 2 CONTRADICTS steps are buried among 12 SUPPORTS. Study metric: does Condition B spot the CONTRADICTS chips and not add this answer's concepts to the rubric?"
+    },
+    "505": {
+      "trap_type": "lexical_bluffer",
+      "human_score": 2.5,
+      "c5_score": 3.0,
+      "net_delta": 0.80,
+      "contradicts_steps": 4,
+      "supports_steps": 9,
+      "selection_rationale": "Secondary lexical_bluffer with 4 CONTRADICTS steps (more visible than id=484). Less extreme score gap but clearer trace signal. Used if id=484 is not encountered."
+    },
+    "32": {
+      "trap_type": "partial_credit_needle",
+      "human_score": 2.5,
+      "c5_score": 2.0,
+      "net_delta": -0.15,
+      "contradicts_steps": 7,
+      "supports_steps": 9,
+      "selection_rationale": "Balanced partial credit: human=2.5, c5=2.0 (close scores, no big error). 9 SUPPORTS vs 7 CONTRADICTS — the trace is genuinely ambiguous. The missing concept should be visible as an unhighlighted KG node. Study metric: time-to-insight — how long before Condition B identifies the missing concept via KG vs. Condition A via text?"
+    },
+    "558": {
+      "trap_type": "partial_credit_needle",
+      "human_score": 2.5,
+      "c5_score": 2.5,
+      "net_delta": -0.35,
+      "contradicts_steps": 7,
+      "supports_steps": 7,
+      "selection_rationale": "Perfectly balanced partial credit: 7 SUPPORTS, 7 CONTRADICTS, scores identical. Represents the 'needle in a haystack' scenario where neither score differential nor trace summary reveals the missing concept — only KG subgraph inspection does."
+    }
+  }
+}

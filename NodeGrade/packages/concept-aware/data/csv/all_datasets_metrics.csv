@@ -1,0 +1,4 @@
+dataset,n,wilcoxon_p,mae_reduction_pct,cllm_mae,c5fix_mae,cllm_r,c5fix_r,cllm_qwk,c5fix_qwk,cllm_rmse,c5fix_rmse,cllm_rho,c5fix_rho,cllm_bias,c5fix_bias,snap_cllm_mae,snap_c5fix_mae,snap_wilcoxon_p,snap_mae_reduction_pct
+mohler_2011,120,0.0026,0.0,0,0,0,0,0,0,,,,,,,,,,
+digiklausur,646,0.048882,4.902,1.184211,1.126161,0.700555,0.62002,0.596186,0.588394,1.533425,1.470426,0.64423,0.525589,-0.820433,-0.284056,1.037152,0.986842,0.368531,4.8507
+kaggle_asag,473,0.33995,2.3622,1.208245,1.179704,0.611431,0.561265,0.568407,0.548806,1.648803,1.612583,0.558087,0.474557,0.575053,0.348837,,,,

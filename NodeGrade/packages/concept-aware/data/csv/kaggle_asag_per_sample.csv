@@ -1,0 +1,474 @@
+id,human_score,cllm_score,c5_score,cllm_abs_error,c5_abs_error,c5_wins,matched_concepts,n_matched_concepts,chain_pct,solo,bloom
+0,3.0,2.0,2.0,1.0,1.0,tie,energy_release|plant_respiration,2,50%,Multistructural,Understand
+1,3.0,5.0,4.5,2.0,1.5,1,natural_home|plant|habitat|animal,4,100%,Extended Abstract,Remember
+2,5.0,4.5,4.5,0.5,0.5,tie,soil_erosion|water|wind|soil,4,80%,Relational,Remember
+3,2.0,3.0,1.0,1.0,1.0,tie,naked_eye|living_things|microorganisms,3,100%,Extended Abstract,Remember
+4,5.0,5.0,4.5,0.0,0.5,0,harmful_microorganisms|microorganisms|helpful_microorganisms,3,100%,Extended Abstract,Remember
+5,5.0,5.0,4.5,0.0,0.5,0,disease|flu|virus,3,100%,Extended Abstract,Remember
+6,5.0,5.0,4.5,0.0,0.5,0,pollen|pollination|flower,3,100%,Extended Abstract,Remember
+7,2.0,0.0,0.5,2.0,1.5,1,petals|flower,2,50%,Multistructural,Remember
+8,5.0,5.0,4.5,0.0,0.5,0,bacteria|microorganisms|fungi|viruses,4,100%,Extended Abstract,Remember
+9,5.0,5.0,4.5,0.0,0.5,0,,0,0%,Prestructural,Remember
+10,5.0,5.0,1.5,0.0,3.5,0,flu,1,33%,Multistructural,Remember
+11,5.0,3.5,4.5,1.5,0.5,1,pollen|pollination,2,67%,Relational,Remember
+12,5.0,5.0,4.5,0.0,0.5,0,animals|water|wind|seed_dispersal,4,80%,Relational,Remember
+13,4.0,5.0,3.0,1.0,1.0,tie,water_pollution|water_bodies,2,67%,Relational,Remember
+14,4.0,5.0,3.0,1.0,1.0,tie,oil|coal|dead_plants_animals|natural_gas|fossil_fuels,5,83%,Relational,Remember
+15,4.0,1.5,3.0,2.5,1.0,1,earths_atmosphere|heat_trapping|greenhouse_gases,3,100%,Extended Abstract,Remember
+16,5.0,5.0,4.5,0.0,0.5,0,greenhouse_gases|carbon_dioxide|methane,3,100%,Extended Abstract,Remember
+17,4.0,3.0,3.0,1.0,1.0,tie,greenhouse_gases|earths_temperature|global_warming,3,100%,Extended Abstract,Remember
+18,4.0,3.5,3.0,0.5,1.0,0,greenhouse_gases|greenhouse_effect|trapped_heat,3,75%,Relational,Remember
+19,4.0,5.0,3.0,1.0,1.0,tie,food_waste|natural_fertilizer|composting|garden_waste,4,100%,Extended Abstract,Remember
+20,4.0,3.0,2.5,1.0,1.5,0,unwanted_sound|harmful_sound|noise_pollution,3,60%,Multistructural,Remember
+21,5.0,5.0,4.5,0.0,0.5,0,liquid_state|melting|solid_state|phase_change,4,100%,Extended Abstract,Remember
+22,5.0,5.0,4.5,0.0,0.5,0,liquid_state|freezing|solid_state|phase_change,4,100%,Extended Abstract,Remember
+23,5.0,5.0,4.5,0.0,0.5,0,liquid_state|gas_state|heating|boiling,4,80%,Relational,Remember
+24,4.0,2.0,3.0,2.0,1.0,1,evaporation|liquid_state|gas_state,3,60%,Multistructural,Remember
+25,5.0,5.0,4.5,0.0,0.5,0,gas_state|liquid_state|condensation,3,75%,Relational,Remember
+26,5.0,5.0,3.0,0.0,2.0,0,light|energy|vision,3,100%,Extended Abstract,Remember
+27,5.0,5.0,4.5,0.0,0.5,0,light|bouncing_back|light_reflection,3,75%,Relational,Remember
+28,5.0,3.0,4.5,2.0,0.5,1,light|light_refraction|bending,3,75%,Relational,Remember
+29,0.0,0.0,0.0,0.0,0.0,tie,shadow|light_blocking,2,50%,Multistructural,Remember
+30,3.0,1.0,1.0,2.0,2.0,tie,sound|vibrations,2,67%,Relational,Remember
+31,1.0,0.0,0.5,1.0,0.5,1,,0,0%,Prestructural,Remember
+32,1.0,0.0,0.5,1.0,0.5,1,,0,0%,Prestructural,Remember
+33,4.0,5.0,2.5,1.0,1.5,0,unwanted_sound|noise_pollution|harmful_sound,3,60%,Multistructural,Remember
+34,1.0,1.0,0.5,0.0,0.5,0,,0,0%,Prestructural,Remember
+35,0.0,0.5,0.5,0.5,0.5,tie,kilometers_per_second,1,50%,Multistructural,Remember
+36,3.0,1.0,1.0,2.0,2.0,tie,prism,1,33%,Multistructural,Remember
+37,0.0,2.0,0.5,2.0,0.5,1,,0,0%,Prestructural,Remember
+38,2.0,1.0,1.5,1.0,0.5,1,electric_current|electric_circuit|electric_charge,3,75%,Relational,Remember
+39,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+40,2.0,5.0,3.0,3.0,1.0,1,closed_circuit|electric_circuit,2,67%,Relational,Remember
+41,3.0,5.0,3.0,2.0,0.0,1,electricity_flow,1,33%,Multistructural,Remember
+42,3.0,5.0,3.0,2.0,0.0,1,electricity_flow,1,33%,Multistructural,Remember
+43,3.0,5.0,3.0,2.0,0.0,1,overcurrent|electric_current,2,67%,Relational,Remember
+44,3.0,5.0,3.0,2.0,0.0,1,magnetic_attraction,1,33%,Multistructural,Remember
+45,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+46,3.0,3.0,3.0,0.0,0.0,tie,electromagnet|iron_core|electric_current|magnet,4,80%,Relational,Remember
+47,3.0,1.5,0.5,1.5,2.5,0,,0,0%,Prestructural,Remember
+48,3.0,5.0,3.0,2.0,0.0,1,single_path,1,25%,Unistructural,Remember
+49,3.0,5.0,3.0,2.0,0.0,1,multiple_paths,1,25%,Unistructural,Remember
+50,2.0,1.0,1.5,1.0,0.5,1,electric_circuit|circuit_damage,2,50%,Multistructural,Remember
+51,3.0,5.0,3.0,2.0,0.0,1,electric_current|electrical_device,2,67%,Relational,Remember
+52,5.0,5.0,4.5,0.0,0.5,0,groundwater|underground_storage|water,3,100%,Extended Abstract,Remember
+53,2.0,4.0,1.0,2.0,1.0,1,soil_erosion,1,20%,Unistructural,Remember
+54,3.0,5.0,3.0,2.0,0.0,1,water_pollution|water_bodies,2,67%,Relational,Remember
+55,2.0,1.0,1.0,1.0,1.0,tie,water_cycle,1,25%,Unistructural,Remember
+56,2.0,1.5,1.0,0.5,1.0,0,evaporation,1,20%,Unistructural,Remember
+57,3.0,1.5,1.0,1.5,2.0,0,,0,0%,Prestructural,Remember
+58,4.0,3.0,1.5,1.0,2.5,0,hail|rain|precipitation,3,60%,Multistructural,Remember
+59,4.0,5.0,3.0,1.0,1.0,tie,food_waste|garden_waste,2,50%,Multistructural,Remember
+60,3.0,1.0,1.0,2.0,2.0,tie,,0,0%,Prestructural,Remember
+61,3.0,3.5,1.0,0.5,2.0,0,,0,0%,Prestructural,Remember
+62,3.0,1.0,1.0,2.0,2.0,tie,planet|moon|most_moons|jupiter,4,100%,Extended Abstract,Remember
+63,5.0,5.0,4.5,0.0,0.5,0,,0,0%,Prestructural,Remember
+64,4.0,3.5,3.0,0.5,1.0,0,uncrewed_mission|spacecraft|space_probe,3,75%,Relational,Remember
+65,3.0,1.0,1.0,2.0,2.0,tie,,0,0%,Prestructural,Remember
+66,4.0,5.0,1.0,1.0,3.0,0,,0,0%,Prestructural,Remember
+67,4.0,3.5,1.0,0.5,3.0,0,asteroid|rocky_object|mars,3,43%,Multistructural,Remember
+68,3.0,2.0,1.0,1.0,2.0,0,galaxy|star,2,33%,Multistructural,Remember
+69,5.0,0.0,1.0,5.0,4.0,1,milky_way|galaxy,2,100%,Extended Abstract,Remember
+70,5.0,5.0,3.0,0.0,2.0,0,weather_forecasting|weather_monitoring|weather_satellite,3,100%,Extended Abstract,Remember
+71,5.0,5.0,4.5,0.0,0.5,0,gas_exchange|oxygen_intake|carbon_dioxide_removal|respiratory_system,4,100%,Extended Abstract,Remember
+72,4.0,4.5,4.5,0.5,0.5,tie,oxygen|transportation|wastes,3,60%,Multistructural,Remember
+73,4.0,5.0,4.5,1.0,0.5,1,hormones|blood|plasma|nutrients,4,100%,Extended Abstract,Remember
+74,2.0,5.0,1.0,3.0,1.0,1,food_spoilage|unsafe_food|unpleasant_food,3,100%,Extended Abstract,Remember
+75,2.0,1.5,3.0,0.5,1.0,0,heating,1,25%,Unistructural,Remember
+76,3.0,5.0,4.5,2.0,1.5,1,matter|mass,2,67%,Relational,Understand
+77,3.0,1.0,3.0,2.0,0.0,1,force|weight,2,50%,Multistructural,Understand
+78,3.0,5.0,3.0,2.0,0.0,1,,0,0%,Prestructural,Remember
+79,3.0,5.0,4.5,2.0,1.5,1,sound_volume|loudness,2,50%,Multistructural,Understand
+80,3.0,5.0,3.0,2.0,0.0,1,temperature|thermometer|liquid_expansion|heat,4,100%,Extended Abstract,Remember
+81,3.0,5.0,5.0,2.0,2.0,tie,object_motion|speed|time,3,100%,Extended Abstract,Understand
+82,1.0,4.5,2.0,3.5,1.0,1,object_motion|speed,2,67%,Relational,Understand
+83,2.0,5.0,4.0,3.0,2.0,1,velocity,1,33%,Multistructural,Remember
+84,1.0,4.5,4.0,3.5,3.0,1,acceleration|velocity|rate_of_change,3,100%,Extended Abstract,Remember
+85,1.0,4.5,3.0,3.5,2.0,1,object_in_motion|object_at_rest|force|inertia|newtons_first_law,5,100%,Extended Abstract,Remember
+86,2.0,4.5,5.0,2.5,3.0,0,pull|force|push,3,75%,Relational,Remember
+87,2.0,5.0,5.0,3.0,3.0,tie,newton|force,2,67%,Relational,Remember
+88,1.0,5.0,5.0,4.0,4.0,tie,,0,0%,Prestructural,Remember
+89,2.0,3.0,4.0,1.0,2.0,0,warmth|heat,2,67%,Relational,Remember
+90,2.0,5.0,5.0,3.0,3.0,tie,conduction|heat_transfer|solids,3,100%,Extended Abstract,Remember
+91,1.0,5.0,5.0,4.0,4.0,tie,convection|heat_transfer,2,50%,Multistructural,Remember
+92,2.0,5.0,5.0,3.0,3.0,tie,radiation|heat_transfer,2,67%,Relational,Remember
+93,2.0,5.0,5.0,3.0,3.0,tie,thermal_expansion|size_increase,2,67%,Relational,Remember
+94,2.0,3.0,3.0,1.0,1.0,tie,water_droplets|dew,2,67%,Relational,Remember
+95,1.0,4.5,5.0,3.5,4.0,0,,0,0%,Prestructural,Remember
+96,1.0,4.5,5.0,3.5,4.0,0,,0,0%,Prestructural,Remember
+97,1.0,2.0,3.0,1.0,2.0,0,lightning,1,33%,Multistructural,Remember
+98,2.0,4.0,3.5,2.0,1.5,1,avoid_metal_objects,1,25%,Unistructural,Remember
+99,1.0,2.0,2.5,1.0,1.5,0,stay_indoors,1,25%,Unistructural,Remember
+100,0.0,1.5,1.0,1.5,1.0,1,,0,0%,Prestructural,Remember
+101,1.0,1.0,5.0,0.0,4.0,0,work_done|no_displacement,2,67%,Relational,Remember
+102,1.0,0.5,1.0,0.5,0.0,1,velocity,1,33%,Multistructural,Remember
+103,2.0,5.0,5.0,3.0,3.0,tie,push,1,25%,Unistructural,Remember
+104,2.0,5.0,5.0,3.0,3.0,tie,convection|heat_transfer,2,50%,Multistructural,Remember
+105,2.0,4.5,4.0,2.5,2.0,1,radiation|heat_transfer,2,67%,Relational,Remember
+106,2.0,5.0,5.0,3.0,3.0,tie,object_motion|speed|time,3,100%,Extended Abstract,Understand
+107,1.0,4.5,5.0,3.5,4.0,0,food_spoilage|unsafe_food|unpleasant_food,3,100%,Extended Abstract,Remember
+108,2.0,5.0,5.0,3.0,3.0,tie,object|change_in_motion|inertia,3,100%,Extended Abstract,Remember
+109,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+110,1.0,2.5,3.0,1.5,2.0,0,,0,0%,Prestructural,Remember
+111,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+112,3.0,2.5,4.5,0.5,1.5,0,planet|galaxy|star,3,50%,Multistructural,Remember
+113,4.0,4.0,5.0,0.0,1.0,0,milky_way|galaxy|stars|barred_spiral_galaxy,4,100%,Extended Abstract,Remember
+114,3.0,4.0,5.0,1.0,2.0,0,comet,1,20%,Unistructural,Remember
+115,3.0,4.5,4.0,1.5,1.0,1,asteroid_belt|asteroid|jupiter|mars,4,57%,Multistructural,Remember
+116,2.0,3.5,3.0,1.5,1.0,1,,0,0%,Prestructural,Remember
+117,4.0,4.0,5.0,0.0,1.0,0,plants|photosynthesis|water|sugar,4,57%,Multistructural,Remember
+118,3.0,5.0,4.0,2.0,1.0,1,energy_release|plant_respiration,2,50%,Multistructural,Remember
+119,3.0,4.0,5.0,1.0,2.0,0,transpiration|evaporation|water,3,60%,Multistructural,Remember
+120,5.0,5.0,5.0,0.0,0.0,tie,rocks|weathering|rock_pieces,3,100%,Extended Abstract,Understand
+121,4.0,4.0,5.0,0.0,1.0,0,atmosphere|weather|place,3,75%,Relational,Remember
+122,4.0,5.0,5.0,1.0,1.0,tie,temperature|thermometer,2,67%,Relational,Remember
+123,4.0,4.5,5.0,0.5,1.0,0,cloud|hail|rain|snow|precipitation,5,100%,Extended Abstract,Remember
+124,4.0,5.0,5.0,1.0,1.0,tie,wind|air_pressure_differences,2,100%,Extended Abstract,Remember
+125,4.0,5.0,5.0,1.0,1.0,tie,air|water_vapor|humidity,3,100%,Extended Abstract,Remember
+126,4.0,4.5,5.0,0.5,1.0,0,water_droplets|ground|cloud|fog,4,100%,Extended Abstract,Remember
+127,4.0,4.5,5.0,0.5,1.0,0,water_cycle|evaporation|precipitation|condensation,4,100%,Extended Abstract,Remember
+128,4.0,4.5,5.0,0.5,1.0,0,weather|long_period|climate,3,75%,Relational,Remember
+129,4.0,5.0,5.0,1.0,1.0,tie,lightning,1,33%,Multistructural,Remember
+130,4.0,5.0,5.0,1.0,1.0,tie,tornado|ground|thunderstorm|rotating_air_column,4,100%,Extended Abstract,Remember
+131,4.0,5.0,5.0,1.0,1.0,tie,heavy_rain|storm|strong_winds|hurricane,4,100%,Extended Abstract,Remember
+132,4.0,5.0,5.0,1.0,1.0,tie,water_droplets|dew,2,67%,Relational,Remember
+133,4.0,5.0,5.0,1.0,1.0,tie,evaporation|gas_state,2,40%,Multistructural,Remember
+134,4.0,5.0,5.0,1.0,1.0,tie,condensation|liquid_state,2,50%,Multistructural,Remember
+135,4.0,5.0,5.0,1.0,1.0,tie,long_period|rainfall|drought,3,100%,Extended Abstract,Remember
+136,4.0,5.0,5.0,1.0,1.0,tie,snowstorm|blizzard|strong_winds|low_visibility,4,100%,Extended Abstract,Remember
+137,4.0,5.0,5.0,1.0,1.0,tie,weather_monitoring|weather_satellite|weather_forecasting|satellite,4,100%,Extended Abstract,Remember
+138,4.0,5.0,5.0,1.0,1.0,tie,sleet|raindrops|frozen_water,3,100%,Extended Abstract,Remember
+139,4.0,5.0,5.0,1.0,1.0,tie,cold_front|cold_air|air_mass_interaction|warm_air,4,100%,Extended Abstract,Remember
+140,4.0,5.0,5.0,1.0,1.0,tie,cold_air|air_mass_interaction|warm_front|warm_air,4,100%,Extended Abstract,Remember
+141,4.0,5.0,5.0,1.0,1.0,tie,rocks|weathering|rock_pieces,3,100%,Extended Abstract,Remember
+142,4.0,5.0,5.0,1.0,1.0,tie,pollen|pollination|flower,3,100%,Extended Abstract,Remember
+143,4.0,5.0,5.0,1.0,1.0,tie,plant_growth|germination|seed|plant,4,100%,Extended Abstract,Remember
+144,4.0,5.0,5.0,1.0,1.0,tie,animals|metamorphosis|life_cycle,3,100%,Extended Abstract,Remember
+145,4.0,5.0,5.0,1.0,1.0,tie,food_chain|energy_transfer|organism,3,100%,Extended Abstract,Understand
+146,4.0,5.0,5.0,1.0,1.0,tie,natural_home|plant|habitat|animal,4,100%,Extended Abstract,Remember
+147,4.0,5.0,5.0,1.0,1.0,tie,living_things|non_living_things|ecosystem|community,4,100%,Extended Abstract,Remember
+148,4.0,5.0,5.0,1.0,1.0,tie,plants|photosynthesis|sunlight,3,43%,Multistructural,Understand
+149,0.0,1.0,1.0,1.0,1.0,tie,sun,1,25%,Unistructural,Remember
+150,0.0,0.0,0.0,0.0,0.0,tie,sun|planet,2,67%,Relational,Remember
+151,0.0,0.0,0.0,0.0,0.0,tie,planet,1,25%,Unistructural,Remember
+152,0.0,0.0,0.0,0.0,0.0,tie,sun|asteroid,2,29%,Multistructural,Remember
+153,0.0,0.0,0.0,0.0,0.0,tie,sun,1,20%,Unistructural,Remember
+154,0.0,0.0,0.0,0.0,0.0,tie,milky_way|galaxy,2,100%,Extended Abstract,Remember
+155,0.0,0.0,0.0,0.0,0.0,tie,milky_way|galaxy,2,100%,Extended Abstract,Remember
+156,0.0,0.0,0.0,0.0,0.0,tie,sun|planet|mercury,3,100%,Extended Abstract,Remember
+157,0.0,0.5,0.0,0.5,0.0,1,planet|moon,2,50%,Multistructural,Remember
+158,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+159,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+160,0.0,0.0,0.5,0.0,0.5,0,ice,1,20%,Unistructural,Remember
+161,4.0,5.0,5.0,1.0,1.0,tie,germination|seed,2,50%,Multistructural,Remember
+162,4.0,4.5,4.5,0.5,0.5,tie,pollination|pollen|flower,3,100%,Extended Abstract,Remember
+163,4.0,4.5,3.0,0.5,1.0,0,plants|photosynthesis|water|sunlight,4,57%,Multistructural,Remember
+164,4.0,5.0,5.0,1.0,1.0,tie,metamorphosis|life_cycle,2,67%,Relational,Remember
+165,4.0,2.5,3.0,1.5,1.0,1,transportation|circulatory_system,2,40%,Multistructural,Remember
+166,4.0,3.5,3.5,0.5,0.5,tie,ecosystem|non_living_things|living_things|community,4,100%,Extended Abstract,Remember
+167,4.0,5.0,4.5,1.0,0.5,1,food_chain,1,33%,Multistructural,Remember
+168,5.0,5.0,5.0,0.0,0.0,tie,pollination|pollen|flower,3,100%,Extended Abstract,Remember
+169,5.0,5.0,5.0,0.0,0.0,tie,animals|metamorphosis|life_cycle,3,100%,Extended Abstract,Understand
+170,5.0,5.0,5.0,0.0,0.0,tie,gas_exchange|oxygen_intake|carbon_dioxide_removal|respiratory_system,4,100%,Extended Abstract,Remember
+171,5.0,5.0,5.0,0.0,0.0,tie,food_chain|energy_transfer,2,67%,Relational,Understand
+172,5.0,5.0,5.0,0.0,0.0,tie,living_things|community|non_living_things|ecosystem,4,100%,Extended Abstract,Remember
+173,5.0,4.5,4.5,0.5,0.5,tie,evaporation|liquid_state|gas_state|phase_change,4,80%,Relational,Remember
+174,5.0,5.0,4.5,0.0,0.5,0,condensation|gas_state|liquid_state,3,75%,Relational,Remember
+175,5.0,5.0,0.0,0.0,5.0,0,plasma|nutrients,2,50%,Multistructural,Remember
+176,5.0,4.0,4.0,1.0,1.0,tie,pull|push|force,3,75%,Relational,Remember
+177,5.0,5.0,5.0,0.0,0.0,tie,newton|si_unit|force,3,100%,Extended Abstract,Remember
+178,5.0,4.5,3.0,0.5,2.0,0,newtons_first_law|object_in_motion|object_at_rest,3,75%,Relational,Remember
+179,5.0,5.0,5.0,0.0,0.0,tie,object|change_in_motion|inertia,3,100%,Extended Abstract,Remember
+180,5.0,4.0,3.0,1.0,2.0,0,acceleration|velocity,2,67%,Relational,Remember
+181,5.0,4.5,4.5,0.5,0.5,tie,gravity|weight,2,50%,Multistructural,Understand
+182,5.0,5.0,5.0,0.0,0.0,tie,matter|object|mass,3,100%,Extended Abstract,Understand
+183,5.0,5.0,4.5,0.0,0.5,0,velocity,1,33%,Multistructural,Remember
+184,5.0,3.5,4.5,1.5,0.5,1,object_motion|speed,2,67%,Relational,Understand
+185,5.0,4.5,3.0,0.5,2.0,0,work|energy,2,100%,Extended Abstract,Remember
+186,0.0,0.0,0.0,0.0,0.0,tie,energy,1,50%,Multistructural,Remember
+187,0.0,0.0,0.0,0.0,0.0,tie,conduction|heat_transfer,2,67%,Relational,Remember
+188,0.0,0.0,0.0,0.0,0.0,tie,convection|heat_transfer,2,50%,Multistructural,Remember
+189,0.0,0.0,0.0,0.0,0.0,tie,radiation|vacuum,2,67%,Relational,Remember
+190,0.0,0.0,0.0,0.0,0.0,tie,insulator,1,33%,Multistructural,Remember
+191,0.0,0.0,0.0,0.0,0.0,tie,electricity_flow|conductor,2,67%,Relational,Remember
+192,0.0,0.0,0.0,0.0,0.0,tie,earths_warming|greenhouse_gases|greenhouse_effect|trapped_heat,4,100%,Extended Abstract,Remember
+193,0.0,0.0,0.0,0.0,0.0,tie,global_warming,1,33%,Multistructural,Remember
+194,0.0,0.0,0.0,0.0,0.0,tie,plants|photosynthesis|oxygen|carbon_dioxide,4,57%,Multistructural,Understand
+195,2.0,0.5,3.0,1.5,1.0,1,warmth|heat,2,67%,Relational,Remember
+196,2.0,4.5,4.0,2.5,2.0,1,conduction|heat_transfer,2,67%,Relational,Remember
+197,2.0,4.5,4.0,2.5,2.0,1,,0,0%,Prestructural,Remember
+198,2.0,4.5,4.0,2.5,2.0,1,radiation|heat_transfer,2,67%,Relational,Remember
+199,2.0,4.0,4.5,2.0,2.5,0,thermal_expansion|size_increase|matter,3,100%,Extended Abstract,Remember
+200,2.0,1.0,2.0,1.0,0.0,1,conductor,1,33%,Multistructural,Remember
+201,2.0,1.0,2.0,1.0,0.0,1,insulator,1,33%,Multistructural,Remember
+202,2.0,1.5,3.0,0.5,1.0,0,earths_warming|greenhouse_effect|greenhouse_gases|trapped_heat,4,100%,Extended Abstract,Remember
+203,2.0,4.5,3.0,2.5,1.0,1,greenhouse_gases|earths_temperature|global_warming,3,100%,Extended Abstract,Remember
+204,2.0,4.5,3.0,2.5,1.0,1,evaporation,1,20%,Unistructural,Remember
+205,2.0,4.5,2.0,2.5,0.0,1,condensation,1,25%,Unistructural,Remember
+206,2.0,4.0,3.0,2.0,1.0,1,boiling,1,20%,Unistructural,Remember
+207,2.0,4.5,4.5,2.5,2.5,tie,freezing,1,25%,Unistructural,Remember
+208,2.0,4.5,4.5,2.5,2.5,tie,melting,1,25%,Unistructural,Remember
+209,5.0,4.5,4.5,0.5,0.5,tie,sound|vibrations,2,67%,Relational,Remember
+210,5.0,3.5,4.5,1.5,0.5,1,light|energy|vision,3,100%,Extended Abstract,Remember
+211,5.0,4.5,5.0,0.5,0.0,1,solids|sound_travel|waves|sound,4,67%,Relational,Remember
+212,5.0,5.0,5.0,0.0,0.0,tie,meters_per_second|air|speed_of_sound,3,100%,Extended Abstract,Remember
+213,5.0,4.5,5.0,0.5,0.0,1,speed_of_light|kilometers_per_second,2,100%,Extended Abstract,Remember
+214,5.0,4.5,4.5,0.5,0.5,tie,light|light_reflection,2,50%,Multistructural,Understand
+215,5.0,5.0,4.5,0.0,0.5,0,light|light_refraction|bending,3,75%,Relational,Remember
+216,5.0,5.0,4.5,0.0,0.5,0,light|light_blocking|shadow,3,75%,Relational,Remember
+217,5.0,4.0,4.5,1.0,0.5,1,color_separation|prism|white_light|light_spectrum,4,100%,Extended Abstract,Remember
+218,5.0,5.0,4.5,0.0,0.5,0,electric_current|electron|electric_circuit|electric_charge,4,100%,Extended Abstract,Remember
+219,5.0,4.5,4.5,0.5,0.5,tie,conductor|electricity_flow|material,3,100%,Extended Abstract,Remember
+220,5.0,5.0,4.5,0.0,0.5,0,insulator|electricity_flow|material,3,100%,Extended Abstract,Remember
+221,5.0,5.0,4.0,0.0,1.0,0,,0,0%,Prestructural,Remember
+222,5.0,5.0,4.5,0.0,0.5,0,parallel_circuit|multiple_paths,2,50%,Multistructural,Remember
+223,5.0,1.5,4.5,3.5,0.5,1,static_electricity,1,33%,Multistructural,Remember
+224,5.0,4.0,4.5,1.0,0.5,1,material|magnetic_attraction|iron|magnet,4,100%,Extended Abstract,Remember
+225,5.0,5.0,4.5,0.0,0.5,0,magnetic_force|magnetic_field|magnet,3,100%,Extended Abstract,Remember
+226,5.0,5.0,4.5,0.0,0.5,0,iron_core|electromagnet|wire|electric_current|magnet,5,100%,Extended Abstract,Remember
+227,5.0,4.5,4.5,0.5,0.5,tie,overcurrent|fuse,2,67%,Relational,Remember
+228,5.0,4.5,4.5,0.5,0.5,tie,electric_current,1,33%,Multistructural,Remember
+229,5.0,4.5,4.5,0.5,0.5,tie,short_circuit|electric_circuit|circuit_damage,3,75%,Relational,Remember
+230,5.0,5.0,4.5,0.0,0.5,0,current_flow|open_circuit|electric_current|electric_circuit,4,100%,Extended Abstract,Remember
+231,5.0,5.0,4.5,0.0,0.5,0,electricity_flow|electric_circuit,2,67%,Relational,Remember
+232,1.0,2.0,2.0,1.0,1.0,tie,,0,0%,Prestructural,Remember
+233,1.0,5.0,5.0,4.0,4.0,tie,thermometer,1,33%,Multistructural,Remember
+234,2.0,1.0,3.0,1.0,1.0,tie,human_use|natural_resources,2,67%,Relational,Remember
+235,2.0,1.5,1.0,0.5,1.0,0,natural_gas|oil|fossil_fuels,3,50%,Multistructural,Remember
+236,3.0,4.0,4.5,1.0,1.5,0,weather|atmosphere,2,50%,Multistructural,Remember
+237,3.0,2.5,4.5,0.5,1.5,0,weather|climate,2,50%,Multistructural,Remember
+238,3.0,5.0,4.5,2.0,1.5,1,water_vapor|air|humidity,3,100%,Extended Abstract,Remember
+239,3.0,4.5,4.5,1.5,1.5,tie,hail|precipitation|rain|snow,4,80%,Relational,Remember
+240,3.0,3.0,1.0,0.0,2.0,0,wind|air_pressure_differences,2,100%,Extended Abstract,Remember
+241,3.0,4.5,3.5,1.5,0.5,1,cold_front|air_mass_interaction|cold_air|warm_air,4,100%,Extended Abstract,Remember
+242,3.0,4.5,3.5,1.5,0.5,1,cold_air|air_mass_interaction|warm_front|warm_air,4,100%,Extended Abstract,Remember
+243,3.0,3.0,3.0,0.0,0.0,tie,tornado|rotating_air_column,2,50%,Multistructural,Remember
+244,3.0,3.5,3.0,0.5,0.0,1,strong_winds|storm|hurricane,3,75%,Relational,Remember
+245,3.0,3.0,3.5,0.0,0.5,0,rainfall|drought,2,67%,Relational,Remember
+246,3.0,2.75,3.0,0.25,0.0,1,strong_winds|snowstorm|blizzard,3,75%,Relational,Remember
+247,3.0,5.0,3.0,2.0,0.0,1,water_droplets|ground|cloud|fog,4,100%,Extended Abstract,Remember
+248,3.0,5.0,3.0,2.0,0.0,1,water_droplets|dew,2,67%,Relational,Remember
+249,3.0,2.5,2.0,0.5,1.0,0,precipitation|water_cycle,2,50%,Multistructural,Remember
+250,3.0,5.0,2.0,2.0,1.0,1,evaporation,1,20%,Unistructural,Remember
+251,3.0,4.5,2.0,1.5,1.0,1,condensation,1,25%,Unistructural,Remember
+252,3.0,5.0,3.0,2.0,0.0,1,greenhouse_gases|earths_temperature|global_warming,3,100%,Extended Abstract,Remember
+253,3.0,2.0,2.0,1.0,1.0,tie,greenhouse_gases|earths_atmosphere,2,67%,Relational,Remember
+254,3.0,0.0,1.0,3.0,2.0,1,greenhouse_gases|carbon_dioxide,2,67%,Relational,Remember
+255,3.0,2.5,2.0,0.5,1.0,0,earths_warming|greenhouse_gases|greenhouse_effect|trapped_heat,4,100%,Extended Abstract,Remember
+256,3.0,5.0,3.0,2.0,0.0,1,weather_forecasting|weather_monitoring|weather_satellite,3,100%,Extended Abstract,Remember
+257,3.0,5.0,3.0,2.0,0.0,1,rocks|weathering|rock_pieces,3,100%,Extended Abstract,Remember
+258,1.0,5.0,5.0,4.0,4.0,tie,sun|planet|mercury,3,100%,Extended Abstract,Remember
+259,1.0,1.0,1.0,0.0,0.0,tie,sun|star,2,50%,Multistructural,Remember
+260,1.0,5.0,5.0,4.0,4.0,tie,number_of_moons|moon,2,67%,Relational,Remember
+261,1.0,2.75,3.0,1.75,2.0,0,planet|orbit|moon,3,75%,Relational,Remember
+262,1.0,2.0,1.5,1.0,0.5,1,,0,0%,Prestructural,Remember
+263,1.0,5.0,3.0,4.0,2.0,1,most_moons|jupiter|planet,3,75%,Relational,Remember
+264,1.0,1.5,1.0,0.5,0.0,1,,0,0%,Prestructural,Remember
+265,1.0,2.0,2.0,1.0,1.0,tie,spacecraft|space_probe,2,50%,Multistructural,Remember
+266,1.0,3.0,2.0,2.0,1.0,1,milky_way|galaxy|stars,3,75%,Relational,Remember
+267,1.0,2.5,2.0,1.5,1.0,1,,0,0%,Prestructural,Remember
+268,0.0,3.0,1.0,3.0,1.0,1,condensation|water_cycle,2,50%,Multistructural,Remember
+269,0.0,0.0,0.0,0.0,0.0,tie,condensation|gas_state,2,50%,Multistructural,Remember
+270,0.0,0.0,0.0,0.0,0.0,tie,hail|precipitation|rain|snow,4,80%,Relational,Remember
+271,0.0,0.0,0.0,0.0,0.0,tie,evaporation,1,20%,Unistructural,Remember
+272,0.0,0.0,0.0,0.0,0.0,tie,transpiration|leaves|water,3,60%,Multistructural,Remember
+273,0.0,0.0,0.0,0.0,0.0,tie,earth_surface|groundwater|water|underground_storage,4,100%,Extended Abstract,Remember
+274,0.0,0.0,0.0,0.0,0.0,tie,cloud|fog,2,50%,Multistructural,Remember
+275,0.0,0.5,1.0,0.5,1.0,0,sleet|frozen_water,2,67%,Relational,Remember
+276,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+277,0.0,0.0,0.0,0.0,0.0,tie,transpiration|water,2,40%,Multistructural,Remember
+278,1.0,5.0,3.0,4.0,2.0,1,living_things,1,33%,Multistructural,Remember
+279,1.0,3.5,2.0,2.5,1.0,1,,0,0%,Prestructural,Remember
+280,1.0,5.0,2.0,4.0,1.0,1,,0,0%,Prestructural,Remember
+281,1.0,0.0,3.0,1.0,2.0,0,flu|virus,2,67%,Relational,Remember
+282,1.0,1.0,1.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+283,1.0,2.0,2.0,1.0,1.0,tie,heating|pasteurization,2,50%,Multistructural,Remember
+284,1.0,0.0,0.0,1.0,1.0,tie,muscles|bones|tendons,3,100%,Extended Abstract,Remember
+285,2.0,5.0,5.0,3.0,3.0,tie,weather|place|atmosphere,3,75%,Relational,Remember
+286,2.0,5.0,5.0,3.0,3.0,tie,weather|long_period|climate,3,75%,Relational,Remember
+287,0.0,0.0,5.0,0.0,5.0,0,air_pressure_differences,1,50%,Multistructural,Remember
+288,2.0,0.0,5.0,2.0,3.0,0,air|water_vapor|humidity,3,100%,Extended Abstract,Remember
+289,2.0,5.0,4.0,3.0,2.0,1,strong_winds|hurricane,2,50%,Multistructural,Remember
+290,2.0,5.0,5.0,3.0,3.0,tie,earths_temperature|global_warming,2,67%,Relational,Remember
+291,2.0,5.0,5.0,3.0,3.0,tie,cloud|rain|hail|snow|precipitation,5,100%,Extended Abstract,Remember
+292,2.0,0.0,5.0,2.0,3.0,0,cold_front|air_mass_interaction|cold_air|warm_air,4,100%,Extended Abstract,Remember
+293,2.0,3.0,5.0,1.0,3.0,0,tornado|ground|rotating_air_column,3,75%,Relational,Remember
+294,2.0,0.0,5.0,2.0,3.0,0,greenhouse_gases|greenhouse_effect|trapped_heat,3,75%,Relational,Remember
+295,0.0,0.0,5.0,0.0,5.0,0,drought|long_period|rainfall,3,100%,Extended Abstract,Remember
+296,2.0,0.0,5.0,2.0,3.0,0,sleet|frozen_water,2,67%,Relational,Remember
+297,2.0,5.0,5.0,3.0,3.0,tie,weather_monitoring|weather_satellite|weather_forecasting,3,100%,Extended Abstract,Remember
+298,2.0,5.0,5.0,3.0,3.0,tie,snowstorm|blizzard|strong_winds,3,75%,Relational,Remember
+299,2.0,5.0,5.0,3.0,3.0,tie,liquid_state|evaporation|phase_change,3,60%,Multistructural,Understand
+300,2.0,5.0,5.0,3.0,3.0,tie,water_cycle,1,25%,Unistructural,Remember
+301,2.0,0.0,5.0,2.0,3.0,0,air_mass_interaction|warm_front|cold_air|warm_air,4,100%,Extended Abstract,Remember
+302,3.0,1.0,2.5,2.0,0.5,1,energy_release|plant_respiration,2,50%,Multistructural,Understand
+303,3.0,5.0,5.0,2.0,2.0,tie,natural_home|plant|habitat|animal,4,100%,Extended Abstract,Remember
+304,4.0,5.0,5.0,1.0,1.0,tie,pull|push|force,3,75%,Relational,Remember
+305,5.0,4.0,5.0,1.0,0.0,1,soil_erosion|water|wind|soil,4,80%,Relational,Remember
+306,4.0,5.0,5.0,1.0,1.0,tie,object|change_in_motion|inertia,3,100%,Extended Abstract,Remember
+307,2.0,0.5,2.0,1.5,0.0,1,naked_eye|living_things|microorganisms,3,100%,Extended Abstract,Remember
+308,4.0,4.0,4.0,0.0,0.0,tie,bacteria|microorganisms|fungi,3,75%,Relational,Remember
+309,5.0,5.0,4.5,0.0,0.5,0,harmful_microorganisms|microorganisms|helpful_microorganisms,3,100%,Extended Abstract,Remember
+310,5.0,5.0,4.0,0.0,1.0,0,disease|flu|virus,3,100%,Extended Abstract,Remember
+311,4.0,5.0,2.0,1.0,2.0,0,,0,0%,Prestructural,Remember
+312,4.0,5.0,4.5,1.0,0.5,1,germination|seed,2,50%,Multistructural,Remember
+313,4.0,4.0,4.0,0.0,0.0,tie,animals|seeds|wind|seed_dispersal,4,80%,Relational,Remember
+314,5.0,4.5,4.5,0.5,0.5,tie,pollen|pollination|flower,3,100%,Extended Abstract,Remember
+315,2.0,1.0,1.0,1.0,1.0,tie,petals|flower,2,50%,Multistructural,Remember
+316,4.0,3.0,2.0,1.0,2.0,0,living_things,1,33%,Multistructural,Remember
+317,5.0,5.0,5.0,0.0,0.0,tie,bacteria|microorganisms|fungi|viruses,4,100%,Extended Abstract,Remember
+318,5.0,5.0,2.0,0.0,3.0,0,,0,0%,Prestructural,Remember
+319,5.0,0.0,3.0,5.0,2.0,1,flu,1,33%,Multistructural,Remember
+320,4.0,3.0,2.0,1.0,2.0,0,,0,0%,Prestructural,Remember
+321,4.0,3.0,2.5,1.0,1.5,0,insects,1,25%,Unistructural,Remember
+322,5.0,3.5,3.0,1.5,2.0,0,pollen|pollination,2,67%,Relational,Remember
+323,4.0,5.0,4.0,1.0,0.0,1,plant_growth|germination|seed|plant,4,100%,Extended Abstract,Remember
+324,5.0,5.0,4.0,0.0,1.0,0,animals|water|wind|seed_dispersal,4,80%,Relational,Remember
+325,4.0,5.0,3.0,1.0,1.0,tie,water_pollution|water_bodies,2,67%,Relational,Remember
+326,4.0,3.5,3.5,0.5,0.5,tie,oil|coal|dead_plants_animals|natural_gas|fossil_fuels,5,83%,Relational,Remember
+327,4.0,2.0,3.0,2.0,1.0,1,earths_atmosphere|heat_trapping|greenhouse_gases,3,100%,Extended Abstract,Remember
+328,5.0,5.0,4.0,0.0,1.0,0,greenhouse_gases|carbon_dioxide|methane,3,100%,Extended Abstract,Remember
+329,4.0,3.0,3.0,1.0,1.0,tie,greenhouse_gases|earths_temperature|global_warming,3,100%,Extended Abstract,Remember
+330,4.0,3.5,2.5,0.5,1.5,0,earths_warming|greenhouse_gases|greenhouse_effect|trapped_heat,4,100%,Extended Abstract,Remember
+331,4.0,5.0,3.0,1.0,1.0,tie,food_waste|natural_fertilizer|composting|garden_waste,4,100%,Extended Abstract,Remember
+332,4.0,3.0,2.5,1.0,1.5,0,unwanted_sound|harmful_sound|noise_pollution,3,60%,Multistructural,Remember
+333,5.0,5.0,4.0,0.0,1.0,0,liquid_state|melting|solid_state|phase_change,4,100%,Extended Abstract,Remember
+334,5.0,5.0,4.0,0.0,1.0,0,liquid_state|freezing|solid_state|phase_change,4,100%,Extended Abstract,Remember
+335,5.0,5.0,4.0,0.0,1.0,0,liquid_state|gas_state|heating|boiling,4,80%,Relational,Remember
+336,4.0,3.5,2.5,0.5,1.5,0,evaporation|liquid_state|gas_state,3,60%,Multistructural,Remember
+337,5.0,5.0,4.0,0.0,1.0,0,gas_state|liquid_state|condensation,3,75%,Relational,Remember
+338,5.0,5.0,3.0,0.0,2.0,0,light|energy|vision,3,100%,Extended Abstract,Remember
+339,5.0,3.5,4.0,1.5,1.0,1,light|bouncing_back|light_reflection,3,75%,Relational,Remember
+340,5.0,3.0,4.0,2.0,1.0,1,light|light_refraction|bending,3,75%,Relational,Remember
+341,0.0,0.0,0.0,0.0,0.0,tie,shadow|light_blocking,2,50%,Multistructural,Remember
+342,3.0,1.0,1.0,2.0,2.0,tie,sound|vibrations,2,67%,Relational,Remember
+343,1.0,0.0,0.5,1.0,0.5,1,,0,0%,Prestructural,Remember
+344,1.0,0.0,0.5,1.0,0.5,1,,0,0%,Prestructural,Remember
+345,4.0,4.0,2.5,0.0,1.5,0,unwanted_sound|noise_pollution|harmful_sound,3,60%,Multistructural,Remember
+346,1.0,1.0,0.5,0.0,0.5,0,,0,0%,Prestructural,Remember
+347,0.0,0.5,0.5,0.5,0.5,tie,kilometers_per_second,1,50%,Multistructural,Remember
+348,3.0,1.0,1.0,2.0,2.0,tie,prism,1,33%,Multistructural,Remember
+349,0.0,2.0,0.5,2.0,0.5,1,,0,0%,Prestructural,Remember
+350,2.0,1.0,1.0,1.0,1.0,tie,electric_current|electric_circuit|electric_charge,3,75%,Relational,Remember
+351,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+352,2.0,4.0,3.0,2.0,1.0,1,closed_circuit|electric_circuit,2,67%,Relational,Remember
+353,3.0,4.0,3.0,1.0,0.0,1,electricity_flow,1,33%,Multistructural,Remember
+354,3.0,4.0,3.0,1.0,0.0,1,electricity_flow,1,33%,Multistructural,Remember
+355,3.0,3.5,3.0,0.5,0.0,1,overcurrent|electric_current,2,67%,Relational,Remember
+356,3.0,3.5,3.0,0.5,0.0,1,magnetic_attraction,1,33%,Multistructural,Remember
+357,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+358,3.0,3.5,3.0,0.5,0.0,1,electromagnet|iron_core|electric_current|magnet,4,80%,Relational,Remember
+359,3.0,1.5,1.0,1.5,2.0,0,,0,0%,Prestructural,Remember
+360,3.0,2.0,3.0,1.0,0.0,1,single_path,1,25%,Unistructural,Remember
+361,3.0,2.0,3.0,1.0,0.0,1,multiple_paths,1,25%,Unistructural,Remember
+362,2.0,1.0,1.0,1.0,1.0,tie,electric_circuit|circuit_damage,2,50%,Multistructural,Remember
+363,3.0,3.5,3.0,0.5,0.0,1,electric_current|electrical_device,2,67%,Relational,Remember
+364,5.0,5.0,3.0,0.0,2.0,0,groundwater|underground_storage|water,3,100%,Extended Abstract,Remember
+365,2.0,3.5,1.0,1.5,1.0,1,soil_erosion,1,20%,Unistructural,Remember
+366,3.0,5.0,2.0,2.0,1.0,1,water_pollution|water_bodies,2,67%,Relational,Remember
+367,2.0,1.0,1.0,1.0,1.0,tie,water_cycle,1,25%,Unistructural,Remember
+368,2.0,1.5,1.0,0.5,1.0,0,evaporation,1,20%,Unistructural,Remember
+369,3.0,1.5,1.0,1.5,2.0,0,,0,0%,Prestructural,Remember
+370,4.0,2.5,2.0,1.5,2.0,0,hail|rain|precipitation,3,60%,Multistructural,Remember
+371,4.0,5.0,2.5,1.0,1.5,0,food_waste|garden_waste,2,50%,Multistructural,Remember
+372,3.0,1.0,1.0,2.0,2.0,tie,,0,0%,Prestructural,Remember
+373,3.0,2.0,1.0,1.0,2.0,0,,0,0%,Prestructural,Remember
+374,3.0,1.0,1.0,2.0,2.0,tie,planet|moon|most_moons|jupiter,4,100%,Extended Abstract,Remember
+375,5.0,5.0,5.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+376,4.0,3.5,2.5,0.5,1.5,0,uncrewed_mission|spacecraft|space_probe,3,75%,Relational,Remember
+377,3.0,1.0,1.0,2.0,2.0,tie,,0,0%,Prestructural,Remember
+378,4.0,3.0,1.0,1.0,3.0,0,,0,0%,Prestructural,Remember
+379,4.0,2.0,1.0,2.0,3.0,0,asteroid|rocky_object|mars,3,43%,Multistructural,Remember
+380,3.0,3.0,1.0,0.0,2.0,0,galaxy|star,2,33%,Multistructural,Remember
+381,5.0,1.0,1.0,4.0,4.0,tie,milky_way|galaxy,2,100%,Extended Abstract,Remember
+382,5.0,4.0,3.0,1.0,2.0,0,weather_forecasting|weather_monitoring|weather_satellite,3,100%,Extended Abstract,Remember
+383,5.0,5.0,4.5,0.0,0.5,0,gas_exchange|oxygen_intake|carbon_dioxide_removal|respiratory_system,4,100%,Extended Abstract,Remember
+384,4.0,4.0,4.0,0.0,0.0,tie,oxygen|transportation|wastes,3,60%,Multistructural,Remember
+385,4.0,5.0,4.0,1.0,0.0,1,hormones|blood|plasma|nutrients,4,100%,Extended Abstract,Remember
+386,2.0,4.5,1.0,2.5,1.0,1,food_spoilage|unsafe_food|unpleasant_food,3,100%,Extended Abstract,Remember
+387,2.0,1.5,2.5,0.5,0.5,tie,heating,1,25%,Unistructural,Remember
+388,3.0,5.0,4.0,2.0,1.0,1,matter|mass,2,67%,Relational,Understand
+389,3.0,1.5,2.5,1.5,0.5,1,force|weight,2,50%,Multistructural,Understand
+390,3.0,5.0,2.0,2.0,1.0,1,,0,0%,Prestructural,Remember
+391,3.0,5.0,4.0,2.0,1.0,1,sound_volume|loudness,2,50%,Multistructural,Understand
+392,3.0,5.0,3.0,2.0,0.0,1,temperature|thermometer|liquid_expansion|heat,4,100%,Extended Abstract,Remember
+393,3.0,5.0,4.0,2.0,1.0,1,object_motion|speed|time,3,100%,Extended Abstract,Understand
+394,1.0,5.0,2.5,4.0,1.5,1,object_motion|speed,2,67%,Relational,Understand
+395,2.0,5.0,3.0,3.0,1.0,1,velocity,1,33%,Multistructural,Remember
+396,1.0,3.0,3.0,2.0,2.0,tie,acceleration|velocity|rate_of_change,3,100%,Extended Abstract,Remember
+397,1.0,4.0,2.5,3.0,1.5,1,object_in_motion|object_at_rest|force|inertia|newtons_first_law,5,100%,Extended Abstract,Remember
+398,2.0,3.0,4.0,1.0,2.0,0,pull|force|push,3,75%,Relational,Remember
+399,2.0,5.0,5.0,3.0,3.0,tie,newton|force,2,67%,Relational,Remember
+400,1.0,5.0,5.0,4.0,4.0,tie,,0,0%,Prestructural,Remember
+401,2.0,3.0,3.0,1.0,1.0,tie,warmth|heat,2,67%,Relational,Remember
+402,2.0,5.0,5.0,3.0,3.0,tie,conduction|heat_transfer|solids,3,100%,Extended Abstract,Remember
+403,1.0,5.0,5.0,4.0,4.0,tie,convection|heat_transfer,2,50%,Multistructural,Remember
+404,2.0,5.0,5.0,3.0,3.0,tie,radiation|heat_transfer,2,67%,Relational,Remember
+405,2.0,5.0,5.0,3.0,3.0,tie,thermal_expansion|size_increase,2,67%,Relational,Remember
+406,2.0,2.0,3.0,0.0,1.0,0,water_droplets|dew,2,67%,Relational,Remember
+407,1.0,4.5,5.0,3.5,4.0,0,,0,0%,Prestructural,Remember
+408,1.0,4.5,5.0,3.5,4.0,0,,0,0%,Prestructural,Remember
+409,1.0,1.0,2.0,0.0,1.0,0,lightning,1,33%,Multistructural,Remember
+410,2.0,4.0,3.0,2.0,1.0,1,avoid_metal_objects,1,25%,Unistructural,Remember
+411,1.0,2.0,2.0,1.0,1.0,tie,stay_indoors,1,25%,Unistructural,Remember
+412,0.0,1.5,1.0,1.5,1.0,1,,0,0%,Prestructural,Remember
+413,1.0,5.0,3.0,4.0,2.0,1,work_done|no_displacement,2,67%,Relational,Remember
+414,1.0,2.0,1.0,1.0,0.0,1,velocity,1,33%,Multistructural,Remember
+415,2.0,5.0,5.0,3.0,3.0,tie,push,1,25%,Unistructural,Remember
+416,2.0,5.0,5.0,3.0,3.0,tie,convection|heat_transfer,2,50%,Multistructural,Remember
+417,2.0,5.0,3.0,3.0,1.0,1,radiation|heat_transfer,2,67%,Relational,Remember
+418,2.0,5.0,5.0,3.0,3.0,tie,object_motion|speed|time,3,100%,Extended Abstract,Understand
+419,1.0,4.5,4.5,3.5,3.5,tie,food_spoilage|unsafe_food|unpleasant_food,3,100%,Extended Abstract,Remember
+420,2.0,5.0,5.0,3.0,3.0,tie,object|change_in_motion|inertia,3,100%,Extended Abstract,Remember
+421,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+422,1.0,2.5,2.0,1.5,1.0,1,,0,0%,Prestructural,Remember
+423,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+424,3.0,2.5,4.0,0.5,1.0,0,planet|galaxy|star,3,50%,Multistructural,Remember
+425,4.0,2.0,4.0,2.0,0.0,1,milky_way|galaxy|stars|barred_spiral_galaxy,4,100%,Extended Abstract,Remember
+426,0.0,0.0,0.0,0.0,0.0,tie,push|force,2,50%,Multistructural,Remember
+427,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+428,2.0,4.0,3.0,2.0,1.0,1,bacteria|microorganisms|viruses,3,75%,Relational,Remember
+429,2.0,5.0,2.0,3.0,0.0,1,,0,0%,Prestructural,Remember
+430,2.0,3.0,4.5,1.0,2.5,0,plant_growth|germination|seed,3,75%,Relational,Remember
+431,2.0,4.0,4.0,2.0,2.0,tie,wind|water,2,40%,Multistructural,Remember
+432,2.0,2.0,2.0,0.0,0.0,tie,living_things,1,33%,Multistructural,Remember
+433,2.0,4.0,2.5,2.0,0.5,1,fermentation,1,20%,Unistructural,Understand
+434,2.0,1.5,1.0,0.5,1.0,0,petals,1,25%,Unistructural,Remember
+435,2.0,3.0,5.0,1.0,3.0,0,plant_growth|germination|seed,3,75%,Relational,Remember
+436,4.0,4.0,3.5,0.0,0.5,0,meridian|nadir|zenith|great_circle|celestial_poles,5,100%,Extended Abstract,Remember
+437,4.0,5.0,5.0,1.0,1.0,tie,celestial_sphere|earth_equator|celestial_equator,3,75%,Relational,Remember
+438,4.0,5.0,5.0,1.0,1.0,tie,ecliptic|sun|apparent_path,3,60%,Multistructural,Remember
+439,4.0,4.0,4.5,0.0,0.5,0,constellation|stars,2,50%,Multistructural,Remember
+440,4.0,5.0,5.0,1.0,1.0,tie,ursa_major|orion|scorpius,3,75%,Relational,Remember
+441,4.0,5.0,5.0,1.0,1.0,tie,earth_rotation|earth_orbit|sun,3,100%,Extended Abstract,Analyze
+442,5.0,4.0,5.0,1.0,0.0,1,constellations|astrology|ecliptic|zodiac,4,100%,Extended Abstract,Remember
+443,5.0,5.0,5.0,0.0,0.0,tie,calendars|constellations,2,50%,Multistructural,Remember
+444,5.0,5.0,5.0,0.0,0.0,tie,telescopes|binoculars|sky_watching|star_maps,4,100%,Extended Abstract,Remember
+445,5.0,5.0,5.0,0.0,0.0,tie,city_lights|light_pollution|faint_stars|stargazing,4,100%,Extended Abstract,Remember
+446,5.0,4.0,4.5,1.0,0.5,1,,0,0%,Prestructural,Analyze
+447,5.0,5.0,4.5,0.0,0.5,0,earth_north_pole|polaris|north_star,3,75%,Relational,Understand
+448,3.0,5.0,5.0,2.0,2.0,tie,stellar_evolution|red_giant|star|betelgeuse,4,67%,Relational,Remember
+449,3.0,4.0,5.0,1.0,2.0,0,dead_star|stellar_core|white_dwarf,3,60%,Multistructural,Remember
+450,3.0,5.0,5.0,2.0,2.0,tie,stellar_remnant|density|neutron_star|supernova,4,100%,Extended Abstract,Remember
+451,3.0,5.0,5.0,2.0,2.0,tie,blue_stars|star_temperature|hottest_stars|red_stars|coolest_stars|star_color,6,100%,Extended Abstract,Remember
+452,3.0,5.0,5.0,2.0,2.0,tie,star_system|binary_star,2,50%,Multistructural,Remember
+453,3.0,5.0,5.0,2.0,2.0,tie,light_speed|light_year,2,40%,Multistructural,Understand
+454,2.0,1.0,3.0,1.0,1.0,tie,stellar_size|main_sequence_star|star,3,75%,Relational,Analyze
+455,2.0,2.0,3.0,0.0,1.0,0,pulsar|neutron_star,2,50%,Multistructural,Remember
+456,2.0,4.0,4.5,2.0,2.5,0,,0,0%,Prestructural,Analyze
+457,2.0,2.0,3.0,0.0,1.0,0,telescopes|space_probes,2,50%,Multistructural,Remember
+458,2.0,3.0,4.5,1.0,2.5,0,star_cluster|stars,2,67%,Relational,Remember
+459,2.0,3.0,4.5,1.0,2.5,0,young_stars|star_cluster|open_cluster,3,75%,Relational,Remember
+460,1.0,4.0,4.5,3.0,3.5,0,star_cluster|globular_cluster|old_stars,3,60%,Multistructural,Remember
+461,1.0,3.0,2.0,2.0,1.0,1,cosmic_dust|space,2,40%,Multistructural,Remember
+462,1.0,4.5,5.0,3.5,4.0,0,planets|exoplanets|other_stars|solar_system,4,80%,Relational,Remember
+463,1.0,2.0,3.0,1.0,2.0,0,detection_methods|transit_method,2,50%,Multistructural,Remember
+464,1.0,4.0,4.5,3.0,3.5,0,space_telescope|space_images|hubble_space_telescope,3,60%,Multistructural,Remember
+465,1.0,1.0,2.0,0.0,1.0,0,light_travel_time|night_sky_darkness,2,50%,Multistructural,Analyze
+466,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+467,0.0,2.0,0.0,2.0,0.0,1,,0,0%,Prestructural,Remember
+468,0.0,0.0,0.0,0.0,0.0,tie,asteroid,1,14%,Unistructural,Remember
+469,0.0,2.0,0.0,2.0,0.0,1,meteoroid|earth_surface|earth_atmosphere,3,60%,Multistructural,Remember
+470,0.0,0.0,0.0,0.0,0.0,tie,planet|star,2,40%,Multistructural,Remember
+471,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Analyze
+472,0.0,1.0,2.0,1.0,2.0,0,,0,0%,Prestructural,Remember

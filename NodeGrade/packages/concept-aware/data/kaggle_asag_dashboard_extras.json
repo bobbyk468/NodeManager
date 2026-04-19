@@ -1,0 +1,462 @@
+{
+  "dataset": "kaggle_asag",
+  "student_radar": {
+    "dimensions": [
+      "Concept Coverage",
+      "SOLO Level",
+      "Bloom Level",
+      "Grading Accuracy",
+      "Score"
+    ],
+    "students": [
+      {
+        "student_id": "Low Scorers (Q1)",
+        "color": "#ef4444",
+        "n": 118,
+        "avg_human_score": 0.5338983050847458,
+        "values": [
+          0.388,
+          0.527,
+          0.179,
+          0.773,
+          0.31
+        ]
+      },
+      {
+        "student_id": "Mid-Low (Q2)",
+        "color": "#f97316",
+        "n": 118,
+        "avg_human_score": 2.2288135593220337,
+        "values": [
+          0.55,
+          0.668,
+          0.188,
+          0.669,
+          0.664
+        ]
+      },
+      {
+        "student_id": "Mid-High (Q3)",
+        "color": "#22c55e",
+        "n": 118,
+        "avg_human_score": 3.5,
+        "values": [
+          0.678,
+          0.754,
+          0.178,
+          0.792,
+          0.722
+        ]
+      },
+      {
+        "student_id": "High Scorers (Q4)",
+        "color": "#3b82f6",
+        "n": 119,
+        "avg_human_score": 4.773109243697479,
+        "values": [
+          0.764,
+          0.817,
+          0.186,
+          0.822,
+          0.792
+        ]
+      }
+    ]
+  },
+  "misconception_heatmap": {
+    "cells": [
+      {
+        "x": "critical",
+        "y": "phase_change",
+        "value": 9,
+        "intensity": 0.818
+      },
+      {
+        "x": "moderate",
+        "y": "phase_change",
+        "value": 11,
+        "intensity": 1.0
+      },
+      {
+        "x": "minor",
+        "y": "phase_change",
+        "value": 3,
+        "intensity": 0.273
+      },
+      {
+        "x": "critical",
+        "y": "orbital_motion",
+        "value": 4,
+        "intensity": 0.364
+      },
+      {
+        "x": "moderate",
+        "y": "orbital_motion",
+        "value": 4,
+        "intensity": 0.364
+      },
+      {
+        "x": "minor",
+        "y": "orbital_motion",
+        "value": 8,
+        "intensity": 0.727
+      },
+      {
+        "x": "critical",
+        "y": "liquid_state",
+        "value": 1,
+        "intensity": 0.091
+      },
+      {
+        "x": "moderate",
+        "y": "liquid_state",
+        "value": 11,
+        "intensity": 1.0
+      },
+      {
+        "x": "minor",
+        "y": "liquid_state",
+        "value": 3,
+        "intensity": 0.273
+      },
+      {
+        "x": "critical",
+        "y": "sun",
+        "value": 4,
+        "intensity": 0.364
+      },
+      {
+        "x": "moderate",
+        "y": "sun",
+        "value": 5,
+        "intensity": 0.455
+      },
+      {
+        "x": "minor",
+        "y": "sun",
+        "value": 5,
+        "intensity": 0.455
+      },
+      {
+        "x": "critical",
+        "y": "temperature",
+        "value": 4,
+        "intensity": 0.364
+      },
+      {
+        "x": "moderate",
+        "y": "temperature",
+        "value": 7,
+        "intensity": 0.636
+      },
+      {
+        "x": "minor",
+        "y": "temperature",
+        "value": 2,
+        "intensity": 0.182
+      },
+      {
+        "x": "critical",
+        "y": "gas_state",
+        "value": 1,
+        "intensity": 0.091
+      },
+      {
+        "x": "moderate",
+        "y": "gas_state",
+        "value": 10,
+        "intensity": 0.909
+      },
+      {
+        "x": "minor",
+        "y": "gas_state",
+        "value": 2,
+        "intensity": 0.182
+      },
+      {
+        "x": "critical",
+        "y": "object",
+        "value": 3,
+        "intensity": 0.273
+      },
+      {
+        "x": "moderate",
+        "y": "object",
+        "value": 8,
+        "intensity": 0.727
+      },
+      {
+        "x": "minor",
+        "y": "object",
+        "value": 2,
+        "intensity": 0.182
+      },
+      {
+        "x": "critical",
+        "y": "microorganisms",
+        "value": 5,
+        "intensity": 0.455
+      },
+      {
+        "x": "moderate",
+        "y": "microorganisms",
+        "value": 3,
+        "intensity": 0.273
+      },
+      {
+        "x": "minor",
+        "y": "microorganisms",
+        "value": 4,
+        "intensity": 0.364
+      },
+      {
+        "x": "critical",
+        "y": "material",
+        "value": 0,
+        "intensity": 0.0
+      },
+      {
+        "x": "moderate",
+        "y": "material",
+        "value": 6,
+        "intensity": 0.545
+      },
+      {
+        "x": "minor",
+        "y": "material",
+        "value": 6,
+        "intensity": 0.545
+      },
+      {
+        "x": "critical",
+        "y": "condensation",
+        "value": 1,
+        "intensity": 0.091
+      },
+      {
+        "x": "moderate",
+        "y": "condensation",
+        "value": 9,
+        "intensity": 0.818
+      },
+      {
+        "x": "minor",
+        "y": "condensation",
+        "value": 1,
+        "intensity": 0.091
+      },
+      {
+        "x": "critical",
+        "y": "electricity_flow",
+        "value": 0,
+        "intensity": 0.0
+      },
+      {
+        "x": "moderate",
+        "y": "electricity_flow",
+        "value": 4,
+        "intensity": 0.364
+      },
+      {
+        "x": "minor",
+        "y": "electricity_flow",
+        "value": 5,
+        "intensity": 0.455
+      },
+      {
+        "x": "critical",
+        "y": "liquids",
+        "value": 0,
+        "intensity": 0.0
+      },
+      {
+        "x": "moderate",
+        "y": "liquids",
+        "value": 5,
+        "intensity": 0.455
+      },
+      {
+        "x": "minor",
+        "y": "liquids",
+        "value": 4,
+        "intensity": 0.364
+      },
+      {
+        "x": "critical",
+        "y": "distance",
+        "value": 2,
+        "intensity": 0.182
+      },
+      {
+        "x": "moderate",
+        "y": "distance",
+        "value": 5,
+        "intensity": 0.455
+      },
+      {
+        "x": "minor",
+        "y": "distance",
+        "value": 2,
+        "intensity": 0.182
+      },
+      {
+        "x": "critical",
+        "y": "displacement",
+        "value": 1,
+        "intensity": 0.091
+      },
+      {
+        "x": "moderate",
+        "y": "displacement",
+        "value": 2,
+        "intensity": 0.182
+      },
+      {
+        "x": "minor",
+        "y": "displacement",
+        "value": 6,
+        "intensity": 0.545
+      },
+      {
+        "x": "critical",
+        "y": "water",
+        "value": 3,
+        "intensity": 0.273
+      },
+      {
+        "x": "moderate",
+        "y": "water",
+        "value": 2,
+        "intensity": 0.182
+      },
+      {
+        "x": "minor",
+        "y": "water",
+        "value": 3,
+        "intensity": 0.273
+      },
+      {
+        "x": "critical",
+        "y": "electric_circuit",
+        "value": 2,
+        "intensity": 0.182
+      },
+      {
+        "x": "moderate",
+        "y": "electric_circuit",
+        "value": 4,
+        "intensity": 0.364
+      },
+      {
+        "x": "minor",
+        "y": "electric_circuit",
+        "value": 2,
+        "intensity": 0.182
+      },
+      {
+        "x": "critical",
+        "y": "gravity",
+        "value": 0,
+        "intensity": 0.0
+      },
+      {
+        "x": "moderate",
+        "y": "gravity",
+        "value": 8,
+        "intensity": 0.727
+      },
+      {
+        "x": "minor",
+        "y": "gravity",
+        "value": 0,
+        "intensity": 0.0
+      },
+      {
+        "x": "critical",
+        "y": "energy",
+        "value": 1,
+        "intensity": 0.091
+      },
+      {
+        "x": "moderate",
+        "y": "energy",
+        "value": 6,
+        "intensity": 0.545
+      },
+      {
+        "x": "minor",
+        "y": "energy",
+        "value": 0,
+        "intensity": 0.0
+      },
+      {
+        "x": "critical",
+        "y": "static_electricity",
+        "value": 1,
+        "intensity": 0.091
+      },
+      {
+        "x": "moderate",
+        "y": "static_electricity",
+        "value": 2,
+        "intensity": 0.182
+      },
+      {
+        "x": "minor",
+        "y": "static_electricity",
+        "value": 4,
+        "intensity": 0.364
+      },
+      {
+        "x": "critical",
+        "y": "evaporation",
+        "value": 0,
+        "intensity": 0.0
+      },
+      {
+        "x": "moderate",
+        "y": "evaporation",
+        "value": 4,
+        "intensity": 0.364
+      },
+      {
+        "x": "minor",
+        "y": "evaporation",
+        "value": 3,
+        "intensity": 0.273
+      }
+    ],
+    "x_labels": [
+      "critical",
+      "moderate",
+      "minor"
+    ],
+    "y_labels": [
+      "phase_change",
+      "orbital_motion",
+      "liquid_state",
+      "sun",
+      "temperature",
+      "gas_state",
+      "object",
+      "microorganisms",
+      "material",
+      "condensation",
+      "electricity_flow",
+      "liquids",
+      "distance",
+      "displacement",
+      "water",
+      "electric_circuit",
+      "gravity",
+      "energy",
+      "static_electricity",
+      "evaporation"
+    ],
+    "max_value": 11,
+    "insights": [
+      "Most missed concept: 'phase_change' (23 misses total).",
+      "'phase_change' most frequently missed by high-scoring students (9 critical misses)."
+    ]
+  }
+}

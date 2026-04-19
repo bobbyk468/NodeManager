@@ -1,0 +1,1701 @@
+{
+  "dataset": "mohler",
+  "n": 120,
+  "n_missing": 0,
+  "metrics": {
+    "C_LLM": {
+      "mae": 0.33,
+      "rmse": 0.4667261866805133,
+      "qwk": 0.9560834533401569,
+      "r": 0.9709397293007704
+    },
+    "C5_fix": {
+      "mae": 0.22291666666666668,
+      "rmse": 0.33150540468193473,
+      "qwk": 0.9748013180849002,
+      "r": 0.9820314964001232
+    }
+  },
+  "wilcoxon_p": 0.0026393683555957725,
+  "mae_reduction_pct": 32.44949494949495,
+  "results": [
+    {
+      "id": 0,
+      "human_score": 0.0,
+      "cllm_score": 0.5,
+      "c5_score": 0.5,
+      "matched_concepts": [
+        "data_structure"
+      ],
+      "chain_pct": "0%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 1,
+      "human_score": 0.25,
+      "cllm_score": 1.0,
+      "c5_score": 0.5,
+      "matched_concepts": [
+        "array"
+      ],
+      "chain_pct": "0%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 2,
+      "human_score": 0.5,
+      "cllm_score": 1.0,
+      "c5_score": 0.5,
+      "matched_concepts": [
+        "linked_list",
+        "data_structure"
+      ],
+      "chain_pct": "0%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 3,
+      "human_score": 0.75,
+      "cllm_score": 1.0,
+      "c5_score": 0.0,
+      "matched_concepts": [
+        "linked_list",
+        "array",
+        "dynamic_array"
+      ],
+      "chain_pct": "100%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 4,
+      "human_score": 1.25,
+      "cllm_score": 1.5,
+      "c5_score": 1.0,
+      "matched_concepts": [
+        "linked_list",
+        "array",
+        "pointer",
+        "node"
+      ],
+      "chain_pct": "100%",
+      "solo": "Unistructural",
+      "bloom": "Understand"
+    },
+    {
+      "id": 5,
+      "human_score": 1.5,
+      "cllm_score": 1.0,
+      "c5_score": 1.0,
+      "matched_concepts": [
+        "linked_list",
+        "o_1",
+        "array"
+      ],
+      "chain_pct": "100%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 6,
+      "human_score": 1.75,
+      "cllm_score": 2.5,
+      "c5_score": 2.0,
+      "matched_concepts": [
+        "linked_list",
+        "pointer",
+        "node"
+      ],
+      "chain_pct": "100%",
+      "solo": "Multistructural",
+      "bloom": "Understand"
+    },
+    {
+      "id": 7,
+      "human_score": 2.5,
+      "cllm_score": 2.5,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "linked_list",
+        "head",
+        "tail",
+        "node"
+      ],
+      "chain_pct": "100%",
+      "solo": "Multistructural",
+      "bloom": "Understand"
+    },
+    {
+      "id": 8,
+      "human_score": 2.75,
+      "cllm_score": 3.5,
+      "c5_score": 3.0,
+      "matched_concepts": [
+        "linked_list",
+        "array",
+        "pointer",
+        "node"
+      ],
+      "chain_pct": "100%",
+      "solo": "Relational",
+      "bloom": "Analyze"
+    },
+    {
+      "id": 9,
+      "human_score": 3.75,
+      "cllm_score": 4.2,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "linked_list",
+        "o_1",
+        "pointer",
+        "node",
+        "head",
+        "o_n",
+        "linear_search"
+      ],
+      "chain_pct": "100%",
+      "solo": "Relational",
+      "bloom": "Understand"
+    },
+    {
+      "id": 10,
+      "human_score": 4.25,
+      "cllm_score": 4.8,
+      "c5_score": 4.5,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Relational",
+      "bloom": "Analyze"
+    },
+    {
+      "id": 11,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "linked_list",
+        "o_1",
+        "tail",
+        "node",
+        "linear_search",
+        "head",
+        "o_n",
+        "pointer"
+      ],
+      "chain_pct": "100%",
+      "solo": "Relational",
+      "bloom": "Understand"
+    },
+    {
+      "id": 12,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 13,
+      "human_score": 0.25,
+      "cllm_score": 0.5,
+      "c5_score": 0.5,
+      "matched_concepts": [
+        "linked_list",
+        "array",
+        "node"
+      ],
+      "chain_pct": "100%",
+      "solo": "Unistructural",
+      "bloom": "Understand"
+    },
+    {
+      "id": 14,
+      "human_score": 0.5,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [
+        "linked_list",
+        "array"
+      ],
+      "chain_pct": "0%",
+      "solo": "Unistructural",
+      "bloom": "Analyze"
+    },
+    {
+      "id": 15,
+      "human_score": 1.0,
+      "cllm_score": 1.5,
+      "c5_score": 1.0,
+      "matched_concepts": [
+        "linked_list",
+        "array",
+        "insertion"
+      ],
+      "chain_pct": "0%",
+      "solo": "Multistructural",
+      "bloom": "Analyze"
+    },
+    {
+      "id": 16,
+      "human_score": 1.5,
+      "cllm_score": 1.0,
+      "c5_score": 1.5,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 17,
+      "human_score": 2.0,
+      "cllm_score": 2.0,
+      "c5_score": 2.0,
+      "matched_concepts": [
+        "linked_list",
+        "index",
+        "node",
+        "array",
+        "traversal",
+        "access"
+      ],
+      "chain_pct": "100%",
+      "solo": "Multistructural",
+      "bloom": "Analyze"
+    },
+    {
+      "id": 18,
+      "human_score": 2.25,
+      "cllm_score": 3.5,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "linked_list",
+        "o_1",
+        "array",
+        "access",
+        "insertion"
+      ],
+      "chain_pct": "100%",
+      "solo": "Multistructural",
+      "bloom": "Analyze"
+    },
+    {
+      "id": 19,
+      "human_score": 2.75,
+      "cllm_score": 3.5,
+      "c5_score": 3.0,
+      "matched_concepts": [
+        "access",
+        "array",
+        "insertion",
+        "linked_list"
+      ],
+      "chain_pct": "0%",
+      "solo": "Relational",
+      "bloom": "Analyze"
+    },
+    {
+      "id": 20,
+      "human_score": 3.5,
+      "cllm_score": 5.0,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "linked_list",
+        "o_1",
+        "array",
+        "head",
+        "o_n",
+        "access",
+        "insertion"
+      ],
+      "chain_pct": "100%",
+      "solo": "Relational",
+      "bloom": "Analyze"
+    },
+    {
+      "id": 21,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 4.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Relational",
+      "bloom": "Analyze"
+    },
+    {
+      "id": 22,
+      "human_score": 4.75,
+      "cllm_score": 5.0,
+      "c5_score": 4.5,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Relational",
+      "bloom": "Analyze"
+    },
+    {
+      "id": 23,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "linked_list",
+        "o_1",
+        "array",
+        "traversal",
+        "head",
+        "o_n",
+        "access",
+        "pointer",
+        "insertion"
+      ],
+      "chain_pct": "100%",
+      "solo": "Relational",
+      "bloom": "Analyze"
+    },
+    {
+      "id": 24,
+      "human_score": 0.0,
+      "cllm_score": 0.5,
+      "c5_score": 0.5,
+      "matched_concepts": [
+        "linked_list",
+        "stack"
+      ],
+      "chain_pct": "0%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 25,
+      "human_score": 0.5,
+      "cllm_score": 0.5,
+      "c5_score": 0.5,
+      "matched_concepts": [
+        "stack"
+      ],
+      "chain_pct": "0%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 26,
+      "human_score": 0.75,
+      "cllm_score": 1.0,
+      "c5_score": 0.5,
+      "matched_concepts": [
+        "stack"
+      ],
+      "chain_pct": "0%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 27,
+      "human_score": 1.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.5,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 28,
+      "human_score": 1.25,
+      "cllm_score": 1.0,
+      "c5_score": 1.0,
+      "matched_concepts": [
+        "stack",
+        "data_structure"
+      ],
+      "chain_pct": "0%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 29,
+      "human_score": 2.0,
+      "cllm_score": 2.5,
+      "c5_score": 1.5,
+      "matched_concepts": [
+        "pop",
+        "stack",
+        "lifo",
+        "push"
+      ],
+      "chain_pct": "100%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 30,
+      "human_score": 2.25,
+      "cllm_score": 2.5,
+      "c5_score": 2.0,
+      "matched_concepts": [
+        "pop",
+        "stack",
+        "push"
+      ],
+      "chain_pct": "0%",
+      "solo": "Unistructural",
+      "bloom": "Understand"
+    },
+    {
+      "id": 31,
+      "human_score": 3.0,
+      "cllm_score": 3.5,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "pop",
+        "stack",
+        "lifo",
+        "push"
+      ],
+      "chain_pct": "100%",
+      "solo": "Multistructural",
+      "bloom": "Understand"
+    },
+    {
+      "id": 32,
+      "human_score": 3.25,
+      "cllm_score": 3.5,
+      "c5_score": 3.0,
+      "matched_concepts": [
+        "pop",
+        "stack",
+        "lifo",
+        "push"
+      ],
+      "chain_pct": "100%",
+      "solo": "Relational",
+      "bloom": "Understand"
+    },
+    {
+      "id": 33,
+      "human_score": 3.75,
+      "cllm_score": 4.5,
+      "c5_score": 4.0,
+      "matched_concepts": [
+        "pop",
+        "stack",
+        "lifo",
+        "push"
+      ],
+      "chain_pct": "100%",
+      "solo": "Relational",
+      "bloom": "Understand"
+    },
+    {
+      "id": 34,
+      "human_score": 4.5,
+      "cllm_score": 4.5,
+      "c5_score": 4.5,
+      "matched_concepts": [
+        "pop",
+        "stack",
+        "lifo",
+        "push"
+      ],
+      "chain_pct": "100%",
+      "solo": "Relational",
+      "bloom": "Understand"
+    },
+    {
+      "id": 35,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "pop",
+        "stack",
+        "lifo",
+        "push",
+        "peek"
+      ],
+      "chain_pct": "100%",
+      "solo": "Relational",
+      "bloom": "Apply"
+    },
+    {
+      "id": 36,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [
+        "binary_search_tree"
+      ],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 37,
+      "human_score": 0.5,
+      "cllm_score": 0.5,
+      "c5_score": 0.0,
+      "matched_concepts": [
+        "sorting",
+        "array",
+        "binary_search_tree"
+      ],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 38,
+      "human_score": 0.75,
+      "cllm_score": 1.0,
+      "c5_score": 0.5,
+      "matched_concepts": [
+        "searching",
+        "binary_search_tree"
+      ],
+      "chain_pct": "0%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 39,
+      "human_score": 1.0,
+      "cllm_score": 1.0,
+      "c5_score": 1.0,
+      "matched_concepts": [
+        "tree",
+        "searching",
+        "binary_search_tree"
+      ],
+      "chain_pct": "0%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 40,
+      "human_score": 1.25,
+      "cllm_score": 1.5,
+      "c5_score": 1.5,
+      "matched_concepts": [
+        "tree",
+        "node",
+        "sorting",
+        "binary_search_tree"
+      ],
+      "chain_pct": "0%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 41,
+      "human_score": 1.5,
+      "cllm_score": 1.5,
+      "c5_score": 1.5,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 42,
+      "human_score": 2.0,
+      "cllm_score": 1.5,
+      "c5_score": 1.0,
+      "matched_concepts": [
+        "tree",
+        "searching",
+        "o_log_n",
+        "binary_search_tree"
+      ],
+      "chain_pct": "100%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 43,
+      "human_score": 2.75,
+      "cllm_score": 2.0,
+      "c5_score": 2.0,
+      "matched_concepts": [
+        "sorting",
+        "searching",
+        "node",
+        "binary_search_tree"
+      ],
+      "chain_pct": "0%",
+      "solo": "Multistructural",
+      "bloom": "Understand"
+    },
+    {
+      "id": 44,
+      "human_score": 3.5,
+      "cllm_score": 4.0,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "o_log_n",
+        "node",
+        "binary_search_tree",
+        "binary_tree",
+        "searching"
+      ],
+      "chain_pct": "100%",
+      "solo": "Relational",
+      "bloom": "Understand"
+    },
+    {
+      "id": 45,
+      "human_score": 4.0,
+      "cllm_score": 4.0,
+      "c5_score": 4.0,
+      "matched_concepts": [
+        "sorting",
+        "divide_and_conquer",
+        "o_log_n",
+        "binary_search_tree",
+        "subtree",
+        "searching",
+        "balanced_tree"
+      ],
+      "chain_pct": "100%",
+      "solo": "Relational",
+      "bloom": "Understand"
+    },
+    {
+      "id": 46,
+      "human_score": 4.75,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "o_log_n",
+        "node",
+        "subtree",
+        "binary_search_tree",
+        "o_n",
+        "searching",
+        "balanced_tree"
+      ],
+      "chain_pct": "100%",
+      "solo": "Relational",
+      "bloom": "Understand"
+    },
+    {
+      "id": 47,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "balanced_tree"
+      ],
+      "chain_pct": "0%",
+      "solo": "Relational",
+      "bloom": "Analyze"
+    },
+    {
+      "id": 48,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.5,
+      "matched_concepts": [
+        "graph",
+        "traversal",
+        "dfs",
+        "bfs"
+      ],
+      "chain_pct": "100%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 49,
+      "human_score": 0.5,
+      "cllm_score": 0.5,
+      "c5_score": 0.5,
+      "matched_concepts": [
+        "dfs",
+        "bfs"
+      ],
+      "chain_pct": "0%",
+      "solo": "Unistructural",
+      "bloom": "Understand"
+    },
+    {
+      "id": 50,
+      "human_score": 0.5,
+      "cllm_score": 0.5,
+      "c5_score": 0.5,
+      "matched_concepts": [
+        "graph",
+        "algorithm",
+        "dfs",
+        "bfs"
+      ],
+      "chain_pct": "100%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 51,
+      "human_score": 1.0,
+      "cllm_score": 0.5,
+      "c5_score": 0.5,
+      "matched_concepts": [
+        "stack",
+        "vertex",
+        "traversal",
+        "bfs",
+        "graph",
+        "dfs",
+        "queue"
+      ],
+      "chain_pct": "100%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 52,
+      "human_score": 1.25,
+      "cllm_score": 1.0,
+      "c5_score": 1.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Unistructural",
+      "bloom": "Understand"
+    },
+    {
+      "id": 53,
+      "human_score": 2.0,
+      "cllm_score": 1.5,
+      "c5_score": 2.0,
+      "matched_concepts": [
+        "shortest_path",
+        "dfs",
+        "bfs"
+      ],
+      "chain_pct": "0%",
+      "solo": "Multistructural",
+      "bloom": "Understand"
+    },
+    {
+      "id": 54,
+      "human_score": 2.25,
+      "cllm_score": 2.5,
+      "c5_score": 2.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Multistructural",
+      "bloom": "Understand"
+    },
+    {
+      "id": 55,
+      "human_score": 2.5,
+      "cllm_score": 2.0,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "stack",
+        "traversal",
+        "bfs",
+        "graph",
+        "dfs",
+        "queue"
+      ],
+      "chain_pct": "100%",
+      "solo": "Multistructural",
+      "bloom": "Analyze"
+    },
+    {
+      "id": 56,
+      "human_score": 3.5,
+      "cllm_score": 4.0,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "vertex",
+        "stack",
+        "recursion",
+        "bfs",
+        "dfs",
+        "queue"
+      ],
+      "chain_pct": "100%",
+      "solo": "Relational",
+      "bloom": "Analyze"
+    },
+    {
+      "id": 57,
+      "human_score": 3.75,
+      "cllm_score": 4.5,
+      "c5_score": 4.0,
+      "matched_concepts": [
+        "stack",
+        "shortest_path",
+        "bfs",
+        "graph",
+        "dfs",
+        "queue"
+      ],
+      "chain_pct": "100%",
+      "solo": "Multistructural",
+      "bloom": "Analyze"
+    },
+    {
+      "id": 58,
+      "human_score": 4.75,
+      "cllm_score": 4.8,
+      "c5_score": 4.5,
+      "matched_concepts": [
+        "stack",
+        "vertex",
+        "shortest_path",
+        "topological_sort",
+        "edge",
+        "recursion",
+        "bfs",
+        "dfs",
+        "queue"
+      ],
+      "chain_pct": "100%",
+      "solo": "Relational",
+      "bloom": "Analyze"
+    },
+    {
+      "id": 59,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "stack",
+        "vertex",
+        "shortest_path",
+        "queue",
+        "topological_sort",
+        "bfs",
+        "dfs",
+        "recursion"
+      ],
+      "chain_pct": "100%",
+      "solo": "Relational",
+      "bloom": "Analyze"
+    },
+    {
+      "id": 60,
+      "human_score": 0.0,
+      "cllm_score": 0.5,
+      "c5_score": 0.5,
+      "matched_concepts": [
+        "hash_table",
+        "hash_function"
+      ],
+      "chain_pct": "0%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 61,
+      "human_score": 0.5,
+      "cllm_score": 0.5,
+      "c5_score": 0.5,
+      "matched_concepts": [
+        "hash_table",
+        "data_structure"
+      ],
+      "chain_pct": "0%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 62,
+      "human_score": 1.0,
+      "cllm_score": 1.5,
+      "c5_score": 1.0,
+      "matched_concepts": [
+        "array",
+        "hash_table",
+        "hash_function"
+      ],
+      "chain_pct": "100%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 63,
+      "human_score": 1.25,
+      "cllm_score": 1.5,
+      "c5_score": 0.5,
+      "matched_concepts": [
+        "o_1",
+        "hash_table"
+      ],
+      "chain_pct": "0%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 64,
+      "human_score": 1.5,
+      "cllm_score": 1.5,
+      "c5_score": 1.0,
+      "matched_concepts": [
+        "data_structure",
+        "hash_table",
+        "collision"
+      ],
+      "chain_pct": "0%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 65,
+      "human_score": 2.0,
+      "cllm_score": 1.5,
+      "c5_score": 1.5,
+      "matched_concepts": [
+        "hash_table",
+        "hash_function",
+        "collision"
+      ],
+      "chain_pct": "0%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 66,
+      "human_score": 2.25,
+      "cllm_score": 2.5,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "chaining",
+        "hash_table",
+        "hash_function",
+        "collision"
+      ],
+      "chain_pct": "0%",
+      "solo": "Multistructural",
+      "bloom": "Understand"
+    },
+    {
+      "id": 67,
+      "human_score": 3.0,
+      "cllm_score": 3.5,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "chaining",
+        "open_addressing",
+        "hash_function",
+        "collision",
+        "hash_table"
+      ],
+      "chain_pct": "100%",
+      "solo": "Relational",
+      "bloom": "Understand"
+    },
+    {
+      "id": 68,
+      "human_score": 3.5,
+      "cllm_score": 4.5,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "chaining",
+        "o_1",
+        "open_addressing",
+        "hash_function",
+        "collision",
+        "hash_table"
+      ],
+      "chain_pct": "100%",
+      "solo": "Relational",
+      "bloom": "Understand"
+    },
+    {
+      "id": 69,
+      "human_score": 4.0,
+      "cllm_score": 4.5,
+      "c5_score": 4.0,
+      "matched_concepts": [
+        "chaining",
+        "linked_list",
+        "open_addressing",
+        "hash_function",
+        "collision",
+        "hash_table"
+      ],
+      "chain_pct": "100%",
+      "solo": "Relational",
+      "bloom": "Understand"
+    },
+    {
+      "id": 70,
+      "human_score": 4.5,
+      "cllm_score": 4.8,
+      "c5_score": 4.5,
+      "matched_concepts": [
+        "chaining",
+        "o_1",
+        "linked_list",
+        "open_addressing",
+        "hash_function",
+        "collision",
+        "load_factor",
+        "hash_table"
+      ],
+      "chain_pct": "100%",
+      "solo": "Relational",
+      "bloom": "Understand"
+    },
+    {
+      "id": 71,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "chaining",
+        "o_1",
+        "linked_list",
+        "open_addressing",
+        "hash_function",
+        "array",
+        "collision",
+        "hash_table"
+      ],
+      "chain_pct": "100%",
+      "solo": "Relational",
+      "bloom": "Understand"
+    },
+    {
+      "id": 72,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [
+        "recursion"
+      ],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 73,
+      "human_score": 0.5,
+      "cllm_score": 0.5,
+      "c5_score": 0.5,
+      "matched_concepts": [
+        "recursion",
+        "iteration"
+      ],
+      "chain_pct": "0%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 74,
+      "human_score": 0.75,
+      "cllm_score": 1.0,
+      "c5_score": 1.0,
+      "matched_concepts": [
+        "recursion",
+        "iteration"
+      ],
+      "chain_pct": "0%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 75,
+      "human_score": 1.0,
+      "cllm_score": 1.5,
+      "c5_score": 1.0,
+      "matched_concepts": [
+        "recursion",
+        "iteration"
+      ],
+      "chain_pct": "0%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 76,
+      "human_score": 1.5,
+      "cllm_score": 1.5,
+      "c5_score": 1.5,
+      "matched_concepts": [
+        "recursion"
+      ],
+      "chain_pct": "0%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 77,
+      "human_score": 2.25,
+      "cllm_score": 2.5,
+      "c5_score": 2.25,
+      "matched_concepts": [
+        "recursion"
+      ],
+      "chain_pct": "0%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 78,
+      "human_score": 2.25,
+      "cllm_score": 2.5,
+      "c5_score": 2.0,
+      "matched_concepts": [
+        "recursion"
+      ],
+      "chain_pct": "0%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 79,
+      "human_score": 3.0,
+      "cllm_score": 3.0,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "recursion",
+        "iteration"
+      ],
+      "chain_pct": "0%",
+      "solo": "Multistructural",
+      "bloom": "Understand"
+    },
+    {
+      "id": 80,
+      "human_score": 3.25,
+      "cllm_score": 3.5,
+      "c5_score": 3.0,
+      "matched_concepts": [
+        "recursion"
+      ],
+      "chain_pct": "0%",
+      "solo": "Multistructural",
+      "bloom": "Understand"
+    },
+    {
+      "id": 81,
+      "human_score": 4.0,
+      "cllm_score": 4.5,
+      "c5_score": 4.0,
+      "matched_concepts": [
+        "recursion"
+      ],
+      "chain_pct": "0%",
+      "solo": "Multistructural",
+      "bloom": "Understand"
+    },
+    {
+      "id": 82,
+      "human_score": 4.75,
+      "cllm_score": 5.0,
+      "c5_score": 4.5,
+      "matched_concepts": [
+        "recursion"
+      ],
+      "chain_pct": "0%",
+      "solo": "Relational",
+      "bloom": "Understand"
+    },
+    {
+      "id": 83,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "recursion"
+      ],
+      "chain_pct": "0%",
+      "solo": "Relational",
+      "bloom": "Understand"
+    },
+    {
+      "id": 84,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 85,
+      "human_score": 0.5,
+      "cllm_score": 0.5,
+      "c5_score": 0.5,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 86,
+      "human_score": 0.5,
+      "cllm_score": 0.5,
+      "c5_score": 0.5,
+      "matched_concepts": [
+        "sorting",
+        "quick_sort",
+        "recursion"
+      ],
+      "chain_pct": "0%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 87,
+      "human_score": 1.0,
+      "cllm_score": 1.0,
+      "c5_score": 1.0,
+      "matched_concepts": [
+        "sorting",
+        "divide_and_conquer",
+        "array",
+        "quick_sort",
+        "recursion"
+      ],
+      "chain_pct": "100%",
+      "solo": "Unistructural",
+      "bloom": "Understand"
+    },
+    {
+      "id": 88,
+      "human_score": 1.25,
+      "cllm_score": 1.5,
+      "c5_score": 1.0,
+      "matched_concepts": [
+        "sorting",
+        "array",
+        "o_n_log_n",
+        "time_complexity",
+        "quick_sort"
+      ],
+      "chain_pct": "0%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 89,
+      "human_score": 1.75,
+      "cllm_score": 1.5,
+      "c5_score": 1.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 90,
+      "human_score": 2.0,
+      "cllm_score": 1.5,
+      "c5_score": 2.0,
+      "matched_concepts": [
+        "sorting",
+        "quick_sort"
+      ],
+      "chain_pct": "0%",
+      "solo": "Unistructural",
+      "bloom": "Understand"
+    },
+    {
+      "id": 91,
+      "human_score": 2.75,
+      "cllm_score": 2.5,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "array",
+        "divide_and_conquer",
+        "quick_sort",
+        "o_n_log_n"
+      ],
+      "chain_pct": "0%",
+      "solo": "Multistructural",
+      "bloom": "Understand"
+    },
+    {
+      "id": 92,
+      "human_score": 3.25,
+      "cllm_score": 3.5,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "array",
+        "o_n_log_n",
+        "time_complexity",
+        "quick_sort",
+        "recursion"
+      ],
+      "chain_pct": "100%",
+      "solo": "Multistructural",
+      "bloom": "Understand"
+    },
+    {
+      "id": 93,
+      "human_score": 4.0,
+      "cllm_score": 4.5,
+      "c5_score": 4.0,
+      "matched_concepts": [
+        "array",
+        "o_n_log_n",
+        "time_complexity",
+        "o_n2",
+        "quick_sort",
+        "recursion"
+      ],
+      "chain_pct": "100%",
+      "solo": "Relational",
+      "bloom": "Understand"
+    },
+    {
+      "id": 94,
+      "human_score": 4.5,
+      "cllm_score": 5.0,
+      "c5_score": 4.5,
+      "matched_concepts": [
+        "divide_and_conquer",
+        "array",
+        "o_n_log_n",
+        "time_complexity",
+        "o_n2",
+        "quick_sort",
+        "recursion"
+      ],
+      "chain_pct": "100%",
+      "solo": "Relational",
+      "bloom": "Understand"
+    },
+    {
+      "id": 95,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "array",
+        "o_n_log_n",
+        "time_complexity",
+        "o_n2",
+        "quick_sort",
+        "recursion"
+      ],
+      "chain_pct": "100%",
+      "solo": "Relational",
+      "bloom": "Understand"
+    },
+    {
+      "id": 96,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 97,
+      "human_score": 0.25,
+      "cllm_score": 0.0,
+      "c5_score": 0.5,
+      "matched_concepts": [
+        "memory_allocation"
+      ],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 98,
+      "human_score": 0.5,
+      "cllm_score": 1.0,
+      "c5_score": 0.5,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 99,
+      "human_score": 1.0,
+      "cllm_score": 1.5,
+      "c5_score": 0.5,
+      "matched_concepts": [
+        "recursion"
+      ],
+      "chain_pct": "0%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 100,
+      "human_score": 1.5,
+      "cllm_score": 1.5,
+      "c5_score": 1.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 101,
+      "human_score": 2.0,
+      "cllm_score": 2.5,
+      "c5_score": 1.5,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 102,
+      "human_score": 2.5,
+      "cllm_score": 3.5,
+      "c5_score": 2.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 103,
+      "human_score": 3.25,
+      "cllm_score": 4.5,
+      "c5_score": 2.5,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 104,
+      "human_score": 3.5,
+      "cllm_score": 4.8,
+      "c5_score": 3.5,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Multistructural",
+      "bloom": "Understand"
+    },
+    {
+      "id": 105,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 3.0,
+      "matched_concepts": [
+        "recursion"
+      ],
+      "chain_pct": "0%",
+      "solo": "Multistructural",
+      "bloom": "Understand"
+    },
+    {
+      "id": 106,
+      "human_score": 4.5,
+      "cllm_score": 5.0,
+      "c5_score": 4.5,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Relational",
+      "bloom": "Understand"
+    },
+    {
+      "id": 107,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "shortest_path"
+      ],
+      "chain_pct": "0%",
+      "solo": "Relational",
+      "bloom": "Understand"
+    },
+    {
+      "id": 108,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [
+        "big_o_notation"
+      ],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 109,
+      "human_score": 0.25,
+      "cllm_score": 0.5,
+      "c5_score": 0.5,
+      "matched_concepts": [
+        "big_o_notation"
+      ],
+      "chain_pct": "0%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 110,
+      "human_score": 0.5,
+      "cllm_score": 1.0,
+      "c5_score": 0.5,
+      "matched_concepts": [
+        "big_o_notation",
+        "time_complexity"
+      ],
+      "chain_pct": "0%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 111,
+      "human_score": 0.75,
+      "cllm_score": 0.5,
+      "c5_score": 0.5,
+      "matched_concepts": [
+        "big_o_notation",
+        "o_n",
+        "o_n2"
+      ],
+      "chain_pct": "100%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 112,
+      "human_score": 1.0,
+      "cllm_score": 1.0,
+      "c5_score": 0.5,
+      "matched_concepts": [
+        "big_o_notation",
+        "time_complexity"
+      ],
+      "chain_pct": "0%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 113,
+      "human_score": 1.5,
+      "cllm_score": 1.5,
+      "c5_score": 1.0,
+      "matched_concepts": [
+        "algorithm",
+        "big_o_notation",
+        "time_complexity"
+      ],
+      "chain_pct": "100%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 114,
+      "human_score": 2.0,
+      "cllm_score": 1.5,
+      "c5_score": 1.5,
+      "matched_concepts": [
+        "algorithm",
+        "big_o_notation",
+        "o_n",
+        "o_n2"
+      ],
+      "chain_pct": "100%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 115,
+      "human_score": 2.75,
+      "cllm_score": 2.5,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "algorithm",
+        "big_o_notation",
+        "o_n",
+        "o_n2",
+        "o_n_log_n"
+      ],
+      "chain_pct": "100%",
+      "solo": "Multistructural",
+      "bloom": "Understand"
+    },
+    {
+      "id": 116,
+      "human_score": 3.5,
+      "cllm_score": 3.5,
+      "c5_score": 3.0,
+      "matched_concepts": [
+        "algorithm",
+        "big_o_notation",
+        "o_n",
+        "o_n2",
+        "o_n_log_n",
+        "time_complexity"
+      ],
+      "chain_pct": "100%",
+      "solo": "Multistructural",
+      "bloom": "Understand"
+    },
+    {
+      "id": 117,
+      "human_score": 4.0,
+      "cllm_score": 4.2,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "algorithm",
+        "big_o_notation",
+        "bubble_sort",
+        "merge_sort",
+        "o_n",
+        "o_n2",
+        "o_n_log_n",
+        "time_complexity"
+      ],
+      "chain_pct": "100%",
+      "solo": "Multistructural",
+      "bloom": "Understand"
+    },
+    {
+      "id": 118,
+      "human_score": 4.5,
+      "cllm_score": 4.5,
+      "c5_score": 4.0,
+      "matched_concepts": [
+        "algorithm",
+        "big_o_notation",
+        "bubble_sort",
+        "merge_sort",
+        "o_n",
+        "o_n2",
+        "o_n_log_n",
+        "time_complexity"
+      ],
+      "chain_pct": "100%",
+      "solo": "Relational",
+      "bloom": "Analyze"
+    },
+    {
+      "id": 119,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "array",
+        "big_o_notation",
+        "bubble_sort",
+        "heap_sort",
+        "merge_sort",
+        "o_1",
+        "o_n",
+        "o_n2",
+        "o_n_log_n",
+        "time_complexity"
+      ],
+      "chain_pct": "100%",
+      "solo": "Relational",
+      "bloom": "Analyze"
+    }
+  ],
+  "missing_ids": []
+}

@@ -52,6 +52,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import statistics
 from collections import defaultdict
 from pathlib import Path
 from typing import Optional
@@ -59,6 +60,14 @@ from typing import Optional
 DATA_DIR    = Path(__file__).parent / 'data'
 LOGS_DIR    = DATA_DIR / 'study_logs'
 RESULTS_DIR = Path(__file__).parent / 'results'
+
+# Cap for wall-clock dwell fallback — prevents overnight sessions from inflating medians.
+_MAX_DWELL_MS = 10 * 60 * 1_000  # 10 minutes
+
+# Maximum concepts shown in the concept_frequency chart — bounds the educator's
+# effective rubric size N for the hypergeometric null model (H2).
+# Update this if the frontend UI is changed to show more concepts.
+CONCEPT_FREQUENCY_MAX_BARS = 15
 
 
 # ── Hypergeometric p-value ─────────────────────────────────────────────────────
@@ -130,6 +139,13 @@ def analyse_session(events: list[dict]) -> dict:
 
     condition  = events[0].get('condition', '?')
     session_id = events[0].get('session_id', '?')
+    # Primary dataset for this session (most common across events)
+    _dataset_counts: dict[str, int] = {}
+    for _ev in events:
+        _ds = _ev.get('dataset', '')
+        if _ds:
+            _dataset_counts[_ds] = _dataset_counts.get(_ds, 0) + 1
+    primary_dataset = max(_dataset_counts, key=lambda k: _dataset_counts[k]) if _dataset_counts else ''
 
     # Timestamps
     first_ts = events[0].get('timestamp_ms', 0)
@@ -151,6 +167,10 @@ def analyse_session(events: list[dict]) -> dict:
     # Rubric edit tracking (Condition B only)
     rubric_edits: list[dict] = []
     trace_interactions: list[dict] = []
+
+    # Answer dwell tracking
+    pending_views: dict[str, dict] = {}   # student_answer_id → {start_ts, severity, benchmark_case}
+    answer_dwells: list[dict] = []
 
     for ev in events:
         etype   = ev.get('event_type', '')
@@ -188,15 +208,49 @@ def analyse_session(events: list[dict]) -> dict:
 
         elif etype == 'trace_interact':
             trace_interactions.append({
-                'ts':             ts,
+                'timestamp_ms':   ts,
                 'classification': payload.get('classification', ''),
                 'node_id':        payload.get('node_id', ''),
                 'step_id':        payload.get('step_id'),
             })
 
+        elif etype == 'answer_view_start':
+            aid = str(payload.get('student_answer_id', ''))
+            if aid:
+                pending_views[aid] = {
+                    'start_ts':       ts,
+                    'severity':       payload.get('severity', ''),
+                    'benchmark_case': payload.get('benchmark_case'),
+                }
+
+        elif etype == 'answer_view_end':
+            aid = str(payload.get('student_answer_id', ''))
+            dwell_ms  = payload.get('dwell_time_ms')
+            severity  = payload.get('severity', '') or pending_views.get(aid, {}).get('severity', '')
+            bcase     = payload.get('benchmark_case') or pending_views.get(aid, {}).get('benchmark_case')
+            # Prefer the dwell_time_ms delivered by sendBeacon — already corrected for
+            # tab visibility (Page Visibility API), so no cap is applied.
+            # Wall-clock fallback is capped at _MAX_DWELL_MS to prevent overnight
+            # sessions from inflating median dwell.
+            if isinstance(dwell_ms, (int, float)) and dwell_ms > 0:
+                computed = int(dwell_ms)                                    # trust beacon
+            elif aid in pending_views:
+                computed = min(max(0, ts - pending_views[aid]['start_ts']), _MAX_DWELL_MS)
+            else:
+                computed = 0
+            if computed > 0:
+                answer_dwells.append({
+                    'answer_id':      aid,
+                    'dwell_ms':       computed,
+                    'severity':       severity,
+                    'benchmark_case': bcase,
+                })
+            pending_views.pop(aid, None)
+
         elif etype == 'rubric_edit':
             rubric_edits.append({
-                'ts':                              ts,
+                'timestamp_ms':                    ts,
+                'session_id':                      session_id,
                 'edit_type':                       payload.get('edit_type', ''),
                 'concept_id':                      payload.get('concept_id', ''),
                 # Multi-window fields (v3 schema)
@@ -216,9 +270,13 @@ def analyse_session(events: list[dict]) -> dict:
                 'panel_focus_before_trace':        payload.get('panel_focus_before_trace', False),
                 # Interaction source
                 'interaction_source':              payload.get('interaction_source', 'manual'),
-                # Topological gap & grounding density (v10 schema — defaults for older logs)
+                # Topological gap & grounding density — per-edit values (not session mean)
                 'trace_gap_count':                 payload.get('trace_gap_count', 0),
                 'grounding_density':               payload.get('grounding_density', 0.0),
+                # Rubric population (v21 schema — for hypergeometric N).
+                # Capped at CONCEPT_FREQUENCY_MAX_BARS: concept_frequency shows at most
+                # that many concepts, bounding the educator's effective rubric size.
+                'rubric_size': min(payload.get('rubric_size', 0), CONCEPT_FREQUENCY_MAX_BARS),
             })
 
     # Time-to-answer: from task_start (or page_view) to task_submit
@@ -266,18 +324,41 @@ def analyse_session(events: list[dict]) -> dict:
     mean_grounding_density = round(sum(density_at_edit) / len(density_at_edit), 3) \
         if density_at_edit else None
 
-    # Hypergeometric p-value for semantic alignment rate (see docstring for null model)
-    # Session-level: k edits, n rubric concepts, m CONTRADICTS concepts
-    # Uses the last rubric_edit's session_contradicts_nodes for m and n
-    hyper_p: Optional[float] = None
+    # Hypergeometric p-value for semantic alignment rate (see docstring for null model).
+    # N = true rubric size from rubric_size field (v21 schema); falls back to max of
+    # m_flagged and 20 for logs produced before the rubric_size field was added.
+    hyper_p_manual: Optional[float] = None    # H2 PRIMARY — manual edits only (pre-registered)
+    hyper_p_combined: Optional[float] = None  # robustness check — all edits incl. Click-to-Add
     if n_edits > 0 and rubric_edits:
+        # Use the last edit's session_contradicts_nodes as K (full session accumulation).
+        # This is a conservative estimator: as K grows throughout the session, the
+        # hypergeometric null becomes easier to satisfy by chance (larger K = smaller
+        # denominator for the null proportion K/N), making it harder to reject H2.
+        # Reported as a paper footnote; sensitivity analysis with K = 30s-window only
+        # is available via --window-k flag. Pre-registration locks the full-session K.
         session_c = rubric_edits[-1]['session_contradicts_nodes']
-        n_rubric  = len({e['concept_id'] for e in rubric_edits})  # distinct edited concepts as proxy
         m_flagged = len(session_c)
+        # Use the median rubric_size reported across edits; rubric_size=0 means old log.
+        rubric_sizes = [e['rubric_size'] for e in rubric_edits if e.get('rubric_size', 0) > 0]
+        if rubric_sizes:
+            n_rubric = int(statistics.median(rubric_sizes))
+        else:
+            n_rubric = max(m_flagged, CONCEPT_FREQUENCY_MAX_BARS)
+        N_eff = max(n_rubric, m_flagged)
         if m_flagged > 0 and n_rubric > 0:
-            hyper_p = _hypergeometric_p(
+            # PRIMARY: manual edits only — Click-to-Add always aligns by construction,
+            # so including it would inflate k and understate the unprompted alignment rate.
+            if n_manual_edits > 0:
+                hyper_p_manual = _hypergeometric_p(
+                    k=n_semantic_aligned_manual,
+                    N=N_eff,
+                    K=m_flagged,
+                    n=n_manual_edits,
+                )
+            # COMBINED robustness check — all edits (CTA + manual); reported in footnote.
+            hyper_p_combined = _hypergeometric_p(
                 k=n_semantic_aligned,
-                N=max(n_rubric, m_flagged, 20),   # rubric size (estimate 20 if unknown)
+                N=N_eff,
                 K=m_flagged,
                 n=n_edits,
             )
@@ -290,6 +371,11 @@ def analyse_session(events: list[dict]) -> dict:
     return {
         'session_id':                    session_id,
         'condition':                     condition,
+        'dataset':                       primary_dataset,
+        # Placebo alignment rate — computed post-hoc in main() for Condition A sessions
+        # by testing their manual edits against the hidden CONTRADICTS reference set
+        # derived from Condition B trace interactions on the same dataset.
+        'placebo_alignment_rate':        None,
         'sus_score':                     sus_score,
         'confidence':                    confidence,
         'time_to_answer_s':              round(time_to_answer_s, 1) if time_to_answer_s else None,
@@ -314,7 +400,8 @@ def analyse_session(events: list[dict]) -> dict:
         'rubric_edits_semantic_aligned_cta':  n_semantic_aligned_cta,
         'rubric_edits_click_to_add':          n_click_to_add,
         'rubric_panel_before_trace':     n_panel_before_trace,
-        'concept_alignment_hyper_p':     hyper_p,
+        'concept_alignment_hyper_p':         hyper_p_manual,    # H2 PRIMARY (manual only)
+        'concept_alignment_hyper_p_combined': hyper_p_combined,  # robustness (all edits)
         'rubric_edit_add':               edit_type_counts['add'],
         'rubric_edit_remove':            edit_type_counts['remove'],
         'rubric_edit_increase_weight':   edit_type_counts['increase_weight'],
@@ -324,7 +411,29 @@ def analyse_session(events: list[dict]) -> dict:
         # Moderators — mean values of the currently visible trace properties at edit time.
         'mean_trace_gap_count':    mean_trace_gap_count,
         'mean_grounding_density':  mean_grounding_density,
+        # Per-edit records — consumed by run_gap_moderation_analysis() for exact GEE.
+        'raw_edits':    rubric_edits,
+        # Per-answer dwell records — consumed by aggregate_by_condition() and print_report().
+        'answer_dwells': answer_dwells,
     }
+
+
+# ── Dwell-time helper ─────────────────────────────────────────────────────────
+
+def _median_dwell_by(dwells: list[dict], key: str) -> dict[str, float]:
+    """Compute median dwell time (seconds) for answer views grouped by a string key.
+
+    Parameters
+    ----------
+    dwells : flat list of answer_dwell records (each has 'dwell_ms' and the key field)
+    key    : 'severity' or 'benchmark_case'
+    """
+    grps: dict[str, list[int]] = defaultdict(list)
+    for d in dwells:
+        v = d.get(key)
+        if v:
+            grps[v].append(d['dwell_ms'])
+    return {k: round(statistics.median(vs) / 1000, 2) for k, vs in grps.items() if vs}
 
 
 # ── Condition-level aggregation ────────────────────────────────────────────────
@@ -334,8 +443,6 @@ def aggregate_by_condition(session_metrics: list[dict]) -> dict[str, dict]:
     Groups sessions by condition and computes means ± std.
     Returns {'A': {...}, 'B': {...}}.
     """
-    import statistics
-
     groups: dict[str, list[dict]] = defaultdict(list)
     for m in session_metrics:
         groups[m['condition']].append(m)
@@ -344,41 +451,103 @@ def aggregate_by_condition(session_metrics: list[dict]) -> dict[str, dict]:
     for cond, rows in sorted(groups.items()):
         n = len(rows)
 
-        def mean_of(key: str) -> Optional[float]:
-            vals = [r[key] for r in rows if r.get(key) is not None]
+        # Explicit-parameter helpers prevent Python late-binding closure bugs:
+        # if `rows` were captured implicitly from the loop variable, a future
+        # refactor that mutates or reassigns it would silently corrupt all results.
+        # Passing `rows` explicitly makes each helper independently testable.
+
+        def mean_of(cond_rows: list[dict], key: str) -> Optional[float]:
+            vals = [r[key] for r in cond_rows if r.get(key) is not None]
             return round(statistics.mean(vals), 2) if vals else None
 
-        def std_of(key: str) -> Optional[float]:
-            vals = [r[key] for r in rows if r.get(key) is not None]
+        def std_of(cond_rows: list[dict], key: str) -> Optional[float]:
+            vals = [r[key] for r in cond_rows if r.get(key) is not None]
             return round(statistics.stdev(vals), 2) if len(vals) >= 2 else None
+
+        def participant_mean_ratio(cond_rows: list[dict], window_key: str, min_edits: int = 1) -> Optional[float]:
+            """Per-participant ratio: within-window edits / total edits; averaged across participants.
+
+            Equal-weighting ensures no single high-volume participant dominates the H1 rate.
+            Only includes participants who made at least `min_edits` rubric edits.
+
+            Args:
+                cond_rows:   condition-filtered session rows (explicit, no closure risk).
+                window_key:  key for the within-window edit count field.
+                min_edits:   minimum edit count threshold (default 1 = all participants with any edit;
+                             use 3 for the primary pre-registered estimator that excludes
+                             single/dual-edit sessions with high variance).
+            """
+            ratios = []
+            for r in cond_rows:
+                n_edits = r.get('rubric_edits') or 0
+                n_window = r.get(window_key) or 0
+                if n_edits >= min_edits:
+                    ratios.append(n_window / n_edits)
+            return round(statistics.mean(ratios), 3) if ratios else None
+
+        def participant_weighted_ratio(cond_rows: list[dict], window_key: str) -> Optional[float]:
+            """Edit-weighted mean ratio: weights each participant's ratio by their edit count.
+
+            Use as secondary estimator (robustness check). Higher-volume participants
+            contribute proportionally more, which is appropriate when edit volume itself
+            indicates deeper engagement with the tool rather than noise.
+            """
+            total_w = total_wn = 0
+            for r in cond_rows:
+                n_edits = r.get('rubric_edits') or 0
+                n_window = r.get(window_key) or 0
+                if n_edits > 0:
+                    total_w  += n_edits
+                    total_wn += n_window
+            return round(total_wn / total_w, 3) if total_w > 0 else None
 
         total_edits = max(sum(r['rubric_edits'] for r in rows), 1)
 
+        # ── Answer dwell metrics (Q4) ────────────────────────────────────────────
+        all_dwells = [d for r in rows for d in r.get('answer_dwells', [])]
+
+        seed_dwells     = [d['dwell_ms'] for d in all_dwells if d.get('benchmark_case')]
+        non_seed_dwells = [d['dwell_ms'] for d in all_dwells if not d.get('benchmark_case')]
+        seed_dwell_ratio = (
+            round(statistics.median(seed_dwells) / statistics.median(non_seed_dwells), 3)
+            if seed_dwells and non_seed_dwells else None
+        )
+
         result[cond] = {
             'n':                       n,
-            'sus_mean':                mean_of('sus_score'),
-            'sus_sd':                  std_of('sus_score'),
-            'time_to_answer_mean_s':   mean_of('time_to_answer_s'),
-            'time_to_answer_sd_s':     std_of('time_to_answer_s'),
-            'chart_hovers_mean':       mean_of('chart_hovers'),
-            'unique_charts_mean':      mean_of('unique_charts'),
-            'confidence_mean':         mean_of('confidence'),
-            'answer_words_mean':       mean_of('answer_words'),
+            'sus_mean':                mean_of(rows, 'sus_score'),
+            'sus_sd':                  std_of(rows, 'sus_score'),
+            'time_to_answer_mean_s':   mean_of(rows, 'time_to_answer_s'),
+            'time_to_answer_sd_s':     std_of(rows, 'time_to_answer_s'),
+            'chart_hovers_mean':       mean_of(rows, 'chart_hovers'),
+            'unique_charts_mean':      mean_of(rows, 'unique_charts'),
+            'confidence_mean':         mean_of(rows, 'confidence'),
+            'answer_words_mean':       mean_of(rows, 'answer_words'),
             'task_completion_rate':    round(sum(r['task_completed'] for r in rows) / n, 3),
             'sus_completion_rate':     round(sum(r['sus_completed'] for r in rows) / n, 3),
             # ── Rubric edit — raw means ──────────────────────────────────────
-            'rubric_edits_mean':              mean_of('rubric_edits'),
-            'contradicts_interactions_mean':  mean_of('contradicts_interactions'),
-            'rubric_click_to_add_mean':       mean_of('rubric_edits_click_to_add'),
-            # ── Multi-window causal attribution rates (pre-registered) ───────
-            # Primary hypothesis window = 30 s (H1_temporal).
-            # 15 s and 60 s are sensitivity checks — reported but not the primary claim.
-            'causal_attribution_rate_15s': round(
-                sum(r['rubric_edits_within_15s'] for r in rows) / total_edits, 3),
-            'causal_attribution_rate_30s': round(
-                sum(r['rubric_edits_within_30s'] for r in rows) / total_edits, 3),
-            'causal_attribution_rate_60s': round(
-                sum(r['rubric_edits_within_60s'] for r in rows) / total_edits, 3),
+            'rubric_edits_mean':              mean_of(rows, 'rubric_edits'),
+            'contradicts_interactions_mean':  mean_of(rows, 'contradicts_interactions'),
+            'rubric_click_to_add_mean':       mean_of(rows, 'rubric_edits_click_to_add'),
+            # ── Multi-window causal attribution rates ────────────────────────
+            # PRIMARY (pre-registered): unweighted participant mean, all participants
+            # with ≥1 edit. This is the exact estimator defined at pre-registration.
+            # Reported in main H1 table. Swapped back to min_edits=1 per Gemini v4 review
+            # (Q-B): introducing min_edits=3 post-hoc as primary would be a researcher
+            # degree of freedom — IEEE VIS reviewers would flag it as p-hacking.
+            'causal_attribution_rate_15s': participant_mean_ratio(rows, 'rubric_edits_within_15s'),
+            'causal_attribution_rate_30s': participant_mean_ratio(rows, 'rubric_edits_within_30s'),
+            'causal_attribution_rate_60s': participant_mean_ratio(rows, 'rubric_edits_within_60s'),
+            # Sensitivity & Robustness Analysis (Supplementary Material):
+            #   _min3: restrict to high-engagement sessions (≥3 edits) to test whether
+            #          result holds after excluding high-variance 1–2 edit sessions.
+            #          Paper language: "The causal attribution trend held stable..."
+            #   _weighted: edit-count-weighted mean, giving high-volume participants
+            #              proportionally more influence (alternative weighting scheme).
+            'causal_attribution_rate_15s_min3': participant_mean_ratio(rows, 'rubric_edits_within_15s', min_edits=3),
+            'causal_attribution_rate_30s_min3': participant_mean_ratio(rows, 'rubric_edits_within_30s', min_edits=3),
+            'causal_attribution_rate_60s_min3': participant_mean_ratio(rows, 'rubric_edits_within_60s', min_edits=3),
+            'causal_attribution_rate_30s_weighted': participant_weighted_ratio(rows, 'rubric_edits_within_30s'),
             # ── Concept alignment rates (H2_semantic) ────────────────────────
             # Gemini code review Q3: report manual vs click_to_add separately.
             # H2 PRIMARY = semantic_alignment_rate_manual (unprompted; no UI assist).
@@ -395,6 +564,10 @@ def aggregate_by_condition(session_metrics: list[dict]) -> dict[str, dict]:
             'semantic_alignment_rate_cta': round(
                 sum(r['rubric_edits_semantic_aligned_cta'] for r in rows)
                 / max(sum(r['rubric_edits_click_to_add'] for r in rows), 1), 3),
+            # Condition A only: fraction of manual edits coincidentally matching the
+            # hidden CONTRADICTS reference set derived from Condition B trace events
+            # on the same dataset.  None for Condition B (not applicable).
+            'placebo_alignment_rate_mean': mean_of(rows, 'placebo_alignment_rate'),
             # ── Panel focus ordering ─────────────────────────────────────────
             # What fraction of edits came from educators who opened the rubric
             # BEFORE viewing any trace? (rubric-first vs trace-first strategy)
@@ -403,8 +576,13 @@ def aggregate_by_condition(session_metrics: list[dict]) -> dict[str, dict]:
             # ── Topological gap & grounding density moderators ───────────────
             # Mean structural leaps and grounding density at the time of rubric edits.
             # Used in Stability Analysis (Section 5a) and as moderators for H1.
-            'mean_trace_gap_count_mean':   mean_of('mean_trace_gap_count'),
-            'mean_grounding_density_mean': mean_of('mean_grounding_density'),
+            'mean_trace_gap_count_mean':   mean_of(rows, 'mean_trace_gap_count'),
+            'mean_grounding_density_mean': mean_of(rows, 'mean_grounding_density'),
+            # ── Answer dwell (Q4) ────────────────────────────────────────────
+            'dwell_by_severity':    _median_dwell_by(all_dwells, 'severity'),
+            'dwell_by_benchmark':   _median_dwell_by(all_dwells, 'benchmark_case'),
+            'seed_dwell_ratio':     seed_dwell_ratio,
+            'n_answer_views':       len(all_dwells),
         }
     return result
 
@@ -446,6 +624,14 @@ def run_gap_moderation_analysis(session_metrics: list[dict]) -> Optional[dict]:
     Requires statsmodels >= 0.14. Silently returns None if unavailable
     or if there are <10 edit records (insufficient for GEE).
 
+    Each row in the GEE dataframe is one rubric_edit event, using the per-edit
+    trace_gap_count and within_30s values captured atomically at edit time
+    (from m['raw_edits']).  No session-level approximation is used.
+
+    Working correlation ρ (exchangeable): justifies why GEE is needed over GLM.
+    High |ρ| → edits within a participant are correlated. Report ρ in the paper
+    Methods section alongside the GEE model specification.
+
     Returns a dict with: coef, p_value, OR (odds ratio), note
     """
     try:
@@ -457,26 +643,19 @@ def run_gap_moderation_analysis(session_metrics: list[dict]) -> Optional[dict]:
     except ImportError:
         return {'error': 'statsmodels/pandas not installed — pip install statsmodels pandas'}
 
-    # Build an edit-level dataframe from session-level summary metrics.
-    # NOTE: This is a session-level approximation. For the full study, re-derive
-    # from raw JSONL event logs (one row per rubric_edit event) for exact GEE.
+    # Build an edit-level dataframe from raw per-edit records (Q2 fix).
+    # Each rubric_edit event carries its own trace_gap_count and within_30s
+    # captured atomically at edit time — no session-mean approximation needed.
     rows = []
     for m in session_metrics:
-        n_edits = m.get('rubric_edits', 0)
-        if n_edits == 0:
-            continue
-        gap  = float(m.get('mean_trace_gap_count') or 0)
         cond = 1 if m.get('condition') == 'B' else 0
-        n_within_30 = m.get('rubric_edits_within_30s', 0)
         sid  = m.get('session_id', '?')
-        # Expand to one row per edit, distributing within_30s attributions
-        # proportionally (first n_within_30 edits flagged as attributed).
-        for i in range(n_edits):
+        for edit in m.get('raw_edits', []):
             rows.append({
-                'session_id':     sid,
-                'condition':      cond,
-                'trace_gap_count': gap,
-                'within_30s':     1 if i < n_within_30 else 0,
+                'session_id':      sid,
+                'condition':       cond,
+                'trace_gap_count': float(edit.get('trace_gap_count', 0)),
+                'within_30s':      1 if edit.get('within_30s', False) else 0,
             })
 
     if len(rows) < 10:
@@ -528,7 +707,8 @@ def run_gap_moderation_analysis(session_metrics: list[dict]) -> Optional[dict]:
             'note': (
                 'Pre-registered exploratory (Gemini v8). '
                 'p < 0.10 → report as directional trend in Discussion. '
-                'Session-level approximation — re-derive from raw events for full study. '
+                'Uses exact per-edit rows from raw_edits (trace_gap_count and within_30s '
+                'captured atomically at edit time — no session-level approximation). '
                 f'Working correlation ρ={rho:.3f} — report in paper Methods (justifies GEE over GLM).'
             ),
         }
@@ -603,18 +783,29 @@ def print_report(agg: dict[str, dict], session_metrics: list[dict]) -> None:
         print(f'  {label:<38} {a_str:>8} {b_str:>8}')
 
     print(f'\n  {"Causal Attribution (multi-window)":<38} {"Cond A":>8} {"Cond B":>8}')
-    print(f'  {"  Primary claim = 30 s window":<46}')
+    print(f'  {"  Primary = pre-registered (≥1 edit); 30s window":<46}')
     print(f'  {LINE}')
+    # Condition A has no VerifierReasoningPanel, so CONTRADICTS interactions are
+    # structurally impossible. Reporting 0.000 would mislead reviewers into thinking
+    # this is an observed zero effect rather than a design constraint. Use N/A.
+    cond_a_has_trace = (cond_a.get('contradicts_interactions_mean') or 0) > 0
     for label, key in [
         ('Attribution rate @ 15 s (sensitivity)', 'causal_attribution_rate_15s'),
-        ('Attribution rate @ 30 s (primary H1)', 'causal_attribution_rate_30s'),
+        ('Attribution rate @ 30 s [PRIMARY H1]',  'causal_attribution_rate_30s'),
         ('Attribution rate @ 60 s (sensitivity)', 'causal_attribution_rate_60s'),
+        # Sensitivity & Robustness (Supplementary Material)
+        ('  ↳ high-engagement only (≥3 edits)',    'causal_attribution_rate_30s_min3'),
+        ('  ↳ edit-weighted mean',                 'causal_attribution_rate_30s_weighted'),
     ]:
         a_val = cond_a.get(key)
         b_val = cond_b.get(key)
-        a_str = f'{a_val:.3f}' if a_val is not None else '—'
+        # Show N/A for Condition A causal rates — trace interaction not available in Cond A.
+        # Table footnote: "N/A: Condition A educators do not receive trace explanations
+        # and therefore cannot perform the triggering CONTRADICTS interaction."
+        a_str = f'{a_val:.3f}' if (a_val is not None and cond_a_has_trace) else 'N/A †'
         b_str = f'{b_val:.3f}' if b_val is not None else '—'
         print(f'  {label:<38} {a_str:>8} {b_str:>8}')
+    print(f'  † N/A: Condition A has no trace panel; CONTRADICTS interaction structurally impossible.')
 
     print(f'\n  {"Concept Alignment (H2_semantic)":<38} {"Cond A":>8} {"Cond B":>8}')
     print(f'  {"  H2 PRIMARY = manual only; CTA reported separately":<46}')
@@ -626,22 +817,53 @@ def print_report(agg: dict[str, dict], session_metrics: list[dict]) -> None:
         ('Semantic rate — combined  [reference]', 'semantic_alignment_rate'),
         ('Panel-before-trace rate',           'panel_before_trace_rate'),
     ]:
-        a_val = cond_a.get(key)
         b_val = cond_b.get(key)
-        a_str = f'{a_val:.3f}' if a_val is not None else '—'
         b_str = f'{b_val:.3f}' if b_val is not None else '—'
+        if key == 'semantic_alignment_rate_manual':
+            # Condition A cannot have a regular semantic alignment rate (session_contradicts_nodes
+            # is always empty — no trace panel).  Instead show the Placebo Alignment Rate:
+            # fraction of Condition A manual edits that coincidentally matched the hidden
+            # CONTRADICTS reference derived from Condition B sessions on the same dataset.
+            # This is the true control baseline for H2 (Gemini review Q-M).
+            a_placebo = cond_a.get('placebo_alignment_rate_mean')
+            a_str = f'{a_placebo:.3f} ‡' if a_placebo is not None else 'N/A  ‡'
+        else:
+            a_val = cond_a.get(key)
+            a_str = f'{a_val:.3f}' if a_val is not None else '—'
         print(f'  {label:<38} {a_str:>8} {b_str:>8}')
+    print(f'  ‡ Cond A: placebo baseline — manual edits tested against hidden CONTRADICTS'
+          f'\n    reference derived from Cond B traces on the same dataset.')
 
     # Per-session hypergeometric p-values (concept alignment under null)
     b_hyper = [m['concept_alignment_hyper_p'] for m in session_metrics
                if m['condition'] == 'B' and m.get('concept_alignment_hyper_p') is not None]
     if b_hyper:
-        import statistics as _st
         print(f'\n  Condition B hypergeometric p (concept alignment null, per session):')
-        print(f'    median={_st.median(b_hyper):.4f}  min={min(b_hyper):.4f}  max={max(b_hyper):.4f}')
+        print(f'    median={statistics.median(b_hyper):.4f}  min={min(b_hyper):.4f}  max={max(b_hyper):.4f}')
 
     print(f'  {LINE}')
     print(f'  * p < 0.05   ** p < 0.01  (Mann-Whitney U, two-sided)')
+
+    # ── Answer dwell time (Q4) ─────────────────────────────────────────────────
+    for cond_label, data in [('A', cond_a), ('B', cond_b)]:
+        dwell_sev  = data.get('dwell_by_severity', {})
+        dwell_bm   = data.get('dwell_by_benchmark', {})
+        ratio      = data.get('seed_dwell_ratio')
+        n_views    = data.get('n_answer_views', 0)
+        if n_views > 0:
+            print(f'\n  Condition {cond_label} — Answer Dwell Time  (n={n_views} view-end events)')
+            print(f'  {LINE}')
+            if dwell_sev:
+                print(f'    Median dwell (s) by severity:')
+                for sev, val in sorted(dwell_sev.items()):
+                    print(f'      {sev:<12} {val:>6.2f} s')
+            if dwell_bm:
+                print(f'    Median dwell (s) by benchmark_case:')
+                for bcase, val in sorted(dwell_bm.items()):
+                    print(f'      {bcase:<30} {val:>6.2f} s')
+            if ratio is not None:
+                print(f'    Seed / non-seed dwell ratio: {ratio:.3f}'
+                      f'  (>1.0 → educators dwell longer on trap answers)')
 
     # Topological gap moderation analysis (exploratory, pre-registered at v8)
     # GEE Binomial/Logit: within_30s ~ condition * trace_gap_count | session_id
@@ -673,17 +895,59 @@ def print_report(agg: dict[str, dict], session_metrics: list[dict]) -> None:
 
 # ── CSV export ─────────────────────────────────────────────────────────────────
 
+# Keys that hold nested lists and must be excluded from the flat per-session CSV.
+_NON_SCALAR_KEYS = frozenset({'raw_edits', 'answer_dwells'})
+
+
 def write_csv(session_metrics: list[dict], out_path: Path) -> None:
+    """Write one row per session. Nested list columns (raw_edits, answer_dwells) are
+    excluded — use write_edits_csv() for per-edit records."""
     import csv
     out_path.parent.mkdir(parents=True, exist_ok=True)
     if not session_metrics:
         return
-    fieldnames = list(session_metrics[0].keys())
+    all_keys: dict[str, None] = {}
+    for m in session_metrics:
+        for k in m.keys():
+            if k not in _NON_SCALAR_KEYS:
+                all_keys[k] = None
+    fieldnames = sorted(all_keys)
     with open(out_path, 'w', newline='') as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer = csv.DictWriter(f, fieldnames=fieldnames, extrasaction='ignore', restval='')
         writer.writeheader()
         writer.writerows(session_metrics)
     print(f'  CSV saved: {out_path}  ({len(session_metrics)} rows)')
+
+
+def write_edits_csv(session_metrics: list[dict], out_path: Path) -> None:
+    """Export one row per rubric_edit event for downstream GEE analysis in R/statsmodels.
+    Joins session_id and condition onto each edit row."""
+    import csv
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    rows = []
+    for m in session_metrics:
+        for edit in m.get('raw_edits', []):
+            rows.append({
+                'session_id': m['session_id'],   # canonical session key — not overwritten by edit spread
+                'condition':  m['condition'],
+                **{
+                    k: ('|'.join(str(x) for x in v) if v else '') if isinstance(v, list) else v
+                    for k, v in edit.items()
+                    if k != 'session_id' and not isinstance(v, dict)
+                },
+            })
+    if not rows:
+        return
+    all_keys: dict[str, None] = {}
+    for r in rows:
+        for k in r.keys():
+            all_keys[k] = None
+    fieldnames = list(all_keys.keys())
+    with open(out_path, 'w', newline='') as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames, restval='')
+        writer.writeheader()
+        writer.writerows(rows)
+    print(f'  Edits CSV saved: {out_path}  ({len(rows)} edit rows)')
 
 
 # ── Main ───────────────────────────────────────────────────────────────────────
@@ -693,7 +957,11 @@ def main() -> None:
     parser.add_argument('--logs-dir', default=str(LOGS_DIR),
                         help=f'Path to JSONL session logs (default: {LOGS_DIR})')
     parser.add_argument('--csv', action='store_true',
-                        help='Write per-session metrics to results/study_analysis.csv')
+                        help='Write per-session metrics to results/study_analysis.csv '
+                             'and per-edit records to results/study_edits.csv')
+    parser.add_argument('--pilot', action='store_true',
+                        help='Print GO/NO-GO pilot gate based on overall task completion '
+                             'rate (pre-registered threshold: >50%%).')
     args = parser.parse_args()
 
     logs_dir = Path(args.logs_dir)
@@ -709,11 +977,58 @@ def main() -> None:
     session_metrics = [analyse_session(events) for events in sessions.values() if events]
     session_metrics = [m for m in session_metrics if m]  # drop empty
 
+    # ── Q-M: Placebo Alignment Rate for Condition A ────────────────────────────
+    # Build the reference CONTRADICTS set from all Condition B trace_interact events.
+    # Key: dataset name → set of node_ids flagged as CONTRADICTS.
+    # Condition A educators never see the trace, so their session_contradicts_nodes
+    # is always empty and semantic_alignment_rate_manual is 0 by construction.
+    # Testing their manual edits against this hidden reference gives a true placebo
+    # baseline for H2: did Condition B educators align significantly more than chance?
+    b_contradicts: dict[str, set] = defaultdict(set)
+    for events in sessions.values():
+        cond = next((e.get('condition') for e in events if e.get('condition')), None)
+        if cond != 'B':
+            continue
+        for e in events:
+            if e.get('event_type') == 'trace_interact' and \
+               e.get('payload', {}).get('classification') == 'CONTRADICTS':
+                ds      = e.get('dataset', '')
+                node_id = e.get('payload', {}).get('node_id', '')
+                if ds and node_id:
+                    b_contradicts[ds].add(node_id)
+
+    for m in session_metrics:
+        if m.get('condition') != 'A':
+            continue
+        reference = b_contradicts.get(m.get('dataset', ''), set())
+        if not reference:
+            continue
+        manual_concepts = [
+            e['concept_id'] for e in m.get('raw_edits', [])
+            if e.get('interaction_source') == 'manual' and e.get('concept_id')
+        ]
+        if manual_concepts:
+            aligned = sum(1 for c in manual_concepts if c in reference)
+            m['placebo_alignment_rate'] = round(aligned / len(manual_concepts), 3)
+
     agg = aggregate_by_condition(session_metrics)
     print_report(agg, session_metrics)
 
+    # ── Q-N: Pilot GO/NO-GO gate (pre-registered threshold: >50%) ─────────────
+    if args.pilot:
+        _PILOT_THRESHOLD = 0.50
+        all_completed = sum(1 for m in session_metrics if m.get('task_completed'))
+        overall_rate  = round(all_completed / len(session_metrics), 3) if session_metrics else 0.0
+        if overall_rate > _PILOT_THRESHOLD:
+            print(f'\033[92m[PILOT GATE] GO ✓  task_completion_rate = {overall_rate:.3f}'
+                  f' > {_PILOT_THRESHOLD} → proceed to full study\033[0m\n')
+        else:
+            print(f'\033[91m[PILOT GATE] NO-GO ✗  task_completion_rate = {overall_rate:.3f}'
+                  f' ≤ {_PILOT_THRESHOLD} → structural review required before full study\033[0m\n')
+
     if args.csv:
         write_csv(session_metrics, RESULTS_DIR / 'study_analysis.csv')
+        write_edits_csv(session_metrics, RESULTS_DIR / 'study_edits.csv')
 
 
 if __name__ == '__main__':

@@ -1,0 +1,1 @@
+{"session_id":"e2e-test-001","condition":"B","dataset":"digiklausur","event_type":"trace_interact","timestamp_ms":1713500000000,"elapsed_ms":5000,"payload":{"classification":"CONTRADICTS","node_id":"artificial_neural_network","step_id":3}}

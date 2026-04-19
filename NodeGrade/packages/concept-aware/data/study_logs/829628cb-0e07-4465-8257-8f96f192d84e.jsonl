@@ -1,0 +1,2 @@
+{"session_id":"829628cb-0e07-4465-8257-8f96f192d84e","condition":"B","dataset":"","event_type":"page_view","timestamp_ms":1776400320226,"elapsed_ms":26,"payload":{"session_id":"829628cb-0e07-4465-8257-8f96f192d84e","is_study":true}}
+{"session_id":"829628cb-0e07-4465-8257-8f96f192d84e","condition":"B","dataset":"digiklausur","event_type":"tab_change","timestamp_ms":1776400320269,"elapsed_ms":69,"payload":{"dataset":"digiklausur"}}

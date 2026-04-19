@@ -1,0 +1,462 @@
+{
+  "dataset": "digiklausur",
+  "student_radar": {
+    "dimensions": [
+      "Concept Coverage",
+      "SOLO Level",
+      "Bloom Level",
+      "Grading Accuracy",
+      "Score"
+    ],
+    "students": [
+      {
+        "student_id": "Low Scorers (Q1)",
+        "color": "#ef4444",
+        "n": 161,
+        "avg_human_score": 1.0403726708074534,
+        "values": [
+          0.519,
+          0.635,
+          0.19,
+          0.786,
+          0.408
+        ]
+      },
+      {
+        "student_id": "Mid-Low (Q2)",
+        "color": "#f97316",
+        "n": 162,
+        "avg_human_score": 2.654320987654321,
+        "values": [
+          0.802,
+          0.863,
+          0.231,
+          0.827,
+          0.618
+        ]
+      },
+      {
+        "student_id": "Mid-High (Q3)",
+        "color": "#22c55e",
+        "n": 161,
+        "avg_human_score": 5.0,
+        "values": [
+          0.794,
+          0.872,
+          0.217,
+          0.742,
+          0.742
+        ]
+      },
+      {
+        "student_id": "High Scorers (Q4)",
+        "color": "#3b82f6",
+        "n": 162,
+        "avg_human_score": 5.0,
+        "values": [
+          0.862,
+          0.907,
+          0.215,
+          0.744,
+          0.744
+        ]
+      }
+    ]
+  },
+  "misconception_heatmap": {
+    "cells": [
+      {
+        "x": "critical",
+        "y": "convergence",
+        "value": 36,
+        "intensity": 1.0
+      },
+      {
+        "x": "moderate",
+        "y": "convergence",
+        "value": 8,
+        "intensity": 0.222
+      },
+      {
+        "x": "minor",
+        "y": "convergence",
+        "value": 12,
+        "intensity": 0.333
+      },
+      {
+        "x": "critical",
+        "y": "binary_classification",
+        "value": 22,
+        "intensity": 0.611
+      },
+      {
+        "x": "moderate",
+        "y": "binary_classification",
+        "value": 7,
+        "intensity": 0.194
+      },
+      {
+        "x": "minor",
+        "y": "binary_classification",
+        "value": 7,
+        "intensity": 0.194
+      },
+      {
+        "x": "critical",
+        "y": "generalizability",
+        "value": 6,
+        "intensity": 0.167
+      },
+      {
+        "x": "moderate",
+        "y": "generalizability",
+        "value": 12,
+        "intensity": 0.333
+      },
+      {
+        "x": "minor",
+        "y": "generalizability",
+        "value": 18,
+        "intensity": 0.5
+      },
+      {
+        "x": "critical",
+        "y": "biases",
+        "value": 10,
+        "intensity": 0.278
+      },
+      {
+        "x": "moderate",
+        "y": "biases",
+        "value": 15,
+        "intensity": 0.417
+      },
+      {
+        "x": "minor",
+        "y": "biases",
+        "value": 10,
+        "intensity": 0.278
+      },
+      {
+        "x": "critical",
+        "y": "instability",
+        "value": 25,
+        "intensity": 0.694
+      },
+      {
+        "x": "moderate",
+        "y": "instability",
+        "value": 9,
+        "intensity": 0.25
+      },
+      {
+        "x": "minor",
+        "y": "instability",
+        "value": 0,
+        "intensity": 0.0
+      },
+      {
+        "x": "critical",
+        "y": "bi_parted_graph",
+        "value": 6,
+        "intensity": 0.167
+      },
+      {
+        "x": "moderate",
+        "y": "bi_parted_graph",
+        "value": 14,
+        "intensity": 0.389
+      },
+      {
+        "x": "minor",
+        "y": "bi_parted_graph",
+        "value": 13,
+        "intensity": 0.361
+      },
+      {
+        "x": "critical",
+        "y": "input_space",
+        "value": 18,
+        "intensity": 0.5
+      },
+      {
+        "x": "moderate",
+        "y": "input_space",
+        "value": 3,
+        "intensity": 0.083
+      },
+      {
+        "x": "minor",
+        "y": "input_space",
+        "value": 10,
+        "intensity": 0.278
+      },
+      {
+        "x": "critical",
+        "y": "unsupervised_manner",
+        "value": 15,
+        "intensity": 0.417
+      },
+      {
+        "x": "moderate",
+        "y": "unsupervised_manner",
+        "value": 0,
+        "intensity": 0.0
+      },
+      {
+        "x": "minor",
+        "y": "unsupervised_manner",
+        "value": 16,
+        "intensity": 0.444
+      },
+      {
+        "x": "critical",
+        "y": "perceptron",
+        "value": 16,
+        "intensity": 0.444
+      },
+      {
+        "x": "moderate",
+        "y": "perceptron",
+        "value": 5,
+        "intensity": 0.139
+      },
+      {
+        "x": "minor",
+        "y": "perceptron",
+        "value": 7,
+        "intensity": 0.194
+      },
+      {
+        "x": "critical",
+        "y": "binary_labeling",
+        "value": 15,
+        "intensity": 0.417
+      },
+      {
+        "x": "moderate",
+        "y": "binary_labeling",
+        "value": 4,
+        "intensity": 0.111
+      },
+      {
+        "x": "minor",
+        "y": "binary_labeling",
+        "value": 8,
+        "intensity": 0.222
+      },
+      {
+        "x": "critical",
+        "y": "activation_probability",
+        "value": 3,
+        "intensity": 0.083
+      },
+      {
+        "x": "moderate",
+        "y": "activation_probability",
+        "value": 11,
+        "intensity": 0.306
+      },
+      {
+        "x": "minor",
+        "y": "activation_probability",
+        "value": 11,
+        "intensity": 0.306
+      },
+      {
+        "x": "critical",
+        "y": "learning_algorithm",
+        "value": 14,
+        "intensity": 0.389
+      },
+      {
+        "x": "moderate",
+        "y": "learning_algorithm",
+        "value": 3,
+        "intensity": 0.083
+      },
+      {
+        "x": "minor",
+        "y": "learning_algorithm",
+        "value": 7,
+        "intensity": 0.194
+      },
+      {
+        "x": "critical",
+        "y": "kernels",
+        "value": 9,
+        "intensity": 0.25
+      },
+      {
+        "x": "moderate",
+        "y": "kernels",
+        "value": 14,
+        "intensity": 0.389
+      },
+      {
+        "x": "minor",
+        "y": "kernels",
+        "value": 1,
+        "intensity": 0.028
+      },
+      {
+        "x": "critical",
+        "y": "supervised_learning",
+        "value": 2,
+        "intensity": 0.056
+      },
+      {
+        "x": "moderate",
+        "y": "supervised_learning",
+        "value": 7,
+        "intensity": 0.194
+      },
+      {
+        "x": "minor",
+        "y": "supervised_learning",
+        "value": 15,
+        "intensity": 0.417
+      },
+      {
+        "x": "critical",
+        "y": "partial_derivatives",
+        "value": 10,
+        "intensity": 0.278
+      },
+      {
+        "x": "moderate",
+        "y": "partial_derivatives",
+        "value": 12,
+        "intensity": 0.333
+      },
+      {
+        "x": "minor",
+        "y": "partial_derivatives",
+        "value": 0,
+        "intensity": 0.0
+      },
+      {
+        "x": "critical",
+        "y": "distance_metric",
+        "value": 9,
+        "intensity": 0.25
+      },
+      {
+        "x": "moderate",
+        "y": "distance_metric",
+        "value": 1,
+        "intensity": 0.028
+      },
+      {
+        "x": "minor",
+        "y": "distance_metric",
+        "value": 12,
+        "intensity": 0.333
+      },
+      {
+        "x": "critical",
+        "y": "linearly_separable_data",
+        "value": 12,
+        "intensity": 0.333
+      },
+      {
+        "x": "moderate",
+        "y": "linearly_separable_data",
+        "value": 3,
+        "intensity": 0.083
+      },
+      {
+        "x": "minor",
+        "y": "linearly_separable_data",
+        "value": 6,
+        "intensity": 0.167
+      },
+      {
+        "x": "critical",
+        "y": "relu_activation",
+        "value": 1,
+        "intensity": 0.028
+      },
+      {
+        "x": "moderate",
+        "y": "relu_activation",
+        "value": 17,
+        "intensity": 0.472
+      },
+      {
+        "x": "minor",
+        "y": "relu_activation",
+        "value": 3,
+        "intensity": 0.083
+      },
+      {
+        "x": "critical",
+        "y": "dynamic_systems_approximation",
+        "value": 9,
+        "intensity": 0.25
+      },
+      {
+        "x": "moderate",
+        "y": "dynamic_systems_approximation",
+        "value": 7,
+        "intensity": 0.194
+      },
+      {
+        "x": "minor",
+        "y": "dynamic_systems_approximation",
+        "value": 3,
+        "intensity": 0.083
+      },
+      {
+        "x": "critical",
+        "y": "learning_rate_decay",
+        "value": 10,
+        "intensity": 0.278
+      },
+      {
+        "x": "moderate",
+        "y": "learning_rate_decay",
+        "value": 2,
+        "intensity": 0.056
+      },
+      {
+        "x": "minor",
+        "y": "learning_rate_decay",
+        "value": 6,
+        "intensity": 0.167
+      }
+    ],
+    "x_labels": [
+      "critical",
+      "moderate",
+      "minor"
+    ],
+    "y_labels": [
+      "convergence",
+      "binary_classification",
+      "generalizability",
+      "biases",
+      "instability",
+      "bi_parted_graph",
+      "input_space",
+      "unsupervised_manner",
+      "perceptron",
+      "binary_labeling",
+      "activation_probability",
+      "learning_algorithm",
+      "kernels",
+      "supervised_learning",
+      "partial_derivatives",
+      "distance_metric",
+      "linearly_separable_data",
+      "relu_activation",
+      "dynamic_systems_approximation",
+      "learning_rate_decay"
+    ],
+    "max_value": 36,
+    "insights": [
+      "Most missed concept: 'convergence' (56 misses total).",
+      "'convergence' most frequently missed by high-scoring students (36 critical misses)."
+    ]
+  }
+}

@@ -1,0 +1,647 @@
+id,human_score,cllm_score,c5_score,cllm_abs_error,c5_abs_error,c5_wins,matched_concepts,n_matched_concepts,chain_pct,solo,bloom
+0,5.0,5.0,5.0,0.0,0.0,tie,processing_unit|artificial_neural_network|human_brain|synaptic_weights|learning_process|experiential_knowledge,6,100%,Extended Abstract,Understand
+1,5.0,4.5,4.5,0.5,0.5,tie,processing_unit|artificial_neural_network|human_brain|synaptic_weights|learning_process|experiential_knowledge,6,100%,Extended Abstract,Understand
+2,2.5,2.0,2.0,0.5,0.5,tie,processing_unit|artificial_neural_network|human_brain|synaptic_weights|learning_process|experiential_knowledge,6,100%,Extended Abstract,Understand
+3,5.0,2.0,2.5,3.0,2.5,1,processing_unit|artificial_neural_network|human_brain|synaptic_weights|learning_process,5,83%,Relational,Remember
+4,5.0,3.5,4.5,1.5,0.5,1,processing_unit|artificial_neural_network|human_brain|synaptic_weights|learning_process|experiential_knowledge,6,100%,Extended Abstract,Understand
+5,2.5,1.5,2.5,1.0,0.0,1,processing_unit|artificial_neural_network|human_brain|synaptic_weights|learning_process|experiential_knowledge,6,100%,Extended Abstract,Remember
+6,5.0,5.0,4.5,0.0,0.5,0,processing_unit|artificial_neural_network|human_brain|synaptic_weights|learning_process,5,83%,Relational,Analyze
+7,5.0,3.5,4.5,1.5,0.5,1,processing_unit|artificial_neural_network|human_brain|synaptic_weights|learning_process|experiential_knowledge,6,100%,Extended Abstract,Understand
+8,5.0,1.5,2.5,3.5,2.5,1,processing_unit|artificial_neural_network|human_brain|synaptic_weights|learning_process|experiential_knowledge,6,100%,Extended Abstract,Remember
+9,5.0,2.5,4.0,2.5,1.0,1,processing_unit|artificial_neural_network|human_brain|synaptic_weights|learning_process|experiential_knowledge,6,100%,Extended Abstract,Analyze
+10,2.5,1.5,3.0,1.0,0.5,1,processing_unit|artificial_neural_network|human_brain|synaptic_weights|learning_process|experiential_knowledge,6,100%,Extended Abstract,Understand
+11,5.0,4.5,5.0,0.5,0.0,1,processing_unit|artificial_neural_network|human_brain|synaptic_weights|learning_process|experiential_knowledge,6,100%,Extended Abstract,Understand
+12,5.0,2.0,2.0,3.0,3.0,tie,processing_unit|artificial_neural_network|human_brain|synaptic_weights|learning_process|experiential_knowledge,6,100%,Extended Abstract,Remember
+13,5.0,5.0,5.0,0.0,0.0,tie,processing_unit|artificial_neural_network|human_brain|synaptic_weights|learning_process|experiential_knowledge,6,100%,Extended Abstract,Understand
+14,5.0,4.5,4.5,0.5,0.5,tie,processing_unit|artificial_neural_network|human_brain|synaptic_weights|learning_process|experiential_knowledge,6,100%,Extended Abstract,Understand
+15,5.0,5.0,5.0,0.0,0.0,tie,processing_unit|artificial_neural_network|human_brain|synaptic_weights|learning_process|experiential_knowledge,6,100%,Extended Abstract,Understand
+16,5.0,4.5,4.5,0.5,0.5,tie,processing_unit|artificial_neural_network|human_brain|synaptic_weights|learning_process|experiential_knowledge,6,100%,Extended Abstract,Understand
+17,5.0,4.5,5.0,0.5,0.0,1,processing_unit|artificial_neural_network|human_brain|synaptic_weights|learning_process|experiential_knowledge,6,100%,Extended Abstract,Understand
+18,5.0,2.0,2.0,3.0,3.0,tie,synaptic_weights|processing_unit|artificial_neural_network|learning_process|human_brain,5,83%,Relational,Remember
+19,5.0,4.0,4.5,1.0,0.5,1,processing_unit|artificial_neural_network|human_brain|synaptic_weights|learning_process|experiential_knowledge,6,100%,Extended Abstract,Understand
+20,5.0,4.5,4.5,0.5,0.5,tie,processing_unit|artificial_neural_network|human_brain|synaptic_weights|learning_process|experiential_knowledge,6,100%,Extended Abstract,Understand
+21,5.0,4.5,4.5,0.5,0.5,tie,processing_unit|artificial_neural_network|human_brain|synaptic_weights|learning_process|experiential_knowledge,6,100%,Extended Abstract,Understand
+22,5.0,4.5,4.5,0.5,0.5,tie,processing_unit|artificial_neural_network|human_brain|synaptic_weights|learning_process|experiential_knowledge,6,100%,Extended Abstract,Understand
+23,2.5,2.5,3.0,0.0,0.5,0,processing_unit|artificial_neural_network|human_brain|synaptic_weights|learning_process|experiential_knowledge,6,100%,Extended Abstract,Understand
+24,5.0,4.5,5.0,0.5,0.0,1,processing_unit|artificial_neural_network|human_brain|synaptic_weights|learning_process|experiential_knowledge,6,100%,Extended Abstract,Understand
+25,2.5,2.5,3.5,0.0,1.0,0,processing_unit|artificial_neural_network|human_brain|synaptic_weights|learning_process|experiential_knowledge,6,100%,Extended Abstract,Remember
+26,5.0,5.0,4.5,0.0,0.5,0,processing_unit|artificial_neural_network|human_brain|synaptic_weights|learning_process|experiential_knowledge,6,100%,Extended Abstract,Understand
+27,2.5,2.0,3.0,0.5,0.5,tie,processing_unit|artificial_neural_network|human_brain|synaptic_weights|learning_process|experiential_knowledge,6,100%,Extended Abstract,Analyze
+28,2.5,2.5,2.5,0.0,0.0,tie,processing_unit|artificial_neural_network|learning_process|experiential_knowledge,4,67%,Relational,Understand
+29,5.0,3.0,4.0,2.0,1.0,1,processing_unit|artificial_neural_network|human_brain|synaptic_weights|learning_process|experiential_knowledge,6,100%,Extended Abstract,Analyze
+30,2.5,2.5,3.5,0.0,1.0,0,processing_unit|artificial_neural_network|human_brain|synaptic_weights|learning_process|experiential_knowledge,6,100%,Extended Abstract,Remember
+31,2.5,2.0,3.5,0.5,1.0,0,processing_unit|artificial_neural_network|human_brain|synaptic_weights|learning_process|experiential_knowledge,6,100%,Extended Abstract,Understand
+32,2.5,2.0,2.0,0.5,0.5,tie,processing_unit|synaptic_weights|artificial_neural_network|human_brain,4,67%,Relational,Remember
+33,5.0,5.0,4.5,0.0,0.5,0,processing_unit|artificial_neural_network|human_brain|synaptic_weights|learning_process|experiential_knowledge,6,100%,Extended Abstract,Understand
+34,2.5,2.5,2.0,0.0,0.5,0,processing_unit|artificial_neural_network|learning_process,3,50%,Multistructural,Understand
+35,5.0,4.5,4.5,0.5,0.5,tie,processing_unit|artificial_neural_network|human_brain|synaptic_weights|learning_process|experiential_knowledge,6,100%,Extended Abstract,Understand
+36,5.0,4.0,4.5,1.0,0.5,1,processing_unit|artificial_neural_network|human_brain|synaptic_weights|learning_process|experiential_knowledge,6,100%,Extended Abstract,Understand
+37,5.0,2.0,3.5,3.0,1.5,1,processing_unit|artificial_neural_network|human_brain|synaptic_weights|learning_process|experiential_knowledge,6,100%,Extended Abstract,Understand
+38,5.0,4.5,4.0,0.5,1.0,0,neuron_output|synapses|weight|activation_function|weighted_sum|adder_function|mathematical_model_of_neuron,7,88%,Extended Abstract,Understand
+39,5.0,3.5,4.5,1.5,0.5,1,neuron_output|synapses|weight|activation_function|weighted_sum|adder_function|mathematical_model_of_neuron|bias,8,100%,Extended Abstract,Remember
+40,2.5,2.0,2.5,0.5,0.0,1,neuron_output|synapses|weight|activation_function|weighted_sum|adder_function|mathematical_model_of_neuron,7,88%,Extended Abstract,Understand
+41,2.5,1.0,1.5,1.5,1.0,1,neuron_output|weighted_sum|weight,3,38%,Multistructural,Remember
+42,5.0,2.5,3.0,2.5,2.0,1,neuron_output|synapses|weight|activation_function|adder_function|mathematical_model_of_neuron,6,75%,Relational,Remember
+43,5.0,2.0,3.0,3.0,2.0,1,neuron_output|weight|activation_function|weighted_sum|adder_function|bias,6,75%,Relational,Remember
+44,5.0,4.5,5.0,0.5,0.0,1,neuron_output|synapses|weight|activation_function|weighted_sum|adder_function|mathematical_model_of_neuron|bias,8,100%,Extended Abstract,Understand
+45,5.0,4.5,4.5,0.5,0.5,tie,neuron_output|synapses|weight|activation_function|weighted_sum|adder_function|mathematical_model_of_neuron,7,88%,Extended Abstract,Remember
+46,5.0,4.0,4.5,1.0,0.5,1,neuron_output|synapses|weight|activation_function|weighted_sum|adder_function|mathematical_model_of_neuron|bias,8,100%,Extended Abstract,Remember
+47,5.0,3.5,4.5,1.5,0.5,1,neuron_output|synapses|weight|activation_function|weighted_sum|adder_function|mathematical_model_of_neuron|bias,8,100%,Extended Abstract,Remember
+48,2.5,2.0,3.5,0.5,1.0,0,neuron_output|synapses|weight|activation_function|weighted_sum|adder_function|mathematical_model_of_neuron|bias,8,100%,Extended Abstract,Remember
+49,5.0,4.5,4.5,0.5,0.5,tie,neuron_output|synapses|weight|activation_function|weighted_sum|adder_function|mathematical_model_of_neuron|bias,8,100%,Extended Abstract,Understand
+50,5.0,3.5,4.5,1.5,0.5,1,neuron_output|synapses|weight|activation_function|weighted_sum|adder_function|mathematical_model_of_neuron|bias,8,100%,Extended Abstract,Analyze
+51,5.0,3.5,4.5,1.5,0.5,1,neuron_output|synapses|weight|activation_function|weighted_sum|adder_function|mathematical_model_of_neuron|bias,8,100%,Extended Abstract,Understand
+52,5.0,4.5,4.0,0.5,1.0,0,neuron_output|synapses|weight|activation_function|weighted_sum|adder_function|mathematical_model_of_neuron,7,88%,Extended Abstract,Understand
+53,5.0,4.0,5.0,1.0,0.0,1,neuron_output|synapses|weight|activation_function|weighted_sum|adder_function|mathematical_model_of_neuron|bias,8,100%,Extended Abstract,Remember
+54,5.0,2.5,3.5,2.5,1.5,1,neuron_output|synapses|weight|activation_function|weighted_sum|adder_function|mathematical_model_of_neuron,7,88%,Extended Abstract,Remember
+55,5.0,4.5,4.5,0.5,0.5,tie,neuron_output|synapses|weight|activation_function|weighted_sum|adder_function|mathematical_model_of_neuron,7,88%,Extended Abstract,Remember
+56,5.0,2.5,4.5,2.5,0.5,1,neuron_output|synapses|weight|activation_function|weighted_sum|adder_function|mathematical_model_of_neuron|bias,8,100%,Extended Abstract,Remember
+57,5.0,4.5,5.0,0.5,0.0,1,neuron_output|synapses|weight|activation_function|weighted_sum|adder_function|mathematical_model_of_neuron|bias,8,100%,Extended Abstract,Understand
+58,5.0,3.5,4.5,1.5,0.5,1,neuron_output|synapses|weight|activation_function|weighted_sum|adder_function|mathematical_model_of_neuron|bias,8,100%,Extended Abstract,Remember
+59,5.0,4.5,5.0,0.5,0.0,1,neuron_output|synapses|weight|activation_function|weighted_sum|adder_function|mathematical_model_of_neuron|bias,8,100%,Extended Abstract,Remember
+60,5.0,3.5,3.5,1.5,1.5,tie,neuron_output|synapses|weight|activation_function|weighted_sum|mathematical_model_of_neuron|bias,7,88%,Extended Abstract,Remember
+61,2.5,3.0,5.0,0.5,2.5,0,neuron_output|synapses|weight|activation_function|weighted_sum|adder_function|mathematical_model_of_neuron|bias,8,100%,Extended Abstract,Remember
+62,5.0,2.0,4.5,3.0,0.5,1,neuron_output|synapses|weight|activation_function|weighted_sum|adder_function|mathematical_model_of_neuron|bias,8,100%,Extended Abstract,Understand
+63,5.0,2.5,3.0,2.5,2.0,1,neuron_output|synapses|weight|activation_function|weighted_sum|adder_function|mathematical_model_of_neuron,7,88%,Extended Abstract,Remember
+64,5.0,4.0,4.0,1.0,1.0,tie,neuron_output|synapses|weight|activation_function|weighted_sum|adder_function|mathematical_model_of_neuron,7,88%,Extended Abstract,Understand
+65,5.0,4.0,3.5,1.0,1.5,0,neuron_output|synapses|weight|activation_function|weighted_sum|adder_function|mathematical_model_of_neuron,7,88%,Extended Abstract,Remember
+66,5.0,3.0,4.5,2.0,0.5,1,neuron_output|synapses|weight|activation_function|weighted_sum|adder_function|mathematical_model_of_neuron|bias,8,100%,Extended Abstract,Remember
+67,5.0,2.5,4.5,2.5,0.5,1,neuron_output|weight|activation_function|weighted_sum|adder_function|mathematical_model_of_neuron|bias,7,88%,Extended Abstract,Remember
+68,2.5,2.5,3.0,0.0,0.5,0,neuron_output|synapses|activation_function|weighted_sum|adder_function|mathematical_model_of_neuron,6,75%,Relational,Understand
+69,5.0,4.5,5.0,0.5,0.0,1,neuron_output|synapses|weight|activation_function|weighted_sum|adder_function|mathematical_model_of_neuron|bias,8,100%,Extended Abstract,Understand
+70,5.0,3.5,4.5,1.5,0.5,1,neuron_output|synapses|weight|activation_function|weighted_sum|adder_function|mathematical_model_of_neuron|bias,8,100%,Extended Abstract,Remember
+71,5.0,4.0,4.5,1.0,0.5,1,neuron_output|synapses|weight|activation_function|weighted_sum|adder_function|mathematical_model_of_neuron,7,88%,Extended Abstract,Remember
+72,2.5,4.0,4.5,1.5,2.0,0,neuron_output|synapses|weight|activation_function|adder_function|mathematical_model_of_neuron|bias,7,88%,Extended Abstract,Remember
+73,5.0,2.0,3.0,3.0,2.0,1,neuron_output|synapses|weight|activation_function|adder_function|mathematical_model_of_neuron,6,75%,Relational,Understand
+74,5.0,2.5,3.5,2.5,1.5,1,neuron_output|synapses|weight|activation_function|weighted_sum|adder_function|mathematical_model_of_neuron,7,88%,Extended Abstract,Remember
+75,5.0,4.5,5.0,0.5,0.0,1,neuron_output|synapses|weight|activation_function|weighted_sum|adder_function|mathematical_model_of_neuron|bias,8,100%,Extended Abstract,Remember
+76,5.0,4.5,4.0,0.5,1.0,0,weight_initialization|convergence|data_labeling|linearly_separable_data|update_rule,5,62%,Relational,Remember
+77,5.0,3.0,2.5,2.0,2.5,0,weight_initialization|learning_algorithm|perceptron,3,38%,Multistructural,Remember
+78,2.5,2.0,1.0,0.5,1.5,0,data_labeling,1,12%,Unistructural,Remember
+79,5.0,3.5,4.0,1.5,1.0,1,weight_initialization|convergence|data_labeling|linearly_separable_data|update_rule,5,62%,Relational,Remember
+80,2.5,3.0,3.0,0.5,0.5,tie,weight_initialization|linearly_separable_data|data_labeling|update_rule,4,50%,Multistructural,Remember
+81,5.0,3.0,3.0,2.0,2.0,tie,weight_initialization|learning_algorithm,2,25%,Unistructural,Remember
+82,5.0,4.0,4.0,1.0,1.0,tie,convergence|learning_algorithm,2,25%,Unistructural,Remember
+83,2.5,1.0,2.0,1.5,0.5,1,weight_initialization|learning_algorithm|linearly_separable_data|data_labeling|update_rule,5,62%,Relational,Remember
+84,5.0,3.5,4.5,1.5,0.5,1,weight_initialization|linearly_separable_data|data_labeling|update_rule,4,50%,Multistructural,Remember
+85,2.5,1.5,2.0,1.0,0.5,1,weight_initialization|learning_algorithm|linearly_separable_data|data_labeling|update_rule,5,62%,Relational,Understand
+86,0.0,1.0,2.0,1.0,2.0,0,data_labeling|weight_initialization|linearly_separable_data|update_rule,4,50%,Multistructural,Remember
+87,5.0,3.0,3.5,2.0,1.5,1,convergence|weight_initialization|update_rule,3,38%,Multistructural,Remember
+88,5.0,3.5,4.5,1.5,0.5,1,weight_initialization|data_labeling|perceptron|linearly_separable_data|update_rule,5,62%,Relational,Remember
+89,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+90,2.5,2.5,3.0,0.0,0.5,0,weight_initialization|learning_algorithm|perceptron|update_rule,4,50%,Multistructural,Remember
+91,0.0,0.5,1.0,0.5,1.0,0,data_labeling,1,12%,Unistructural,Remember
+92,5.0,2.0,2.5,3.0,2.5,1,convergence|learning_algorithm|update_rule,3,38%,Multistructural,Remember
+93,5.0,4.0,4.0,1.0,1.0,tie,weight_initialization|learning_algorithm|convergence|perceptron|data_labeling,5,62%,Relational,Remember
+94,5.0,3.5,4.5,1.5,0.5,1,linearly_separable_data|update_rule|weight_initialization|binary_classification|convergence|perceptron|data_labeling,7,88%,Extended Abstract,Remember
+95,5.0,4.5,4.0,0.5,1.0,0,weight_initialization|learning_algorithm|perceptron|update_rule,4,50%,Multistructural,Remember
+96,5.0,2.5,3.0,2.5,2.0,1,weight_initialization|linearly_separable_data|data_labeling|update_rule,4,50%,Multistructural,Remember
+97,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+98,5.0,1.0,1.5,4.0,3.5,1,data_labeling|weight_initialization|linearly_separable_data,3,38%,Multistructural,Remember
+99,0.0,1.5,2.0,1.5,2.0,0,weight_initialization|update_rule,2,25%,Unistructural,Remember
+100,5.0,3.5,4.0,1.5,1.0,1,weight_initialization|learning_algorithm|convergence|perceptron|data_labeling|update_rule,6,75%,Relational,Understand
+101,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+102,5.0,3.0,3.5,2.0,1.5,1,weight_initialization|linearly_separable_data|convergence|data_labeling|update_rule,5,62%,Relational,Remember
+103,5.0,3.5,3.0,1.5,2.0,0,weight_initialization|linearly_separable_data|convergence|data_labeling|update_rule,5,62%,Relational,Remember
+104,2.5,2.5,3.0,0.0,0.5,0,weight_initialization|learning_algorithm|convergence|perceptron,4,50%,Multistructural,Remember
+105,5.0,3.0,4.0,2.0,1.0,1,learning_algorithm|weight_initialization|convergence|perceptron|update_rule,5,62%,Relational,Understand
+106,5.0,1.5,2.0,3.5,3.0,1,data_labeling|weight_initialization|linearly_separable_data|update_rule,4,50%,Multistructural,Remember
+107,2.5,2.0,2.0,0.5,0.5,tie,linearly_separable_data|data_labeling|update_rule,3,38%,Multistructural,Remember
+108,5.0,3.0,4.0,2.0,1.0,1,weight_initialization|learning_algorithm|data_labeling|linearly_separable_data|update_rule,5,62%,Relational,Remember
+109,5.0,2.0,3.0,3.0,2.0,1,weight_initialization|learning_algorithm|linearly_separable_data|data_labeling|update_rule,5,62%,Relational,Remember
+110,5.0,3.0,3.0,2.0,2.0,tie,perceptron|weight_initialization|binary_classification|update_rule,4,50%,Multistructural,Understand
+111,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+112,5.0,4.0,3.5,1.0,1.5,0,weight_initialization,1,12%,Unistructural,Understand
+113,5.0,2.0,2.0,3.0,3.0,tie,update_rule,1,12%,Unistructural,Remember
+114,2.5,4.5,5.0,2.0,2.5,0,classification|regression|continuous_values|classification_error|regression_error|discrete_labels,6,100%,Extended Abstract,Remember
+115,2.5,2.5,4.5,0.0,2.0,0,classification|regression|continuous_values|classification_error|regression_error|discrete_labels,6,100%,Extended Abstract,Remember
+116,2.5,1.0,3.0,1.5,0.5,1,classification|regression_error|regression|classification_error,4,67%,Relational,Remember
+117,2.5,3.5,5.0,1.0,2.5,0,classification|regression|continuous_values|classification_error|regression_error|discrete_labels,6,100%,Extended Abstract,Remember
+118,2.5,3.0,5.0,0.5,2.5,0,classification|regression|continuous_values|classification_error|regression_error|discrete_labels,6,100%,Extended Abstract,Remember
+119,2.5,2.0,3.0,0.5,0.5,tie,classification|regression_error|regression|continuous_values|classification_error,5,83%,Relational,Remember
+120,2.5,3.5,3.5,1.0,1.0,tie,classification|regression_error|regression|classification_error,4,67%,Relational,Remember
+121,2.5,3.5,5.0,1.0,2.5,0,classification|discrete_labels|regression|continuous_values|classification_error|regression_error,6,100%,Extended Abstract,Remember
+122,2.5,2.5,3.0,0.0,0.5,0,classification|regression_error|regression|classification_error,4,67%,Relational,Remember
+123,2.5,1.5,3.5,1.0,1.0,tie,classification|regression_error|regression|continuous_values|classification_error,5,83%,Relational,Remember
+124,2.5,3.0,5.0,0.5,2.5,0,classification|regression|continuous_values|classification_error|regression_error|discrete_labels,6,100%,Extended Abstract,Remember
+125,2.5,2.5,3.0,0.0,0.5,0,classification|regression_error|regression|classification_error,4,67%,Relational,Remember
+126,2.5,3.0,5.0,0.5,2.5,0,classification|regression|continuous_values|classification_error|regression_error|discrete_labels,6,100%,Extended Abstract,Remember
+127,2.5,2.0,3.5,0.5,1.0,0,classification|regression|continuous_values|regression_error|classification_error,5,83%,Relational,Understand
+128,2.5,3.5,4.0,1.0,1.5,0,classification|regression|continuous_values|regression_error|classification_error,5,83%,Relational,Remember
+129,2.5,3.0,5.0,0.5,2.5,0,classification|regression|continuous_values|classification_error|regression_error|discrete_labels,6,100%,Extended Abstract,Remember
+130,2.5,2.5,3.0,0.0,0.5,0,classification|regression|classification_error|regression_error,4,67%,Relational,Remember
+131,2.5,3.0,5.0,0.5,2.5,0,classification|regression|continuous_values|classification_error|regression_error|discrete_labels,6,100%,Extended Abstract,Remember
+132,2.5,2.5,5.0,0.0,2.5,0,classification|regression|continuous_values|classification_error|regression_error|discrete_labels,6,100%,Extended Abstract,Understand
+133,2.5,4.0,5.0,1.5,2.5,0,classification|discrete_labels|regression|continuous_values|classification_error|regression_error,6,100%,Extended Abstract,Remember
+134,2.5,3.0,4.0,0.5,1.5,0,classification|regression|continuous_values|regression_error|classification_error|discrete_labels,6,100%,Extended Abstract,Remember
+135,2.5,1.0,3.0,1.5,0.5,1,classification|regression_error|regression|classification_error,4,67%,Relational,Remember
+136,2.5,2.0,3.5,0.5,1.0,0,classification|regression|continuous_values|regression_error|classification_error,5,83%,Relational,Remember
+137,2.5,2.5,5.0,0.0,2.5,0,classification|regression|continuous_values|classification_error|regression_error|discrete_labels,6,100%,Extended Abstract,Remember
+138,2.5,3.0,4.0,0.5,1.5,0,classification|regression|continuous_values|regression_error|classification_error,5,83%,Relational,Remember
+139,2.5,3.5,5.0,1.0,2.5,0,classification|discrete_labels|regression|continuous_values|classification_error|regression_error,6,100%,Extended Abstract,Remember
+140,2.5,3.0,5.0,0.5,2.5,0,classification|regression|continuous_values|classification_error|regression_error|discrete_labels,6,100%,Extended Abstract,Remember
+141,5.0,3.5,4.0,1.5,1.0,1,classification|regression|continuous_values|regression_error|classification_error|discrete_labels,6,100%,Extended Abstract,Remember
+142,2.5,3.0,4.0,0.5,1.5,0,classification|regression_error|regression|continuous_values|classification_error,5,83%,Relational,Remember
+143,2.5,3.5,5.0,1.0,2.5,0,classification|discrete_labels|regression|continuous_values|classification_error|regression_error,6,100%,Extended Abstract,Remember
+144,2.5,3.5,5.0,1.0,2.5,0,classification|regression|continuous_values|classification_error|regression_error|discrete_labels,6,100%,Extended Abstract,Remember
+145,2.5,3.5,5.0,1.0,2.5,0,classification|regression|continuous_values|classification_error|regression_error|discrete_labels,6,100%,Extended Abstract,Remember
+146,2.5,3.0,4.0,0.5,1.5,0,classification|regression|continuous_values|regression_error|classification_error|discrete_labels,6,100%,Extended Abstract,Remember
+147,5.0,5.0,5.0,0.0,0.0,tie,classification|regression|continuous_values|classification_error|regression_error|discrete_labels,6,100%,Extended Abstract,Remember
+148,2.5,3.0,4.0,0.5,1.5,0,classification|regression|continuous_values|regression_error|classification_error|discrete_labels,6,100%,Extended Abstract,Understand
+149,2.5,2.5,3.0,0.0,0.5,0,classification|regression|classification_error|regression_error|discrete_labels,5,83%,Relational,Remember
+150,2.5,3.0,4.0,0.5,1.5,0,classification|regression|continuous_values|regression_error|classification_error,5,83%,Relational,Remember
+151,2.5,2.5,3.5,0.0,1.0,0,classification|regression|continuous_values|regression_error|classification_error,5,83%,Relational,Understand
+152,5.0,5.0,5.0,0.0,0.0,tie,neighborhood_function|learning_rate_decay|similarity_matching|weight_initialization|weight_update|weight_topology|input_sampling|convergence|som_learning|winning_neuron,10,100%,Extended Abstract,Remember
+153,2.5,4.5,4.5,2.0,2.0,tie,convergence|neighborhood_function|learning_rate_decay|similarity_matching|weight_initialization|weight_update|input_sampling|weight_topology|som_learning|winning_neuron,10,100%,Extended Abstract,Remember
+154,5.0,3.0,3.0,2.0,2.0,tie,neighborhood_function|similarity_matching|learning_rate_decay|weight_initialization|weight_update|weight_topology|winning_neuron,7,70%,Relational,Remember
+155,5.0,4.5,4.5,0.5,0.5,tie,neighborhood_function|learning_rate_decay|similarity_matching|weight_initialization|weight_update|input_sampling|weight_topology|som_learning|winning_neuron,9,90%,Extended Abstract,Remember
+156,5.0,4.0,5.0,1.0,0.0,1,neighborhood_function|learning_rate_decay|similarity_matching|weight_initialization|weight_update|weight_topology|input_sampling|convergence|som_learning|winning_neuron,10,100%,Extended Abstract,Remember
+157,5.0,4.0,3.5,1.0,1.5,0,convergence|neighborhood_function|learning_rate_decay|weight_initialization|weight_update|input_sampling|weight_topology|som_learning,8,80%,Relational,Remember
+158,5.0,4.0,4.0,1.0,1.0,tie,neighborhood_function|learning_rate_decay|similarity_matching|weight_initialization|weight_update|input_sampling|weight_topology|som_learning|winning_neuron,9,90%,Extended Abstract,Remember
+159,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+160,5.0,4.0,4.5,1.0,0.5,1,neighborhood_function|learning_rate_decay|similarity_matching|weight_initialization|weight_update|input_sampling|weight_topology|som_learning|winning_neuron,9,90%,Extended Abstract,Remember
+161,5.0,4.0,4.0,1.0,1.0,tie,neighborhood_function|similarity_matching|weight_initialization|weight_update|input_sampling|weight_topology|som_learning|winning_neuron,8,80%,Relational,Understand
+162,0.0,2.0,3.0,2.0,3.0,0,similarity_matching|weight_initialization|weight_update|weight_topology|input_sampling|convergence|som_learning|winning_neuron,8,80%,Relational,Remember
+163,0.0,1.0,1.5,1.0,1.5,0,weight_update|similarity_matching|winning_neuron,3,30%,Multistructural,Remember
+164,5.0,3.5,3.0,1.5,2.0,0,weight_update|weight_initialization|input_sampling|weight_topology|som_learning|similarity_matching|winning_neuron,7,70%,Relational,Remember
+165,5.0,4.0,4.5,1.0,0.5,1,neighborhood_function|learning_rate_decay|similarity_matching|weight_initialization|weight_update|input_sampling|weight_topology|som_learning|winning_neuron,9,90%,Extended Abstract,Remember
+166,5.0,4.0,4.5,1.0,0.5,1,neighborhood_function|learning_rate_decay|similarity_matching|weight_initialization|weight_update|input_sampling|weight_topology|som_learning|winning_neuron,9,90%,Extended Abstract,Remember
+167,5.0,3.5,3.5,1.5,1.5,tie,similarity_matching|weight_initialization|weight_update|weight_topology|input_sampling|convergence|winning_neuron,7,70%,Relational,Remember
+168,5.0,3.0,3.0,2.0,2.0,tie,neighborhood_function|similarity_matching|learning_rate_decay|weight_initialization|weight_update|input_sampling|weight_topology|winning_neuron,8,80%,Relational,Remember
+169,5.0,4.0,4.0,1.0,1.0,tie,convergence|learning_rate_decay|similarity_matching|weight_initialization|weight_update|input_sampling|weight_topology|som_learning|winning_neuron,9,90%,Extended Abstract,Remember
+170,5.0,4.5,4.5,0.5,0.5,tie,neighborhood_function|learning_rate_decay|similarity_matching|weight_initialization|weight_update|input_sampling|weight_topology|som_learning|winning_neuron,9,90%,Extended Abstract,Remember
+171,5.0,4.0,3.0,1.0,2.0,0,similarity_matching|weight_initialization|weight_update|input_sampling|weight_topology|winning_neuron,6,60%,Multistructural,Remember
+172,5.0,4.0,3.5,1.0,1.5,0,neighborhood_function|similarity_matching|weight_initialization|weight_update|input_sampling|weight_topology|winning_neuron,7,70%,Relational,Remember
+173,5.0,4.0,3.0,1.0,2.0,0,convergence|similarity_matching|weight_initialization|weight_update|input_sampling|weight_topology|som_learning,7,70%,Relational,Understand
+174,5.0,4.5,3.5,0.5,1.5,0,neighborhood_function|similarity_matching|weight_initialization|weight_update|input_sampling|weight_topology|winning_neuron,7,70%,Relational,Analyze
+175,5.0,4.0,4.0,1.0,1.0,tie,neighborhood_function|learning_rate_decay|similarity_matching|weight_initialization|weight_update|input_sampling|weight_topology|winning_neuron,8,80%,Relational,Remember
+176,5.0,4.5,4.5,0.5,0.5,tie,neighborhood_function|learning_rate_decay|similarity_matching|weight_initialization|weight_update|input_sampling|weight_topology|som_learning|winning_neuron,9,90%,Extended Abstract,Understand
+177,5.0,3.5,3.5,1.5,1.5,tie,neighborhood_function|learning_rate_decay|similarity_matching|weight_initialization|weight_update|input_sampling|weight_topology|som_learning|winning_neuron,9,90%,Extended Abstract,Remember
+178,5.0,3.0,3.0,2.0,2.0,tie,neighborhood_function|similarity_matching|weight_initialization|weight_update|weight_topology|winning_neuron,6,60%,Multistructural,Remember
+179,5.0,4.0,3.5,1.0,1.5,0,neighborhood_function|learning_rate_decay|weight_initialization|weight_update|input_sampling|weight_topology|som_learning,7,70%,Relational,Remember
+180,5.0,3.5,3.5,1.5,1.5,tie,neighborhood_function|similarity_matching|weight_initialization|weight_update|input_sampling|weight_topology|winning_neuron,7,70%,Relational,Remember
+181,5.0,4.0,4.5,1.0,0.5,1,neighborhood_function|learning_rate_decay|similarity_matching|weight_initialization|weight_update|input_sampling|weight_topology|som_learning|winning_neuron,9,90%,Extended Abstract,Understand
+182,2.5,2.0,2.5,0.5,0.0,1,neighborhood_function|similarity_matching|weight_initialization|weight_update|weight_topology|winning_neuron,6,60%,Multistructural,Remember
+183,5.0,3.5,3.5,1.5,1.5,tie,neighborhood_function|similarity_matching|weight_initialization|weight_update|input_sampling|weight_topology|winning_neuron,7,70%,Relational,Understand
+184,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+185,5.0,3.0,4.0,2.0,1.0,1,neighborhood_function|learning_rate_decay|similarity_matching|weight_initialization|weight_update|weight_topology|som_learning|winning_neuron,8,80%,Relational,Remember
+186,2.5,2.0,3.0,0.5,0.5,tie,similarity_matching|weight_initialization|weight_update|input_sampling|weight_topology|winning_neuron,6,60%,Multistructural,Understand
+187,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+188,5.0,3.5,4.0,1.5,1.0,1,learning_rate_decay|similarity_matching|weight_initialization|weight_update|input_sampling|weight_topology|som_learning|winning_neuron,8,80%,Relational,Remember
+189,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+190,2.5,3.0,3.0,0.5,0.5,tie,decision_boundary|linear_learnable_machine|maximum_margin|support_vectors|support_vector_machine,5,62%,Relational,Remember
+191,2.5,2.0,3.0,0.5,0.5,tie,decision_boundary|maximum_margin|non_linearly_separable_data|support_vectors|support_vector_machine|quadratic_programming,6,75%,Relational,Remember
+192,2.5,2.5,3.5,0.0,1.0,0,decision_boundary|linear_learnable_machine|maximum_margin|non_linearly_separable_data|support_vectors|support_vector_machine|quadratic_programming,7,88%,Extended Abstract,Remember
+193,5.0,3.5,4.5,1.5,0.5,1,decision_boundary|linear_learnable_machine|maximum_margin|non_linearly_separable_data|support_vectors|support_vector_machine|quadratic_programming,7,88%,Extended Abstract,Remember
+194,2.5,3.0,2.5,0.5,0.0,1,decision_boundary|maximum_margin|support_vectors|support_vector_machine|quadratic_programming,5,62%,Relational,Remember
+195,2.5,3.0,2.5,0.5,0.0,1,decision_boundary|maximum_margin|non_linearly_separable_data|support_vectors|support_vector_machine|quadratic_programming,6,75%,Relational,Analyze
+196,2.5,2.0,3.5,0.5,1.0,0,decision_boundary|linear_learnable_machine|maximum_margin|non_linearly_separable_data|support_vectors|support_vector_machine|quadratic_programming,7,88%,Extended Abstract,Remember
+197,5.0,4.5,4.5,0.5,0.5,tie,decision_boundary|linear_learnable_machine|maximum_margin|kernels|non_linearly_separable_data|support_vectors|support_vector_machine|quadratic_programming,8,100%,Extended Abstract,Remember
+198,5.0,4.5,4.5,0.5,0.5,tie,decision_boundary|linear_learnable_machine|maximum_margin|kernels|non_linearly_separable_data|support_vectors|support_vector_machine|quadratic_programming,8,100%,Extended Abstract,Remember
+199,5.0,4.0,3.5,1.0,1.5,0,decision_boundary|linear_learnable_machine|maximum_margin|non_linearly_separable_data|support_vectors|support_vector_machine|quadratic_programming,7,88%,Extended Abstract,Remember
+200,2.5,1.5,3.0,1.0,0.5,1,support_vectors|linear_learnable_machine|support_vector_machine|maximum_margin|non_linearly_separable_data|quadratic_programming,6,75%,Relational,Remember
+201,0.0,2.0,3.0,2.0,3.0,0,decision_boundary|linear_learnable_machine|maximum_margin|support_vectors|support_vector_machine|quadratic_programming,6,75%,Relational,Remember
+202,2.5,2.5,3.0,0.0,0.5,0,decision_boundary|maximum_margin|non_linearly_separable_data|support_vectors|support_vector_machine|quadratic_programming,6,75%,Relational,Remember
+203,5.0,4.0,4.5,1.0,0.5,1,decision_boundary|linear_learnable_machine|maximum_margin|kernels|non_linearly_separable_data|support_vectors|support_vector_machine|quadratic_programming,8,100%,Extended Abstract,Remember
+204,2.5,3.0,3.5,0.5,1.0,0,decision_boundary|linear_learnable_machine|maximum_margin|non_linearly_separable_data|support_vectors|support_vector_machine|quadratic_programming,7,88%,Extended Abstract,Remember
+205,2.5,3.0,3.0,0.5,0.5,tie,decision_boundary|linear_learnable_machine|maximum_margin|non_linearly_separable_data|support_vectors|support_vector_machine|quadratic_programming,7,88%,Extended Abstract,Remember
+206,2.5,2.0,2.5,0.5,0.0,1,decision_boundary|linear_learnable_machine|maximum_margin|support_vectors|support_vector_machine|quadratic_programming,6,75%,Relational,Remember
+207,2.5,3.5,3.5,1.0,1.0,tie,decision_boundary|linear_learnable_machine|maximum_margin|kernels|non_linearly_separable_data|support_vectors|support_vector_machine|quadratic_programming,8,100%,Extended Abstract,Remember
+208,5.0,2.5,3.5,2.5,1.5,1,linear_learnable_machine|maximum_margin|kernels|non_linearly_separable_data|support_vectors|support_vector_machine|quadratic_programming,7,88%,Extended Abstract,Remember
+209,2.5,3.0,3.5,0.5,1.0,0,decision_boundary|linear_learnable_machine|maximum_margin|kernels|non_linearly_separable_data|support_vectors|support_vector_machine|quadratic_programming,8,100%,Extended Abstract,Remember
+210,5.0,3.0,3.0,2.0,2.0,tie,decision_boundary|maximum_margin|non_linearly_separable_data|support_vectors|support_vector_machine|quadratic_programming,6,75%,Relational,Remember
+211,2.5,2.5,4.5,0.0,2.0,0,decision_boundary|linear_learnable_machine|maximum_margin|kernels|non_linearly_separable_data|support_vectors|support_vector_machine|quadratic_programming,8,100%,Extended Abstract,Remember
+212,2.5,2.0,2.0,0.5,0.5,tie,decision_boundary|maximum_margin|support_vectors|support_vector_machine|quadratic_programming,5,62%,Relational,Remember
+213,2.5,2.0,2.0,0.5,0.5,tie,decision_boundary|linear_learnable_machine|maximum_margin|kernels|support_vectors|support_vector_machine|quadratic_programming,7,88%,Extended Abstract,Remember
+214,5.0,2.5,3.0,2.5,2.0,1,decision_boundary|maximum_margin|non_linearly_separable_data|support_vectors|support_vector_machine|quadratic_programming,6,75%,Relational,Remember
+215,2.5,2.5,3.5,0.0,1.0,0,decision_boundary|linear_learnable_machine|maximum_margin|kernels|non_linearly_separable_data|support_vectors|support_vector_machine|quadratic_programming,8,100%,Extended Abstract,Remember
+216,5.0,3.0,3.0,2.0,2.0,tie,decision_boundary|linear_learnable_machine|maximum_margin|non_linearly_separable_data|support_vectors|support_vector_machine|quadratic_programming,7,88%,Extended Abstract,Remember
+217,5.0,3.5,4.5,1.5,0.5,1,decision_boundary|linear_learnable_machine|maximum_margin|non_linearly_separable_data|support_vectors|support_vector_machine|quadratic_programming,7,88%,Extended Abstract,Analyze
+218,5.0,2.0,2.5,3.0,2.5,1,decision_boundary|linear_learnable_machine|maximum_margin|support_vectors|support_vector_machine|quadratic_programming,6,75%,Relational,Remember
+219,5.0,3.5,4.5,1.5,0.5,1,decision_boundary|linear_learnable_machine|maximum_margin|kernels|non_linearly_separable_data|support_vectors|support_vector_machine|quadratic_programming,8,100%,Extended Abstract,Remember
+220,5.0,2.5,3.5,2.5,1.5,1,decision_boundary|linear_learnable_machine|maximum_margin|non_linearly_separable_data|support_vectors|support_vector_machine|quadratic_programming,7,88%,Extended Abstract,Remember
+221,5.0,3.5,3.5,1.5,1.5,tie,decision_boundary|linear_learnable_machine|maximum_margin|kernels|non_linearly_separable_data|support_vectors|support_vector_machine|quadratic_programming,8,100%,Extended Abstract,Remember
+222,5.0,4.0,4.5,1.0,0.5,1,decision_boundary|linear_learnable_machine|maximum_margin|kernels|non_linearly_separable_data|support_vectors|support_vector_machine|quadratic_programming,8,100%,Extended Abstract,Remember
+223,5.0,3.0,3.5,2.0,1.5,1,decision_boundary|linear_learnable_machine|maximum_margin|non_linearly_separable_data|support_vectors|support_vector_machine,6,75%,Relational,Remember
+224,2.5,1.0,2.5,1.5,0.0,1,decision_boundary|linear_learnable_machine|maximum_margin|support_vectors|support_vector_machine|quadratic_programming,6,75%,Relational,Remember
+225,2.5,2.0,3.0,0.5,0.5,tie,decision_boundary|linear_learnable_machine|non_linearly_separable_data|support_vectors|support_vector_machine|quadratic_programming,6,75%,Relational,Remember
+226,2.5,2.0,2.5,0.5,0.0,1,decision_boundary|linear_learnable_machine|maximum_margin|kernels|support_vectors|support_vector_machine|quadratic_programming,7,88%,Extended Abstract,Remember
+227,5.0,4.0,4.5,1.0,0.5,1,decision_boundary|linear_learnable_machine|maximum_margin|kernels|non_linearly_separable_data|support_vectors|support_vector_machine|quadratic_programming,8,100%,Extended Abstract,Remember
+228,5.0,3.5,4.5,1.5,0.5,1,gradient_vector|cost_function|local_minima|steepest_descent|weight_update|neural_network_learning,6,86%,Extended Abstract,Remember
+229,2.5,2.5,2.5,0.0,0.0,tie,steepest_descent|weight_update|gradient_vector|neural_network_learning,4,57%,Multistructural,Remember
+230,5.0,2.5,2.0,2.5,3.0,0,steepest_descent|gradient_vector|local_minima,3,43%,Multistructural,Remember
+231,5.0,3.5,4.5,1.5,0.5,1,gradient_vector|cost_function|local_minima|steepest_descent|weight_update|neural_network_learning,6,86%,Extended Abstract,Understand
+232,2.5,2.0,2.5,0.5,0.0,1,gradient_vector|cost_function|local_minima|steepest_descent|weight_update|neural_network_learning,6,86%,Extended Abstract,Remember
+233,5.0,3.0,4.5,2.0,0.5,1,gradient_vector|cost_function|local_minima|steepest_descent|weight_update|neural_network_learning,6,86%,Extended Abstract,Remember
+234,5.0,3.0,3.5,2.0,1.5,1,gradient_vector|cost_function|local_minima|steepest_descent|weight_update|neural_network_learning,6,86%,Extended Abstract,Remember
+235,5.0,3.0,4.5,2.0,0.5,1,gradient_vector|cost_function|local_minima|steepest_descent|weight_update|neural_network_learning,6,86%,Extended Abstract,Remember
+236,5.0,3.0,3.5,2.0,1.5,1,neural_network_learning|steepest_descent|weight_update|gradient_vector|cost_function|local_minima,6,86%,Extended Abstract,Remember
+237,5.0,3.0,3.0,2.0,2.0,tie,gradient_vector|cost_function|local_minima|steepest_descent|neural_network_learning,5,71%,Relational,Understand
+238,2.5,1.5,2.5,1.0,0.0,1,steepest_descent|weight_update|gradient_vector|cost_function|local_minima,5,71%,Relational,Analyze
+239,2.5,2.5,3.5,0.0,1.0,0,gradient_vector|cost_function|local_minima|steepest_descent|neural_network_learning,5,71%,Relational,Remember
+240,2.5,2.0,2.5,0.5,0.0,1,gradient_vector|local_minima|steepest_descent|weight_update|neural_network_learning,5,71%,Relational,Remember
+241,5.0,3.0,4.0,2.0,1.0,1,gradient_vector|cost_function|local_minima|steepest_descent|weight_update|neural_network_learning,6,86%,Extended Abstract,Remember
+242,5.0,4.0,4.5,1.0,0.5,1,gradient_vector|cost_function|local_minima|steepest_descent|weight_update|neural_network_learning,6,86%,Extended Abstract,Remember
+243,5.0,3.5,4.0,1.5,1.0,1,gradient_vector|cost_function|steepest_descent|weight_update|neural_network_learning,5,71%,Relational,Remember
+244,5.0,4.5,4.0,0.5,1.0,0,gradient_vector|cost_function|local_minima|steepest_descent|neural_network_learning,5,71%,Relational,Remember
+245,5.0,1.0,1.5,4.0,3.5,1,steepest_descent|gradient_vector|neural_network_learning,3,43%,Multistructural,Remember
+246,5.0,4.0,4.5,1.0,0.5,1,instability|gradient_vector|cost_function|local_minima|steepest_descent|weight_update|neural_network_learning,7,100%,Extended Abstract,Remember
+247,5.0,4.0,4.5,1.0,0.5,1,instability|gradient_vector|cost_function|local_minima|steepest_descent|weight_update|neural_network_learning,7,100%,Extended Abstract,Remember
+248,2.5,2.0,1.5,0.5,1.0,0,instability|gradient_vector|cost_function|steepest_descent|weight_update|neural_network_learning,6,86%,Extended Abstract,Remember
+249,5.0,2.5,1.5,2.5,3.5,0,gradient_vector|cost_function|local_minima|steepest_descent|neural_network_learning,5,71%,Relational,Remember
+250,5.0,4.0,4.5,1.0,0.5,1,gradient_vector|cost_function|local_minima|steepest_descent|weight_update|neural_network_learning,6,86%,Extended Abstract,Remember
+251,5.0,2.5,1.5,2.5,3.5,0,steepest_descent|weight_update|gradient_vector,3,43%,Multistructural,Remember
+252,5.0,3.5,3.5,1.5,1.5,tie,gradient_vector|cost_function|local_minima|steepest_descent|weight_update|neural_network_learning,6,86%,Extended Abstract,Remember
+253,5.0,2.5,2.5,2.5,2.5,tie,steepest_descent|weight_update|cost_function|gradient_vector|neural_network_learning,5,71%,Relational,Understand
+254,5.0,2.5,2.5,2.5,2.5,tie,gradient_vector|cost_function|local_minima|steepest_descent,4,57%,Multistructural,Remember
+255,5.0,2.5,2.5,2.5,2.5,tie,gradient_vector|cost_function|steepest_descent|weight_update|neural_network_learning,5,71%,Relational,Remember
+256,2.5,3.0,3.5,0.5,1.0,0,gradient_vector|cost_function|local_minima|steepest_descent|weight_update|neural_network_learning,6,86%,Extended Abstract,Remember
+257,5.0,1.0,2.5,4.0,2.5,1,gradient_vector|cost_function|local_minima|steepest_descent|neural_network_learning,5,71%,Relational,Remember
+258,5.0,3.0,2.5,2.0,2.5,0,steepest_descent|cost_function|gradient_vector|neural_network_learning,4,57%,Multistructural,Remember
+259,2.5,3.0,4.0,0.5,1.5,0,gradient_vector|cost_function|local_minima|steepest_descent|weight_update|neural_network_learning,6,86%,Extended Abstract,Remember
+260,5.0,3.5,4.5,1.5,0.5,1,instability|gradient_vector|cost_function|local_minima|steepest_descent|weight_update|neural_network_learning,7,100%,Extended Abstract,Remember
+261,2.5,3.0,3.5,0.5,1.0,0,neural_network_learning|steepest_descent|weight_update|gradient_vector|cost_function,5,71%,Relational,Remember
+262,2.5,2.0,2.5,0.5,0.0,1,instability|steepest_descent|cost_function|gradient_vector|neural_network_learning,5,71%,Relational,Remember
+263,5.0,3.0,3.5,2.0,1.5,1,gradient_vector|cost_function|steepest_descent|weight_update|neural_network_learning,5,71%,Relational,Remember
+264,2.5,3.0,3.5,0.5,1.0,0,gradient_vector|cost_function|steepest_descent|weight_update|neural_network_learning,5,71%,Relational,Remember
+265,5.0,3.0,3.0,2.0,2.0,tie,gradient_vector|cost_function|steepest_descent|weight_update|neural_network_learning,5,71%,Relational,Remember
+266,5.0,4.5,4.5,0.5,0.5,tie,shattering|hypothesis|binary_labeling|hypothesis_space|dataset|no_error_classification,6,86%,Extended Abstract,Remember
+267,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+268,2.5,0.5,2.0,2.0,0.5,1,shattering|hypothesis|hypothesis_space|dataset|no_error_classification,5,71%,Relational,Remember
+269,5.0,3.0,3.0,2.0,2.0,tie,shattering|dataset|no_error_classification|binary_labeling,4,57%,Multistructural,Remember
+270,5.0,4.5,5.0,0.5,0.0,1,shattering|hypothesis|binary_labeling|hypothesis_space|dataset|no_error_classification|input_space,7,100%,Extended Abstract,Remember
+271,2.5,1.5,0.5,1.0,2.0,0,hypothesis|input_space,2,29%,Multistructural,Remember
+272,5.0,1.5,2.5,3.5,2.5,1,shattering|hypothesis|hypothesis_space|dataset|no_error_classification,5,71%,Relational,Remember
+273,0.0,1.5,2.0,1.5,2.0,0,shattering|hypothesis|binary_labeling|hypothesis_space|no_error_classification,5,71%,Relational,Remember
+274,5.0,0.5,1.0,4.5,4.0,1,shattering|hypothesis_space|dataset|hypothesis,4,57%,Multistructural,Remember
+275,5.0,0.5,1.0,4.5,4.0,1,shattering|no_error_classification|hypothesis|input_space,4,57%,Multistructural,Remember
+276,5.0,0.5,1.0,4.5,4.0,1,shattering|dataset|no_error_classification,3,43%,Multistructural,Remember
+277,5.0,1.0,0.5,4.0,4.5,0,shattering|no_error_classification,2,29%,Multistructural,Remember
+278,5.0,1.5,2.0,3.5,3.0,1,shattering|hypothesis|hypothesis_space|dataset,4,57%,Multistructural,Remember
+279,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+280,0.0,0.5,2.0,0.5,2.0,0,shattering|hypothesis|hypothesis_space|dataset|no_error_classification,5,71%,Relational,Remember
+281,5.0,1.0,3.0,4.0,2.0,1,shattering|hypothesis_space|dataset|no_error_classification|input_space|binary_labeling,6,86%,Extended Abstract,Remember
+282,5.0,1.0,2.0,4.0,3.0,1,shattering|hypothesis|hypothesis_space|dataset|no_error_classification,5,71%,Relational,Remember
+283,2.5,0.5,2.0,2.0,0.5,1,shattering|hypothesis|binary_labeling|hypothesis_space|dataset|no_error_classification,6,86%,Extended Abstract,Remember
+284,0.0,0.5,2.0,0.5,2.0,0,shattering|hypothesis|binary_labeling|hypothesis_space|dataset|no_error_classification,6,86%,Extended Abstract,Remember
+285,5.0,0.5,2.0,4.5,3.0,1,shattering|hypothesis|hypothesis_space|dataset|no_error_classification,5,71%,Relational,Remember
+286,5.0,3.0,1.0,2.0,4.0,0,hypothesis|input_space|no_error_classification,3,43%,Multistructural,Remember
+287,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+288,5.0,3.0,3.0,2.0,2.0,tie,shattering|hypothesis|binary_labeling|hypothesis_space|dataset|no_error_classification,6,86%,Extended Abstract,Remember
+289,5.0,1.0,2.0,4.0,3.0,1,shattering|hypothesis_space|no_error_classification|hypothesis,4,57%,Multistructural,Remember
+290,2.5,1.0,2.0,1.5,0.5,1,shattering|hypothesis|hypothesis_space|dataset|input_space,5,71%,Relational,Remember
+291,2.5,0.5,1.0,2.0,1.5,1,hypothesis_space|hypothesis|no_error_classification,3,43%,Multistructural,Remember
+292,5.0,2.5,1.5,2.5,3.5,0,shattering|no_error_classification,2,29%,Multistructural,Remember
+293,5.0,2.5,2.0,2.5,3.0,0,shattering|hypothesis|binary_labeling|hypothesis_space|dataset|no_error_classification,6,86%,Extended Abstract,Remember
+294,0.0,0.5,0.5,0.5,0.5,tie,dataset|no_error_classification,2,29%,Multistructural,Remember
+295,0.0,0.5,0.5,0.5,0.5,tie,shattering|no_error_classification,2,29%,Multistructural,Remember
+296,5.0,1.0,2.0,4.0,3.0,1,shattering|hypothesis|hypothesis_space|dataset,4,57%,Multistructural,Remember
+297,5.0,1.5,1.5,3.5,3.5,tie,shattering|hypothesis|hypothesis_space|dataset|binary_labeling,5,71%,Relational,Remember
+298,5.0,1.0,0.5,4.0,4.5,0,shattering|no_error_classification,2,29%,Multistructural,Remember
+299,0.0,0.5,0.5,0.5,0.5,tie,no_error_classification,1,14%,Unistructural,Remember
+300,5.0,0.5,0.5,4.5,4.5,tie,,0,0%,Prestructural,Remember
+301,5.0,1.0,2.5,4.0,2.5,1,shattering|hypothesis|binary_labeling|hypothesis_space|dataset|no_error_classification,6,86%,Extended Abstract,Remember
+302,5.0,1.5,1.0,3.5,4.0,0,hypothesis|input_space|no_error_classification,3,43%,Multistructural,Remember
+303,0.0,1.0,2.5,1.0,2.5,0,shattering|hypothesis|hypothesis_space|dataset|no_error_classification,5,71%,Relational,Remember
+304,5.0,4.0,4.0,1.0,1.0,tie,widrow_hoff_learning_rule|error_signal|input_signal|steepest_descent_method|synaptic_weight_adjustment,5,100%,Extended Abstract,Remember
+305,5.0,4.0,4.0,1.0,1.0,tie,widrow_hoff_learning_rule|error_signal|input_signal|synaptic_weight_adjustment,4,80%,Relational,Remember
+306,2.5,2.5,3.0,0.0,0.5,0,widrow_hoff_learning_rule|error_signal|input_signal|synaptic_weight_adjustment,4,80%,Relational,Remember
+307,5.0,4.0,3.0,1.0,2.0,0,widrow_hoff_learning_rule|error_signal|input_signal,3,60%,Multistructural,Remember
+308,2.5,3.5,4.0,1.0,1.5,0,widrow_hoff_learning_rule|error_signal|input_signal|steepest_descent_method|synaptic_weight_adjustment,5,100%,Extended Abstract,Remember
+309,2.5,3.5,4.0,1.0,1.5,0,widrow_hoff_learning_rule|error_signal|input_signal|synaptic_weight_adjustment,4,80%,Relational,Remember
+310,5.0,4.0,5.0,1.0,0.0,1,error_signal|widrow_hoff_learning_rule|input_signal|steepest_descent_method|synaptic_weight_adjustment,5,100%,Extended Abstract,Remember
+311,5.0,2.5,3.0,2.5,2.0,1,widrow_hoff_learning_rule|error_signal|steepest_descent_method|synaptic_weight_adjustment,4,80%,Relational,Understand
+312,5.0,4.5,4.5,0.5,0.5,tie,widrow_hoff_learning_rule|error_signal|steepest_descent_method|synaptic_weight_adjustment,4,80%,Relational,Remember
+313,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+314,0.0,1.0,3.0,1.0,3.0,0,widrow_hoff_learning_rule|error_signal|input_signal|synaptic_weight_adjustment,4,80%,Relational,Remember
+315,2.5,3.0,3.0,0.5,0.5,tie,widrow_hoff_learning_rule|steepest_descent_method|synaptic_weight_adjustment,3,60%,Multistructural,Remember
+316,2.5,3.0,3.0,0.5,0.5,tie,widrow_hoff_learning_rule|error_signal|input_signal|steepest_descent_method,4,80%,Relational,Remember
+317,2.5,1.0,2.0,1.5,0.5,1,widrow_hoff_learning_rule|error_signal|steepest_descent_method|synaptic_weight_adjustment,4,80%,Relational,Remember
+318,5.0,4.5,4.0,0.5,1.0,0,widrow_hoff_learning_rule|error_signal|input_signal|steepest_descent_method|synaptic_weight_adjustment,5,100%,Extended Abstract,Remember
+319,2.5,3.0,4.0,0.5,1.5,0,error_signal|steepest_descent_method|synaptic_weight_adjustment|widrow_hoff_learning_rule|input_signal,5,100%,Extended Abstract,Remember
+320,5.0,3.0,3.5,2.0,1.5,1,widrow_hoff_learning_rule|error_signal|steepest_descent_method|synaptic_weight_adjustment,4,80%,Relational,Remember
+321,2.5,4.5,4.5,2.0,2.0,tie,widrow_hoff_learning_rule|error_signal|input_signal|steepest_descent_method|synaptic_weight_adjustment,5,100%,Extended Abstract,Remember
+322,5.0,2.0,2.5,3.0,2.5,1,widrow_hoff_learning_rule|error_signal|input_signal|steepest_descent_method|synaptic_weight_adjustment,5,100%,Extended Abstract,Remember
+323,5.0,4.5,4.5,0.5,0.5,tie,error_signal|steepest_descent_method|synaptic_weight_adjustment|widrow_hoff_learning_rule|input_signal,5,100%,Extended Abstract,Remember
+324,2.5,2.0,3.0,0.5,0.5,tie,widrow_hoff_learning_rule|error_signal|input_signal|steepest_descent_method|synaptic_weight_adjustment,5,100%,Extended Abstract,Remember
+325,5.0,4.0,4.5,1.0,0.5,1,widrow_hoff_learning_rule|error_signal|input_signal|steepest_descent_method|synaptic_weight_adjustment,5,100%,Extended Abstract,Remember
+326,5.0,4.0,4.5,1.0,0.5,1,error_signal|synaptic_weight_adjustment|widrow_hoff_learning_rule|input_signal,4,80%,Relational,Remember
+327,2.5,4.5,4.0,2.0,1.5,1,widrow_hoff_learning_rule|error_signal|input_signal|steepest_descent_method|synaptic_weight_adjustment,5,100%,Extended Abstract,Remember
+328,5.0,4.0,4.5,1.0,0.5,1,widrow_hoff_learning_rule|error_signal|input_signal|steepest_descent_method|synaptic_weight_adjustment,5,100%,Extended Abstract,Remember
+329,2.5,3.5,3.5,1.0,1.0,tie,widrow_hoff_learning_rule|error_signal|input_signal|steepest_descent_method|synaptic_weight_adjustment,5,100%,Extended Abstract,Remember
+330,2.5,4.5,4.0,2.0,1.5,1,widrow_hoff_learning_rule|error_signal|input_signal|synaptic_weight_adjustment,4,80%,Relational,Remember
+331,5.0,4.0,4.5,1.0,0.5,1,widrow_hoff_learning_rule|error_signal|input_signal|synaptic_weight_adjustment,4,80%,Relational,Remember
+332,2.5,2.5,2.5,0.0,0.0,tie,widrow_hoff_learning_rule|error_signal|steepest_descent_method|synaptic_weight_adjustment,4,80%,Relational,Remember
+333,5.0,4.0,4.5,1.0,0.5,1,widrow_hoff_learning_rule|error_signal|input_signal|synaptic_weight_adjustment,4,80%,Relational,Remember
+334,5.0,2.5,2.5,2.5,2.5,tie,widrow_hoff_learning_rule|error_signal|steepest_descent_method|synaptic_weight_adjustment,4,80%,Relational,Remember
+335,5.0,4.0,4.5,1.0,0.5,1,error_signal|steepest_descent_method|synaptic_weight_adjustment|widrow_hoff_learning_rule|input_signal,5,100%,Extended Abstract,Remember
+336,5.0,4.5,5.0,0.5,0.0,1,error_signal|widrow_hoff_learning_rule|input_signal|steepest_descent_method|synaptic_weight_adjustment,5,100%,Extended Abstract,Remember
+337,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+338,0.0,1.0,2.0,1.0,2.0,0,widrow_hoff_learning_rule|synaptic_weight_adjustment|error_signal,3,60%,Multistructural,Remember
+339,5.0,4.0,4.0,1.0,1.0,tie,widrow_hoff_learning_rule|error_signal|input_signal|steepest_descent_method|synaptic_weight_adjustment,5,100%,Extended Abstract,Remember
+340,5.0,4.5,4.0,0.5,1.0,0,widrow_hoff_learning_rule|error_signal|input_signal|synaptic_weight_adjustment,4,80%,Relational,Remember
+341,5.0,3.0,4.5,2.0,0.5,1,widrow_hoff_learning_rule|error_signal|input_signal|steepest_descent_method,4,80%,Relational,Remember
+342,2.5,4.0,4.5,1.5,2.0,0,chain_rule|multi_layer_perceptron|partial_derivatives|error_reduction|local_gradient|weight_update|backpropagation,7,100%,Extended Abstract,Analyze
+343,2.5,2.5,3.0,0.0,0.5,0,error_reduction|weight_update|local_gradient|chain_rule|backpropagation,5,71%,Relational,Remember
+344,2.5,2.0,2.0,0.5,0.5,tie,error_reduction|local_gradient|chain_rule|backpropagation,4,57%,Multistructural,Remember
+345,5.0,4.5,5.0,0.5,0.0,1,chain_rule|multi_layer_perceptron|partial_derivatives|error_reduction|local_gradient|weight_update|backpropagation,7,100%,Extended Abstract,Remember
+346,2.5,3.5,3.5,1.0,1.0,tie,error_reduction|local_gradient|weight_update|multi_layer_perceptron|backpropagation|chain_rule,6,86%,Extended Abstract,Understand
+347,5.0,3.5,3.5,1.5,1.5,tie,error_reduction|local_gradient|weight_update|multi_layer_perceptron|backpropagation|chain_rule,6,86%,Extended Abstract,Understand
+348,5.0,4.0,4.5,1.0,0.5,1,chain_rule|multi_layer_perceptron|partial_derivatives|error_reduction|local_gradient|weight_update|backpropagation,7,100%,Extended Abstract,Remember
+349,5.0,4.5,4.0,0.5,1.0,0,chain_rule|multi_layer_perceptron|error_reduction|local_gradient|weight_update|backpropagation,6,86%,Extended Abstract,Remember
+350,2.5,3.5,3.5,1.0,1.0,tie,chain_rule|multi_layer_perceptron|error_reduction|local_gradient|weight_update|backpropagation,6,86%,Extended Abstract,Remember
+351,5.0,4.0,3.5,1.0,1.5,0,chain_rule|multi_layer_perceptron|error_reduction|local_gradient|weight_update|backpropagation,6,86%,Extended Abstract,Remember
+352,2.5,2.5,3.5,0.0,1.0,0,chain_rule|partial_derivatives|error_reduction|local_gradient|weight_update|backpropagation,6,86%,Extended Abstract,Remember
+353,2.5,3.5,4.5,1.0,2.0,0,chain_rule|multi_layer_perceptron|partial_derivatives|error_reduction|local_gradient|weight_update|backpropagation,7,100%,Extended Abstract,Remember
+354,2.5,2.5,4.5,0.0,2.0,0,chain_rule|multi_layer_perceptron|partial_derivatives|error_reduction|local_gradient|weight_update|backpropagation,7,100%,Extended Abstract,Remember
+355,5.0,4.0,4.0,1.0,1.0,tie,chain_rule|multi_layer_perceptron|error_reduction|local_gradient|weight_update|backpropagation,6,86%,Extended Abstract,Understand
+356,5.0,4.5,4.5,0.5,0.5,tie,chain_rule|multi_layer_perceptron|partial_derivatives|error_reduction|local_gradient|weight_update|backpropagation,7,100%,Extended Abstract,Remember
+357,2.5,3.0,3.5,0.5,1.0,0,chain_rule|multi_layer_perceptron|error_reduction|local_gradient|weight_update|backpropagation,6,86%,Extended Abstract,Remember
+358,2.5,3.0,3.5,0.5,1.0,0,chain_rule|multi_layer_perceptron|error_reduction|local_gradient|weight_update|backpropagation,6,86%,Extended Abstract,Remember
+359,5.0,4.0,3.5,1.0,1.5,0,chain_rule|multi_layer_perceptron|error_reduction|local_gradient|weight_update|backpropagation,6,86%,Extended Abstract,Remember
+360,5.0,3.5,4.5,1.5,0.5,1,chain_rule|multi_layer_perceptron|partial_derivatives|error_reduction|local_gradient|weight_update|backpropagation,7,100%,Extended Abstract,Remember
+361,5.0,4.5,5.0,0.5,0.0,1,chain_rule|multi_layer_perceptron|partial_derivatives|error_reduction|local_gradient|weight_update|backpropagation,7,100%,Extended Abstract,Remember
+362,2.5,3.5,4.0,1.0,1.5,0,chain_rule|multi_layer_perceptron|partial_derivatives|error_reduction|local_gradient|weight_update|backpropagation,7,100%,Extended Abstract,Remember
+363,5.0,3.5,3.5,1.5,1.5,tie,chain_rule|multi_layer_perceptron|error_reduction|local_gradient|weight_update|backpropagation,6,86%,Extended Abstract,Remember
+364,5.0,4.0,5.0,1.0,0.0,1,chain_rule|multi_layer_perceptron|partial_derivatives|error_reduction|local_gradient|weight_update|backpropagation,7,100%,Extended Abstract,Remember
+365,2.5,2.5,4.0,0.0,1.5,0,chain_rule|multi_layer_perceptron|error_reduction|local_gradient|weight_update|backpropagation,6,86%,Extended Abstract,Remember
+366,5.0,4.5,3.5,0.5,1.5,0,chain_rule|partial_derivatives|error_reduction|local_gradient|weight_update|backpropagation,6,86%,Extended Abstract,Remember
+367,2.5,3.0,3.0,0.5,0.5,tie,chain_rule|error_reduction|weight_update|local_gradient|backpropagation,5,71%,Relational,Remember
+368,2.5,3.0,2.0,0.5,0.5,tie,local_gradient|weight_update|multi_layer_perceptron|chain_rule|backpropagation,5,71%,Relational,Remember
+369,5.0,4.0,4.0,1.0,1.0,tie,chain_rule|multi_layer_perceptron|error_reduction|local_gradient|weight_update|backpropagation,6,86%,Extended Abstract,Remember
+370,2.5,4.5,4.0,2.0,1.5,1,chain_rule|multi_layer_perceptron|error_reduction|local_gradient|weight_update|backpropagation,6,86%,Extended Abstract,Remember
+371,5.0,3.0,3.5,2.0,1.5,1,error_reduction|local_gradient|weight_update|multi_layer_perceptron|backpropagation|chain_rule,6,86%,Extended Abstract,Remember
+372,5.0,4.0,4.0,1.0,1.0,tie,chain_rule|multi_layer_perceptron|error_reduction|local_gradient|weight_update|backpropagation,6,86%,Extended Abstract,Remember
+373,2.5,3.5,4.0,1.0,1.5,0,chain_rule|multi_layer_perceptron|error_reduction|local_gradient|weight_update|backpropagation,6,86%,Extended Abstract,Remember
+374,5.0,4.0,4.0,1.0,1.0,tie,error_reduction|local_gradient|weight_update|multi_layer_perceptron|backpropagation,5,71%,Relational,Analyze
+375,2.5,3.5,5.0,1.0,2.5,0,chain_rule|multi_layer_perceptron|partial_derivatives|error_reduction|local_gradient|weight_update|backpropagation,7,100%,Extended Abstract,Remember
+376,2.5,3.0,3.0,0.5,0.5,tie,chain_rule|multi_layer_perceptron|partial_derivatives|local_gradient|weight_update|backpropagation,6,86%,Extended Abstract,Remember
+377,2.5,2.0,3.5,0.5,1.0,0,chain_rule|multi_layer_perceptron|error_reduction|local_gradient|weight_update|backpropagation,6,86%,Extended Abstract,Understand
+378,2.5,4.5,5.0,2.0,2.5,0,chain_rule|multi_layer_perceptron|partial_derivatives|error_reduction|local_gradient|weight_update|backpropagation,7,100%,Extended Abstract,Understand
+379,5.0,4.5,5.0,0.5,0.0,1,chain_rule|multi_layer_perceptron|partial_derivatives|error_reduction|local_gradient|weight_update|backpropagation,7,100%,Extended Abstract,Analyze
+380,5.0,5.0,5.0,0.0,0.0,tie,instability|convergence_speed|learning_rate|overdamped_convergence|underdamped_convergence|steepest_descent_learning,6,100%,Extended Abstract,Remember
+381,2.5,5.0,4.0,2.5,1.5,1,instability|convergence_speed|learning_rate|overdamped_convergence|underdamped_convergence|steepest_descent_learning,6,100%,Extended Abstract,Remember
+382,2.5,2.0,2.0,0.5,0.5,tie,instability|learning_rate|convergence_speed|overdamped_convergence|underdamped_convergence|steepest_descent_learning,6,100%,Extended Abstract,Remember
+383,5.0,3.5,3.0,1.5,2.0,0,instability|convergence_speed|learning_rate|overdamped_convergence|underdamped_convergence|steepest_descent_learning,6,100%,Extended Abstract,Remember
+384,5.0,4.0,5.0,1.0,0.0,1,instability|convergence_speed|learning_rate|overdamped_convergence|underdamped_convergence|steepest_descent_learning,6,100%,Extended Abstract,Understand
+385,2.5,4.0,4.0,1.5,1.5,tie,instability|convergence_speed|learning_rate|overdamped_convergence|underdamped_convergence|steepest_descent_learning,6,100%,Extended Abstract,Remember
+386,5.0,4.0,3.0,1.0,2.0,0,instability|convergence_speed|learning_rate|overdamped_convergence|underdamped_convergence|steepest_descent_learning,6,100%,Extended Abstract,Remember
+387,5.0,3.0,4.5,2.0,0.5,1,instability|convergence_speed|learning_rate|overdamped_convergence|underdamped_convergence|steepest_descent_learning,6,100%,Extended Abstract,Understand
+388,5.0,4.0,3.0,1.0,2.0,0,instability|convergence_speed|learning_rate|overdamped_convergence|underdamped_convergence|steepest_descent_learning,6,100%,Extended Abstract,Remember
+389,5.0,3.0,2.5,2.0,2.5,0,instability|convergence_speed|learning_rate|overdamped_convergence|underdamped_convergence|steepest_descent_learning,6,100%,Extended Abstract,Remember
+390,2.5,3.0,2.0,0.5,0.5,tie,instability|convergence_speed|learning_rate|overdamped_convergence|underdamped_convergence|steepest_descent_learning,6,100%,Extended Abstract,Remember
+391,5.0,5.0,5.0,0.0,0.0,tie,instability|convergence_speed|learning_rate|overdamped_convergence|underdamped_convergence|steepest_descent_learning,6,100%,Extended Abstract,Understand
+392,5.0,4.5,5.0,0.5,0.0,1,instability|convergence_speed|learning_rate|overdamped_convergence|underdamped_convergence|steepest_descent_learning,6,100%,Extended Abstract,Remember
+393,5.0,1.0,1.0,4.0,4.0,tie,convergence_speed|steepest_descent_learning,2,33%,Multistructural,Remember
+394,5.0,4.5,3.0,0.5,2.0,0,learning_rate|instability|convergence_speed|steepest_descent_learning,4,67%,Relational,Understand
+395,5.0,4.0,5.0,1.0,0.0,1,instability|convergence_speed|learning_rate|overdamped_convergence|underdamped_convergence|steepest_descent_learning,6,100%,Extended Abstract,Remember
+396,5.0,4.5,5.0,0.5,0.0,1,instability|convergence_speed|learning_rate|overdamped_convergence|underdamped_convergence|steepest_descent_learning,6,100%,Extended Abstract,Remember
+397,5.0,4.5,3.0,0.5,2.0,0,instability|convergence_speed|learning_rate|overdamped_convergence|underdamped_convergence|steepest_descent_learning,6,100%,Extended Abstract,Remember
+398,5.0,4.5,4.0,0.5,1.0,0,instability|convergence_speed|learning_rate|overdamped_convergence|underdamped_convergence|steepest_descent_learning,6,100%,Extended Abstract,Remember
+399,5.0,4.0,4.5,1.0,0.5,1,instability|convergence_speed|learning_rate|overdamped_convergence|underdamped_convergence|steepest_descent_learning,6,100%,Extended Abstract,Remember
+400,5.0,3.0,4.5,2.0,0.5,1,instability|convergence_speed|learning_rate|overdamped_convergence|underdamped_convergence|steepest_descent_learning,6,100%,Extended Abstract,Remember
+401,5.0,4.0,4.5,1.0,0.5,1,instability|convergence_speed|learning_rate|overdamped_convergence|underdamped_convergence|steepest_descent_learning,6,100%,Extended Abstract,Remember
+402,5.0,4.0,4.0,1.0,1.0,tie,instability|convergence_speed|learning_rate|overdamped_convergence|underdamped_convergence|steepest_descent_learning,6,100%,Extended Abstract,Remember
+403,5.0,2.5,3.0,2.5,2.0,1,instability|convergence_speed|learning_rate|overdamped_convergence|underdamped_convergence|steepest_descent_learning,6,100%,Extended Abstract,Remember
+404,5.0,1.5,2.0,3.5,3.0,1,instability|convergence_speed|learning_rate|overdamped_convergence|underdamped_convergence|steepest_descent_learning,6,100%,Extended Abstract,Understand
+405,5.0,4.0,3.5,1.0,1.5,0,instability|convergence_speed|learning_rate|overdamped_convergence|underdamped_convergence|steepest_descent_learning,6,100%,Extended Abstract,Remember
+406,5.0,2.5,3.0,2.5,2.0,1,instability|convergence_speed|learning_rate|overdamped_convergence|underdamped_convergence|steepest_descent_learning,6,100%,Extended Abstract,Understand
+407,5.0,3.0,4.0,2.0,1.0,1,instability|convergence_speed|learning_rate|overdamped_convergence|underdamped_convergence|steepest_descent_learning,6,100%,Extended Abstract,Understand
+408,5.0,4.0,4.5,1.0,0.5,1,instability|convergence_speed|learning_rate|overdamped_convergence|underdamped_convergence|steepest_descent_learning,6,100%,Extended Abstract,Remember
+409,5.0,3.0,4.0,2.0,1.0,1,instability|convergence_speed|learning_rate|overdamped_convergence|underdamped_convergence|steepest_descent_learning,6,100%,Extended Abstract,Understand
+410,5.0,3.0,3.5,2.0,1.5,1,instability|convergence_speed|learning_rate|overdamped_convergence|underdamped_convergence|steepest_descent_learning,6,100%,Extended Abstract,Understand
+411,5.0,3.0,3.5,2.0,1.5,1,instability|convergence_speed|learning_rate|overdamped_convergence|steepest_descent_learning,5,83%,Relational,Remember
+412,5.0,2.5,3.0,2.5,2.0,1,instability|convergence_speed|learning_rate|overdamped_convergence|underdamped_convergence|steepest_descent_learning,6,100%,Extended Abstract,Remember
+413,5.0,3.5,3.0,1.5,2.0,0,instability|convergence_speed|learning_rate|overdamped_convergence|underdamped_convergence|steepest_descent_learning,6,100%,Extended Abstract,Remember
+414,5.0,3.5,3.0,1.5,2.0,0,instability|convergence_speed|learning_rate|overdamped_convergence|underdamped_convergence|steepest_descent_learning,6,100%,Extended Abstract,Understand
+415,5.0,3.0,3.0,2.0,2.0,tie,instability|convergence_speed|learning_rate|overdamped_convergence|underdamped_convergence|steepest_descent_learning,6,100%,Extended Abstract,Understand
+416,5.0,3.5,3.5,1.5,1.5,tie,instability|convergence_speed|learning_rate|overdamped_convergence|underdamped_convergence|steepest_descent_learning,6,100%,Extended Abstract,Analyze
+417,5.0,4.0,4.0,1.0,1.0,tie,instability|convergence_speed|learning_rate|overdamped_convergence|steepest_descent_learning,5,83%,Relational,Analyze
+418,5.0,5.0,4.5,0.0,0.5,0,free_running_state|visible_layer|hidden_layer|reduced_boltzmann_machine|activation_probability|state_flipping|clamped_state|binary_neurons,8,89%,Extended Abstract,Remember
+419,5.0,4.0,4.0,1.0,1.0,tie,free_running_state|visible_layer|hidden_layer|reduced_boltzmann_machine|state_flipping|activation_probability|clamped_state|binary_neurons,8,89%,Extended Abstract,Remember
+420,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+421,5.0,1.0,3.0,4.0,2.0,1,free_running_state|visible_layer|hidden_layer|reduced_boltzmann_machine|activation_probability|bi_parted_graph,6,67%,Relational,Remember
+422,5.0,2.5,3.0,2.5,2.0,1,free_running_state|visible_layer|hidden_layer|reduced_boltzmann_machine|state_flipping|clamped_state,6,67%,Relational,Remember
+423,0.0,1.0,1.5,1.0,1.5,0,hidden_layer|free_running_state|visible_layer|binary_neurons,4,44%,Multistructural,Remember
+424,5.0,1.5,3.5,3.5,1.5,1,free_running_state|visible_layer|hidden_layer|reduced_boltzmann_machine|activation_probability|state_flipping|clamped_state|binary_neurons,8,89%,Extended Abstract,Remember
+425,5.0,2.0,4.0,3.0,1.0,1,free_running_state|visible_layer|hidden_layer|reduced_boltzmann_machine|activation_probability|state_flipping|bi_parted_graph|clamped_state|binary_neurons,9,100%,Extended Abstract,Remember
+426,2.5,1.0,3.5,1.5,1.0,1,free_running_state|visible_layer|hidden_layer|reduced_boltzmann_machine|state_flipping|clamped_state|binary_neurons,7,78%,Relational,Remember
+427,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+428,0.0,0.5,1.5,0.5,1.5,0,visible_layer|hidden_layer|clamped_state|binary_neurons,4,44%,Multistructural,Remember
+429,2.5,2.0,2.5,0.5,0.0,1,reduced_boltzmann_machine|state_flipping|free_running_state|clamped_state|binary_neurons,5,56%,Multistructural,Remember
+430,2.5,1.0,1.0,1.5,1.5,tie,free_running_state|visible_layer|hidden_layer|reduced_boltzmann_machine|clamped_state|binary_neurons,6,67%,Relational,Analyze
+431,2.5,1.5,2.0,1.0,0.5,1,hidden_layer|reduced_boltzmann_machine|free_running_state|visible_layer|clamped_state,5,56%,Multistructural,Analyze
+432,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+433,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+434,5.0,3.0,3.5,2.0,1.5,1,free_running_state|visible_layer|hidden_layer|reduced_boltzmann_machine|state_flipping|clamped_state|binary_neurons,7,78%,Relational,Remember
+435,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+436,2.5,1.0,2.5,1.5,0.0,1,reduced_boltzmann_machine|state_flipping|free_running_state|clamped_state|binary_neurons,5,56%,Multistructural,Remember
+437,5.0,3.5,4.5,1.5,0.5,1,free_running_state|visible_layer|hidden_layer|reduced_boltzmann_machine|activation_probability|state_flipping|bi_parted_graph|clamped_state|binary_neurons,9,100%,Extended Abstract,Remember
+438,5.0,4.0,4.5,1.0,0.5,1,free_running_state|visible_layer|hidden_layer|reduced_boltzmann_machine|activation_probability|state_flipping|clamped_state|binary_neurons,8,89%,Extended Abstract,Remember
+439,2.5,1.0,1.5,1.5,1.0,1,reduced_boltzmann_machine|state_flipping|free_running_state|clamped_state,4,44%,Multistructural,Remember
+440,2.5,2.5,3.5,0.0,1.0,0,free_running_state|visible_layer|hidden_layer|reduced_boltzmann_machine|state_flipping|activation_probability|clamped_state|binary_neurons,8,89%,Extended Abstract,Remember
+441,0.0,0.5,0.5,0.5,0.5,tie,,0,0%,Prestructural,Understand
+442,2.5,2.0,2.5,0.5,0.0,1,reduced_boltzmann_machine|state_flipping|activation_probability|free_running_state|clamped_state,5,56%,Multistructural,Remember
+443,2.5,2.0,2.0,0.5,0.5,tie,free_running_state|visible_layer|hidden_layer|reduced_boltzmann_machine|state_flipping|clamped_state|binary_neurons,7,78%,Relational,Remember
+444,2.5,3.5,3.5,1.0,1.0,tie,free_running_state|visible_layer|hidden_layer|reduced_boltzmann_machine|state_flipping|clamped_state|binary_neurons,7,78%,Relational,Remember
+445,2.5,1.0,2.5,1.5,0.0,1,free_running_state|visible_layer|hidden_layer|reduced_boltzmann_machine|clamped_state|binary_neurons,6,67%,Relational,Remember
+446,2.5,1.0,3.0,1.5,0.5,1,free_running_state|visible_layer|hidden_layer|reduced_boltzmann_machine|state_flipping|activation_probability|clamped_state|binary_neurons,8,89%,Extended Abstract,Remember
+447,2.5,1.0,3.0,1.5,0.5,1,free_running_state|visible_layer|hidden_layer|reduced_boltzmann_machine|activation_probability|state_flipping|clamped_state,7,78%,Relational,Remember
+448,2.5,1.0,2.0,1.5,0.5,1,free_running_state|visible_layer|hidden_layer|reduced_boltzmann_machine|bi_parted_graph,5,56%,Multistructural,Understand
+449,0.0,1.0,1.0,1.0,1.0,tie,free_running_state|reduced_boltzmann_machine|state_flipping|activation_probability|clamped_state|binary_neurons,6,67%,Relational,Remember
+450,0.0,1.0,1.0,1.0,1.0,tie,free_running_state|visible_layer|reduced_boltzmann_machine|state_flipping|activation_probability|clamped_state|binary_neurons,7,78%,Relational,Remember
+451,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+452,0.0,0.0,0.5,0.0,0.5,0,visible_layer|reduced_boltzmann_machine|hidden_layer,3,33%,Multistructural,Remember
+453,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+454,2.5,2.0,3.0,0.5,0.5,tie,free_running_state|visible_layer|hidden_layer|reduced_boltzmann_machine|state_flipping|clamped_state|binary_neurons,7,78%,Relational,Understand
+455,5.0,3.5,4.0,1.5,1.0,1,free_running_state|visible_layer|hidden_layer|reduced_boltzmann_machine|state_flipping|bi_parted_graph|clamped_state|binary_neurons,8,89%,Extended Abstract,Remember
+456,5.0,5.0,5.0,0.0,0.0,tie,feedforward_neural_network|dynamic_systems_approximation|cyclic_connection|output_layer_weights|echo_state_network|recurrent_neural_network,6,100%,Extended Abstract,Remember
+457,5.0,4.5,4.0,0.5,1.0,0,feedforward_neural_network|cyclic_connection|output_layer_weights|echo_state_network|recurrent_neural_network,5,83%,Relational,Analyze
+458,5.0,4.0,4.0,1.0,1.0,tie,feedforward_neural_network|cyclic_connection|output_layer_weights|echo_state_network|recurrent_neural_network,5,83%,Relational,Remember
+459,5.0,3.5,2.5,1.5,2.5,0,feedforward_neural_network|dynamic_systems_approximation|echo_state_network|output_layer_weights|recurrent_neural_network,5,83%,Relational,Remember
+460,5.0,4.0,4.0,1.0,1.0,tie,feedforward_neural_network|cyclic_connection|output_layer_weights|echo_state_network|recurrent_neural_network,5,83%,Relational,Remember
+461,5.0,3.5,5.0,1.5,0.0,1,feedforward_neural_network|dynamic_systems_approximation|cyclic_connection|output_layer_weights|echo_state_network|recurrent_neural_network,6,100%,Extended Abstract,Analyze
+462,5.0,3.5,4.0,1.5,1.0,1,feedforward_neural_network|cyclic_connection|output_layer_weights|echo_state_network|recurrent_neural_network,5,83%,Relational,Analyze
+463,5.0,4.0,4.0,1.0,1.0,tie,feedforward_neural_network|dynamic_systems_approximation|output_layer_weights|echo_state_network|recurrent_neural_network,5,83%,Relational,Remember
+464,5.0,4.0,4.0,1.0,1.0,tie,feedforward_neural_network|cyclic_connection|output_layer_weights|echo_state_network|recurrent_neural_network,5,83%,Relational,Remember
+465,5.0,4.0,5.0,1.0,0.0,1,feedforward_neural_network|dynamic_systems_approximation|cyclic_connection|output_layer_weights|echo_state_network|recurrent_neural_network,6,100%,Extended Abstract,Analyze
+466,5.0,3.5,4.0,1.5,1.0,1,feedforward_neural_network|echo_state_network|cyclic_connection|output_layer_weights|recurrent_neural_network,5,83%,Relational,Remember
+467,2.5,3.0,3.0,0.5,0.5,tie,feedforward_neural_network|dynamic_systems_approximation|cyclic_connection|output_layer_weights|echo_state_network|recurrent_neural_network,6,100%,Extended Abstract,Remember
+468,2.5,3.5,3.0,1.0,0.5,1,feedforward_neural_network|cyclic_connection|output_layer_weights|echo_state_network|recurrent_neural_network,5,83%,Relational,Analyze
+469,5.0,3.0,4.5,2.0,0.5,1,feedforward_neural_network|dynamic_systems_approximation|cyclic_connection|output_layer_weights|echo_state_network|recurrent_neural_network,6,100%,Extended Abstract,Remember
+470,2.5,3.0,3.0,0.5,0.5,tie,feedforward_neural_network|output_layer_weights|echo_state_network|recurrent_neural_network,4,67%,Relational,Analyze
+471,5.0,3.5,2.5,1.5,2.5,0,feedforward_neural_network|cyclic_connection|output_layer_weights|echo_state_network|recurrent_neural_network,5,83%,Relational,Remember
+472,5.0,3.0,3.5,2.0,1.5,1,feedforward_neural_network|dynamic_systems_approximation|output_layer_weights|echo_state_network|recurrent_neural_network,5,83%,Relational,Remember
+473,2.5,2.0,2.5,0.5,0.0,1,feedforward_neural_network|cyclic_connection|output_layer_weights|echo_state_network|recurrent_neural_network,5,83%,Relational,Remember
+474,2.5,3.0,3.5,0.5,1.0,0,feedforward_neural_network|dynamic_systems_approximation|cyclic_connection|output_layer_weights|echo_state_network|recurrent_neural_network,6,100%,Extended Abstract,Understand
+475,5.0,4.0,5.0,1.0,0.0,1,feedforward_neural_network|dynamic_systems_approximation|cyclic_connection|output_layer_weights|echo_state_network|recurrent_neural_network,6,100%,Extended Abstract,Remember
+476,5.0,4.5,4.0,0.5,1.0,0,feedforward_neural_network|cyclic_connection|output_layer_weights|echo_state_network|recurrent_neural_network,5,83%,Relational,Remember
+477,2.5,3.5,3.5,1.0,1.0,tie,feedforward_neural_network|cyclic_connection|output_layer_weights|echo_state_network|recurrent_neural_network,5,83%,Relational,Understand
+478,2.5,2.5,3.0,0.0,0.5,0,feedforward_neural_network|dynamic_systems_approximation|output_layer_weights|echo_state_network|recurrent_neural_network,5,83%,Relational,Remember
+479,2.5,2.0,1.0,0.5,1.5,0,feedforward_neural_network|echo_state_network|output_layer_weights|recurrent_neural_network,4,67%,Relational,Analyze
+480,5.0,4.5,4.5,0.5,0.5,tie,feedforward_neural_network|dynamic_systems_approximation|cyclic_connection|output_layer_weights|echo_state_network|recurrent_neural_network,6,100%,Extended Abstract,Remember
+481,2.5,1.5,2.0,1.0,0.5,1,feedforward_neural_network|dynamic_systems_approximation|echo_state_network|cyclic_connection|output_layer_weights|recurrent_neural_network,6,100%,Extended Abstract,Remember
+482,5.0,3.5,4.5,1.5,0.5,1,feedforward_neural_network|dynamic_systems_approximation|cyclic_connection|output_layer_weights|echo_state_network|recurrent_neural_network,6,100%,Extended Abstract,Remember
+483,2.5,4.5,4.0,2.0,1.5,1,feedforward_neural_network|output_layer_weights|echo_state_network|recurrent_neural_network,4,67%,Relational,Remember
+484,2.5,4.5,5.0,2.0,2.5,0,feedforward_neural_network|dynamic_systems_approximation|cyclic_connection|output_layer_weights|echo_state_network|recurrent_neural_network,6,100%,Extended Abstract,Understand
+485,2.5,3.5,4.0,1.0,1.5,0,feedforward_neural_network|cyclic_connection|output_layer_weights|echo_state_network|recurrent_neural_network,5,83%,Relational,Remember
+486,2.5,4.5,5.0,2.0,2.5,0,feedforward_neural_network|dynamic_systems_approximation|cyclic_connection|output_layer_weights|echo_state_network|recurrent_neural_network,6,100%,Extended Abstract,Understand
+487,2.5,3.0,4.0,0.5,1.5,0,feedforward_neural_network|dynamic_systems_approximation|cyclic_connection|output_layer_weights|echo_state_network|recurrent_neural_network,6,100%,Extended Abstract,Remember
+488,0.0,1.0,1.5,1.0,1.5,0,feedforward_neural_network|cyclic_connection|output_layer_weights|echo_state_network|recurrent_neural_network,5,83%,Relational,Remember
+489,2.5,3.0,4.0,0.5,1.5,0,feedforward_neural_network|dynamic_systems_approximation|echo_state_network|cyclic_connection|recurrent_neural_network,5,83%,Relational,Remember
+490,0.0,3.0,3.5,3.0,3.5,0,feedforward_neural_network|cyclic_connection|output_layer_weights|echo_state_network|recurrent_neural_network,5,83%,Relational,Remember
+491,5.0,4.5,4.5,0.5,0.5,tie,feedforward_neural_network|dynamic_systems_approximation|output_layer_weights|echo_state_network|recurrent_neural_network,5,83%,Relational,Understand
+492,5.0,3.5,3.5,1.5,1.5,tie,feedforward_neural_network|output_layer_weights|echo_state_network|recurrent_neural_network,4,67%,Relational,Remember
+493,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+494,5.0,5.0,5.0,0.0,0.0,tie,average_pooling|softmax_layer|pooling_layer|kernel|convolutional_layer|max_pooling|convolutional_neural_network|relu_activation|input_image|fully_connected_layer|activation_layer,11,100%,Extended Abstract,Remember
+495,5.0,3.5,4.0,1.5,1.0,1,average_pooling|softmax_layer|pooling_layer|convolutional_layer|kernel|max_pooling|convolutional_neural_network|relu_activation|input_image|fully_connected_layer|activation_layer,11,100%,Extended Abstract,Remember
+496,2.5,0.5,2.5,2.0,0.0,1,softmax_layer|pooling_layer|kernel|convolutional_layer|convolutional_neural_network|input_image|fully_connected_layer|activation_layer,8,73%,Relational,Understand
+497,5.0,4.5,5.0,0.5,0.0,1,average_pooling|softmax_layer|pooling_layer|kernel|convolutional_layer|max_pooling|convolutional_neural_network|relu_activation|input_image|fully_connected_layer|activation_layer,11,100%,Extended Abstract,Remember
+498,2.5,2.5,2.0,0.0,0.5,0,average_pooling|pooling_layer|kernel|convolutional_layer|max_pooling|convolutional_neural_network|relu_activation|input_image|activation_layer,9,82%,Relational,Remember
+499,5.0,4.0,5.0,1.0,0.0,1,kernel|convolutional_layer|max_pooling|convolutional_neural_network|relu_activation|input_image|fully_connected_layer|activation_layer|average_pooling|softmax_layer|pooling_layer,11,100%,Extended Abstract,Remember
+500,2.5,2.0,3.0,0.5,0.5,tie,softmax_layer|pooling_layer|convolutional_layer|convolutional_neural_network|input_image|fully_connected_layer|activation_layer,7,64%,Relational,Analyze
+501,5.0,2.5,4.5,2.5,0.5,1,average_pooling|softmax_layer|pooling_layer|kernel|convolutional_layer|max_pooling|convolutional_neural_network|input_image|fully_connected_layer|activation_layer,10,91%,Extended Abstract,Remember
+502,2.5,2.5,4.0,0.0,1.5,0,average_pooling|softmax_layer|pooling_layer|convolutional_layer|kernel|max_pooling|convolutional_neural_network|input_image|fully_connected_layer|activation_layer,10,91%,Extended Abstract,Remember
+503,2.5,1.0,2.5,1.5,0.0,1,average_pooling|softmax_layer|pooling_layer|convolutional_layer|max_pooling|convolutional_neural_network|input_image|fully_connected_layer|activation_layer,9,82%,Relational,Analyze
+504,2.5,1.0,2.5,1.5,0.0,1,softmax_layer|pooling_layer|convolutional_layer|convolutional_neural_network|fully_connected_layer|activation_layer,6,55%,Multistructural,Remember
+505,2.5,1.5,3.0,1.0,0.5,1,average_pooling|softmax_layer|pooling_layer|convolutional_layer|kernel|max_pooling|convolutional_neural_network|input_image|fully_connected_layer|activation_layer,10,91%,Extended Abstract,Remember
+506,2.5,1.5,3.0,1.0,0.5,1,average_pooling|pooling_layer|kernel|convolutional_layer|max_pooling|convolutional_neural_network|input_image|fully_connected_layer|activation_layer,9,82%,Relational,Remember
+507,0.0,0.5,1.0,0.5,1.0,0,convolutional_neural_network|kernel|fully_connected_layer|relu_activation,4,36%,Multistructural,Remember
+508,2.5,3.5,3.5,1.0,1.0,tie,average_pooling|softmax_layer|pooling_layer|convolutional_layer|kernel|max_pooling|convolutional_neural_network|input_image|fully_connected_layer|activation_layer,10,91%,Extended Abstract,Remember
+509,2.5,1.5,3.5,1.0,1.0,tie,average_pooling|softmax_layer|pooling_layer|convolutional_layer|kernel|max_pooling|convolutional_neural_network|relu_activation|input_image|fully_connected_layer|activation_layer,11,100%,Extended Abstract,Remember
+510,5.0,3.0,4.5,2.0,0.5,1,average_pooling|softmax_layer|pooling_layer|kernel|convolutional_layer|max_pooling|convolutional_neural_network|relu_activation|input_image|fully_connected_layer|activation_layer,11,100%,Extended Abstract,Remember
+511,2.5,1.0,3.0,1.5,0.5,1,softmax_layer|pooling_layer|convolutional_layer|kernel|convolutional_neural_network|input_image|fully_connected_layer|activation_layer,8,73%,Relational,Remember
+512,2.5,3.0,4.5,0.5,2.0,0,average_pooling|softmax_layer|pooling_layer|kernel|convolutional_layer|max_pooling|convolutional_neural_network|relu_activation|input_image|fully_connected_layer|activation_layer,11,100%,Extended Abstract,Remember
+513,2.5,1.0,3.5,1.5,1.0,1,average_pooling|softmax_layer|pooling_layer|convolutional_layer|kernel|max_pooling|convolutional_neural_network|relu_activation|input_image|fully_connected_layer|activation_layer,11,100%,Extended Abstract,Remember
+514,5.0,3.5,4.0,1.5,1.0,1,average_pooling|softmax_layer|pooling_layer|convolutional_layer|kernel|max_pooling|convolutional_neural_network|relu_activation|input_image|fully_connected_layer|activation_layer,11,100%,Extended Abstract,Remember
+515,2.5,0.5,2.5,2.0,0.0,1,average_pooling|softmax_layer|pooling_layer|convolutional_layer|kernel|max_pooling|convolutional_neural_network|fully_connected_layer|activation_layer,9,82%,Relational,Remember
+516,2.5,1.5,3.0,1.0,0.5,1,average_pooling|softmax_layer|pooling_layer|convolutional_layer|kernel|max_pooling|convolutional_neural_network|relu_activation|fully_connected_layer|activation_layer,10,91%,Extended Abstract,Remember
+517,2.5,0.5,2.5,2.0,0.0,1,softmax_layer|pooling_layer|kernel|convolutional_layer|convolutional_neural_network|relu_activation|input_image|fully_connected_layer|activation_layer,9,82%,Relational,Remember
+518,2.5,0.5,2.5,2.0,0.0,1,softmax_layer|pooling_layer|convolutional_layer|kernel|convolutional_neural_network|input_image|fully_connected_layer|activation_layer,8,73%,Relational,Remember
+519,5.0,3.0,4.0,2.0,1.0,1,average_pooling|softmax_layer|pooling_layer|convolutional_layer|max_pooling|convolutional_neural_network|relu_activation|input_image|fully_connected_layer|activation_layer,10,91%,Extended Abstract,Remember
+520,2.5,1.0,3.0,1.5,0.5,1,softmax_layer|pooling_layer|convolutional_layer|kernel|convolutional_neural_network|input_image|fully_connected_layer|activation_layer,8,73%,Relational,Remember
+521,2.5,2.5,3.0,0.0,0.5,0,softmax_layer|pooling_layer|kernel|convolutional_layer|convolutional_neural_network|input_image|fully_connected_layer|activation_layer,8,73%,Relational,Remember
+522,2.5,3.0,4.0,0.5,1.5,0,average_pooling|softmax_layer|pooling_layer|convolutional_layer|kernel|max_pooling|convolutional_neural_network|input_image|fully_connected_layer|activation_layer,10,91%,Extended Abstract,Remember
+523,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+524,5.0,3.0,5.0,2.0,0.0,1,kernel|convolutional_layer|max_pooling|convolutional_neural_network|relu_activation|input_image|fully_connected_layer|activation_layer|average_pooling|softmax_layer|pooling_layer,11,100%,Extended Abstract,Remember
+525,2.5,2.0,2.5,0.5,0.0,1,kernel|convolutional_layer|convolutional_neural_network|input_image|fully_connected_layer,5,45%,Multistructural,Remember
+526,2.5,3.5,4.0,1.0,1.5,0,average_pooling|softmax_layer|pooling_layer|kernel|convolutional_layer|max_pooling|convolutional_neural_network|input_image|fully_connected_layer|activation_layer,10,91%,Extended Abstract,Remember
+527,5.0,3.0,3.0,2.0,2.0,tie,softmax_layer|pooling_layer|convolutional_layer|kernel|convolutional_neural_network|relu_activation|input_image|fully_connected_layer|activation_layer,9,82%,Relational,Analyze
+528,0.0,0.5,1.0,0.5,1.0,0,convolutional_neural_network|softmax_layer|pooling_layer|convolutional_layer|fully_connected_layer|activation_layer,6,55%,Multistructural,Remember
+529,2.5,1.0,3.0,1.5,0.5,1,average_pooling|softmax_layer|pooling_layer|convolutional_layer|kernel|max_pooling|convolutional_neural_network|input_image|fully_connected_layer|activation_layer,10,91%,Extended Abstract,Remember
+530,5.0,2.5,2.0,2.5,3.0,0,convolutional_layer|kernel|convolutional_neural_network|relu_activation|input_image|activation_layer,6,55%,Multistructural,Remember
+531,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+532,5.0,3.5,2.5,1.5,2.5,0,single_hidden_layer|weights|rbf_network|non_unique_bias|centers|linear_output_layer|other_neural_networks,7,78%,Relational,Remember
+533,5.0,4.0,3.5,1.0,1.5,0,single_hidden_layer|weights|rbf_network|non_unique_bias|centers|biases|linear_output_layer|universal_approximator|other_neural_networks,9,100%,Extended Abstract,Remember
+534,2.5,1.5,1.5,1.0,1.0,tie,single_hidden_layer|rbf_network|non_unique_bias|centers|linear_output_layer|universal_approximator|other_neural_networks,7,78%,Relational,Remember
+535,5.0,3.5,3.0,1.5,2.0,0,single_hidden_layer|weights|rbf_network|non_unique_bias|centers|linear_output_layer|universal_approximator|other_neural_networks,8,89%,Extended Abstract,Remember
+536,5.0,2.5,2.5,2.5,2.5,tie,centers|linear_output_layer|weights|rbf_network,4,44%,Multistructural,Remember
+537,5.0,3.5,3.0,1.5,2.0,0,single_hidden_layer|weights|rbf_network|non_unique_bias|linear_output_layer|universal_approximator|other_neural_networks,7,78%,Relational,Remember
+538,5.0,2.5,2.5,2.5,2.5,tie,single_hidden_layer|weights|rbf_network|non_unique_bias|centers|linear_output_layer|universal_approximator|other_neural_networks,8,89%,Extended Abstract,Remember
+539,5.0,2.5,3.5,2.5,1.5,1,single_hidden_layer|weights|rbf_network|non_unique_bias|centers|linear_output_layer|universal_approximator|other_neural_networks,8,89%,Extended Abstract,Remember
+540,5.0,2.5,3.5,2.5,1.5,1,single_hidden_layer|weights|rbf_network|non_unique_bias|centers|linear_output_layer|universal_approximator|other_neural_networks,8,89%,Extended Abstract,Remember
+541,0.0,1.0,1.0,1.0,1.0,tie,non_unique_bias|centers|single_hidden_layer|linear_output_layer|universal_approximator|rbf_network,6,67%,Relational,Remember
+542,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+543,2.5,1.0,1.5,1.5,1.0,1,centers|universal_approximator|rbf_network,3,33%,Multistructural,Remember
+544,2.5,1.0,1.0,1.5,1.5,tie,centers|rbf_network|universal_approximator,3,33%,Multistructural,Remember
+545,2.5,2.0,2.5,0.5,0.0,1,single_hidden_layer|weights|rbf_network|non_unique_bias|linear_output_layer|universal_approximator|other_neural_networks,7,78%,Relational,Remember
+546,0.0,0.5,0.5,0.5,0.5,tie,,0,0%,Prestructural,Remember
+547,2.5,1.5,3.0,1.0,0.5,1,single_hidden_layer|weights|rbf_network|centers|linear_output_layer|other_neural_networks,6,67%,Relational,Remember
+548,0.0,1.0,1.5,1.0,1.5,0,single_hidden_layer|rbf_network|non_unique_bias|centers|linear_output_layer|universal_approximator|other_neural_networks,7,78%,Relational,Remember
+549,0.0,0.5,0.5,0.5,0.5,tie,non_unique_bias|centers|universal_approximator|rbf_network,4,44%,Multistructural,Remember
+550,2.5,3.5,3.5,1.0,1.0,tie,single_hidden_layer|weights|rbf_network|non_unique_bias|centers|linear_output_layer|universal_approximator|other_neural_networks,8,89%,Extended Abstract,Remember
+551,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+552,2.5,2.0,2.0,0.5,0.5,tie,non_unique_bias|centers|linear_output_layer|weights|single_hidden_layer|rbf_network,6,67%,Relational,Remember
+553,0.0,0.5,0.5,0.5,0.5,tie,non_unique_bias|universal_approximator|single_hidden_layer|rbf_network,4,44%,Multistructural,Remember
+554,2.5,2.0,2.5,0.5,0.0,1,single_hidden_layer|weights|rbf_network|centers|biases|linear_output_layer|other_neural_networks,7,78%,Relational,Remember
+555,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+556,2.5,1.0,1.0,1.5,1.5,tie,centers|linear_output_layer,2,22%,Unistructural,Remember
+557,2.5,2.0,3.0,0.5,0.5,tie,single_hidden_layer|weights|rbf_network|non_unique_bias|centers|linear_output_layer|other_neural_networks,7,78%,Relational,Remember
+558,2.5,2.5,2.5,0.0,0.0,tie,single_hidden_layer|rbf_network|non_unique_bias|centers|universal_approximator|linear_output_layer|other_neural_networks,7,78%,Relational,Remember
+559,2.5,1.5,2.0,1.0,0.5,1,single_hidden_layer|weights|rbf_network|centers|biases|linear_output_layer|other_neural_networks,7,78%,Relational,Remember
+560,2.5,2.0,3.0,0.5,0.5,tie,centers|linear_output_layer|weights|other_neural_networks,4,44%,Multistructural,Remember
+561,2.5,2.0,3.0,0.5,0.5,tie,single_hidden_layer|weights|rbf_network|non_unique_bias|centers|linear_output_layer|universal_approximator,7,78%,Relational,Remember
+562,5.0,2.5,3.0,2.5,2.0,1,non_unique_bias|centers|single_hidden_layer|weights|rbf_network,5,56%,Multistructural,Remember
+563,2.5,1.0,2.0,1.5,0.5,1,non_unique_bias|centers|linear_output_layer|universal_approximator|rbf_network,5,56%,Multistructural,Remember
+564,5.0,2.0,3.5,3.0,1.5,1,single_hidden_layer|weights|rbf_network|non_unique_bias|centers|linear_output_layer|universal_approximator|other_neural_networks,8,89%,Extended Abstract,Remember
+565,2.5,1.5,3.5,1.0,1.0,tie,single_hidden_layer|weights|rbf_network|non_unique_bias|centers|linear_output_layer|other_neural_networks,7,78%,Relational,Analyze
+566,0.0,0.5,1.0,0.5,1.0,0,single_hidden_layer|rbf_network|non_unique_bias|linear_output_layer|other_neural_networks,5,56%,Multistructural,Remember
+567,2.5,1.5,2.5,1.0,0.0,1,single_hidden_layer|weights|rbf_network|non_unique_bias|linear_output_layer|universal_approximator|other_neural_networks,7,78%,Relational,Remember
+568,5.0,3.0,4.0,2.0,1.0,1,single_hidden_layer|weights|rbf_network|non_unique_bias|centers|linear_output_layer|universal_approximator|other_neural_networks,8,89%,Extended Abstract,Remember
+569,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+570,5.0,3.0,4.5,2.0,0.5,1,distance_metric|class_vote|k_nearest_data_points|k_nearest_neighbors_learning|new_data_point|class_assignment|training_data,7,88%,Extended Abstract,Remember
+571,0.0,0.5,1.5,0.5,1.5,0,k_nearest_data_points|new_data_point|distance_metric,3,38%,Multistructural,Remember
+572,0.0,0.0,0.5,0.0,0.5,0,k_nearest_data_points|unsupervised_manner|class_vote|k_nearest_neighbors_learning,4,50%,Multistructural,Remember
+573,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+574,5.0,2.5,3.5,2.5,1.5,1,k_nearest_data_points|class_vote|k_nearest_neighbors_learning|class_assignment|distance_metric,5,62%,Relational,Remember
+575,0.0,0.5,1.5,0.5,1.5,0,k_nearest_data_points|new_data_point|training_data,3,38%,Multistructural,Remember
+576,5.0,3.0,3.0,2.0,2.0,tie,class_vote|k_nearest_data_points|k_nearest_neighbors_learning|new_data_point|class_assignment,5,62%,Relational,Remember
+577,0.0,0.5,3.5,0.5,3.5,0,class_vote|k_nearest_data_points|k_nearest_neighbors_learning|new_data_point|class_assignment|training_data,6,75%,Relational,Remember
+578,0.0,1.0,2.5,1.0,2.5,0,class_vote|k_nearest_data_points|k_nearest_neighbors_learning|new_data_point|unsupervised_manner|training_data,6,75%,Relational,Remember
+579,0.0,0.5,2.0,0.5,2.0,0,k_nearest_data_points|training_data|new_data_point|distance_metric,4,50%,Multistructural,Understand
+580,0.0,0.5,1.0,0.5,1.0,0,k_nearest_data_points|class_vote|k_nearest_neighbors_learning,3,38%,Multistructural,Remember
+581,2.5,0.5,1.0,2.0,1.5,1,k_nearest_data_points|unsupervised_manner|k_nearest_neighbors_learning,3,38%,Multistructural,Remember
+582,0.0,0.5,1.0,0.5,1.0,0,k_nearest_neighbors_learning|k_nearest_data_points|distance_metric,3,38%,Multistructural,Remember
+583,5.0,3.0,4.5,2.0,0.5,1,distance_metric|class_vote|k_nearest_data_points|k_nearest_neighbors_learning|new_data_point|class_assignment|training_data,7,88%,Extended Abstract,Remember
+584,5.0,3.0,4.0,2.0,1.0,1,distance_metric|class_vote|k_nearest_data_points|k_nearest_neighbors_learning|new_data_point|unsupervised_manner|class_assignment|training_data,8,100%,Extended Abstract,Remember
+585,5.0,1.0,3.0,4.0,2.0,1,k_nearest_data_points|distance_metric|class_vote|k_nearest_neighbors_learning|new_data_point|training_data,6,75%,Relational,Remember
+586,5.0,2.5,4.0,2.5,1.0,1,class_vote|k_nearest_data_points|k_nearest_neighbors_learning|new_data_point|class_assignment|training_data,6,75%,Relational,Remember
+587,5.0,2.5,3.0,2.5,2.0,1,class_vote|k_nearest_data_points|k_nearest_neighbors_learning|class_assignment|training_data,5,62%,Relational,Remember
+588,0.0,1.0,4.5,1.0,4.5,0,distance_metric|class_vote|k_nearest_data_points|k_nearest_neighbors_learning|new_data_point|class_assignment|training_data,7,88%,Extended Abstract,Remember
+589,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+590,5.0,2.5,4.0,2.5,1.0,1,class_vote|k_nearest_data_points|k_nearest_neighbors_learning|new_data_point|class_assignment|training_data,6,75%,Relational,Remember
+591,0.0,0.0,0.5,0.0,0.5,0,,0,0%,Prestructural,Remember
+592,5.0,2.5,2.5,2.5,2.5,tie,k_nearest_data_points|class_vote|k_nearest_neighbors_learning|class_assignment,4,50%,Multistructural,Remember
+593,0.0,0.5,1.0,0.5,1.0,0,class_vote|k_nearest_data_points,2,25%,Unistructural,Remember
+594,5.0,2.5,2.5,2.5,2.5,tie,class_vote|k_nearest_neighbors_learning|new_data_point|class_assignment,4,50%,Multistructural,Remember
+595,0.0,0.5,1.5,0.5,1.5,0,k_nearest_data_points|new_data_point|training_data,3,38%,Multistructural,Remember
+596,0.0,0.5,1.5,0.5,1.5,0,k_nearest_data_points|new_data_point|training_data,3,38%,Multistructural,Remember
+597,5.0,3.0,2.0,2.0,3.0,0,class_vote|k_nearest_neighbors_learning|k_nearest_data_points|new_data_point|class_assignment|training_data,6,75%,Relational,Remember
+598,5.0,2.5,2.5,2.5,2.5,tie,class_vote|k_nearest_neighbors_learning|k_nearest_data_points|class_assignment,4,50%,Multistructural,Remember
+599,5.0,3.0,4.5,2.0,0.5,1,distance_metric|class_vote|k_nearest_data_points|k_nearest_neighbors_learning|new_data_point|unsupervised_manner|class_assignment|training_data,8,100%,Extended Abstract,Remember
+600,5.0,2.5,4.5,2.5,0.5,1,distance_metric|class_vote|k_nearest_data_points|k_nearest_neighbors_learning|new_data_point|unsupervised_manner|class_assignment|training_data,8,100%,Extended Abstract,Remember
+601,5.0,2.5,4.0,2.5,1.0,1,class_vote|k_nearest_data_points|k_nearest_neighbors_learning|new_data_point|class_assignment|distance_metric,6,75%,Relational,Remember
+602,0.0,0.5,2.0,0.5,2.0,0,distance_metric|k_nearest_data_points|new_data_point|training_data,4,50%,Multistructural,Remember
+603,5.0,3.0,4.5,2.0,0.5,1,distance_metric|class_vote|k_nearest_data_points|k_nearest_neighbors_learning|new_data_point|unsupervised_manner|class_assignment|training_data,8,100%,Extended Abstract,Remember
+604,0.0,0.5,2.0,0.5,2.0,0,k_nearest_data_points|distance_metric|class_vote|k_nearest_neighbors_learning|new_data_point|training_data,6,75%,Relational,Remember
+605,0.0,0.5,1.0,0.5,1.0,0,class_vote|k_nearest_neighbors_learning|k_nearest_data_points,3,38%,Multistructural,Remember
+606,5.0,2.5,2.5,2.5,2.5,tie,k_nearest_data_points|class_vote|k_nearest_neighbors_learning|new_data_point|class_assignment,5,62%,Relational,Remember
+607,5.0,3.0,4.5,2.0,0.5,1,distance_metric|class_vote|k_nearest_data_points|k_nearest_neighbors_learning|new_data_point|class_assignment|training_data,7,88%,Extended Abstract,Remember
+608,2.5,3.5,4.5,1.0,2.0,0,high_variance|high_bias|bias_variance_dilemma|model_variance|model_bias|supervised_learning|training_data_fit,7,88%,Extended Abstract,Understand
+609,2.5,2.5,3.5,0.0,1.0,0,high_variance|high_bias|bias_variance_dilemma|model_variance|model_bias|training_data_fit,6,75%,Relational,Remember
+610,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+611,5.0,2.5,5.0,2.5,0.0,1,high_variance|high_bias|bias_variance_dilemma|model_variance|model_bias|supervised_learning|generalizability|training_data_fit,8,100%,Extended Abstract,Remember
+612,2.5,3.0,4.5,0.5,2.0,0,high_variance|high_bias|bias_variance_dilemma|model_variance|model_bias|supervised_learning|training_data_fit,7,88%,Extended Abstract,Understand
+613,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+614,2.5,3.0,4.5,0.5,2.0,0,high_variance|high_bias|bias_variance_dilemma|model_variance|model_bias|supervised_learning|training_data_fit,7,88%,Extended Abstract,Understand
+615,2.5,2.0,3.5,0.5,1.0,0,high_variance|high_bias|bias_variance_dilemma|model_variance|model_bias|training_data_fit,6,75%,Relational,Analyze
+616,5.0,1.5,4.5,3.5,0.5,1,high_variance|high_bias|bias_variance_dilemma|model_variance|model_bias|supervised_learning|training_data_fit,7,88%,Extended Abstract,Remember
+617,0.0,1.0,2.5,1.0,2.5,0,high_variance|high_bias|bias_variance_dilemma|model_variance|model_bias,5,62%,Relational,Remember
+618,0.0,1.0,3.0,1.0,3.0,0,bias_variance_dilemma|model_variance|model_bias|high_variance|high_bias,5,62%,Relational,Analyze
+619,5.0,3.0,4.5,2.0,0.5,1,high_variance|high_bias|bias_variance_dilemma|model_variance|model_bias|supervised_learning|training_data_fit,7,88%,Extended Abstract,Remember
+620,0.0,1.0,2.0,1.0,2.0,0,bias_variance_dilemma|model_variance|model_bias|high_variance|supervised_learning|training_data_fit|high_bias,7,88%,Extended Abstract,Remember
+621,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+622,2.5,2.0,3.0,0.5,0.5,tie,high_variance|high_bias|bias_variance_dilemma|model_variance|model_bias,5,62%,Relational,Remember
+623,5.0,3.0,4.5,2.0,0.5,1,high_variance|high_bias|bias_variance_dilemma|model_variance|model_bias|supervised_learning|training_data_fit,7,88%,Extended Abstract,Understand
+624,0.0,1.0,3.0,1.0,3.0,0,high_variance|high_bias|bias_variance_dilemma|model_variance|model_bias|supervised_learning|training_data_fit,7,88%,Extended Abstract,Remember
+625,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+626,5.0,2.5,4.5,2.5,0.5,1,high_variance|high_bias|bias_variance_dilemma|model_variance|model_bias|supervised_learning|training_data_fit,7,88%,Extended Abstract,Analyze
+627,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+628,5.0,3.5,4.0,1.5,1.0,1,high_variance|high_bias|bias_variance_dilemma|model_variance|model_bias|training_data_fit,6,75%,Relational,Remember
+629,5.0,2.5,3.5,2.5,1.5,1,high_variance|high_bias|bias_variance_dilemma|model_variance|model_bias|training_data_fit,6,75%,Relational,Understand
+630,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+631,0.0,1.0,3.5,1.0,3.5,0,high_variance|high_bias|bias_variance_dilemma|model_variance|model_bias|supervised_learning|training_data_fit,7,88%,Extended Abstract,Understand
+632,0.0,0.0,1.0,0.0,1.0,0,bias_variance_dilemma|model_bias|high_bias,3,38%,Multistructural,Remember
+633,2.5,2.5,4.0,0.0,1.5,0,high_variance|high_bias|bias_variance_dilemma|model_variance|model_bias|training_data_fit,6,75%,Relational,Understand
+634,2.5,2.5,3.5,0.0,1.0,0,high_variance|high_bias|bias_variance_dilemma|model_variance|model_bias|training_data_fit,6,75%,Relational,Remember
+635,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+636,2.5,2.5,3.0,0.0,0.5,0,bias_variance_dilemma|model_variance|model_bias|high_variance|high_bias,5,62%,Relational,Remember
+637,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+638,2.5,2.5,3.5,0.0,1.0,0,high_variance|high_bias|bias_variance_dilemma|model_variance|model_bias|supervised_learning,6,75%,Relational,Understand
+639,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+640,5.0,3.0,3.0,2.0,2.0,tie,high_variance|high_bias|bias_variance_dilemma|model_variance|model_bias|supervised_learning|generalizability|training_data_fit,8,100%,Extended Abstract,Remember
+641,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember
+642,0.0,0.0,1.0,0.0,1.0,0,bias_variance_dilemma|model_bias|high_bias,3,38%,Multistructural,Remember
+643,2.5,1.5,2.5,1.0,0.0,1,high_variance|high_bias|bias_variance_dilemma|model_variance|model_bias|training_data_fit,6,75%,Relational,Remember
+644,2.5,3.5,4.0,1.0,1.5,0,high_variance|high_bias|bias_variance_dilemma|model_variance|model_bias|supervised_learning|training_data_fit,7,88%,Extended Abstract,Understand
+645,0.0,0.0,0.0,0.0,0.0,tie,,0,0%,Prestructural,Remember

@@ -20,19 +20,19 @@
   "kaggle_asag": {
     "n": 473,
     "mae_cllm": 1.208245243128964,
-    "mae_c5": 1.267970401691332,
-    "mae_reduction_pct": -4.943132108486444,
-    "wilcoxon_p": 0.08104427547677587,
-    "win_rate_c5_smaller_error": 0.15644820295983086,
-    "c5_better_mae": false,
+    "mae_c5": 1.1797040169133193,
+    "mae_reduction_pct": 2.362204724409448,
+    "wilcoxon_p": 0.339950325738422,
+    "win_rate_c5_smaller_error": 0.27906976744186046,
+    "c5_better_mae": true,
     "significant_005": false
   },
   "pooled_digi_kaggle": {
     "n": 1119,
-    "mean_abs_error_diff_c5_minus_cllm": -0.008266309204647005,
-    "wilcoxon_one_sided_p": 0.20087178280935647
+    "mean_abs_error_diff_c5_minus_cllm": -0.045576407506702415,
+    "wilcoxon_one_sided_p": 0.018405990757214087
   },
-  "fisher_combined_p_three_datasets": 0.00045542429152622965,
+  "fisher_combined_p_three_datasets": 0.0015190429711271491,
   "strict_all_three_beat": false,
   "notes": [
     "Fisher assumes independence across datasets.",

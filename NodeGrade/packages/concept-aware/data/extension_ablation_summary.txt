@@ -1,45 +1,45 @@
 ConceptGrade Extension Ablation Study
 ========================================================================
-Date: 2026-04-05 23:02
-Mode: HEURISTIC
+Date: 2026-04-11 22:22
+Mode: LLM
 Dataset: Mohler et al. (2011) — 30 samples
 
 MAIN RESULTS TABLE:
 Config  System                            Pearson r      QWK     RMSE      MAE
 ────────────────────────────────────────────────────────────────────────
-C0    Cosine-Only Baseline                 0.9604   0.7943   0.8151   0.7097
-C1    ConceptGrade Baseline                0.9604   0.7943   0.8151   0.7097
-C2    ConceptGrade + SC                    0.9605   0.7943   0.8043   0.7023
-C3    ConceptGrade + CW                    0.9611   0.6957   0.9079   0.7840
-C4    ConceptGrade + Verifier              0.9597   0.6633   1.0146   0.8680
-C5    ConceptGrade + All Extensions        0.9601   0.6418   1.0869   0.9247
+C0    Cosine-Only Baseline                 0.5579   0.1208   2.4181   1.9680
+C1    ConceptGrade Baseline                0.8240   0.7968   1.0212   0.8083
+C2    ConceptGrade + SC                    0.8467   0.7803   0.9723   0.7690
+C3    ConceptGrade + CW                    0.8243   0.7628   1.0229   0.8090
+C4    ConceptGrade + Verifier              0.8944   0.8632   0.7869   0.6173
+C5    ConceptGrade + All Extensions        0.8963   0.8418   0.7879   0.6063
 ────────────────────────────────────────────────────────────────────────
 
 DELTA vs BASELINE:
 Config  System                             ΔPearson r     ΔQWK    ΔRMSE  Impact
 ────────────────────────────────────────────────────────────────────────────────
 C1    ConceptGrade Baseline                 +0.0000  +0.0000  +0.0000  LOW
-C2    ConceptGrade + SC                     +0.0001  +0.0000  -0.0108  LOW
-C3    ConceptGrade + CW                     +0.0007  -0.0986  +0.0928  LOW
-C4    ConceptGrade + Verifier               -0.0007  -0.1310  +0.1995  LOW
-C5    ConceptGrade + All Extensions         -0.0003  -0.1525  +0.2718  LOW
+C2    ConceptGrade + SC                     +0.0226  -0.0165  -0.0488  MED
+C3    ConceptGrade + CW                     +0.0003  -0.0341  +0.0017  LOW
+C4    ConceptGrade + Verifier               +0.0704  +0.0664  -0.2343  HIGH
+C5    ConceptGrade + All Extensions         +0.0723  +0.0449  -0.2332  HIGH
 ────────────────────────────────────────────────────────────────────────────────
 
 SIGNIFICANCE TESTS:
 Comparison                               W-stat     p-value      Sig?     Direction
 ──────────────────────────────────────────────────────────────────────────────────────────
 ConceptGrade Baseline vs ConceptGrade Baseline 0.00       nan          ✗ n.s.   no_significant_difference
-ConceptGrade + SC vs ConceptGrade Baseline 35.00      0.0658       ✗ n.s.   no_significant_difference
-ConceptGrade + CW vs ConceptGrade Baseline 31.00      0.9997       ✗ n.s.   no_significant_difference
-ConceptGrade + Verifier vs ConceptGrade Baseline 60.00      0.9997       ✗ n.s.   no_significant_difference
-ConceptGrade + All Extensions vs ConceptGrade Baseline 62.00      0.9996       ✗ n.s.   no_significant_difference
+ConceptGrade + SC vs ConceptGrade Baseline 79.00      0.2847       ✗ n.s.   no_significant_difference
+ConceptGrade + CW vs ConceptGrade Baseline 46.50      0.6474       ✗ n.s.   no_significant_difference
+ConceptGrade + Verifier vs ConceptGrade Baseline 452.50     0.0000       ✓ p<0.05 ConceptGrade + Verifier > ConceptGrade Baseline
+ConceptGrade + All Extensions vs ConceptGrade Baseline 355.50     0.0014       ✓ p<0.05 ConceptGrade + All Extensions > ConceptGrade Baseline
 
 PER-QUESTION BREAKDOWN:
 QID    Question (truncated)                                  C1 r    C5 r  Δ
 ────────────────────────────────────────────────────────────────────────
-Q1     Define a linked list and describe its basic operat  0.9741  0.9733  -0.0009
-Q2     Compare arrays and linked lists in terms of time c  0.9656  0.9691  +0.0034
-Q3     Explain how a stack works and give a real-world ex  0.8747  0.8869  +0.0121
+Q1     Define a linked list and describe its basic operat  0.9200  0.9218  +0.0018
+Q2     Compare arrays and linked lists in terms of time c  0.9452  0.9388  -0.0064
+Q3     Explain how a stack works and give a real-world ex  0.6934  0.9192  +0.2258
 
 LATEX TABLE:
 % ConceptGrade Extension Ablation — auto-generated
@@ -51,13 +51,13 @@ LATEX TABLE:
 \toprule
 \textbf{ID} & \textbf{System} & \textbf{Pearson $r$} & \textbf{QWK} & \textbf{RMSE} & \textbf{MAE} \\
 \midrule
-C0 & Cosine-Only Baseline & 0.9604 & \textbf{0.7943} & 0.8151 & 0.7097 \\
-C1 & ConceptGrade Baseline & 0.9604 & \textbf{0.7943} & 0.8151 & 0.7097 \\
+C0 & Cosine-Only Baseline & 0.5579 & 0.1208 & 2.4181 & 1.9680 \\
+C1 & ConceptGrade Baseline & 0.8240 & 0.7968 & 1.0212 & 0.8083 \\
 \midrule
-C2 & ConceptGrade + SC & 0.9605 & \textbf{0.7943} & \textbf{0.8043} & \textbf{0.7023} \\
-C3 & ConceptGrade + CW & \textbf{0.9611} & 0.6957 & 0.9079 & 0.7840 \\
-C4 & ConceptGrade + Verifier & 0.9597 & 0.6633 & 1.0146 & 0.8680 \\
-C5 & ConceptGrade + All Extensions & 0.9601 & 0.6418 & 1.0869 & 0.9247 \\
+C2 & ConceptGrade + SC & 0.8467 & 0.7803 & 0.9723 & 0.7690 \\
+C3 & ConceptGrade + CW & 0.8243 & 0.7628 & 1.0229 & 0.8090 \\
+C4 & ConceptGrade + Verifier & 0.8944 & \textbf{0.8632} & \textbf{0.7869} & 0.6173 \\
+C5 & ConceptGrade + All Extensions & \textbf{0.8963} & 0.8418 & 0.7879 & \textbf{0.6063} \\
 \bottomrule
 \end{tabular}
 \end{table}
