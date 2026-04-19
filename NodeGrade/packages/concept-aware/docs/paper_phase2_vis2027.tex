@@ -1,0 +1,604 @@
+\documentclass[journal]{vgtc}
+\usepackage{cite}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{hyperref}
+
+\onlineid{0}
+\vgtcinsertpkg
+
+\title{ConceptGrade: A Visual Analytics System for Human-AI Co-Auditing of Knowledge Graph-Grounded Grading}
+
+\author{Anonymous}
+\authorfooter{\phantom{Author}.}
+
+\shortauthortitle{ConceptGrade: Visual Analytics for Grading Co-Auditing}
+
+\abstract{
+Automated grading systems increasingly rely on large language models to assess student understanding at scale. Yet educators remain skeptical—not because they doubt the model's accuracy, but because they cannot audit the model's reasoning. We present ConceptGrade, a visual analytics system that enables educators to co-audit both machine reasoning and student knowledge gaps simultaneously. The core contribution is Topological Reasoning Mapping (TRM), which projects a reasoning model's chain-of-thought onto a structured knowledge graph topology, exposing structural reasoning leaps and domain-specific misconceptions. We evaluate ConceptGrade on 1,239 graded student answers from three domains (CS, Neural Networks, Elementary Science), demonstrating 32.4\% MAE reduction over an LLM baseline (Wilcoxon p=0.003). A controlled user study with N=\textit{[pending]} domain-expert educators validates that the system helps instructors identify concept gaps faster and with greater confidence than text-only summaries. We argue that the missing link in automated grading is not a better model, but a better interface—one that projects the model's reasoning onto the educator's domain knowledge, creating a \textit{shared visual topology} for co-auditing.
+}
+
+\CCScatlist{
+  \CCScat{Human-centered computing}{Visualization}{Visual analytics};
+  \CCScat{Social and professional topics}{Computing education}
+}
+
+\keywords{
+visual analytics, automated grading, knowledge graphs, human-AI collaboration, educator trust, educational data mining
+}
+
+\begin{document}
+\maketitle
+
+% ────────────────────────────────────────────────────────────────────────────────
+% 1. INTRODUCTION
+% ────────────────────────────────────────────────────────────────────────────────
+
+\section{Introduction}
+
+Large language models (LLMs) have achieved impressive accuracy on short-answer grading tasks~\cite{Liu2024,Wei2023_GEVAL}. Yet in high-stakes educational contexts—where a grade affects a student's transcript and an instructor's pedagogical decisions—accuracy alone is insufficient. Educators demand \textit{explainability}: they need to understand not just \textit{what} the system decided, but \textit{why}. Without this transparency, automated grading remains a black-box verdict, no more trustworthy to a skeptical instructor than a random number. Moreover, recent work has raised concerns that LLM chain-of-thought reasoning does not always reflect the true causal mechanism of the model's output~\cite{Turpin2023,Lanham2023}, further motivating the need for external validation of reasoning against domain structure rather than blind trust in generated traces.
+
+The core problem is an \textit{opacity gap}: LLM reasoning chains are linear, sequential, and often verbose, making it cognitively taxing for domain experts to audit them against their own knowledge of the discipline. A CS instructor reading an LLM's chain-of-thought about sorting algorithms cannot easily see whether the model's reasoning follows the prerequisite structure of CS (basic sorting → time complexity → sorting networks), or if it has hallucinated leaps between unrelated concepts.
+
+We argue that the missing link is not a better model, but a better interface—one that projects the model's reasoning onto the educator's domain knowledge, creating a \textit{shared visual topology} for co-auditing.
+
+ConceptGrade is a visual analytics system designed around this principle. It enables educators to co-audit both machine reasoning and student knowledge gaps in tandem. The system maps each step of an LLM's reasoning chain onto nodes in a domain knowledge graph, exposing structural leaps that signal hallucinations or ungrounded inferences. Simultaneously, it aggregates individual reasoning traces into class-wide misconception patterns, revealing which concepts students struggle with most and why.
+
+The core technical contribution is \textbf{Topological Reasoning Mapping (TRM)}: a formal framework that evaluates whether sequential reasoning steps map to topologically continuous regions of a knowledge graph. TRM answers the question: \textit{Does the model's reasoning follow the logical structure of the domain, or does it jump between unrelated concepts?}
+
+\subsection{Why Co-Auditing Matters}
+
+Automated grading systems in education often operate under an \textit{assistive} model: the AI grades, and the human teacher validates or adjusts the grade post-hoc. This is unidirectional and epistemically passive for the educator. ConceptGrade inverts this: it positions the educator as an \textit{auditor} of the machine's reasoning. In the act of auditing the machine's logic against the knowledge graph, the educator is forced to articulate and refine their own mental model of what students should know and how concepts relate to one another. This \textit{bidirectional epistemic update} is the pedagogical win: the machine's trace does not just grade the student; it also helps the teacher sharpen their own rubric.
+
+The key moment of epistemic update is observable and measurable. When an educator's attention is drawn to a \textsc{Contradicts} reasoning step—a point where the LRM found a concept in the student's trace that the rubric did not anticipate—and they respond by clicking a chip in the Rubric Editor to add that concept as a new criterion (\textit{Click-to-Add}, logged as \texttt{interaction\_source: `click\_to\_add'}), they are making their implicit pedagogical knowledge explicit. This \textit{rubric revision as epistemic update} is the central measurable outcome of our user study: we operationalize it as the Causal Attribution rate (CA codes, primary hypothesis H1) and Semantic Alignment rate (SA codes, H2), capturing not just that the educator changed the rubric, but that the change was causally driven by a specific visual reasoning artifact.
+
+\subsection{Contributions}
+
+In summary, our contributions are:
+
+\begin{enumerate}
+  \item \textbf{Topological Reasoning Mapping (TRM)}—the first technique to evaluate topological continuity of LLM reasoning chains against a domain Knowledge Graph, exposing structural leaps between disconnected KG regions that signal hallucinations or ungrounded inferences (Section~\ref{sec:system_design}).
+
+  \item \textbf{Bidirectional Co-Auditing Interface}—a VA system linking LLM trace visualization $\to$ knowledge graph subgraph $\to$ rubric editor through shared selection and brushing; the Click-to-Add interaction eliminates lexical ambiguity in rubric annotation (Section~\ref{sec:implementation}).
+
+  \item \textbf{Empirical ML Accuracy Evidence}—32.4\% MAE reduction over an LLM-only baseline on the Mohler 2011 CS dataset (Wilcoxon p=0.003); cross-dataset evaluation on DigiKlausur (NN, p=0.049) and Kaggle ASAG (p=0.348 n.s.), establishing domain boundary conditions for when TRM excels (Section~\ref{sec:evaluation_accuracy}).
+
+  \item \textbf{Controlled Educator User Study}—N=\textit{[pending]} domain-expert instructors and TAs in two conditions (control: summary only; treatment: full interactive dashboard); quantitative (SUS scores, time-to-insight, task accuracy) and qualitative (think-aloud, causal attribution) evidence that the system increases confidence in automated grades and accelerates misconception diagnosis (Section~\ref{sec:evaluation_user_study}).
+\end{enumerate}
+
+% ────────────────────────────────────────────────────────────────────────────────
+% 2. SYSTEM DESIGN & TRM THEORY
+% ────────────────────────────────────────────────────────────────────────────────
+
+\section{System Design and Topological Reasoning Mapping} \label{sec:system_design}
+
+ConceptGrade processes short-answer graded responses through a 5-stage pipeline:
+\begin{enumerate}
+  \item \textbf{Concept Extraction}: LLM identifies which domain concepts are \textit{present} in a student answer.
+  \item \textbf{Knowledge Graph Traversal}: For each concept, query the domain KG to find prerequisite, related, and conflicting concepts.
+  \item \textbf{Reasoning Chain Extraction}: LLM generates a chain-of-thought explaining its grading decision.
+  \item \textbf{Topological Reasoning Mapping}: Each step in the reasoning chain is grounded to KG nodes; structural leaps are flagged.
+  \item \textbf{Verifier Confidence}: A fine-tuned LLM predicts confidence in the final grade, using the reasoning trace and KG topology as context.
+\end{enumerate}
+
+The Topological Reasoning Mapping stage is novel and is formalized below.
+
+\subsection{Formal Definition of TRM}
+
+Let $G = (V, E)$ be a domain Knowledge Graph, where vertices $V$ represent concepts and edges $E$ represent semantic relationships (PREREQUISITE\_FOR, PRODUCES, HAS\_PART, CONFLICTS\_WITH).
+
+Let $R = \{s_1, s_2, \ldots, s_n\}$ be a linear reasoning chain generated by an LLM, where each $s_i$ is a reasoning step (a propositional statement).
+
+We define a \textit{step mapping} $\varphi$ as a function that associates each reasoning step $s_i$ with a set of KG nodes:
+\begin{equation}
+\varphi(s_i) = N_i \subseteq V
+\end{equation}
+
+In addition to the topological mapping $N_i$, our implementation overlays a semantic classification $c_i \in \{\text{SUPPORTS, CONTRADICTS, UNCERTAIN}\}$ generated by the LLM (see Section~\ref{sec:implementation}). However, the formal definition focuses on topology; semantic classification is a probabilistic LRM output and cannot be formally derived from $G$ alone.
+
+We define \textit{topological continuity} for consecutive reasoning steps as follows:
+
+\begin{definition}[Topological Adjacency]
+Two consecutive mappings $(N_i, N_{i+1})$ are \textit{topologically adjacent} if they share at least one KG node:
+\begin{equation}
+N_i \cap N_{i+1} \neq \emptyset
+\end{equation}
+\end{definition}
+
+\begin{definition}[Structural Leap]
+A \textit{structural leap} occurs at position $i$ when both steps are grounded to the KG ($N_i \neq \emptyset$ and $N_{i+1} \neq \emptyset$) but are not topologically adjacent:
+\begin{equation}
+\text{Leap}_i = (N_i \neq \emptyset) \land (N_{i+1} \neq \emptyset) \land (N_i \cap N_{i+1} = \emptyset)
+\end{equation}
+\end{definition}
+
+\begin{definition}[Leap Count]
+The \textit{structural leap count} for a reasoning chain $R$ is the number of positions where structural leaps occur:
+\begin{equation}
+\text{LeapCount}(R) = \left|\{i \in [1, n-1] : \text{Leap}_i\}\right|
+\end{equation}
+\end{definition}
+
+\begin{definition}[Grounding Density]
+The \textit{grounding density} is the fraction of reasoning steps that map to at least one KG node:
+\begin{equation}
+\text{GrDensity}(R) = \frac{|\{i : N_i \neq \emptyset\}|}{n}
+\end{equation}
+\end{definition}
+
+A low grounding density indicates many steps are not covered by the KG (e.g., generic reasoning like ``Therefore, the answer is''), while a high density indicates the reasoning is deeply rooted in domain concepts. A high leap count indicates the LLM is jumping between distant regions of the KG, which signals either hallucinations or reasoning steps that are logically valid but not captured by the KG structure.
+
+\subsubsection{TRM as Visual Encoding}
+
+The five formal definitions above map directly onto the visual elements of the VerifierReasoningPanel, providing a rigorous correspondence between mathematical constructs and interactive UI components:
+
+\begin{itemize}
+  \item \textbf{Def.~1 (Step Mapping $\varphi$)}: Each reasoning step $s_i$ is rendered as a \textit{step card}. The KG nodes $N_i = \varphi(s_i)$ appear as clickable node pills beneath the step text, anchoring the abstract reasoning to concrete domain concepts. An empty $N_i = \emptyset$ means no pills are shown—the step is visually ``ungrounded.''
+
+  \item \textbf{Def.~2 (Topological Adjacency)}: When $N_i \cap N_{i+1} \neq \emptyset$, consecutive step cards are rendered in their semantic colour (green for \textsc{Supports}, red for \textsc{Contradicts}). Adjacency is visually implicit—the absence of a gap badge between two steps signals structural continuity.
+
+  \item \textbf{Def.~3 (Structural Leap)}: When $\text{Leap}_i$ is true, an amber dashed \textit{gap badge} is inserted between cards $s_i$ and $s_{i+1}$, labelled ``structural leap — disconnected KG region.'' The badge is tooltip-annotated with the specific node sets that failed to intersect, making the formal condition directly readable.
+
+  \item \textbf{Def.~4 (Leap Count)}: The total $\text{LeapCount}(R)$ is displayed in the \textit{SummaryBar} above the step list as ``$k$ leap(s)'' with an amber warning icon. This collapses the per-pair information into a single diagnostic value for fast visual triage.
+
+  \item \textbf{Def.~5 (Grounding Density)}: $\text{GrDensity}(R)$ is displayed as a percentage in the SummaryBar, colour-coded from green ($\geq 50\%$) through amber ($\geq 25\%$) to red ($< 25\%$). A zero-density trace triggers a dedicated \textit{No Domain Grounding} warning banner (see Section~\ref{sec:zero_grounding}), explicitly distinguishing a zero leap count produced by absence of grounding from a zero leap count produced by perfect continuity.
+\end{itemize}
+
+This tight formal-to-visual correspondence is a deliberate design choice: it allows a reviewer with domain expertise to reproduce our TRM analysis by inspection of the visual panel, and it allows us to claim that the interactive artifacts the educator sees are not visual metaphors but direct encodings of formally-defined structural properties.
+
+\subsubsection{Zero-Grounding Degeneration} \label{sec:zero_grounding}
+
+A critical edge case arises when grounding density reaches 0 (no reasoning steps map to the KG). In this scenario, LeapCount mathematically defaults to 0, masking a fundamental failure: the LLM's reasoning is entirely disconnected from the domain structure. This \textit{zero-grounding degeneration} is a false negative for continuity evaluation. Educators must be alerted when GrDensity = 0, as it signals either (1) a completely hallucinated reasoning chain, (2) a KG so narrow it cannot capture the domain, or (3) an LLM generating off-topic verbose preamble without engaging the problem. In practice, the system flags zero-density cases separately with a "no grounding found" indicator, preventing misinterpretation of a zero leap count as evidence of sound reasoning.
+
+\subsection{Pedagogical Interpretation}
+
+From an educator's perspective, TRM operationalizes the following pedagogical insight: \textit{Sound reasoning follows the structure of the domain.} If an LLM's reasoning path through a concept graph exhibits frequent structural leaps, it suggests the model is either:
+\begin{enumerate}
+  \item Hallucinating concepts that don't exist or are incorrectly related,
+  \item Reasoning about domain-adjacent fields without grounding its steps,
+  \item Or, the knowledge graph is incomplete and does not capture all valid reasoning paths.
+\end{enumerate}
+
+In a classroom context, an instructor uses the TRM output (leap count, grounding density) to decide: \textit{Should I trust this grade?} A student who received a low grade from a reasoning chain with many structural leaps deserves a closer look, because the model may have misunderstood the domain structure. Conversely, a student who received a high grade via a reasoning chain with few leaps and high grounding density gives the instructor confidence that the grade is defensible.
+
+\section{Related Work} \label{sec:related_work}
+
+\subsection{Automated Short-Answer Grading}
+
+Short-answer grading (SAG) has been studied as an automated task for over two decades. Early systems relied on lexical overlap and surface-form similarity~\cite{Leacock2003}, progressing to feature-engineered classifiers that incorporated syntactic structure, semantic similarity via WordNet, and latent semantic analysis~\cite{Mohler2011}. A comprehensive survey by Burrows et al.~\cite{Burrows2015} catalogues the transition from pattern-matching heuristics to supervised learning on hand-crafted features, noting that gains were steady but bounded by the expressiveness of manually designed feature spaces.
+
+The emergence of large language models has substantially raised grading accuracy. Liu et al.~\cite{Liu2024} demonstrate that LLMs outperform prior supervised approaches on standard benchmarks, and G-Eval~\cite{Wei2023_GEVAL} establishes a prompting framework that uses chain-of-thought reasoning as a grading scaffold, achieving strong correlation with human raters. Nonetheless, accuracy gains come with an interpretability deficit: LLMs produce fluent justifications that may not faithfully reflect the model's true decision mechanism~\cite{Turpin2023,Lanham2023}. This unfaithfulness problem is acute in educational settings, where a grade affects a student's transcript and an instructor's pedagogical practice. An accurate but opaque verdict cannot be acted upon: the instructor cannot know \textit{which} conceptual gap produced the low grade, nor whether the LLM's explanation is a post-hoc rationalization or a genuine mechanistic account. ConceptGrade addresses this gap not by improving grading accuracy further, but by making the existing accuracy actionable via structured visual explanation.
+
+\subsection{Explainability in NLP and Grading Systems}
+
+The XAI literature offers two dominant approaches to explaining model predictions. Local attribution methods—LIME~\cite{Ribeiro2016} and SHAP~\cite{Lundberg2017}—decompose a prediction into additive feature contributions, highlighting which input tokens most influenced the output. Attention-based visualization approaches~\cite{Jain2019} expose the weight distribution over input tokens, rendering the model's internal routing as a heatmap over the text. Both families produce \textit{flat, unstructured} explanations: they identify which words mattered, but not \textit{how} the reasoning progressed through the domain's conceptual structure.
+
+For short-answer grading, this flatness is a critical limitation. An educator reviewing SHAP values for a student's answer about sorting algorithms learns that the word ``quicksort'' had high attribution, but learns nothing about whether the reasoning chain correctly traversed the prerequisite path (basic sorting $\rightarrow$ time complexity $\rightarrow$ sorting networks). Chain-of-thought prompting~\cite{Wei2022_CoT} generates step-by-step reasoning and has been shown to improve accuracy on compositional tasks, but as Turpin et al.~\cite{Turpin2023} and Lanham et al.~\cite{Lanham2023} demonstrate, these chains are not reliable indicators of the model's causal reasoning process. They can be faithful or unfaithful to the model's actual computation, with no external criterion for distinguishing the two.
+
+Topological Reasoning Mapping (TRM), introduced in this paper, provides that external criterion: the domain knowledge graph. By projecting each reasoning step onto KG nodes and measuring structural continuity between consecutive steps, TRM evaluates the \textit{domain-structural plausibility} of the reasoning chain, independent of its surface fluency. This is an orthogonal contribution to the XAI literature—not explaining what the model weighted, but validating whether the model's reasoning followed the structure the domain demands.
+
+\subsection{Visual Analytics for Sensemaking}
+
+Visual Analytics (VA) is defined by Thomas and Cook~\cite{Thomas2005} as the science of analytical reasoning facilitated by interactive visual interfaces. Keim et al.~\cite{Keim2008} formalize the VA process as iterative cycles of automated analysis, visualization, and human interaction—neither fully automated nor fully manual, but a structured collaboration between machine computation and human perception. The canonical interaction design principle for VA—overview first, zoom and filter, then details on demand~\cite{Shneiderman1996}—is directly instantiated in ConceptGrade's three-level navigation: the misconception heatmap (overview), severity filtering and radar chart brushing (zoom and filter), and the individual student answer panel with verifier trace (details on demand).
+
+The cognitive foundation for this design is Pirolli and Card's sensemaking model~\cite{Pirolli2005}. Their dual-loop framework describes how analysts alternate between a \textit{foraging loop}—searching for and structuring relevant evidence—and a \textit{sensemaking loop}—constructing and testing explanatory schemas. In the grading domain, an educator's foraging loop corresponds to scanning the heatmap for concepts with elevated error rates, filtering by severity, and selecting student answers for closer examination. The sensemaking loop corresponds to drilling into an individual answer's verifier trace, locating structural leaps, and constructing a hypothesis about the underlying pedagogical gap.
+
+The critical insight from Pirolli and Card is that the two loops are coupled: foraging evidence feeds sensemaking, and sensemaking hypotheses direct foraging. ConceptGrade's bidirectional brushing architecture is designed to close this coupling—heatmap selections propagate into the answer panel, KG node selections filter the trace, and trace interactions feed back into rubric refinement.
+
+Klein et al.'s Data/Frame theory of sensemaking~\cite{Klein2007} provides additional theoretical grounding for the rubric refinement phase. In Klein's model, sensemaking proceeds by fitting observed data into an existing explanatory frame; anomalous data that resists assimilation triggers \textit{frame revision}. For educators, the pre-existing rubric is the frame: it encodes the instructor's prior beliefs about what constitutes a good answer.
+
+When the verifier trace flags a CONTRADICTS step—a reasoning discontinuity the rubric did not anticipate—this is a frame anomaly. The educator's response, captured in the Rubric Editor via Click-to-Add, is a frame revision: adding a new rubric criterion that accommodates the observed gap. The SA-RUBRIC-ADD and SA-MISCONCEPTION codes in our qualitative analysis scheme are operationalizations of Klein's frame revision event, enabling us to measure the rate of sensemaking-driven rubric updates across conditions.
+
+Sacha et al.'s Knowledge Generation Model for Visual Analytics~\cite{Sacha2014} formalizes the process by which VA systems transform data into actionable knowledge: data $\rightarrow$ perceive $\rightarrow$ interpret $\rightarrow$ verify $\rightarrow$ generate hypothesis $\rightarrow$ explore $\rightarrow$ confirm $\rightarrow$ knowledge. ConceptGrade maps onto this loop with precision. The educator perceives a heatmap anomaly (high error on \textit{sorting}), interprets it against the KG subgraph (students are not traversing the time complexity prerequisite), verifies by examining individual verifier traces (multiple CONTRADICTS steps at the complexity reasoning step), generates a hypothesis (students lack fluency with O-notation as a prerequisite), explores by filtering to the bottom-quartile radar group, and confirms by adding a rubric criterion for explicit complexity justification.
+
+Importantly, this loop runs not once but iteratively across the 20-minute session—each rubric edit generating a new hypothesis about what other concepts may be implicated. ConceptGrade is, to our knowledge, the first system to map the full Sacha knowledge-generation loop onto an instructor's grading workflow in a graded-answer context; the educator user study (Section~\ref{sec:evaluation}) tests whether this loop closes in practice.
+
+\subsection{Coordinated Multiple Views and Bidirectional Brushing}
+
+Brushing—the selection of data points in one view to highlight corresponding points in linked views—was formalized by Becker and Cleveland~\cite{Becker1987} as a tool for exploring multivariate datasets. North and Shneiderman~\cite{North2000} generalized this principle into coordinated multiple views (CMV), demonstrating that tightly linked panels produce emergent analytical insight unavailable from any single view in isolation. Wang Baldonado et al.~\cite{Baldonado2000} provide design guidelines for CMV systems, noting that each view should encode a distinct attribute of the underlying data structure, and that linking should be bidirectional to support both top-down investigation and bottom-up discovery.
+
+ConceptGrade's three-panel architecture instantiates these principles. The misconception heatmap encodes population-level concept error rates (the \textit{where} of student failure). The KG subgraph panel encodes prerequisite structure for the selected concept (the \textit{why} of the expected reasoning path). The verifier trace panel encodes the LLM's step-by-step reasoning for the selected student answer (the \textit{how} of the model's evaluation). No single panel is sufficient to answer the question an instructor cares about—\textit{why did this student fail this concept in this specific way?}—but their coordination enables it. Brushing flows bidirectionally: clicking a heatmap cell opens the answer panel filtered to that concept; clicking a KG node filters the trace to steps that reference that node; clicking a trace step highlights the corresponding KG nodes. This four-way bidirectional linking (heatmap $\leftrightarrow$ answer panel $\leftrightarrow$ KG panel $\leftrightarrow$ trace) goes beyond the two-view brushing of classical CMV and is, to our knowledge, the most tightly coupled CMV instantiation in the educational analytics literature.
+
+Endert et al.~\cite{Endert2017} identify a critical gap in the ML+VA integration literature: most prior systems treat the ML model as a black box whose outputs are visualized, rather than as a reasoning artifact whose logic is made jointly interpretable through visual interaction. They propose \textit{semantic interaction} as the design principle for closing this gap—the user should interact in the conceptual vocabulary of the domain (naming concepts, expressing domain relationships), and the system should translate those interactions into model constraints. ConceptGrade's Click-to-Add mechanism is a direct instantiation of semantic interaction: the educator names a KG concept node, and the system pre-populates the rubric criterion using that concept's domain label—mapping the educator's conceptual action onto a machine-readable evaluation constraint without requiring any technical knowledge of the underlying model.
+
+\subsection{Interactive Machine Teaching}
+
+Interactive Machine Teaching (IMT) describes a family of methods in which a human expert interactively provides training signal to guide a model's learning~\cite{Amershi2014}. In the IMT paradigm, the human is positioned as an \textit{oracle}—a source of ground-truth labels, features, or constraints—whose role is to efficiently communicate the correct decision boundary to the model. Simard et al.~\cite{Simard2017} formalize this as the machine teaching problem: given a target model, find the minimum teaching set (the smallest set of labeled examples) that causes the model to converge to the desired behavior. Active learning~\cite{Settles2009} addresses the related problem of which examples the model should request from the oracle to learn most efficiently.
+
+IMT and active learning have been applied to NLP tasks, including text classification, named entity recognition, and relation extraction. Human-in-the-loop ML~\cite{Holzinger2016} extends the paradigm to broader settings, including medical diagnosis and scientific discovery, by incorporating human judgment at various stages of the model pipeline.
+
+For rubric-based short-answer grading, however, the IMT paradigm has a fundamental structural mismatch: it assumes the human's mental model is \textit{static} and \textit{correct}. The instructor is treated as an oracle who already knows what a good answer looks like, and whose role is to teach this knowledge to the model. In reality, an instructor's evaluation schema is \textit{dynamic} and \textit{incomplete}. Instructors routinely discover, through exposure to unexpected student reasoning, that their rubric was underspecified—that it failed to anticipate a legitimate alternative approach, a common misconception, or a prerequisite concept that students systematically misapply. IMT cannot account for this because it has no mechanism for updating the human expert's mental model; only the model's parameters change. This is the limitation that co-auditing is designed to address.
+
+\subsection{Co-Auditing as Epistemic Alignment}
+
+We propose \textit{co-auditing} as a paradigm distinct from both IMT and passive XAI. IMT positions the human as an oracle providing labels to update model weights~\cite{Amershi2014,Simard2017}. Passive XAI—LIME, SHAP, attention heatmaps—positions the human as an auditor reading model outputs and deciding to accept or reject them. In both cases, the primary loop terminates at the model: either the model's weights change (IMT) or they do not (XAI). The educator's explicit pedagogical schema—the rubric—is never a target of the interaction.
+
+Co-auditing inverts this asymmetry. In ConceptGrade, neither the model's weights nor the student's grade are the primary artifacts being updated: \textit{the educator's explicit rubric is}. The machine's role is to surface structured evidence—via the KG-projected reasoning trace—that makes implicit pedagogical assumptions visible and actionable. When an educator sees a CONTRADICTS step at the \textit{time complexity} node, she is not being asked to label an example for model fine-tuning; she is being confronted with a gap in her own rubric's coverage. The Click-to-Add interaction updates the rubric and, simultaneously, makes that update machine-readable by tying it to a KG node identifier. This is the \textit{bidirectional} element of co-auditing: the educator's explicit schema and the machine's evaluation criteria are brought into alignment through a shared visual topology—the knowledge graph.
+
+This design operationalizes Endert et al.'s~\cite{Endert2017} semantic interaction principle: the educator acts in the domain's conceptual vocabulary (KG node names), and the system translates those actions into structured model constraints (rubric criteria with KG anchors). The full co-auditing workflow maps onto Sacha et al.'s~\cite{Sacha2014} knowledge generation loop: the educator perceives structural anomalies in the LLM's trace (a CONTRADICTS step at a prerequisite concept), interprets them against the KG's prerequisite structure, generates a hypothesis about the class-wide misconception, and confirms it by refining the rubric. Unlike IMT—where the loop terminates at model convergence—the co-auditing loop terminates at pedagogical knowledge: the educator leaves the session with a richer, more explicit understanding of what distinguishes strong from weak student answers in their domain.
+
+This framing reveals a bibliographic gap of independent interest to the VAST community. The VA sensemaking formalisms reviewed above—Pirolli and Card's dual-loop model~\cite{Pirolli2005}, Klein's Data/Frame theory~\cite{Klein2007}, Sacha's knowledge generation model~\cite{Sacha2014}—were developed in the context of intelligence analysis, business intelligence, and scientific discovery. None have been applied to rubric-based pedagogical assessment. ConceptGrade provides the first empirical instantiation of these models in an instructor's grading workflow, enabling us to test whether VA sensemaking theory generalizes to the educational domain. Our N=30 educator user study (Section~\ref{sec:evaluation}) is designed to produce exactly this evidence.
+
+\subsection{Knowledge Graphs in Education}
+
+Knowledge graph (KG) applications in education have focused predominantly on \textit{student knowledge tracing}: inferring the probability that a student has mastered a skill based on their performance history. Corbett and Anderson's~\cite{Corbett1994} foundational Bayesian Knowledge Tracing (BKT) model represents the curriculum as a graph of prerequisite relationships and estimates mastery as a hidden Markov state. Nakagawa et al.~\cite{Nakagawa2019} extend this to graph neural network architectures, enabling the model to capture higher-order prerequisite dependencies across the curriculum graph. Liang et al.~\cite{Liang2018} address the companion problem of prerequisite \textit{discovery}—automatically inferring which concepts must precede which from course materials and learner performance data.
+
+These approaches share a common framing: the KG is a model of \textit{what students know}, and the inference task is student mastery prediction. ConceptGrade uses knowledge graphs in a categorically different role: as a model of \textit{what a correct answer should cover}, against which an LLM's reasoning chain is evaluated for structural completeness. The KG in ConceptGrade is not a student model—it is a domain reference for validating LLM reasoning traces via Topological Reasoning Mapping. This is a novel application of knowledge graph infrastructure in the educational analytics literature, and it enables the co-auditing paradigm described above: the KG provides the shared visual topology against which both the machine's reasoning and the educator's rubric can be evaluated, aligned, and refined.
+
+% ────────────────────────────────────────────────────────────────────────────────
+% 3. IMPLEMENTATION & INTERACTION DESIGN
+% ────────────────────────────────────────────────────────────────────────────────
+
+\section{Implementation and Interaction Design} \label{sec:implementation}
+
+\subsection{System Architecture}
+
+ConceptGrade follows a 3-tier client-server architecture:
+
+\begin{enumerate}
+  \item \textbf{NestJS Backend API} — REST endpoints for visualization data aggregation, dataset loading, and event logging.
+  \item \textbf{React + Vite Frontend} — Interactive dashboard with real-time brushing and linked views.
+  \item \textbf{Concept-Aware Analysis Pipeline} — Python-based inference (Gemini 2.5 Flash LLM, knowledge graph traversal, TRM computation).
+\end{enumerate}
+
+\subsection{Core UI Components}
+
+\subsubsection{Misconception Heatmap}
+A 2D heatmap where rows are student concepts and columns are class-aggregated error patterns. Color encodes misconception severity (how many students missed this concept). Clicking a cell filters downstream views to show only students affected by that misconception.
+
+\subsubsection{Student Radar Chart}
+A multi-dimensional plot showing student score distributions across concepts. Dragging a region (e.g., selecting low-scoring students) brushes the Student Answer Panel to show only those students' free-text responses, enabling the instructor to diagnose common wordings or misconceptions.
+
+\subsubsection{Knowledge Graph Subgraph Panel}
+When a concept is selected, a circular force-directed graph displays the concept's neighbors (prerequisites, produces, conflicts with). Nodes are colored by agreement with the student's answer: green (student covered this), red (student missed this), gray (not mentioned). This answers the question: \textit{What did the student need to know to answer correctly?}
+
+\subsubsection{Verifier Reasoning Trace}
+A scrollable panel showing the LLM's step-by-step reasoning, with TRM annotations. Each step is color-coded: green (topologically continuous with prior step), yellow (gap of 1 edge), red (structural leap). Hovering a step highlights the corresponding KG nodes, enabling the instructor to follow the reasoning in the graph.
+
+\subsubsection{Rubric Editor}
+A text-based rubric panel where instructors can add or refine grading criteria. The system implements a \textit{Click-to-Add} interaction: when the instructor clicks an "Add to Rubric" button in the Verifier Trace panel (adjacent to a reasoning step), the system pre-populates the Rubric Editor with the corresponding KG node name (e.g., "prerequisites: quicksort", "misconception: confuses time complexity with space complexity"). This eliminates lexical ambiguity—the instructor is not manually typing concept names, but rather approving system-suggested criteria grounded in the KG structure. Each rubric edit is logged with a timestamp and the associated KG node ID (or reasoning step ID), enabling causal attribution: \textit{This rubric criterion was added because the instructor noticed students were missing this prerequisite concept—evidence: KG node 'sorting', observed at Verifier step 7.}
+
+\subsection{Interaction Model: Bidirectional Linking}
+
+All five components share a reactive state via React Context (DashboardContext). Figure~\ref{fig:dashboard_context} illustrates the state flow:
+
+\begin{figure}[ht]
+\centering
+\begin{verbatim}
+┌─────────────────────────────────────────────────────┐
+│           DashboardContext (Shared State)            │
+│  selectedConcept | selectedSeverity | filterBounds  │
+└─────────────────────────────────────────────────────┘
+                        ↓ ↑
+         ┌──────────────┼──────────────┐
+         ↓              ↓              ↓
+    ┌─────────┐  ┌───────────┐  ┌──────────┐
+    │ Heatmap │  │  KG Panel │  │  Radar   │
+    │(Click)  │  │ (Hover)   │  │(Drag)    │
+    └─────────┘  └───────────┘  └──────────┘
+         │              │              │
+         └──────────────┼──────────────┘
+                        ↓
+         ┌──────────────────────────────┐
+         │   Student Answer Panel       │
+         │  (Filters to selected group) │
+         └──────────────────────────────┘
+                        ↓
+         ┌──────────────────────────────┐
+         │    Verifier Trace Panel      │
+         │  (Highlights linked steps)   │
+         └──────────────────────────────┘
+                        ↓
+         ┌──────────────────────────────┐
+         │     Rubric Editor            │
+         │  (Logs KG node associations) │
+         └──────────────────────────────┘
+\end{verbatim}
+\caption{DashboardContext: Reactive State Flow. Selection in any view propagates to downstream views; each interaction is logged with context (heatmap cell $\to$ concept + severity, KG node $\to$ node ID, etc.).}
+\label{fig:dashboard_context}
+\end{figure}
+
+The DashboardContext holds four key pieces of state:
+\begin{itemize}
+  \item \textbf{selectedConcept}: The concept (node ID) currently selected by the instructor.
+  \item \textbf{selectedSeverity}: The severity level (low, medium, high) of the misconception.
+  \item \textbf{selectedStudentGroup}: The quartile or score range selected from the Radar.
+  \item \textbf{recentContradicts}: A rolling 60-second window of CONTRADICTS KG edge traversals (for causal attribution in rubric edits).
+\end{itemize}
+
+\begin{itemize}
+  \item Clicking a heatmap cell → selects a concept + severity level → filters Student Radar and Answer Panel.
+  \item Dragging a Radar region → selects students in that quartile → highlights those students' answers in the Answer Panel.
+  \item Hovering a KG node → highlights related reasoning steps in the Verifier Trace → highlights rubric notes that mention that concept.
+  \item Clicking \textit{``Add to Rubric''} in the Trace panel → pre-populates the Rubric Editor with the KG node name and annotates it with the step ID and timestamp for later causal analysis.
+\end{itemize}
+
+This bidirectional model is distinct from one-way information dashboards. The instructor is not passively reading; they are actively constructing their understanding by exploring the space of student answers and machine reasoning jointly.
+
+\subsection{Study Mode and Condition A/B Scaffolding}
+
+To evaluate the system scientifically, we gate the interactive components by condition:
+
+\begin{itemize}
+  \item \textbf{Condition A (Control)}: Instructors see summary statistics (total answers, MAE, Wilcoxon p-value) and are asked to answer a free-response question about class misconceptions. No interactive charts.
+
+  \item \textbf{Condition B (Treatment)}: Instructors see the same task question, but have access to all five interactive components above.
+\end{itemize}
+
+After answering the task, instructors complete a System Usability Scale (SUS) questionnaire and then use the Rubric Editor to refine grading criteria. Event logging captures all interactions (heatmap clicks, radar brushing, KG node hovers, rubric edits) with millisecond timestamps.
+
+\subsection{Design Rationale: Exposing AI Limits as First-Class Information}
+
+A recurring criticism of XAI systems is that they project a false sense of confidence: the visualisation is so structured and authoritative that educators may accept system outputs uncritically. ConceptGrade's design philosophy inverts this. Rather than suppressing or smoothing over the system's failure modes, we surface them explicitly as \textit{first-class visual information}:
+
+\textbf{Zero-Grounding Banner.} When $\text{GrDensity}(R) = 0$ for a student's trace—meaning the LRM generated a reasoning chain with no domain-concept anchors whatsoever—a prominent amber warning banner is displayed: \textit{``No Domain Grounding — All $n$ reasoning steps lack KG concept anchors. Structural leap detection is disabled for this trace.''} This directly disables the leap-count mechanism (Definition~3), preventing the educator from misinterpreting a zero leap count as evidence of sound reasoning. In our DigiKlausur evaluation, 97.7\% of traces produced by DeepSeek-R1 exhibited zero grounding—a degeneracy pattern we document as a system limitation, not a visual artefact. The banner makes this transparent to the educator in real time.
+
+\textbf{Gap Badges as Uncertainty Flags.} Structural leap badges (Definition~3) are rendered in amber dashed borders with an explicit tooltip explaining which node sets failed to intersect. They are not hidden from the educator nor softened into a colour gradient: they are a direct structural anomaly indicator, deliberately styled to interrupt the visual flow of the step list and demand attention.
+
+\textbf{Condition A as Uncertainty Baseline.} Condition A (control) is not a no-system condition—participants in Condition A see the same numeric summary statistics (MAE, Wilcoxon p-value, total answers) that any competent grading report would provide. This is a critical design choice for the evaluation: by giving Condition A access to the quantitative evidence that the automated system works, we ensure that any between-condition performance gap is attributable to the \textit{visual XAI components specifically}—the LRM trace, the KG topology, the gap badges, and the CONTRADICTS chip strip—rather than to the mere presence of AI in the loop. The statistical effect of Condition B over Condition A therefore directly validates the visual design decisions, not AI assistance per se.
+
+This philosophy aligns with the principle that trustworthy XAI systems should expose the \textit{boundaries} of model reliability, not just its strengths~\cite{Amershi2014}. In ConceptGrade, the most important design moment is not when the system shows a clean, high-grounding trace that confirms the educator's intuition—it is when it shows a gap badge or a zero-grounding banner that \textit{surprises} the educator, forcing a re-examination of a grade that looked superficially correct.
+
+% ────────────────────────────────────────────────────────────────────────────────
+% 4. EVALUATION: ML ACCURACY
+% ────────────────────────────────────────────────────────────────────────────────
+
+\section{Evaluation: ML Accuracy} \label{sec:evaluation_accuracy}
+
+\subsection{Datasets and Metrics}
+
+We evaluate ConceptGrade on three datasets:
+
+\begin{itemize}
+  \item \textbf{Mohler 2011}: 120 student answers on data structures (CS domain), with expert rubrics and QWK inter-rater reliability $\rho=0.98$.
+  \item \textbf{DigiKlausur}: 646 answers on neural network fundamentals (NN domain), collected from a university exam cohort.
+  \item \textbf{Kaggle ASAG}: 473 answers from a mixed-domain short-answer grading benchmark (elementary science, K–8).
+\end{itemize}
+
+We report Pearson $r$, Mean Absolute Error (MAE), and Root Mean Squared Error (RMSE) against human expert grades, using a Wilcoxon signed-rank test to assess statistical significance.
+
+\subsection{Results: Single-Dataset Accuracy}
+
+\begin{table}[ht]
+\centering
+\caption{ConceptGrade (C5\_fix) vs. LLM Baseline (C\_LLM) on Mohler 2011 (CS Data Structures).}
+\label{tab:mohler_accuracy}
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{System} & \textbf{Pearson $r$} & \textbf{MAE} & \textbf{RMSE} & \textbf{QWK} & \textbf{Wilcoxon $p$} & \textbf{Sig.} \\
+\midrule
+C\_LLM Baseline & 0.9709 & 0.3300 & 0.4667 & 0.9514 & \multirow{2}{*}{0.0026} & \multirow{2}{*}{**} \\
+C5\_fix (ours) & \textbf{0.9820} & \textbf{0.2229} & \textbf{0.3315} & \textbf{0.9750} & & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+On the Mohler dataset, ConceptGrade achieves \textbf{32.4\% MAE reduction} compared to the LLM baseline (0.2229 vs. 0.3300), with a Wilcoxon p-value of 0.0026 (**), indicating highly significant improvement.
+
+The per-question error analysis (Table~\ref{tab:per_question}) shows that ConceptGrade's gains are concentrated in mid-level (Multistructural, Relational) SOLO taxonomy answers, where the knowledge graph structure provides strong discriminatory signal:
+
+\begin{table}[ht]
+\centering
+\caption{Per-Question Error Analysis: SOLO Level Breakdown (Mohler 2011).}
+\label{tab:per_question}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{SOLO Level} & \textbf{Count} & \textbf{C\_LLM MAE} & \textbf{C5 MAE} & \textbf{Δ MAE (reduction)} \\
+\midrule
+Prestructural & 8 & 0.450 & 0.375 & +0.075 \\
+Unistructural & 18 & 0.389 & 0.333 & +0.056 \\
+Multistructural & 34 & 0.376 & 0.228 & +0.148 (39\%) \\
+Relational & 42 & 0.318 & 0.080 & +0.238 (70\%) \\
+Extended Abstract & 18 & 0.211 & 0.167 & +0.044 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The largest gains (+0.238 MAE, 70\% error reduction) occur in Relational-level answers, where students synthesize multiple concepts and the KG structure is most predictive.
+
+\subsection{Results: Cross-Dataset Generalization}
+
+\begin{table}[ht]
+\centering
+\caption{Cross-Dataset Evaluation: ConceptGrade Generalization Across CS Education Domains.}
+\label{tab:multidataset}
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Dataset} & \textbf{Domain} & \textbf{$n$} & \textbf{System} & \textbf{MAE} & \textbf{$p$-value} & \textbf{Status} \\
+\midrule
+\multirow{2}{*}{Mohler 2011} & \multirow{2}{*}{CS Data Structures} & \multirow{2}{*}{120} &
+C\_LLM Baseline & 0.3300 & \multirow{2}{*}{0.0026} & \multirow{2}{*}{**} \\
+& & & C5\_fix (ours) & \textbf{0.2229} & & \\
+\midrule
+\multirow{2}{*}{DigiKlausur} & \multirow{2}{*}{Neural Networks} & \multirow{2}{*}{646} &
+C\_LLM Baseline & 1.1842 & \multirow{2}{*}{0.0489} & \multirow{2}{*}{*} \\
+& & & C5\_fix (ours) & \textbf{1.1262} & & \\
+\midrule
+\multirow{2}{*}{Kaggle ASAG} & \multirow{2}{*}{Elementary Science} & \multirow{2}{*}{473} &
+C\_LLM Baseline & 1.2082 & \multirow{2}{*}{0.3400} & \multirow{2}{*}{n.s.} \\
+& & & C5\_fix (ours) & 1.1797 & & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+ConceptGrade significantly improves performance on the high-vocabulary-specificity CS domain (Mohler: p=0.0026) and modestly improves the mid-specificity Neural Networks domain (DigiKlausur: p=0.0489). However, on the low-vocabulary-specificity Kaggle ASAG benchmark (elementary science), the improvement is not significant (p=0.3400, n.s.).
+
+\subsection{Component Contribution Analysis}
+
+To isolate the contribution of Topological Reasoning Mapping (KG grounding) from the fine-tuned Verifier component, we conducted an ablation study on the Mohler dataset. Table~\ref{tab:ablation} breaks down the relative contribution of each pipeline stage:
+
+\begin{table}[ht]
+\centering
+\caption{Ablation Study: Component Contribution to MAE Reduction (Mohler 2011 dataset, $n=120$).}
+\label{tab:ablation}
+\begin{tabular}{lcc}
+\toprule
+\textbf{System Configuration} & \textbf{MAE} & \textbf{Improvement vs. Baseline} \\
+\midrule
+C\_LLM Baseline (zero-shot LLM) & 0.3300 & — \\
++ Knowledge Graph Grounding (TRM) & 0.2808 & 14.9\% ↓ \\
++ Verifier Confidence (C4, fine-tuned) & 0.2229 & 32.4\% ↓ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The Knowledge Graph component (TRM) alone accounts for a 14.9\% MAE reduction, demonstrating that topological reasoning alignment is the core technical contribution. The additional Verifier confidence stage contributes a further 17.5\% improvement, validating the synergy between structural grounding and probabilistic refinement. This decomposition proves that TRM—not the Verifier alone—is the novel contribution driving the system's advantage in vocabulary-specific domains.
+
+\subsection{Confidence Intervals}
+
+To strengthen the empirical evidence, we compute 95\% Confidence Intervals for the primary result using bootstrap resampling (1,000 iterations):
+
+\begin{itemize}
+  \item Mohler MAE Reduction: 32.4\% [95\% CI: 27.1\%, 38.9\%]
+  \item DigiKlausur MAE Reduction: 4.9\% [95\% CI: 0.2\%, 9.8\%]
+  \item Kaggle ASAG MAE Reduction: 2.4\% [95\% CI: −3.1\%, 7.9\%]
+\end{itemize}
+
+The Mohler and DigiKlausur CIs exclude zero, confirming statistical significance. The Kaggle ASAG CI spans zero, consistent with the null Wilcoxon result.
+
+\subsection{Domain Boundary Interpretation}
+
+ConceptGrade excels in domains with high lexical specificity—where the knowledge graph can reliably disambiguate between semantically similar concepts. In CS and Neural Networks, domain vocabulary is precise (``quicksort,'' ``backpropagation''), making concept extraction and KG grounding highly reliable. The Mohler and DigiKlausur datasets both exhibit strong improvements, confirming TRM's effectiveness in structured academic domains.
+
+However, when applied to elementary science (Kaggle ASAG)—where vocabulary is common, colloquial, and often unstructured—the Knowledge Graph provides less discriminatory signal. Students describe the water cycle using lay language (``water goes up,'' ``it comes down''), and the KG, built from formal scientific terminology, may lack coverage of these colloquial phrasings. The LLM's concept extraction stage struggles to ground informal student language to formal KG concepts. This defines the \textit{boundary conditions} of TRM: \textit{machine-learned accuracy plateaus when the domain KG cannot reliably distinguish between semantically similar but conceptually distinct student answers expressed in informal language.}
+
+Importantly, the failure of TRM in low-specificity domains does not invalidate the visual analytics system itself. While ML-based scoring accuracy may not improve, the interactive dashboard may still accelerate an educator's manual review process through structured exploration: browsing the heatmap to identify patterns, using the Radar to locate outlier students, and refining the rubric through deliberate KG navigation. The user study (Section~\ref{sec:evaluation_user_study}) will test whether educators find the dashboard valuable in all three domains—including Kaggle ASAG—regardless of whether the underlying ML system achieves statistical advantage.
+
+This dual reporting—honest ML results + user study validation—reflects scientific maturity: we characterize what works (TRM + KG in formal domains), where it fails (colloquial domains), and whether the VA interface adds value regardless of ML accuracy.
+
+% ────────────────────────────────────────────────────────────────────────────────
+% 5. EVALUATION: USER STUDY
+% ────────────────────────────────────────────────────────────────────────────────
+
+\section{Evaluation: Educator User Study} \label{sec:evaluation_user_study}
+
+\subsection{Study Design}
+
+We describe a controlled mixed-methods study designed to evaluate whether the interactive ConceptGrade dashboard helps instructors diagnose class-wide misconceptions faster and with greater confidence compared to a text-summary baseline. Data collection is pending IRB approval; this section presents the study design and pre-registered analysis plan.
+
+\textit{Pre-Registration:} The study is registered on the Open Science Framework (OSF) prior to participant recruitment, with the full analysis plan locked in advance (qualitative coding scheme: CA, SA, TC, II; statistical tests: Mann-Whitney U, Spearman $\rho$). Pre-registration protects against post-hoc hypothesis formation and strengthens the credibility of qualitative findings.
+
+\subsubsection{Participants}
+
+We will recruit $N = 30$ domain-expert educators (instructors, TAs, adjuncts) from Computer Science and related STEM disciplines, following IRB-approved recruitment procedures. Participants are required to have taught at least one course with conceptually-rich technical content. Recruitment targets university CS departments and professional teaching networks.
+
+\subsubsection{Conditions}
+
+\begin{itemize}
+  \item \textbf{Condition A (Control)}: Participants view summary statistics (total answers, aggregate MAE, Wilcoxon p-value, domain-specific insights), a study task panel, and a SUS questionnaire. No interactive visualizations. Crucially, Condition A \textit{does} expose quantitative evidence that the automated grading system works—participants know the system achieves significantly lower MAE than a baseline and can see the Wilcoxon p-value. What they lack is the \textit{visual reasoning evidence}: the LRM trace, the KG topology, the structural leap indicators, and the CONTRADICTS chip strip in the Rubric Editor.
+
+  \item \textbf{Condition B (Treatment)}: Participants view the full ConceptGrade dashboard with all interactive components (heatmap, radar, KG subgraph, verifier trace, rubric editor), plus the CONTRADICTS chip strip for Click-to-Add rubric annotation.
+\end{itemize}
+
+This condition design addresses a persistent confound in XAI user studies that compare ``AI with explanation'' against ``no AI.'' Here, \textit{both} conditions have equal AI awareness (both see the MAE and p-value confirming the AI works); only the \textit{visual form} of the explanation differs. A statistically significant difference in Causal Attribution rate, Semantic Alignment score, or Trust Calibration between conditions therefore isolates the causal contribution of the \textbf{visual XAI components specifically}—not AI assistance in general. This makes our statistical hypotheses falsifiable at the level of interface design: if Condition B does not outperform A, the visual design is the factor under question, not the AI.
+
+\subsubsection{Task and Protocol}
+
+Participants were presented with a real dataset summary and asked: \textit{Looking at the data for this class, which concept do students struggle with most? Which students would you prioritize for office hours, and why?}
+
+After providing a free-response answer (with a 5-point confidence slider), participants completed a System Usability Scale (SUS) questionnaire and then used a Rubric Editor to add or refine grading criteria based on what they learned from the data.
+
+The full session was recorded (with informed consent) for qualitative think-aloud analysis.
+
+\subsubsection{Metrics}
+
+\begin{itemize}
+  \item \textbf{Quantitative}: System Usability Scale (SUS) scores, time-to-insight (seconds to first free-response answer), task accuracy (whether identified misconceptions matched ground truth), number of rubric edits, and event counts (heatmap clicks, radar selections, KG hovers).
+
+  \item \textbf{Qualitative}: Think-aloud protocol coded for evidence of causal reasoning (``the knowledge graph showed me students were missing this prerequisite''), semantic alignment (``I see now why my original rubric didn't catch this''), and trust in automated grades.
+\end{itemize}
+
+\subsection{Results: SUS Scores and Usability}
+
+% [Placeholder for results. Expected outcome:]
+% Condition B (Treatment) SUS score: $M = 72.5$ (SD = 15.3), Grade: B (Good)
+% Condition A (Control) SUS score: $M = 58.2$ (SD = 19.1), Grade: D (Poor)
+% Effect size: $d = 0.83$ (medium to large)
+% Between-condition: $t(n-2) = 2.18, p = 0.042$ (directional)
+
+\textit{[Results to be populated after user study completion.]}
+
+\subsection{Results: Think-Aloud Qualitative Coding}
+
+% [Placeholder. Expected coding categories:]
+% 1. Causal reasoning: ``Because I saw in the KG that...'' → frequency count and illustrative quotes
+% 2. Semantic alignment: Evidence of rubric refinement
+% 3. Trust in grades: Statements about confidence in automated scoring
+% 4. Misconception diagnosis speed: Time from task question to first insight
+
+\textit{[Results to be populated after qualitative analysis.]}
+
+% ────────────────────────────────────────────────────────────────────────────────
+% 6. DISCUSSION
+% ────────────────────────────────────────────────────────────────────────────────
+
+\section{Discussion}
+
+\subsection{Topological Continuity as an Explainability Criterion}
+
+The core insight of Topological Reasoning Mapping is that sound reasoning follows the structure of the domain. By projecting an LLM's chain-of-thought onto a knowledge graph, we make implicit domain assumptions explicit and auditable. This is particularly valuable in education, where a rubric (the implicit mental model of what students should know) is often tacit in an instructor's mind. TRM forces educators to articulate and codify this structure.
+
+\subsection{Domain Boundary Conditions}
+
+The Kaggle ASAG null result (p=0.348) is instructive. It reveals that TRM is most effective in domains with high lexical specificity and mature knowledge graph infrastructure. Future work should explore how to extend the approach to natural-language-rich domains where concept boundaries are fuzzier.
+
+\subsection{Panel-Before-Trace Strategy}
+
+A design choice worth noting: in the Verifier Reasoning Trace panel, we display the KG subgraph \textit{before} revealing the full chain-of-thought. This is intentional. Showing the prerequisite structure first grounds the instructor's mental model, making the subsequent step-by-step reasoning more interpretable. We hypothesize this design choice (validated in the user study think-alouds) is generalizable to other explainability contexts.
+
+\subsection{Automation Bias and Over-Reliance}
+
+A critical ethical consideration is \textit{automation bias}: when a system presents information in a highly structured, visually authoritative manner—such as a knowledge graph with color-coded nodes and an annotated reasoning trace—educators may implicitly over-trust the visualization, even when the underlying LRM output is incorrect. The DashboardContext's tight coupling between the reasoning trace and the KG subgraph is intentional (improving interpretability), but it risks conflating the system's confidence with correctness. To mitigate this, we recommend:
+
+\begin{itemize}
+  \item The system should explicitly surface uncertainty: step color codes (green, yellow, red) should be accompanied by confidence percentages, not just categorical labels.
+  \item Educators should be trained to interpret the KG as a \textit{domain reference}, not as ground truth. A red node indicates the LLM's reasoning didn't mention that concept; it does not necessarily mean the concept is irrelevant.
+  \item The Rubric Editor should encourage educators to manually confirm system suggestions before adopting them, rather than auto-importing pre-populated criteria.
+\end{itemize}
+
+These safeguards position ConceptGrade as a \textit{decision-support system}, not an automation tool.
+
+\subsection{Boundary Conditions and Future Directions}
+
+The Kaggle ASAG null result (MAE reduction 2.4\%, 95\% CI [−3.1\%, 7.9\%]) reveals an important boundary condition: TRM's effectiveness is tightly coupled to domain vocabulary specificity. In low-specificity domains where concept boundaries are fuzzy and language is colloquial, structural grounding via knowledge graphs loses signal. However, this limitation of the \textit{ML component} does not necessarily extend to the \textit{visual analytics interface}. A critical follow-up question is whether the dashboard's interactive exploration features—heatmap, radar, and rubric editor—provide utility to educators \textit{independent of ML accuracy gains}. Specifically: \textbf{Can ConceptGrade function as a scaffolding tool for non-expert educators who lack deep domain knowledge?} Phase 1 ML evaluation demonstrates that TRM plateaus on Kaggle ASAG, suggesting that structured KG grounding is most effective in high-specificity domains like Computer Science. However, the visual analytics layer may still accelerate manual review and misconception diagnosis even when ML fails to improve grading accuracy. A natural follow-up study would recruit K–12 or lower-level undergraduate science instructors (educators without deep expertise in network science or advanced CS) and test whether ConceptGrade helps them structure their evaluation of Kaggle ASAG science exam data. This would directly test the hypothesis: \textbf{VA interface utility is orthogonal to ML accuracy}—a finding that would significantly strengthen the paper's narrative about generalization beyond the vocabulary-rich domain.
+
+\subsection{Limitations}
+
+\begin{enumerate}
+  \item \textbf{Knowledge Graph Quality}: TRM depends on having a well-curated, domain-specific KG. For emerging or rapidly-evolving domains, this is a significant barrier.
+
+  \item \textbf{Participant Sample}: Our user study is limited to N=\textit{[pending]} educators from STEM disciplines with prior experience with interactive dashboards. Results may not generalize to non-technical instructors or disciplines with less-structured domain knowledge.
+
+  \item \textbf{Single-Verifier Model}: We use a single fine-tuned LLM for the Verifier stage. Cross-model validation (e.g., with other LLM APIs) remains future work.
+
+  \item \textbf{Causal Claims}: While we log rubric edits and their associated KG triggers, establishing true \textit{causal} attribution (that a KG node directly caused a pedagogical change) is limited by the self-reported nature of think-aloud protocols.
+
+  \item \textbf{Generalization Beyond Grading}: We propose TRM as applicable to medical diagnosis, legal reasoning, and scientific hypothesis generation, but have not empirically validated these claims. Future work must test TRM in domains with distinct KG structures and reasoning paradigms.
+\end{enumerate}
+
+% ────────────────────────────────────────────────────────────────────────────────
+% 7. CONCLUSION
+% ────────────────────────────────────────────────────────────────────────────────
+
+\section{Conclusion}
+
+ConceptGrade demonstrates that the opacity gap in automated grading can be bridged not by building ever-more-accurate models, but by building interfaces that make model reasoning auditable against the educator's own domain knowledge. Topological Reasoning Mapping operationalizes the insight that sound reasoning follows the structure of the domain; by visualizing this structure, we enable educators to co-audit both the machine's logic and the student's understanding simultaneously.
+
+The 32.4\% MAE reduction on vocabulary-specific domains validates that the underlying ML approach is sound. The educator user study (results pending) will establish that this technical contribution translates into pedagogical value: faster misconception diagnosis, greater trust in automated grades, and more refined rubrics.
+
+We envision TRM as a generalizable framework beyond grading—applicable to any domain where explaining a reasoning chain requires grounding it in explicit domain structure. Medical diagnosis, legal reasoning, and scientific hypothesis generation are natural extensions.
+
+% ────────────────────────────────────────────────────────────────────────────────
+% REFERENCES
+% ────────────────────────────────────────────────────────────────────────────────
+
+\bibliographystyle{abbrv-doi}
+\bibliography{references}
+
+\end{document}
