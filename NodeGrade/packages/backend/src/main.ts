@@ -15,7 +15,12 @@ async function bootstrap() {
     ? process.env.CORS_ORIGIN.split(',').map((origin) =>
         origin.trim().replace(/^"|"$/g, ''),
       )
-    : ['https://nodegrade.haski.app'];
+    : [
+        'https://nodegrade.haski.app',
+        // Vite dev server origins used during the user study (localhost)
+        'http://localhost:5173',
+        'http://127.0.0.1:5173',
+      ];
 
   app.enableCors({
     origin: allowedOrigins,
