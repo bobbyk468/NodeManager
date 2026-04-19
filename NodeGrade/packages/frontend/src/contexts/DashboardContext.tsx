@@ -78,6 +78,15 @@ interface DashboardSelectionState {
    * Stability Analysis (Section 5a) to compare Gemini Flash vs. DeepSeek-R1.
    */
   lastGroundingDensity: number;
+  /**
+   * True while any VerifierReasoningPanel trace is expanded (i.e. a ScoreSamplesTable
+   * row provenance panel is open). Passed to StudentAnswerPanel as `tracePanelOpen`
+   * so the dwell-time beacon records the browsing context at answer_view_end.
+   *
+   * Pre-registered covariate for H-DT2: educators who have a trace open while
+   * viewing an answer are expected to produce more CA think-aloud codes.
+   */
+  traceOpen: boolean;
 }
 
 // ── Actions ───────────────────────────────────────────────────────────────────
@@ -91,6 +100,7 @@ type DashboardAction =
   | { type: 'PUSH_CONTRADICTS'; nodeId: string }
   | { type: 'SET_TRACE_GAP_COUNT'; count: number }
   | { type: 'SET_GROUNDING_DENSITY'; density: number }
+  | { type: 'SET_TRACE_OPEN'; open: boolean }
   | { type: 'CLEAR_ALL' };
 
 const INITIAL_STATE: DashboardSelectionState = {
@@ -104,6 +114,7 @@ const INITIAL_STATE: DashboardSelectionState = {
   recentContradicts: [],
   lastTraceGapCount: 0,
   lastGroundingDensity: 0,
+  traceOpen: false,
 };
 
 function dashboardReducer(
@@ -156,6 +167,8 @@ function dashboardReducer(
       return { ...state, lastTraceGapCount: action.count };
     case 'SET_GROUNDING_DENSITY':
       return { ...state, lastGroundingDensity: action.density };
+    case 'SET_TRACE_OPEN':
+      return { ...state, traceOpen: action.open };
     case 'CLEAR_ALL':
       return INITIAL_STATE;
     default:
@@ -177,6 +190,11 @@ interface DashboardSelectionActions {
   setTraceGapCount: (count: number) => void;
   /** Set the grounding density (fraction of steps with kg_nodes) for the current trace. */
   setGroundingDensity: (density: number) => void;
+  /**
+   * Signal whether a VerifierReasoningPanel trace is currently visible.
+   * Called by ScoreSamplesTable when a provenance row expands or collapses.
+   */
+  setTraceOpen: (open: boolean) => void;
   clearAll: () => void;
 }
 
@@ -192,6 +210,7 @@ const DashboardContext = createContext<DashboardContextValue>({
   pushContradicts: () => {},
   setTraceGapCount: () => {},
   setGroundingDensity: () => {},
+  setTraceOpen: () => {},
   clearAll: () => {},
 });
 
@@ -222,6 +241,9 @@ export function DashboardProvider({ children }: { children: React.ReactNode }) {
   const setGroundingDensity = (density: number) =>
     dispatch({ type: 'SET_GROUNDING_DENSITY', density });
 
+  const setTraceOpen = (open: boolean) =>
+    dispatch({ type: 'SET_TRACE_OPEN', open });
+
   const clearAll = () => dispatch({ type: 'CLEAR_ALL' });
 
   return (
@@ -236,6 +258,7 @@ export function DashboardProvider({ children }: { children: React.ReactNode }) {
         pushContradicts,
         setTraceGapCount,
         setGroundingDensity,
+        setTraceOpen,
         clearAll,
       }}
     >

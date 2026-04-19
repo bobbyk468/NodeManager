@@ -44,6 +44,7 @@ import {
   exportStudyLog,
   logEvent,
   setStudyApiBase,
+  setDualWriteFailureHandler,
 } from '../utils/studyLogger';
 
 const DATASET_LABELS: Record<string, string> = {
@@ -184,13 +185,19 @@ function StudyTaskPanel({
 /** Inner dashboard — must be inside DashboardProvider */
 function InstructorDashboardInner() {
   const [searchParams] = useSearchParams();
-  const condition = searchParams.get('condition') ?? 'B';
+  const rawCondition = searchParams.get('condition');
+  // Runtime guard: reject invalid condition strings to prevent silent data pollution.
+  // Unknown values coerce to 'B' (treatment) so the study never silently mislabels events.
+  const condition = (rawCondition === 'A' || rawCondition === 'B') ? rawCondition : (rawCondition !== null ? 'B' : 'B');
   const isControlCondition = condition === 'A';
-  const isStudyMode = searchParams.get('condition') !== null;
+  const isStudyMode = rawCondition !== null;
   const sessionStart = useRef(Date.now());
 
   const [datasets, setDatasets] = useState<string[]>([]);
   const [selectedTab, setSelectedTab] = useState(0);
+  // Incrementing key forces the fetch useEffect to re-run on manual refresh
+  // without changing selectedTab (which would be a no-op if already on the same tab).
+  const [fetchKey, setFetchKey] = useState(0);
   const [vizData, setVizData] = useState<DatasetSummaryResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -201,6 +208,9 @@ function InstructorDashboardInner() {
   const [helpOpen, setHelpOpen] = useState(false);
   // Backend reachability — shown as a banner so the study facilitator can act before wasting a participant's time
   const [backendDown, setBackendDown] = useState(false);
+  // Fatal logging failure — both localStorage AND backend POST failed for the same event.
+  // Shows a blocking overlay; participant must resolve before continuing (IRB requirement).
+  const [logFailure, setLogFailure] = useState(false);
   // Whether the main study task has been submitted — triggers SUS questionnaire + rubric editor
   const [taskSubmitted, setTaskSubmitted] = useState(false);
   // Accumulated set of CONTRADICTS node IDs seen across all trace expansions this session.
@@ -209,7 +219,7 @@ function InstructorDashboardInner() {
   const [sessionContradictsNodes, setSessionContradictsNodes] = useState<string[]>([]);
 
   // Linking & brushing via DashboardContext
-  const { selectedConcept, selectedSeverity, selectConcept, clearAll, recentContradicts } = useDashboard();
+  const { selectedConcept, selectedSeverity, selectConcept, clearAll, recentContradicts, traceOpen } = useDashboard();
 
   // Mirror new entries from the rolling recentContradicts window into the session-scoped
   // accumulated set. recentContradicts only holds the last 60 s; we use timestamps to
@@ -273,13 +283,14 @@ function InstructorDashboardInner() {
         setError(e.message);
         setLoading(false);
       });
-  }, [selectedDataset, condition]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [selectedDataset, condition, fetchKey]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Register backend log endpoint, emit page_view, and run a health probe on mount.
   // The health probe gives the study facilitator an immediate signal if the backend
   // is unreachable before investing a participant's time in the session.
   useEffect(() => {
     setStudyApiBase(apiBase);
+    setDualWriteFailureHandler(() => setLogFailure(true));
     logEvent(condition, '', 'page_view', { session_id: SESSION_ID, is_study: isStudyMode });
     fetch(`${apiBase}/api/study/health`)
       .then((r) => setBackendDown(!r.ok))
@@ -321,6 +332,18 @@ function InstructorDashboardInner() {
           Check that the backend is running before beginning a participant session.
         </Alert>
       )}
+      {/* Fatal dual-write failure overlay — blocks session continuation (IRB requirement).
+          Shown when BOTH localStorage AND the backend POST fail for the same event,
+          meaning the session data cannot be recovered. Participant must resolve before continuing. */}
+      {logFailure && (
+        <Alert severity="error" sx={{ mb: 2, border: '2px solid #dc2626' }}>
+          <strong>⚠ Logging error — session data cannot be recorded.</strong> Both local storage and
+          the server log endpoint are unavailable. This is likely caused by a browser extension
+          blocking the logging API, or a strict private-browsing mode with zero storage quota.
+          <br /><strong>Please disable ad-blockers / tracking prevention and reload the page before continuing.</strong>
+          This session cannot be used for the study until logging is restored.
+        </Alert>
+      )}
       {/* Header */}
       <Box display="flex" alignItems="center" justifyContent="space-between" mb={2}>
         <Box>
@@ -337,7 +360,7 @@ function InstructorDashboardInner() {
             <IconButton
               onClick={() => {
                 setVizData(null);
-                setSelectedTab((t) => t);
+                setFetchKey((k) => k + 1);
               }}
               size="small"
             >
@@ -387,10 +410,10 @@ function InstructorDashboardInner() {
         <>
           {/* Summary card row — visible in ALL conditions */}
           <Grid container spacing={2} mb={3}>
-            <Grid item xs={6} sm={3} md={2}>
+            <Grid item xs={6} sm={4} md={true}>
               <MetricCard label="Total Answers" value={vizData.n} tooltip="Number of student answers in this dataset" />
             </Grid>
-            <Grid item xs={6} sm={3} md={2}>
+            <Grid item xs={6} sm={4} md={true}>
               <MetricCard
                 label="C5 MAE"
                 value={c5Mae.toFixed(3)}
@@ -398,7 +421,7 @@ function InstructorDashboardInner() {
                 tooltip="ConceptGrade Mean Absolute Error — lower is better"
               />
             </Grid>
-            <Grid item xs={6} sm={3} md={2}>
+            <Grid item xs={6} sm={4} md={true}>
               <MetricCard
                 label="Baseline MAE"
                 value={cllmMae.toFixed(3)}
@@ -406,7 +429,7 @@ function InstructorDashboardInner() {
                 tooltip="Pure LLM baseline Mean Absolute Error"
               />
             </Grid>
-            <Grid item xs={6} sm={3} md={2}>
+            <Grid item xs={6} sm={4} md={true}>
               <MetricCard
                 label="MAE Reduction"
                 value={maeReduction.toFixed(1)}
@@ -415,7 +438,7 @@ function InstructorDashboardInner() {
                 tooltip="Percentage improvement in MAE over LLM baseline"
               />
             </Grid>
-            <Grid item xs={6} sm={3} md={2}>
+            <Grid item xs={6} sm={4} md={true}>
               <MetricCard
                 label="Wilcoxon p"
                 value={wilcoxonP < 0.001 ? '<0.001' : wilcoxonP.toFixed(3)}
@@ -423,12 +446,20 @@ function InstructorDashboardInner() {
                 tooltip="Paired Wilcoxon signed-rank test p-value (< 0.05 = significant)"
               />
             </Grid>
-            <Grid item xs={6} sm={3} md={2}>
+            <Grid item xs={6} sm={4} md={true}>
               <MetricCard
                 label="Pearson r (C5)"
                 value={(vizData.metrics.C5_fix.r ?? 0).toFixed(3)}
                 color="#3b82f6"
                 tooltip="ConceptGrade Pearson correlation with human grades"
+              />
+            </Grid>
+            <Grid item xs={6} sm={4} md={true}>
+              <MetricCard
+                label="No Matched Concepts"
+                value={summaryData.total_misconceptions ?? 0}
+                color="#f59e0b"
+                tooltip="Answers where no KG concepts were matched — proxy for missed content coverage"
               />
             </Grid>
           </Grid>
@@ -641,6 +672,9 @@ function InstructorDashboardInner() {
                       apiBase={apiBase}
                       onClose={handleCloseAnswerPanel}
                       onShowKG={() => setShowKG(true)}
+                      studyCondition={isStudyMode ? condition : undefined}
+                      tracePanelOpen={traceOpen}
+                      kgPanelOpen={showKG}
                     />
                   </Grid>
 
@@ -652,6 +686,7 @@ function InstructorDashboardInner() {
                         conceptId={selectedConcept}
                         apiBase={apiBase}
                         onClose={() => setShowKG(false)}
+                        condition={condition}
                       />
                     </Grid>
                   )}

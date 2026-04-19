@@ -99,7 +99,14 @@ export const CrossDatasetComparisonChart: React.FC<Props> = ({ apiBase, conditio
       .catch(() => { setError(true); setLoading(false); });
   }, [apiBase]);
 
-  if (loading || error || points.length < 2) return null;
+  if (loading) return null;
+  if (error || points.length < 2) {
+    return (
+      <Box sx={{ p: 2, color: 'text.secondary', fontStyle: 'italic', fontSize: 13 }}>
+        Cross-dataset comparison requires data from at least two datasets. Run the pipeline for additional datasets to populate this chart.
+      </Box>
+    );
+  }
 
   const allMae = points.flatMap((p) => [p.cllm_mae, p.c5_mae]);
   const maeMin = Math.min(...allMae) * 0.88;

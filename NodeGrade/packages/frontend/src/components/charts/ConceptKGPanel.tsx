@@ -10,6 +10,7 @@
  */
 
 import CloseIcon from '@mui/icons-material/Close';
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import {
   Alert,
   Box,
@@ -22,12 +23,14 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import { KGSubgraphResponse, KGNode, KGEdge } from '../../common/visualization.types';
 import { useDashboard } from '../../contexts/DashboardContext';
+import { logEvent } from '../../utils/studyLogger';
 
 interface Props {
   dataset: string;
   conceptId: string;
   apiBase: string;
   onClose: () => void;
+  condition?: string;
 }
 
 const SVG_W = 560;
@@ -49,6 +52,24 @@ const REL_COLOR: Record<string, string> = {
 };
 
 type NodePos = { x: number; y: number };
+
+// Survives component unmount/remount so the educator's drag arrangement is preserved
+// when they navigate away and return to the same concept node.
+// Key format: `${dataset}::${conceptId}` — isolates layouts across datasets so
+// two datasets that share a concept name cannot cross-contaminate coordinates.
+// Eviction policy: LRU-like trim when cache exceeds MAX_CACHED_LAYOUTS entries,
+// preventing unbounded memory growth in long educator sessions.
+const MAX_CACHED_LAYOUTS = 50;
+const layoutCache = new Map<string, Map<string, NodePos>>();
+
+function layoutCacheSet(key: string, positions: Map<string, NodePos>): void {
+  layoutCache.set(key, positions);
+  if (layoutCache.size > MAX_CACHED_LAYOUTS) {
+    // Delete the oldest inserted entry (Map preserves insertion order)
+    const oldest = layoutCache.keys().next().value;
+    if (oldest !== undefined) layoutCache.delete(oldest);
+  }
+}
 
 function initialLayout(nodes: KGNode[]): Map<string, NodePos> {
   const positions = new Map<string, NodePos>();
@@ -101,20 +122,40 @@ function KGGraph({
   data,
   matchedConcepts,
   overlayLoading,
+  onResetLayout,
+  condition = 'B',
+  dataset = '',
 }: {
   data: KGSubgraphResponse;
   matchedConcepts: string[];
   overlayLoading: boolean;
+  onResetLayout?: (callback: () => void) => void;
+  condition?: string;
+  dataset?: string;
 }) {
-  const [positions, setPositions] = useState<Map<string, NodePos>>(() => initialLayout(data.nodes));
+  const cacheKey = `${dataset}::${data.concept_id}`;
+  const [positions, setPositions] = useState<Map<string, NodePos>>(
+    () => layoutCache.get(cacheKey) ?? initialLayout(data.nodes),
+  );
   const [hoveredNode, setHoveredNode] = useState<string | null>(null);
   const dragState = useRef<{ nodeId: string; offsetX: number; offsetY: number } | null>(null);
   const svgRef = useRef<SVGSVGElement>(null);
 
-  // Re-layout when concept changes
+  const resetPositions = useCallback(() => {
+    const fresh = initialLayout(data.nodes);
+    layoutCacheSet(`${dataset}::${data.concept_id}`, fresh);
+    setPositions(fresh);
+  }, [data.nodes, data.concept_id, dataset]);
+
+  // Register reset callback with parent
   useEffect(() => {
-    setPositions(initialLayout(data.nodes));
-  }, [data.concept_id]);
+    onResetLayout?.(resetPositions);
+  }, [resetPositions, onResetLayout]);
+
+  // Restore cached layout when concept or dataset changes; fall back to radial initialLayout
+  useEffect(() => {
+    setPositions(layoutCache.get(`${dataset}::${data.concept_id}`) ?? initialLayout(data.nodes));
+  }, [data.concept_id, dataset]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const matchedSet = new Set(matchedConcepts);
   const hasStudentSelected = matchedConcepts.length > 0;
@@ -148,13 +189,22 @@ function KGGraph({
     const scaleY = SVG_H / rect.height;
     const x = Math.max(NODE_R, Math.min(SVG_W - NODE_R, (e.clientX - rect.left) * scaleX - dragState.current.offsetX));
     const y = Math.max(NODE_R, Math.min(SVG_H - NODE_R, (e.clientY - rect.top) * scaleY - dragState.current.offsetY));
-    setPositions((prev) => new Map(prev).set(dragState.current!.nodeId, { x, y }));
-  }, []);
+    setPositions((prev) => {
+      const next = new Map(prev).set(dragState.current!.nodeId, { x, y });
+      layoutCacheSet(`${dataset}::${data.concept_id}`, next);
+      return next;
+    });
+  }, [data.concept_id, dataset]);
 
   const onMouseUp = useCallback(() => {
-    dragState.current = null;
+    if (dragState.current) {
+      // Log kg_node_drag once per drag gesture (on release, not per-pixel move).
+      // Records which concept node was repositioned — proxy for active KG exploration.
+      logEvent(condition, dataset, 'kg_node_drag', { node_id: dragState.current.nodeId, concept_id: data.concept_id });
+      dragState.current = null;
+    }
     if (svgRef.current) svgRef.current.style.cursor = 'default';
-  }, []);
+  }, [condition, dataset, data.concept_id]);
 
   return (
     <svg
@@ -256,18 +306,21 @@ function KGGraph({
   );
 }
 
-export const ConceptKGPanel: React.FC<Props> = ({ dataset, conceptId, apiBase, onClose }) => {
+export const ConceptKGPanel: React.FC<Props> = ({ dataset, conceptId, apiBase, onClose, condition = 'B' }) => {
   const { selectedStudentMatchedConcepts, studentOverlayLoading, studentOverlayError } = useDashboard();
   const [data, setData] = useState<KGSubgraphResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const resetLayoutRef = useRef<() => void>(() => {});
 
   useEffect(() => {
     setLoading(true); setError(null); setData(null);
-    fetch(`${apiBase}/api/visualization/datasets/${dataset}/kg/concept/${conceptId}`)
+    const abortController = new AbortController();
+    fetch(`${apiBase}/api/visualization/datasets/${dataset}/kg/concept/${conceptId}`, { signal: abortController.signal })
       .then((r) => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json() as Promise<KGSubgraphResponse>; })
       .then((d) => { setData(d); setLoading(false); })
-      .catch((e: Error) => { setError(e.message); setLoading(false); });
+      .catch((e: Error) => { if (e.name !== 'AbortError') { setError(e.message); setLoading(false); } });
+    return () => abortController.abort();
   }, [dataset, conceptId, apiBase]);
 
   const centralNode = data?.nodes.find((n) => n.is_central);
@@ -314,7 +367,14 @@ export const ConceptKGPanel: React.FC<Props> = ({ dataset, conceptId, apiBase, o
             )}
           </Box>
         </Box>
-        <IconButton size="small" onClick={onClose}><CloseIcon fontSize="small" /></IconButton>
+        <Box display="flex" gap={0.5}>
+          {data && data.nodes.length > 0 && (
+            <Tooltip title="Reset layout to circular arrangement">
+              <IconButton size="small" onClick={() => resetLayoutRef.current()}><RestartAltIcon fontSize="small" /></IconButton>
+            </Tooltip>
+          )}
+          <IconButton size="small" onClick={onClose}><CloseIcon fontSize="small" /></IconButton>
+        </Box>
       </Box>
 
       {/* Legend */}
@@ -358,7 +418,7 @@ export const ConceptKGPanel: React.FC<Props> = ({ dataset, conceptId, apiBase, o
         <>
           {data.nodes.length === 0
             ? <Typography variant="body2" color="text.secondary" sx={{ py: 2, textAlign: 'center' }}>No KG data found for this concept.</Typography>
-            : <KGGraph data={data} matchedConcepts={selectedStudentMatchedConcepts} overlayLoading={studentOverlayLoading} />
+            : <KGGraph data={data} matchedConcepts={selectedStudentMatchedConcepts} overlayLoading={studentOverlayLoading} onResetLayout={(cb) => { resetLayoutRef.current = cb; }} condition={condition} dataset={dataset} />
           }
           <Typography variant="caption" color="text.secondary">
             {data.nodes.length - 1} neighbors · {data.edges.length} relationships

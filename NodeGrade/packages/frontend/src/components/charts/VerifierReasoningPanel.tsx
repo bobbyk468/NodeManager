@@ -31,6 +31,7 @@
  */
 
 import React, { useState, useCallback, useMemo, useEffect } from 'react';
+import { logEvent } from '../../utils/studyLogger';
 import {
   Alert,
   Box,
@@ -79,6 +80,9 @@ interface Props {
   onNodeClick?: (nodeId: string) => void;
   highlightedNode?: string | null;
   onClose?: () => void;
+  /** Study-mode props — when provided, trace_interact events are logged. */
+  condition?: string;
+  dataset?: string;
 }
 
 // ── Classification config ─────────────────────────────────────────────────────
@@ -388,6 +392,8 @@ export const VerifierReasoningPanel: React.FC<Props> = ({
   onNodeClick,
   highlightedNode,
   onClose,
+  condition = 'B',
+  dataset = '',
 }) => {
   const [selectedStepId, setSelectedStepId] = useState<number | null>(null);
   const { pushContradicts, setTraceGapCount, setGroundingDensity } = useDashboard();
@@ -429,6 +435,15 @@ export const VerifierReasoningPanel: React.FC<Props> = ({
       if (nextId !== null) {
         const step = parsedSteps.find((s) => s.step_id === nextId);
         if (step) {
+          // Log ALL step clicks (SUPPORTS/CONTRADICTS/UNCERTAIN) for engagement analysis.
+          // analyze_study_logs.py counts trace_interactions and contradicts_interactions
+          // from these events; without them both metrics are always 0.
+          logEvent(condition, dataset, 'trace_interact', {
+            classification: step.classification,
+            node_id: step.kg_nodes[0] ?? null,
+            step_id: step.step_id,
+          });
+
           // Causal proximity tracking: append CONTRADICTS interaction to rolling window.
           // Only push when kg_nodes is non-empty — synthetic IDs like step_3 are
           // unmatchable in conceptAliases.matchesContradictsNode and would inflate
@@ -443,7 +458,7 @@ export const VerifierReasoningPanel: React.FC<Props> = ({
         }
       }
     },
-    [selectedStepId, parsedSteps, onNodeClick, pushContradicts],
+    [selectedStepId, parsedSteps, onNodeClick, pushContradicts, condition, dataset],
   );
 
   const handleNodePillClick = useCallback(
@@ -451,9 +466,16 @@ export const VerifierReasoningPanel: React.FC<Props> = ({
       onNodeClick?.(nodeId);
       // Node pill clicks on CONTRADICTS steps also count as causal interactions
       const step = parsedSteps.find(s => s.kg_nodes.includes(nodeId) && s.classification === 'CONTRADICTS');
-      if (step) pushContradicts(nodeId);
+      if (step) {
+        logEvent(condition, dataset, 'trace_interact', {
+          classification: 'CONTRADICTS',
+          node_id: nodeId,
+          step_id: step.step_id,
+        });
+        pushContradicts(nodeId);
+      }
     },
-    [onNodeClick, parsedSteps, pushContradicts],
+    [onNodeClick, parsedSteps, pushContradicts, condition, dataset],
   );
 
   if (parsedSteps.length === 0) {
@@ -493,6 +515,25 @@ export const VerifierReasoningPanel: React.FC<Props> = ({
 
       {/* Summary bar */}
       <SummaryBar summary={traceSummary} gapCount={topologicalGapCount} groundingDensity={groundingDensity} />
+
+      {/* Zero-grounding degeneracy banner — shown when ALL steps have kg_nodes: [].
+          This is the common case for DeepSeek-R1 traces (97.7% of DigiKlausur answers).
+          Topological gap detection cannot operate without KG node anchors; the banner
+          warns the educator that structural leap indicators are suppressed, not absent.
+          Implemented per AGENT_EVALUATION_GUIDE §2 "Zero-Grounding Graceful Rendering". */}
+      {groundingDensity === 0 && parsedSteps.length > 0 && (
+        <Alert
+          severity="warning"
+          icon={<WarningAmberIcon fontSize="inherit" />}
+          sx={{ mt: 1, fontSize: 11, '& .MuiAlert-message': { lineHeight: 1.5 } }}
+        >
+          <strong>No Domain Grounding</strong> — All {parsedSteps.length} reasoning step
+          {parsedSteps.length !== 1 ? 's' : ''} lack KG concept anchors (grounding density = 0%).
+          Structural leap detection is disabled for this trace. This is a known degeneracy
+          pattern in DeepSeek-R1 traces; use the SUPPORTS / CONTRADICTS chips and the score
+          delta to audit this answer.
+        </Alert>
+      )}
 
       {/* Conclusion callout */}
       {traceSummary.conclusion_text && (

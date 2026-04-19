@@ -69,14 +69,19 @@ interface RubricEditorPanelProps {
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
-/** Extract a flat concept list from the dataset's specs. */
+/** Extract a flat concept ID list from the dataset's concept_frequency spec.
+ *  concept_frequency bars have the shape { concept: string (raw id), label: string (display), ... }.
+ *  rubric_size = concepts.length is emitted in every rubric_edit event so that
+ *  analyze_study_logs.py can use the true N for the hypergeometric null model (H2).
+ */
 function extractConceptsFromSpecs(specs: VisualizationSpec[]): string[] {
   const concepts = new Set<string>();
   for (const spec of specs) {
-    if (spec.viz_id === 'concept_frequency' || spec.viz_type === 'bar_chart') {
-      const items = (spec.data as any)?.items ?? [];
-      for (const item of items) {
-        if (item?.label) concepts.add(String(item.label));
+    if (spec.viz_id === 'concept_frequency') {
+      // data.bars is produced by visualization.service.ts buildConceptFrequency()
+      const bars = (spec.data as any)?.bars ?? [];
+      for (const bar of bars) {
+        if (bar?.concept) concepts.add(String(bar.concept));
       }
     }
     if (spec.insights) {
@@ -186,9 +191,11 @@ export function RubricEditorPanel({
       // Topological gap & grounding density moderators
       trace_gap_count:   lastTraceGapCount,
       grounding_density: lastGroundingDensity,
+      // True rubric size for hypergeometric null model (H2 — analyze_study_logs.py)
+      rubric_size: concepts.length,
     };
 
-    logEvent(condition, dataset, 'rubric_edit', payload);
+    logEvent(condition, dataset, 'rubric_edit', payload as unknown as Record<string, unknown>);
 
     setEdits(prev => {
       const without = prev.filter(e => e.concept_id !== conceptId);
