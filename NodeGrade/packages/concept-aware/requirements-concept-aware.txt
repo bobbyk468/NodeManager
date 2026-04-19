@@ -2,5 +2,17 @@
 numpy>=1.24
 scipy>=1.10
 scikit-learn>=1.3
+
+# LLM clients
+openai>=1.30          # DeepSeek API (OpenAI-compatible) + GPT models
+google-genai>=0.8     # Gemini 2.5 Flash (Stage 1, 5 and LRM fallback)
+anthropic>=0.28       # Claude (llm_client.py Anthropic backend)
+
+# JSON repair for malformed LLM outputs
+json-repair>=0.20
+
 # Optional: stronger semantic matching (otherwise TF-IDF fallback is used)
 # sentence-transformers>=3.0.0
+
+# Word document generation (paper figures)
+python-docx>=1.1

@@ -103,7 +103,7 @@ class _Response:
 # ── Provider detection ─────────────────────────────────────────────────────────
 
 def detect_provider(model: str) -> str:
-    """Return 'anthropic', 'google', or 'openai' based on model name prefix."""
+    """Return 'anthropic', 'google', 'openai', or 'deepseek' based on model name prefix."""
     m = model.lower()
     if m.startswith("claude"):
         return "anthropic"
@@ -111,7 +111,9 @@ def detect_provider(model: str) -> str:
         return "google"
     if m.startswith("gpt") or m.startswith("o1") or m.startswith("o3") or m.startswith("o4"):
         return "openai"
-    # Fallback: check API key prefix to guess provider
+    if m.startswith("deepseek"):
+        return "deepseek"
+    # Fallback
     return "anthropic"
 
 
@@ -257,6 +259,72 @@ class _GoogleCompletions:
         return _Response(text)
 
 
+# ── DeepSeek backend ───────────────────────────────────────────────────────────
+#
+# Uses the DeepSeek API (api.deepseek.com) which is OpenAI-compatible.
+# Key difference: the response message has a `reasoning_content` attribute
+# containing the full chain-of-thought trace when using deepseek-reasoner.
+#
+# Supported models:
+#   deepseek-reasoner          — DeepSeek-R1 (full, best quality)
+#   deepseek-chat              — DeepSeek-V3 (fast, no trace)
+
+class _DeepSeekMessage:
+    """Extends _Message with an optional reasoning_content field."""
+    def __init__(self, content: str, reasoning_content: str = ""):
+        self.content = content
+        self.reasoning_content = reasoning_content  # <think> trace
+
+class _DeepSeekChoice:
+    def __init__(self, content: str, reasoning_content: str = ""):
+        self.message = _DeepSeekMessage(content, reasoning_content)
+
+class _DeepSeekResponse:
+    def __init__(self, content: str, reasoning_content: str = ""):
+        self.choices = [_DeepSeekChoice(content, reasoning_content)]
+
+class _DeepSeekCompletions:
+    BASE_URL = "https://api.deepseek.com"
+
+    def __init__(self, api_key: str):
+        self._api_key = api_key
+
+    def create(
+        self,
+        model: str,
+        messages: list[dict],
+        temperature: float = 0.0,
+        max_tokens: int = 8192,
+        **kwargs,
+    ) -> _DeepSeekResponse:
+        from openai import OpenAI
+        client = OpenAI(api_key=self._api_key, base_url=self.BASE_URL)
+        resp = client.chat.completions.create(
+            model=model,
+            messages=messages,
+            temperature=temperature,
+            max_tokens=max_tokens,
+        )
+        content           = resp.choices[0].message.content or ""
+        reasoning_content = getattr(resp.choices[0].message, "reasoning_content", "") or ""
+        return _DeepSeekResponse(content, reasoning_content)
+
+    async def async_create(
+        self,
+        model: str,
+        messages: list[dict],
+        temperature: float = 0.0,
+        max_tokens: int = 8192,
+        **kwargs,
+    ) -> _DeepSeekResponse:
+        import asyncio
+        loop = asyncio.get_event_loop()
+        return await loop.run_in_executor(
+            None,
+            lambda: self.create(model, messages, temperature, max_tokens, **kwargs),
+        )
+
+
 # ── OpenAI backend ─────────────────────────────────────────────────────────────
 
 class _OpenAICompletions:
@@ -330,6 +398,8 @@ class LLMClient:
                 self._backends[provider] = _GoogleCompletions(self._api_key)
             elif provider == "openai":
                 self._backends[provider] = _OpenAICompletions(self._api_key)
+            elif provider == "deepseek":
+                self._backends[provider] = _DeepSeekCompletions(self._api_key)
             else:
                 raise ValueError(f"Unknown provider: {provider!r}")
         return self._backends[provider]

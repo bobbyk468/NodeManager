@@ -17,6 +17,10 @@ from scipy.stats import pearsonr
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA     = os.path.join(BASE_DIR, "data")
 
+# Dataset these ablation inputs correspond to — used to scope the sentinel check
+# so that flags from unrelated datasets do not block a valid ablation run.
+ABLATION_DATASET = 'mohler'
+
 
 def load_scores(path, n=120):
     with open(path) as f:
@@ -34,6 +38,32 @@ def metrics(h, pred):
 
 
 def main():
+    # Refuse to run on partial batch data — dataset-scoped sentinel check.
+    # run_batch_eval_api.py writes {dataset}_INCOMPLETE_*.flag when quota is
+    # exhausted mid-batch.  Only flags for ABLATION_DATASET are checked; flags
+    # from unrelated datasets do not block this script.
+    batch_dir = os.environ.get('CONCEPTGRADE_BATCH_DIR', os.path.join(DATA, 'tmp'))
+    if os.path.isdir(batch_dir):
+        try:
+            flags = [
+                f for f in os.listdir(batch_dir)
+                if f.endswith(".flag") and f.startswith(ABLATION_DATASET + "_")
+            ]
+        except OSError as e:
+            print(f"WARNING: Could not read batch_responses/ directory ({type(e).__name__}): {e}",
+                  file=sys.stderr)
+            print("  Proceeding without sentinel check — verify batch completeness manually.",
+                  file=sys.stderr)
+            flags = []
+        if flags:
+            print(f"ERROR: Incomplete batch data for dataset '{ABLATION_DATASET}' — ablation aborted.")
+            print("  Sentinel files found:")
+            for flag in sorted(flags):
+                print(f"    {os.path.join(batch_dir, flag)}")
+            print("\nRe-run run_batch_eval_api.py to complete the batches,")
+            print("then delete the .flag files before re-running this script.")
+            sys.exit(2)  # exit(2) = data integrity abort; exit(1) = missing-file / user error
+
     # Load baseline data
     with open(os.path.join(DATA, "ablation_checkpoint_gemini_flash_latest.json")) as f:
         ckpt = json.load(f)

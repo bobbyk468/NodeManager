@@ -39,7 +39,7 @@ from concept_matching import (
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, "data")
-OUT_DIR = "/tmp/batch_scoring"
+OUT_DIR = os.environ.get('CONCEPTGRADE_BATCH_DIR', os.path.join(BASE_DIR, 'data', 'tmp'))
 
 BATCH_SIZE = 80  # samples per batch prompt
 
@@ -282,6 +282,84 @@ Grade all {len(batch)} samples. {increment_note}"""
     return header + body + footer
 
 
+def build_c5fix_judge_prompt(batch: list[dict], features: dict, q_to_kg: dict) -> str:
+    """LLM-as-Judge C5_fix prompt (Gemini's recommended fix for Kaggle ASAG).
+
+    Instead of feeding pre-matched concept names (which inflates scores via
+    keyword presence), this prompt shows ALL expected KG concepts and asks the
+    model to explicitly verify correctness of each BEFORE scoring.
+
+    Step 1: For each expected concept, judge TRUE (correctly demonstrated) or
+            FALSE (mentioned incorrectly, missed, or vague).
+    Step 2: Score based ONLY on TRUE concepts.
+
+    This prevents the 'bag-of-words confidence boost' where correct-sounding
+    but wrong answers (e.g., 'plants take in oxygen') get inflated scores.
+    """
+    system = f"""{SCORING_GUIDE}
+
+You are an expert grader using a two-step process:
+
+STEP 1 — Concept Verification: For each expected concept listed, determine:
+  TRUE = student correctly demonstrated this idea (even in their own words)
+  FALSE = student missed it, mentioned it vaguely, or used it incorrectly
+
+CRITICAL: A student who MENTIONS a concept word but explains it INCORRECTLY must be marked FALSE for that concept. Keyword presence alone does not count — correct meaning matters.
+
+STEP 2 — Score: Based ONLY on the TRUE concepts, assign a score using the scoring guide above.
+
+When no concept list is provided, grade using the reference answer only.
+
+Return a single JSON object with only scores (no reasoning in output):
+{{
+  "scores": {{
+    "<id>": X.X,
+    ...
+  }}
+}}
+
+Grade all {len(batch)} samples. Use 0.25 increments."""
+
+    parts = []
+    for r in batch:
+        sid = str(r["id"])
+        feat = features.get(sid, {})
+        use_kg = feat.get("use_kg", True)
+        q = r["question"].strip()
+        kg = q_to_kg.get(q, {})
+        concepts = kg.get("concepts", [])
+        expected_ids = kg.get("expected_concepts", [c["id"] for c in concepts])
+        expected_concepts = [c for c in concepts if c["id"] in expected_ids]
+
+        if not use_kg or not expected_concepts:
+            parts.append(
+                f"--- SAMPLE ID: {sid} ---\n"
+                f"QUESTION: {r['question']}\n\n"
+                f"REFERENCE ANSWER:\n{r['reference_answer']}\n\n"
+                f"STUDENT ANSWER:\n{r['student_answer']}"
+            )
+            continue
+
+        concept_list = "\n".join(
+            f"  {i+1}. {c.get('name', c['id'])}: {c.get('description', '')}"
+            for i, c in enumerate(expected_concepts)
+        )
+
+        parts.append(
+            f"--- SAMPLE ID: {sid} ---\n"
+            f"QUESTION: {r['question']}\n\n"
+            f"REFERENCE ANSWER:\n{r['reference_answer']}\n\n"
+            f"EXPECTED CONCEPTS (verify each TRUE/FALSE in student answer):\n"
+            f"{concept_list}\n\n"
+            f"STUDENT ANSWER:\n{r['student_answer']}"
+        )
+
+    header = f"{system}\n\n{'='*70}\n\n"
+    body = "\n\n".join(parts)
+    footer = f"\n\n{'='*70}\nGrade all {len(batch)} samples. Verify concept correctness first, then score. Return only the JSON object."
+    return header + body + footer
+
+
 def build_c5fix_coverage_prompt(batch: list[dict], features: dict) -> str:
     """C5_fix variant using coverage-ratio framing instead of concept lists.
 
@@ -419,9 +497,9 @@ def run(dataset: str, mode: str = "split") -> None:
             with open(cllm_path, "w") as f:
                 f.write(cllm_prompt)
 
-            # Kaggle ASAG: use coverage-ratio framing to prevent concept-name inflation
+            # Kaggle ASAG: LLM-as-Judge — verify each concept's correctness before scoring
             if dataset == "kaggle_asag":
-                c5fix_prompt = build_c5fix_coverage_prompt(batch, features)
+                c5fix_prompt = build_c5fix_judge_prompt(batch, features, q_to_kg)
             else:
                 c5fix_prompt = build_c5fix_prompt(batch, features, scoring_guide=scoring_guide)
             c5fix_path = os.path.join(OUT_DIR, f"{dataset}_c5fix_batch_{b+1:02d}.txt")

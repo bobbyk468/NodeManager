@@ -20,7 +20,7 @@ import time
 import glob
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-BATCH_DIR = "/tmp/batch_scoring"
+BATCH_DIR = os.environ.get('CONCEPTGRADE_BATCH_DIR', os.path.join(BASE_DIR, 'data', 'tmp'))
 BACKEND_ENV = os.path.join(BASE_DIR, "..", "backend", ".env")
 MODEL = "gemini-2.5-flash"
 
@@ -132,8 +132,17 @@ def process_dataset(dataset: str, api_key: str, force: bool = False) -> list[str
                     print(f"\n    Rate limited. Waiting {wait}s... (retry {retries}/3)")
                     time.sleep(wait)
                 elif "quota" in err_msg.lower():
-                    print(f"\n    QUOTA EXHAUSTED: {err_msg}")
-                    print("    Cannot continue. Remaining batches need manual submission.")
+                    print(f"\n    QUOTA EXHAUSTED at batch {i}/{len(batch_files)}: {err_msg}")
+                    sentinel = os.path.join(BATCH_DIR, f"{dataset}_INCOMPLETE_{i}of{len(batch_files)}.flag")
+                    with open(sentinel, 'w') as sf:
+                        sf.write(json.dumps({
+                            'exhausted_at_batch': i,
+                            'total_batches': len(batch_files),
+                            'saved_paths': saved_paths,
+                            'timestamp': time.strftime('%Y-%m-%dT%H:%M:%SZ'),
+                        }))
+                    print(f"    Sentinel written: {sentinel}")
+                    print("    Re-run after quota resets. Remaining batches will resume automatically.")
                     return saved_paths
                 else:
                     print(f"\n    ERROR (retry {retries}/3): {err_msg}")

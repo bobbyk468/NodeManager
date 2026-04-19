@@ -35,7 +35,7 @@ from sklearn.metrics import cohen_kappa_score
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, "data")
-BATCH_DIR = "/tmp/batch_scoring"
+BATCH_DIR = os.environ.get('CONCEPTGRADE_BATCH_DIR', os.path.join(BASE_DIR, 'data', 'tmp'))
 BACKUP_DIR = os.path.join(DATA_DIR, "batch_responses")  # persistent fallback
 SEP = "=" * 70
 
@@ -200,19 +200,7 @@ def run(dataset: str, snap_digi: bool | None = None) -> None:
     cllm = np.array([r["cllm_score"] for r in results])
     c5 = np.array([r["c5_score"] for r in results])
 
-    # Snapping helps interpret MAE vs a 3-level rubric but changes error distribution;
-    # default OFF so Wilcoxon matches the primary continuous-score experiments.
-    do_snap = bool(snap_digi)
-    if do_snap:
-        cllm = snap_to_discrete_levels(cllm, DIGIKLAUSUR_SCORE_LEVELS)
-        c5 = snap_to_discrete_levels(c5, DIGIKLAUSUR_SCORE_LEVELS)
-        for i, r in enumerate(results):
-            r["cllm_score"] = float(cllm[i])
-            r["c5_score"] = float(c5[i])
-        print(
-            f"  DigiKlausur-style snap: predictions mapped to {list(DIGIKLAUSUR_SCORE_LEVELS)}"
-        )
-
+    # Always compute raw (continuous) metrics first
     m_cllm = compute_metrics(h, cllm)
     m_c5 = compute_metrics(h, c5)
 
@@ -221,24 +209,58 @@ def run(dataset: str, snap_digi: bool | None = None) -> None:
     except Exception:
         p_wil = 1.0
 
+    def _print_metrics_block(label: str, mc: dict, m5: dict, p: float) -> None:
+        mae_red = (mc['mae'] - m5['mae']) / mc['mae'] * 100
+        print(f"\n  {label}")
+        print(f"  {'System':40} {'MAE':7} {'r':7} {'rho':7} {'QWK':7} {'Bias':7} {'P@0.5':6}")
+        print("  " + "-" * 70)
+        print(f"  {'C_LLM (no KG)':40} {mc['mae']:.4f}  {mc['r']:.4f}  {mc['rho']:.4f}  {mc['qwk']:.4f}  {mc['bias']:+.4f}  {mc['prec']:.3f}")
+        print(f"  {'C5_fix / ConceptGrade (full KG)':40} {m5['mae']:.4f}  {m5['r']:.4f}  {m5['rho']:.4f}  {m5['qwk']:.4f}  {m5['bias']:+.4f}  {m5['prec']:.3f}")
+        print(f"  Wilcoxon p (paired |err|, two-sided): {p:.4f}")
+        print(f"  MAE reduction: {mae_red:.1f}%")
+        sig = p < 0.05
+        if m5['mae'] < mc['mae'] and sig:
+            print(f"  ✓ ConceptGrade BEATS C_LLM")
+        elif m5['mae'] < mc['mae']:
+            print(f"  ▲ Lower MAE for C5_fix; significance borderline")
+        else:
+            print(f"  ✗ C_LLM better on this dataset")
+
     print()
     print(SEP)
     print(f"RESULTS — {dataset.upper()} (n={len(results)})")
     print(SEP)
-    print(f"  {'System':40} {'MAE':7} {'r':7} {'rho':7} {'QWK':7} {'Bias':7} {'P@0.5':6}")
-    print("  " + "-" * 70)
-    print(f"  {'C_LLM (no KG)':40} {m_cllm['mae']:.4f}  {m_cllm['r']:.4f}  {m_cllm['rho']:.4f}  {m_cllm['qwk']:.4f}  {m_cllm['bias']:+.4f}  {m_cllm['prec']:.3f}")
-    print(f"  {'C5_fix / ConceptGrade (full KG)':40} {m_c5['mae']:.4f}  {m_c5['r']:.4f}  {m_c5['rho']:.4f}  {m_c5['qwk']:.4f}  {m_c5['bias']:+.4f}  {m_c5['prec']:.3f}")
-    print(f"  Wilcoxon p (paired |err|, two-sided): {p_wil:.4f}")
+    _print_metrics_block("Continuous scores (primary):", m_cllm, m_c5, p_wil)
+
     mae_reduction = (m_cllm['mae'] - m_c5['mae']) / m_cllm['mae'] * 100
-    print(f"  MAE reduction: {mae_reduction:.1f}%")
-    sig = p_wil < 0.05
-    if m_c5['mae'] < m_cllm['mae'] and sig:
-        print(f"  ✓ ConceptGrade BEATS C_LLM (see p-values above)")
-    elif m_c5['mae'] < m_cllm['mae']:
-        print(f"  ▲ Lower MAE for C5_fix; significance borderline (ties on 0.25 grid reduce Wilcoxon power)")
-    else:
-        print(f"  ✗ C_LLM better on this dataset — investigate")
+
+    # For DigiKlausur: always also report snapped metrics (rubric-aligned comparison)
+    m_cllm_snap = m_c5_snap = p_wil_snap = mae_reduction_snap = None
+    if dataset == "digiklausur":
+        cllm_s = snap_to_discrete_levels(cllm, DIGIKLAUSUR_SCORE_LEVELS)
+        c5_s = snap_to_discrete_levels(c5, DIGIKLAUSUR_SCORE_LEVELS)
+        m_cllm_snap = compute_metrics(h, cllm_s)
+        m_c5_snap = compute_metrics(h, c5_s)
+        try:
+            _, p_wil_snap = wilcoxon(np.abs(c5_s - h), np.abs(cllm_s - h))
+        except Exception:
+            p_wil_snap = 1.0
+        mae_reduction_snap = (m_cllm_snap['mae'] - m_c5_snap['mae']) / m_cllm_snap['mae'] * 100
+        levels_str = [float(v) for v in DIGIKLAUSUR_SCORE_LEVELS]
+        _print_metrics_block(
+            f"Snapped to rubric levels {levels_str} (sensitivity analysis):",
+            m_cllm_snap, m_c5_snap, p_wil_snap,
+        )
+
+    # If --snap-digi was passed, also overwrite results rows with snapped values
+    do_snap = bool(snap_digi) and dataset == "digiklausur"
+    if do_snap:
+        cllm_s = snap_to_discrete_levels(cllm, DIGIKLAUSUR_SCORE_LEVELS)
+        c5_s = snap_to_discrete_levels(c5, DIGIKLAUSUR_SCORE_LEVELS)
+        for i, r in enumerate(results):
+            r["cllm_score"] = float(cllm_s[i])
+            r["c5_score"] = float(c5_s[i])
+        print(f"\n  NOTE: --snap-digi set; saved results rows use snapped scores.")
 
     # Save
     out = {
@@ -251,6 +273,10 @@ def run(dataset: str, snap_digi: bool | None = None) -> None:
         "results": results,
         "missing_ids": missing,
         "snap_discrete_levels": list(DIGIKLAUSUR_SCORE_LEVELS) if do_snap else None,
+        **({"metrics_snapped": {"C_LLM": m_cllm_snap, "C5_fix": m_c5_snap,
+                                "wilcoxon_p": float(p_wil_snap),
+                                "mae_reduction_pct": float(mae_reduction_snap)}}
+           if m_cllm_snap is not None else {}),
     }
     out_path = os.path.join(DATA_DIR, f"{dataset}_eval_results.json")
     with open(out_path, "w") as f:
@@ -262,10 +288,18 @@ def run(dataset: str, snap_digi: bool | None = None) -> None:
         f"ConceptGrade Evaluation — {dataset.upper()}",
         f"n={len(results)} samples",
         SEP,
-        f"  C_LLM:   MAE={m_cllm['mae']:.4f}  r={m_cllm['r']:.4f}  QWK={m_cllm['qwk']:.4f}  bias={m_cllm['bias']:+.4f}",
-        f"  C5_fix:  MAE={m_c5['mae']:.4f}  r={m_c5['r']:.4f}  QWK={m_c5['qwk']:.4f}  bias={m_c5['bias']:+.4f}",
-        f"  MAE reduction: {mae_reduction:.1f}%  Wilcoxon p={p_wil:.4f}",
+        "  Continuous scores (primary):",
+        f"    C_LLM:   MAE={m_cllm['mae']:.4f}  r={m_cllm['r']:.4f}  QWK={m_cllm['qwk']:.4f}  bias={m_cllm['bias']:+.4f}",
+        f"    C5_fix:  MAE={m_c5['mae']:.4f}  r={m_c5['r']:.4f}  QWK={m_c5['qwk']:.4f}  bias={m_c5['bias']:+.4f}",
+        f"    MAE reduction: {mae_reduction:.1f}%  Wilcoxon p={p_wil:.4f}",
     ]
+    if m_cllm_snap is not None:
+        summary += [
+            f"  Snapped to {[float(v) for v in DIGIKLAUSUR_SCORE_LEVELS]} (sensitivity):",
+            f"    C_LLM:   MAE={m_cllm_snap['mae']:.4f}  r={m_cllm_snap['r']:.4f}  QWK={m_cllm_snap['qwk']:.4f}  bias={m_cllm_snap['bias']:+.4f}",
+            f"    C5_fix:  MAE={m_c5_snap['mae']:.4f}  r={m_c5_snap['r']:.4f}  QWK={m_c5_snap['qwk']:.4f}  bias={m_c5_snap['bias']:+.4f}",
+            f"    MAE reduction: {mae_reduction_snap:.1f}%  Wilcoxon p={p_wil_snap:.4f}",
+        ]
     sum_path = os.path.join(DATA_DIR, f"{dataset}_metrics_summary.txt")
     with open(sum_path, "w") as f:
         f.write("\n".join(summary) + "\n")

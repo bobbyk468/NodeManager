@@ -41,6 +41,7 @@ from __future__ import annotations
 import json
 import re
 import statistics
+import traceback
 from dataclasses import dataclass, field
 from typing import List
 from conceptgrade.llm_client import LLMClient as Groq
@@ -392,7 +393,6 @@ class LLMVerifier:
             evidence = parsed.get("key_evidence", "")
         except Exception as e:
             # Fallback: trust KG score
-            import traceback
             print(f"  [Verifier] FALLBACK triggered — {type(e).__name__}: {e}")
             traceback.print_exc()
             verified = kg_score

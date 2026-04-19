@@ -1,18 +1,31 @@
 """
 run_full_pipeline.py — End-to-end ConceptGrade evaluation pipeline.
 
-1. Generates KG via Gemini API for DigiKlausur + Kaggle ASAG
-2. Regenerates batch scoring prompts with KG features
-3. Scores all batches via Gemini API
-4. Computes metrics and updates paper report
+Stage 1: Generates KG via Gemini API for DigiKlausur + Kaggle ASAG
+Stage 2: Regenerates batch scoring prompts with KG features
+Stage 3: Scores all batches via Gemini API
+Stage 4: Computes metrics and updates paper report
 
 All intermediate results are saved as JSON for reproducibility.
 
 Usage:
-    python3 run_full_pipeline.py
-    python3 run_full_pipeline.py --dataset digiklausur
-    python3 run_full_pipeline.py --dataset kaggle_asag
-    python3 run_full_pipeline.py --skip-kg   # skip KG gen if already have files
+    python3 run_full_pipeline.py                                 # full run (Stages 1–4)
+    python3 run_full_pipeline.py --dataset digiklausur           # one dataset
+    python3 run_full_pipeline.py --skip-kg                       # skip Stage 1
+    python3 run_full_pipeline.py --skip-kg --skip-scoring        # Stages 2+4 only
+    python3 run_full_pipeline.py --metrics-only                  # Stage 4 only (ZERO API calls)
+    python3 run_full_pipeline.py --only-system c5fix --skip-kg   # re-score C5_fix only
+
+Flag summary:
+    --skip-kg       Skip Stage 1 (KG generation). Use cached KG files.
+    --skip-scoring  Skip Stage 3 (API scoring). Recompute metrics from existing
+                    cached responses in data/batch_responses/ or /tmp/batch_scoring/.
+                    Does NOT require GEMINI_API_KEY.
+    --metrics-only  Skip Stages 1–3. Run Stage 4 only (score_batch_results.py).
+                    Equivalent to --skip-kg --skip-scoring but also skips Stage 2
+                    (batch prompt generation). ZERO API calls. Does NOT require
+                    GEMINI_API_KEY.
+    --force         Re-do all active stages even if cached files exist.
 """
 
 from __future__ import annotations
@@ -28,7 +41,7 @@ import subprocess
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, "data")
-BATCH_DIR = "/tmp/batch_scoring"
+BATCH_DIR = os.environ.get('CONCEPTGRADE_BATCH_DIR', os.path.join(BASE_DIR, 'data', 'tmp'))
 BACKEND_ENV = os.path.join(BASE_DIR, "..", "backend", ".env")
 
 # Override with GEMINI_KG_MODEL / GEMINI_SCORING_MODEL / GEMINI_RATE_SLEEP_SEC if needed.
@@ -386,11 +399,22 @@ def compute_metrics(dataset: str) -> bool:
 # ─── Main ─────────────────────────────────────────────────────────────────────
 
 def main():
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        description=__doc__,
+    )
     parser.add_argument("--dataset", choices=["digiklausur", "kaggle_asag", "all"], default="all")
-    parser.add_argument("--skip-kg", action="store_true", help="Skip KG generation (use existing files)")
-    parser.add_argument("--skip-scoring", action="store_true", help="Skip scoring (compute metrics from existing responses)")
-    parser.add_argument("--force", action="store_true", help="Re-do all steps even if files exist")
+    parser.add_argument("--skip-kg", action="store_true",
+                        help="Skip Stage 1: KG generation (use existing cached KG files)")
+    parser.add_argument("--skip-scoring", action="store_true",
+                        help="Skip Stage 3: API scoring; recompute metrics from cached responses. "
+                             "Does NOT require GEMINI_API_KEY.")
+    parser.add_argument("--metrics-only", action="store_true",
+                        help="Run Stage 4 only: compute metrics from existing cached responses. "
+                             "Skips Stages 1–3 entirely. ZERO API calls. "
+                             "Does NOT require GEMINI_API_KEY.")
+    parser.add_argument("--force", action="store_true",
+                        help="Re-do all active stages even if cached files exist")
     parser.add_argument(
         "--only-system",
         choices=["both", "cllm", "c5fix"],
@@ -399,14 +423,24 @@ def main():
     )
     args = parser.parse_args()
 
+    # --metrics-only implies --skip-kg and --skip-scoring
+    if args.metrics_only:
+        args.skip_kg = True
+        args.skip_scoring = True
+
     datasets = ["digiklausur", "kaggle_asag"] if args.dataset == "all" else [args.dataset]
 
-    print("Loading Gemini API key...")
-    api_key = load_api_key()
-    print(f"  Key loaded ({len(api_key)} chars, not shown)")
-
-    from google import genai
-    client = genai.Client(api_key=api_key)
+    # Only load API key when we will actually make API calls (Stage 1 or Stage 3)
+    need_api = not args.skip_kg or not args.skip_scoring
+    client = None
+    if need_api:
+        print("Loading Gemini API key...")
+        api_key = load_api_key()
+        print(f"  Key loaded ({len(api_key)} chars, not shown)")
+        from google import genai
+        client = genai.Client(api_key=api_key)
+    else:
+        print("No API calls needed for this run (--skip-kg + --skip-scoring / --metrics-only).")
 
     os.makedirs(BATCH_DIR, exist_ok=True)
 
@@ -425,11 +459,18 @@ def main():
             except Exception as e:
                 print(f"  KG generation failed: {e}")
                 print("  Continuing with empty KG features...")
+        else:
+            print(f"\n[Stage 1] Skipped (--skip-kg)")
 
-        # Stage 2: Batch prompts
-        print(f"\n[Stage 2] Building split batch prompts for {dataset}...")
-        cllm_files, c5fix_files = generate_batch_prompts(dataset)
-        print(f"  {len(cllm_files)} C_LLM + {len(c5fix_files)} C5_fix batch files ready")
+        # Stage 2: Batch prompts (skip when --metrics-only; still run for --skip-scoring alone)
+        if not args.metrics_only:
+            print(f"\n[Stage 2] Building split batch prompts for {dataset}...")
+            cllm_files, c5fix_files = generate_batch_prompts(dataset)
+            print(f"  {len(cllm_files)} C_LLM + {len(c5fix_files)} C5_fix batch files ready")
+        else:
+            print(f"\n[Stage 2] Skipped (--metrics-only)")
+            cllm_files = sorted(glob.glob(os.path.join(BATCH_DIR, f"{dataset}_cllm_batch_*.txt")))
+            c5fix_files = sorted(glob.glob(os.path.join(BATCH_DIR, f"{dataset}_c5fix_batch_*.txt")))
 
         n_total = len(cllm_files) + len(c5fix_files)
         if args.only_system == "cllm":
@@ -437,24 +478,44 @@ def main():
         elif args.only_system == "c5fix":
             n_total = len(c5fix_files)
 
+        # Stage 3: Scoring
         saved: list[str] = []
         if not args.skip_scoring:
             print(f"\n[Stage 3] Scoring batches for {dataset} (--only-system {args.only_system})...")
             saved = run_batch_scoring(
                 client, dataset, force=args.force, only_system=args.only_system
             )
-        print(f"  {len(saved)}/{n_total} batches scored this run")
+            print(f"  {len(saved)}/{n_total} batches scored this run")
+        else:
+            print(f"\n[Stage 3] Skipped (--skip-scoring / --metrics-only)")
 
-        # Stage 4: Metrics
+        # Stage 4: Metrics — always runs (reads from cached responses)
         print(f"\n[Stage 4] Computing metrics for {dataset}...")
         ok = compute_metrics(dataset)
         if not ok:
             print(f"  Metrics computation failed for {dataset}")
 
+        # Stage 4b: Dashboard extras (radar + heatmap) — no API, always run
+        print(f"\n[Stage 4b] Generating dashboard extras for {dataset}...")
+        subprocess.run(
+            [sys.executable, os.path.join(BASE_DIR, "generate_dashboard_extras.py"),
+             "--dataset", dataset],
+            cwd=BASE_DIR,
+        )
+
     # Regenerate paper report
     print(f"\n{'='*65}")
     print("  Regenerating paper report v2...")
     subprocess.run([sys.executable, os.path.join(BASE_DIR, "generate_paper_report_v2.py")], cwd=BASE_DIR)
+
+    # Export CSVs
+    print(f"\n{'='*65}")
+    print("  Exporting results to CSV...")
+    subprocess.run(
+        [sys.executable, os.path.join(BASE_DIR, "export_results_csv.py"),
+         "--dataset", args.dataset],
+        cwd=BASE_DIR,
+    )
 
     print("\n✓ Pipeline complete.")
 

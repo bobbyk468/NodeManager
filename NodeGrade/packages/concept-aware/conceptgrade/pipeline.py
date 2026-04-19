@@ -305,8 +305,9 @@ class ConceptGradePipeline:
                     _tmp_comp = KnowledgeGraphComparator(
                         domain_graph=self.domain_graph
                     ).compare(student_graph=concept_graph_obj).to_dict()
-            except Exception:
-                pass
+            except Exception as e:
+                print(f"  [Pipeline] _tmp_comp failed ({type(e).__name__}: {e}) — Bloom/SOLO will use empty context")
+                _tmp_comp = {}
 
             # Layer 3+4 and Layer 4: Bloom's+SOLO and Misconception in PARALLEL
             # Both are independent of each other — fire them simultaneously.
@@ -477,7 +478,17 @@ class ConceptGradePipeline:
                 for sid, ans in student_items
             }
             for future in as_completed(futures):
-                results.append(future.result())
+                sid = futures[future]
+                try:
+                    results.append(future.result())
+                except Exception as e:
+                    err = str(e)
+                    if "429" in err or "529" in err or "rate_limit" in err.lower():
+                        raise
+                    print(f"  [assess_class] Student {sid} FAILED: {type(e).__name__}: {e}")
+                    failed = StudentAssessment(student_id=sid, question=question, answer="")
+                    failed.concept_graph = {"error": err}
+                    results.append(failed)
 
         # Re-sort to match original insertion order
         order = {sid: i for i, (sid, _) in enumerate(student_items)}

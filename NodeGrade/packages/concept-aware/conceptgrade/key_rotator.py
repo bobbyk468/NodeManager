@@ -25,8 +25,15 @@ Environment variables (any provider)
 from __future__ import annotations
 
 import os
+import socket
 import time
 import threading
+
+TRANSIENT_NETWORK_ERRORS = (
+    ConnectionError,
+    TimeoutError,
+    socket.timeout,
+)
 
 
 def _load_indexed_keys(prefix: str) -> list[str]:
@@ -134,12 +141,17 @@ class KeyRotator:
                 return fn(*args, **kwargs)
             except Exception as e:
                 err_str = str(e)
-                if "429" in err_str or "rate_limit" in err_str.lower():
+                if "429" in err_str or "rate_limit" in err_str.lower() or "RESOURCE_EXHAUSTED" in err_str:
                     old = self._idx
                     self.next_key()
                     print(f"    [KeyRotator] 429 on key {old+1} → switching to key {self._idx+1}")
                     last_error = e
                     time.sleep(1.0)
+                elif isinstance(e, TRANSIENT_NETWORK_ERRORS):
+                    wait = 2 ** attempt
+                    print(f"    [KeyRotator] Transient network error ({type(e).__name__}) — backoff {wait}s, same key")
+                    last_error = e
+                    time.sleep(wait)
                 else:
                     raise
         raise last_error or RuntimeError("All keys exhausted")
