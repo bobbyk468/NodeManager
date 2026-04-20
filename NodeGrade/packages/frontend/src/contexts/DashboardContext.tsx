@@ -18,78 +18,33 @@
 
 import React, { createContext, useContext, useReducer } from 'react';
 
-// ── Causal proximity types ────────────────────────────────────────────────────
-
 export interface ContradictsEntry {
   nodeId:       string;
   timestamp_ms: number;
 }
 
-/**
- * ROLLING_WINDOW_MS: entries older than this are pruned when a new one arrives.
- * Set to 60 s — the outer window for any-event sensitivity analysis.
- * The 15 s and 30 s inner windows are computed at read time in RubricEditorPanel.
- */
+// Entries older than this are pruned when a new one arrives.
+// Inner 15 s and 30 s windows are computed at read time in RubricEditorPanel.
 const ROLLING_WINDOW_MS = 60_000;
 
-// ── State ─────────────────────────────────────────────────────────────────────
-
 interface DashboardSelectionState {
-  // Heatmap → answer panel
   selectedConcept: string | null;
   selectedSeverity: string | null;
-  // Answer panel → KG panel
   selectedStudentId: string | number | null;
   selectedStudentMatchedConcepts: string[];
-  // True while an async /sample/:id XAI fetch is in-flight after a student click.
   studentOverlayLoading: boolean;
-  // True when the most recent /sample/:id fetch failed.
   studentOverlayError: boolean;
   // Radar → answer panel filter
   selectedQuartileIndex: number | null;
-  /**
-   * Rolling 60-second window of CONTRADICTS interactions.
-   *
-   * Replaces the old single `lastContradicts` field. Entries are appended on each
-   * trace interaction and pruned to the trailing 60 s on every write.
-   *
-   * RubricEditorPanel reads this array and slices to 15 s / 30 s / 60 s windows
-   * at edit time for pre-registered sensitivity analysis (avoiding researcher DoF).
-   */
+  // Rolling 60-second window of CONTRADICTS interactions; pruned on every write.
   recentContradicts: ContradictsEntry[];
-  /**
-   * Number of topological gaps (structural leaps) in the most recently rendered
-   * LRM trace. Set by VerifierReasoningPanel whenever parsedSteps changes.
-   *
-   * A gap = sequential steps (sᵢ, sᵢ₊₁) that share no KG concept node
-   * (node-only adjacency, locked v10). Logged as `trace_gap_count` on every
-   * rubric_edit event — potential moderator variable for H1.
-   */
+  // Gap count from the most recently rendered LRM trace; logged on each rubric edit.
   lastTraceGapCount: number;
-  /**
-   * Grounding Density of the most recently rendered LRM trace: the fraction of
-   * steps that have at least one kg_node populated, ∈ [0, 1].
-   *
-   * Low grounding density (< 0.4) means most of the LRM's reasoning is not
-   * anchored to KG concepts — either the parser missed mappings, or the LRM
-   * reasoned in natural language without naming domain concepts explicitly.
-   *
-   * Logged as `grounding_density` on every rubric_edit event. Used in the
-   * Stability Analysis (Section 5a) to compare Gemini Flash vs. DeepSeek-R1.
-   */
+  // Fraction of trace steps with ≥1 kg_node ∈ [0, 1]; logged on each rubric edit.
   lastGroundingDensity: number;
-  /**
-   * True while any VerifierReasoningPanel trace is expanded (i.e. a ScoreSamplesTable
-   * row provenance panel is open). Passed to StudentAnswerPanel as `tracePanelOpen`
-   * so the dwell-time beacon records the browsing context at answer_view_end.
-   *
-   * Pre-registered covariate for H-DT2: educators who have a trace open while
-   * viewing an answer are expected to produce more CA think-aloud codes.
-   */
+  // True while a VerifierReasoningPanel trace is expanded.
   traceOpen: boolean;
 }
-
-// ── Actions ───────────────────────────────────────────────────────────────────
 
 type DashboardAction =
   | { type: 'SELECT_CONCEPT'; concept: string | null; severity: string | null }
@@ -176,24 +131,15 @@ function dashboardReducer(
   }
 }
 
-// ── Context ───────────────────────────────────────────────────────────────────
-
 interface DashboardSelectionActions {
   selectConcept: (concept: string | null, severity?: string | null) => void;
   selectStudent: (id: string | number | null, matchedConcepts?: string[]) => void;
   setStudentOverlayLoading: (loading: boolean) => void;
   setStudentOverlayError: (error: boolean) => void;
   selectQuartile: (quartileIndex: number | null) => void;
-  /** Append a CONTRADICTS node interaction to the rolling 60-second window. */
   pushContradicts: (nodeId: string) => void;
-  /** Set the topological gap count from the most recently rendered LRM trace. */
   setTraceGapCount: (count: number) => void;
-  /** Set the grounding density (fraction of steps with kg_nodes) for the current trace. */
   setGroundingDensity: (density: number) => void;
-  /**
-   * Signal whether a VerifierReasoningPanel trace is currently visible.
-   * Called by ScoreSamplesTable when a provenance row expands or collapses.
-   */
   setTraceOpen: (open: boolean) => void;
   clearAll: () => void;
 }

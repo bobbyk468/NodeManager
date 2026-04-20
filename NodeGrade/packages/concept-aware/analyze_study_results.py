@@ -1,28 +1,11 @@
 #!/usr/bin/env python3
 """
-analyze_study_results.py — Post-study analysis for ConceptGrade IEEE VIS 2027
-
-Runs ALL pre-registered statistical tests against real or synthetic data.
+analyze_study_results.py — Post-study statistical analysis for the ConceptGrade user study.
 
 Usage:
-  # Real data (after study is complete):
-  python analyze_study_results.py
-
-  # Synthetic dry-run (before any participants):
-  python analyze_study_results.py --synthetic
-
-  # Specify a custom log directory:
-  python analyze_study_results.py --log-dir path/to/study_logs
-
-Pre-registered hypotheses:
-  H1  (Causal Attribution)   Condition B > A on CA think-aloud codes (Poisson GLM)
-  H2  (Semantic Alignment)   Condition B > A on SA rubric edits (Mann-Whitney U)
-  H3  (Trust Calibration)    Condition B > A on TC ordinal scores (Mann-Whitney U)
-  H-DT1  dwell_time_ms ↑ when chain_pct ↓  (Spearman ρ, Condition B only)
-  H-DT2  dwell_time_ms ↑ correlates with CA code frequency (Spearman ρ)
-  H-DT3  dwell gap B−A largest for SOLO 3–4 answers (Mann-Whitney U per SOLO band)
-  SUS    Condition B SUS score > Condition A (independent-samples t-test, Cohen's d)
-  Task   Condition B task accuracy > A (Poisson or GEE logistic — simplified here)
+  python analyze_study_results.py                     # real JSONL logs
+  python analyze_study_results.py --synthetic         # synthetic dry-run
+  python analyze_study_results.py --log-dir <path>    # custom log directory
 
 Output:
   data/study_analysis_results.json   — machine-readable results
@@ -41,27 +24,12 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 
-# ── Paths ──────────────────────────────────────────────────────────────────────
-
 BASE_DIR     = Path(__file__).parent
 LOGS_DIR     = BASE_DIR / "data" / "study_logs"
 TRM_CACHE    = BASE_DIR / "data" / "digiklausur_trm_cache.json"
 OUTPUT_FILE  = BASE_DIR / "data" / "study_analysis_results.json"
 
-# ── Synthetic data generator ───────────────────────────────────────────────────
-
 def generate_synthetic_sessions(n_per_condition: int = 15, seed: int = 42) -> list[dict]:
-    """
-    Generate N synthetic participant sessions (15 per condition) that approximate
-    the expected effect sizes based on the literature and pilot estimates.
-
-    Expected effects (from analysis plan):
-      CA codes: Condition B IRR ≈ 3.8× over A
-      SA codes: Condition B ~3×  over A
-      TC score: Condition B Mdn≈3, A Mdn≈2
-      SUS:      Condition B M≈72.5, A M≈58.2
-      dwell:    Spearman ρ ≈ −0.35 (low chain_pct → longer dwell in B)
-    """
     rng = random.Random(seed)
     np.random.seed(seed)
 
@@ -77,35 +45,24 @@ def generate_synthetic_sessions(n_per_condition: int = 15, seed: int = 42) -> li
         is_B = cond == 'B'
         session_id = f"synthetic_{cond}_{pid:02d}"
 
-        # ── Think-aloud qualitative codes ─────────────────────────────────────
-        # CA: ~Poisson(λ=1.2) for A, Poisson(λ=4.5) for B (IRR ≈ 3.8×)
         ca_count = np.random.poisson(4.5 if is_B else 1.2)
-        # SA: ~Poisson(λ=0.8) for A, Poisson(λ=2.4) for B
         sa_count = np.random.poisson(2.4 if is_B else 0.8)
-        # TC: ordinal 0–4, ~Normal(μ=3,σ=0.8) for B, (μ=2,σ=0.9) for A → clamp
         tc_score = int(np.clip(round(np.random.normal(3.0 if is_B else 2.0, 0.8)), 0, 4))
 
-        # ── SUS score ─────────────────────────────────────────────────────────
         sus = float(np.clip(np.random.normal(72.5 if is_B else 58.2,
                                               15.0 if is_B else 19.0), 0, 100))
 
-        # ── Task accuracy (binary: did they identify the top-misconception concept?) ──
         task_correct = rng.random() < (0.73 if is_B else 0.47)
 
-        # ── Dwell-time events (Condition B: ~8–12 answers viewed; A: ~3–5) ───
         n_answers = rng.randint(8, 13) if is_B else rng.randint(3, 6)
         dwell_events = []
 
-        # Strategic benchmark seeds (mirrors benchmark_seeds.json).
-        # In synthetic mode, inject 1–2 seeded answers per participant to
-        # exercise the benchmark trap analysis without needing real JSONL logs.
         BENCHMARK_SEEDS = {
             '0': 'fluent_hallucination',  '9': 'fluent_hallucination',
             '276': 'unorthodox_genius',   '269': 'unorthodox_genius',
             '484': 'lexical_bluffer',     '505': 'lexical_bluffer',
             '32': 'partial_credit_needle','558': 'partial_credit_needle',
         }
-        # Each participant naturally encounters 1–2 seeded answers (probability ~25%)
         seeded_candidate_ids = rng.sample(list(BENCHMARK_SEEDS.keys()), k=min(2, len(BENCHMARK_SEEDS)))
 
         for i in range(n_answers):
@@ -124,13 +81,9 @@ def generate_synthetic_sessions(n_per_condition: int = 15, seed: int = 42) -> li
                 ans_id = str(rng.randint(1, 300))
                 benchmark_case = None
 
-            # H-DT1: dwell time negatively correlated with chain_pct in B
-            # Additional effect: Condition B dwells longer on seeded trap answers
             if is_B:
-                # low chain_pct → long dwell (ρ ≈ −0.35)
                 base_dwell = 60000 - 400 * chain_pct_val + np.random.normal(0, 8000)
                 if benchmark_case is not None:
-                    # Trap cases elicit ~40% longer dwell in Condition B (trace inspection)
                     base_dwell *= 1.4
             else:
                 base_dwell = np.random.normal(20000, 6000)  # A: quick glance
@@ -148,8 +101,6 @@ def generate_synthetic_sessions(n_per_condition: int = 15, seed: int = 42) -> li
                 "capture_method": "beacon",
                 "trace_panel_open": rng.random() < (0.3 if is_B else 0.0),
                 "kg_panel_open": rng.random() < (0.4 if is_B else 0.0),
-                # benchmark_case: None for ordinary answers; trap type for the 8 seeds.
-                # Mirroring the frontend getBenchmarkCase() injection in StudentAnswerPanel.
                 "benchmark_case": benchmark_case,
             })
 
@@ -157,32 +108,20 @@ def generate_synthetic_sessions(n_per_condition: int = 15, seed: int = 42) -> li
             "session_id":   session_id,
             "condition":    cond,
             "dataset":      "digiklausur",
-            # Qualitative codes (would come from transcript coding in real study)
             "ca_count":     int(ca_count),
             "sa_count":     int(sa_count),
             "tc_score":     tc_score,
-            # Usability
             "sus_score":    round(sus, 1),
-            # Task
             "task_correct": task_correct,
-            # Per-answer dwell events
             "dwell_events": dwell_events,
         })
 
     return sessions
 
 
-# ── Event log loader ───────────────────────────────────────────────────────────
-
 def load_real_sessions(logs_dir: Path) -> list[dict]:
-    """
-    Aggregate real JSONL event logs into the same format as synthetic sessions.
-    Requires:
-      - JSONL files with session_id, condition, event_type, payload
-      - A separate qualitative_codes.json with {session_id: {ca_count, sa_count, tc_score}}
-        (populated after transcript coding with inter-rater reliability κ ≥ 0.70)
-
-    If qualitative_codes.json is missing, qualitative analyses are skipped.
+    """Aggregate per-session JSONL logs into the analysis format.
+    Merges qualitative_codes.json and sus_scores.json when present.
     """
     sessions_raw: dict[str, dict] = {}
 
@@ -245,8 +184,6 @@ def load_real_sessions(logs_dir: Path) -> list[dict]:
     return list(sessions_raw.values())
 
 
-# ── Analysis helpers ───────────────────────────────────────────────────────────
-
 def cohen_d(a: np.ndarray, b: np.ndarray) -> float:
     """Cohen's d for two independent groups."""
     n_a, n_b = len(a), len(b)
@@ -274,8 +211,6 @@ def summarise(arr: np.ndarray, label: str) -> dict:
     }
 
 
-# ── Main analysis ──────────────────────────────────────────────────────────────
-
 def run_analysis(sessions: list[dict]) -> dict:
     results = {"timestamp": datetime.now().isoformat(), "tests": {}}
 
@@ -290,7 +225,7 @@ def run_analysis(sessions: list[dict]) -> dict:
     print(f"  N = {len(df)} ({n_A} Condition A, {n_B} Condition B)")
     print(f"{'='*60}")
 
-    # ── H1: Causal Attribution (CA) — Poisson GLM (simplified as Mann-Whitney) ──
+    # H1: Causal Attribution (CA)
     if df.ca_count.notna().any():
         ca_A = cond_A.ca_count.dropna().values.astype(float)
         ca_B = cond_B.ca_count.dropna().values.astype(float)
@@ -309,7 +244,7 @@ def run_analysis(sessions: list[dict]) -> dict:
         print(f"     A: M={ca_A.mean():.2f}  B: M={ca_B.mean():.2f}  IRR={irr:.2f}×")
         print(f"     Mann-Whitney U={stat:.1f}, p={p:.4f}  {sig}")
 
-    # ── H2: Semantic Alignment (SA) — Mann-Whitney U ──────────────────────────
+    # H2: Semantic Alignment (SA)
     if df.sa_count.notna().any():
         sa_A = cond_A.sa_count.dropna().values.astype(float)
         sa_B = cond_B.sa_count.dropna().values.astype(float)
@@ -326,7 +261,7 @@ def run_analysis(sessions: list[dict]) -> dict:
         print(f"     A: M={sa_A.mean():.2f}  B: M={sa_B.mean():.2f}")
         print(f"     Mann-Whitney U={stat:.1f}, p={p:.4f}  {sig}")
 
-    # ── H3: Trust Calibration (TC) — Mann-Whitney U (ordinal) ─────────────────
+    # H3: Trust Calibration (TC)
     if df.tc_score.notna().any():
         tc_A = cond_A.tc_score.dropna().values.astype(float)
         tc_B = cond_B.tc_score.dropna().values.astype(float)
@@ -343,7 +278,7 @@ def run_analysis(sessions: list[dict]) -> dict:
         print(f"     A: Mdn={np.median(tc_A):.1f}  B: Mdn={np.median(tc_B):.1f}")
         print(f"     Mann-Whitney U={stat:.1f}, p={p:.4f}  {sig}")
 
-    # ── SUS: Usability — independent t-test + Cohen's d ───────────────────────
+    # SUS: Usability
     if df.sus_score.notna().any():
         sus_A = cond_A.sus_score.dropna().values.astype(float)
         sus_B = cond_B.sus_score.dropna().values.astype(float)
@@ -361,7 +296,7 @@ def run_analysis(sessions: list[dict]) -> dict:
         print(f"      A: M={sus_A.mean():.1f} (SD={sus_A.std(ddof=1):.1f})  B: M={sus_B.mean():.1f} (SD={sus_B.std(ddof=1):.1f})")
         print(f"      t={t_stat:.3f}, p={p:.4f}, Cohen's d={d:.3f}  {sig}")
 
-    # ── Task accuracy — chi-square (or Fisher's exact for small N) ─────────────
+    # Task accuracy
     if df.task_correct.notna().any():
         a_correct = int(cond_A.task_correct.dropna().sum())
         b_correct = int(cond_B.task_correct.dropna().sum())
@@ -380,7 +315,7 @@ def run_analysis(sessions: list[dict]) -> dict:
         print(f"       A: {a_correct}/{a_total} ({100*a_correct/a_total:.1f}%)  B: {b_correct}/{b_total} ({100*b_correct/b_total:.1f}%)")
         print(f"       χ²(Yates), p={p:.4f}  {sig}")
 
-    # ── H-DT1: Dwell time vs chain_pct — Spearman ρ (Condition B only) ────────
+    # H-DT1: Dwell time vs chain_pct (Condition B only)
     print(f"\n{'─'*60}")
     print(f"  Dwell Time Analyses (pre-registered H-DT1 / H-DT2 / H-DT3)")
     print(f"{'─'*60}")
@@ -403,9 +338,7 @@ def run_analysis(sessions: list[dict]) -> dict:
                 "dwell_ms":   int(dwell_ms),
                 "trace_open": bool(ev.get("trace_panel_open", False)),
                 "kg_open":    bool(ev.get("kg_panel_open", False)),
-                # Strategic seeding field — present only for the 8 benchmark trap cases.
-                # undefined/absent for all other answers; analyst filters on non-null.
-                "benchmark_case": ev.get("benchmark_case"),   # str | None
+                "benchmark_case": ev.get("benchmark_case"),
             })
 
     DWELL_COLS = ["session_id", "condition", "student_answer_id", "concept_id",
@@ -423,7 +356,6 @@ def run_analysis(sessions: list[dict]) -> dict:
     print(f"\n  Dwell events: {len(dwell_df)} total (A={n_A_dwell}, B={n_B_dwell})")
 
     if len(dwell_df) >= 10:
-        # H-DT1: low chain_pct → longer dwell in Condition B
         dwell_B = dwell_df[dwell_df.condition == 'B']
         if len(dwell_B) >= 5:
             rho, p = stats.spearmanr(dwell_B.chain_pct, dwell_B.dwell_ms)
@@ -438,8 +370,7 @@ def run_analysis(sessions: list[dict]) -> dict:
             print(f"\n[H-DT1] Dwell time vs KG chain coverage (Cond B, n={len(dwell_B)})")
             print(f"        Spearman ρ={rho:.3f} ({dirn}), p={p:.4f}  {sig}")
 
-        # H-DT2: dwell_ms correlated with CA code count across all participants
-        # Aggregate: per-participant mean dwell vs CA count
+        # H-DT2: mean dwell vs CA code count
         if df.ca_count.notna().any():
             dwell_per_p = dwell_df.groupby("session_id")["dwell_ms"].mean().reset_index()
             dwell_per_p.columns = ["session_id", "mean_dwell"]
@@ -456,7 +387,7 @@ def run_analysis(sessions: list[dict]) -> dict:
                 print(f"\n[H-DT2] Mean dwell vs CA code count (all conditions, n={len(merged)})")
                 print(f"        Spearman ρ={rho2:.3f}, p={p2:.4f}  {sig}")
 
-        # H-DT3: dwell gap B−A largest for SOLO 3–4 (partial credit zone)
+        # H-DT3: dwell gap by SOLO level
         dwell_solo = dwell_df.groupby(["condition", "solo_level"])["dwell_ms"].median().unstack(level=0)
         dwell_solo.columns.name = None
         if "A" in dwell_solo.columns and "B" in dwell_solo.columns:
@@ -485,23 +416,7 @@ def run_analysis(sessions: list[dict]) -> dict:
                 print(f"        SOLO {solo}: A={r['median_A']:.0f}ms  B={r['median_B']:.0f}ms  "
                       f"Δ={r['gap_B_minus_A']:.0f}ms  p={r['mann_whitney_p']:.4f}{sig}")
 
-    # ── Benchmark trap-type analysis ──────────────────────────────────────────
-    #
-    # For each of the 4 pedagogical trap types, compare dwell time (B vs A) on
-    # seeded answers.  "Catching" the trap = dwelling on it longer than the median
-    # of non-seeded answers in the same condition.
-    #
-    # Seeded IDs (benchmark_seeds.json):
-    #   fluent_hallucination:    0, 9
-    #   unorthodox_genius:       276, 269
-    #   lexical_bluffer:         484, 505
-    #   partial_credit_needle:   32, 558
-    #
-    # Primary metrics per trap type (per AGENT_EVALUATION_GUIDE §3.2):
-    #   fluent_hallucination  — mean dwell B > A (did B inspect the trace leap?)
-    #   unorthodox_genius     — proportion who dwelling > 2× median (automation bias)
-    #   lexical_bluffer       — mean dwell B > A (did B spot CONTRADICTS chips?)
-    #   partial_credit_needle — mean dwell B > A (time-to-insight via KG subgraph)
+    # Benchmark trap-type analysis
     print(f"\n{'─'*60}")
     print(f"  Benchmark Trap-Type Analysis (pre-registered, n=8 seeded answers)")
     print(f"{'─'*60}")
@@ -570,7 +485,6 @@ def run_analysis(sessions: list[dict]) -> dict:
 
     results["tests"]["benchmark_trap_analysis"] = benchmark_results
 
-    # ── Summary ────────────────────────────────────────────────────────────────
     print(f"\n{'='*60}")
     print("  SUMMARY")
     print(f"{'='*60}")
@@ -582,8 +496,6 @@ def run_analysis(sessions: list[dict]) -> dict:
 
     return results
 
-
-# ── Entry point ────────────────────────────────────────────────────────────────
 
 def main():
     parser = argparse.ArgumentParser(description="ConceptGrade VIS 2027 study analysis")

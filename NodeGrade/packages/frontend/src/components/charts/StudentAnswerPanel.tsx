@@ -1,18 +1,3 @@
-/**
- * StudentAnswerPanel — Master-Detail layout (Gemini recommendation).
- *
- * LEFT: scrollable compact list of student items, sorted by severity.
- *       Each item shows severity chip, student ID, score badges, 1-line answer preview.
- *       Clicking selects the student → updates DashboardContext (KG overlay).
- *
- * RIGHT: fixed detail pane showing full student answer, KG coverage metadata,
- *        SOLO/Bloom levels. No accordion jumping.
- *
- * Filtered by:
- *   - selectedSeverity from heatmap cell click (default: show that severity first)
- *   - selectedQuartileIndex from radar click (filter by score quartile)
- */
-
 import CloseIcon from '@mui/icons-material/Close';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import {
@@ -32,31 +17,8 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { ConceptAnswersResponse, ConceptStudentAnswer, SampleXAIData } from '../../common/visualization.types';
 import { useDashboard } from '../../contexts/DashboardContext';
 import { getBenchmarkCase } from '../../utils/benchmarkSeeds';
+import { fnv1a } from '../../utils/hash';
 import { AnswerDwellPayload, getBeaconCaptureMethod, logBeacon, logEvent } from '../../utils/studyLogger';
-
-/**
- * FNV-1a 64-bit hash of a UTF-16 string (via BigInt).
- *
- * FERPA compliance: raw student answer text is NEVER included in event logs.
- * Only this deterministic, non-reversible hash is transmitted. Analysts can
- * verify that the same answer was shown consistently across participants by
- * comparing hashes, without ever seeing the student text.
- *
- * Algorithm: FNV-1a (Fowler–Noll–Vo variant 1a), 64-bit.
- * Upgraded from 32-bit: at 32 bits, Birthday-paradox collision probability
- * reaches ~50% at ~77k items — non-negligible across a full study dataset.
- * 64-bit reduces collision probability to negligible (~1 in 10^14 at N=10k).
- */
-function fnv1a(text: string): string {
-  let hash = BigInt('0xcbf29ce484222325');
-  const prime = BigInt('0x00000100000001b3');
-  const mask64 = (BigInt(1) << BigInt(64)) - BigInt(1);
-  for (let i = 0; i < text.length; i++) {
-    hash ^= BigInt(text.charCodeAt(i));
-    hash = (hash * prime) & mask64;
-  }
-  return hash.toString(16).padStart(16, '0');
-}
 
 interface Props {
   dataset: string;
@@ -111,7 +73,6 @@ function ScoreDot({ value, color, label }: { value: number; color: string; label
   );
 }
 
-// Neutral colour used for Condition A rows — no AI-derived severity signal.
 const CONDITION_A_ROW_COLOR = '#6b7280';
 
 function StudentListItem({
@@ -125,8 +86,6 @@ function StudentListItem({
   isConditionA: boolean;
   onClick: () => void;
 }) {
-  // Condition A: suppress severity colour (KG-derived signal) — use neutral grey.
-  // Condition B: full severity colour (red/orange/grey/green) for prioritisation.
   const color = isConditionA ? CONDITION_A_ROW_COLOR : (SEVERITY_COLOR[answer.severity] ?? '#6b7280');
   return (
     <Box
@@ -167,8 +126,6 @@ function StudentListItem({
 }
 
 function StudentDetailPane({ answer, isConditionA }: { answer: ConceptStudentAnswer; isConditionA: boolean }) {
-  // Condition A: suppress AI-derived severity label and colour-tinted answer box.
-  // Condition B: full severity chip + colour coding for concept-gap diagnostics.
   const color = isConditionA ? CONDITION_A_ROW_COLOR : (SEVERITY_COLOR[answer.severity] ?? '#6b7280');
   const label = SEVERITY_LABEL[answer.severity] ?? answer.severity;
   return (
@@ -181,7 +138,7 @@ function StudentDetailPane({ answer, isConditionA }: { answer: ConceptStudentAns
         <Typography variant="caption" color="text.secondary">Student #{answer.id}</Typography>
       </Box>
 
-      {/* Score breakdown */}
+      {/* Scores */}
       <Box display="flex" gap={2} mb={1.5}>
         {[
           { label: 'Human', value: answer.human_score, color: '#374151' },
@@ -197,7 +154,6 @@ function StudentDetailPane({ answer, isConditionA }: { answer: ConceptStudentAns
 
       <Divider sx={{ mb: 1.5 }} />
 
-      {/* Question */}
       <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 600, display: 'block', mb: 0.5 }}>
         Question
       </Typography>
@@ -205,7 +161,6 @@ function StudentDetailPane({ answer, isConditionA }: { answer: ConceptStudentAns
         {answer.question}
       </Typography>
 
-      {/* Student answer */}
       <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 600, display: 'block', mb: 0.5 }}>
         Student answer
       </Typography>
@@ -215,7 +170,7 @@ function StudentDetailPane({ answer, isConditionA }: { answer: ConceptStudentAns
         </Typography>
       </Box>
 
-      {/* Metadata chips */}
+      {/* KG metadata */}
       <Box display="flex" gap={1} flexWrap="wrap">
         <Chip label={`SOLO: ${answer.solo || '—'}`} size="small" variant="outlined" />
         <Chip label={`Bloom: ${answer.bloom || '—'}`} size="small" variant="outlined" />
@@ -237,10 +192,7 @@ export const StudentAnswerPanel: React.FC<Props> = ({
   kgPanelOpen = false,
 }) => {
   const { selectStudent, setStudentOverlayLoading, setStudentOverlayError, selectedStudentId, selectedQuartileIndex } = useDashboard();
-  // Guards against applying a stale XAI fetch result when the user clicks rapidly
   const latestSelectedIdRef = useRef<string | number | null>(null);
-  // Tracks the timestamp when the current answer was selected (for dwell-time computation).
-  // Updated on every answer_view_start; read in the cleanup to compute answer_view_end.
   const answerViewStartRef = useRef<number | null>(null);
 
   const [data, setData] = useState<ConceptAnswersResponse | null>(null);
@@ -293,40 +245,19 @@ export const StudentAnswerPanel: React.FC<Props> = ({
     [displayed, selectedStudentId],
   );
 
-  /**
-   * Dwell-time tracker — fires answer_view_end when the selected answer changes
-   * or the component unmounts.
-   *
-   * Placed after selectedAnswer useMemo so the closure captures the correct value.
-   * Uses navigator.sendBeacon() in the cleanup function to guarantee delivery
-   * even if the tab is being closed or the component is unmounting during
-   * navigation. This is the correct replacement for the unreliable beforeunload
-   * pattern (browsers throttle/cancel fetch() during unload, but sendBeacon()
-   * is queued by the browser and delivered asynchronously even after the page closes).
-   *
-   * Only active in study mode (studyCondition provided).
-   */
   useEffect(() => {
     if (!studyCondition || !selectedAnswer) return;
 
-    // Capture the answer and start time that were active when this effect ran.
-    // These are closed over by the cleanup function below.
     const answerId = selectedAnswer.id;
     const answerForEnd = selectedAnswer;
     const startTime = answerViewStartRef.current ?? Date.now();
-    // Benchmark tagging — closed over at effect-run time (correct answer is in scope).
-    // undefined for non-seeded answers; injected only for the 8 strategic trap cases.
     const benchmarkCase = getBenchmarkCase(selectedAnswer.id);
-    // FNV-1a hash of student answer text — FERPA compliance, never raw text in logs.
     const answerHash = fnv1a(selectedAnswer.student_answer);
 
     return () => {
       const dwellTime = Date.now() - startTime;
-      // React 18 Strict Mode intentionally unmounts + remounts every component on
-      // initial render in development. The resulting cleanup fires with dwellTime ≈ 0–5 ms,
-      // which would log a spurious answer_view_end with near-zero dwell time.
-      // Filtering below 50 ms silences Strict Mode blips while preserving real navigation
-      // (real minimum dwell is constrained by browser repaint + click latency ≥ 100 ms).
+      // React 18 Strict Mode fires cleanup immediately on mount (~0–5 ms).
+      // 50 ms threshold silences those blips; real navigation is always ≥ 100 ms.
       if (dwellTime < 50) return;
       const endPayload: AnswerDwellPayload = {
         student_answer_id: answerId,
@@ -352,9 +283,15 @@ export const StudentAnswerPanel: React.FC<Props> = ({
     const id = answer.id;
     latestSelectedIdRef.current = id;
 
-    // ── Study-mode: log answer_view_start ──────────────────────────────────────
     if (studyCondition) {
       answerViewStartRef.current = Date.now();
+      // Condition A: suppress trace-only trap types (fluent_hallucination, partial_credit_needle)
+      // since those are only visible via VerifierReasoningPanel, which Condition A lacks.
+      const bc = getBenchmarkCase(answer.id);
+      const benchmarkCase = bc && studyCondition === 'A' &&
+        (bc === 'fluent_hallucination' || bc === 'partial_credit_needle')
+        ? undefined
+        : bc;
       const startPayload: AnswerDwellPayload = {
         student_answer_id: id,
         concept_id: conceptId,
@@ -363,35 +300,14 @@ export const StudentAnswerPanel: React.FC<Props> = ({
         solo_level: answer.solo,
         bloom_level: answer.bloom,
         dwell_time_ms: null,
-        // 'start' sentinel — explicit discriminator for post-study event joins.
-        // Joining on student_answer_id+session_id is unambiguous via event_type, but
-        // 'start' makes SQL/pandas queries self-describing without relying on null semantics.
         capture_method: 'start',
         trace_panel_open: tracePanelOpen,
         kg_panel_open: kgPanelOpen,
-        // Benchmark seeding — undefined for non-strategic answers; injected invisibly
-        // when the educator naturally navigates to one of the 8 trap cases via the heatmap.
-        // Raw answer text is NEVER logged — only the FNV-1a hash (FERPA compliance).
-        //
-        // Condition A filter: fluent_hallucination and partial_credit_needle traps are
-        // only detectable via the VerifierReasoningPanel (Condition B only). Injecting
-        // those labels for Condition A views would contaminate the dwell_by_benchmark
-        // analysis with structurally-undetectable cases. Score-visible traps
-        // (unorthodox_genius, lexical_bluffer) are retained for both conditions.
-        benchmark_case: (() => {
-          const bc = getBenchmarkCase(answer.id);
-          if (!bc) return undefined;
-          if (studyCondition === 'A' &&
-              (bc === 'fluent_hallucination' || bc === 'partial_credit_needle')) {
-            return undefined;
-          }
-          return bc;
-        })(),
+        benchmark_case: benchmarkCase,
         answer_content_hash: fnv1a(answer.student_answer),
       };
       logEvent(studyCondition, dataset, 'answer_view_start', startPayload as unknown as Record<string, unknown>);
     }
-    // ─────────────────────────────────────────────────────────────────────────
 
     // Immediately register selection — detail pane updates at once.
     // Setting empty concepts + loading=true tells the KG panel to dim nodes + show spinner.

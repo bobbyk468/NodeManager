@@ -1,35 +1,3 @@
-/**
- * VerifierReasoningPanel — Stage 3b visual output.
- *
- * Renders the structured reasoning trace produced by the Python TraceParser
- * (Stage 3b) as an interactive list linked bidirectionally to the KG graph.
- *
- * Bidirectional brushing (Gemini VAST requirement):
- *   Click a reasoning step  → highlights the referenced KG nodes/edges
- *                             via DashboardContext.setHighlightedTraceNodes
- *   Click a KG node         → filters the step list to show only steps
- *                             that reference that node
- *
- * Classification colour coding:
- *   SUPPORTS    →  green  (#16a34a)
- *   CONTRADICTS →  red    (#dc2626)
- *   UNCERTAIN   →  amber  (#d97706)
- *
- * Each step also shows:
- *   - Confidence delta chip (e.g. "+0.10", "−0.15")
- *   - KG node pills (clickable to filter)
- *   - Conclusion badge (last cluster of steps)
- *
- * Props
- * -----
- * parsedSteps   : ParsedStep[]   — output of Python trace_parser.parse_trace()
- * traceSummary  : TraceSummary   — output of trace_parser.summarise_trace()
- * onNodeClick   : (nodeId) => void  — called when a node pill is clicked
- *                                     (parent should open ConceptKGPanel for that node)
- * highlightedNode : string | null   — node ID currently highlighted in the KG panel
- *                                     (filters steps on the receiving end)
- */
-
 import React, { useState, useCallback, useMemo, useEffect } from 'react';
 import { logEvent } from '../../utils/studyLogger';
 import {
@@ -50,8 +18,6 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import FlagIcon from '@mui/icons-material/Flag';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import { useDashboard } from '../../contexts/DashboardContext';
-
-// ── Types ─────────────────────────────────────────────────────────────────────
 
 export interface ParsedStep {
   step_id: number;
@@ -80,12 +46,9 @@ interface Props {
   onNodeClick?: (nodeId: string) => void;
   highlightedNode?: string | null;
   onClose?: () => void;
-  /** Study-mode props — when provided, trace_interact events are logged. */
   condition?: string;
   dataset?: string;
 }
-
-// ── Classification config ─────────────────────────────────────────────────────
 
 const CLS_CONFIG = {
   SUPPORTS: {
@@ -110,8 +73,6 @@ const CLS_CONFIG = {
     label:   'Uncertain',
   },
 } as const;
-
-// ── Sub-components ────────────────────────────────────────────────────────────
 
 function DeltaChip({ delta }: { delta: number }) {
   const positive = delta > 0;
@@ -235,24 +196,11 @@ function StepCard({
   );
 }
 
-// ── Topological gap indicator ─────────────────────────────────────────────────
-//
-// Implements the edge-traversal element of the TRM formal definition:
-//   "TRM evaluates topological continuity by measuring whether sequential steps
-//    (sᵢ, sᵢ₊₁) map to connected subgraphs, exposing structural leaps."
-//
-// A "gap" occurs when step i and step i+1 share no KG nodes AND the edge
-// types referenced by step i are not present in step i+1 — meaning the
-// reasoning jumped to a disconnected region of the knowledge graph.
-
+// A gap occurs when sequential steps share no KG concept node (node-only adjacency).
 function hasTopologicalGap(stepA: ParsedStep, stepB: ParsedStep): boolean {
   if (stepA.kg_nodes.length === 0 || stepB.kg_nodes.length === 0) return false;
-  // Node-only adjacency (locked v10/Gemini): two steps are topologically adjacent
-  // iff their KG node sets intersect. Edge-type overlap is NOT sufficient — sharing
-  // a relation type (e.g. both invoke HAS_PART) across disconnected subgraphs does
-  // not constitute conceptual continuity. Simpler to defend formally; stricter.
   const nodesA = new Set(stepA.kg_nodes);
-  return !stepB.kg_nodes.some(n => nodesA.has(n));  // gap iff no shared concept node
+  return !stepB.kg_nodes.some(n => nodesA.has(n));
 }
 
 function TopologicalGapBadge({ stepA, stepB }: { stepA: ParsedStep; stepB: ParsedStep }) {
@@ -290,8 +238,6 @@ function TopologicalGapBadge({ stepA, stepB }: { stepA: ParsedStep; stepB: Parse
     </Tooltip>
   );
 }
-
-// ── Summary bar ───────────────────────────────────────────────────────────────
 
 function SummaryBar({
   summary,
@@ -384,8 +330,6 @@ function SummaryBar({
   );
 }
 
-// ── Main component ────────────────────────────────────────────────────────────
-
 export const VerifierReasoningPanel: React.FC<Props> = ({
   parsedSteps,
   traceSummary,
@@ -398,24 +342,21 @@ export const VerifierReasoningPanel: React.FC<Props> = ({
   const [selectedStepId, setSelectedStepId] = useState<number | null>(null);
   const { pushContradicts, setTraceGapCount, setGroundingDensity } = useDashboard();
 
-  // Count structural leaps (node-only adjacency, locked v10).
-  const topologicalGapCount = useMemo(() => {
-    let count = 0;
-    for (let i = 1; i < parsedSteps.length; i++) {
-      if (hasTopologicalGap(parsedSteps[i - 1], parsedSteps[i])) count++;
-    }
-    return count;
+  // Precompute gap flags and count in a single pass over parsedSteps.
+  // gapFlags[i] is true when there is a structural leap before step i.
+  const { gapFlags, topologicalGapCount } = useMemo(() => {
+    const flags: boolean[] = parsedSteps.map((step, i) =>
+      i === 0 ? false : hasTopologicalGap(parsedSteps[i - 1], step),
+    );
+    return { gapFlags: flags, topologicalGapCount: flags.filter(Boolean).length };
   }, [parsedSteps]);
 
-  // Grounding Density: fraction of steps with ≥1 kg_node populated ∈ [0, 1].
-  // Measures how well the LRM anchored its reasoning to domain KG concepts.
   const groundingDensity = useMemo(() => {
     if (parsedSteps.length === 0) return 0;
     const grounded = parsedSteps.filter(s => s.kg_nodes.length > 0).length;
     return grounded / parsedSteps.length;
   }, [parsedSteps]);
 
-  // Publish both metrics to DashboardContext for rubric_edit payload logging.
   useEffect(() => {
     setTraceGapCount(topologicalGapCount);
   }, [topologicalGapCount, setTraceGapCount]);
@@ -435,23 +376,17 @@ export const VerifierReasoningPanel: React.FC<Props> = ({
       if (nextId !== null) {
         const step = parsedSteps.find((s) => s.step_id === nextId);
         if (step) {
-          // Log ALL step clicks (SUPPORTS/CONTRADICTS/UNCERTAIN) for engagement analysis.
-          // analyze_study_logs.py counts trace_interactions and contradicts_interactions
-          // from these events; without them both metrics are always 0.
-          logEvent(condition, dataset, 'trace_interact', {
+            logEvent(condition, dataset, 'trace_interact', {
             classification: step.classification,
             node_id: step.kg_nodes[0] ?? null,
             step_id: step.step_id,
           });
 
-          // Causal proximity tracking: append CONTRADICTS interaction to rolling window.
-          // Only push when kg_nodes is non-empty — synthetic IDs like step_3 are
-          // unmatchable in conceptAliases.matchesContradictsNode and would inflate
-          // the rolling window with false entries (identified in code review v1).
+          // Only push CONTRADICTS when kg_nodes is non-empty — empty sets produce
+          // unmatchable entries that inflate the rolling window with false positives.
           if (step.classification === 'CONTRADICTS' && step.kg_nodes.length > 0) {
             pushContradicts(step.kg_nodes[0]);
           }
-          // KG node brushing
           if (onNodeClick && step.kg_nodes.length > 0) {
             onNodeClick(step.kg_nodes[0]);
           }
@@ -464,7 +399,6 @@ export const VerifierReasoningPanel: React.FC<Props> = ({
   const handleNodePillClick = useCallback(
     (nodeId: string) => {
       onNodeClick?.(nodeId);
-      // Node pill clicks on CONTRADICTS steps also count as causal interactions
       const step = parsedSteps.find(s => s.kg_nodes.includes(nodeId) && s.classification === 'CONTRADICTS');
       if (step) {
         logEvent(condition, dataset, 'trace_interact', {
@@ -559,11 +493,10 @@ export const VerifierReasoningPanel: React.FC<Props> = ({
       {/* Steps list — with topological gap indicators between disconnected steps */}
       <Stack mt={1.25} spacing={0}>
         {parsedSteps.map((step, idx) => {
-          const prevStep = parsedSteps[idx - 1];
-          const showGap = prevStep ? hasTopologicalGap(prevStep, step) : false;
+          const showGap = gapFlags[idx];
           return (
             <React.Fragment key={step.step_id}>
-              {showGap && <TopologicalGapBadge stepA={prevStep} stepB={step} />}
+              {showGap && <TopologicalGapBadge stepA={parsedSteps[idx - 1]} stepB={step} />}
               <StepCard
                 step={step}
                 isSelected={selectedStepId === step.step_id}
