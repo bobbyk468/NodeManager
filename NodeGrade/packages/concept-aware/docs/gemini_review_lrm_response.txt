@@ -1,0 +1,158 @@
+GEMINI REVIEW — LRM PROPOSAL FOR CONCEPTGRADE
+Received: 2026-04-13
+Status: Reviewed, action items extracted below
+
+══════════════════════════════════════════════════════════
+VERDICT SUMMARY
+══════════════════════════════════════════════════════════
+
+Overall: Highly positive. Stage 3 target confirmed correct. DeepSeek-R1
+paradigm confirmed correct but full model is a deployment risk. Novelty
+confirmed ONLY if reasoning trace is visually mapped to KG — not raw text.
+
+══════════════════════════════════════════════════════════
+Q1. Stage 3 — CONFIRMED CORRECT
+══════════════════════════════════════════════════════════
+
+Stage 1 is NER/extraction — LRMs "overthink" simple extraction and
+add latency with minimal gain. Stage 3 requires multi-step deductive
+logic and is precisely where LRMs outperform standard models.
+
+ACTION: No change to insertion point.
+
+══════════════════════════════════════════════════════════
+Q2. Model Choice — USE DISTILLED R1, NOT FULL 671B
+══════════════════════════════════════════════════════════
+
+Full DeepSeek-R1 is 671B MoE — requires multiple H100s/A100s.
+Recommended alternatives (retain exposed <think> trace):
+  PRIMARY:  DeepSeek-R1-Distill-Llama-3-70B  (via Ollama/vLLM)
+  BACKUP:   QwQ-32B                            (strongest open-weights backup)
+
+Both retain the <think> reasoning_content field that makes the
+dashboard contribution possible.
+
+ACTION: Update implementation plan to use distilled R1 (70B), not full 671B.
+
+══════════════════════════════════════════════════════════
+Q3. Novelty — CONFIRMED, BUT REQUIRES KG VISUAL LINKAGE
+══════════════════════════════════════════════════════════
+
+Saliency maps / attention viz is solved. Semantic reasoning trace mapped
+to a CMV dashboard with KG edge linkage is cutting-edge for VAST 2027.
+
+CRITICAL REQUIREMENT: VerifierReasoningPanel must visually link each
+logical deduction in the trace to a specific KG node/edge (and its
+resulting confidence weight). A plain text box is NOT sufficient for
+acceptance.
+
+ACTION: VerifierReasoningPanel design must show:
+  - Reasoning step text (parsed, not raw)
+  - Arrow/highlight linking that step to the relevant KG node/edge
+  - Resulting confidence weight change shown on the edge
+
+══════════════════════════════════════════════════════════
+Q4. Failure Modes — THREE SPECIFIC RISKS
+══════════════════════════════════════════════════════════
+
+1. FORMAT ADHERENCE DEGRADATION
+   After a 2,000-token think trace, open LRMs frequently fail to output
+   strict JSON. Backend will crash on parsing errors.
+   FIX: Add regex fallback + constrained decoding (Outlines or Guidance)
+        to enforce {"valid": bool, "reasoning": str} output format.
+
+2. OVERTHINKING PENALTY
+   LRM may reject valid standard answers by reasoning into obscure
+   technical edge cases.
+   FIX: Add confidence threshold — if verifier rejects but concept
+        coverage is high (>80%), override with a human-review flag
+        rather than automatic penalty.
+
+3. LATENCY SPIKES
+   Inference: ~1s (Flash) → 15–40s (LRM) per answer.
+   FIX: Run Stage 3 asynchronously in batch mode, not real-time.
+        Pre-compute and cache in eval_results.json (same pattern as
+        existing batch pipeline).
+
+ACTION: Implement all three safeguards before running ablation.
+
+══════════════════════════════════════════════════════════
+Q5. Ablation Design — n=120 WEAK FOR ACCURACY CLAIM
+══════════════════════════════════════════════════════════
+
+For ML/NLP accuracy claim: n=120 will be challenged. Need 300-400
+answers from DigiKlausur as well.
+For IEEE VIS VAST visualization claim: n=120 is perfectly fine as a
+case study to populate the dashboard.
+
+ACTION: Run ablation on Mohler (n=120) + random sample of DigiKlausur
+        (n=300) for Paper 1 accuracy claim. VIS paper can use Mohler only.
+
+══════════════════════════════════════════════════════════
+Q6. Paper Framing — DO NOT WRITE PAPER 3
+══════════════════════════════════════════════════════════
+
+Paper 1 (NLP/EdAI venue):
+  - Focus on 5-stage architecture + hard accuracy metrics
+  - Include Stage 3 LRM ablation: Flash vs. R1-Distill
+  - Prove LRM improves ASAG accuracy over standard LLMs
+
+Paper 2 (IEEE VIS VAST 2027):
+  - Core narrative: "LRMs improve grading, but reasoning is opaque.
+    We built a VA system that extracts the LRM's epistemic trace and
+    maps it to a domain KG, allowing educators to debug machine reasoning."
+  - VerifierReasoningPanel is the hook that makes dashboard relevant for 2027.
+
+ACTION: LRM extension split across BOTH papers. Update both paper outlines.
+
+══════════════════════════════════════════════════════════
+Q7. CRITICAL FLAW — RAW TRACE IS NOT EDUCATOR-READABLE
+══════════════════════════════════════════════════════════
+
+This is the single most important finding.
+
+Unfiltered <think> traces are rambling, repetitive, and contradictory
+as the model tests hypotheses. Showing raw text to an instructor may
+DECREASE trust and INCREASE cognitive load.
+
+REQUIRED: A computational trace-parsing step between the LRM output
+and the dashboard must:
+  1. Extract atomic reasoning steps (split trace into structured assertions)
+  2. Classify each step: [SUPPORTS / CONTRADICTS / UNCERTAIN] re: KG edge
+  3. Link each classified step to the specific KG node/edge it references
+  4. Discard hypothesis-testing branches (show only final conclusion path)
+
+This trace parser is itself a research contribution in the paper.
+
+ACTION: Design TraceParsing module as Stage 3b in the pipeline.
+        This becomes Section III.D in the architecture section.
+
+══════════════════════════════════════════════════════════
+REVISED PIPELINE (post-Gemini feedback)
+══════════════════════════════════════════════════════════
+
+Stage 1  — Self-Consistent Extraction      (Gemini 2.5 Flash — unchanged)
+Stage 2  — Confidence-Weighted KG Matching (embedding similarity — unchanged)
+Stage 3a — LRM-as-Verifier                 (DeepSeek-R1-Distill-Llama3-70B)
+              - Outputs: reasoning_content (raw <think>) + {"valid", "reasoning"}
+              - Safeguards: constrained decoding + regex fallback
+Stage 3b — Trace Parser (NEW)              (deterministic Python)
+              - Input:  raw <think> trace
+              - Output: [{step, classification, kg_node, kg_edge, confidence_delta}]
+              - Method: sentence segmentation + KG entity linking + classification
+Stage 4  — Chain Coverage Scoring          (deterministic formula — unchanged)
+Stage 5  — Final Score + Explanation       (Gemini 2.5 Flash — unchanged)
+
+Dashboard addition:
+  VerifierReasoningPanel: structured trace steps linked visually to KG graph
+
+══════════════════════════════════════════════════════════
+PRIORITY ORDER FOR IMPLEMENTATION
+══════════════════════════════════════════════════════════
+
+1. Stage 3b: TraceParsing module  (research-critical, blocks dashboard work)
+2. Stage 3a: LRM integration      (DeepSeek-R1-Distill via Ollama)
+3. Format safeguards              (regex fallback + constrained decoding)
+4. VerifierReasoningPanel         (dashboard component, KG-linked)
+5. Ablation run                   (Mohler + DigiKlausur sample)
+6. Paper updates                  (both Paper 1 and Paper 2 outlines)

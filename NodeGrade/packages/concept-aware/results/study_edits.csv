@@ -1,0 +1,11 @@
+session_id,condition,timestamp_ms,edit_type,concept_id,within_15s,within_30s,within_60s,time_since_last_contradicts_ms,source_contradicts_nodes_60s,concept_in_contradicts_exact,concept_in_contradicts_semantic,semantic_match_score,semantic_match_node,session_contradicts_nodes,panel_focus_before_trace,interaction_source,trace_gap_count,grounding_density,rubric_size
+session-a1,A,1776612250440,add,backpropagation,False,False,False,,,False,False,,,gradient_descent,False,manual,0,0.0,7
+session-a1,A,1776612270440,add,loss_function,False,False,False,,,False,False,,,gradient_descent,False,manual,0,0.0,7
+session-a1,A,1776612290440,add,gradient_descent,False,False,False,,,False,False,,,gradient_descent,False,manual,0,0.0,7
+session-a1,A,1776612305440,add,learning_rate,False,False,False,,,False,False,,,gradient_descent,False,manual,0,0.0,7
+session-b1,B,1776612255440,add,backpropagation,True,True,True,20000,backpropagation,True,True,0.95,backpropagation,backpropagation|gradient_descent,False,manual,2,0.8,8
+session-b1,B,1776612260440,add,loss_function,True,True,True,20000,loss_function,True,True,0.95,loss_function,loss_function|gradient_descent,False,manual,2,0.8,8
+session-b1,B,1776612265440,add,gradient_descent,True,True,True,20000,gradient_descent,True,True,0.95,gradient_descent,gradient_descent|gradient_descent,False,manual,2,0.8,8
+session-b1,B,1776612310440,add,learning_rate,False,False,False,,,False,False,,,gradient_descent,False,manual,2,0.8,8
+session-b1,B,1776612315440,add,weight_update,False,False,False,,,False,False,,,gradient_descent,False,manual,2,0.8,8
+session-b2,B,1776612235440,add,backpropagation,True,True,True,20000,backpropagation,True,True,0.95,backpropagation,backpropagation|gradient_descent,False,manual,3,0.6,6

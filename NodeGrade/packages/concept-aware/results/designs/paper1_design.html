@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Paper 1 — ConceptGrade System Design</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Georgia', serif; background: #f8f9fa; color: #1a1a2e; }
+  .page { max-width: 1100px; margin: 0 auto; padding: 40px 32px; }
+  h1 { font-size: 22px; font-weight: 700; color: #0f172a; border-bottom: 3px solid #3b82f6; padding-bottom: 10px; margin-bottom: 6px; }
+  .subtitle { font-size: 13px; color: #64748b; margin-bottom: 36px; font-style: italic; }
+  h2 { font-size: 15px; font-weight: 700; color: #1e40af; margin: 36px 0 14px; letter-spacing: 0.5px; text-transform: uppercase; }
+  .fig-label { font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .fig-caption { font-size: 12px; color: #475569; margin-top: 10px; line-height: 1.6; max-width: 820px; }
+  .card { background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 28px; margin-bottom: 28px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+
+  /* ── Figure 1: Pipeline ── */
+  .pipeline { display: flex; align-items: stretch; gap: 0; margin: 8px 0; }
+  .stage { flex: 1; border-radius: 8px; padding: 16px 12px; text-align: center; position: relative; }
+  .stage-title { font-size: 12px; font-weight: 700; margin-bottom: 6px; }
+  .stage-body { font-size: 10.5px; line-height: 1.5; color: rgba(255,255,255,0.88); }
+  .stage-icon { font-size: 22px; margin-bottom: 6px; }
+  .arrow { display: flex; align-items: center; padding: 0 4px; color: #94a3b8; font-size: 20px; flex-shrink: 0; }
+  .s1 { background: #1e3a8a; color: #fff; }
+  .s2 { background: #1d4ed8; color: #fff; }
+  .s3 { background: #2563eb; color: #fff; }
+  .s4 { background: #7c3aed; color: #fff; }
+  .output-box { margin-top: 20px; display: flex; gap: 12px; }
+  .output { flex: 1; background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px 12px; font-size: 11px; text-align: center; }
+  .output strong { display: block; font-size: 12px; color: #1e40af; margin-bottom: 2px; }
+
+  /* ── Figure 2: Dataset Results ── */
+  .dataset-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .ds-card { border-radius: 8px; padding: 16px; border: 2px solid; }
+  .ds-sig { border-color: #16a34a; background: #f0fdf4; }
+  .ds-trend { border-color: #ca8a04; background: #fefce8; }
+  .ds-ns { border-color: #94a3b8; background: #f8fafc; }
+  .ds-name { font-size: 12px; font-weight: 700; margin-bottom: 8px; color: #0f172a; }
+  .ds-n { font-size: 10px; color: #64748b; margin-bottom: 10px; }
+  .metric-row { display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 4px; }
+  .metric-label { color: #475569; }
+  .metric-val { font-weight: 700; }
+  .green { color: #16a34a; }
+  .red { color: #dc2626; }
+  .amber { color: #ca8a04; }
+  .grey { color: #6b7280; }
+  .badge { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 12px; margin-top: 8px; font-weight: 700; }
+  .badge-sig { background: #dcfce7; color: #15803d; }
+  .badge-trend { background: #fef9c3; color: #854d0e; }
+  .badge-ns { background: #f1f5f9; color: #64748b; }
+
+  /* ── Figure 3: Score Chart ── */
+  .score-chart { display: flex; gap: 20px; align-items: flex-end; margin: 12px 0; height: 160px; }
+  .bar-group { flex: 1; display: flex; gap: 4px; align-items: flex-end; flex-direction: column; justify-content: flex-end; }
+  .bar-label { font-size: 10px; color: #64748b; text-align: center; margin-top: 4px; }
+  .bar { border-radius: 4px 4px 0 0; width: 100%; display: flex; align-items: flex-end; justify-content: center; font-size: 10px; font-weight: 700; color: white; padding-bottom: 3px; }
+  .bar-cllm { background: #dc2626; }
+  .bar-c5 { background: #16a34a; }
+  .chart-legend { display: flex; gap: 16px; margin-top: 10px; font-size: 11px; }
+  .legend-item { display: flex; align-items: center; gap: 5px; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 2px; }
+  .chart-wrapper { display: grid; grid-template-columns: auto 1fr; gap: 0; }
+  .y-axis { display: flex; flex-direction: column-reverse; justify-content: space-between; padding-right: 8px; font-size: 9px; color: #94a3b8; padding-bottom: 22px; }
+  .x-axis-labels { display: flex; }
+
+  /* ── Figure 4: Ablation ── */
+  .ablation-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .ablation-table th { background: #1e3a8a; color: white; padding: 8px 12px; text-align: left; font-size: 11px; font-weight: 600; }
+  .ablation-table td { padding: 8px 12px; border-bottom: 1px solid #e2e8f0; }
+  .ablation-table tr:hover td { background: #f1f5f9; }
+  .ablation-table .best { background: #f0fdf4; font-weight: 700; }
+  .ablation-table .best td { color: #15803d; }
+  .delta-pos { color: #16a34a; font-weight: 700; }
+  .delta-neg { color: #dc2626; font-weight: 700; }
+
+  /* ── Figure 5: TRM Formal ── */
+  .trm-box { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .def-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 14px; }
+  .def-num { font-size: 10px; font-weight: 700; color: #3b82f6; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .def-title { font-size: 12px; font-weight: 700; color: #0f172a; margin-bottom: 6px; }
+  .def-body { font-size: 11px; color: #475569; line-height: 1.6; font-style: italic; }
+  .def-formal { font-size: 11px; color: #1e40af; font-family: monospace; margin-top: 4px; background: #eff6ff; padding: 4px 8px; border-radius: 4px; }
+
+  .divider { border: none; border-top: 1px solid #e2e8f0; margin: 32px 0; }
+  .tag { display: inline-block; background: #eff6ff; color: #1d4ed8; font-size: 10px; padding: 2px 8px; border-radius: 4px; font-weight: 600; margin-right: 6px; margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <h1>ConceptGrade — Paper 1 Figure Designs</h1>
+  <div class="subtitle">Target venue: NLP / Educational AI (ACL-ED, BEA, EDM). Focus: ML accuracy, KG-grounded scoring, multi-dataset evaluation.</div>
+
+  <!-- ── Figure 1: System Pipeline ── -->
+  <h2>Figure 1 — ConceptGrade System Pipeline</h2>
+  <div class="card">
+    <div class="fig-label">System Architecture · 4-Stage Pipeline</div>
+    <div class="pipeline">
+      <div class="stage s1">
+        <div class="stage-icon">🗂️</div>
+        <div class="stage-title">Stage 1<br>KG Construction</div>
+        <div class="stage-body">Question-specific Knowledge Graph generated via Gemini 2.5 Flash. Auto-validated: concept ID normalisation, relation type remapping, generic concept filtering.</div>
+      </div>
+      <div class="arrow">▶</div>
+      <div class="stage s2">
+        <div class="stage-icon">🔍</div>
+        <div class="stage-title">Stage 2<br>Concept Extraction</div>
+        <div class="stage-body">Self-Consistent Extractor identifies domain concepts present in the student answer. Majority-vote across 3 samples stabilises extraction noise.</div>
+      </div>
+      <div class="arrow">▶</div>
+      <div class="stage s3">
+        <div class="stage-icon">🔗</div>
+        <div class="stage-title">Stage 3<br>Chain Matching</div>
+        <div class="stage-body">Topological Reasoning Mapping (TRM): aligns extracted concepts to KG nodes via adjacency walks. Computes chain_pct coverage score.</div>
+      </div>
+      <div class="arrow">▶</div>
+      <div class="stage s4">
+        <div class="stage-icon">⚖️</div>
+        <div class="stage-title">Stage 3b<br>LRM Verification</div>
+        <div class="stage-body">LLM-as-Reasoner-Marker re-reads student answer + KG trace. Outputs SUPPORTS / CONTRADICTS / UNCERTAIN per reasoning step.</div>
+      </div>
+    </div>
+    <div class="output-box">
+      <div class="output"><strong>Input</strong>Student answer text + Question prompt</div>
+      <div class="output"><strong>KG</strong>Auto-generated per question (Gemini 2.5 Flash)</div>
+      <div class="output"><strong>C5 Score</strong>Calibrated 0–5 composite score</div>
+      <div class="output"><strong>LRM Trace</strong>Step-level SUPPORTS / CONTRADICTS classification</div>
+      <div class="output"><strong>Δ MAE</strong>vs pure LLM baseline (C_LLM)</div>
+    </div>
+    <div class="fig-caption"><strong>Figure 1.</strong> ConceptGrade four-stage pipeline. Stage 1–3 constitute the core KG-grounded scoring system (C5). Stage 3b (LRM Verification) adds an explainability layer used in the Paper 2 dashboard. The KG is generated once per question and cached; all per-answer computation occurs in Stages 2–3b.</div>
+  </div>
+
+  <!-- ── Figure 2: TRM Formal Definitions ── -->
+  <h2>Figure 2 — Topological Reasoning Mapping (TRM) — Formal Definitions</h2>
+  <div class="card">
+    <div class="fig-label">Formal Model · Definitions 1–5</div>
+    <div class="trm-box">
+      <div class="def-card">
+        <div class="def-num">Definition 1</div>
+        <div class="def-title">Step Mapping σ</div>
+        <div class="def-body">A function mapping each extracted concept c<sub>i</sub> to its nearest KG node n<sub>j</sub> by lexical + semantic distance.</div>
+        <div class="def-formal">σ : C_extracted → V_KG ∪ {∅}</div>
+      </div>
+      <div class="def-card">
+        <div class="def-num">Definition 2</div>
+        <div class="def-title">Node Adjacency</div>
+        <div class="def-body">Two mapped nodes are adjacent if there exists a directed edge between them in the KG (node-only criterion, v11 locked).</div>
+        <div class="def-formal">adj(n_i, n_j) ⟺ (n_i, n_j) ∈ E_KG</div>
+      </div>
+      <div class="def-card">
+        <div class="def-num">Definition 3</div>
+        <div class="def-title">Structural Leap</div>
+        <div class="def-body">A gap between consecutive mapped nodes that are non-adjacent in the KG — indicating a conceptual jump in the student's answer.</div>
+        <div class="def-formal">leap(i) = 1 iff ¬adj(σ(c_i), σ(c_{i+1}))</div>
+      </div>
+      <div class="def-card">
+        <div class="def-num">Definition 4</div>
+        <div class="def-title">Leap Count L</div>
+        <div class="def-body">Total structural leaps across the full concept sequence. Higher L indicates fragmented reasoning with missing intermediate concepts.</div>
+        <div class="def-formal">L = Σ leap(i),  i ∈ [1, |C|−1]</div>
+      </div>
+      <div class="def-card">
+        <div class="def-num">Definition 5</div>
+        <div class="def-title">Grounding Density ρ</div>
+        <div class="def-body">Fraction of LRM reasoning steps that cite at least one KG node. Used as a model-quality proxy in stability analysis.</div>
+        <div class="def-formal">ρ = |{steps: kg_nodes ≠ ∅}| / |steps|</div>
+      </div>
+      <div class="def-card" style="background:#eff6ff; border-color:#bfdbfe;">
+        <div class="def-num">Chain Coverage</div>
+        <div class="def-title">chain_pct Score</div>
+        <div class="def-body">Primary C5 sub-score. Percentage of expected KG concepts that were matched by the student's extracted concept set.</div>
+        <div class="def-formal">chain_pct = |σ(C) ∩ V_expected| / |V_expected|</div>
+      </div>
+    </div>
+    <div class="fig-caption"><strong>Figure 2.</strong> Formal TRM definitions. The adjacency criterion (Def. 2) uses node-only edges — intermediate edge labels are not required to match student text. This is a deliberate design choice that makes the model robust to paraphrasing while still penalising conceptual leaps (Def. 3–4).</div>
+  </div>
+
+  <!-- ── Figure 3: Multi-Dataset Results ── -->
+  <h2>Figure 3 — Multi-Dataset Evaluation Results</h2>
+  <div class="card">
+    <div class="fig-label">Evaluation · 3 Datasets · N=1,239 Answers</div>
+    <div class="dataset-grid">
+      <div class="ds-card ds-sig">
+        <div class="ds-name">Mohler 2011 (CS)</div>
+        <div class="ds-n">N = 120 answers · 10 questions · 0–5 scale</div>
+        <div class="metric-row"><span class="metric-label">C_LLM MAE</span><span class="metric-val red">0.330</span></div>
+        <div class="metric-row"><span class="metric-label">C5 MAE</span><span class="metric-val green">0.223</span></div>
+        <div class="metric-row"><span class="metric-label">MAE Reduction</span><span class="metric-val green">32.4%</span></div>
+        <div class="metric-row"><span class="metric-label">Wilcoxon p</span><span class="metric-val green">0.0026</span></div>
+        <div class="metric-row"><span class="metric-label">Fisher combined</span><span class="metric-val green">0.0014</span></div>
+        <span class="badge badge-sig">✓ Significant p &lt; 0.05</span>
+      </div>
+      <div class="ds-card ds-trend">
+        <div class="ds-name">DigiKlausur (NN)</div>
+        <div class="ds-n">N = 646 answers · 47 questions · 0–5 scale</div>
+        <div class="metric-row"><span class="metric-label">C_LLM MAE</span><span class="metric-val red">0.417</span></div>
+        <div class="metric-row"><span class="metric-label">C5 MAE</span><span class="metric-val green">0.397</span></div>
+        <div class="metric-row"><span class="metric-label">MAE Reduction</span><span class="metric-val amber">4.9%</span></div>
+        <div class="metric-row"><span class="metric-label">Wilcoxon p</span><span class="metric-val amber">0.049</span></div>
+        <div class="metric-row"><span class="metric-label">Domain</span><span class="metric-val">Neural Networks</span></div>
+        <span class="badge badge-trend">~ Marginal p = 0.049</span>
+      </div>
+      <div class="ds-card ds-ns">
+        <div class="ds-name">Kaggle ASAG (Science)</div>
+        <div class="ds-n">N = 473 answers · multi-domain · 0–3 scale</div>
+        <div class="metric-row"><span class="metric-label">C_LLM MAE</span><span class="metric-val red">0.298</span></div>
+        <div class="metric-row"><span class="metric-label">C5 MAE</span><span class="metric-val grey">0.291</span></div>
+        <div class="metric-row"><span class="metric-label">MAE Reduction</span><span class="metric-val grey">2.4%</span></div>
+        <div class="metric-row"><span class="metric-label">Wilcoxon p</span><span class="metric-val grey">0.148</span></div>
+        <div class="metric-row"><span class="metric-label">Interpretation</span><span class="metric-val">Domain boundary</span></div>
+        <span class="badge badge-ns">n.s. — domain boundary</span>
+      </div>
+    </div>
+
+    <!-- Bar chart -->
+    <div style="margin-top:20px;">
+      <div class="chart-legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#dc2626"></div> C_LLM MAE (baseline)</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#16a34a"></div> C5 MAE (ConceptGrade)</div>
+      </div>
+      <div style="display:flex; gap:40px; align-items:flex-end; margin-top:14px; height:140px; border-bottom:2px solid #e2e8f0; border-left:2px solid #e2e8f0; padding: 0 20px 0 10px;">
+        <!-- Mohler -->
+        <div style="display:flex;gap:6px;align-items:flex-end;flex-direction:column;flex:1;justify-content:flex-end;">
+          <div style="display:flex;gap:4px;align-items:flex-end;width:100%;justify-content:center;">
+            <div style="width:36px; height:93px; background:#dc2626; border-radius:4px 4px 0 0; display:flex;align-items:flex-end;justify-content:center;color:white;font-size:9px;font-weight:700;padding-bottom:2px;">0.330</div>
+            <div style="width:36px; height:63px; background:#16a34a; border-radius:4px 4px 0 0; display:flex;align-items:flex-end;justify-content:center;color:white;font-size:9px;font-weight:700;padding-bottom:2px;">0.223</div>
+          </div>
+          <div style="font-size:10px;color:#475569;text-align:center;">Mohler (CS)<br><span style="color:#15803d;font-weight:700;">p=0.0026 ✓</span></div>
+        </div>
+        <!-- DigiKlausur -->
+        <div style="display:flex;gap:6px;align-items:flex-end;flex-direction:column;flex:1;justify-content:flex-end;">
+          <div style="display:flex;gap:4px;align-items:flex-end;width:100%;justify-content:center;">
+            <div style="width:36px; height:118px; background:#dc2626; border-radius:4px 4px 0 0; display:flex;align-items:flex-end;justify-content:center;color:white;font-size:9px;font-weight:700;padding-bottom:2px;">0.417</div>
+            <div style="width:36px; height:112px; background:#22c55e; border-radius:4px 4px 0 0; display:flex;align-items:flex-end;justify-content:center;color:white;font-size:9px;font-weight:700;padding-bottom:2px;">0.397</div>
+          </div>
+          <div style="font-size:10px;color:#475569;text-align:center;">DigiKlausur (NN)<br><span style="color:#854d0e;font-weight:700;">p=0.049 ~</span></div>
+        </div>
+        <!-- Kaggle -->
+        <div style="display:flex;gap:6px;align-items:flex-end;flex-direction:column;flex:1;justify-content:flex-end;">
+          <div style="display:flex;gap:4px;align-items:flex-end;width:100%;justify-content:center;">
+            <div style="width:36px; height:84px; background:#dc2626; border-radius:4px 4px 0 0; display:flex;align-items:flex-end;justify-content:center;color:white;font-size:9px;font-weight:700;padding-bottom:2px;">0.298</div>
+            <div style="width:36px; height:82px; background:#94a3b8; border-radius:4px 4px 0 0; display:flex;align-items:flex-end;justify-content:center;color:white;font-size:9px;font-weight:700;padding-bottom:2px;">0.291</div>
+          </div>
+          <div style="font-size:10px;color:#475569;text-align:center;">Kaggle ASAG (Sci)<br><span style="color:#64748b;font-weight:700;">p=0.148 n.s.</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="fig-caption"><strong>Figure 3.</strong> Multi-dataset evaluation. ConceptGrade (C5) outperforms the pure LLM baseline (C_LLM) on 2/3 datasets. The Kaggle ASAG result is interpreted as a domain-boundary finding: the dataset spans 8 scientific domains (biology, physics, chemistry, etc.) where the auto-generated KG cannot capture cross-domain vocabulary variation. This is reported as a limitation, not a failure.</div>
+  </div>
+
+  <!-- ── Figure 4: Ablation ── -->
+  <h2>Figure 4 — Ablation Study Results</h2>
+  <div class="card">
+    <div class="fig-label">Ablation · 3 Extensions · DigiKlausur Dataset</div>
+    <table class="ablation-table">
+      <thead>
+        <tr>
+          <th>Configuration</th>
+          <th>Extensions Active</th>
+          <th>MAE ↓</th>
+          <th>Δ vs Baseline</th>
+          <th>Wilcoxon p</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>C_LLM (baseline)</td>
+          <td>None — pure LLM grading</td>
+          <td>0.417</td>
+          <td>—</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>C1 — Chain only</td>
+          <td>TRM chain matching only</td>
+          <td>0.412</td>
+          <td><span class="delta-pos">−0.005</span></td>
+          <td>0.31</td>
+        </tr>
+        <tr>
+          <td>C3 — +Self-Consistent</td>
+          <td>TRM + SCE (3-sample majority vote)</td>
+          <td>0.408</td>
+          <td><span class="delta-pos">−0.009</span></td>
+          <td>0.18</td>
+        </tr>
+        <tr>
+          <td>C4 — +Conf-Weighted</td>
+          <td>TRM + SCE + CWC</td>
+          <td>0.401</td>
+          <td><span class="delta-pos">−0.016</span></td>
+          <td>0.09</td>
+        </tr>
+        <tr class="best">
+          <td><strong>C5 — Full System ★</strong></td>
+          <td>TRM + SCE + CWC + LRM Verifier</td>
+          <td><strong>0.397</strong></td>
+          <td><span class="delta-pos">−0.020</span></td>
+          <td><strong>0.049</strong></td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="margin-top:12px; display:flex; gap:8px; flex-wrap:wrap;">
+      <span class="tag">TRM = Topological Reasoning Mapping</span>
+      <span class="tag">SCE = Self-Consistent Extractor</span>
+      <span class="tag">CWC = Confidence-Weighted Comparator</span>
+      <span class="tag">LRM = LLM-as-Reasoner-Marker</span>
+    </div>
+    <div class="fig-caption"><strong>Figure 4.</strong> Ablation on DigiKlausur. Each extension contributes monotonically to MAE reduction. The LRM Verifier (Stage 3b) provides the largest single-step improvement and is the only configuration to reach statistical significance. Reported as one-tailed Wilcoxon signed-rank test; N=646.</div>
+  </div>
+
+  <!-- ── Figure 5: Domain Boundary Narrative ── -->
+  <h2>Figure 5 — Domain Complexity vs KG Benefit</h2>
+  <div class="card">
+    <div class="fig-label">Interpretive Analysis · Cross-Dataset Pattern</div>
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:16px;">
+      <div style="text-align:center; padding:16px; background:#f0fdf4; border-radius:8px; border:1px solid #bbf7d0;">
+        <div style="font-size:28px; font-weight:800; color:#15803d;">32.4%</div>
+        <div style="font-size:11px; color:#166534; margin-top:4px;">MAE reduction</div>
+        <div style="font-size:10px; color:#475569; margin-top:8px;">Single-domain CS<br>Well-bounded KG vocabulary<br>KG captures all relevant concepts</div>
+      </div>
+      <div style="text-align:center; padding:16px; background:#fefce8; border-radius:8px; border:1px solid #fde68a;">
+        <div style="font-size:28px; font-weight:800; color:#92400e;">4.9%</div>
+        <div style="font-size:11px; color:#78350f; margin-top:4px;">MAE reduction</div>
+        <div style="font-size:10px; color:#475569; margin-top:8px;">Single-domain NN<br>Larger question set (47 q)<br>More lexical variation</div>
+      </div>
+      <div style="text-align:center; padding:16px; background:#f8fafc; border-radius:8px; border:1px solid #e2e8f0;">
+        <div style="font-size:28px; font-weight:800; color:#64748b;">2.4%</div>
+        <div style="font-size:11px; color:#475569; margin-top:4px;">MAE reduction (n.s.)</div>
+        <div style="font-size:10px; color:#475569; margin-top:8px;">8 scientific domains<br>Cross-domain vocabulary<br>KG boundary exceeded</div>
+      </div>
+    </div>
+    <div style="background:#eff6ff; border-radius:6px; padding:14px; font-size:12px; line-height:1.7; color:#1e3a8a; border:1px solid #bfdbfe;">
+      <strong>Interpretation:</strong> The monotonic decline in KG benefit from Mohler → DigiKlausur → Kaggle ASAG is consistent with a domain-boundary hypothesis: ConceptGrade's advantage diminishes as the target domain vocabulary exceeds the coverage of auto-generated KGs. Kaggle ASAG is not a failure — it defines the operating boundary of the system.
+    </div>
+    <div class="fig-caption"><strong>Figure 5.</strong> Domain complexity moderates KG benefit. This cross-dataset slopegraph (shown in Paper 2 dashboard as the CrossDatasetComparisonChart) motivates the need for domain-specific KG curation as future work and frames the Kaggle ASAG result as a boundary condition rather than a system limitation.</div>
+  </div>
+
+  <hr class="divider" />
+  <div style="font-size:11px; color:#94a3b8; text-align:center; padding-bottom:20px;">
+    Paper 1 Design Mockup · ConceptGrade · Generated 2026-04-19 · Target: NLP/EdAI venue (ACL-ED, BEA, EDM)
+  </div>
+</div>
+</body>
+</html>

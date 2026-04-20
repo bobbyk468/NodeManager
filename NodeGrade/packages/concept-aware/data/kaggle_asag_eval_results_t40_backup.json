@@ -1,0 +1,6214 @@
+{
+  "dataset": "kaggle_asag",
+  "n": 473,
+  "n_missing": 0,
+  "metrics": {
+    "C_LLM": {
+      "mae": 1.208245243128964,
+      "rmse": 1.648803140778234,
+      "r": 0.6114308928554812,
+      "rho": 0.5580869492917917,
+      "qwk": 0.5684071702711491,
+      "bias": 0.5750528541226215,
+      "prec": 0.386892177589852
+    },
+    "C5_fix": {
+      "mae": 1.1691331923890063,
+      "rmse": 1.6056849321955773,
+      "r": 0.5956427899980308,
+      "rho": 0.5579198614629018,
+      "qwk": 0.572115261577286,
+      "bias": 0.4714587737843552,
+      "prec": 0.42283298097251587
+    }
+  },
+  "wilcoxon_p": 0.31877443620877954,
+  "mae_reduction_pct": 3.237095363079624,
+  "results": [
+    {
+      "id": 0,
+      "human_score": 3.0,
+      "cllm_score": 2.0,
+      "c5_score": 2.0,
+      "matched_concepts": [
+        "energy_release",
+        "plant_respiration"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Understand"
+    },
+    {
+      "id": 1,
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "animal",
+        "plant",
+        "habitat",
+        "natural_home"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 2,
+      "human_score": 5.0,
+      "cllm_score": 4.5,
+      "c5_score": 4.5,
+      "matched_concepts": [
+        "soil",
+        "soil_erosion",
+        "wind",
+        "water"
+      ],
+      "chain_pct": "80%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 3,
+      "human_score": 2.0,
+      "cllm_score": 3.0,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "living_things",
+        "microorganisms",
+        "naked_eye"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 4,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "microorganisms",
+        "helpful_microorganisms",
+        "harmful_microorganisms"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 5,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "virus",
+        "disease",
+        "flu"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 6,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "pollen",
+        "flower",
+        "pollination"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 7,
+      "human_score": 2.0,
+      "cllm_score": 0.0,
+      "c5_score": 2.0,
+      "matched_concepts": [
+        "flower",
+        "petals"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 8,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "viruses",
+        "microorganisms",
+        "fungi",
+        "bacteria"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 9,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 10,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "flu"
+      ],
+      "chain_pct": "33%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 11,
+      "human_score": 5.0,
+      "cllm_score": 3.5,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "pollen",
+        "pollination"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 12,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "animals",
+        "seed_dispersal",
+        "wind",
+        "water"
+      ],
+      "chain_pct": "80%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 13,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "water_bodies",
+        "water_pollution"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 14,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 3.0,
+      "matched_concepts": [
+        "dead_plants_animals",
+        "coal",
+        "oil",
+        "natural_gas",
+        "fossil_fuels"
+      ],
+      "chain_pct": "83%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 15,
+      "human_score": 4.0,
+      "cllm_score": 1.5,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "earths_atmosphere",
+        "heat_trapping",
+        "greenhouse_gases"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 16,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "methane",
+        "greenhouse_gases",
+        "carbon_dioxide"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 17,
+      "human_score": 4.0,
+      "cllm_score": 3.0,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "global_warming",
+        "earths_temperature",
+        "greenhouse_gases"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 18,
+      "human_score": 4.0,
+      "cllm_score": 3.5,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "trapped_heat",
+        "greenhouse_effect",
+        "greenhouse_gases"
+      ],
+      "chain_pct": "75%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 19,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 4.0,
+      "matched_concepts": [
+        "food_waste",
+        "composting",
+        "natural_fertilizer",
+        "garden_waste"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 20,
+      "human_score": 4.0,
+      "cllm_score": 3.0,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "unwanted_sound",
+        "noise_pollution",
+        "harmful_sound"
+      ],
+      "chain_pct": "60%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 21,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "phase_change",
+        "solid_state",
+        "liquid_state",
+        "melting"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 22,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "phase_change",
+        "solid_state",
+        "liquid_state",
+        "freezing"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 23,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "boiling",
+        "heating",
+        "liquid_state",
+        "gas_state"
+      ],
+      "chain_pct": "80%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 24,
+      "human_score": 4.0,
+      "cllm_score": 2.0,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "evaporation",
+        "liquid_state",
+        "gas_state"
+      ],
+      "chain_pct": "60%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 25,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "condensation",
+        "liquid_state",
+        "gas_state"
+      ],
+      "chain_pct": "75%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 26,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "energy",
+        "vision",
+        "light"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 27,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 4.0,
+      "matched_concepts": [
+        "light",
+        "bouncing_back",
+        "light_reflection"
+      ],
+      "chain_pct": "75%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 28,
+      "human_score": 5.0,
+      "cllm_score": 3.0,
+      "c5_score": 4.0,
+      "matched_concepts": [
+        "light",
+        "bending",
+        "light_refraction"
+      ],
+      "chain_pct": "75%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 29,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [
+        "light_blocking",
+        "shadow"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 30,
+      "human_score": 3.0,
+      "cllm_score": 1.0,
+      "c5_score": 0.5,
+      "matched_concepts": [
+        "sound",
+        "vibrations"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 31,
+      "human_score": 1.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 32,
+      "human_score": 1.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 33,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "harmful_sound",
+        "unwanted_sound",
+        "noise_pollution"
+      ],
+      "chain_pct": "60%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 34,
+      "human_score": 1.0,
+      "cllm_score": 1.0,
+      "c5_score": 0.5,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 35,
+      "human_score": 0.0,
+      "cllm_score": 0.5,
+      "c5_score": 0.0,
+      "matched_concepts": [
+        "kilometers_per_second"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 36,
+      "human_score": 3.0,
+      "cllm_score": 1.0,
+      "c5_score": 0.5,
+      "matched_concepts": [
+        "prism"
+      ],
+      "chain_pct": "33%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 37,
+      "human_score": 0.0,
+      "cllm_score": 2.0,
+      "c5_score": 2.5,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 38,
+      "human_score": 2.0,
+      "cllm_score": 1.0,
+      "c5_score": 0.5,
+      "matched_concepts": [
+        "electric_charge",
+        "electric_circuit",
+        "electric_current"
+      ],
+      "chain_pct": "75%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 39,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 40,
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "electric_circuit",
+        "closed_circuit"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 41,
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "electricity_flow"
+      ],
+      "chain_pct": "33%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 42,
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "electricity_flow"
+      ],
+      "chain_pct": "33%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 43,
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "overcurrent",
+        "electric_current"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 44,
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "magnetic_attraction"
+      ],
+      "chain_pct": "33%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 45,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 46,
+      "human_score": 3.0,
+      "cllm_score": 3.0,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "iron_core",
+        "electromagnet",
+        "magnet",
+        "electric_current"
+      ],
+      "chain_pct": "80%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 47,
+      "human_score": 3.0,
+      "cllm_score": 1.5,
+      "c5_score": 0.5,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 48,
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_score": 3.0,
+      "matched_concepts": [
+        "single_path"
+      ],
+      "chain_pct": "25%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 49,
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_score": 3.0,
+      "matched_concepts": [
+        "multiple_paths"
+      ],
+      "chain_pct": "25%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 50,
+      "human_score": 2.0,
+      "cllm_score": 1.0,
+      "c5_score": 2.0,
+      "matched_concepts": [
+        "electric_circuit",
+        "circuit_damage"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 51,
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "electrical_device",
+        "electric_current"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 52,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "groundwater",
+        "water",
+        "underground_storage"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 53,
+      "human_score": 2.0,
+      "cllm_score": 4.0,
+      "c5_score": 3.0,
+      "matched_concepts": [
+        "soil_erosion"
+      ],
+      "chain_pct": "20%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 54,
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "water_bodies",
+        "water_pollution"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 55,
+      "human_score": 2.0,
+      "cllm_score": 1.0,
+      "c5_score": 2.0,
+      "matched_concepts": [
+        "water_cycle"
+      ],
+      "chain_pct": "25%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 56,
+      "human_score": 2.0,
+      "cllm_score": 1.5,
+      "c5_score": 0.5,
+      "matched_concepts": [
+        "evaporation"
+      ],
+      "chain_pct": "20%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 57,
+      "human_score": 3.0,
+      "cllm_score": 1.5,
+      "c5_score": 0.5,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 58,
+      "human_score": 4.0,
+      "cllm_score": 3.0,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "hail",
+        "precipitation",
+        "rain"
+      ],
+      "chain_pct": "60%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 59,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 4.0,
+      "matched_concepts": [
+        "garden_waste",
+        "food_waste"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 60,
+      "human_score": 3.0,
+      "cllm_score": 1.0,
+      "c5_score": 0.5,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 61,
+      "human_score": 3.0,
+      "cllm_score": 3.5,
+      "c5_score": 3.5,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 62,
+      "human_score": 3.0,
+      "cllm_score": 1.0,
+      "c5_score": 2.0,
+      "matched_concepts": [
+        "planet",
+        "most_moons",
+        "moon",
+        "jupiter"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 63,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 64,
+      "human_score": 4.0,
+      "cllm_score": 3.5,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "space_probe",
+        "uncrewed_mission",
+        "spacecraft"
+      ],
+      "chain_pct": "75%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 65,
+      "human_score": 3.0,
+      "cllm_score": 1.0,
+      "c5_score": 0.5,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 66,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 2.5,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 67,
+      "human_score": 4.0,
+      "cllm_score": 3.5,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "mars",
+        "asteroid",
+        "rocky_object"
+      ],
+      "chain_pct": "43%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 68,
+      "human_score": 3.0,
+      "cllm_score": 2.0,
+      "c5_score": 3.0,
+      "matched_concepts": [
+        "galaxy",
+        "star"
+      ],
+      "chain_pct": "33%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 69,
+      "human_score": 5.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [
+        "milky_way",
+        "galaxy"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 70,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "weather_monitoring",
+        "weather_satellite",
+        "weather_forecasting"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 71,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "carbon_dioxide_removal",
+        "gas_exchange",
+        "respiratory_system",
+        "oxygen_intake"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 72,
+      "human_score": 4.0,
+      "cllm_score": 4.5,
+      "c5_score": 4.5,
+      "matched_concepts": [
+        "transportation",
+        "wastes",
+        "oxygen"
+      ],
+      "chain_pct": "60%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 73,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "hormones",
+        "nutrients",
+        "plasma",
+        "blood"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 74,
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "unpleasant_food",
+        "food_spoilage",
+        "unsafe_food"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 75,
+      "human_score": 2.0,
+      "cllm_score": 1.5,
+      "c5_score": 4.0,
+      "matched_concepts": [
+        "heating"
+      ],
+      "chain_pct": "25%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 76,
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "mass",
+        "matter"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Understand"
+    },
+    {
+      "id": 77,
+      "human_score": 3.0,
+      "cllm_score": 1.0,
+      "c5_score": 2.0,
+      "matched_concepts": [
+        "force",
+        "weight"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Understand"
+    },
+    {
+      "id": 78,
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_score": 3.5,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 79,
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_score": 0.0,
+      "matched_concepts": [
+        "sound_volume",
+        "loudness"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Understand"
+    },
+    {
+      "id": 80,
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "liquid_expansion",
+        "thermometer",
+        "heat",
+        "temperature"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 81,
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "time",
+        "object_motion",
+        "speed"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Understand"
+    },
+    {
+      "id": 82,
+      "human_score": 1.0,
+      "cllm_score": 4.5,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "object_motion",
+        "speed"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Understand"
+    },
+    {
+      "id": 83,
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "velocity"
+      ],
+      "chain_pct": "33%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 84,
+      "human_score": 1.0,
+      "cllm_score": 4.5,
+      "c5_score": 1.5,
+      "matched_concepts": [
+        "velocity",
+        "rate_of_change",
+        "acceleration"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 85,
+      "human_score": 1.0,
+      "cllm_score": 4.5,
+      "c5_score": 2.0,
+      "matched_concepts": [
+        "inertia",
+        "force",
+        "object_in_motion",
+        "object_at_rest",
+        "newtons_first_law"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 86,
+      "human_score": 2.0,
+      "cllm_score": 4.5,
+      "c5_score": 4.0,
+      "matched_concepts": [
+        "pull",
+        "force",
+        "push"
+      ],
+      "chain_pct": "75%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 87,
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_score": 2.0,
+      "matched_concepts": [
+        "force",
+        "newton"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 88,
+      "human_score": 1.0,
+      "cllm_score": 5.0,
+      "c5_score": 2.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 89,
+      "human_score": 2.0,
+      "cllm_score": 3.0,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "warmth",
+        "heat"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 90,
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "conduction",
+        "heat_transfer",
+        "solids"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 91,
+      "human_score": 1.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "heat_transfer",
+        "convection"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 92,
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "radiation",
+        "heat_transfer"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 93,
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "size_increase",
+        "thermal_expansion"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 94,
+      "human_score": 2.0,
+      "cllm_score": 3.0,
+      "c5_score": 1.0,
+      "matched_concepts": [
+        "dew",
+        "water_droplets"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 95,
+      "human_score": 1.0,
+      "cllm_score": 4.5,
+      "c5_score": 3.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 96,
+      "human_score": 1.0,
+      "cllm_score": 4.5,
+      "c5_score": 3.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 97,
+      "human_score": 1.0,
+      "cllm_score": 2.0,
+      "c5_score": 0.0,
+      "matched_concepts": [
+        "lightning"
+      ],
+      "chain_pct": "33%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 98,
+      "human_score": 2.0,
+      "cllm_score": 4.0,
+      "c5_score": 4.0,
+      "matched_concepts": [
+        "avoid_metal_objects"
+      ],
+      "chain_pct": "25%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 99,
+      "human_score": 1.0,
+      "cllm_score": 2.0,
+      "c5_score": 3.0,
+      "matched_concepts": [
+        "stay_indoors"
+      ],
+      "chain_pct": "25%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 100,
+      "human_score": 0.0,
+      "cllm_score": 1.5,
+      "c5_score": 0.5,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 101,
+      "human_score": 1.0,
+      "cllm_score": 1.0,
+      "c5_score": 0.0,
+      "matched_concepts": [
+        "work_done",
+        "no_displacement"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 102,
+      "human_score": 1.0,
+      "cllm_score": 0.5,
+      "c5_score": 0.0,
+      "matched_concepts": [
+        "velocity"
+      ],
+      "chain_pct": "33%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 103,
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "push"
+      ],
+      "chain_pct": "25%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 104,
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "heat_transfer",
+        "convection"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 105,
+      "human_score": 2.0,
+      "cllm_score": 4.5,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "radiation",
+        "heat_transfer"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 106,
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "time",
+        "object_motion",
+        "speed"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Understand"
+    },
+    {
+      "id": 107,
+      "human_score": 1.0,
+      "cllm_score": 4.5,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "unpleasant_food",
+        "food_spoilage",
+        "unsafe_food"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 108,
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "inertia",
+        "object",
+        "change_in_motion"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 109,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 110,
+      "human_score": 1.0,
+      "cllm_score": 2.5,
+      "c5_score": 3.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 111,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 112,
+      "human_score": 3.0,
+      "cllm_score": 2.5,
+      "c5_score": 2.0,
+      "matched_concepts": [
+        "planet",
+        "galaxy",
+        "star"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 113,
+      "human_score": 4.0,
+      "cllm_score": 4.0,
+      "c5_score": 2.0,
+      "matched_concepts": [
+        "milky_way",
+        "stars",
+        "galaxy",
+        "barred_spiral_galaxy"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 114,
+      "human_score": 3.0,
+      "cllm_score": 4.0,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "comet"
+      ],
+      "chain_pct": "20%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 115,
+      "human_score": 3.0,
+      "cllm_score": 4.5,
+      "c5_score": 2.0,
+      "matched_concepts": [
+        "mars",
+        "asteroid_belt",
+        "asteroid",
+        "jupiter"
+      ],
+      "chain_pct": "57%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 116,
+      "human_score": 2.0,
+      "cllm_score": 3.5,
+      "c5_score": 5.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 117,
+      "human_score": 4.0,
+      "cllm_score": 4.0,
+      "c5_score": 4.5,
+      "matched_concepts": [
+        "sugar",
+        "photosynthesis",
+        "plants",
+        "water"
+      ],
+      "chain_pct": "57%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 118,
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_score": 4.0,
+      "matched_concepts": [
+        "energy_release",
+        "plant_respiration"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 119,
+      "human_score": 3.0,
+      "cllm_score": 4.0,
+      "c5_score": 4.5,
+      "matched_concepts": [
+        "evaporation",
+        "transpiration",
+        "water"
+      ],
+      "chain_pct": "60%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 120,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "rock_pieces",
+        "rocks",
+        "weathering"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Understand"
+    },
+    {
+      "id": 121,
+      "human_score": 4.0,
+      "cllm_score": 4.0,
+      "c5_score": 3.0,
+      "matched_concepts": [
+        "place",
+        "weather",
+        "atmosphere"
+      ],
+      "chain_pct": "75%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 122,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "thermometer",
+        "temperature"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 123,
+      "human_score": 4.0,
+      "cllm_score": 4.5,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "snow",
+        "hail",
+        "precipitation",
+        "rain",
+        "cloud"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 124,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "wind",
+        "air_pressure_differences"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 125,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "water_vapor",
+        "humidity",
+        "air"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 126,
+      "human_score": 4.0,
+      "cllm_score": 4.5,
+      "c5_score": 4.0,
+      "matched_concepts": [
+        "fog",
+        "cloud",
+        "ground",
+        "water_droplets"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 127,
+      "human_score": 4.0,
+      "cllm_score": 4.5,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "condensation",
+        "water_cycle",
+        "precipitation",
+        "evaporation"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 128,
+      "human_score": 4.0,
+      "cllm_score": 4.5,
+      "c5_score": 3.0,
+      "matched_concepts": [
+        "weather",
+        "long_period",
+        "climate"
+      ],
+      "chain_pct": "75%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 129,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "lightning"
+      ],
+      "chain_pct": "33%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 130,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "rotating_air_column",
+        "thunderstorm",
+        "tornado",
+        "ground"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 131,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "heavy_rain",
+        "storm",
+        "strong_winds",
+        "hurricane"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 132,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "dew",
+        "water_droplets"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 133,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 4.5,
+      "matched_concepts": [
+        "evaporation",
+        "gas_state"
+      ],
+      "chain_pct": "40%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 134,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "condensation",
+        "liquid_state"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 135,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "long_period",
+        "drought",
+        "rainfall"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 136,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "low_visibility",
+        "blizzard",
+        "snowstorm",
+        "strong_winds"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 137,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "weather_satellite",
+        "weather_forecasting",
+        "weather_monitoring",
+        "satellite"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 138,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "sleet",
+        "frozen_water",
+        "raindrops"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 139,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "cold_air",
+        "cold_front",
+        "warm_air",
+        "air_mass_interaction"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 140,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "cold_air",
+        "warm_air",
+        "warm_front",
+        "air_mass_interaction"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 141,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "rock_pieces",
+        "rocks",
+        "weathering"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 142,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "pollen",
+        "flower",
+        "pollination"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 143,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "plant",
+        "seed",
+        "plant_growth",
+        "germination"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 144,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "life_cycle",
+        "metamorphosis",
+        "animals"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 145,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "food_chain",
+        "organism",
+        "energy_transfer"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Understand"
+    },
+    {
+      "id": 146,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 3.0,
+      "matched_concepts": [
+        "animal",
+        "plant",
+        "habitat",
+        "natural_home"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 147,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 4.0,
+      "matched_concepts": [
+        "non_living_things",
+        "ecosystem",
+        "living_things",
+        "community"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 148,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "sunlight",
+        "photosynthesis",
+        "plants"
+      ],
+      "chain_pct": "43%",
+      "solo": "Multistructural",
+      "bloom": "Understand"
+    },
+    {
+      "id": 149,
+      "human_score": 0.0,
+      "cllm_score": 1.0,
+      "c5_score": 0.0,
+      "matched_concepts": [
+        "sun"
+      ],
+      "chain_pct": "25%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 150,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [
+        "planet",
+        "sun"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 151,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [
+        "planet"
+      ],
+      "chain_pct": "25%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 152,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [
+        "asteroid",
+        "sun"
+      ],
+      "chain_pct": "29%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 153,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [
+        "sun"
+      ],
+      "chain_pct": "20%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 154,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [
+        "milky_way",
+        "galaxy"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 155,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [
+        "milky_way",
+        "galaxy"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 156,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [
+        "sun",
+        "planet",
+        "mercury"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 157,
+      "human_score": 0.0,
+      "cllm_score": 0.5,
+      "c5_score": 0.0,
+      "matched_concepts": [
+        "moon",
+        "planet"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 158,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 159,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 160,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [
+        "ice"
+      ],
+      "chain_pct": "20%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 161,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 4.0,
+      "matched_concepts": [
+        "germination",
+        "seed"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 162,
+      "human_score": 4.0,
+      "cllm_score": 4.5,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "flower",
+        "pollen",
+        "pollination"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 163,
+      "human_score": 4.0,
+      "cllm_score": 4.5,
+      "c5_score": 3.0,
+      "matched_concepts": [
+        "sunlight",
+        "photosynthesis",
+        "plants",
+        "water"
+      ],
+      "chain_pct": "57%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 164,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "life_cycle",
+        "metamorphosis"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 165,
+      "human_score": 4.0,
+      "cllm_score": 2.5,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "transportation",
+        "circulatory_system"
+      ],
+      "chain_pct": "40%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 166,
+      "human_score": 4.0,
+      "cllm_score": 3.5,
+      "c5_score": 4.0,
+      "matched_concepts": [
+        "non_living_things",
+        "ecosystem",
+        "living_things",
+        "community"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 167,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "food_chain"
+      ],
+      "chain_pct": "33%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 168,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "flower",
+        "pollen",
+        "pollination"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 169,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "life_cycle",
+        "metamorphosis",
+        "animals"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Understand"
+    },
+    {
+      "id": 170,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "carbon_dioxide_removal",
+        "gas_exchange",
+        "respiratory_system",
+        "oxygen_intake"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 171,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "food_chain",
+        "energy_transfer"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Understand"
+    },
+    {
+      "id": 172,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "non_living_things",
+        "community",
+        "ecosystem",
+        "living_things"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 173,
+      "human_score": 5.0,
+      "cllm_score": 4.5,
+      "c5_score": 4.5,
+      "matched_concepts": [
+        "phase_change",
+        "evaporation",
+        "liquid_state",
+        "gas_state"
+      ],
+      "chain_pct": "80%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 174,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "condensation",
+        "liquid_state",
+        "gas_state"
+      ],
+      "chain_pct": "75%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 175,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "nutrients",
+        "plasma"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 176,
+      "human_score": 5.0,
+      "cllm_score": 4.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "pull",
+        "force",
+        "push"
+      ],
+      "chain_pct": "75%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 177,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "newton",
+        "force",
+        "si_unit"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 178,
+      "human_score": 5.0,
+      "cllm_score": 4.5,
+      "c5_score": 3.0,
+      "matched_concepts": [
+        "object_at_rest",
+        "newtons_first_law",
+        "object_in_motion"
+      ],
+      "chain_pct": "75%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 179,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "object",
+        "inertia",
+        "change_in_motion"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 180,
+      "human_score": 5.0,
+      "cllm_score": 4.0,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "velocity",
+        "acceleration"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 181,
+      "human_score": 5.0,
+      "cllm_score": 4.5,
+      "c5_score": 3.0,
+      "matched_concepts": [
+        "weight",
+        "gravity"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Understand"
+    },
+    {
+      "id": 182,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "mass",
+        "object",
+        "matter"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Understand"
+    },
+    {
+      "id": 183,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "velocity"
+      ],
+      "chain_pct": "33%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 184,
+      "human_score": 5.0,
+      "cllm_score": 3.5,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "object_motion",
+        "speed"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Understand"
+    },
+    {
+      "id": 185,
+      "human_score": 5.0,
+      "cllm_score": 4.5,
+      "c5_score": 3.0,
+      "matched_concepts": [
+        "energy",
+        "work"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 186,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [
+        "energy"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 187,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "conduction",
+        "heat_transfer"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 188,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [
+        "heat_transfer",
+        "convection"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 189,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [
+        "radiation",
+        "vacuum"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 190,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "insulator"
+      ],
+      "chain_pct": "33%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 191,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "conductor",
+        "electricity_flow"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 192,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [
+        "trapped_heat",
+        "greenhouse_effect",
+        "earths_warming",
+        "greenhouse_gases"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 193,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [
+        "global_warming"
+      ],
+      "chain_pct": "33%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 194,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [
+        "oxygen",
+        "photosynthesis",
+        "plants",
+        "carbon_dioxide"
+      ],
+      "chain_pct": "57%",
+      "solo": "Multistructural",
+      "bloom": "Understand"
+    },
+    {
+      "id": 195,
+      "human_score": 2.0,
+      "cllm_score": 0.5,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "warmth",
+        "heat"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 196,
+      "human_score": 2.0,
+      "cllm_score": 4.5,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "conduction",
+        "heat_transfer"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 197,
+      "human_score": 2.0,
+      "cllm_score": 4.5,
+      "c5_score": 4.5,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 198,
+      "human_score": 2.0,
+      "cllm_score": 4.5,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "radiation",
+        "heat_transfer"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 199,
+      "human_score": 2.0,
+      "cllm_score": 4.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "size_increase",
+        "matter",
+        "thermal_expansion"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 200,
+      "human_score": 2.0,
+      "cllm_score": 1.0,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "conductor"
+      ],
+      "chain_pct": "33%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 201,
+      "human_score": 2.0,
+      "cllm_score": 1.0,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "insulator"
+      ],
+      "chain_pct": "33%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 202,
+      "human_score": 2.0,
+      "cllm_score": 1.5,
+      "c5_score": 3.0,
+      "matched_concepts": [
+        "greenhouse_gases",
+        "trapped_heat",
+        "greenhouse_effect",
+        "earths_warming"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 203,
+      "human_score": 2.0,
+      "cllm_score": 4.5,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "global_warming",
+        "earths_temperature",
+        "greenhouse_gases"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 204,
+      "human_score": 2.0,
+      "cllm_score": 4.5,
+      "c5_score": 4.5,
+      "matched_concepts": [
+        "evaporation"
+      ],
+      "chain_pct": "20%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 205,
+      "human_score": 2.0,
+      "cllm_score": 4.5,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "condensation"
+      ],
+      "chain_pct": "25%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 206,
+      "human_score": 2.0,
+      "cllm_score": 4.0,
+      "c5_score": 4.5,
+      "matched_concepts": [
+        "boiling"
+      ],
+      "chain_pct": "20%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 207,
+      "human_score": 2.0,
+      "cllm_score": 4.5,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "freezing"
+      ],
+      "chain_pct": "25%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 208,
+      "human_score": 2.0,
+      "cllm_score": 4.5,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "melting"
+      ],
+      "chain_pct": "25%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 209,
+      "human_score": 5.0,
+      "cllm_score": 4.5,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "sound",
+        "vibrations"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 210,
+      "human_score": 5.0,
+      "cllm_score": 3.5,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "light",
+        "vision",
+        "energy"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 211,
+      "human_score": 5.0,
+      "cllm_score": 4.5,
+      "c5_score": 4.5,
+      "matched_concepts": [
+        "solids",
+        "sound_travel",
+        "waves",
+        "sound"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 212,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "meters_per_second",
+        "air",
+        "speed_of_sound"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 213,
+      "human_score": 5.0,
+      "cllm_score": 4.5,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "speed_of_light",
+        "kilometers_per_second"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 214,
+      "human_score": 5.0,
+      "cllm_score": 4.5,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "light",
+        "light_reflection"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Understand"
+    },
+    {
+      "id": 215,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "light",
+        "bending",
+        "light_refraction"
+      ],
+      "chain_pct": "75%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 216,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 4.0,
+      "matched_concepts": [
+        "light",
+        "light_blocking",
+        "shadow"
+      ],
+      "chain_pct": "75%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 217,
+      "human_score": 5.0,
+      "cllm_score": 4.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "white_light",
+        "prism",
+        "color_separation",
+        "light_spectrum"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 218,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 4.0,
+      "matched_concepts": [
+        "electric_charge",
+        "electric_circuit",
+        "electron",
+        "electric_current"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 219,
+      "human_score": 5.0,
+      "cllm_score": 4.5,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "material",
+        "conductor",
+        "electricity_flow"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 220,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "material",
+        "insulator",
+        "electricity_flow"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 221,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 4.5,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 222,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 4.0,
+      "matched_concepts": [
+        "multiple_paths",
+        "parallel_circuit"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 223,
+      "human_score": 5.0,
+      "cllm_score": 1.5,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "static_electricity"
+      ],
+      "chain_pct": "33%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 224,
+      "human_score": 5.0,
+      "cllm_score": 4.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "material",
+        "iron",
+        "magnet",
+        "magnetic_attraction"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 225,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "magnetic_force",
+        "magnet",
+        "magnetic_field"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 226,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 4.5,
+      "matched_concepts": [
+        "iron_core",
+        "magnet",
+        "electric_current",
+        "electromagnet",
+        "wire"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 227,
+      "human_score": 5.0,
+      "cllm_score": 4.5,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "fuse",
+        "overcurrent"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 228,
+      "human_score": 5.0,
+      "cllm_score": 4.5,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "electric_current"
+      ],
+      "chain_pct": "33%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 229,
+      "human_score": 5.0,
+      "cllm_score": 4.5,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "electric_circuit",
+        "circuit_damage",
+        "short_circuit"
+      ],
+      "chain_pct": "75%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 230,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "open_circuit",
+        "electric_current",
+        "current_flow",
+        "electric_circuit"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 231,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "electric_circuit",
+        "electricity_flow"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 232,
+      "human_score": 1.0,
+      "cllm_score": 2.0,
+      "c5_score": 1.5,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 233,
+      "human_score": 1.0,
+      "cllm_score": 5.0,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "thermometer"
+      ],
+      "chain_pct": "33%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 234,
+      "human_score": 2.0,
+      "cllm_score": 1.0,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "natural_resources",
+        "human_use"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 235,
+      "human_score": 2.0,
+      "cllm_score": 1.5,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "natural_gas",
+        "fossil_fuels",
+        "oil"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 236,
+      "human_score": 3.0,
+      "cllm_score": 4.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "atmosphere",
+        "weather"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 237,
+      "human_score": 3.0,
+      "cllm_score": 2.5,
+      "c5_score": 3.0,
+      "matched_concepts": [
+        "climate",
+        "weather"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 238,
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "humidity",
+        "water_vapor",
+        "air"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 239,
+      "human_score": 3.0,
+      "cllm_score": 4.5,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "hail",
+        "precipitation",
+        "rain",
+        "snow"
+      ],
+      "chain_pct": "80%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 240,
+      "human_score": 3.0,
+      "cllm_score": 3.0,
+      "c5_score": 3.0,
+      "matched_concepts": [
+        "wind",
+        "air_pressure_differences"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 241,
+      "human_score": 3.0,
+      "cllm_score": 4.5,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "warm_air",
+        "cold_air",
+        "cold_front",
+        "air_mass_interaction"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 242,
+      "human_score": 3.0,
+      "cllm_score": 4.5,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "cold_air",
+        "warm_air",
+        "warm_front",
+        "air_mass_interaction"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 243,
+      "human_score": 3.0,
+      "cllm_score": 3.0,
+      "c5_score": 3.0,
+      "matched_concepts": [
+        "rotating_air_column",
+        "tornado"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 244,
+      "human_score": 3.0,
+      "cllm_score": 3.5,
+      "c5_score": 3.0,
+      "matched_concepts": [
+        "strong_winds",
+        "hurricane",
+        "storm"
+      ],
+      "chain_pct": "75%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 245,
+      "human_score": 3.0,
+      "cllm_score": 3.0,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "drought",
+        "rainfall"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 246,
+      "human_score": 3.0,
+      "cllm_score": 2.75,
+      "c5_score": 3.0,
+      "matched_concepts": [
+        "strong_winds",
+        "blizzard",
+        "snowstorm"
+      ],
+      "chain_pct": "75%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 247,
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_score": 2.0,
+      "matched_concepts": [
+        "cloud",
+        "ground",
+        "fog",
+        "water_droplets"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 248,
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "dew",
+        "water_droplets"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 249,
+      "human_score": 3.0,
+      "cllm_score": 2.5,
+      "c5_score": 1.0,
+      "matched_concepts": [
+        "water_cycle",
+        "precipitation"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 250,
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "evaporation"
+      ],
+      "chain_pct": "20%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 251,
+      "human_score": 3.0,
+      "cllm_score": 4.5,
+      "c5_score": 2.0,
+      "matched_concepts": [
+        "condensation"
+      ],
+      "chain_pct": "25%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 252,
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "global_warming",
+        "earths_temperature",
+        "greenhouse_gases"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 253,
+      "human_score": 3.0,
+      "cllm_score": 2.0,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "greenhouse_gases",
+        "earths_atmosphere"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 254,
+      "human_score": 3.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [
+        "greenhouse_gases",
+        "carbon_dioxide"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 255,
+      "human_score": 3.0,
+      "cllm_score": 2.5,
+      "c5_score": 2.0,
+      "matched_concepts": [
+        "trapped_heat",
+        "greenhouse_effect",
+        "earths_warming",
+        "greenhouse_gases"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 256,
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "weather_monitoring",
+        "weather_satellite",
+        "weather_forecasting"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 257,
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "rock_pieces",
+        "rocks",
+        "weathering"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 258,
+      "human_score": 1.0,
+      "cllm_score": 5.0,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "sun",
+        "planet",
+        "mercury"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 259,
+      "human_score": 1.0,
+      "cllm_score": 1.0,
+      "c5_score": 1.0,
+      "matched_concepts": [
+        "sun",
+        "star"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 260,
+      "human_score": 1.0,
+      "cllm_score": 5.0,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "moon",
+        "number_of_moons"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 261,
+      "human_score": 1.0,
+      "cllm_score": 2.75,
+      "c5_score": 3.0,
+      "matched_concepts": [
+        "orbit",
+        "moon",
+        "planet"
+      ],
+      "chain_pct": "75%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 262,
+      "human_score": 1.0,
+      "cllm_score": 2.0,
+      "c5_score": 2.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 263,
+      "human_score": 1.0,
+      "cllm_score": 5.0,
+      "c5_score": 4.0,
+      "matched_concepts": [
+        "planet",
+        "most_moons",
+        "jupiter"
+      ],
+      "chain_pct": "75%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 264,
+      "human_score": 1.0,
+      "cllm_score": 1.5,
+      "c5_score": 2.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 265,
+      "human_score": 1.0,
+      "cllm_score": 2.0,
+      "c5_score": 1.0,
+      "matched_concepts": [
+        "space_probe",
+        "spacecraft"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 266,
+      "human_score": 1.0,
+      "cllm_score": 3.0,
+      "c5_score": 3.0,
+      "matched_concepts": [
+        "stars",
+        "milky_way",
+        "galaxy"
+      ],
+      "chain_pct": "75%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 267,
+      "human_score": 1.0,
+      "cllm_score": 2.5,
+      "c5_score": 3.5,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 268,
+      "human_score": 0.0,
+      "cllm_score": 3.0,
+      "c5_score": 1.0,
+      "matched_concepts": [
+        "condensation",
+        "water_cycle"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 269,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 2.0,
+      "matched_concepts": [
+        "condensation",
+        "gas_state"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 270,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [
+        "hail",
+        "precipitation",
+        "rain",
+        "snow"
+      ],
+      "chain_pct": "80%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 271,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [
+        "evaporation"
+      ],
+      "chain_pct": "20%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 272,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 2.0,
+      "matched_concepts": [
+        "transpiration",
+        "water",
+        "leaves"
+      ],
+      "chain_pct": "60%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 273,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "groundwater",
+        "water",
+        "earth_surface",
+        "underground_storage"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 274,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [
+        "cloud",
+        "fog"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 275,
+      "human_score": 0.0,
+      "cllm_score": 0.5,
+      "c5_score": 0.0,
+      "matched_concepts": [
+        "sleet",
+        "frozen_water"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 276,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 277,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 2.0,
+      "matched_concepts": [
+        "water",
+        "transpiration"
+      ],
+      "chain_pct": "40%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 278,
+      "human_score": 1.0,
+      "cllm_score": 5.0,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "living_things"
+      ],
+      "chain_pct": "33%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 279,
+      "human_score": 1.0,
+      "cllm_score": 3.5,
+      "c5_score": 3.5,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 280,
+      "human_score": 1.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 281,
+      "human_score": 1.0,
+      "cllm_score": 0.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "virus",
+        "flu"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 282,
+      "human_score": 1.0,
+      "cllm_score": 1.0,
+      "c5_score": 2.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 283,
+      "human_score": 1.0,
+      "cllm_score": 2.0,
+      "c5_score": 2.0,
+      "matched_concepts": [
+        "pasteurization",
+        "heating"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 284,
+      "human_score": 1.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [
+        "bones",
+        "muscles",
+        "tendons"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 285,
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "atmosphere",
+        "place",
+        "weather"
+      ],
+      "chain_pct": "75%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 286,
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_score": 4.0,
+      "matched_concepts": [
+        "weather",
+        "long_period",
+        "climate"
+      ],
+      "chain_pct": "75%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 287,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 3.0,
+      "matched_concepts": [
+        "air_pressure_differences"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 288,
+      "human_score": 2.0,
+      "cllm_score": 0.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "water_vapor",
+        "humidity",
+        "air"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 289,
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_score": 3.0,
+      "matched_concepts": [
+        "strong_winds",
+        "hurricane"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 290,
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "global_warming",
+        "earths_temperature"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 291,
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "snow",
+        "hail",
+        "precipitation",
+        "rain",
+        "cloud"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 292,
+      "human_score": 2.0,
+      "cllm_score": 0.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "warm_air",
+        "cold_air",
+        "cold_front",
+        "air_mass_interaction"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 293,
+      "human_score": 2.0,
+      "cllm_score": 3.0,
+      "c5_score": 3.0,
+      "matched_concepts": [
+        "rotating_air_column",
+        "tornado",
+        "ground"
+      ],
+      "chain_pct": "75%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 294,
+      "human_score": 2.0,
+      "cllm_score": 0.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "trapped_heat",
+        "greenhouse_effect",
+        "greenhouse_gases"
+      ],
+      "chain_pct": "75%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 295,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "long_period",
+        "drought",
+        "rainfall"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 296,
+      "human_score": 2.0,
+      "cllm_score": 0.0,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "sleet",
+        "frozen_water"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 297,
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "weather_monitoring",
+        "weather_forecasting",
+        "weather_satellite"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 298,
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_score": 3.0,
+      "matched_concepts": [
+        "blizzard",
+        "snowstorm",
+        "strong_winds"
+      ],
+      "chain_pct": "75%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 299,
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "phase_change",
+        "evaporation",
+        "liquid_state"
+      ],
+      "chain_pct": "60%",
+      "solo": "Multistructural",
+      "bloom": "Understand"
+    },
+    {
+      "id": 300,
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_score": 2.0,
+      "matched_concepts": [
+        "water_cycle"
+      ],
+      "chain_pct": "25%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 301,
+      "human_score": 2.0,
+      "cllm_score": 0.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "warm_air",
+        "warm_front",
+        "cold_air",
+        "air_mass_interaction"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 302,
+      "human_score": 3.0,
+      "cllm_score": 1.0,
+      "c5_score": 0.0,
+      "matched_concepts": [
+        "energy_release",
+        "plant_respiration"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Understand"
+    },
+    {
+      "id": 303,
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "animal",
+        "plant",
+        "habitat",
+        "natural_home"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 304,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 3.0,
+      "matched_concepts": [
+        "pull",
+        "force",
+        "push"
+      ],
+      "chain_pct": "75%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 305,
+      "human_score": 5.0,
+      "cllm_score": 4.0,
+      "c5_score": 4.5,
+      "matched_concepts": [
+        "soil",
+        "soil_erosion",
+        "wind",
+        "water"
+      ],
+      "chain_pct": "80%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 306,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "object",
+        "inertia",
+        "change_in_motion"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 307,
+      "human_score": 2.0,
+      "cllm_score": 0.5,
+      "c5_score": 0.0,
+      "matched_concepts": [
+        "living_things",
+        "microorganisms",
+        "naked_eye"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 308,
+      "human_score": 4.0,
+      "cllm_score": 4.0,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "microorganisms",
+        "fungi",
+        "bacteria"
+      ],
+      "chain_pct": "75%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 309,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "microorganisms",
+        "helpful_microorganisms",
+        "harmful_microorganisms"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 310,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "virus",
+        "disease",
+        "flu"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 311,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 312,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 4.0,
+      "matched_concepts": [
+        "germination",
+        "seed"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 313,
+      "human_score": 4.0,
+      "cllm_score": 4.0,
+      "c5_score": 4.5,
+      "matched_concepts": [
+        "animals",
+        "seed_dispersal",
+        "wind",
+        "seeds"
+      ],
+      "chain_pct": "80%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 314,
+      "human_score": 5.0,
+      "cllm_score": 4.5,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "pollen",
+        "flower",
+        "pollination"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 315,
+      "human_score": 2.0,
+      "cllm_score": 1.0,
+      "c5_score": 0.0,
+      "matched_concepts": [
+        "flower",
+        "petals"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 316,
+      "human_score": 4.0,
+      "cllm_score": 3.0,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "living_things"
+      ],
+      "chain_pct": "33%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 317,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "viruses",
+        "microorganisms",
+        "fungi",
+        "bacteria"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 318,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 319,
+      "human_score": 5.0,
+      "cllm_score": 0.0,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "flu"
+      ],
+      "chain_pct": "33%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 320,
+      "human_score": 4.0,
+      "cllm_score": 3.0,
+      "c5_score": 2.5,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 321,
+      "human_score": 4.0,
+      "cllm_score": 3.0,
+      "c5_score": 4.0,
+      "matched_concepts": [
+        "insects"
+      ],
+      "chain_pct": "25%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 322,
+      "human_score": 5.0,
+      "cllm_score": 3.5,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "pollen",
+        "pollination"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 323,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "plant",
+        "seed",
+        "plant_growth",
+        "germination"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 324,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "animals",
+        "seed_dispersal",
+        "wind",
+        "water"
+      ],
+      "chain_pct": "80%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 325,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "water_bodies",
+        "water_pollution"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 326,
+      "human_score": 4.0,
+      "cllm_score": 3.5,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "dead_plants_animals",
+        "coal",
+        "oil",
+        "natural_gas",
+        "fossil_fuels"
+      ],
+      "chain_pct": "83%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 327,
+      "human_score": 4.0,
+      "cllm_score": 2.0,
+      "c5_score": 1.5,
+      "matched_concepts": [
+        "earths_atmosphere",
+        "heat_trapping",
+        "greenhouse_gases"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 328,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 4.5,
+      "matched_concepts": [
+        "methane",
+        "greenhouse_gases",
+        "carbon_dioxide"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 329,
+      "human_score": 4.0,
+      "cllm_score": 3.0,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "global_warming",
+        "earths_temperature",
+        "greenhouse_gases"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 330,
+      "human_score": 4.0,
+      "cllm_score": 3.5,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "trapped_heat",
+        "greenhouse_effect",
+        "earths_warming",
+        "greenhouse_gases"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 331,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "food_waste",
+        "composting",
+        "natural_fertilizer",
+        "garden_waste"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 332,
+      "human_score": 4.0,
+      "cllm_score": 3.0,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "unwanted_sound",
+        "noise_pollution",
+        "harmful_sound"
+      ],
+      "chain_pct": "60%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 333,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "phase_change",
+        "solid_state",
+        "liquid_state",
+        "melting"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 334,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "phase_change",
+        "solid_state",
+        "liquid_state",
+        "freezing"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 335,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "boiling",
+        "heating",
+        "liquid_state",
+        "gas_state"
+      ],
+      "chain_pct": "80%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 336,
+      "human_score": 4.0,
+      "cllm_score": 3.5,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "evaporation",
+        "liquid_state",
+        "gas_state"
+      ],
+      "chain_pct": "60%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 337,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "condensation",
+        "liquid_state",
+        "gas_state"
+      ],
+      "chain_pct": "75%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 338,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "energy",
+        "vision",
+        "light"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 339,
+      "human_score": 5.0,
+      "cllm_score": 3.5,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "light",
+        "bouncing_back",
+        "light_reflection"
+      ],
+      "chain_pct": "75%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 340,
+      "human_score": 5.0,
+      "cllm_score": 3.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "light",
+        "bending",
+        "light_refraction"
+      ],
+      "chain_pct": "75%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 341,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.5,
+      "matched_concepts": [
+        "light_blocking",
+        "shadow"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 342,
+      "human_score": 3.0,
+      "cllm_score": 1.0,
+      "c5_score": 1.0,
+      "matched_concepts": [
+        "sound",
+        "vibrations"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 343,
+      "human_score": 1.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 344,
+      "human_score": 1.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 345,
+      "human_score": 4.0,
+      "cllm_score": 4.0,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "harmful_sound",
+        "unwanted_sound",
+        "noise_pollution"
+      ],
+      "chain_pct": "60%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 346,
+      "human_score": 1.0,
+      "cllm_score": 1.0,
+      "c5_score": 0.5,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 347,
+      "human_score": 0.0,
+      "cllm_score": 0.5,
+      "c5_score": 0.5,
+      "matched_concepts": [
+        "kilometers_per_second"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 348,
+      "human_score": 3.0,
+      "cllm_score": 1.0,
+      "c5_score": 1.0,
+      "matched_concepts": [
+        "prism"
+      ],
+      "chain_pct": "33%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 349,
+      "human_score": 0.0,
+      "cllm_score": 2.0,
+      "c5_score": 0.5,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 350,
+      "human_score": 2.0,
+      "cllm_score": 1.0,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "electric_charge",
+        "electric_circuit",
+        "electric_current"
+      ],
+      "chain_pct": "75%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 351,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 352,
+      "human_score": 2.0,
+      "cllm_score": 4.0,
+      "c5_score": 4.0,
+      "matched_concepts": [
+        "electric_circuit",
+        "closed_circuit"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 353,
+      "human_score": 3.0,
+      "cllm_score": 4.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "electricity_flow"
+      ],
+      "chain_pct": "33%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 354,
+      "human_score": 3.0,
+      "cllm_score": 4.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "electricity_flow"
+      ],
+      "chain_pct": "33%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 355,
+      "human_score": 3.0,
+      "cllm_score": 3.5,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "overcurrent",
+        "electric_current"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 356,
+      "human_score": 3.0,
+      "cllm_score": 3.5,
+      "c5_score": 4.0,
+      "matched_concepts": [
+        "magnetic_attraction"
+      ],
+      "chain_pct": "33%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 357,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 358,
+      "human_score": 3.0,
+      "cllm_score": 3.5,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "iron_core",
+        "electromagnet",
+        "magnet",
+        "electric_current"
+      ],
+      "chain_pct": "80%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 359,
+      "human_score": 3.0,
+      "cllm_score": 1.5,
+      "c5_score": 1.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 360,
+      "human_score": 3.0,
+      "cllm_score": 2.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "single_path"
+      ],
+      "chain_pct": "25%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 361,
+      "human_score": 3.0,
+      "cllm_score": 2.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "multiple_paths"
+      ],
+      "chain_pct": "25%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 362,
+      "human_score": 2.0,
+      "cllm_score": 1.0,
+      "c5_score": 1.5,
+      "matched_concepts": [
+        "electric_circuit",
+        "circuit_damage"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 363,
+      "human_score": 3.0,
+      "cllm_score": 3.5,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "electrical_device",
+        "electric_current"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 364,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "groundwater",
+        "water",
+        "underground_storage"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 365,
+      "human_score": 2.0,
+      "cllm_score": 3.5,
+      "c5_score": 1.0,
+      "matched_concepts": [
+        "soil_erosion"
+      ],
+      "chain_pct": "20%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 366,
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "water_bodies",
+        "water_pollution"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 367,
+      "human_score": 2.0,
+      "cllm_score": 1.0,
+      "c5_score": 1.0,
+      "matched_concepts": [
+        "water_cycle"
+      ],
+      "chain_pct": "25%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 368,
+      "human_score": 2.0,
+      "cllm_score": 1.5,
+      "c5_score": 1.0,
+      "matched_concepts": [
+        "evaporation"
+      ],
+      "chain_pct": "20%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 369,
+      "human_score": 3.0,
+      "cllm_score": 1.5,
+      "c5_score": 1.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 370,
+      "human_score": 4.0,
+      "cllm_score": 2.5,
+      "c5_score": 4.0,
+      "matched_concepts": [
+        "hail",
+        "precipitation",
+        "rain"
+      ],
+      "chain_pct": "60%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 371,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 4.0,
+      "matched_concepts": [
+        "garden_waste",
+        "food_waste"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 372,
+      "human_score": 3.0,
+      "cllm_score": 1.0,
+      "c5_score": 0.5,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 373,
+      "human_score": 3.0,
+      "cllm_score": 2.0,
+      "c5_score": 1.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 374,
+      "human_score": 3.0,
+      "cllm_score": 1.0,
+      "c5_score": 1.0,
+      "matched_concepts": [
+        "planet",
+        "most_moons",
+        "moon",
+        "jupiter"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 375,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 376,
+      "human_score": 4.0,
+      "cllm_score": 3.5,
+      "c5_score": 4.0,
+      "matched_concepts": [
+        "space_probe",
+        "uncrewed_mission",
+        "spacecraft"
+      ],
+      "chain_pct": "75%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 377,
+      "human_score": 3.0,
+      "cllm_score": 1.0,
+      "c5_score": 1.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 378,
+      "human_score": 4.0,
+      "cllm_score": 3.0,
+      "c5_score": 1.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 379,
+      "human_score": 4.0,
+      "cllm_score": 2.0,
+      "c5_score": 1.0,
+      "matched_concepts": [
+        "mars",
+        "asteroid",
+        "rocky_object"
+      ],
+      "chain_pct": "43%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 380,
+      "human_score": 3.0,
+      "cllm_score": 3.0,
+      "c5_score": 1.0,
+      "matched_concepts": [
+        "galaxy",
+        "star"
+      ],
+      "chain_pct": "33%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 381,
+      "human_score": 5.0,
+      "cllm_score": 1.0,
+      "c5_score": 0.5,
+      "matched_concepts": [
+        "milky_way",
+        "galaxy"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 382,
+      "human_score": 5.0,
+      "cllm_score": 4.0,
+      "c5_score": 4.0,
+      "matched_concepts": [
+        "weather_monitoring",
+        "weather_satellite",
+        "weather_forecasting"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 383,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "carbon_dioxide_removal",
+        "gas_exchange",
+        "respiratory_system",
+        "oxygen_intake"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 384,
+      "human_score": 4.0,
+      "cllm_score": 4.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "transportation",
+        "wastes",
+        "oxygen"
+      ],
+      "chain_pct": "60%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 385,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "hormones",
+        "nutrients",
+        "plasma",
+        "blood"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 386,
+      "human_score": 2.0,
+      "cllm_score": 4.5,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "unpleasant_food",
+        "food_spoilage",
+        "unsafe_food"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 387,
+      "human_score": 2.0,
+      "cllm_score": 1.5,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "heating"
+      ],
+      "chain_pct": "25%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 388,
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "mass",
+        "matter"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Understand"
+    },
+    {
+      "id": 389,
+      "human_score": 3.0,
+      "cllm_score": 1.5,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "force",
+        "weight"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Understand"
+    },
+    {
+      "id": 390,
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_score": 2.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 391,
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "sound_volume",
+        "loudness"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Understand"
+    },
+    {
+      "id": 392,
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_score": 4.0,
+      "matched_concepts": [
+        "liquid_expansion",
+        "thermometer",
+        "heat",
+        "temperature"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 393,
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "time",
+        "object_motion",
+        "speed"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Understand"
+    },
+    {
+      "id": 394,
+      "human_score": 1.0,
+      "cllm_score": 5.0,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "object_motion",
+        "speed"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Understand"
+    },
+    {
+      "id": 395,
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "velocity"
+      ],
+      "chain_pct": "33%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 396,
+      "human_score": 1.0,
+      "cllm_score": 3.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "velocity",
+        "rate_of_change",
+        "acceleration"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 397,
+      "human_score": 1.0,
+      "cllm_score": 4.0,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "inertia",
+        "force",
+        "object_in_motion",
+        "object_at_rest",
+        "newtons_first_law"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 398,
+      "human_score": 2.0,
+      "cllm_score": 3.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "pull",
+        "force",
+        "push"
+      ],
+      "chain_pct": "75%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 399,
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "force",
+        "newton"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 400,
+      "human_score": 1.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 401,
+      "human_score": 2.0,
+      "cllm_score": 3.0,
+      "c5_score": 3.0,
+      "matched_concepts": [
+        "warmth",
+        "heat"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 402,
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "conduction",
+        "heat_transfer",
+        "solids"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 403,
+      "human_score": 1.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "heat_transfer",
+        "convection"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 404,
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "radiation",
+        "heat_transfer"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 405,
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "size_increase",
+        "thermal_expansion"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 406,
+      "human_score": 2.0,
+      "cllm_score": 2.0,
+      "c5_score": 1.0,
+      "matched_concepts": [
+        "dew",
+        "water_droplets"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 407,
+      "human_score": 1.0,
+      "cllm_score": 4.5,
+      "c5_score": 4.5,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 408,
+      "human_score": 1.0,
+      "cllm_score": 4.5,
+      "c5_score": 4.5,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 409,
+      "human_score": 1.0,
+      "cllm_score": 1.0,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "lightning"
+      ],
+      "chain_pct": "33%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 410,
+      "human_score": 2.0,
+      "cllm_score": 4.0,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "avoid_metal_objects"
+      ],
+      "chain_pct": "25%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 411,
+      "human_score": 1.0,
+      "cllm_score": 2.0,
+      "c5_score": 3.0,
+      "matched_concepts": [
+        "stay_indoors"
+      ],
+      "chain_pct": "25%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 412,
+      "human_score": 0.0,
+      "cllm_score": 1.5,
+      "c5_score": 1.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 413,
+      "human_score": 1.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "work_done",
+        "no_displacement"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 414,
+      "human_score": 1.0,
+      "cllm_score": 2.0,
+      "c5_score": 0.0,
+      "matched_concepts": [
+        "velocity"
+      ],
+      "chain_pct": "33%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 415,
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "push"
+      ],
+      "chain_pct": "25%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 416,
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "heat_transfer",
+        "convection"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 417,
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "radiation",
+        "heat_transfer"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 418,
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "time",
+        "object_motion",
+        "speed"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Understand"
+    },
+    {
+      "id": 419,
+      "human_score": 1.0,
+      "cllm_score": 4.5,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "unpleasant_food",
+        "food_spoilage",
+        "unsafe_food"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 420,
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "inertia",
+        "object",
+        "change_in_motion"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 421,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 422,
+      "human_score": 1.0,
+      "cllm_score": 2.5,
+      "c5_score": 1.5,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 423,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 424,
+      "human_score": 3.0,
+      "cllm_score": 2.5,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "planet",
+        "galaxy",
+        "star"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 425,
+      "human_score": 4.0,
+      "cllm_score": 2.0,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "milky_way",
+        "stars",
+        "galaxy",
+        "barred_spiral_galaxy"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 426,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [
+        "force",
+        "push"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 427,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 428,
+      "human_score": 2.0,
+      "cllm_score": 4.0,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "viruses",
+        "microorganisms",
+        "bacteria"
+      ],
+      "chain_pct": "75%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 429,
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 430,
+      "human_score": 2.0,
+      "cllm_score": 3.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "plant_growth",
+        "seed",
+        "germination"
+      ],
+      "chain_pct": "75%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 431,
+      "human_score": 2.0,
+      "cllm_score": 4.0,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "wind",
+        "water"
+      ],
+      "chain_pct": "40%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 432,
+      "human_score": 2.0,
+      "cllm_score": 2.0,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "living_things"
+      ],
+      "chain_pct": "33%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 433,
+      "human_score": 2.0,
+      "cllm_score": 4.0,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "fermentation"
+      ],
+      "chain_pct": "20%",
+      "solo": "Unistructural",
+      "bloom": "Understand"
+    },
+    {
+      "id": 434,
+      "human_score": 2.0,
+      "cllm_score": 1.5,
+      "c5_score": 1.0,
+      "matched_concepts": [
+        "petals"
+      ],
+      "chain_pct": "25%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 435,
+      "human_score": 2.0,
+      "cllm_score": 3.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "plant_growth",
+        "seed",
+        "germination"
+      ],
+      "chain_pct": "75%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 436,
+      "human_score": 4.0,
+      "cllm_score": 4.0,
+      "c5_score": 4.0,
+      "matched_concepts": [
+        "nadir",
+        "meridian",
+        "celestial_poles",
+        "zenith",
+        "great_circle"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 437,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "celestial_equator",
+        "celestial_sphere",
+        "earth_equator"
+      ],
+      "chain_pct": "75%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 438,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 4.0,
+      "matched_concepts": [
+        "apparent_path",
+        "ecliptic",
+        "sun"
+      ],
+      "chain_pct": "60%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 439,
+      "human_score": 4.0,
+      "cllm_score": 4.0,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "constellation",
+        "stars"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 440,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "orion",
+        "ursa_major",
+        "scorpius"
+      ],
+      "chain_pct": "75%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 441,
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "earth_rotation",
+        "sun",
+        "earth_orbit"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Analyze"
+    },
+    {
+      "id": 442,
+      "human_score": 5.0,
+      "cllm_score": 4.0,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "astrology",
+        "constellations",
+        "zodiac",
+        "ecliptic"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 443,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "constellations",
+        "calendars"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 444,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "telescopes",
+        "sky_watching",
+        "binoculars",
+        "star_maps"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 445,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "stargazing",
+        "faint_stars",
+        "light_pollution",
+        "city_lights"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 446,
+      "human_score": 5.0,
+      "cllm_score": 4.0,
+      "c5_score": 5.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Analyze"
+    },
+    {
+      "id": 447,
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "polaris",
+        "earth_north_pole",
+        "north_star"
+      ],
+      "chain_pct": "75%",
+      "solo": "Relational",
+      "bloom": "Understand"
+    },
+    {
+      "id": 448,
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_score": 4.5,
+      "matched_concepts": [
+        "stellar_evolution",
+        "betelgeuse",
+        "red_giant",
+        "star"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 449,
+      "human_score": 3.0,
+      "cllm_score": 4.0,
+      "c5_score": 4.0,
+      "matched_concepts": [
+        "white_dwarf",
+        "dead_star",
+        "stellar_core"
+      ],
+      "chain_pct": "60%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 450,
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "neutron_star",
+        "supernova",
+        "stellar_remnant",
+        "density"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 451,
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "star_color",
+        "red_stars",
+        "blue_stars",
+        "hottest_stars",
+        "star_temperature",
+        "coolest_stars"
+      ],
+      "chain_pct": "100%",
+      "solo": "Extended Abstract",
+      "bloom": "Remember"
+    },
+    {
+      "id": 452,
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "star_system",
+        "binary_star"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 453,
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_score": 5.0,
+      "matched_concepts": [
+        "light_year",
+        "light_speed"
+      ],
+      "chain_pct": "40%",
+      "solo": "Multistructural",
+      "bloom": "Understand"
+    },
+    {
+      "id": 454,
+      "human_score": 2.0,
+      "cllm_score": 1.0,
+      "c5_score": 2.0,
+      "matched_concepts": [
+        "stellar_size",
+        "main_sequence_star",
+        "star"
+      ],
+      "chain_pct": "75%",
+      "solo": "Relational",
+      "bloom": "Analyze"
+    },
+    {
+      "id": 455,
+      "human_score": 2.0,
+      "cllm_score": 2.0,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "neutron_star",
+        "pulsar"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 456,
+      "human_score": 2.0,
+      "cllm_score": 4.0,
+      "c5_score": 3.5,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Analyze"
+    },
+    {
+      "id": 457,
+      "human_score": 2.0,
+      "cllm_score": 2.0,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "telescopes",
+        "space_probes"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 458,
+      "human_score": 2.0,
+      "cllm_score": 3.0,
+      "c5_score": 3.0,
+      "matched_concepts": [
+        "stars",
+        "star_cluster"
+      ],
+      "chain_pct": "67%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 459,
+      "human_score": 2.0,
+      "cllm_score": 3.0,
+      "c5_score": 3.0,
+      "matched_concepts": [
+        "open_cluster",
+        "young_stars",
+        "star_cluster"
+      ],
+      "chain_pct": "75%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 460,
+      "human_score": 1.0,
+      "cllm_score": 4.0,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "globular_cluster",
+        "old_stars",
+        "star_cluster"
+      ],
+      "chain_pct": "60%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 461,
+      "human_score": 1.0,
+      "cllm_score": 3.0,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "cosmic_dust",
+        "space"
+      ],
+      "chain_pct": "40%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 462,
+      "human_score": 1.0,
+      "cllm_score": 4.5,
+      "c5_score": 3.5,
+      "matched_concepts": [
+        "exoplanets",
+        "solar_system",
+        "planets",
+        "other_stars"
+      ],
+      "chain_pct": "80%",
+      "solo": "Relational",
+      "bloom": "Remember"
+    },
+    {
+      "id": 463,
+      "human_score": 1.0,
+      "cllm_score": 2.0,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "detection_methods",
+        "transit_method"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 464,
+      "human_score": 1.0,
+      "cllm_score": 4.0,
+      "c5_score": 2.5,
+      "matched_concepts": [
+        "space_telescope",
+        "hubble_space_telescope",
+        "space_images"
+      ],
+      "chain_pct": "60%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 465,
+      "human_score": 1.0,
+      "cllm_score": 1.0,
+      "c5_score": 0.0,
+      "matched_concepts": [
+        "light_travel_time",
+        "night_sky_darkness"
+      ],
+      "chain_pct": "50%",
+      "solo": "Multistructural",
+      "bloom": "Analyze"
+    },
+    {
+      "id": 466,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 467,
+      "human_score": 0.0,
+      "cllm_score": 2.0,
+      "c5_score": 0.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 468,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [
+        "asteroid"
+      ],
+      "chain_pct": "14%",
+      "solo": "Unistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 469,
+      "human_score": 0.0,
+      "cllm_score": 2.0,
+      "c5_score": 2.0,
+      "matched_concepts": [
+        "meteoroid",
+        "earth_surface",
+        "earth_atmosphere"
+      ],
+      "chain_pct": "60%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 470,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [
+        "planet",
+        "star"
+      ],
+      "chain_pct": "40%",
+      "solo": "Multistructural",
+      "bloom": "Remember"
+    },
+    {
+      "id": 471,
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_score": 0.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Analyze"
+    },
+    {
+      "id": 472,
+      "human_score": 0.0,
+      "cllm_score": 1.0,
+      "c5_score": 1.0,
+      "matched_concepts": [],
+      "chain_pct": "0%",
+      "solo": "Prestructural",
+      "bloom": "Remember"
+    }
+  ],
+  "missing_ids": [],
+  "snap_discrete_levels": null
+}
