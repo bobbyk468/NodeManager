@@ -54,7 +54,11 @@ The core technical contribution is \textbf{Topological Reasoning Mapping (TRM)}:
 
 \subsection{Why Co-Auditing Matters}
 
-Automated grading systems in education often operate under an \textit{assistive} model: the AI grades, and the human teacher validates or adjusts the grade post-hoc. This is unidirectional and epistemically passive for the educator. ConceptGrade inverts this: it positions the educator as an \textit{auditor} of the machine's reasoning. In the act of auditing the machine's logic against the knowledge graph, the educator is forced to articulate and refine their own mental model of what students should know and how concepts relate to one another. This \textit{bidirectional epistemic update} is the pedagogical win: the machine's trace does not just grade the student; it also helps the teacher sharpen their own rubric.
+Automated grading systems in education often operate under an \textit{assistive} model: the AI grades, and the human teacher validates or adjusts the grade post-hoc. This is unidirectional and epistemically passive for the educator. 
+
+ConceptGrade inverts this. It positions the educator as an \textit{auditor} of the machine's reasoning. In the act of auditing the machine's logic against the knowledge graph, the educator is forced to articulate and refine their own mental model of what students should know and how concepts relate to one another. 
+
+This \textit{bidirectional epistemic update} is the pedagogical win. The machine's trace does not just grade the student; it also helps the teacher sharpen their own rubric.
 
 The key moment of epistemic update is observable and measurable. When an educator's attention is drawn to a \textsc{Contradicts} reasoning step—a point where the LRM found a concept in the student's trace that the rubric did not anticipate—and they respond by clicking a chip in the Rubric Editor to add that concept as a new criterion (\textit{Click-to-Add}, logged as \texttt{interaction\_source: `click\_to\_add'}), they are making their implicit pedagogical knowledge explicit. This \textit{rubric revision as epistemic update} is the central measurable outcome of our user study: we operationalize it as the Causal Attribution rate (CA codes, primary hypothesis H1) and Semantic Alignment rate (SA codes, H2), capturing not just that the educator changed the rubric, but that the change was causally driven by a specific visual reasoning artifact.
 

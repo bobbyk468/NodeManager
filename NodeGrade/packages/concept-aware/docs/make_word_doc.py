@@ -140,6 +140,13 @@ def stg(doc, label, text):
 # BUILD DOCUMENT
 
 doc = Document()
+
+# Force Word to update the TOC (and other fields) when the document is opened
+settings = doc.settings.element
+update_fields = OxmlElement('w:updateFields')
+update_fields.set(qn('w:val'), 'true')
+settings.append(update_fields)
+
 sec = doc.sections[0]
 sec.top_margin=Cm(2.5); sec.bottom_margin=Cm(2.5)
 sec.left_margin=Cm(3.0); sec.right_margin=Cm(2.5)
@@ -159,26 +166,41 @@ doc.add_paragraph(); add_rule(doc); doc.add_paragraph()
 p = doc.add_paragraph(); sp(p, 6, 10)
 r = p.add_run("Table of Contents"); fnt(r, size=13, bold=True, color=DARK_BLUE)
 
-# TOC entries -- page numbers calibrated to ~9-page rendered document
-TOC = [
-    ("1.  Problem Statement",                         "sec1",  2, 0,   12),
-    ("2.  Research Question",                         "sec2",  3, 0,   12),
-    ("3.  Proposed Approach: ConceptGrade",           "sec3",  3, 0,   12),
-    ("     3.1  Core Idea",                           "sec31", 3, 0.5, 11),
-    ("     3.2  The Grading Pipeline",                "sec32", 4, 0.5, 11),
-    ("     3.3  What ConceptGrade Tells the Instructor", "sec33", 5, 0.5, 11),
-    ("4.  Datasets",                                  "sec4",  5, 0,   12),
-    ("5.  Results",                                   "sec5",  6, 0,   12),
-    ("     5.1  Main Findings",                       "sec51", 6, 0.5, 11),
-    ("     5.2  Component Ablation",                  "sec52", 7, 0.5, 11),
-    ("     5.3  Domain Boundary Condition",           "sec53", 7, 0.5, 11),
-    ("6.  Discussion and Future Work",                "sec6",  8, 0,   12),
-    ("     6.1  From Scoring to Visual Analytics",    "sec61", 8, 0.5, 11),
-    ("     6.2  Practical Deployment",                "sec62", 8, 0.5, 11),
-    ("7.  References",                                "sec7",  9, 0,   12),
-]
-for label, bm, pg, indent, size in TOC:
-    toc_entry(doc, label, bm, pg, indent_cm=indent, size=size)
+# Dynamic TOC
+def add_dynamic_toc(document):
+    p = document.add_paragraph()
+    
+    # 1. fldChar begin
+    run1 = p.add_run()
+    fldChar1 = OxmlElement('w:fldChar')
+    fldChar1.set(qn('w:fldCharType'), 'begin')
+    run1._r.append(fldChar1)
+    
+    # 2. instrText
+    run2 = p.add_run()
+    instrText = OxmlElement('w:instrText')
+    instrText.set(qn('xml:space'), 'preserve')
+    instrText.text = ' TOC \\o "1-3" \\h \\z \\u '
+    run2._r.append(instrText)
+    
+    # 3. fldChar separate
+    run3 = p.add_run()
+    fldChar2 = OxmlElement('w:fldChar')
+    fldChar2.set(qn('w:fldCharType'), 'separate')
+    run3._r.append(fldChar2)
+    
+    # 4. placeholder text (so the user has something to right-click on)
+    run4 = p.add_run("Right-click here and select 'Update Field' to generate the Table of Contents.")
+    run4.font.italic = True
+    run4.font.color.rgb = GREY
+    
+    # 5. fldChar end
+    run5 = p.add_run()
+    fldChar3 = OxmlElement('w:fldChar')
+    fldChar3.set(qn('w:fldCharType'), 'end')
+    run5._r.append(fldChar3)
+
+add_dynamic_toc(doc)
 
 doc.add_page_break()
 
