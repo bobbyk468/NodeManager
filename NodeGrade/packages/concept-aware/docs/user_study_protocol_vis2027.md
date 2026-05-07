@@ -3,7 +3,7 @@
 **Version:** 1.0  
 **Date:** April 2026  
 **Study Title:** Evaluating Interactive Visual Analytics for Human-AI Co-Auditing of Automated Grading  
-**Target N:** 30 educators (15 per condition)  
+**Target N:** $\geq$ 60 educators ($\geq$ 30 per condition, to ensure 80% power for medium effect sizes $d=0.5$)  
 **Session Length:** 45–60 minutes
 
 ---
@@ -64,6 +64,8 @@
      - LLM-assigned grade + confidence
      - Verifier Reasoning Trace: step-by-step explanation of the grade, with green/yellow/red indicators for grounded/ambiguous/ungrounded reasoning steps
      - Knowledge Graph Subgraph: prerequisite structure showing which NN concepts are connected to the student's response
+   - **Knowledge Graph Validation (Condition B Only):** Ask the participant: *"Does this concept map cover all the reasoning you'd expect a student to use? What's missing?"* Record their response to measure if educators notice incomplete KG coverage.
+   - **Trust Calibration:** After reviewing each student answer, ask the participant: *"How confident are you in the system's grade? (0-100%)"* Compare this self-reported trust to actual system accuracy to measure automation bias.
    - **Researcher Role:** Observes and records think-aloud protocol (participant narrates their reasoning as they interact).
      - Researcher intervenes minimally ("Tell me what you're thinking now").
      - If participant gets stuck after 5 minutes without progress, researcher provides minimal guidance: "What are you trying to understand?"
@@ -219,9 +221,10 @@ All interactions are logged to localStorage (client-side) and POSTed to `POST /a
 
 #### Thematic Coding
 1. **Prepare:** Transcribe all think-aloud and post-session interviews.
-2. **Code Independently:** Two researchers independently code transcripts using the scheme above (inter-rater reliability: target Cohen's κ ≥ 0.70).
-3. **Resolve Disagreements:** Discuss and reach consensus.
-4. **Aggregate:** Count frequencies and extract illustrative quotes.
+2. **Inter-Rater Reliability (IRR) Pilot:** Before coding all transcripts, 3 coders will independently code 5 pilot transcripts using the scheme above. Compute Cohen's $\kappa$ for each code category. If $\kappa < 0.70$ for any category, refine definitions and re-code until agreement is reached.
+3. **Code Independently:** Two researchers independently code all remaining transcripts using the validated scheme.
+4. **Resolve Disagreements:** Discuss and reach consensus.
+5. **Aggregate:** Count frequencies and extract illustrative quotes.
 
 #### Causal Reasoning Extraction
 - **Primary Claim:** Condition B participants generate more causal statements than Condition A.
