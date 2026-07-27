@@ -1,0 +1,31 @@
+# Frozen package versions used for the paper-claim verification scripts.
+#
+# These are the exact versions present in .venv at the time the paper's
+# statistical claims (p-values, W statistics, d_z, meta-analysis pool)
+# were computed. If you re-run the verification scripts in a fresh
+# environment, install these exact versions to reproduce the paper's
+# numbers bit-for-bit.
+#
+# Usage:
+#     python3 -m venv .venv
+#     source .venv/bin/activate
+#     pip install -r requirements-frozen.txt
+#
+# Only paper-relevant packages are pinned (others are transitive deps
+# that can be reinstalled freely).
+#
+# Reproduced from `pip freeze` on Python 3.14.2.
+
+# Scientific stack
+numpy==2.4.4
+scipy==1.17.1
+pandas==3.0.2
+scikit-learn==1.8.0
+statsmodels==0.14.6
+networkx==3.6.1
+
+# Test infrastructure
+pytest==9.0.3
+
+# Optional (only used for pipeline smoke test against live Gemini)
+huggingface_hub==1.9.0

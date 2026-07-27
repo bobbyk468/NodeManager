@@ -259,7 +259,16 @@ class SmartSegmenter:
         try:
             raw = self._call_llm(_SUMMARY_SYSTEM, _SUMMARY_USER.format(text=text_excerpt))
             return parse_llm_json(raw)
-        except Exception:
+        except Exception as e:
+            # Framework Fix #24 (2026-06-15): capture + log instead of swallowing
+            # silently. Empty summary still flows downstream (legacy behaviour),
+            # but the failure cause leaves a trace for diagnosis.
+            import sys as _sys
+            print(
+                f"[SmartSegmenter] summary generation failed: "
+                f"{type(e).__name__}: {str(e)[:200]} (using empty fallback)",
+                file=_sys.stderr,
+            )
             return {"executive_summary": "", "structural_outline": []}
 
     def _detect_boundaries(self, text: str) -> list[dict]:
@@ -271,7 +280,13 @@ class SmartSegmenter:
                                  max_tokens=1024)
             parsed = parse_llm_json(raw)
             return parsed.get("segments", [])
-        except Exception:
+        except Exception as e:
+            import sys as _sys
+            print(
+                f"[SmartSegmenter] boundary detection failed: "
+                f"{type(e).__name__}: {str(e)[:200]} (returning empty segments)",
+                file=_sys.stderr,
+            )
             return []
 
     def _resolve_boundaries(self, text: str, raw_segs: list[dict]) -> list[Segment]:
@@ -359,8 +374,13 @@ class SmartSegmenter:
             sub_raw = parsed.get("segments", [])
             if len(sub_raw) >= 2:
                 return self._resolve_boundaries(seg.text, sub_raw)
-        except Exception:
-            pass
+        except Exception as e:
+            import sys as _sys
+            print(
+                f"[SmartSegmenter] recursive sub-segmentation failed: "
+                f"{type(e).__name__}: {str(e)[:200]} (falling back to equal halving)",
+                file=_sys.stderr,
+            )
         # Fallback: equal halving
         return self._equal_split(seg.text)
 

@@ -1,0 +1,762 @@
+SCORING GUIDE — based on proportion of reference answer content correctly demonstrated:
+- 5.0: Student correctly explains virtually all key ideas (≥90% of reference content)
+- 4.5: Student correctly explains the great majority (≥80%); only very minor omissions
+- 4.0: Student correctly explains most key ideas (≥70%); one clear gap
+- 3.5: Student correctly explains a solid majority (≥60%) with reasonable depth
+- 3.0: Student correctly explains about half the reference content (~50%)
+- 2.5: Student correctly explains several key ideas (30–50%); substantial content missing
+- 2.0: Student correctly explains 1–2 key ideas accurately; most reference content missing
+- 1.5: Student shows partial understanding of 1 concept but cannot explain mechanisms
+- 1.0: Student shows awareness of the topic but no accurate explanations
+- 0.5: Single marginally relevant statement; no explanation
+- 0.0: No relevant content
+
+Score what the student got RIGHT. Missing vocabulary alone does not lower the score.
+Use 0.25 increments only.
+
+You are an expert grader using a two-step process:
+
+STEP 1 — Concept Verification: For each expected concept listed, determine:
+  TRUE = student correctly demonstrated this idea (even in their own words)
+  FALSE = student missed it, mentioned it vaguely, or used it incorrectly
+
+CRITICAL: A student who MENTIONS a concept word but explains it INCORRECTLY must be marked FALSE for that concept. Keyword presence alone does not count — correct meaning matters.
+
+STEP 2 — Score: Based ONLY on the TRUE concepts, assign a score using the scoring guide above.
+
+When no concept list is provided, grade using the reference answer only.
+
+Return a single JSON object with only scores (no reasoning in output):
+{
+  "scores": {
+    "<id>": X.X,
+    ...
+  }
+}
+
+Grade all 80 samples. Use 0.25 increments.
+
+======================================================================
+
+--- SAMPLE ID: 80 ---
+QUESTION: What instrument measures temperature?
+
+REFERENCE ANSWER:
+A thermometer measures temperature by showing how much liquid inside expands when heated.
+
+STUDENT ANSWER:
+A temperature checker has colored liquid that goes up when hot.
+
+--- SAMPLE ID: 81 ---
+QUESTION: What is speed?
+
+REFERENCE ANSWER:
+Speed tells us how much distance an object covers in a certain amount of time.
+
+STUDENT ANSWER:
+Speed is how far something goes in how much time.
+
+--- SAMPLE ID: 82 ---
+QUESTION: What is speed?
+
+REFERENCE ANSWER:
+Speed is the rate of change of distance with time.
+
+STUDENT ANSWER:
+How fast object moves.
+
+--- SAMPLE ID: 83 ---
+QUESTION: What is velocity?
+
+REFERENCE ANSWER:
+Velocity is the rate of change of displacement.
+
+STUDENT ANSWER:
+Speed in a direction.
+
+--- SAMPLE ID: 84 ---
+QUESTION: What is acceleration?
+
+REFERENCE ANSWER:
+Acceleration is the rate of change of velocity.
+
+STUDENT ANSWER:
+Change in velocity.
+
+--- SAMPLE ID: 85 ---
+QUESTION: What is Newton's First Law of Motion?
+
+REFERENCE ANSWER:
+An object at rest stays at rest, and an object in motion stays in motion unless acted upon by a force.
+
+STUDENT ANSWER:
+Object stays same unless pushed.
+
+--- SAMPLE ID: 86 ---
+QUESTION: Define force.
+
+REFERENCE ANSWER:
+Force is a push or pull on an object.
+
+STUDENT ANSWER:
+Push or pull.
+
+--- SAMPLE ID: 87 ---
+QUESTION: What is the SI unit of force?
+
+REFERENCE ANSWER:
+Newton (N).
+
+STUDENT ANSWER:
+Newton.
+
+--- SAMPLE ID: 88 ---
+QUESTION: When is no work done?
+
+REFERENCE ANSWER:
+When there is no displacement.
+
+STUDENT ANSWER:
+If nothing moves.
+
+--- SAMPLE ID: 89 ---
+QUESTION: What is heat?
+
+REFERENCE ANSWER:
+Heat is a form of energy that makes things warm.
+
+STUDENT ANSWER:
+heat make things hot.
+
+--- SAMPLE ID: 90 ---
+QUESTION: What is conduction?
+
+REFERENCE ANSWER:
+Conduction is the transfer of heat through solids.
+
+STUDENT ANSWER:
+heat moves in solid
+
+--- SAMPLE ID: 91 ---
+QUESTION: What is convection?
+
+REFERENCE ANSWER:
+Convection is the transfer of heat through liquids and gases.
+
+STUDENT ANSWER:
+heat go in air and water
+
+--- SAMPLE ID: 92 ---
+QUESTION: What is radiation?
+
+REFERENCE ANSWER:
+Radiation is the transfer of heat without any medium.
+
+STUDENT ANSWER:
+heat go with no touch.
+
+--- SAMPLE ID: 93 ---
+QUESTION: What is thermal expansion?
+
+REFERENCE ANSWER:
+Thermal expansion is the increase in size when heated.
+
+STUDENT ANSWER:
+it get big with hot
+
+--- SAMPLE ID: 94 ---
+QUESTION: What is dew?
+
+REFERENCE ANSWER:
+Dew is water droplets formed by condensation.
+
+STUDENT ANSWER:
+dew is water in morning
+
+--- SAMPLE ID: 95 ---
+QUESTION: What is a conductor?
+
+REFERENCE ANSWER:
+A material that allows heat to pass.
+
+STUDENT ANSWER:
+pass heat
+
+--- SAMPLE ID: 96 ---
+QUESTION: What is an insulator?
+
+REFERENCE ANSWER:
+A material that does not allow heat to pass.
+
+STUDENT ANSWER:
+no heat pass
+
+--- SAMPLE ID: 97 ---
+QUESTION: What is lightning?
+
+REFERENCE ANSWER:
+Lightning is a sudden flash of electricity in the sky, usually during storms.
+
+STUDENT ANSWER:
+Lightning is the fire in sky.
+
+--- SAMPLE ID: 98 ---
+QUESTION: What should you do during lightning?
+
+REFERENCE ANSWER:
+Stay indoors and avoid metal objects and trees.
+
+STUDENT ANSWER:
+Run in house and dont touch wires.
+
+--- SAMPLE ID: 99 ---
+QUESTION: What should you do during lightning?
+
+REFERENCE ANSWER:
+Stay inside, dont use metal or phones.
+
+STUDENT ANSWER:
+Hide in house.
+
+--- SAMPLE ID: 100 ---
+QUESTION: What connects muscles to bones?
+
+REFERENCE ANSWER:
+Tough fibrous tissues called tendons
+
+STUDENT ANSWER:
+rope
+
+--- SAMPLE ID: 101 ---
+QUESTION: When is no work done?
+
+REFERENCE ANSWER:
+When there is no displacement.
+
+STUDENT ANSWER:
+if no work done no move then.
+
+--- SAMPLE ID: 102 ---
+QUESTION: What is velocity?
+
+REFERENCE ANSWER:
+Velocity is speed with direction.
+
+STUDENT ANSWER:
+speed goes fast
+
+--- SAMPLE ID: 103 ---
+QUESTION: What is force?
+
+REFERENCE ANSWER:
+A push or pull on an object is called force.
+
+STUDENT ANSWER:
+when you push or pul thig its forc.
+
+--- SAMPLE ID: 104 ---
+QUESTION: What is convection?
+
+REFERENCE ANSWER:
+Heat transfer in liquid or gas is convection.
+
+STUDENT ANSWER:
+heat go in air and also in soup.
+
+--- SAMPLE ID: 105 ---
+QUESTION: What is radiation?
+
+REFERENCE ANSWER:
+Radiation is the transfer of heat without any medium.
+
+STUDENT ANSWER:
+heat fly from sun to house.
+
+--- SAMPLE ID: 106 ---
+QUESTION: What is speed?
+
+REFERENCE ANSWER:
+Speed is distance covered per time.
+
+STUDENT ANSWER:
+speed is how fast somethin run in time.
+
+--- SAMPLE ID: 107 ---
+QUESTION: What is food spoilage?
+
+REFERENCE ANSWER:
+When food gets bad and unsafe to eat.
+
+STUDENT ANSWER:
+food be smelly and not good now.
+
+--- SAMPLE ID: 108 ---
+QUESTION: What is inertia?
+
+REFERENCE ANSWER:
+The resistance of an object to change in motion.
+
+STUDENT ANSWER:
+things dont want move or stop if its in motion
+
+--- SAMPLE ID: 109 ---
+QUESTION: Why copper wires?
+
+REFERENCE ANSWER:
+Excellent electrical conductor
+
+STUDENT ANSWER:
+Color looks nice
+
+--- SAMPLE ID: 110 ---
+QUESTION: What are natural resources?
+
+REFERENCE ANSWER:
+Materials from nature used by humans
+
+STUDENT ANSWER:
+Things what grow outside
+
+--- SAMPLE ID: 111 ---
+QUESTION: Why copper wires?
+
+REFERENCE ANSWER:
+Excellent conductor, flexible
+
+STUDENT ANSWER:
+Color nice
+
+--- SAMPLE ID: 112 ---
+QUESTION: What is a galaxy?
+
+REFERENCE ANSWER:
+A galaxy is a massive system of stars, gas, dust, and dark matter bound by gravity.
+
+STUDENT ANSWER:
+Galaxy is big star group in space.
+
+--- SAMPLE ID: 113 ---
+QUESTION: What is the Milky Way?
+
+REFERENCE ANSWER:
+Our home galaxy, a barred spiral containing ~100 billion stars.
+
+STUDENT ANSWER:
+Our galaxy with Sun and Earth.
+
+--- SAMPLE ID: 114 ---
+QUESTION: What is a comet?
+
+REFERENCE ANSWER:
+An icy object with a tail that orbits the Sun.
+
+STUDENT ANSWER:
+Icy thing with tail in sky.
+
+--- SAMPLE ID: 115 ---
+QUESTION: What is an asteroid?
+
+REFERENCE ANSWER:
+A rocky body orbiting the Sun, mostly in the asteroid belt.
+
+STUDENT ANSWER:
+Space rock near Mars.
+
+--- SAMPLE ID: 116 ---
+QUESTION: What is energy?
+
+REFERENCE ANSWER:
+Energy is the ability to do work.
+
+STUDENT ANSWER:
+Enerjy is what helps living do things.
+
+--- SAMPLE ID: 117 ---
+QUESTION: What is photosynthesis?
+
+REFERENCE ANSWER:
+Photosynthesis is the process in which plants use sunlight, carbon dioxide, and water to make oxygen and sugar.
+
+STUDENT ANSWER:
+Plants do photosynthesis with light and water to make sugar and oxgen.
+
+--- SAMPLE ID: 118 ---
+QUESTION: What is respiration in plants?
+
+REFERENCE ANSWER:
+Respiration is the process of breaking down sugar to release energy.
+
+STUDENT ANSWER:
+Plants make energy from sugar.
+
+--- SAMPLE ID: 119 ---
+QUESTION: What is transpiration?
+
+REFERENCE ANSWER:
+Evaporation of water through pores in the leaves.
+
+STUDENT ANSWER:
+Water going from leave is transpiration
+
+--- SAMPLE ID: 120 ---
+QUESTION: What is weathering?
+
+REFERENCE ANSWER:
+Weathering is the process that breaks down rocks into smaller pieces without moving them.
+
+STUDENT ANSWER:
+Weathering is the process that breaks down rocks into smaller pieces without moving them.
+
+--- SAMPLE ID: 121 ---
+QUESTION: What is weather?
+
+REFERENCE ANSWER:
+Weather is the condition of the atmosphere at a particular time and place.
+
+STUDENT ANSWER:
+Weather is the condition of the atmosphere at a particular place.
+
+--- SAMPLE ID: 122 ---
+QUESTION: What instrument measures temperature?
+
+REFERENCE ANSWER:
+A thermometer measures temperature.
+
+STUDENT ANSWER:
+Thermometer measure temperature.
+
+--- SAMPLE ID: 123 ---
+QUESTION: What is precipitation?
+
+REFERENCE ANSWER:
+Precipitation is water that falls from clouds in the form of rain, snow, sleet, or hail.
+
+STUDENT ANSWER:
+Precipitation is water falling from clouds as rain or snow or hail.
+
+--- SAMPLE ID: 124 ---
+QUESTION: What causes wind?
+
+REFERENCE ANSWER:
+Wind is caused by differences in air pressure.
+
+STUDENT ANSWER:
+Wind is caused by difference in air pressure.
+
+--- SAMPLE ID: 125 ---
+QUESTION: What is humidity?
+
+REFERENCE ANSWER:
+Humidity is the amount of water vapor in the air.
+
+STUDENT ANSWER:
+Humidity means water vapor present in air.
+
+--- SAMPLE ID: 126 ---
+QUESTION: What is fog?
+
+REFERENCE ANSWER:
+Fog is a thick cloud of tiny water droplets near the ground.
+
+STUDENT ANSWER:
+Fog is a cloud of tiny water droplets near ground.
+
+--- SAMPLE ID: 127 ---
+QUESTION: What is the water cycle?
+
+REFERENCE ANSWER:
+The water cycle is the continuous movement of water through evaporation, condensation, and precipitation.
+
+STUDENT ANSWER:
+Water cycle is continuous movement of water through evaporation and condensation and rain.
+
+--- SAMPLE ID: 128 ---
+QUESTION: What is climate?
+
+REFERENCE ANSWER:
+Climate is the average weather in a place over a long period.
+
+STUDENT ANSWER:
+Climate is average weather over long time.
+
+--- SAMPLE ID: 129 ---
+QUESTION: What is lightning?
+
+REFERENCE ANSWER:
+Lightning is a sudden flash of electricity in the atmosphere.
+
+STUDENT ANSWER:
+Lightning is sudden electric flash in sky.
+
+--- SAMPLE ID: 130 ---
+QUESTION: What is a tornado?
+
+REFERENCE ANSWER:
+A tornado is a rotating column of air extending from a thunderstorm to the ground.
+
+STUDENT ANSWER:
+A tornado is spinning air column from thunderstorm to ground.
+
+--- SAMPLE ID: 131 ---
+QUESTION: What is a hurricane?
+
+REFERENCE ANSWER:
+A hurricane is a large storm with strong winds and heavy rain.
+
+STUDENT ANSWER:
+Hurricane is large storm with heavy rain and strong wind.
+
+--- SAMPLE ID: 132 ---
+QUESTION: What is dew?
+
+REFERENCE ANSWER:
+Dew is water droplets that form on cool surfaces at night.
+
+STUDENT ANSWER:
+Dew is water drops on cool surface in night.
+
+--- SAMPLE ID: 133 ---
+QUESTION: What is evaporation?
+
+REFERENCE ANSWER:
+Evaporation is the process of water turning into vapor.
+
+STUDENT ANSWER:
+Evaporation is when water turns into gas.
+
+--- SAMPLE ID: 134 ---
+QUESTION: What is condensation?
+
+REFERENCE ANSWER:
+Condensation is the process where water vapor becomes liquid.
+
+STUDENT ANSWER:
+Condensation is when vapor become liquid water.
+
+--- SAMPLE ID: 135 ---
+QUESTION: What is a drought?
+
+REFERENCE ANSWER:
+A drought is a long period of little or no rainfall.
+
+STUDENT ANSWER:
+Drought is long time without rain.
+
+--- SAMPLE ID: 136 ---
+QUESTION: What is a blizzard?
+
+REFERENCE ANSWER:
+A blizzard is a severe snowstorm with strong winds and low visibility.
+
+STUDENT ANSWER:
+Blizzard is heavy snow with strong wind and poor visibility.
+
+--- SAMPLE ID: 137 ---
+QUESTION: What is a weather satellite?
+
+REFERENCE ANSWER:
+A weather satellite observes and gathers data about the Earth's weather.
+
+STUDENT ANSWER:
+Weather satellite collects Earth's weather data.
+
+--- SAMPLE ID: 138 ---
+QUESTION: What is sleet?
+
+REFERENCE ANSWER:
+Sleet is frozen raindrops.
+
+STUDENT ANSWER:
+Sleet is rain that gets frozen.
+
+--- SAMPLE ID: 139 ---
+QUESTION: What is a cold front?
+
+REFERENCE ANSWER:
+A cold front is when cold air pushes warm air upwards.
+
+STUDENT ANSWER:
+Cold front happens when cold air moves under warm air.
+
+--- SAMPLE ID: 140 ---
+QUESTION: What is a warm front?
+
+REFERENCE ANSWER:
+A warm front is when warm air moves over cold air.
+
+STUDENT ANSWER:
+Warm front is when warm air rises over cold air.
+
+--- SAMPLE ID: 141 ---
+QUESTION: What is weathering?
+
+REFERENCE ANSWER:
+Weathering is the breaking down of rocks by natural forces.
+
+STUDENT ANSWER:
+Weathering means breaking of rocks by rain or wind.
+
+--- SAMPLE ID: 142 ---
+QUESTION: What is pollination?
+
+REFERENCE ANSWER:
+Pollination is the transfer of pollen from the anther to the stigma.
+
+STUDENT ANSWER:
+Pollination is the transfer of pollen from the anther to the stygma.
+
+--- SAMPLE ID: 143 ---
+QUESTION: What is germination?
+
+REFERENCE ANSWER:
+Germination is when a seed starts to grow into a plant.
+
+STUDENT ANSWER:
+Germination is when a seed starts to grow into plant.
+
+--- SAMPLE ID: 144 ---
+QUESTION: What is metamorphosis?
+
+REFERENCE ANSWER:
+Metamorphosis is a major change in the life cycle of some animals.
+
+STUDENT ANSWER:
+Metamorphosis is a big change in the life cycle of some animals.
+
+--- SAMPLE ID: 145 ---
+QUESTION: What is a food chain?
+
+REFERENCE ANSWER:
+A food chain shows how energy moves from one organism to another.
+
+STUDENT ANSWER:
+A food chain show how energy moves from one organism to another.
+
+--- SAMPLE ID: 146 ---
+QUESTION: What is a habitat?
+
+REFERENCE ANSWER:
+A habitat is the natural home of an organism.
+
+STUDENT ANSWER:
+A habitat is the natural home of a organism.
+
+--- SAMPLE ID: 147 ---
+QUESTION: What is an ecosystem?
+
+REFERENCE ANSWER:
+An ecosystem is a community of living and non-living things.
+
+STUDENT ANSWER:
+An ecosystem is a comunity of living and non-living things.
+
+--- SAMPLE ID: 148 ---
+QUESTION: What is photosynthesis?
+
+REFERENCE ANSWER:
+Photosynthesis is how plants make food using sunlight.
+
+STUDENT ANSWER:
+Photosynthesis is how plant make food using sunlight.
+
+--- SAMPLE ID: 149 ---
+QUESTION: What is the Sun?
+
+REFERENCE ANSWER:
+A star at the center of our solar system.
+
+STUDENT ANSWER:
+A burning planet.
+
+--- SAMPLE ID: 150 ---
+QUESTION: Which planet is closest to the Sun?
+
+REFERENCE ANSWER:
+Mercury.
+
+STUDENT ANSWER:
+Earth.
+
+--- SAMPLE ID: 151 ---
+QUESTION: What is a moon?
+
+REFERENCE ANSWER:
+A natural satellite that orbits a planet.
+
+STUDENT ANSWER:
+A star that died.
+
+--- SAMPLE ID: 152 ---
+QUESTION: What is an asteroid?
+
+REFERENCE ANSWER:
+A rocky object orbiting the Sun.
+
+STUDENT ANSWER:
+A flying comet.
+
+--- SAMPLE ID: 153 ---
+QUESTION: What is a comet?
+
+REFERENCE ANSWER:
+A body of ice, dust, and rock that orbits the Sun.
+
+STUDENT ANSWER:
+A shooting star.
+
+--- SAMPLE ID: 154 ---
+QUESTION: What is the name of our galaxy?
+
+REFERENCE ANSWER:
+Milky Way.
+
+STUDENT ANSWER:
+Solar Galaxy.
+
+--- SAMPLE ID: 155 ---
+QUESTION: What is the name of our galaxy?
+
+REFERENCE ANSWER:
+Milky Way
+
+STUDENT ANSWER:
+Andromeda
+
+--- SAMPLE ID: 156 ---
+QUESTION: Which planet is closest to the Sun?
+
+REFERENCE ANSWER:
+Mercury
+
+STUDENT ANSWER:
+Venus
+
+--- SAMPLE ID: 157 ---
+QUESTION: What is a moon?
+
+REFERENCE ANSWER:
+A natural satellite that orbits a planet
+
+STUDENT ANSWER:
+A planet that shines at night
+
+--- SAMPLE ID: 158 ---
+QUESTION: How many moons does Earth have?
+
+REFERENCE ANSWER:
+One
+
+STUDENT ANSWER:
+Two
+
+--- SAMPLE ID: 159 ---
+QUESTION: What is an asteroid?
+
+REFERENCE ANSWER:
+A small rocky body orbiting the Sun
+
+STUDENT ANSWER:
+A ball of fire in space
+
+======================================================================
+Grade all 80 samples. Verify concept correctness first, then score. Return only the JSON object.

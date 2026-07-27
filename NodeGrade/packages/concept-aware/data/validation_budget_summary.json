@@ -1,0 +1,19 @@
+{
+  "phase2": {
+    "status": "dry_run",
+    "estimated_cost_usd": 3.12,
+    "samples_to_process": 520
+  },
+  "phase3": {
+    "status": "dry_run",
+    "estimated_cost_usd": 0.7875,
+    "samples_to_process": 50
+  },
+  "budget": {
+    "model": "claude-3-5-sonnet-20241022",
+    "total_spent_usd": 0.0,
+    "cap_usd": 15.0,
+    "calls": 0,
+    "by_phase": {}
+  }
+}

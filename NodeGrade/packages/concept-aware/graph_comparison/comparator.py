@@ -12,21 +12,29 @@ Assessment dimensions:
 5. Misconception Detection — what incorrect relationships exist?
 """
 
+from __future__ import annotations
+
 import json
 import math
 from dataclasses import dataclass, field
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
 import networkx as nx
 
+# Framework Fix #29 (2026-06-15): concept_extraction imports moved under
+# TYPE_CHECKING. They were ONLY used as type annotations in this file
+# (StudentConceptGraph as parameter type, ExtractedRelationship/Concept
+# never referenced at runtime); pulling them at module level participated
+# in the circular import between concept_extraction.extractor and
+# conceptgrade.pipeline. With `from __future__ import annotations` above,
+# all type hints become strings and don't require the runtime classes.
 try:
     from ..knowledge_graph.domain_graph import DomainKnowledgeGraph
     from ..knowledge_graph.ontology import Concept, RelationshipType
-    from ..concept_extraction.extractor import (
-        StudentConceptGraph, ExtractedConcept, ExtractedRelationship
-    )
 except ImportError:
     from knowledge_graph.domain_graph import DomainKnowledgeGraph
     from knowledge_graph.ontology import Concept, RelationshipType
+
+if TYPE_CHECKING:
     from concept_extraction.extractor import (
         StudentConceptGraph, ExtractedConcept, ExtractedRelationship
     )
@@ -95,12 +103,20 @@ class ComparisonResult:
     # Epistemic uncertainty (ρ)
     kg_relevance_score: float = 1.0       # question/KG keyword overlap (0–1)
 
+    # Framework Fix #10 (2026-06-15): out-of-KG-domain marker. When True,
+    # all scores are 0.0 because the question is outside the KG's coverage
+    # — NOT because the student's answer was bad. Consumers (dashboard,
+    # verifier, downstream summarisers) must distinguish "0.0 because not
+    # assessable" from "0.0 because incorrect".
+    out_of_kg_domain: bool = False
+
     def to_dict(self) -> dict:
         scores: dict = {
             "concept_coverage": round(self.concept_coverage_score, 4),
             "relationship_accuracy": round(self.relationship_accuracy_score, 4),
             "integration_quality": round(self.integration_quality_score, 4),
             "overall": round(self.overall_score, 4),
+            "out_of_kg_domain": self.out_of_kg_domain,
         }
         if self.primary_coverage_score > 0.0 or self.secondary_coverage_score > 0.0:
             scores["primary_coverage"]   = round(self.primary_coverage_score, 4)
@@ -261,6 +277,23 @@ class KnowledgeGraphComparator:
 
         result = ComparisonResult()
 
+        # Framework Fix #10 (2026-06-15): short-circuit on OUT_OF_KG.
+        # Without this, an empty student_graph + empty expected_set produces
+        # vacuous coverage=1.0 and accuracy=1.0 (the "100% of empty" trap),
+        # which combined with the default weights yields overall_score≈0.7
+        # for a question the system literally cannot assess. Return zeros
+        # with an explicit not-assessable marker instead, so the dashboard
+        # and downstream verifier can distinguish "0 because untestable"
+        # from "0 because wrong".
+        if getattr(student_graph, "out_of_kg_domain", False):
+            result.out_of_kg_domain = True
+            result.depth_assessment = "not_assessed"
+            result.feedback_points = [
+                "Question is outside the knowledge graph's domain coverage; "
+                "KG-based scoring not applicable. Use student-vs-reference grading."
+            ]
+            return result
+
         # Determine expected concepts
         if expected_concepts:
             expected_set = set(expected_concepts)
@@ -322,7 +355,15 @@ class KnowledgeGraphComparator:
         contribute more to the score.
         """
         if not expected_concepts:
-            return 1.0, list(student_concepts), []
+            # Framework Fix #15 (2026-06-15): empty expected set is degenerate.
+            # The old "1.0 = vacuously perfect coverage of nothing" return
+            # leaked through whenever compare() was called without an
+            # expected_concepts argument AND the student also extracted
+            # nothing — yielding a misleading "perfect coverage" signal.
+            # Compare()-level OUT_OF_KG short-circuit (Fix #10) handles this
+            # for the production path; defense-in-depth here protects unit
+            # tests, ablation harnesses, and direct callers.
+            return 0.0, [], []
 
         matched = []
         missing = []
@@ -389,7 +430,15 @@ class KnowledgeGraphComparator:
         incorrect = []
 
         if not student_graph.relationships:
-            return 1.0, [], []
+            # Framework Fix #15 (2026-06-15): zero relationships is NOT
+            # "100% accurate of nothing" — it's "no evidence of relational
+            # understanding". The old 1.0 default gave shallow keyword-dump
+            # answers a free 30% accuracy boost (the integration-weight share
+            # of the blend). For in-domain answers this inflated the score;
+            # for OUT_OF_KG it gave 100% accuracy for an answer the system
+            # cannot assess. Use 0.0 — student didn't demonstrate any
+            # relationships, so the dimension provides no positive signal.
+            return 0.0, [], []
 
         for rel in student_graph.relationships:
             if not rel.is_correct:

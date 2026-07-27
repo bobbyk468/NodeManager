@@ -41,6 +41,10 @@ CLASSIFICATION RULES:
 - Bloom's: assign the HIGHEST level clearly demonstrated
 - SOLO: focus on STRUCTURAL complexity (how concepts connect), not just count
 - Use concept graph evidence (count, integration score, relationships) to inform both
+- When concept graph evidence is marked "OUT OF KG COVERAGE", the absence of
+  concept matches reflects KG scope, NOT student understanding — classify
+  using only question + student answer in that case, and do not penalise the
+  student for the missing graph signal.
 - Be concise — reasoning steps should be 1 sentence each"""
 
 
@@ -170,7 +174,29 @@ class CognitiveDepthClassifier:
         concept_graph: dict | None,
         comparison_result: dict | None,
     ) -> dict:
-        """Extract compact evidence strings for the prompt."""
+        """Extract compact evidence strings for the prompt.
+
+        Framework Fix #8 (2026-06-15): when the upstream extractor signalled
+        out_of_kg_domain (question outside the KG's coverage), suppress the
+        misleading "0 concepts / 0 relationships / 0% integration" evidence
+        block and instead emit an explicit "OUT OF KG COVERAGE" marker so the
+        LLM knows to classify from text only. Without this, every Kaggle
+        answer was primed to Bloom's=1 / SOLO=1 regardless of quality.
+        """
+        # Honour the out_of_kg_domain signal from StudentConceptGraph (Fix #2b)
+        out_of_kg = bool(concept_graph and concept_graph.get("out_of_kg_domain", False))
+        if out_of_kg:
+            return dict(
+                num_concepts="OUT OF KG COVERAGE",
+                concept_list="OUT OF KG COVERAGE — classify from text only",
+                num_relationships="OUT OF KG COVERAGE",
+                correct_rels="OUT OF KG COVERAGE",
+                integration="OUT OF KG COVERAGE",
+                kg_depth="OUT OF KG COVERAGE",
+                misconceptions="not assessed (question outside KG coverage)",
+                _out_of_kg=True,
+            )
+
         num_concepts = 0
         concept_list = "none"
         num_rels = 0
@@ -209,10 +235,39 @@ class CognitiveDepthClassifier:
             integration=integration,
             kg_depth=kg_depth,
             misconceptions=misconceptions,
+            _out_of_kg=False,
         )
 
-    def _fallback(self, num_concepts: int, num_rels: int) -> CognitiveDepthResult:
-        """Rule-based fallback when LLM parsing fails."""
+    def _fallback(
+        self,
+        num_concepts: int,
+        num_rels: int,
+        out_of_kg: bool = False,
+    ) -> CognitiveDepthResult:
+        """Rule-based fallback when LLM parsing fails.
+
+        Framework Fix #8: when out_of_kg, the (0, 0) concept/rel counts are a
+        property of KG scope, not the student. Return a neutral mid-fallback
+        with explicit out_of_kg justification instead of forcing level 1.
+        """
+        if out_of_kg:
+            # Cannot infer cognitive depth without the LLM; return a neutral
+            # mid-level with low confidence rather than the misleading floor.
+            b_level, s_level = 2, 2
+            note = "Heuristic fallback (LLM parse failed, OUT_OF_KG)"
+            return CognitiveDepthResult(
+                blooms_level=b_level,
+                blooms_label=self.BLOOMS_LABELS[b_level],
+                blooms_confidence=0.2,
+                blooms_justification=note,
+                blooms_reasoning_steps=["Out of KG coverage — neutral default"],
+                solo_level=s_level,
+                solo_label=self.SOLO_LABELS[s_level],
+                solo_confidence=0.2,
+                solo_justification=note,
+                solo_reasoning_steps=["Out of KG coverage — neutral default"],
+            )
+
         if num_concepts >= 4 and num_rels >= 3:
             b_level, s_level = 4, 4
         elif num_concepts >= 2 and num_rels >= 1:
@@ -255,6 +310,7 @@ class CognitiveDepthClassifier:
             CognitiveDepthResult with both Bloom's and SOLO fields populated.
         """
         ev = self._build_evidence(concept_graph, comparison_result)
+        out_of_kg = ev.pop("_out_of_kg", False)
         user_prompt = COGNITIVE_DEPTH_USER.format(
             question=question,
             student_answer=student_answer,
@@ -269,7 +325,11 @@ class CognitiveDepthClassifier:
             if "429" in err or "529" in err or "rate_limit" in err.lower() or "overloaded" in err.lower():
                 raise  # propagate so key rotator can handle it
             print(f"[CognitiveDepthClassifier] Fallback due to: {e}")
-            return self._fallback(ev["num_concepts"], ev["num_relationships"])
+            return self._fallback(
+                ev["num_concepts"] if isinstance(ev["num_concepts"], int) else 0,
+                ev["num_relationships"] if isinstance(ev["num_relationships"], int) else 0,
+                out_of_kg=out_of_kg,
+            )
 
         b_level = max(1, min(6, int(parsed.get("blooms_level", 1))))
         s_level = max(1, min(5, int(parsed.get("solo_level", 1))))

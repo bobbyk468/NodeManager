@@ -1,0 +1,6 @@
+participant_pid,condition,session_date,session_start_utc,warm_up_complete,warm_up_questions,a1_qid,a1_decision,a1_chips_added,a1_self_conf,a1_seconds,a1_thinkaloud_words,a2_qid,a2_decision,a2_chips_added,a2_self_conf,a2_seconds,a2_thinkaloud_words,a3_qid,a3_decision,a3_chips_added,a3_self_conf,a3_seconds,a3_thinkaloud_words,a4_qid,a4_decision,a4_chips_added,a4_self_conf,a4_seconds,a4_thinkaloud_words,a5_qid,a5_decision,a5_chips_added,a5_self_conf,a5_seconds,a5_thinkaloud_words,a6_qid,a6_decision,a6_chips_added,a6_self_conf,a6_seconds,a6_thinkaloud_words,a7_qid,a7_decision,a7_chips_added,a7_self_conf,a7_seconds,a7_thinkaloud_words,a8_qid,a8_decision,a8_chips_added,a8_self_conf,a8_seconds,a8_thinkaloud_words,sus_q1,sus_q2,sus_q3,sus_q4,sus_q5,sus_q6,sus_q7,sus_q8,sus_q9,sus_q10,session_end_utc,debrief_confusing,debrief_missing,debrief_unclear,facilitator_flags,data_deletion_request
+P01,A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+P02,B,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+P03,A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+P04,B,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+P05,A,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,

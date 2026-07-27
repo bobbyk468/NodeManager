@@ -1,0 +1,62 @@
+Subject: Participate in Educational AI Research Study (Compensation: $[XX]/hour)
+
+Dear [Educator/Instructor/Teaching Assistant],
+
+You are invited to participate in a 20-minute research study about AI-assisted rubric design for student answer grading. This study is part of a PhD dissertation research on visual analytics for educational assessment.
+
+STUDY OVERVIEW:
+We are testing a new dashboard system that helps educators design and refine grading rubrics using AI-generated insights about common student misconceptions. Your participation will help us understand how visualization and AI reasoning traces improve rubric quality and decision-making.
+
+ELIGIBILITY:
+- You have ≥2 years of teaching experience in conceptually-rich technical courses
+  (e.g., Computer Science, Data Structures, Neural Networks, Science, Mathematics, etc.)
+- You are comfortable using web-based applications
+- You have 20 minutes available during [DATE RANGE]
+
+WHAT'S INVOLVED:
+- Single 20-minute online session (Zoom or in-person)
+- You will review a student answer and grade it using our system
+- We'll record your screen and audio to capture your reasoning process
+- You'll complete a brief usability survey (SUS questionnaire)
+- Think-aloud protocol: share your reasoning as you work (helps us improve the system)
+
+COMPENSATION:
+- $[XX] per hour ($[XX] for the full session, or $[YY] gift card)
+- Compensation provided immediately after session completion
+
+DATA PRIVACY:
+- All recordings will be de-identified and kept confidential
+- Your name will not appear in any published results
+- Data will be used only for this research study
+- You may withdraw at any time without penalty
+
+SESSION TIMES AVAILABLE:
+- [LIST DATE RANGES AND TIME SLOTS]
+- Sessions scheduled for: June 1 - July 31, 2026
+- Flexible scheduling (mornings, afternoons, or evenings)
+
+HOW TO SIGN UP:
+1. Click here to check available time slots: [CALENDAR LINK]
+2. Select your preferred date/time
+3. Complete consent form (digital signature)
+4. Receive Zoom/location link
+5. Attend session and earn compensation
+
+QUESTIONS?
+Contact: [Your Email]
+Phone: [Your Phone]
+Study Title: "ConceptGrade Dashboard: Visual Analytics for Educator Rubric Design"
+IRB Approval: [IRB PROTOCOL NUMBER]
+Institution: [Your University]
+
+We appreciate your time and expertise!
+
+Best regards,
+[Your Name]
+PhD Candidate, [Department]
+[University Name]
+
+---
+Study Status: Recruitment Phase (May 15 - May 31, 2026)
+Target Sample: N=64 educators (32 per condition)
+Current Recruitment: [X] confirmed, [Y] pending

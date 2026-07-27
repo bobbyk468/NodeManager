@@ -125,13 +125,26 @@ class ConceptGradeEvaluator:
                 "mode": "live",
             }
         except Exception as e:
+            # Framework Fix #23 (2026-06-15): annotate the offline fallback
+            # with the original error so post-hoc analysis can tell apart
+            # "ran offline by user choice" from "ran offline because the
+            # live call failed". Without this, both produced mode='offline'
+            # and errors=[] — silently degraded samples were invisible.
             err = str(e)
+            err_type = type(e).__name__
             if "429" in err or "529" in err or "rate_limit" in err.lower() or "overloaded" in err.lower():
                 print(f"\n  Rate limit hit — switching to offline mode for remaining samples")
                 self.rate_limited = True
+                fallback_reason = "rate_limit"
             else:
                 print(f"\n  Error on sample Q{sample.question_id}: {e}")
-            return self._score_offline(sample)
+                fallback_reason = "live_call_failed"
+            result = self._score_offline(sample)
+            result["mode"] = f"offline_{fallback_reason}"
+            result["errors"] = result.get("errors", []) + [
+                {"stage": "live_pipeline", "type": err_type, "message": err[:300]}
+            ]
+            return result
 
     def _score_offline(self, sample: MohlerSample) -> dict:
         """
@@ -169,8 +182,16 @@ class ConceptGradeEvaluator:
             )
             tfidf = vectorizer.fit_transform([reference, answer])
             base_sim = float(sk_cosine(tfidf[0:1], tfidf[1:2])[0][0])
-        except Exception:
+        except Exception as _tfidf_err:
+            # Framework Fix #23: annotate the failure on the result so it
+            # leaves a trail. Common cause: both reference and answer have
+            # only stopwords (vectorizer raises ValueError "empty vocabulary").
             base_sim = 0.0
+            result["errors"].append({
+                "stage": "tfidf_similarity",
+                "type": type(_tfidf_err).__name__,
+                "message": str(_tfidf_err)[:300],
+            })
 
         # --- Component 2: Concept Coverage (domain graph matching) ---
         # Map question to expected domain concepts

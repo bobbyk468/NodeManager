@@ -1,0 +1,699 @@
+SCORING GUIDE — based on proportion of reference answer content correctly demonstrated:
+- 5.0: Student correctly explains virtually all key ideas (≥90% of reference content)
+- 4.5: Student correctly explains the great majority (≥80%); only very minor omissions
+- 4.0: Student correctly explains most key ideas (≥70%); one clear gap
+- 3.5: Student correctly explains a solid majority (≥60%) with reasonable depth
+- 3.0: Student correctly explains about half the reference content (~50%)
+- 2.5: Student correctly explains several key ideas (30–50%); substantial content missing
+- 2.0: Student correctly explains 1–2 key ideas accurately; most reference content missing
+- 1.5: Student shows partial understanding of 1 concept but cannot explain mechanisms
+- 1.0: Student shows awareness of the topic but no accurate explanations
+- 0.5: Single marginally relevant statement; no explanation
+- 0.0: No relevant content
+
+Score what the student got RIGHT. Missing vocabulary alone does not lower the score.
+Use 0.25 increments only.
+
+You are an expert grader using a two-step process:
+
+STEP 1 — Concept Verification: For each expected concept listed, determine:
+  TRUE = student correctly demonstrated this idea (even in their own words)
+  FALSE = student missed it, mentioned it vaguely, or used it incorrectly
+
+CRITICAL: A student who MENTIONS a concept word but explains it INCORRECTLY must be marked FALSE for that concept. Keyword presence alone does not count — correct meaning matters.
+
+STEP 2 — Score: Based ONLY on the TRUE concepts, assign a score using the scoring guide above.
+
+When no concept list is provided, grade using the reference answer only.
+
+Return a single JSON object with only scores (no reasoning in output):
+{
+  "scores": {
+    "<id>": X.X,
+    ...
+  }
+}
+
+Grade all 73 samples. Use 0.25 increments.
+
+======================================================================
+
+--- SAMPLE ID: 400 ---
+QUESTION: When is no work done?
+
+REFERENCE ANSWER:
+When there is no displacement.
+
+STUDENT ANSWER:
+If nothing moves.
+
+--- SAMPLE ID: 401 ---
+QUESTION: What is heat?
+
+REFERENCE ANSWER:
+Heat is a form of energy that makes things warm.
+
+STUDENT ANSWER:
+heat make things hot.
+
+--- SAMPLE ID: 402 ---
+QUESTION: What is conduction?
+
+REFERENCE ANSWER:
+Conduction is the transfer of heat through solids.
+
+STUDENT ANSWER:
+heat moves in solid
+
+--- SAMPLE ID: 403 ---
+QUESTION: What is convection?
+
+REFERENCE ANSWER:
+Convection is the transfer of heat through liquids and gases.
+
+STUDENT ANSWER:
+heat go in air and water
+
+--- SAMPLE ID: 404 ---
+QUESTION: What is radiation?
+
+REFERENCE ANSWER:
+Radiation is the transfer of heat without any medium.
+
+STUDENT ANSWER:
+heat go with no touch.
+
+--- SAMPLE ID: 405 ---
+QUESTION: What is thermal expansion?
+
+REFERENCE ANSWER:
+Thermal expansion is the increase in size when heated.
+
+STUDENT ANSWER:
+it get big with hot
+
+--- SAMPLE ID: 406 ---
+QUESTION: What is dew?
+
+REFERENCE ANSWER:
+Dew is water droplets formed by condensation.
+
+STUDENT ANSWER:
+dew is water in morning
+
+--- SAMPLE ID: 407 ---
+QUESTION: What is a conductor?
+
+REFERENCE ANSWER:
+A material that allows heat to pass.
+
+STUDENT ANSWER:
+pass heat
+
+--- SAMPLE ID: 408 ---
+QUESTION: What is an insulator?
+
+REFERENCE ANSWER:
+A material that does not allow heat to pass.
+
+STUDENT ANSWER:
+no heat pass
+
+--- SAMPLE ID: 409 ---
+QUESTION: What is lightning?
+
+REFERENCE ANSWER:
+Lightning is a sudden flash of electricity in the sky, usually during storms.
+
+STUDENT ANSWER:
+Lightning is the fire in sky.
+
+--- SAMPLE ID: 410 ---
+QUESTION: What should you do during lightning?
+
+REFERENCE ANSWER:
+Stay indoors and avoid metal objects and trees.
+
+STUDENT ANSWER:
+Run in house and dont touch wires.
+
+--- SAMPLE ID: 411 ---
+QUESTION: What should you do during lightning?
+
+REFERENCE ANSWER:
+Stay inside, don't use metal or phones.
+
+STUDENT ANSWER:
+Hide in house.
+
+--- SAMPLE ID: 412 ---
+QUESTION: What connects muscles to bones?
+
+REFERENCE ANSWER:
+Tough fibrous tissues called tendons
+
+STUDENT ANSWER:
+rope
+
+--- SAMPLE ID: 413 ---
+QUESTION: When is no work done?
+
+REFERENCE ANSWER:
+When there is no displacement.
+
+STUDENT ANSWER:
+if no work done no move then.
+
+--- SAMPLE ID: 414 ---
+QUESTION: What is velocity?
+
+REFERENCE ANSWER:
+Velocity is speed with direction.
+
+STUDENT ANSWER:
+speed goes fast
+
+--- SAMPLE ID: 415 ---
+QUESTION: What is force?
+
+REFERENCE ANSWER:
+A push or pull on an object is called force.
+
+STUDENT ANSWER:
+when you push or pul thig its forc.
+
+--- SAMPLE ID: 416 ---
+QUESTION: What is convection?
+
+REFERENCE ANSWER:
+Heat transfer in liquid or gas is convection.
+
+STUDENT ANSWER:
+heat go in air and also in soup.
+
+--- SAMPLE ID: 417 ---
+QUESTION: What is radiation?
+
+REFERENCE ANSWER:
+Radiation is the transfer of heat without any medium.
+
+STUDENT ANSWER:
+heat fly from sun to house.
+
+--- SAMPLE ID: 418 ---
+QUESTION: What is speed?
+
+REFERENCE ANSWER:
+Speed is distance covered per time.
+
+STUDENT ANSWER:
+speed is how fast somethin run in time.
+
+--- SAMPLE ID: 419 ---
+QUESTION: What is food spoilage?
+
+REFERENCE ANSWER:
+When food gets bad and unsafe to eat.
+
+STUDENT ANSWER:
+food be smelly and not good now.
+
+--- SAMPLE ID: 420 ---
+QUESTION: What is inertia?
+
+REFERENCE ANSWER:
+The resistance of an object to change in motion.
+
+STUDENT ANSWER:
+things dont want move or stop if its in motion
+
+--- SAMPLE ID: 421 ---
+QUESTION: Why copper wires?
+
+REFERENCE ANSWER:
+Excellent electrical conductor
+
+STUDENT ANSWER:
+Color looks nice
+
+--- SAMPLE ID: 422 ---
+QUESTION: What are natural resources?
+
+REFERENCE ANSWER:
+Materials from nature used by humans
+
+STUDENT ANSWER:
+Things what grow outside
+
+--- SAMPLE ID: 423 ---
+QUESTION: Why copper wires?
+
+REFERENCE ANSWER:
+Excellent conductor, flexible
+
+STUDENT ANSWER:
+Color nice
+
+--- SAMPLE ID: 424 ---
+QUESTION: What is a galaxy?
+
+REFERENCE ANSWER:
+A galaxy is a massive system of stars, gas, dust, and dark matter bound by gravity.
+
+STUDENT ANSWER:
+Galaxy is big star group in space.
+
+--- SAMPLE ID: 425 ---
+QUESTION: What is the Milky Way?
+
+REFERENCE ANSWER:
+Our home galaxy, a barred spiral containing ~100 billion stars.
+
+STUDENT ANSWER:
+Our galaxy with Sun and Earth.
+
+--- SAMPLE ID: 426 ---
+QUESTION: Define force.
+
+REFERENCE ANSWER:
+A force is a push or pull acting on an object.
+
+STUDENT ANSWER:
+Force is when you eat a lot of food.
+
+--- SAMPLE ID: 427 ---
+QUESTION: What is inertia?
+
+REFERENCE ANSWER:
+Inertia is the tendency of an object to resist change in its motion.
+
+STUDENT ANSWER:
+It is when you feel sleepy in class.
+
+--- SAMPLE ID: 428 ---
+QUESTION: Name three types of microorganisms.
+
+REFERENCE ANSWER:
+Bacteria, viruses, and fungi.
+
+STUDENT ANSWER:
+Bacteria and viruses.
+
+--- SAMPLE ID: 429 ---
+QUESTION: Name one harmful effect of microorganisms.
+
+REFERENCE ANSWER:
+They can cause diseases like typhoid and cholera.
+
+STUDENT ANSWER:
+They can give you fever.
+
+--- SAMPLE ID: 430 ---
+QUESTION: What is germination?
+
+REFERENCE ANSWER:
+Germination is the process by which a seed grows into a new plant.
+
+STUDENT ANSWER:
+When seeds start to grow a little.
+
+--- SAMPLE ID: 431 ---
+QUESTION: How do seeds spread?
+
+REFERENCE ANSWER:
+Seeds spread through wind, water, and animals.
+
+STUDENT ANSWER:
+They move by wind or water.
+
+--- SAMPLE ID: 432 ---
+QUESTION: What are microorganisms?
+
+REFERENCE ANSWER:
+Microorganisms are tiny living things that cannot be seen without a microscope.
+
+STUDENT ANSWER:
+They are very small things.
+
+--- SAMPLE ID: 433 ---
+QUESTION: What is fermentation?
+
+REFERENCE ANSWER:
+Fermentation is a process where microorganisms break down sugars to produce energy, often used in food making.
+
+STUDENT ANSWER:
+It’s how food is made using germs.
+
+--- SAMPLE ID: 434 ---
+QUESTION: What is the role of petals in a flower?
+
+REFERENCE ANSWER:
+Petals attract insects for pollination.
+
+STUDENT ANSWER:
+They are colourful.
+
+--- SAMPLE ID: 435 ---
+QUESTION: What is germination?
+
+REFERENCE ANSWER:
+Germination is the growth of a seed into a new plant.
+
+STUDENT ANSWER:
+Seed starts growing.
+
+--- SAMPLE ID: 436 ---
+QUESTION: What is a meridian?
+
+REFERENCE ANSWER:
+A circle passing through zenith, nadir, and celestial poles.
+
+STUDENT ANSWER:
+A circle in the sky that goes from top to bottom.
+
+--- SAMPLE ID: 437 ---
+QUESTION: What is the celestial equator?
+
+REFERENCE ANSWER:
+Earth's equator projected onto the celestial sphere.
+
+STUDENT ANSWER:
+The line across the middle of the sky like Earth’s equator.
+
+--- SAMPLE ID: 438 ---
+QUESTION: What is the ecliptic?
+
+REFERENCE ANSWER:
+The Sun's apparent yearly path across the celestial sphere.
+
+STUDENT ANSWER:
+The path the Sun follows through the stars.
+
+--- SAMPLE ID: 439 ---
+QUESTION: What is a constellation?
+
+REFERENCE ANSWER:
+A group of stars forming a recognizable pattern, often named after myths.
+
+STUDENT ANSWER:
+A group of stars making a shape like Orion.
+
+--- SAMPLE ID: 440 ---
+QUESTION: Name 3 constellations.
+
+REFERENCE ANSWER:
+Orion, Ursa Major, Scorpius.
+
+STUDENT ANSWER:
+Orion, the Big Dipper, and Scorpius.
+
+--- SAMPLE ID: 441 ---
+QUESTION: Why do constellations seem to move?
+
+REFERENCE ANSWER:
+Earth's rotation and orbit around the Sun.
+
+STUDENT ANSWER:
+Because the Earth spins and moves around the Sun.
+
+--- SAMPLE ID: 442 ---
+QUESTION: What is the zodiac?
+
+REFERENCE ANSWER:
+12 constellations along the ecliptic, used in astrology.
+
+STUDENT ANSWER:
+The twelve constellations along the Sun’s path.
+
+--- SAMPLE ID: 443 ---
+QUESTION: How did ancient people use constellations?
+
+REFERENCE ANSWER:
+For navigation, calendars, and storytelling.
+
+STUDENT ANSWER:
+They used stars to travel, tell stories, and make calendars.
+
+--- SAMPLE ID: 444 ---
+QUESTION: What tools are used for sky watching?
+
+REFERENCE ANSWER:
+Telescopes, binoculars, star maps.
+
+STUDENT ANSWER:
+We use telescopes, binoculars, and star maps.
+
+--- SAMPLE ID: 445 ---
+QUESTION: Why avoid city lights for stargazing?
+
+REFERENCE ANSWER:
+Light pollution hides faint stars.
+
+STUDENT ANSWER:
+City lights make it too bright to see faint stars.
+
+--- SAMPLE ID: 446 ---
+QUESTION: Do planets/stars affect human life?
+
+REFERENCE ANSWER:
+No, astrology isn't science; stars are too distant to impact us physically.
+
+STUDENT ANSWER:
+They don’t really affect us because they are too far away.
+
+--- SAMPLE ID: 447 ---
+QUESTION: What is Polaris?
+
+REFERENCE ANSWER:
+The North Star, aligned with Earth's North Pole.
+
+STUDENT ANSWER:
+The star that shows where north is.
+
+--- SAMPLE ID: 448 ---
+QUESTION: What is a red giant?
+
+REFERENCE ANSWER:
+An old, expanded star cooling down (e.g., Betelgeuse).
+
+STUDENT ANSWER:
+A very big, old red star that has cooled down.
+
+--- SAMPLE ID: 449 ---
+QUESTION: What is a white dwarf?
+
+REFERENCE ANSWER:
+A dead star's hot, dense core.
+
+STUDENT ANSWER:
+A small, very hot star remnant.
+
+--- SAMPLE ID: 450 ---
+QUESTION: What is a neutron star?
+
+REFERENCE ANSWER:
+A super-dense remnant of a supernova.
+
+STUDENT ANSWER:
+A very tiny, dense star left after an explosion.
+
+--- SAMPLE ID: 451 ---
+QUESTION: How is a star's color related to temperature?
+
+REFERENCE ANSWER:
+Blue = hottest; Red = coolest.
+
+STUDENT ANSWER:
+Hot stars look blue, cooler stars look red.
+
+--- SAMPLE ID: 452 ---
+QUESTION: What is a binary star?
+
+REFERENCE ANSWER:
+Two stars orbiting each other.
+
+STUDENT ANSWER:
+Two stars that go around each other.
+
+--- SAMPLE ID: 453 ---
+QUESTION: What is a light-year?
+
+REFERENCE ANSWER:
+Distance light travels in a year (~9.46 trillion km).
+
+STUDENT ANSWER:
+How far light goes in one year.
+
+--- SAMPLE ID: 454 ---
+QUESTION: Why is the Sun a star?
+
+REFERENCE ANSWER:
+It's a medium-sized, main-sequence star.
+
+STUDENT ANSWER:
+Because it’s a big ball of gas like other stars.
+
+--- SAMPLE ID: 455 ---
+QUESTION: What is a pulsar?
+
+REFERENCE ANSWER:
+A rotating neutron star that emits beams of radiation.
+
+STUDENT ANSWER:
+A star that flashes light.
+
+--- SAMPLE ID: 456 ---
+QUESTION: Why are some stars brighter than others?
+
+REFERENCE ANSWER:
+Due to size, temperature, and distance from Earth.
+
+STUDENT ANSWER:
+Because some are bigger and closer.
+
+--- SAMPLE ID: 457 ---
+QUESTION: How do scientists study distant stars?
+
+REFERENCE ANSWER:
+Using telescopes, spectroscopy, and space probes.
+
+STUDENT ANSWER:
+They use telescopes to look at them.
+
+--- SAMPLE ID: 458 ---
+QUESTION: What is a star cluster?
+
+REFERENCE ANSWER:
+A group of stars held together by gravity.
+
+STUDENT ANSWER:
+Stars close together in space.
+
+--- SAMPLE ID: 459 ---
+QUESTION: What is an open cluster?
+
+REFERENCE ANSWER:
+A loosely bound group of young stars.
+
+STUDENT ANSWER:
+A group of young stars in space.
+
+--- SAMPLE ID: 460 ---
+QUESTION: What is a globular cluster?
+
+REFERENCE ANSWER:
+A tight, spherical group of old stars.
+
+STUDENT ANSWER:
+It’s a group of old stars all close together, I think.
+
+--- SAMPLE ID: 461 ---
+QUESTION: What is cosmic dust?
+
+REFERENCE ANSWER:
+Tiny particles in space made of silicates, carbon, and ice.
+
+STUDENT ANSWER:
+Dust floating somewhere in space.
+
+--- SAMPLE ID: 462 ---
+QUESTION: What are exoplanets?
+
+REFERENCE ANSWER:
+Planets outside our solar system orbiting other stars.
+
+STUDENT ANSWER:
+Planets that are not in our solar system.
+
+--- SAMPLE ID: 463 ---
+QUESTION: How do we detect exoplanets?
+
+REFERENCE ANSWER:
+Using transit method, radial velocity, and direct imaging.
+
+STUDENT ANSWER:
+We can spot them when stars flicker a bit.
+
+--- SAMPLE ID: 464 ---
+QUESTION: What is the Hubble Space Telescope?
+
+REFERENCE ANSWER:
+A telescope in orbit that captures clear space images.
+
+STUDENT ANSWER:
+It’s a big telescope up in space.
+
+--- SAMPLE ID: 465 ---
+QUESTION: Why is the night sky dark?
+
+REFERENCE ANSWER:
+Because the universe is expanding and light hasn't reached us from all directions.
+
+STUDENT ANSWER:
+Because some places in space don’t have light.
+
+--- SAMPLE ID: 466 ---
+QUESTION: What causes a shooting star?
+
+REFERENCE ANSWER:
+A meteoroid burning in Earth's atmosphere.
+
+STUDENT ANSWER:
+I love sunlight
+
+--- SAMPLE ID: 467 ---
+QUESTION: What is a comet?
+
+REFERENCE ANSWER:
+An icy object with a tail that orbits the Sun.
+
+STUDENT ANSWER:
+A space dragon with fire tail.
+
+--- SAMPLE ID: 468 ---
+QUESTION: What is an asteroid?
+
+REFERENCE ANSWER:
+A rocky body orbiting the Sun, mostly in the asteroid belt.
+
+STUDENT ANSWER:
+comet good sky
+
+--- SAMPLE ID: 469 ---
+QUESTION: What is a meteorite?
+
+REFERENCE ANSWER:
+A meteoroid that survives and lands on Earth.
+
+STUDENT ANSWER:
+A space candy fals on Earth.
+
+--- SAMPLE ID: 470 ---
+QUESTION: What is the difference between a star and a planet?
+
+REFERENCE ANSWER:
+Stars produce light; planets reflect it and orbit stars.
+
+STUDENT ANSWER:
+Stars are happy, planets are sad.
+
+--- SAMPLE ID: 471 ---
+QUESTION: Why do stars seem to move across the sky?
+
+REFERENCE ANSWER:
+Due to Earth's rotation.
+
+STUDENT ANSWER:
+Because they are drunk.
+
+--- SAMPLE ID: 472 ---
+QUESTION: What happens when a star dies?
+
+REFERENCE ANSWER:
+It can become a white dwarf, neutron star, or black hole.
+
+STUDENT ANSWER:
+It explodes into dust.
+
+======================================================================
+Grade all 73 samples. Verify concept correctness first, then score. Return only the JSON object.

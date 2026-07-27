@@ -540,6 +540,131 @@ def build_data_structures_graph() -> DomainKnowledgeGraph:
                      "BST is composed of subtrees"),
         Relationship("searching", "binary_search_tree", RT.USES, 0.8,
                      "BST search uses the ordering property"),
+
+        # ====================================================================
+        # Framework Fix #16 (2026-06-15): wire up 15 previously-isolated
+        # concepts. These had degree=0 — present in the KG but participating
+        # in no edges, so they leaked through concept-matching with under-
+        # weighted importance (1 + degree/10 = 1.0× instead of up to 2.0×)
+        # and contributed nothing to chain-coverage. Domain-correct edges
+        # added below.
+        # ====================================================================
+        # Abstract data type — generalization above data_structure
+        Relationship("data_structure", "abstract_data_type", RT.IS_A, 1.0,
+                     "A data structure is a concrete realization of an ADT"),
+
+        # Memory allocation — composed of static + dynamic flavors
+        Relationship("memory_allocation", "static_memory", RT.HAS_PART, 0.8,
+                     "Static memory allocation is one form"),
+        Relationship("memory_allocation", "dynamic_memory", RT.HAS_PART, 0.8,
+                     "Dynamic memory allocation is the other form"),
+
+        # Space complexity — partner concept to time_complexity
+        Relationship("space_complexity", "big_o_notation", RT.HAS_PROPERTY, 1.0,
+                     "Space complexity is measured in Big-O notation"),
+        Relationship("algorithm", "space_complexity", RT.HAS_PROPERTY, 0.9,
+                     "Algorithms have space complexity"),
+
+        # Index — arrays are indexed
+        Relationship("array", "index", RT.HAS_PART, 1.0,
+                     "Array elements are accessed by index"),
+
+        # B-tree — balanced multi-way search tree
+        Relationship("b_tree", "tree", RT.IS_A, 1.0,
+                     "B-tree is a self-balancing tree"),
+        Relationship("b_tree", "balanced_tree", RT.HAS_PROPERTY, 1.0,
+                     "B-tree is always balanced"),
+
+        # Trie — prefix tree
+        Relationship("trie", "tree", RT.IS_A, 1.0,
+                     "Trie is a tree variant for prefix lookup"),
+
+        # Parent / child — tree node roles
+        Relationship("tree", "parent", RT.HAS_PART, 0.8,
+                     "Tree nodes have parent relationships"),
+        Relationship("tree", "child", RT.HAS_PART, 0.8,
+                     "Tree nodes have child relationships"),
+        Relationship("parent", "node", RT.VARIANT_OF, 1.0,
+                     "Parent is a role a node plays in a tree"),
+        Relationship("child", "node", RT.VARIANT_OF, 1.0,
+                     "Child is a role a node plays in a tree"),
+
+        # Tree height — structural property
+        Relationship("tree", "tree_height", RT.HAS_PROPERTY, 0.9,
+                     "Tree height is the longest root-to-leaf path"),
+
+        # Minimum spanning tree — graph algorithm output
+        Relationship("graph", "minimum_spanning_tree", RT.HAS_PROPERTY, 0.7,
+                     "MST is a graph-derived structure"),
+        Relationship("minimum_spanning_tree", "tree", RT.IS_A, 1.0,
+                     "MST is itself a tree"),
+
+        # Shortest path — Dijkstra's output / graph problem
+        Relationship("graph", "shortest_path", RT.HAS_PROPERTY, 0.8,
+                     "Shortest path is a fundamental graph problem"),
+        Relationship("dijkstra", "shortest_path", RT.USES, 1.0,
+                     "Dijkstra computes shortest paths"),
+
+        # Cycle — graph property
+        Relationship("graph", "cycle", RT.HAS_PROPERTY, 0.8,
+                     "Graphs may contain cycles"),
+
+        # Connected graph — graph variant
+        Relationship("connected_graph", "graph", RT.IS_A, 1.0,
+                     "Connected graph is a graph with a single component"),
+
+        # Load factor — hash table sizing property
+        Relationship("hash_table", "load_factor", RT.HAS_PROPERTY, 1.0,
+                     "Load factor measures hash table fullness"),
+
+        # Comparison sort — algorithm classification
+        Relationship("comparison_sort", "algorithm", RT.IS_A, 1.0,
+                     "Comparison sort is a class of sorting algorithms"),
+        Relationship("merge_sort", "comparison_sort", RT.IS_A, 1.0,
+                     "Merge sort is a comparison sort"),
+        Relationship("quick_sort", "comparison_sort", RT.IS_A, 1.0,
+                     "Quick sort is a comparison sort"),
+        Relationship("heap_sort", "comparison_sort", RT.IS_A, 1.0,
+                     "Heap sort is a comparison sort"),
+
+        # ====================================================================
+        # Framework Fix #17 (2026-06-15): KG completion round 2.
+        # Adds high-value semantic edges between degree-1 concepts that
+        # logically have multi-way connections (operation pairs, property
+        # contrasts, iteration-over-structure). Leaves true leaf concepts
+        # (vertex, leaf, root, head, tail, index, edge) at degree-1 since
+        # they legitimately attach to a single parent structure.
+        # ====================================================================
+        # Stack operation pair: push inserts, pop removes, peek reads
+        Relationship("push", "pop", RT.CONTRASTS_WITH, 1.0,
+                     "Push inserts onto the stack; pop removes from it"),
+        Relationship("pop", "peek", RT.CONTRASTS_WITH, 0.9,
+                     "Pop removes the top element; peek reads it without removing"),
+        # Stack misuse modes
+        Relationship("push", "stack_overflow", RT.HAS_PROPERTY, 0.8,
+                     "Pushing onto a full stack causes overflow"),
+        Relationship("pop", "stack_underflow", RT.HAS_PROPERTY, 0.8,
+                     "Popping an empty stack causes underflow"),
+
+        # Queue operation pair: enqueue inserts, dequeue removes
+        Relationship("enqueue", "dequeue", RT.CONTRASTS_WITH, 1.0,
+                     "Enqueue adds to the back; dequeue removes from the front"),
+
+        # FIFO vs LIFO — fundamental access-pattern contrast
+        Relationship("fifo", "lifo", RT.CONTRASTS_WITH, 1.0,
+                     "FIFO (queue) vs LIFO (stack) access patterns"),
+
+        # Heap variants — min vs max priority semantics
+        Relationship("max_heap", "min_heap", RT.CONTRASTS_WITH, 1.0,
+                     "Max-heap retrieves maximum; min-heap retrieves minimum"),
+
+        # Iteration — fundamental traversal pattern over linear structures
+        Relationship("iteration", "array", RT.OPERATES_ON, 0.9,
+                     "Iteration walks across array elements"),
+        Relationship("iteration", "linked_list", RT.OPERATES_ON, 0.9,
+                     "Iteration walks through linked-list nodes"),
+        Relationship("iteration", "data_structure", RT.OPERATES_ON, 0.8,
+                     "Iteration is a general traversal pattern"),
     ]
 
     for rel in relationships:

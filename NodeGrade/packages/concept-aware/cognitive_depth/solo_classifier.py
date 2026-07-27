@@ -264,6 +264,12 @@ class SOLOClassifier:
         Uses ensemble of rule-based (KG features) + LLM (CoT reasoning).
         """
         # Extract features from concept graph and comparison
+        # Framework Fix #26 (2026-06-15): mirror of Fix #8 for the legacy
+        # SOLO standalone. When concept_graph is flagged OUT_OF_KG_DOMAIN,
+        # treat the situation as "no KG evidence available" — same as the
+        # concept_graph is None path below. Otherwise the rule-based
+        # classifier returns PRESTRUCTURAL and drags the LLM ensemble down.
+        out_of_kg = bool(concept_graph and concept_graph.get("out_of_kg_domain", False))
         num_concepts = 0
         concept_list = "none"
         num_rels = 0
@@ -272,7 +278,7 @@ class SOLOClassifier:
         kg_depth = "not assessed"
         isolated = 0
 
-        if concept_graph:
+        if concept_graph and not out_of_kg:
             concepts = concept_graph.get("concepts", [])
             num_concepts = len(concepts)
             concept_list = ", ".join(
@@ -301,20 +307,22 @@ class SOLOClassifier:
         )
 
         # 2. LLM-based classification
-        # When no concept_graph is provided, avoid polluting the prompt with
-        # misleading "0 concepts" evidence — tell the LLM to classify from text.
-        if concept_graph is None:
+        # When no concept_graph is provided OR the question is out-of-KG,
+        # avoid polluting the prompt with misleading "0 concepts" evidence —
+        # tell the LLM to classify from text. Framework Fix #26 extends the
+        # original is-None guard to include the OUT_OF_KG_DOMAIN path.
+        if concept_graph is None or out_of_kg:
             kg_evidence_str = "Not available — classify from text content only."
             user_prompt = SOLO_COT_USER.format(
                 question=question,
                 student_answer=student_answer,
-                num_concepts="N/A",
-                concept_list="N/A",
-                num_relationships="N/A",
-                integration_score="N/A",
-                isolated_concepts="N/A",
-                coverage_score="N/A",
-                kg_depth="N/A",
+                num_concepts="OUT OF KG COVERAGE" if out_of_kg else "N/A",
+                concept_list="OUT OF KG COVERAGE — classify from text only" if out_of_kg else "N/A",
+                num_relationships="OUT OF KG COVERAGE" if out_of_kg else "N/A",
+                integration_score="OUT OF KG COVERAGE" if out_of_kg else "N/A",
+                isolated_concepts="OUT OF KG COVERAGE" if out_of_kg else "N/A",
+                coverage_score="OUT OF KG COVERAGE" if out_of_kg else "N/A",
+                kg_depth="OUT OF KG COVERAGE" if out_of_kg else "N/A",
             )
         else:
             user_prompt = SOLO_COT_USER.format(
@@ -339,9 +347,11 @@ class SOLOClassifier:
             llm_confidence = float(parsed.get("confidence", 0.5))
 
             # 3. Ensemble: weighted combination
-            # When no concept graph is available, rule-based defaults to
-            # PRESTRUCTURAL (no KG evidence) — trust LLM fully in that case.
-            if concept_graph is None:
+            # When no concept graph is available OR the question is out-of-KG
+            # (Framework Fix #26), rule-based defaults to PRESTRUCTURAL with
+            # no real signal — trust LLM fully in that case to avoid
+            # dragging the verdict to level 1.
+            if concept_graph is None or out_of_kg:
                 final_level = llm_level
                 confidence = llm_confidence
             # If LLM and rules agree → high confidence

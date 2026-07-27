@@ -1,0 +1,45 @@
+{
+  "round": 3,
+  "model": "gemini-2.5-flash (via user-pasted web interface)",
+  "date": "2026-05-31",
+  "question_file": "GEMINI_ROUND3_QUESTION.txt",
+  "response": {
+    "cost_estimate_re_review": "You are still undercounting, specifically on Phase 3. Your 1,400 input token assumption works for Phase 2 zero-shot grading because you are only passing the question, rubric, and answer. But Phase 3 requires the model to analyze a pipeline failure. To diagnose a discrepancy, you must pass the question, the rubric, the student answer, the gold answer, the human score, the final pipeline score, and the complete 5-layer execution trace (intermediate KG extractions, layer rationales, and component vectors). That trace alone will easily exceed 3,000-5,000 tokens per sample. Furthermore, if you are not explicitly optimizing for Anthropic's prompt caching structure (which requires a minimum of 1,024 tokens and specific prefixing), you will pay full price for the system prompt and rubric on every single discrete call. Your Claude budget will spike past $5.00 once Phase 3 runs.",
+    "phase3_design_check": "Running your error-archetype analysis on 50 samples exclusively from DigiKlausur makes the result interesting but academically unactionable. First, it introduces severe dataset bias: DigiKlausur's failures may stem from language nuances (if German) or specific rubric constraints that do not map to Mohler or Kaggle. Second, you are using a frontier LLM to guess why a lightweight LLM pipeline failed, creating a stack of unvalidated automated assumptions. To make this actionable, you must select 25 errors from Mohler (in-domain failures) and 25 from DigiKlausur/Kaggle (out-of-domain failures) to create a comparative table showing how failure archetypes shift under domain divergence. Without this contrast, reviewers will dismiss it as a localized, arbitrary breakdown.",
+    "silent_failure_stratification_check": "You have identified a profound structural hazard, but it's not circularity-it's an operational validity flaw. In your user study, you select items where the pipeline is highly confident but wrong according to human ground truth. However, in a real-world deployment, the educator does *not* have the human ground truth score ahead of time. They only have the dashboard and the pipeline's internal telemetry. If your 'silent failures' are truly insidious, it means the pipeline's internal flags (such as KG density or SOLO scores) look perfectly normal despite the bad grade. If the dashboard features do not actively betray the error, the educator will look at a confident 4.5/5.0 score, see clean visual layouts, and blindly click 'Accept.' You are at risk of proving that your dashboard fails to stop users from trusting a confidently wrong AI.",
+    "re_reframing_audit": "The shift to 'structural-confidence triage in cross-domain KG-grounded ASAG' is exactly what an IEEE VIS reviewer wants to see. It elevates the paper from a narrow troubleshooting report for a custom software tool to an uncertainty-visualization study for a broader class of AI architectures. However, the contribution holds up only if your dashboard's visual components explicitly map to the failure modes. If your Phase 3 analysis reveals that the top failure mode is 'rubric mismatch,' but your dashboard only visualizes 'KG extraction density,' a VIS reviewer will instantly reject the paper for a structural misalignment between the task analysis and the interface design.",
+    "hard_abort_policy_check": "Your hard-abort policy successfully insulates your wallet, but it ruins your operational efficiency. Because you have implemented state-saving checkpoints and aggressive caching, restarting after an abort won't duplicate your API fees. However, transient internet hiccups, cloud provider rate limits, or HTTP 429/503 errors occur frequently when processing hundreds of sequential calls to frontier endpoints. Forcing a hard manual intervention for every single standard network flicker will make running this evaluation an exhausting babysitting exercise. You should add a basic retry wrapper with exponential backoff capped at 3 attempts before executing a hard abort.",
+    "what_else_is_wrong": [
+      "Language Mismatch: The DigiKlausur dataset is natively German. If you are feeding raw German student responses directly into Claude 3.5 Sonnet alongside an English system prompt and grading rubric without an explicit translation layer or multilingual validation, your zero-shot baseline will suffer from severe cross-lingual mapping errors.",
+      "Statistical Power Illusion: You are powering your user study at d >= 0.7 for N=64. If this is a between-subject design (32 participants per group), detecting a large effect size requires a massive behavioral difference. If your dashboard's visual indicators are subtle or ambiguous, your true effect size will fall closer to d = 0.3, leaving your study completely underpowered and destined for a null result.",
+      "Zero-Shot Rounding Bias: Forcing Claude to score in 0.25-point increments zero-shot will introduce severe statistical rounding artifacts. LLMs are notoriously poor at maintaining granular interval scales without chain-of-thought calibration; it will naturally over-index on integer bounds (3.0, 4.0) and half-points (3.5), skewing your baseline comparison against the continuous pipeline scores."
+    ],
+    "should_i_actually_run_this_or_skip": "re-design_first",
+    "overall_advice": "Do not execute this script yet. You must first fix the Phase 3 sampling strategy to compare in-domain versus out-of-domain errors so that your failure-archetype table actually tells a story. More importantly, verify your user study logic: look at your cached data for the 'silent-failure' items and confirm that the pipeline's internal metrics (which your dashboard visualizes) show a clear statistical anomaly during those failures. If the internal metrics look normal during an error, your dashboard will be blind to the failure, and your user study will yield a null result."
+  },
+  "actions_taken_in_response": {
+    "language_mismatch_check": {
+      "action": "Empirically verified DigiKlausur content language by inspecting samples 0, 100, 300.",
+      "result": "FALSE ALARM — DigiKlausur is English-content despite German project name.",
+      "no_paper_change_needed": true
+    },
+    "silent_failure_premise_check": {
+      "action": "Ran check_silent_failure_signals.py to test whether the proposed silent-failure stratum has internal signals distinguishable from the reliable stratum.",
+      "result": "GEMINI WAS RIGHT — premise is partially broken. Mohler: 0 silent-failure cases exist. Kaggle: pipeline's internal signals identical across reliable and silent-failure (all zeros). DigiKlausur: chain_pct and SOLO discriminate (p<0.0001), but matched_n and Bloom do not.",
+      "user_study_impact": "User study must narrow to DigiKlausur-derived silent failures only; only 2 of 5 originally-proposed dashboard signals (chain_pct, SOLO) actually discriminate.",
+      "next_step": "Asked user for go-ahead on narrower H1' framing and dropping inert visual indicators from contributions list."
+    },
+    "phase3_token_estimate_raised": {
+      "from": "1800 in / 350 out",
+      "to": "3500 in / 350 out (per Gemini R3)",
+      "new_estimate_phase3_claude": "$0.79 (was $0.53)"
+    },
+    "phase3_cross_dataset": {
+      "from": "50 samples DigiKlausur only",
+      "to": "25 Mohler + 25 DigiKlausur (Kaggle excluded due to degenerate signals)"
+    },
+    "retry_wrapper_added": "3-attempt exponential backoff before abort; only retries transient errors (429/503/network).",
+    "zero_shot_rounding_mitigated": "Phase 2 prompt now requests continuous 2-decimal scores; explicitly discourages rounding to whole/half integers.",
+    "execution_status": "Per Gemini R3 verdict ('re-design_first'), script has NOT been executed. Awaiting user decision on narrower user-study H1'."
+  }
+}

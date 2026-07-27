@@ -1,0 +1,82 @@
+You previously advised me on a Gemini API budget for validating ConceptGrade (a 5-layer KG-grounded ASAG pipeline). You said to skip the full Tier 2 hyperparameter optimization plan because the pipeline doesn't generalize cross-dataset, and instead spend ~$20 on:
+
+  (A) ~$5: extract raw 5-signal vectors for the 120 Mohler samples via Gemini, so the ensemble + kg_weight grid search can run offline in NumPy/SciPy for $0;
+  (B) ~$15: frontier-LLM zero-shot baseline (Claude 3.5 Sonnet or GPT-4o) on Mohler n=120 + 200-sample random slices of DigiKlausur and Kaggle ASAG.
+
+You also flagged three sharp methodological warnings: "polishing a sinking ship" (don't tune hyperparams on Mohler when the pipeline fails to generalize), "VIS Paper Crisis" (the dashboard is for a pipeline that's ineffective on 2/3 datasets — desk-reject risk), and "Machine-IRR Illusion" (κ=0.29 is too low for the misconception taxonomy).
+
+I implemented your plan. I need your honest, critical review of WHAT I ACTUALLY BUILT and whether the cost estimates I got make sense. Be specific. Don't be polite. Tell me where this will break.
+
+# What I built: run_validation_budget.py
+
+A two-phase script with safety rails:
+- Phase 1: one Gemini call per Mohler sample. System prompt asks for a JSON object with 5 scalar signals (concept_coverage, relation_accuracy, depth_score, solo_score, completeness, rationale). temperature=0, max_output_tokens=256, response_mime_type="application/json".
+- Phase 2: zero-shot grading on 120 Mohler + 200 DigiKlausur + 200 Kaggle ASAG samples (520 total). System prompt asks for {"score": 0.0-5.0 in 0.25 increments, "rationale": "one sentence"}. Defaults to Claude 3.5 Sonnet; falls back to GPT-4o-mini if no Anthropic key; errors out if no frontier key at all.
+
+Safety rails:
+- DRY-RUN BY DEFAULT (--execute required to actually call APIs)
+- Hard MAX_BUDGET_USD = 25 with per-call cost tracking
+- Aborts cleanly via BudgetExceeded exception
+- Aggressive caching (skip sample if already processed)
+- Checkpoint every 10 samples
+- max_output_tokens enforced on every call
+
+# Cost estimates I got back from dry-run
+
+These are MUCH lower than your earlier estimates. Are they realistic, or am I being naive?
+
+| Combination                              | Cost   |
+|------------------------------------------|--------|
+| Phase 1 only (Gemini, 120 samples)       | $0.07  |
+| Phase 1 + Phase 2 Claude (520 samples)   | $1.55  |
+| Phase 1 + Phase 2 GPT-4o (520 samples)   | $1.24  |
+| Phase 1 + Phase 2 GPT-4o-mini            | $0.14  |
+
+Per-call assumptions in the dry-run:
+- Phase 1: ~600 input + 150 output tokens per call
+- Phase 2: ~700 input + 50 output tokens per call
+- gemini-2.5-flash:   $0.30/$2.50 per 1M in/out
+- claude-3-5-sonnet:  $3.00/$15.00 per 1M in/out
+- gpt-4o:             $2.50/$10.00 per 1M in/out
+- gpt-4o-mini:        $0.15/$0.60 per 1M in/out
+
+You earlier said my per-call estimates were off because the 5-layer pipeline is actually 5 LLM calls per sample. Phase 1 collapses all 5 signals into a SINGLE call returning a JSON vector. Does that actually work? Is there a hidden token-count risk I'm missing?
+
+# What I also did: Paper 2 framing pivot (per your VIS Paper Crisis warning)
+
+I rewrote Paper 2's abstract, introduction, contributions, and primary-outcome section around your suggested pivot: dashboard as failure-mode triage tool rather than grade-verification tool. Specifically:
+
+NEW primary outcome (H1'): Each participant scored on FAILURE-DETECTION ACCURACY on a stratified task set:
+- 1/3 Mohler-like (pipeline reliable; d_z = -0.30): correct = ACCEPT the AI grade
+- 1/3 DigiKlausur-like (marginal; d_z = -0.07): correct = either ACCEPT or MODIFY (explicit uncertain band)
+- 1/3 Kaggle-like (pipeline architecturally fails; 100% empty extraction): correct = MODIFY or REJECT
+
+H1' = Condition B (interactive dashboard surfacing extraction-collapse, SOLO-collapse, and zero-grounding indicators) yields strictly higher failure-detection accuracy than Condition A (text-only summary). Powered for 80% at d ≥ 0.7. Original CA-rate/SA-rate hypotheses are demoted to secondary outcomes.
+
+# Your job
+
+Six questions. Be specific.
+
+1. **Are the dry-run cost numbers realistic, or am I underestimating?** Walk through where I'm wrong.
+
+2. **Does collapsing the 5-layer pipeline into a single Phase 1 Gemini call actually give me usable signal vectors?** Or am I asking the model to do something it can't?
+
+3. **Phase 2 design check.** Is "claude-3-5-sonnet on 520 samples for $1.50" realistic for a same-test-set head-to-head against ConceptGrade? Or is there a hidden multiplier (retries, rate limits, response_format JSON cost)?
+
+4. **Failure-detection primary outcome design check.** Is the 1/3 × 3 stratification actually testable with N=64? What's the most likely way this user study fails to detect the effect even if it's real?
+
+5. **Reframing audit.** Did the Paper 2 pivot from "verify grades" to "failure-mode triage" address your VIS Paper Crisis concern, or did I just re-paint the box? Be brutal.
+
+6. **One concrete improvement.** If I added $5 more to the budget, what's the highest-impact thing I should run?
+
+Respond as structured JSON:
+{
+  "dry_run_estimate_review": "...",
+  "phase1_signal_extraction_review": "...",
+  "phase2_design_review": "...",
+  "failure_detection_outcome_review": "...",
+  "vis_paper_reframing_audit": "...",
+  "best_extra_5_dollar_addition": "...",
+  "any_red_flags_in_implementation": [...],
+  "overall_advice": "..."
+}

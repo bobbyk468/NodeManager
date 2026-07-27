@@ -1,0 +1,63 @@
+{
+  "round": 4,
+  "model": "gemini-2.5-flash (via user-pasted web interface)",
+  "date": "2026-05-31",
+  "question_file": "GEMINI_ROUND4_QUESTION.txt",
+  "response": {
+    "q1_recommendation": "narrow",
+    "q1_justification": "IEEE VIS reviewers are notoriously hawkish about alignment between claims and evaluation. If your abstract promises a generalized framework for 'failure-detection accuracy' but your study systematically excludes 2 out of 3 datasets via a footnote because the pipeline broke or yielded no failures, reviewers will treat it as a bait-and-switch. Option A (Narrow) is highly defensible: it frames the study as a targeted evaluation of how interactive telemetry mitigates silent semantic drift in out-of-domain grading. This turns a structural weakness into a controlled, clean experimental design.",
+    "q2_recommendation": "Y_keep_with_alternate",
+    "q2_justification": "If you strip the dashboard down to just a banner and a SOLO indicator (Option Z), it ceases to look like a Visual Analytics environment and begins to look like a simple alert notification UI, which will invite 'low visual complexity' rejections. Retaining the heatmap and Bloom bands under Option Y--explicitly framed as descriptive metadata for routine grading and cognitive-depth auditing rather than active triage indicators--maintains the system's utility as a comprehensive workspace. It shows design maturity: acknowledging that not every visual component is an alarm bell, some are there to provide baseline context.",
+    "should_run_phase2": "yes",
+    "should_run_phase3": "yes",
+    "phase_run_justification": "Phase 2 is non-negotiable for Paper 1 to establish whether a frontier baseline eliminates the cross-dataset drop-off. Phase 3 (Error Archetypes) is absolutely critical for Paper 2. Since your Mann-Whitney U test proved that chain_pct (zero-grounding) and SOLO bands are your only discriminating signals, you must run Phase 3 on those 62 DigiKlausur silent failures to find out *why*. If Claude reveals that these 62 cases are defined by severe idiom mismatches or missing logic leaps, you can elegantly tie your Phase 3 data directly to your dashboard's design, proving why the zero-grounding banner fired.",
+    "publication_path_recommendation": "split_papers",
+    "publication_path_justification": "You cannot submit Paper 2 to VIS 2027 with placeholders for an un-run user study; that is an automatic, immediate desk-rejection. You must split them. Push Paper 1 to an NLP/EdAI venue immediately, leaning fully into the honest, messy cross-dataset heterogeneity results (reviewers respect systems that document their own boundaries). Hold back Paper 2. Now that you know only DigiKlausur has usable silent-failure items, rewrite the user study protocol to sample exclusively from DigiKlausur, run the actual N=64 study over the summer, and submit a complete, data-backed paper to VIS 2027.",
+    "validity_check_gaps": [
+      "Univariate Bias: You ran isolated Mann-Whitney U tests. You missed looking at multivariate feature interactions. A decision tree or logistic regression run on your cached telemetry might reveal that while matched_n alone is not significant (p=0.099), the interaction of a low matched_n with a high depth_score is an incredibly strong predictor of a silent failure.",
+      "Ignoring the Kaggle Collapse: Labeling the Kaggle dataset as 'degenerate' and skipping it hides the real story. The 100% upstream extraction collapse is itself a massive visual triage trigger that your dashboard should visualize. You need to verify if an 'extraction empty' status flag can be explicitly caught and surfaced in the UI."
+    ],
+    "trm_gap_badges_recommendation": "a_validity_check",
+    "overall_verdict": "Your empirical check completely saved you from running a failed, unpowered user study. Since you now know exactly which internal signals function as true smoke detectors (chain_pct and SOLO), drop the broader illusions, re-scope your user study stimulus set entirely around the DigiKlausur discrepancies, run Phase 3 to qualitatively ground those failure modes, and execute the user study for real. Do not submit the visualization paper until the placeholders are replaced with actual user behavioral data."
+  },
+  "actions_taken_in_response": {
+    "q1_narrow_H1_prime": {
+      "status": "applied",
+      "where": "Paper 2 §5.1, Primary outcome paragraph fully rewritten",
+      "narrow_form": "Condition B (dashboard with zero-grounding banner + SOLO band) yields strictly higher correct-rejection accuracy on DigiKlausur silent-failure stratum than Condition A (text-only)."
+    },
+    "q2_keep_with_alternate_framing": {
+      "status": "applied",
+      "matched_n_heatmap": "Retained, reframed as 'descriptive metadata for routine concept-coverage triage on reliable items'.",
+      "bloom_band": "Retained, reframed as 'cognitive-depth auditing on reliable items'.",
+      "trm_gap_badges": "Retained but with explicit empirical note (see Q6) that they did not discriminate in cached data."
+    },
+    "q3_run_phase2_and_phase3": {
+      "status": "approved but deferred",
+      "phase2_use_case": "Paper 1 frontier-LLM head-to-head; awaiting user decision to add API key.",
+      "phase3_use_case": "Paper 2 (later VIS 2028 submission) error-archetype distribution backing the chain_pct+SOLO discriminators; defer until pre-user-study analysis budget approved."
+    },
+    "q4_split_papers": {
+      "status": "applied",
+      "paper_1_path": "Submission-ready for NLP/EdAI venue; leans into honest cross-dataset heterogeneity (already in current draft).",
+      "paper_2_path": "Explicitly NOT submitted to IEEE VIS 2027; manuscript header updated to 'design-and-protocol document, pre-data-collection'. Real submission target shifted to IEEE VIS 2028 (after N=64 user study runs over summer 2026 per OSF preregistration)."
+    },
+    "q5_validity_check_gaps": {
+      "univariate_bias_check": {
+        "action": "Ran multivariate logistic regression on DigiKlausur with all 5 base features + 4 pairwise interactions.",
+        "result": "Train accuracy 0.816 vs majority baseline 0.821 -- multivariate model does NOT recover hidden discriminating signal. Gemini's specific hypothesis (low matched_n x high SOLO predicts silent failure) does not hold: 21% of silent vs 16.5% of reliable trigger this interaction.",
+        "file": "data/multivariate_validity_check.json"
+      },
+      "kaggle_extraction_empty_check": {
+        "action": "Noted in validity check that Kaggle's 100% empty-extraction state IS a visualizable flag; will be surfaced as 'all-zero matched_concepts + zero chain_pct' indicator in the dashboard for the deferred Paper 2.",
+        "status": "documented; not implemented in current dashboard design which only has 5 visual components empirically tested on DigiKlausur."
+      }
+    },
+    "q6_trm_gap_badges_validity_check": {
+      "action": "Ran TRM validity check on DigiKlausur (143 reliable + 24 silent-failure with cached TRM traces).",
+      "result": "EMPIRICALLY INERT: topological_gap_count (p=0.69), grounding_density (p=0.31), reasoning_step_count (p=0.90), grounded_step_count (p=0.31), zero_grounding_degenerate (p=0.31) -- none discriminate. 96% of reliable AND 100% of silent-failure are flagged 'zero_grounding_degenerate'; the signal is essentially saturated and useless as a triage discriminator on DigiKlausur.",
+      "decision": "Demoted TRM gap badges from 'discriminating affordance' to 'descriptive metadata' alongside matched_n heatmap and Bloom band, per Q2 Option Y reasoning. The dashboard's load-bearing discriminating affordances reduce to just chain_pct (zero-grounding banner) + SOLO (band coloring).",
+      "file": "data/trm_gap_badges_digiklausur_check.json"
+    }
+  }
+}

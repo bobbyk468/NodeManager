@@ -93,36 +93,87 @@ def load_mohler_samples() -> list[dict]:
     return _enrich_with_kg(samples, 'mohler')
 
 
-def _enrich_with_kg(samples: list[dict], dataset: str) -> list[dict]:
-    """Add kg_nodes / kg_edges / kg_edges_text from {dataset}_auto_kg.json if present."""
-    kg_nodes_by_q: dict[str, list[str]] = {}
-    kg_edges_by_q: dict[str, list[str]] = {}
-    kg_text_by_q:  dict[str, str]       = {}
-
+def _load_per_question_kg(dataset: str) -> tuple[dict, dict, dict]:
+    """Read {dataset}_auto_kg.json into (nodes_by_q, edges_by_q, text_by_q)."""
+    nodes_by_q: dict[str, list[str]] = {}
+    edges_by_q: dict[str, list[str]] = {}
+    text_by_q:  dict[str, str]       = {}
     kg_path = DATA_DIR / f'{dataset}_auto_kg.json'
-    if kg_path.exists():
-        with open(kg_path) as f:
-            kg_raw = json.load(f)
-        for qid, qdata in (kg_raw.get('question_kgs') or {}).items():
-            nodes = qdata.get('expected_concepts', [])
-            edges = list({e.get('type', '') for e in qdata.get('relationships', [])})
-            text  = '; '.join(
-                f"{e.get('source','')} {e.get('type','')} {e.get('target','')}"
-                for e in qdata.get('relationships', [])[:10]
-            )
-            kg_nodes_by_q[qid] = nodes
-            kg_edges_by_q[qid] = edges
-            kg_text_by_q[qid]  = text
+    if not kg_path.exists():
+        return nodes_by_q, edges_by_q, text_by_q
+    with open(kg_path) as f:
+        kg_raw = json.load(f)
+    for qid, qdata in (kg_raw.get('question_kgs') or {}).items():
+        nodes_by_q[qid] = qdata.get('expected_concepts', [])
+        edges_by_q[qid] = list({e.get('type', '') for e in qdata.get('relationships', [])})
+        text_by_q[qid]  = '; '.join(
+            f"{e.get('source','')} {e.get('type','')} {e.get('target','')}"
+            for e in qdata.get('relationships', [])[:10]
+        )
+    return nodes_by_q, edges_by_q, text_by_q
 
+
+_GLOBAL_KG_CACHE: dict | None = None
+
+def _load_global_kg() -> tuple[list[str], list[str], str]:
+    """Load global KG (data/ds_knowledge_graph.json) once and cache.
+    Returns (node_ids, edge_types, edges_text)."""
+    global _GLOBAL_KG_CACHE
+    if _GLOBAL_KG_CACHE is not None:
+        return (_GLOBAL_KG_CACHE['node_ids'],
+                _GLOBAL_KG_CACHE['edge_types'],
+                _GLOBAL_KG_CACHE['edges_text'])
+    path = DATA_DIR / 'ds_knowledge_graph.json'
+    if not path.exists():
+        _GLOBAL_KG_CACHE = {'node_ids': [], 'edge_types': [], 'edges_text': ''}
+        return [], [], ''
+    with open(path) as f:
+        gkg = json.load(f)
+    node_ids = [c['id'] for c in gkg.get('concepts', [])]
+    edge_types = sorted({
+        r.get('relation_type', '') for r in gkg.get('relationships', [])
+        if r.get('relation_type')
+    })
+    edges_text = '; '.join(
+        f"{r.get('source_id','')} {r.get('relation_type','')} {r.get('target_id','')}"
+        for r in gkg.get('relationships', [])[:10]
+    )
+    _GLOBAL_KG_CACHE = {'node_ids': node_ids, 'edge_types': edge_types, 'edges_text': edges_text}
+    return node_ids, edge_types, edges_text
+
+
+def _resolve_kg_for_qid(qid: str, nodes_by_q, edges_by_q, text_by_q) -> tuple[list[str], list[str], str, str]:
+    """Resolve the (kg_nodes, kg_edges, kg_edges_text, kg_source) for one
+    question id. Falls back to the global KG when no per-question entry
+    exists. This single helper fixes Defect #2 / #3 / #7 (global density
+    going from 0% to 30-55% on cached Mohler reasoning steps).
+    """
+    per_q = nodes_by_q.get(qid)
+    if per_q:
+        return per_q, edges_by_q.get(qid, []), text_by_q.get(qid, ''), 'per_question_auto_kg'
+    gn, ge, gt = _load_global_kg()
+    return gn, ge, gt, 'global_kg_fallback'
+
+
+def _enrich_with_kg(samples: list[dict], dataset: str) -> list[dict]:
+    """Add kg_nodes / kg_edges / kg_edges_text from {dataset}_auto_kg.json if
+    present, falling back to the global KG when no per-question entry exists.
+
+    Framework Fix #2/#3/#7 (2026-05-31): the fallback replaces the previous
+    silent zero-out (which left kg_nodes=[] for every sample, saturating
+    zero_grounding_degenerate at 96-100%).
+    """
+    nodes_by_q, edges_by_q, text_by_q = _load_per_question_kg(dataset)
     for s in samples:
         qid = str(s.get('question_id', s.get('id', '')))
-        s.setdefault('kg_nodes',     kg_nodes_by_q.get(qid, []))
-        s.setdefault('kg_edges',     kg_edges_by_q.get(qid, []))
-        s.setdefault('kg_edges_text', kg_text_by_q.get(qid, ''))
+        kn, ke, kt, ks = _resolve_kg_for_qid(qid, nodes_by_q, edges_by_q, text_by_q)
+        s.setdefault('kg_nodes',     kn)
+        s.setdefault('kg_edges',     ke)
+        s.setdefault('kg_edges_text', kt)
+        s.setdefault('kg_source',    ks)
         s.setdefault('matched_concepts', [])
         s.setdefault('missing_concepts', [])
         s.setdefault('chain_pct', 0)
-
     return samples
 
 
@@ -151,30 +202,16 @@ def load_eval_samples(dataset: str, sample_n: Optional[int] = None) -> list[dict
             for row in dataset_rows:
                 raw_text_by_id[str(row.get('id', ''))] = row
 
-    # KG enrichment
-    kg_nodes_by_q: dict[str, list[str]] = {}
-    kg_edges_by_q: dict[str, list[str]] = {}
-    kg_text_by_q:  dict[str, str]       = {}
-    kg_path = DATA_DIR / f'{dataset}_auto_kg.json'
-    if kg_path.exists():
-        with open(kg_path) as f:
-            kg_raw = json.load(f)
-        for qid, qdata in (kg_raw.get('question_kgs') or {}).items():
-            nodes  = qdata.get('expected_concepts', [])
-            edges  = list({e.get('type', '') for e in qdata.get('relationships', [])})
-            text   = '; '.join(
-                f"{e.get('source','')} {e.get('type','')} {e.get('target','')}"
-                for e in qdata.get('relationships', [])[:10]
-            )
-            kg_nodes_by_q[qid] = nodes
-            kg_edges_by_q[qid] = edges
-            kg_text_by_q[qid]  = text
+    # KG enrichment — uses the same helpers as _enrich_with_kg so the global-KG
+    # fallback (Framework Fix #2/#3/#7) is applied consistently.
+    nodes_by_q, edges_by_q, text_by_q = _load_per_question_kg(dataset)
 
     enriched = []
     for r in results:
         sid = str(r.get('id', ''))
         qid = str(r.get('question_id', sid))
         raw_text = raw_text_by_id.get(sid, {})
+        kn, ke, kt, ks = _resolve_kg_for_qid(qid, nodes_by_q, edges_by_q, text_by_q)
         enriched.append({
             'id':              r.get('id'),
             'question':        r.get('question') or raw_text.get('question', ''),
@@ -186,9 +223,10 @@ def load_eval_samples(dataset: str, sample_n: Optional[int] = None) -> list[dict
             'matched_concepts': r.get('matched_concepts', []),
             'missing_concepts': r.get('missing_concepts', []),
             'chain_pct':       r.get('chain_pct', 0),
-            'kg_nodes':        kg_nodes_by_q.get(qid, []),
-            'kg_edges':        kg_edges_by_q.get(qid, []),
-            'kg_edges_text':   kg_text_by_q.get(qid, ''),
+            'kg_nodes':        kn,
+            'kg_edges':        ke,
+            'kg_edges_text':   kt,
+            'kg_source':       ks,
         })
     return enriched
 

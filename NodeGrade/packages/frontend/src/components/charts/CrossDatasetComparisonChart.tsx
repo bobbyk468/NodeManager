@@ -69,31 +69,19 @@ export const CrossDatasetComparisonChart: React.FC<Props> = ({ apiBase, conditio
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    fetch(`${apiBase}/api/visualization/datasets`)
+    fetch(`${apiBase}/api/visualization`)
       .then((r) => r.json())
-      .then(async (res: { datasets: string[] }) => {
-        const settled = await Promise.allSettled(
-          res.datasets.map((ds) =>
-            fetch(`${apiBase}/api/visualization/datasets/${ds}`)
-              .then((r) => (r.ok ? (r.json() as Promise<DatasetSummaryResponse>) : Promise.reject()))
-              .then(
-                (d): DatasetPoint => ({
-                  dataset:    ds,
-                  shortLabel: DATASET_META[ds]?.short  ?? ds,
-                  domainLabel:DATASET_META[ds]?.domain ?? '',
-                  cllm_mae:   d.metrics.C_LLM.mae,
-                  c5_mae:     d.metrics.C5_fix.mae,
-                  delta_pct:  d.mae_reduction_pct,
-                  wilcoxon_p: d.wilcoxon_p,
-                }),
-              ),
-          ),
-        );
-        const fulfilled = settled
-          .filter((r): r is PromiseFulfilledResult<DatasetPoint> => r.status === 'fulfilled')
-          .map((r) => r.value)
-          .sort((a, b) => b.cllm_mae - a.cllm_mae); // highest CLLM MAE first = top of chart
-        setPoints(fulfilled);
+      .then((res: { datasets: DatasetSummaryResponse[] }) => {
+        const mapped = res.datasets.map((d: DatasetSummaryResponse): DatasetPoint => ({
+          dataset:    d.dataset,
+          shortLabel: DATASET_META[d.dataset]?.short  ?? d.dataset,
+          domainLabel:DATASET_META[d.dataset]?.domain ?? '',
+          cllm_mae:   d.metrics.C_LLM.mae,
+          c5_mae:     d.metrics.C5_fix.mae,
+          delta_pct:  d.mae_reduction_pct,
+          wilcoxon_p: d.wilcoxon_p,
+        })).sort((a, b) => b.cllm_mae - a.cllm_mae);
+        setPoints(mapped);
         setLoading(false);
       })
       .catch(() => { setError(true); setLoading(false); });

@@ -114,6 +114,15 @@ def precompute_features(
         kg = q_to_kg.get(q, {})
         concepts = kg.get("concepts", [])
         expected = kg.get("expected_concepts", [c["id"] for c in concepts])
+        # Framework Fix #2c (2026-06-15): explicit out-of-KG-domain signal.
+        # When the question itself has no KG entry (Kaggle science questions
+        # against the CS-DS KG), low coverage downstream does not mean
+        # "student failed" — it means "KG cannot help here". The C5_fix
+        # prompt uses this to tell the LLM not to penalise the student for
+        # not using KG terminology. Mirror of the upstream
+        # StudentConceptGraph.domain_match_score signal added in Fix #2b.
+        in_q_to_kg = q in q_to_kg
+        domain_match_score = 1.0 if (in_q_to_kg and concepts) else 0.0
         matched = unified_concept_match(
             r["student_answer"], concepts, cache=embed_cache
         )
@@ -130,6 +139,8 @@ def precompute_features(
             "n_kg_concepts": len(concepts),
             "coverage_ratio": round(cov, 4),
             "use_kg": use_kg,
+            "domain_match_score": domain_match_score,
+            "out_of_kg_domain": domain_match_score < 0.05,
         }
     return features
 
@@ -227,11 +238,27 @@ def build_c5fix_prompt(batch: list[dict], features: dict, scoring_guide: str | N
     """
     guide = scoring_guide if scoring_guide is not None else SCORING_GUIDE
     increment_note = "Use integer scores (0, 1, 2, 3, 4, 5) only." if scoring_guide == SCORING_GUIDE_STRICT else "Use 0.25 increments."
+    # Framework Fix #1 (2026-05-31): two surgical changes vs the previous
+    # build_c5fix_prompt that empirically lost to v2-concepts_only on Mohler:
+    #   Diff #1: removed "Cognitive depth detected: <bloom>" line. The Bloom
+    #            label is empirically inert (does not discriminate silent
+    #            failures, p=0.46 on DigiKlausur) and primed the model to
+    #            under-weight student-answer content.
+    #   Diff #2: replaced prescriptive "KG GUIDANCE" framing with
+    #            "PRIMARY (student vs reference) / SUPPLEMENTARY (KG)"
+    #            framing copied from v2-concepts_only (which achieved
+    #            MAE 0.217 vs C5_fix 0.223).
     system = f"""{guide}
 
-You are an expert grader. Some samples include optional KG GUIDANCE (expected concepts from a knowledge graph). When KG GUIDANCE is present, use it as a conceptual checklist: does the student's answer address these ideas (even in their own words)? The KG guides what to look for; it does NOT mechanically penalize missing keywords.
+You are an expert grader.
 
-When a sample has NO KG GUIDANCE section (reference-only block), grade using ONLY the question, reference answer, and student answer — same as a plain LLM grader.
+PRIMARY evidence (always): compare the student's answer against the reference answer. Ask: what key concepts from the reference did the student cover? What is missing?
+
+SUPPLEMENTARY evidence (when present): KG matched concepts and chain coverage percentage. These confirm which knowledge-graph concepts were detected in the answer. IMPORTANT: if matched concepts = "none" or chain coverage = 0%, do NOT automatically give 0 -- read the student answer and score based on what you see.
+
+When a sample has NO KG SUPPLEMENTARY EVIDENCE section, grade using ONLY the question, reference answer, and student answer.
+
+When a sample is marked [OUT_OF_KG_DOMAIN], the question is outside the knowledge graph's coverage. The absence of KG matches is a property of the system, NOT a property of the student's answer. Grade student-vs-reference only and do not penalise the student for the missing KG evidence.
 
 Return a JSON object:
 {{
@@ -248,6 +275,16 @@ Grade all {len(batch)} samples. {increment_note}"""
         sid = str(r["id"])
         feat = features.get(sid, {})
         use_kg = feat.get("use_kg", True)
+        out_of_kg = feat.get("out_of_kg_domain", False)
+
+        if out_of_kg:
+            parts.append(
+                f"--- SAMPLE ID: {sid} ---  [OUT_OF_KG_DOMAIN]\n"
+                f"QUESTION: {r['question']}\n\n"
+                f"REFERENCE ANSWER:\n{r['reference_answer']}\n\n"
+                f"STUDENT ANSWER:\n{r['student_answer']}"
+            )
+            continue
 
         if not use_kg:
             parts.append(
@@ -258,27 +295,22 @@ Grade all {len(batch)} samples. {increment_note}"""
             )
             continue
 
-        covered = ", ".join(feat.get("matched_concepts", [])) or "assess from student text"
+        covered = ", ".join(feat.get("matched_concepts", [])) or "none"
         chain_pct = feat.get("chain_pct", "0%")
-        bloom = feat.get("bloom", "Remember")
-        n_kg = feat.get("n_kg_concepts", 0)
-
-        kg_guide = f"Detected concept keywords: {covered}" if covered != "assess from student text" else "Use reference answer to identify key concepts"
 
         parts.append(
             f"--- SAMPLE ID: {sid} ---\n"
             f"QUESTION: {r['question']}\n\n"
             f"REFERENCE ANSWER:\n{r['reference_answer']}\n\n"
-            f"KG GUIDANCE (expected concepts: {n_kg} total):\n"
-            f"  {kg_guide}\n"
-            f"  Estimated chain coverage: {chain_pct}\n"
-            f"  Cognitive depth detected: {bloom}\n\n"
+            f"KG SUPPLEMENTARY EVIDENCE:\n"
+            f"  Matched concepts: {covered}\n"
+            f"  Chain coverage: {chain_pct}\n\n"
             f"STUDENT ANSWER:\n{r['student_answer']}"
         )
 
     header = f"{system}\n\n{'='*70}\n\n"
     body = "\n\n".join(parts)
-    footer = f"\n\n{'='*70}\nGrade all {len(batch)} samples. Use KG as a guide, not a rigid checklist. Return only the JSON object."
+    footer = f"\n\n{'='*70}\nGrade all {len(batch)} samples. PRIMARY evidence is student-vs-reference; KG is supplementary. Return only the JSON object."
     return header + body + footer
 
 

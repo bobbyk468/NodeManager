@@ -554,11 +554,24 @@ power; bootstrap CIs for ΔMAE include 0 for both Q4 and Q10).
         else:
             w(f"    ✗ C_LLM better — KG adds noise on this dataset")
 
-    # --- ANALYSIS PARAGRAPHS ---
+    # --- ANALYSIS PARAGRAPHS (dynamically generated) ---
     w()
     w("ANALYSIS: WHY RESULTS DIFFER ACROSS DATASETS")
     w()
-    w("""
+
+    # Extract metrics from rows for dynamic narrative
+    dk_row = next((r for r in rows if r[0] == "DigiKlausur"), None)
+    ka_row = next((r for r in rows if r[0] == "Kaggle ASAG"), None)
+    moh_row = rows[0]
+
+    dk_delta = dk_row[5] if dk_row else 0
+    dk_p = dk_row[6] if dk_row else 1.0
+    ka_delta = ka_row[5] if ka_row else 0
+    ka_p = ka_row[6] if ka_row else 1.0
+    moh_delta = moh_row[5] if moh_row else 0
+    moh_p = moh_row[6] if moh_row else 1.0
+
+    analysis_text = """
 Paragraph 1 — Why DigiKlausur benefits:
   DigiKlausur covers neural-network concepts (perceptron, backpropagation,
   convolutional layers, SVM kernels) with low-polysemy, domain-specific
@@ -567,8 +580,8 @@ Paragraph 1 — Why DigiKlausur benefits:
   'gradient_descent', and 'layer' are all correctly situated in their causal
   chain. The structured rubric tightly matches the KG topology: each of the
   17 DigiKlausur questions maps to 4–8 KG concepts with explicit
-  PREREQUISITE_FOR and PRODUCES edges. ConceptGrade's 4.9% MAE reduction
-  (p=0.049) on DigiKlausur demonstrates that KG augmentation scales beyond
+  PREREQUISITE_FOR and PRODUCES edges. ConceptGrade's {dk_delta:.1f}% MAE reduction
+  (p={dk_p:.4f}) on DigiKlausur demonstrates that KG augmentation scales beyond
   the original Mohler CS benchmark to other technical STEM domains.
 
 Paragraph 2 — Why Kaggle ASAG benefits less:
@@ -582,15 +595,15 @@ Paragraph 2 — Why Kaggle ASAG benefits less:
   matching), and the KG evidence block in the C5_fix prompt either adds
   noise (matching vague words to wrong concepts) or is omitted entirely
   via the KG_MIN_COVERAGE threshold. This explains the directional but
-  non-significant MAE reduction (3.2%, p=0.319).
+  non-significant MAE reduction ({ka_delta:.1f}%, p={ka_p:.4f}).
 
 Paragraph 3 — The vocabulary complexity hypothesis:
   Across all three benchmarks, the magnitude of KG benefit follows a strict
   gradient correlated with question complexity and lexical specificity:
 
-    Mohler CS (complex, n=120):            -32.4% MAE, p=0.0013  ← largest gain
-    DigiKlausur Neural Nets (complex, n=646): -4.9% MAE, p=0.049  ← significant
-    Kaggle ASAG Elementary (simple, n=473):   -3.2% MAE, p=0.319  ← directional
+    Mohler CS (complex, n={moh_n}):            {moh_delta:.1f}% MAE, p={moh_p:.4f}  ← largest gain
+    DigiKlausur Neural Nets (complex, n={dk_n}): {dk_delta:.1f}% MAE, p={dk_p:.4f}  ← significant
+    Kaggle ASAG Elementary (simple, n={ka_n}):   {ka_delta:.1f}% MAE, p={ka_p:.4f}  ← directional
 
   This ordering is not coincidental. KG augmentation is effective when:
   (1) the domain vocabulary is technical with low polysemy,
@@ -602,13 +615,18 @@ Paragraph 3 — The vocabulary complexity hypothesis:
   language answers — the KG is either irrelevant or harmful. This boundary
   condition is a contribution of this work: ConceptGrade works best on
   technically-worded, multi-concept questions.
-""".strip())
+""".format(
+        dk_delta=dk_delta, dk_p=dk_p, ka_delta=ka_delta, ka_p=ka_p,
+        moh_n=moh_row[2], moh_delta=moh_delta, moh_p=moh_p,
+        dk_n=dk_row[2] if dk_row else 0, ka_n=ka_row[2] if ka_row else 0).strip()
+
+    w(analysis_text)
 
     w()
     w(SEP)
     w("SECTION 10: DOMAIN SPECIFICITY AND THE LIMITS OF KG AUGMENTATION")
     w(SEP)
-    w("""
+    section10 = """
 This section explains WHY results differ across datasets and establishes
 a theoretically grounded boundary condition for ConceptGrade's effectiveness.
 
@@ -623,14 +641,14 @@ of the domain vocabulary:
     rarely used accidentally. When a student uses these terms, it is a strong
     signal of understanding. The KG anchors the LLM to check whether the
     student correctly applies these concepts in their structural relationships.
-    Result: Large MAE reductions (-32.4%, -4.9%).
+    Result: Large MAE reductions ({moh_delta:.1f}%, {dk_delta:.1f}%).
 
   LOW SPECIFICITY (Kaggle ASAG, Elementary Science):
     Concepts like "energy", "water", "plants", or "oxygen" are high-frequency
     everyday words. A student can write a fluent, confident answer containing
     all expected concept words while explaining them entirely incorrectly
     (e.g., "Plants breathe in energy to make water"). Keyword presence is a
-    weak correctness signal. Result: Smaller MAE reduction (-3.2%), p=0.319.
+    weak correctness signal. Result: Smaller MAE reduction ({ka_delta:.1f}%), p={ka_p:.4f}.
 
 --- B. THE LLM FLOOR EFFECT ---
 
@@ -681,7 +699,8 @@ Three prompting strategies were evaluated on Kaggle ASAG (in order):
   Accept C_LLM as sufficient baseline when:
     - Domain is elementary/factual with very short expected answers
     - No structured KG is available or auto-generation quality is low
-""".strip())
+""".format(moh_delta=moh_delta, dk_delta=dk_delta, ka_delta=ka_delta, ka_p=ka_p).strip()
+    w(section10)
 
     report_text = "\n".join(lines)
 

@@ -207,6 +207,8 @@ TRM leap count and grounding density are computed independently from Gemini Flas
 
 Baseline usability was confirmed via SUS (Score = [TODO]), ensuring that UI friction did not confound the primary co-auditing metrics.
 
+**Scoping Note (for results prose):** When reporting study outcomes, emphasize that the Condition B treatment provides the **integrated ConceptGrade dashboard system** (combining visualizations, trace context, and rubric editor) rather than making claims about visualization effects in isolation. Example language: "Educators in Condition B, who had access to the full ConceptGrade interface including TRM-rendered traces and bidirectional brushing, showed semantic alignment rates of X% compared to Y% in Condition A" rather than "The TRM visualization improved alignment by X%."
+
 ### §5b.4 Qualitative Observations (~150 words) — [TODO: POST-PILOT]
 
 *These are exploratory qualitative observations from think-aloud protocols — not pre-registered hypothesis tests.*
@@ -225,7 +227,13 @@ Our findings suggest that the co-auditing paradigm can reframe the educator's ro
 
 ### §6.2 Limitations and Boundary Conditions
 
-The Kaggle ASAG evaluation defines a clear boundary condition for TRM: grading quality degrades when the domain vocabulary lacks ontological specificity. In elementary science, where colloquial terms like "energy" and "force" carry multiple overlapping meanings, the KG cannot produce the node-level distinctions necessary for grounding-based verification — a property of the domain, not the system. Two additional limitations apply to the system broadly. First, the LRM Verifier's chain-of-thought is not guaranteed to be faithful: recent work demonstrates that stated reasoning can diverge from the computation that produced the output [Turpin 2023]. However, it is precisely because LRM reasoning can be unfaithful that visualizing its topology is necessary; co-auditing transforms hidden algorithmic unfaithfulness into visible structural gaps that an educator can detect and correct. Second, co-auditing assumes the educator has sufficient domain expertise to evaluate whether a structural leap represents a genuine conceptual gap or a legitimate reasoning shortcut. In interdisciplinary grading contexts, or with inexperienced graders, this assumption may not hold. Both limitations are directions for future work, not architectural failures.
+The Kaggle ASAG evaluation defines a clear boundary condition for TRM: grading quality degrades when the domain vocabulary lacks ontological specificity. In elementary science, where colloquial terms like "energy" and "force" carry multiple overlapping meanings, the KG cannot produce the node-level distinctions necessary for grounding-based verification — a property of the domain, not the system.
+
+Three additional limitations apply to the system broadly. **Study Design Confound:** Condition B treatment in the user study bundled three elements together — the bidirectional brushing interface, TRM-rendered visualization of structural leaps, and LRM-generated reasoning traces — making it impossible to isolate the causal contribution of each component to educator performance improvements. While Condition B shows improved semantic alignment in rubric updates compared to Condition A (which lacked all three components), we cannot definitively attribute this to visualization effectiveness alone. A future four-condition ablation design — controlling for (1) baseline, (2) trace context only, (3) visualizations only, and (4) integrated dashboard — would decompose these effects. Notably, Condition B's integrated treatment reflects a realistic deployment model where educators would access all three affordances together; however, from a research perspective, this confounding limits causal claims to the dashboard system as a whole, not to individual visualization elements.
+
+Second, the LRM Verifier's chain-of-thought is not guaranteed to be faithful: recent work demonstrates that stated reasoning can diverge from the computation that produced the output [Turpin 2023]. However, it is precisely because LRM reasoning can be unfaithful that visualizing its topology is necessary; co-auditing transforms hidden algorithmic unfaithfulness into visible structural gaps that an educator can detect and correct.
+
+Third, co-auditing assumes the educator has sufficient domain expertise to evaluate whether a structural leap represents a genuine conceptual gap or a legitimate reasoning shortcut. In interdisciplinary grading contexts, or with inexperienced graders, this assumption may not hold. All three limitations are directions for future work, not architectural failures.
 
 ### §6.3 Generalizability
 

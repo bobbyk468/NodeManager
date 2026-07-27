@@ -1,0 +1,70 @@
+{
+  "real_5_stronger_bert_mpnet": {
+    "n_test": 90,
+    "model": "sentence-transformers/all-mpnet-base-v2 (frozen, no fine-tune)",
+    "model_params": "110M",
+    "mae_mpnet_frozen": 1.9341,
+    "rmse_mpnet_frozen": 2.1005,
+    "pearson_r_mpnet_frozen": 0.6694,
+    "mae_cllm_test": 0.3706,
+    "mae_c5_test": 0.2444,
+    "c5_vs_mpnet_paired_one_tail_p": 0.0,
+    "note": "all-mpnet-base-v2 is the strongest publicly available frozen sentence-embedding model (sentence-transformers leaderboard top-5 for semantic textual similarity benchmarks). 110M parameters, ~6x MiniLM's representational capacity. We use FROZEN, no fine-tuning, scaled to [0,5] via cosine on the same n=90 Mohler test split. This addresses the 'you picked the weakest BERT' critique of the MiniLM baseline."
+  },
+  "real_6_cluster_bootstrap": {
+    "mohler_all": {
+      "n_samples": 120,
+      "n_clusters": 10,
+      "point_reduction_pct": 32.45,
+      "cluster_bootstrap_ci_95": [
+        8.44,
+        49.94
+      ],
+      "boot_n": 5000
+    },
+    "mohler_test_n90": {
+      "n_samples": 90,
+      "n_clusters": 10,
+      "point_reduction_pct": 34.03,
+      "cluster_bootstrap_ci_95": [
+        2.54,
+        55.98
+      ],
+      "boot_n": 5000
+    },
+    "digiklausur": {
+      "n_samples": 646,
+      "n_clusters": 17,
+      "point_reduction_pct": 4.9,
+      "cluster_bootstrap_ci_95": [
+        -9.97,
+        16.13
+      ],
+      "boot_n": 5000
+    },
+    "kaggle_asag": {
+      "n_samples": 473,
+      "n_clusters": 150,
+      "point_reduction_pct": 2.36,
+      "cluster_bootstrap_ci_95": [
+        -6.46,
+        10.18
+      ],
+      "boot_n": 5000
+    }
+  },
+  "real_7_bca_sensitivity": {
+    "n_test": 90,
+    "point_pct": 34.03,
+    "percentile_ci_95": [
+      13.4,
+      49.52
+    ],
+    "bca_ci_95": [
+      14.1,
+      49.8
+    ],
+    "z0_bias_correction": 0.0135,
+    "a_acceleration": 0.0074
+  }
+}

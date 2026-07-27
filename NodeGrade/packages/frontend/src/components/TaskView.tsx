@@ -231,12 +231,46 @@ const TaskView = ({
                     const scoreMissing: string | null = report.score_missing || null
                     const bloomsReasoning: string | null = blooms.reasoning || null
                     const soloReasoning: string | null = solo.reasoning || null
+                    // Framework Fix #27 (2026-06-15): surface the OUT_OF_KG_DOMAIN
+                    // signal produced by the backend (Fixes #2b/#10/#13). Without
+                    // this banner the educator saw a numeric score with no
+                    // indication that KG-based components were inapplicable —
+                    // they could not distinguish "in-domain low quality" from
+                    // "outside the KG's coverage". The flag is read from any
+                    // of three locations the backend might place it in: the
+                    // top-level report, the comparison scores block, or the
+                    // concept_graph dict (each fix point above sets it).
+                    const outOfKg: boolean =
+                      report.out_of_kg_domain === true
+                      || report.comparison?.scores?.out_of_kg_domain === true
+                      || report.concept_graph?.out_of_kg_domain === true
                     const severityColor = (s: string) =>
                       s === 'critical' ? 'error' : s === 'moderate' ? 'warning' : 'default'
                     return (
                       <Box sx={{ mt: 1 }}>
                         <Divider sx={{ mb: 2 }} />
                         <Typography variant="h6" gutterBottom>Detailed Feedback</Typography>
+
+                        {/* Framework Fix #27 (2026-06-15): explicit
+                            OUT_OF_KG_DOMAIN banner. When the backend
+                            flagged the question as outside the KG's
+                            coverage, surface that to the educator so
+                            they don't read the numeric score as a
+                            confident KG-grounded grade. */}
+                        {outOfKg && (
+                          <Alert severity="warning" sx={{ mb: 2 }} icon={false}>
+                            <Typography variant="subtitle2" fontWeight={700}>
+                              Question outside knowledge graph coverage
+                            </Typography>
+                            <Typography variant="body2" sx={{ mt: 0.5 }}>
+                              The KG’s domain doesn’t cover this question, so
+                              concept coverage, chain coverage, integration
+                              quality, Bloom/SOLO, and misconception counts
+                              below are not meaningful. The overall score
+                              reflects student-vs-reference grading only.
+                            </Typography>
+                          </Alert>
+                        )}
 
                         {/* ConceptGrade vs Pure LLM comparison panel */}
                         {pureLlmScore != null && (

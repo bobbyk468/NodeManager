@@ -1,0 +1,107 @@
+{
+  "real_1_4_bootstrap_test_set": {
+    "mohler": {
+      "point_mae_cllm": 0.33,
+      "point_mae_c5": 0.22291666666666668,
+      "point_reduction_pct": 32.44949494949495,
+      "boot_n": 5000,
+      "boot_reduction_ci_95": [
+        14.615231041765478,
+        46.73150036107217
+      ],
+      "boot_mae_cllm_ci_95": [
+        0.27165624999999993,
+        0.3908437499999999
+      ],
+      "boot_mae_c5_ci_95": [
+        0.18125,
+        0.26875
+      ]
+    },
+    "digiklausur": {
+      "point_mae_cllm": 1.1842105263157894,
+      "point_mae_c5": 1.1261609907120742,
+      "point_reduction_pct": 4.901960784313726,
+      "boot_n": 5000,
+      "boot_reduction_ci_95": [
+        -0.9004238047853315,
+        10.30344310138441
+      ],
+      "boot_mae_cllm_ci_95": [
+        1.109907120743034,
+        1.2608552631578944
+      ],
+      "boot_mae_c5_ci_95": [
+        1.0518575851393188,
+        1.1989164086687307
+      ]
+    },
+    "kaggle_asag": {
+      "point_mae_cllm": 1.208245243128964,
+      "point_mae_c5": 1.1797040169133193,
+      "point_reduction_pct": 2.362204724409448,
+      "boot_n": 5000,
+      "boot_reduction_ci_95": [
+        -5.44073339451287,
+        9.488620989297443
+      ],
+      "boot_mae_cllm_ci_95": [
+        1.105708245243129,
+        1.3113107822410148
+      ],
+      "boot_mae_c5_ci_95": [
+        1.0824524312896406,
+        1.2822410147991543
+      ]
+    },
+    "mohler_test_n90": {
+      "point_mae_cllm": 0.37055555555555547,
+      "point_mae_c5": 0.24444444444444444,
+      "point_reduction_pct": 34.03298350824586,
+      "boot_n": 5000,
+      "boot_reduction_ci_95": [
+        15.093513531374949,
+        49.72086015302404
+      ],
+      "boot_mae_cllm_ci_95": [
+        0.30166666666666664,
+        0.44388888888888883
+      ],
+      "boot_mae_c5_ci_95": [
+        0.19166666666666668,
+        0.2972222222222222
+      ]
+    }
+  },
+  "real_2_misconception_ablation": {
+    "summary_mae": {
+      "C5_fix": 0.2229,
+      "C_LLM": 0.33,
+      "concepts_only": 0.2167,
+      "taxonomy_only": 0.2292
+    },
+    "summary_r": {
+      "C5_fix": 0.982,
+      "C_LLM": 0.9709,
+      "concepts_only": 0.9831,
+      "taxonomy_only": 0.9819
+    },
+    "key_finding_cached": "Both KG components independently and significantly outperform C_LLM (p<0.001). Concept coverage is marginally stronger (p=0.09, NS). Full KG (C5_fix) achieves best SOLO=4 performance.",
+    "concepts_only_vs_C5_fix_paired_p": null,
+    "note": "per-sample predictions for concepts_only / C5_fix not in this JSON; MAE difference 0.217 vs 0.223 = 0.006 (concepts_only is slightly better, indicating the misconception module is at most neutral)"
+  },
+  "real_3_local_bert_baseline": {
+    "n_test": 90,
+    "bert_model": "sentence-transformers/all-MiniLM-L6-v2 (frozen, no fine-tune)",
+    "mae_bert_frozen": 1.8327,
+    "rmse_bert_frozen": 2.0226,
+    "pearson_r_bert_frozen": 0.6485,
+    "mae_cllm_test_set": 0.3706,
+    "mae_c5_test_set": 0.2444,
+    "c5_vs_bert_paired_wilcoxon": {
+      "two_tailed_p": 0.0,
+      "one_tailed_p_C5_better": 0.0
+    },
+    "note": "Sentence-BERT frozen embedding cosine similarity scaled to [0,5]; no fine-tuning. Provides a direct head-to-head with C5_fix and C_LLM on the IDENTICAL n=90 Mohler test set, replacing the historical published-on-different-split BERT number that the paper previously listed for context only."
+  }
+}

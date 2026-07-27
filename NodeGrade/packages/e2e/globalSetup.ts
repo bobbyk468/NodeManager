@@ -9,7 +9,7 @@ import { PrismaClient } from '@prisma/client'
 
 const TEMPLATE_PATH = path.resolve(
   __dirname,
-  '../../frontend/public/templates/concept-grade.json'
+  '../frontend/public/templates/concept-grade.json'
 )
 export const TEST_GRAPH_PATH = '/ws/student/biology/1/1'
 

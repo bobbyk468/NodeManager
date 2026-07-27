@@ -1,0 +1,140 @@
+SCORING GUIDE — based on proportion of reference answer content correctly demonstrated:
+- 5.0: Student correctly explains virtually all key ideas (≥90% of reference content)
+- 4.5: Student correctly explains the great majority (≥80%); only very minor omissions
+- 4.0: Student correctly explains most key ideas (≥70%); one clear gap
+- 3.5: Student correctly explains a solid majority (≥60%) with reasonable depth
+- 3.0: Student correctly explains about half the reference content (~50%)
+- 2.5: Student correctly explains several key ideas (30–50%); substantial content missing
+- 2.0: Student correctly explains 1–2 key ideas accurately; most reference content missing
+- 1.5: Student shows partial understanding of 1 concept but cannot explain mechanisms
+- 1.0: Student shows awareness of the topic but no accurate explanations
+- 0.5: Single marginally relevant statement; no explanation
+- 0.0: No relevant content
+
+Score what the student got RIGHT. Missing vocabulary alone does not lower the score.
+Use 0.25 increments only.
+
+You are an expert grader.
+
+PRIMARY evidence (always): compare the student's answer against the reference answer. Ask: what key concepts from the reference did the student cover? What is missing?
+
+SUPPLEMENTARY evidence (when present): KG matched concepts and chain coverage percentage. These confirm which knowledge-graph concepts were detected in the answer. IMPORTANT: if matched concepts = "none" or chain coverage = 0%, do NOT automatically give 0 -- read the student answer and score based on what you see.
+
+When a sample has NO KG SUPPLEMENTARY EVIDENCE section, grade using ONLY the question, reference answer, and student answer.
+
+Return a JSON object:
+{
+  "scores": {
+    "<id>": X.X,
+    ...
+  }
+}
+
+Grade all 10 samples. Use 0.25 increments.
+
+======================================================================
+
+--- SAMPLE ID: 2 ---
+QUESTION: Define a linked list and describe its basic operations.
+
+REFERENCE ANSWER:
+A linked list is a linear data structure where each element (node) contains data and a pointer to the next node. Basic operations include insertion (at head, tail, or position), deletion, traversal, and search. Insertion at head is O(1), while search requires O(n) traversal.
+
+STUDENT ANSWER:
+A linked list has nodes connected by pointers. You can add and remove elements. It takes O(n) to find something. Inserting at the head is fast since you only update one pointer.
+
+--- SAMPLE ID: 17 ---
+QUESTION: Compare arrays and linked lists in terms of time complexity for access and insertion.
+
+REFERENCE ANSWER:
+Arrays provide O(1) random access by index due to contiguous memory, but insertion requires O(n) shifting. Linked lists require O(n) for access by traversal, but insertion at the head is O(1) by pointer manipulation. Arrays are better for random access; linked lists for frequent insertions.
+
+KG SUPPLEMENTARY EVIDENCE:
+  Matched concepts: linked_list, index, node, array, traversal, access
+  Chain coverage: 100%
+
+STUDENT ANSWER:
+Arrays are fast to access. Linked lists are fast to insert. Arrays need shifting for insertion.
+
+--- SAMPLE ID: 32 ---
+QUESTION: Explain how a stack works and give a real-world example of its use.
+
+REFERENCE ANSWER:
+A stack is a LIFO (Last In First Out) data structure. The main operations are push (add to top), pop (remove from top), and peek (view top without removing). Time complexity is O(1) for all operations. A real-world example is the undo function in text editors — each action is pushed onto a stack, and undo pops the most recent action.
+
+KG SUPPLEMENTARY EVIDENCE:
+  Matched concepts: pop, stack, lifo, push
+  Chain coverage: 100%
+
+STUDENT ANSWER:
+A stack is first in first out. You add at the end and remove from the beginning.
+
+--- SAMPLE ID: 39 ---
+QUESTION: What is a binary search tree (BST) and what is the time complexity of search?
+
+REFERENCE ANSWER:
+A binary search tree is a binary tree where for each node, all values in the left subtree are less than the node and all values in the right subtree are greater. Search complexity is O(log n) for a balanced BST because each comparison halves the search space. In the worst case (degenerate/skewed tree), search is O(n).
+
+STUDENT ANSWER:
+A BST is an ordered binary tree. For each node, left < node < right. Search takes O(log n) in the average case.
+
+--- SAMPLE ID: 54 ---
+QUESTION: Explain the difference between BFS and DFS graph traversal algorithms.
+
+REFERENCE ANSWER:
+BFS (Breadth-First Search) explores all neighbors at the current depth before moving deeper, using a queue. DFS (Depth-First Search) explores as deep as possible before backtracking, using a stack or recursion. BFS finds the shortest path in unweighted graphs and uses O(V) space for the queue. DFS uses O(V) space for the recursion stack and is useful for topological sorting and cycle detection.
+
+STUDENT ANSWER:
+BFS is breadth first and DFS is depth first. BFS is better for shortest path.
+
+--- SAMPLE ID: 60 ---
+QUESTION: What is a hash table and how are collisions handled?
+
+REFERENCE ANSWER:
+A hash table maps keys to values using a hash function that converts keys to array indices. Average operations are O(1). Collisions occur when two keys hash to the same index. Common resolution methods: chaining (linked list at each bucket) and open addressing (probing for next empty slot — linear, quadratic, or double hashing).
+
+STUDENT ANSWER:
+A hash table uses a hash function to map keys to array indices for O(1) average access. When two keys produce the same index (collision), two main approaches exist: chaining stores a linked list at each bucket, while open addressing probes for the next empty slot using linear probing, quadratic probing, or double hashing. Worst case is O(n) with many collisions.
+
+--- SAMPLE ID: 75 ---
+QUESTION: Explain recursion and the role of the base case. Give an example.
+
+REFERENCE ANSWER:
+Recursion is a technique where a function calls itself to solve smaller instances of the same problem. Every recursive function must have a base case — a condition that terminates the recursion without further calls — to prevent infinite recursion. Example: factorial(n) = n × factorial(n-1) with base case factorial(0)=1.
+
+STUDENT ANSWER:
+Recursion is calling a function from itself. The base case stops the recursion. Example: computing factorial recursively.
+
+--- SAMPLE ID: 91 ---
+QUESTION: Explain the quicksort algorithm and its average and worst-case time complexity.
+
+REFERENCE ANSWER:
+Quicksort is a divide-and-conquer sorting algorithm. It selects a pivot element, partitions the array so all elements smaller than the pivot come before it and larger after it, then recursively sorts both partitions. Average-case complexity is O(n log n) with a good pivot choice. Worst case is O(n²) when the pivot is always the smallest or largest element (e.g., sorted array with first-element pivot).
+
+STUDENT ANSWER:
+Quicksort sorts an array quickly. It has O(n log n) complexity always.
+
+--- SAMPLE ID: 98 ---
+QUESTION: What is dynamic programming and what are its two key properties?
+
+REFERENCE ANSWER:
+Dynamic programming (DP) solves problems by breaking them into overlapping subproblems and storing results to avoid recomputation. The two key properties are: (1) Optimal substructure — the optimal solution is built from optimal solutions to subproblems; (2) Overlapping subproblems — the same subproblems are solved multiple times, making memoization or tabulation beneficial.
+
+STUDENT ANSWER:
+Dynamic programming stores results of subproblems to avoid recomputation. The two properties are optimal substructure and overlapping subproblems. It is used when recursive solutions would recompute the same results many times.
+
+--- SAMPLE ID: 114 ---
+QUESTION: Explain Big-O notation and the difference between O(n), O(n log n), and O(n²).
+
+REFERENCE ANSWER:
+Big-O notation describes the upper bound on an algorithm's growth rate as input size n increases, ignoring constants and lower-order terms. O(n) is linear — time grows proportionally with n (e.g., linear search). O(n log n) is log-linear — typical of efficient sorting algorithms like merge sort. O(n²) is quadratic — common in algorithms with nested loops like bubble sort, grows much faster than O(n log n).
+
+KG SUPPLEMENTARY EVIDENCE:
+  Matched concepts: algorithm, big_o_notation, o_n, o_n2
+  Chain coverage: 100%
+
+STUDENT ANSWER:
+Big-O is how we measure algorithm speed. Smaller Big-O is better.
+
+======================================================================
+Grade all 10 samples. PRIMARY evidence is student-vs-reference; KG is supplementary. Return only the JSON object.

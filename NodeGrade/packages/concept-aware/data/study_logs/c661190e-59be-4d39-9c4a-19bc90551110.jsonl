@@ -1,0 +1,2 @@
+{"session_id":"c661190e-59be-4d39-9c4a-19bc90551110","condition":"B","dataset":"","event_type":"page_view","timestamp_ms":1778064911379,"elapsed_ms":74,"payload":{"session_id":"c661190e-59be-4d39-9c4a-19bc90551110","is_study":true}}
+{"session_id":"c661190e-59be-4d39-9c4a-19bc90551110","condition":"B","dataset":"digiklausur","event_type":"tab_change","timestamp_ms":1778064911414,"elapsed_ms":109,"payload":{"dataset":"digiklausur"}}

@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99e (TeX Live 2026)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: paper_phase2_vis2027.aux
+The style file: abbrv-doi.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: references.bib
+Warning--can't use both volume and number fields in Leacock2003
+You've used 28 entries,
+            2886 wiz_defined-function locations,
+            828 strings with 10178 characters,
+and the built_in function-call counts, 11296 in all, are:
+= -- 1119
+> -- 508
+< -- 22
++ -- 203
+- -- 163
+* -- 710
+:= -- 1727
+add.period$ -- 95
+call.type$ -- 28
+change.case$ -- 160
+chr.to.int$ -- 0
+cite$ -- 29
+duplicate$ -- 484
+empty$ -- 984
+format.name$ -- 163
+if$ -- 2514
+int.to.chr$ -- 0
+int.to.str$ -- 28
+missing$ -- 28
+newline$ -- 144
+num.names$ -- 56
+pop$ -- 228
+preamble$ -- 1
+purify$ -- 133
+quote$ -- 0
+skip$ -- 366
+stack$ -- 0
+substring$ -- 693
+swap$ -- 133
+text.length$ -- 15
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 110
+warning$ -- 1
+while$ -- 102
+width$ -- 30
+write$ -- 319
+(There was 1 warning)

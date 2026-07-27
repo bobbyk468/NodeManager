@@ -1,0 +1,762 @@
+SCORING GUIDE — based on proportion of reference answer content correctly demonstrated:
+- 5.0: Student correctly explains virtually all key ideas (≥90% of reference content)
+- 4.5: Student correctly explains the great majority (≥80%); only very minor omissions
+- 4.0: Student correctly explains most key ideas (≥70%); one clear gap
+- 3.5: Student correctly explains a solid majority (≥60%) with reasonable depth
+- 3.0: Student correctly explains about half the reference content (~50%)
+- 2.5: Student correctly explains several key ideas (30–50%); substantial content missing
+- 2.0: Student correctly explains 1–2 key ideas accurately; most reference content missing
+- 1.5: Student shows partial understanding of 1 concept but cannot explain mechanisms
+- 1.0: Student shows awareness of the topic but no accurate explanations
+- 0.5: Single marginally relevant statement; no explanation
+- 0.0: No relevant content
+
+Score what the student got RIGHT. Missing vocabulary alone does not lower the score.
+Use 0.25 increments only.
+
+You are an expert grader using a two-step process:
+
+STEP 1 — Concept Verification: For each expected concept listed, determine:
+  TRUE = student correctly demonstrated this idea (even in their own words)
+  FALSE = student missed it, mentioned it vaguely, or used it incorrectly
+
+CRITICAL: A student who MENTIONS a concept word but explains it INCORRECTLY must be marked FALSE for that concept. Keyword presence alone does not count — correct meaning matters.
+
+STEP 2 — Score: Based ONLY on the TRUE concepts, assign a score using the scoring guide above.
+
+When no concept list is provided, grade using the reference answer only.
+
+Return a single JSON object with only scores (no reasoning in output):
+{
+  "scores": {
+    "<id>": X.X,
+    ...
+  }
+}
+
+Grade all 80 samples. Use 0.25 increments.
+
+======================================================================
+
+--- SAMPLE ID: 160 ---
+QUESTION: What is a comet?
+
+REFERENCE ANSWER:
+A space object made of ice and dust that orbits the Sun
+
+STUDENT ANSWER:
+A planet with ice rings
+
+--- SAMPLE ID: 161 ---
+QUESTION: What is germination?
+
+REFERENCE ANSWER:
+The process by which a seed begins to grow
+
+STUDENT ANSWER:
+It is when a seed starts sprouting
+
+--- SAMPLE ID: 162 ---
+QUESTION: What is pollination?
+
+REFERENCE ANSWER:
+Transfer of pollen from one flower to another
+
+STUDENT ANSWER:
+Movement of pollen between plants
+
+--- SAMPLE ID: 163 ---
+QUESTION: What is photosynthesis?
+
+REFERENCE ANSWER:
+Process by which plants make food using sunlight
+
+STUDENT ANSWER:
+Plants make food using sunlight and water
+
+--- SAMPLE ID: 164 ---
+QUESTION: What is metamorphosis?
+
+REFERENCE ANSWER:
+A big change in body form during life cycle
+
+STUDENT ANSWER:
+A big body change in animal's life
+
+--- SAMPLE ID: 165 ---
+QUESTION: What does the circulatory system do?
+
+REFERENCE ANSWER:
+Carries oxygen and nutrients around the body
+
+STUDENT ANSWER:
+It moves blood around body
+
+--- SAMPLE ID: 166 ---
+QUESTION: What is an ecosystem?
+
+REFERENCE ANSWER:
+A community of living and nonliving things in an area
+
+STUDENT ANSWER:
+Place with animals and plants living together
+
+--- SAMPLE ID: 167 ---
+QUESTION: What is a food chain?
+
+REFERENCE ANSWER:
+A sequence that shows who eats whom
+
+STUDENT ANSWER:
+A list of who eats who in nature
+
+--- SAMPLE ID: 168 ---
+QUESTION: What is pollination?
+
+REFERENCE ANSWER:
+The transfer of pollen from the stamen to the pistil
+
+STUDENT ANSWER:
+The transfer of pollen from the stamen to the pistil
+
+--- SAMPLE ID: 169 ---
+QUESTION: What is metamorphosis?
+
+REFERENCE ANSWER:
+A process of transformation in an animal's life cycle
+
+STUDENT ANSWER:
+A process of transformation in an animal's life cycle
+
+--- SAMPLE ID: 170 ---
+QUESTION: What is the main function of the respiratory system?
+
+REFERENCE ANSWER:
+To take in oxygen and remove carbon dioxide
+
+STUDENT ANSWER:
+To take in oxygen and remove carbon dioxide
+
+--- SAMPLE ID: 171 ---
+QUESTION: What is a food chain?
+
+REFERENCE ANSWER:
+A sequence that shows how energy passes from one living thing to another
+
+STUDENT ANSWER:
+A sequence that shows how energy passes from one living thing to another
+
+--- SAMPLE ID: 172 ---
+QUESTION: What is an ecosystem?
+
+REFERENCE ANSWER:
+A community of living and non-living things interacting together
+
+STUDENT ANSWER:
+A community of living and non-living things interacting together
+
+--- SAMPLE ID: 173 ---
+QUESTION: What is evaporation?
+
+REFERENCE ANSWER:
+Evaporation is when a liquid turns into a gas at temperatures below boiling.
+
+STUDENT ANSWER:
+It's when a liquid changes to gas slowly, like water drying.
+
+--- SAMPLE ID: 174 ---
+QUESTION: What is condensation?
+
+REFERENCE ANSWER:
+Condensation is when a gas turns into a liquid upon cooling.
+
+STUDENT ANSWER:
+It's when gas cools and becomes liquid, like dew forming.
+
+--- SAMPLE ID: 175 ---
+QUESTION: What is plasma?
+
+REFERENCE ANSWER:
+Plasma is a high-energy state of matter with charged particles.
+
+STUDENT ANSWER:
+Plasma is like superheated gas with ions, found in stars.
+
+--- SAMPLE ID: 176 ---
+QUESTION: What is force?
+
+REFERENCE ANSWER:
+A push or pull that can change an object's motion or shape.
+
+STUDENT ANSWER:
+Force is a push or pull that makes things move or stop.
+
+--- SAMPLE ID: 177 ---
+QUESTION: What is the SI unit of force?
+
+REFERENCE ANSWER:
+Newton (N).
+
+STUDENT ANSWER:
+The unit of force is the Newton.
+
+--- SAMPLE ID: 178 ---
+QUESTION: What is Newton's First Law of Motion?
+
+REFERENCE ANSWER:
+An object in motion stays in motion unless acted upon by an unbalanced force.
+
+STUDENT ANSWER:
+Objects keep moving unless something stops them.
+
+--- SAMPLE ID: 179 ---
+QUESTION: What is inertia?
+
+REFERENCE ANSWER:
+The tendency of an object to resist changes in its motion.
+
+STUDENT ANSWER:
+Inertia means objects like to keep doing what they're doing.
+
+--- SAMPLE ID: 180 ---
+QUESTION: What is acceleration?
+
+REFERENCE ANSWER:
+The rate at which an object's velocity changes over time.
+
+STUDENT ANSWER:
+Acceleration is speeding up, slowing down, or changing direction.
+
+--- SAMPLE ID: 181 ---
+QUESTION: What is weight?
+
+REFERENCE ANSWER:
+The force of gravity acting on an object's mass (W = mg).
+
+STUDENT ANSWER:
+Weight is how heavy something is due to gravity.
+
+--- SAMPLE ID: 182 ---
+QUESTION: What is mass?
+
+REFERENCE ANSWER:
+The amount of matter in an object (measured in kg).
+
+STUDENT ANSWER:
+Mass is how much "stuff" is in an object.
+
+--- SAMPLE ID: 183 ---
+QUESTION: What is velocity?
+
+REFERENCE ANSWER:
+Speed in a given direction (vector quantity).
+
+STUDENT ANSWER:
+Velocity is speed with direction, like 20 m/s north.
+
+--- SAMPLE ID: 184 ---
+QUESTION: What is speed?
+
+REFERENCE ANSWER:
+Distance traveled per unit time (scalar quantity).
+
+STUDENT ANSWER:
+Speed is how fast something moves (e.g., 10 m/s).
+
+--- SAMPLE ID: 185 ---
+QUESTION: What is energy?
+
+REFERENCE ANSWER:
+The ability to do work (measured in joules).
+
+STUDENT ANSWER:
+Energy is what makes things move or change.
+
+--- SAMPLE ID: 186 ---
+QUESTION: What is energy?
+
+REFERENCE ANSWER:
+The ability to do work or cause change.
+
+STUDENT ANSWER:
+Energy is a type of liquid that flows.
+
+--- SAMPLE ID: 187 ---
+QUESTION: What is conduction?
+
+REFERENCE ANSWER:
+Heat transfer through direct contact.
+
+STUDENT ANSWER:
+Conduction is when energy moves through air.
+
+--- SAMPLE ID: 188 ---
+QUESTION: What is convection?
+
+REFERENCE ANSWER:
+Heat transfer via fluid movement (liquids/gases).
+
+STUDENT ANSWER:
+Convection is the same as radiation.
+
+--- SAMPLE ID: 189 ---
+QUESTION: What is radiation?
+
+REFERENCE ANSWER:
+Heat transfer via electromagnetic waves.
+
+STUDENT ANSWER:
+Radiation only happens in solids.
+
+--- SAMPLE ID: 190 ---
+QUESTION: What is an insulator?
+
+REFERENCE ANSWER:
+A material that resists energy transfer.
+
+STUDENT ANSWER:
+Insulators are the best conductors of heat.
+
+--- SAMPLE ID: 191 ---
+QUESTION: What is a conductor?
+
+REFERENCE ANSWER:
+A material that allows energy transfer.
+
+STUDENT ANSWER:
+Conductors block all energy flow.
+
+--- SAMPLE ID: 192 ---
+QUESTION: What is the greenhouse effect?
+
+REFERENCE ANSWER:
+Trapping of heat by atmospheric gases.
+
+STUDENT ANSWER:
+The greenhouse effect makes Earth colder.
+
+--- SAMPLE ID: 193 ---
+QUESTION: What is global warming?
+
+REFERENCE ANSWER:
+Long-term rise in Earth's temperature.
+
+STUDENT ANSWER:
+Global warming is caused by too much ice.
+
+--- SAMPLE ID: 194 ---
+QUESTION: What is photosynthesis?
+
+REFERENCE ANSWER:
+Plants convert sunlight ? chemical energy.
+
+STUDENT ANSWER:
+Photosynthesis is how animals breathe.
+
+--- SAMPLE ID: 195 ---
+QUESTION: What is heat?
+
+REFERENCE ANSWER:
+Heat is the transfer of thermal energy between objects due to temperature difference.
+
+STUDENT ANSWER:
+Heat is when something feels warm.
+
+--- SAMPLE ID: 196 ---
+QUESTION: What is conduction?
+
+REFERENCE ANSWER:
+Heat transfer through direct molecular contact in solids.
+
+STUDENT ANSWER:
+Heat moving through metal.
+
+--- SAMPLE ID: 197 ---
+QUESTION: What is convection?
+
+REFERENCE ANSWER:
+Heat transfer through fluid movement (liquids/gases).
+
+STUDENT ANSWER:
+Hot air rising.
+
+--- SAMPLE ID: 198 ---
+QUESTION: What is radiation?
+
+REFERENCE ANSWER:
+Heat transfer via electromagnetic waves (no medium needed).
+
+STUDENT ANSWER:
+Heat from the sun.
+
+--- SAMPLE ID: 199 ---
+QUESTION: What is thermal expansion?
+
+REFERENCE ANSWER:
+The tendency of matter to change volume with temperature.
+
+STUDENT ANSWER:
+Things get bigger when hot.
+
+--- SAMPLE ID: 200 ---
+QUESTION: What is a conductor?
+
+REFERENCE ANSWER:
+Material that readily transfers heat/energy.
+
+STUDENT ANSWER:
+Metal is a conductor.
+
+--- SAMPLE ID: 201 ---
+QUESTION: What is an insulator?
+
+REFERENCE ANSWER:
+Material that resists heat transfer.
+
+STUDENT ANSWER:
+Wood is an insulator.
+
+--- SAMPLE ID: 202 ---
+QUESTION: What is the greenhouse effect?
+
+REFERENCE ANSWER:
+Trapping of heat by atmospheric gases.
+
+STUDENT ANSWER:
+Makes Earth warmer.
+
+--- SAMPLE ID: 203 ---
+QUESTION: What is global warming?
+
+REFERENCE ANSWER:
+Long-term increase in Earth's temperature.
+
+STUDENT ANSWER:
+Earth getting hotter.
+
+--- SAMPLE ID: 204 ---
+QUESTION: What is evaporation?
+
+REFERENCE ANSWER:
+Liquid to gas transition at surface below boiling point.
+
+STUDENT ANSWER:
+Water drying up.
+
+--- SAMPLE ID: 205 ---
+QUESTION: What is condensation?
+
+REFERENCE ANSWER:
+Gas to liquid transition.
+
+STUDENT ANSWER:
+Dew forming.
+
+--- SAMPLE ID: 206 ---
+QUESTION: What is boiling?
+
+REFERENCE ANSWER:
+Rapid vaporization throughout liquid at boiling point.
+
+STUDENT ANSWER:
+Water bubbling.
+
+--- SAMPLE ID: 207 ---
+QUESTION: What is freezing?
+
+REFERENCE ANSWER:
+Liquid to solid transition.
+
+STUDENT ANSWER:
+Water turning to ice.
+
+--- SAMPLE ID: 208 ---
+QUESTION: What is melting?
+
+REFERENCE ANSWER:
+Solid to liquid transition.
+
+STUDENT ANSWER:
+Ice turning to water.
+
+--- SAMPLE ID: 209 ---
+QUESTION: What is sound?
+
+REFERENCE ANSWER:
+Vibrations that travel through a medium as waves.
+
+STUDENT ANSWER:
+Sound is vibrations moving through air or objects.
+
+--- SAMPLE ID: 210 ---
+QUESTION: What is light?
+
+REFERENCE ANSWER:
+Electromagnetic radiation visible to the human eye.
+
+STUDENT ANSWER:
+Light is energy that makes things visible.
+
+--- SAMPLE ID: 211 ---
+QUESTION: How does sound travel?
+
+REFERENCE ANSWER:
+As longitudinal waves through matter (solid, liquid, gas).
+
+STUDENT ANSWER:
+Sound moves as waves through solids, liquids and gases.
+
+--- SAMPLE ID: 212 ---
+QUESTION: What is the speed of sound in air?
+
+REFERENCE ANSWER:
+~343 m/s at 20'C.
+
+STUDENT ANSWER:
+Sound travels about 343 meters per second in air.
+
+--- SAMPLE ID: 213 ---
+QUESTION: What is the speed of light?
+
+REFERENCE ANSWER:
+~300,000 km/s in vacuum.
+
+STUDENT ANSWER:
+Light moves very fast - about 300,000 km per second.
+
+--- SAMPLE ID: 214 ---
+QUESTION: What is reflection of light?
+
+REFERENCE ANSWER:
+Light bouncing off surfaces (mirrors).
+
+STUDENT ANSWER:
+Light bounces off mirrors to show images.
+
+--- SAMPLE ID: 215 ---
+QUESTION: What is refraction of light?
+
+REFERENCE ANSWER:
+Light bending when passing through different materials.
+
+STUDENT ANSWER:
+Light bends when moving between air and water.
+
+--- SAMPLE ID: 216 ---
+QUESTION: What is a shadow?
+
+REFERENCE ANSWER:
+Area where light is blocked by an object.
+
+STUDENT ANSWER:
+Shadows form when objects block light.
+
+--- SAMPLE ID: 217 ---
+QUESTION: What is a prism?
+
+REFERENCE ANSWER:
+Glass object that splits white light into colors.
+
+STUDENT ANSWER:
+A prism breaks white light into rainbow colors.
+
+--- SAMPLE ID: 218 ---
+QUESTION: What is electric current?
+
+REFERENCE ANSWER:
+Flow of electric charge (electrons).
+
+STUDENT ANSWER:
+The movement of electrons through a conductor.
+
+--- SAMPLE ID: 219 ---
+QUESTION: What is a conductor?
+
+REFERENCE ANSWER:
+Material that allows current flow (e.g., copper).
+
+STUDENT ANSWER:
+Metals that let electricity pass through.
+
+--- SAMPLE ID: 220 ---
+QUESTION: What is an insulator?
+
+REFERENCE ANSWER:
+Material that blocks current flow (e.g., rubber).
+
+STUDENT ANSWER:
+Materials that stop electricity.
+
+--- SAMPLE ID: 221 ---
+QUESTION: What is a series circuit?
+
+REFERENCE ANSWER:
+Components connected in a single path.
+
+STUDENT ANSWER:
+One after another like Christmas lights.
+
+--- SAMPLE ID: 222 ---
+QUESTION: What is a parallel circuit?
+
+REFERENCE ANSWER:
+Components connected in multiple paths.
+
+STUDENT ANSWER:
+Branched paths like house wiring.
+
+--- SAMPLE ID: 223 ---
+QUESTION: What is static electricity?
+
+REFERENCE ANSWER:
+Build-up of charge on surfaces.
+
+STUDENT ANSWER:
+Rubbing a balloon creates static cling.
+
+--- SAMPLE ID: 224 ---
+QUESTION: What is a magnet?
+
+REFERENCE ANSWER:
+Object producing a magnetic field.
+
+STUDENT ANSWER:
+Something that attracts iron or steel.
+
+--- SAMPLE ID: 225 ---
+QUESTION: What is a magnetic field?
+
+REFERENCE ANSWER:
+Area around a magnet with magnetic force.
+
+STUDENT ANSWER:
+The invisible space where magnets work.
+
+--- SAMPLE ID: 226 ---
+QUESTION: What is an electromagnet?
+
+REFERENCE ANSWER:
+Magnet created by current in a coil.
+
+STUDENT ANSWER:
+A coil with electricity acts like a magnet.
+
+--- SAMPLE ID: 227 ---
+QUESTION: What is a fuse?
+
+REFERENCE ANSWER:
+Safety device melting to stop excess current.
+
+STUDENT ANSWER:
+Protects circuits by breaking if overloaded.
+
+--- SAMPLE ID: 228 ---
+QUESTION: What is a resistor?
+
+REFERENCE ANSWER:
+Limits current in a circuit.
+
+STUDENT ANSWER:
+Slows down electrons to control flow.
+
+--- SAMPLE ID: 229 ---
+QUESTION: What is a short circuit?
+
+REFERENCE ANSWER:
+A low-resistance path bypassing the intended circuit.
+
+STUDENT ANSWER:
+Electricity takes a shortcut, causing overheating.
+
+--- SAMPLE ID: 230 ---
+QUESTION: What is an open circuit?
+
+REFERENCE ANSWER:
+A broken path where current cannot flow.
+
+STUDENT ANSWER:
+The circuit is incomplete, so no current flows.
+
+--- SAMPLE ID: 231 ---
+QUESTION: What is a closed circuit?
+
+REFERENCE ANSWER:
+A complete path allowing current flow.
+
+STUDENT ANSWER:
+Electricity can travel in a full loop.
+
+--- SAMPLE ID: 232 ---
+QUESTION: What tool measures liquid volume?
+
+REFERENCE ANSWER:
+Graduated cylinder.
+
+STUDENT ANSWER:
+A mesuring cup.
+
+--- SAMPLE ID: 233 ---
+QUESTION: What instrument measures temperature?
+
+REFERENCE ANSWER:
+Thermometer.
+
+STUDENT ANSWER:
+A termometer.
+
+--- SAMPLE ID: 234 ---
+QUESTION: What are natural resources?
+
+REFERENCE ANSWER:
+Resources that are obtained from nature like air, water, and minerals.
+
+STUDENT ANSWER:
+Natural resources are things we use.
+
+--- SAMPLE ID: 235 ---
+QUESTION: What are fossil fuels?
+
+REFERENCE ANSWER:
+Fuels formed from ancient plants and animals like coal and oil.
+
+STUDENT ANSWER:
+Old fuels.
+
+--- SAMPLE ID: 236 ---
+QUESTION: What is weather?
+
+REFERENCE ANSWER:
+The daily condition of the atmosphere at a place.
+
+STUDENT ANSWER:
+The air outside today.
+
+--- SAMPLE ID: 237 ---
+QUESTION: What is climate?
+
+REFERENCE ANSWER:
+The average weather pattern in a region over a long time.
+
+STUDENT ANSWER:
+Weather over many weeks.
+
+--- SAMPLE ID: 238 ---
+QUESTION: What is humidity?
+
+REFERENCE ANSWER:
+The amount of water vapor in the air.
+
+STUDENT ANSWER:
+Moisture in the air.
+
+--- SAMPLE ID: 239 ---
+QUESTION: What is precipitation?
+
+REFERENCE ANSWER:
+Any form of water falling from clouds to Earth.
+
+STUDENT ANSWER:
+Rain or snow that comes down.
+
+======================================================================
+Grade all 80 samples. Verify concept correctness first, then score. Return only the JSON object.

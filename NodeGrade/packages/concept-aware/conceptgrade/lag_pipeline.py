@@ -35,11 +35,15 @@ import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import Optional, Callable
+from typing import TYPE_CHECKING, Optional, Callable
 
 from knowledge_graph.domain_graph import DomainKnowledgeGraph
 from knowledge_graph.ds_knowledge_graph import build_data_structures_graph
-from concept_extraction.extractor import ConceptExtractor, StudentConceptGraph
+# Framework Fix #29: ConceptExtractor instantiated lazily inside __init__,
+# StudentConceptGraph used purely as type annotation. Both moved out of
+# module scope to break the conceptgrade ↔ concept_extraction cycle.
+if TYPE_CHECKING:
+    from concept_extraction.extractor import StudentConceptGraph
 from graph_comparison.confidence_weighted_comparator import ConfidenceWeightedComparator
 from cognitive_depth.cognitive_depth_classifier import CognitiveDepthClassifier
 from misconception_detection.detector import MisconceptionDetector
@@ -221,6 +225,8 @@ class LongAnswerPipeline:
 
         # Scoring components — instantiated once, shared across all threads
         # (they hold no mutable state between calls)
+        # Framework Fix #29: lazy import inside method, see file header
+        from concept_extraction.extractor import ConceptExtractor
         self.extractor  = ConceptExtractor(domain_graph=dg, api_key=api_key, model=model)
         self.comparator = ConfidenceWeightedComparator(domain_graph=dg)
         self.depth_clf  = CognitiveDepthClassifier(api_key=api_key, model=model)
@@ -288,8 +294,24 @@ class LongAnswerPipeline:
             cg = concept_graphs.get(i)
             try:
                 comp = self.comparator.compare(student_graph=cg, question=question).to_dict() if cg else {}
-            except Exception:
-                comp = {"scores": {}, "analysis": {}}
+            except Exception as e:
+                # Framework Fix #25 (2026-06-15): segment-level comparison
+                # failure used to silently produce empty scores, flowing
+                # into aggregation as a phantom-success. Log the failure
+                # and stamp an explicit error marker so segment-score
+                # consumers can distinguish "no concept graph at all" from
+                # "comparison crashed mid-flight".
+                import sys as _sys
+                print(
+                    f"[LAG] segment {i} comparison failed: "
+                    f"{type(e).__name__}: {str(e)[:200]}",
+                    file=_sys.stderr,
+                )
+                comp = {
+                    "scores": {},
+                    "analysis": {},
+                    "_error": f"{type(e).__name__}: {str(e)[:300]}",
+                }
             comparison_results[i] = comp
 
         # ── Assemble segment scores ────────────────────────────────────────
@@ -457,7 +479,16 @@ class LongAnswerPipeline:
                 cg = self.extractor.extract(question=enriched_q, student_answer=seg.text)
                 self.cache.set(cache_key, cg.to_dict())
                 return i, cg
-            except Exception:
+            except Exception as e:
+                # Framework Fix #25: log the per-segment extraction failure.
+                # Caller still receives None (back-compat — downstream branches
+                # on `cg is None`), but the failure cause is now traceable.
+                import sys as _sys
+                print(
+                    f"[LAG] segment {i} extraction failed: "
+                    f"{type(e).__name__}: {str(e)[:200]} (returning None)",
+                    file=_sys.stderr,
+                )
                 return i, None
 
         with ThreadPoolExecutor(max_workers=self.max_workers) as pool:

@@ -128,6 +128,17 @@ class StudentConceptGraph:
     relationships: list[ExtractedRelationship] = field(default_factory=list)
     unmapped_terms: list[str] = field(default_factory=list)
     overall_depth: str = "surface"
+    # Framework Fix #2b (2026-05-31): domain_match_score lets downstream
+    # consumers distinguish "out-of-KG-domain" (question doesn't match the
+    # KG, pipeline cannot help — e.g. Kaggle elementary science on a CS DS
+    # KG) from "in-KG-domain but student did not engage with the concepts"
+    # (a real low-quality answer). Both previously produced empty
+    # `concepts`, indistinguishable downstream. Value in [0.0, 1.0]:
+    #   0.0 = question text has no overlap with any KG concept
+    #   1.0 = question text matched ≥ 1 KG concept; the LLM extractor had
+    #         a focused ontology to work from.
+    # Threshold convention: < 0.05 → treat as OUT_OF_KG_DOMAIN.
+    domain_match_score: float = 1.0
 
     @property
     def num_concepts(self) -> int:
@@ -149,6 +160,15 @@ class StudentConceptGraph:
     def concept_ids(self) -> set[str]:
         return {c.concept_id for c in self.concepts}
 
+    @property
+    def out_of_kg_domain(self) -> bool:
+        """Convenience: True when the question text matched zero KG concepts.
+        Downstream layers can short-circuit KG-grounded logic for these samples
+        and explicitly surface 'OUT_OF_KG_DOMAIN' in the dashboard rather than
+        pretending the empty `concepts` list means the student is wrong.
+        """
+        return self.domain_match_score < 0.05
+
     def to_dict(self) -> dict:
         return {
             "question": self.question,
@@ -157,6 +177,8 @@ class StudentConceptGraph:
             "relationships": [r.to_dict() for r in self.relationships],
             "unmapped_terms": self.unmapped_terms,
             "overall_depth": self.overall_depth,
+            "domain_match_score": round(self.domain_match_score, 4),
+            "out_of_kg_domain": self.out_of_kg_domain,
             "stats": {
                 "num_concepts": self.num_concepts,
                 "num_relationships": self.num_relationships,
@@ -173,7 +195,8 @@ class StudentConceptGraph:
             concepts=[ExtractedConcept(**c) for c in data.get("concepts", [])],
             relationships=[ExtractedRelationship(**r) for r in data.get("relationships", [])],
             unmapped_terms=data.get("unmapped_terms", []),
-            overall_depth=data.get("overall_depth", "surface")
+            overall_depth=data.get("overall_depth", "surface"),
+            domain_match_score=float(data.get("domain_match_score", 1.0)),
         )
 
 
@@ -197,6 +220,11 @@ class ConceptExtractor:
         self.domain_graph = domain_graph
         self.client = Groq(api_key=api_key)
         self.model = model
+        # Framework Fix #2b: domain_match_score is set as a side effect of
+        # _build_question_ontology() and consumed by extract() when stamping
+        # the returned StudentConceptGraph. Default 1.0 = treat as in-domain
+        # if _build_question_ontology hasn't been called yet.
+        self._last_domain_match_score: float = 1.0
         self._build_ontology_reference()
 
     def _build_ontology_reference(self) -> None:
@@ -216,6 +244,12 @@ class ConceptExtractor:
         Strategy: keyword-match the question against concept IDs/names/descriptions,
         then expand 1 hop in the KG graph to pick up prerequisite/related concepts.
         Falls back to the full ontology if no focused match is found.
+
+        Side effect (Framework Fix #2b): sets self._last_domain_match_score in
+        [0, 1] reflecting how many KG concepts the question text matched. The
+        extract() method reads this and stamps it onto the returned
+        StudentConceptGraph so downstream consumers know whether the empty
+        result is "out of KG domain" vs "in domain but no engagement".
         """
         q_lower = question.lower()
         seed_ids: list[str] = []
@@ -227,6 +261,17 @@ class ConceptExtractor:
             q_words = [w for w in q_lower.split() if len(w) > 3]
             if any(w in text for w in q_words):
                 seed_ids.append(c.id)
+
+        # Domain match score: ratio of seed concepts to total KG, clamped
+        # so any match counts as in-domain (score >= 0.05 = in-domain),
+        # zero matches = out-of-KG-domain (score = 0.0).
+        total_concepts = max(1, len(list(self.domain_graph.get_all_concepts())))
+        if seed_ids:
+            # Map [1..total] → [0.05 .. 1.0], so a single seed already crosses the threshold
+            raw = len(seed_ids) / total_concepts
+            self._last_domain_match_score = max(0.05, min(1.0, raw * 5.0 + 0.05))
+        else:
+            self._last_domain_match_score = 0.0
 
         if not seed_ids:
             return self._ontology_reference  # full fallback
@@ -301,13 +346,15 @@ class ConceptExtractor:
             return StudentConceptGraph(
                 question=question,
                 student_answer=student_answer,
-                overall_depth="surface"
+                overall_depth="surface",
+                domain_match_score=self._last_domain_match_score,
             )
 
         # Step 2: Ontology-guided validation
         student_graph = StudentConceptGraph(
             question=question,
             student_answer=student_answer,
+            domain_match_score=self._last_domain_match_score,
         )
 
         for c_data in parsed.get("concepts_found", []):

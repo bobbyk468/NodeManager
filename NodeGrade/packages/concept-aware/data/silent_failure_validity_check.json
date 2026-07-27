@@ -1,0 +1,116 @@
+{
+  "mohler": {
+    "status": "no_silent_failures"
+  },
+  "digiklausur": {
+    "n_reliable": 285,
+    "n_silent_failure": 62,
+    "n_other": 299,
+    "reliable_signals": {
+      "n": 285,
+      "matched_n_mean": 5.382456140350877,
+      "matched_n_median": 6.0,
+      "matched_n_max": 11,
+      "chain_pct_mean": 71.6,
+      "chain_pct_median": 83.0,
+      "solo_dist": {
+        "Extended Abstract": 142,
+        "Relational": 73,
+        "Multistructural": 26,
+        "Prestructural": 43,
+        "Unistructural": 1
+      },
+      "bloom_dist": {
+        "Understand": 46,
+        "Remember": 224,
+        "Analyze": 15
+      }
+    },
+    "silent_failure_signals": {
+      "n": 62,
+      "matched_n_mean": 6.338709677419355,
+      "matched_n_median": 6.0,
+      "matched_n_max": 11,
+      "chain_pct_mean": 94.2741935483871,
+      "chain_pct_median": 100.0,
+      "solo_dist": {
+        "Extended Abstract": 52,
+        "Relational": 10
+      },
+      "bloom_dist": {
+        "Remember": 51,
+        "Understand": 10,
+        "Analyze": 1
+      }
+    },
+    "comparison": {
+      "matched_n": {
+        "reliable_mean": 5.382456140350877,
+        "silent_failure_mean": 6.338709677419355,
+        "mann_whitney_p": 0.0991566085411919,
+        "effect_size_d": -0.3657003896917657,
+        "interpretation": "INDISTINGUISHABLE \u2014 dashboard premise at risk"
+      },
+      "chain_pct": {
+        "reliable_mean": 71.6,
+        "silent_failure_mean": 94.2741935483871,
+        "mann_whitney_p": 7.205545902592477e-08,
+        "effect_size_d": -0.6984473781162189,
+        "interpretation": "DISTINGUISHABLE \u2014 dashboard premise holds"
+      }
+    }
+  },
+  "kaggle_asag": {
+    "n_reliable": 187,
+    "n_silent_failure": 68,
+    "n_other": 218,
+    "reliable_signals": {
+      "n": 187,
+      "matched_n_mean": 0.0,
+      "matched_n_median": 0.0,
+      "matched_n_max": 0,
+      "chain_pct_mean": 0.0,
+      "chain_pct_median": 0.0,
+      "solo_dist": {
+        "Prestructural": 187
+      },
+      "bloom_dist": {
+        "Remember": 172,
+        "Understand": 13,
+        "Analyze": 2
+      }
+    },
+    "silent_failure_signals": {
+      "n": 68,
+      "matched_n_mean": 0.0,
+      "matched_n_median": 0.0,
+      "matched_n_max": 0,
+      "chain_pct_mean": 0.0,
+      "chain_pct_median": 0.0,
+      "solo_dist": {
+        "Prestructural": 68
+      },
+      "bloom_dist": {
+        "Remember": 64,
+        "Understand": 3,
+        "Analyze": 1
+      }
+    },
+    "comparison": {
+      "matched_n": {
+        "reliable_mean": 0.0,
+        "silent_failure_mean": 0.0,
+        "mann_whitney_p": 1.0,
+        "effect_size_d": NaN,
+        "interpretation": "INDISTINGUISHABLE \u2014 dashboard premise at risk"
+      },
+      "chain_pct": {
+        "reliable_mean": 0.0,
+        "silent_failure_mean": 0.0,
+        "mann_whitney_p": 1.0,
+        "effect_size_d": NaN,
+        "interpretation": "INDISTINGUISHABLE \u2014 dashboard premise at risk"
+      }
+    }
+  }
+}

@@ -1,0 +1,762 @@
+SCORING GUIDE — based on proportion of reference answer content correctly demonstrated:
+- 5.0: Student correctly explains virtually all key ideas (≥90% of reference content)
+- 4.5: Student correctly explains the great majority (≥80%); only very minor omissions
+- 4.0: Student correctly explains most key ideas (≥70%); one clear gap
+- 3.5: Student correctly explains a solid majority (≥60%) with reasonable depth
+- 3.0: Student correctly explains about half the reference content (~50%)
+- 2.5: Student correctly explains several key ideas (30–50%); substantial content missing
+- 2.0: Student correctly explains 1–2 key ideas accurately; most reference content missing
+- 1.5: Student shows partial understanding of 1 concept but cannot explain mechanisms
+- 1.0: Student shows awareness of the topic but no accurate explanations
+- 0.5: Single marginally relevant statement; no explanation
+- 0.0: No relevant content
+
+Score what the student got RIGHT. Missing vocabulary alone does not lower the score.
+Use 0.25 increments only.
+
+You are an expert grader using a two-step process:
+
+STEP 1 — Concept Verification: For each expected concept listed, determine:
+  TRUE = student correctly demonstrated this idea (even in their own words)
+  FALSE = student missed it, mentioned it vaguely, or used it incorrectly
+
+CRITICAL: A student who MENTIONS a concept word but explains it INCORRECTLY must be marked FALSE for that concept. Keyword presence alone does not count — correct meaning matters.
+
+STEP 2 — Score: Based ONLY on the TRUE concepts, assign a score using the scoring guide above.
+
+When no concept list is provided, grade using the reference answer only.
+
+Return a single JSON object with only scores (no reasoning in output):
+{
+  "scores": {
+    "<id>": X.X,
+    ...
+  }
+}
+
+Grade all 80 samples. Use 0.25 increments.
+
+======================================================================
+
+--- SAMPLE ID: 320 ---
+QUESTION: What is fermentation?
+
+REFERENCE ANSWER:
+Fermentation is a process where microorganisms break down sugars to produce energy, often used in food making.
+
+STUDENT ANSWER:
+Make food using germs
+
+--- SAMPLE ID: 321 ---
+QUESTION: What is the role of petals in a flower?
+
+REFERENCE ANSWER:
+Petals attract insects for pollination.
+
+STUDENT ANSWER:
+Attract bugs
+
+--- SAMPLE ID: 322 ---
+QUESTION: What is pollination?
+
+REFERENCE ANSWER:
+Pollination is the transfer of pollen from the stamen to the pistil.
+
+STUDENT ANSWER:
+Pollen move to pistil
+
+--- SAMPLE ID: 323 ---
+QUESTION: What is germination?
+
+REFERENCE ANSWER:
+Germination is the growth of a seed into a new plant.
+
+STUDENT ANSWER:
+Seed grows into plant.
+
+--- SAMPLE ID: 324 ---
+QUESTION: How do seeds spread?
+
+REFERENCE ANSWER:
+Seeds spread by wind, water, and animals.
+
+STUDENT ANSWER:
+Wind, water, animals spread them.
+
+--- SAMPLE ID: 325 ---
+QUESTION: What is water pollution?
+
+REFERENCE ANSWER:
+Water pollution is when harmful substances are added to water bodies.
+
+STUDENT ANSWER:
+Dirty things in water.
+
+--- SAMPLE ID: 326 ---
+QUESTION: What are fossil fuels?
+
+REFERENCE ANSWER:
+Fossil fuels are energy sources like coal, oil, and gas formed from dead plants and animals.
+
+STUDENT ANSWER:
+Coal, oil from dead things.
+
+--- SAMPLE ID: 327 ---
+QUESTION: What are greenhouse gases?
+
+REFERENCE ANSWER:
+Gases that trap heat in Earth's atmosphere.
+
+STUDENT ANSWER:
+Gases that heat Earth.
+
+--- SAMPLE ID: 328 ---
+QUESTION: Name two greenhouse gases.
+
+REFERENCE ANSWER:
+Carbon dioxide and methane.
+
+STUDENT ANSWER:
+CO2 and methane.
+
+--- SAMPLE ID: 329 ---
+QUESTION: What is global warming?
+
+REFERENCE ANSWER:
+A rise in Earth's temperature due to greenhouse gases.
+
+STUDENT ANSWER:
+Earth getting hotter.
+
+--- SAMPLE ID: 330 ---
+QUESTION: What is the greenhouse effect?
+
+REFERENCE ANSWER:
+It is the warming of Earth by trapped heat due to greenhouse gases.
+
+STUDENT ANSWER:
+Gases trap sun's heat.
+
+--- SAMPLE ID: 331 ---
+QUESTION: What is composting?
+
+REFERENCE ANSWER:
+Turning food and garden waste into natural fertilizer.
+
+STUDENT ANSWER:
+Making dirt from food scraps.
+
+--- SAMPLE ID: 332 ---
+QUESTION: What is noise pollution?
+
+REFERENCE ANSWER:
+Unwanted or harmful sound that disturbs people and animals.
+
+STUDENT ANSWER:
+Too much loud noise.
+
+--- SAMPLE ID: 333 ---
+QUESTION: What is melting?
+
+REFERENCE ANSWER:
+The process of changing a solid to a liquid.
+
+STUDENT ANSWER:
+Solid becomes liquid.
+
+--- SAMPLE ID: 334 ---
+QUESTION: What is freezing?
+
+REFERENCE ANSWER:
+The process of changing a liquid to a solid.
+
+STUDENT ANSWER:
+Liquid becomes solid.
+
+--- SAMPLE ID: 335 ---
+QUESTION: What is boiling?
+
+REFERENCE ANSWER:
+The process of turning a liquid into gas by heating.
+
+STUDENT ANSWER:
+Liquid to gas with heat.
+
+--- SAMPLE ID: 336 ---
+QUESTION: What is evaporation?
+
+REFERENCE ANSWER:
+The slow change of liquid into gas at any temperature.
+
+STUDENT ANSWER:
+Liquid dries to gas.
+
+--- SAMPLE ID: 337 ---
+QUESTION: What is condensation?
+
+REFERENCE ANSWER:
+The change of gas into liquid.
+
+STUDENT ANSWER:
+Gas turns to liquid.
+
+--- SAMPLE ID: 338 ---
+QUESTION: What is light?
+
+REFERENCE ANSWER:
+Light is a form of energy that helps us see.
+
+STUDENT ANSWER:
+Energy for seeing.
+
+--- SAMPLE ID: 339 ---
+QUESTION: What is reflection of light?
+
+REFERENCE ANSWER:
+Bouncing back of light from a surface.
+
+STUDENT ANSWER:
+Light bounces back.
+
+--- SAMPLE ID: 340 ---
+QUESTION: What is refraction of light?
+
+REFERENCE ANSWER:
+Bending of light when it passes through different materials.
+
+STUDENT ANSWER:
+Light bends.
+
+--- SAMPLE ID: 341 ---
+QUESTION: What is a shadow?
+
+REFERENCE ANSWER:
+A dark area formed when light is blocked.
+
+STUDENT ANSWER:
+shadow
+
+--- SAMPLE ID: 342 ---
+QUESTION: What is sound?
+
+REFERENCE ANSWER:
+Sound is energy produced by vibrations.
+
+STUDENT ANSWER:
+Sound is something we hear.
+
+--- SAMPLE ID: 343 ---
+QUESTION: How does sound travel?
+
+REFERENCE ANSWER:
+Sound travels in waves through air, water, or solids.
+
+STUDENT ANSWER:
+It flies through space.
+
+--- SAMPLE ID: 344 ---
+QUESTION: What is volume?
+
+REFERENCE ANSWER:
+Volume is how loud or soft a sound is.
+
+STUDENT ANSWER:
+The size of something
+
+--- SAMPLE ID: 345 ---
+QUESTION: What is noise pollution?
+
+REFERENCE ANSWER:
+Too much unpleasant sound in the environment.
+
+STUDENT ANSWER:
+Loud sounds everywhere
+
+--- SAMPLE ID: 346 ---
+QUESTION: What is the speed of sound in air?
+
+REFERENCE ANSWER:
+Around 343 meters per second.
+
+STUDENT ANSWER:
+Very fast
+
+--- SAMPLE ID: 347 ---
+QUESTION: What is the speed of light?
+
+REFERENCE ANSWER:
+About 300,000 kilometers per second.
+
+STUDENT ANSWER:
+km
+
+--- SAMPLE ID: 348 ---
+QUESTION: What is a prism?
+
+REFERENCE ANSWER:
+A prism splits white light into different colors.
+
+STUDENT ANSWER:
+A triangle glass
+
+--- SAMPLE ID: 349 ---
+QUESTION: What is static electricity?
+
+REFERENCE ANSWER:
+Static electricity is the build-up of electric charge on a surface.
+
+STUDENT ANSWER:
+built_up
+
+--- SAMPLE ID: 350 ---
+QUESTION: What is electric current?
+
+REFERENCE ANSWER:
+The flow of electric charge (electrons) in a circuit.
+
+STUDENT ANSWER:
+Fast electricity
+
+--- SAMPLE ID: 351 ---
+QUESTION: What is an open circuit?
+
+REFERENCE ANSWER:
+A circuit that is broken or not complete; current cannot flow.
+
+STUDENT ANSWER:
+    
+
+--- SAMPLE ID: 352 ---
+QUESTION: What is a closed circuit?
+
+REFERENCE ANSWER:
+A complete circuit where electricity flows freely.
+
+STUDENT ANSWER:
+Circuit work good
+
+--- SAMPLE ID: 353 ---
+QUESTION: What is a conductor?
+
+REFERENCE ANSWER:
+A material that allows electricity to flow through it.
+
+STUDENT ANSWER:
+Let electric go
+
+--- SAMPLE ID: 354 ---
+QUESTION: What is an insulator?
+
+REFERENCE ANSWER:
+A material that does not allow electricity to flow through it.
+
+STUDENT ANSWER:
+Stop electric
+
+--- SAMPLE ID: 355 ---
+QUESTION: What is a fuse?
+
+REFERENCE ANSWER:
+A safety device that stops current if it gets too high.
+
+STUDENT ANSWER:
+Thing stop too much electric
+
+--- SAMPLE ID: 356 ---
+QUESTION: What is a magnet?
+
+REFERENCE ANSWER:
+An object that attracts materials like iron.
+
+STUDENT ANSWER:
+Thing pull metal
+
+--- SAMPLE ID: 357 ---
+QUESTION: What is a magnetic field?
+
+REFERENCE ANSWER:
+The area around a magnet where magnetic force is felt.
+
+STUDENT ANSWER:
+  
+
+--- SAMPLE ID: 358 ---
+QUESTION: What is an electromagnet?
+
+REFERENCE ANSWER:
+A magnet made by passing electric current through a wire wrapped around iron.
+
+STUDENT ANSWER:
+Electric make magnet
+
+--- SAMPLE ID: 359 ---
+QUESTION: What is lightning?
+
+REFERENCE ANSWER:
+A natural form of static electricity.
+
+STUDENT ANSWER:
+Sky electric
+
+--- SAMPLE ID: 360 ---
+QUESTION: What is a series circuit?
+
+REFERENCE ANSWER:
+A circuit where components are connected in a single path.
+
+STUDENT ANSWER:
+One path
+
+--- SAMPLE ID: 361 ---
+QUESTION: What is a parallel circuit?
+
+REFERENCE ANSWER:
+A circuit where components are connected in multiple paths.
+
+STUDENT ANSWER:
+Many path
+
+--- SAMPLE ID: 362 ---
+QUESTION: What is a short circuit?
+
+REFERENCE ANSWER:
+An unintended path of low resistance that can cause damage.
+
+STUDENT ANSWER:
+Bad electric
+
+--- SAMPLE ID: 363 ---
+QUESTION: What is a resistor?
+
+REFERENCE ANSWER:
+A device that limits the flow of electric current.
+
+STUDENT ANSWER:
+Slow electric
+
+--- SAMPLE ID: 364 ---
+QUESTION: What is groundwater?
+
+REFERENCE ANSWER:
+Water stored under the Earth's surface.
+
+STUDENT ANSWER:
+Underground water
+
+--- SAMPLE ID: 365 ---
+QUESTION: What is soil erosion?
+
+REFERENCE ANSWER:
+The removal of topsoil by wind or water.
+
+STUDENT ANSWER:
+Dirt blows
+
+--- SAMPLE ID: 366 ---
+QUESTION: What is water pollution?
+
+REFERENCE ANSWER:
+Contamination of water by harmful substances.
+
+STUDENT ANSWER:
+Dirty water
+
+--- SAMPLE ID: 367 ---
+QUESTION: What is the water cycle?
+
+REFERENCE ANSWER:
+The process of evaporation, condensation, and precipitation.
+
+STUDENT ANSWER:
+Water goes round
+
+--- SAMPLE ID: 368 ---
+QUESTION: What is evaporation?
+
+REFERENCE ANSWER:
+The process of water turning into vapor.
+
+STUDENT ANSWER:
+Water disappears
+
+--- SAMPLE ID: 369 ---
+QUESTION: What is condensation?
+
+REFERENCE ANSWER:
+The process of vapor turning into liquid.
+
+STUDENT ANSWER:
+Drops form
+
+--- SAMPLE ID: 370 ---
+QUESTION: What is precipitation?
+
+REFERENCE ANSWER:
+Rain, snow, or hail falling from clouds.
+
+STUDENT ANSWER:
+Rain falls
+
+--- SAMPLE ID: 371 ---
+QUESTION: What is composting?
+
+REFERENCE ANSWER:
+Making natural fertilizer from organic waste.
+
+STUDENT ANSWER:
+Rotting food helps plants
+
+--- SAMPLE ID: 372 ---
+QUESTION: What is space?
+
+REFERENCE ANSWER:
+Space is the vast area beyond Earth's atmosphere.
+
+STUDENT ANSWER:
+Sky above
+
+--- SAMPLE ID: 373 ---
+QUESTION: What is a satellite?
+
+REFERENCE ANSWER:
+A satellite is an object that revolves around a planet.
+
+STUDENT ANSWER:
+Thing going round
+
+--- SAMPLE ID: 374 ---
+QUESTION: Which planet has the most moons?
+
+REFERENCE ANSWER:
+Jupiter.
+
+STUDENT ANSWER:
+Big planet
+
+--- SAMPLE ID: 375 ---
+QUESTION: How many moons does Earth have?
+
+REFERENCE ANSWER:
+One.
+
+STUDENT ANSWER:
+1
+
+--- SAMPLE ID: 376 ---
+QUESTION: What is a space probe?
+
+REFERENCE ANSWER:
+A spacecraft sent to collect information without humans.
+
+STUDENT ANSWER:
+Robot spaceship
+
+--- SAMPLE ID: 377 ---
+QUESTION: What is the Sun?
+
+REFERENCE ANSWER:
+A star at the center of our solar system.
+
+STUDENT ANSWER:
+Big fire ball
+
+--- SAMPLE ID: 378 ---
+QUESTION: What is a comet?
+
+REFERENCE ANSWER:
+A ball of ice and dust that orbits the Sun.
+
+STUDENT ANSWER:
+Space snowball
+
+--- SAMPLE ID: 379 ---
+QUESTION: What is an asteroid?
+
+REFERENCE ANSWER:
+A rocky object orbiting the Sun, mostly between Mars and Jupiter.
+
+STUDENT ANSWER:
+Space rock
+
+--- SAMPLE ID: 380 ---
+QUESTION: What is a galaxy?
+
+REFERENCE ANSWER:
+A large system of stars, planets, and gas held by gravity.
+
+STUDENT ANSWER:
+Star group
+
+--- SAMPLE ID: 381 ---
+QUESTION: What is the name of our galaxy?
+
+REFERENCE ANSWER:
+Milky Way.
+
+STUDENT ANSWER:
+Our galaxy
+
+--- SAMPLE ID: 382 ---
+QUESTION: What is a weather satellite?
+
+REFERENCE ANSWER:
+A satellite used to monitor and forecast weather.
+
+STUDENT ANSWER:
+Checks weather
+
+--- SAMPLE ID: 383 ---
+QUESTION: What is the main function of the respiratory system?
+
+REFERENCE ANSWER:
+To take in oxygen and remove carbon dioxide.
+
+STUDENT ANSWER:
+Breathing oxygen in and carbon dioxide out.
+
+--- SAMPLE ID: 384 ---
+QUESTION: What does the circulatory system do?
+
+REFERENCE ANSWER:
+It transports oxygen, nutrients, and wastes through the body.
+
+STUDENT ANSWER:
+Moves oxygen and food in body.
+
+--- SAMPLE ID: 385 ---
+QUESTION: What is plasma?
+
+REFERENCE ANSWER:
+Plasma is the liquid part of blood that carries nutrients and hormones.
+
+STUDENT ANSWER:
+Liquid in blood that moves food and messages.
+
+--- SAMPLE ID: 386 ---
+QUESTION: What is food spoilage?
+
+REFERENCE ANSWER:
+When food becomes unsafe/unpleasant to eat
+
+STUDENT ANSWER:
+Rotten food
+
+--- SAMPLE ID: 387 ---
+QUESTION: What is pasteurization?
+
+REFERENCE ANSWER:
+Heating liquids to kill bacteria
+
+STUDENT ANSWER:
+Milk heating
+
+--- SAMPLE ID: 388 ---
+QUESTION: What is mass?
+
+REFERENCE ANSWER:
+Mass is the amount of matter contained in an object.
+
+STUDENT ANSWER:
+Mass means how much stuff is inside something.
+
+--- SAMPLE ID: 389 ---
+QUESTION: What is weight?
+
+REFERENCE ANSWER:
+Weight is the force with which gravity pulls an object downward.
+
+STUDENT ANSWER:
+Weight is how heavy something feels when you hold it.
+
+--- SAMPLE ID: 390 ---
+QUESTION: What tool measures liquid volume?
+
+REFERENCE ANSWER:
+We use a measuring cylinder with marked lines to measure how much liquid there is.
+
+STUDENT ANSWER:
+A special cup with numbers measures juice or water amounts.
+
+--- SAMPLE ID: 391 ---
+QUESTION: What is volume?
+
+REFERENCE ANSWER:
+Volume is the amount of space that an object or substance takes up.
+
+STUDENT ANSWER:
+Volume means how much room something fills.
+
+--- SAMPLE ID: 392 ---
+QUESTION: What instrument measures temperature?
+
+REFERENCE ANSWER:
+A thermometer measures temperature by showing how much liquid inside expands when heated.
+
+STUDENT ANSWER:
+A temperature checker has colored liquid that goes up when hot.
+
+--- SAMPLE ID: 393 ---
+QUESTION: What is speed?
+
+REFERENCE ANSWER:
+Speed tells us how much distance an object covers in a certain amount of time.
+
+STUDENT ANSWER:
+Speed is how far something goes in how much time.
+
+--- SAMPLE ID: 394 ---
+QUESTION: What is speed?
+
+REFERENCE ANSWER:
+Speed is the rate of change of distance with time.
+
+STUDENT ANSWER:
+How fast object moves.
+
+--- SAMPLE ID: 395 ---
+QUESTION: What is velocity?
+
+REFERENCE ANSWER:
+Velocity is the rate of change of displacement.
+
+STUDENT ANSWER:
+Speed in a direction.
+
+--- SAMPLE ID: 396 ---
+QUESTION: What is acceleration?
+
+REFERENCE ANSWER:
+Acceleration is the rate of change of velocity.
+
+STUDENT ANSWER:
+Change in velocity.
+
+--- SAMPLE ID: 397 ---
+QUESTION: What is Newton's First Law of Motion?
+
+REFERENCE ANSWER:
+An object at rest stays at rest, and an object in motion stays in motion unless acted upon by a force.
+
+STUDENT ANSWER:
+Object stays same unless pushed.
+
+--- SAMPLE ID: 398 ---
+QUESTION: Define force.
+
+REFERENCE ANSWER:
+Force is a push or pull on an object.
+
+STUDENT ANSWER:
+Push or pull.
+
+--- SAMPLE ID: 399 ---
+QUESTION: What is the SI unit of force?
+
+REFERENCE ANSWER:
+Newton (N).
+
+STUDENT ANSWER:
+Newton.
+
+======================================================================
+Grade all 80 samples. Verify concept correctness first, then score. Return only the JSON object.

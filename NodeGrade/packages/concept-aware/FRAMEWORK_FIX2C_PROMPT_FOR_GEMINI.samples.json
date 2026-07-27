@@ -1,0 +1,64 @@
+{
+  "samples": [
+    {
+      "id": 283,
+      "human_score": 1.0,
+      "question": "What is pasteurization?",
+      "student_answer": "Heat food."
+    },
+    {
+      "id": 426,
+      "human_score": 0.0,
+      "question": "Define force.",
+      "student_answer": "Force is when you eat a lot of food."
+    },
+    {
+      "id": 346,
+      "human_score": 1.0,
+      "question": "What is the speed of sound in air?",
+      "student_answer": "Very fast"
+    },
+    {
+      "id": 394,
+      "human_score": 1.0,
+      "question": "What is speed?",
+      "student_answer": "How fast object moves."
+    },
+    {
+      "id": 154,
+      "human_score": 0.0,
+      "question": "What is the name of our galaxy?",
+      "student_answer": "Solar Galaxy."
+    },
+    {
+      "id": 470,
+      "human_score": 0.0,
+      "question": "What is the difference between a star and a planet?",
+      "student_answer": "Stars are happy, planets are sad."
+    },
+    {
+      "id": 312,
+      "human_score": 4.0,
+      "question": "What is germination?",
+      "student_answer": "it is when seed start growing"
+    },
+    {
+      "id": 452,
+      "human_score": 3.0,
+      "question": "What is a binary star?",
+      "student_answer": "Two stars that go around each other."
+    },
+    {
+      "id": 344,
+      "human_score": 1.0,
+      "question": "What is volume?",
+      "student_answer": "The size of something"
+    },
+    {
+      "id": 140,
+      "human_score": 4.0,
+      "question": "What is a warm front?",
+      "student_answer": "Warm front is when warm air rises over cold air."
+    }
+  ]
+}

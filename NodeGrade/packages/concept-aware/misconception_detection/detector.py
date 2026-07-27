@@ -21,7 +21,6 @@ import re
 from dataclasses import dataclass, field
 from enum import Enum
 from typing import Optional
-from conceptgrade.llm_client import LLMClient as Groq
 
 
 class MisconceptionType(str, Enum):
@@ -73,6 +72,27 @@ class DetectedMisconception:
 
 
 @dataclass
+class DetectedFalseBelief:
+    """A single detected explicit false belief (not just omission)."""
+    false_belief_id: str
+    severity: Severity
+    student_claim: str         # What the student explicitly claimed
+    correct_understanding: str  # What is actually correct
+    explanation: str           # Natural language explanation
+    confidence: float = 0.5
+
+    def to_dict(self) -> dict:
+        return {
+            "false_belief_id": self.false_belief_id,
+            "severity": self.severity.value,
+            "student_claim": self.student_claim,
+            "correct_understanding": self.correct_understanding,
+            "explanation": self.explanation,
+            "confidence": round(self.confidence, 3),
+        }
+
+
+@dataclass
 class MisconceptionReport:
     """Complete misconception analysis report."""
     total_misconceptions: int = 0
@@ -80,6 +100,7 @@ class MisconceptionReport:
     moderate_count: int = 0
     minor_count: int = 0
     misconceptions: list[DetectedMisconception] = field(default_factory=list)
+    false_beliefs: list[DetectedFalseBelief] = field(default_factory=list)
     summary: str = ""
     overall_accuracy: float = 1.0  # 1.0 = no misconceptions
 
@@ -92,6 +113,7 @@ class MisconceptionReport:
                 "minor": self.minor_count,
             },
             "misconceptions": [m.to_dict() for m in self.misconceptions],
+            "false_beliefs": [fb.to_dict() for fb in self.false_beliefs],
             "summary": self.summary,
             "overall_accuracy": round(self.overall_accuracy, 3),
         }
@@ -107,6 +129,7 @@ CS_MISCONCEPTION_TAXONOMY = {
         "description": "Confusing array indices with pointer-based access",
         "concepts": ["linked_list", "array", "pointer", "index"],
         "common_claim": "You can access linked list elements by index in O(1)",
+        "distinctive_phrases": ["index", "indexing", "by index", "subscript", "o(1) access", "constant time access"],
         "correct": "Linked list access requires O(n) traversal; only arrays support O(1) index access",
         "severity": "critical",
     },
@@ -115,6 +138,7 @@ CS_MISCONCEPTION_TAXONOMY = {
         "description": "Believing linked lists use contiguous memory",
         "concepts": ["linked_list", "array", "static_memory", "dynamic_memory"],
         "common_claim": "Linked list nodes are stored next to each other in memory",
+        "distinctive_phrases": ["contiguous", "next to each other", "adjacent in memory", "consecutive memory", "side by side"],
         "correct": "Linked list nodes are dynamically allocated and can be anywhere in memory; pointers connect them",
         "severity": "critical",
     },
@@ -123,6 +147,7 @@ CS_MISCONCEPTION_TAXONOMY = {
         "description": "Thinking insertion is always O(1) in linked lists",
         "concepts": ["linked_list", "insertion", "o_1", "o_n"],
         "common_claim": "Insertion in a linked list is always O(1)",
+        "distinctive_phrases": ["always o(1)", "insertion is o(1)", "always constant", "insertion always", "constant time insertion"],
         "correct": "Insertion at HEAD is O(1), but insertion at a specific position requires O(n) traversal first",
         "severity": "moderate",
     },
@@ -131,6 +156,7 @@ CS_MISCONCEPTION_TAXONOMY = {
         "description": "Confusing LIFO (stack) with FIFO (queue)",
         "concepts": ["stack", "queue", "lifo", "fifo"],
         "common_claim": "A stack follows First In First Out order",
+        "distinctive_phrases": ["stack fifo", "stack first in first out", "stack follows fifo", "stack is fifo"],
         "correct": "A stack follows LIFO (Last In First Out); a queue follows FIFO (First In First Out)",
         "severity": "critical",
     },
@@ -139,6 +165,7 @@ CS_MISCONCEPTION_TAXONOMY = {
         "description": "Thinking stacks can only be implemented with arrays",
         "concepts": ["stack", "array", "linked_list"],
         "common_claim": "Stacks must use arrays as the underlying storage",
+        "distinctive_phrases": ["must use array", "only with array", "requires array", "stacks must be array", "implemented with arrays"],
         "correct": "Stacks can be implemented with either arrays or linked lists",
         "severity": "minor",
     },
@@ -147,6 +174,7 @@ CS_MISCONCEPTION_TAXONOMY = {
         "description": "Assuming all binary trees are binary search trees",
         "concepts": ["binary_tree", "binary_search_tree"],
         "common_claim": "Any binary tree has the ordered property (left < root < right)",
+        "distinctive_phrases": ["binary tree ordered", "any binary tree", "all binary trees", "binary tree left < root", "binary tree sorted"],
         "correct": "Only BSTs maintain the ordering property; a general binary tree has no ordering constraint",
         "severity": "critical",
     },
@@ -155,6 +183,7 @@ CS_MISCONCEPTION_TAXONOMY = {
         "description": "Confusing tree height with number of nodes",
         "concepts": ["tree", "tree_height", "node"],
         "common_claim": "A tree with n nodes has height n",
+        "distinctive_phrases": ["height is n", "height equals n", "tree height n", "height = n", "as tall as nodes"],
         "correct": "Tree height is the longest root-to-leaf path; a balanced tree with n nodes has height O(log n)",
         "severity": "moderate",
     },
@@ -163,6 +192,7 @@ CS_MISCONCEPTION_TAXONOMY = {
         "description": "Thinking BST operations are always O(log n)",
         "concepts": ["binary_search_tree", "o_log_n", "balanced_tree"],
         "common_claim": "BST search/insert is always O(log n)",
+        "distinctive_phrases": ["bst always o(log n)", "bst always log", "always logarithmic", "bst search always", "bst is always o(log"],
         "correct": "BST operations are O(log n) only when balanced; worst case (degenerate/linear tree) is O(n)",
         "severity": "moderate",
     },
@@ -171,6 +201,7 @@ CS_MISCONCEPTION_TAXONOMY = {
         "description": "Assuming hash tables never have worst-case O(n)",
         "concepts": ["hash_table", "collision", "o_1", "o_n"],
         "common_claim": "Hash table operations are always O(1)",
+        "distinctive_phrases": ["hash always o(1)", "hash table always constant", "hash o(1) always", "never collide", "no collisions"],
         "correct": "Hash table operations are O(1) AVERAGE case; worst case with many collisions is O(n)",
         "severity": "moderate",
     },
@@ -179,6 +210,7 @@ CS_MISCONCEPTION_TAXONOMY = {
         "description": "Confusing hash function with encryption",
         "concepts": ["hash_function", "hash_table"],
         "common_claim": "Hash functions encrypt the data for security",
+        "distinctive_phrases": ["encrypt", "encryption", "for security", "cryptographic", "secure data", "decrypt"],
         "correct": "Hash functions in hash tables map keys to indices; they are not cryptographic and not for security",
         "severity": "minor",
     },
@@ -187,6 +219,7 @@ CS_MISCONCEPTION_TAXONOMY = {
         "description": "Believing quicksort is always faster than merge sort",
         "concepts": ["quick_sort", "merge_sort", "o_n_log_n", "o_n2"],
         "common_claim": "Quick sort is always the fastest sorting algorithm",
+        "distinctive_phrases": ["quicksort always faster", "fastest sorting", "quicksort is fastest", "quicksort beats", "always the fastest"],
         "correct": "Quick sort average is O(n log n) but worst case is O(n²); merge sort guarantees O(n log n)",
         "severity": "moderate",
     },
@@ -195,6 +228,7 @@ CS_MISCONCEPTION_TAXONOMY = {
         "description": "Thinking all O(n log n) sorts are equally fast in practice",
         "concepts": ["merge_sort", "quick_sort", "heap_sort"],
         "common_claim": "Merge sort and quick sort have the same performance",
+        "distinctive_phrases": ["same performance", "equally fast", "same speed", "identical performance", "same in practice"],
         "correct": "Despite same asymptotic complexity, quick sort is often faster due to better cache locality and lower constant factors",
         "severity": "minor",
     },
@@ -203,6 +237,7 @@ CS_MISCONCEPTION_TAXONOMY = {
         "description": "Assuming BFS always finds the shortest path",
         "concepts": ["bfs", "shortest_path", "weighted_graph", "dijkstra"],
         "common_claim": "BFS finds the shortest path in any graph",
+        "distinctive_phrases": ["bfs always shortest", "bfs shortest path always", "bfs in any graph", "bfs for weighted", "bfs finds shortest"],
         "correct": "BFS finds the shortest path in UNWEIGHTED graphs only; for weighted graphs, use Dijkstra's algorithm",
         "severity": "moderate",
     },
@@ -211,6 +246,7 @@ CS_MISCONCEPTION_TAXONOMY = {
         "description": "Confusing DFS with BFS behavior",
         "concepts": ["bfs", "dfs", "queue", "stack"],
         "common_claim": "DFS uses a queue / BFS uses a stack",
+        "distinctive_phrases": ["dfs uses queue", "bfs uses stack", "dfs queue", "bfs stack"],
         "correct": "BFS uses a queue (level-by-level); DFS uses a stack (depth-first via recursion or explicit stack)",
         "severity": "critical",
     },
@@ -219,6 +255,7 @@ CS_MISCONCEPTION_TAXONOMY = {
         "description": "Confusing best case with average case complexity",
         "concepts": ["time_complexity", "big_o_notation"],
         "common_claim": "Big-O notation describes the best case",
+        "distinctive_phrases": ["big-o best case", "big o is best", "big-o describes best", "best case big-o", "big-o for best"],
         "correct": "Big-O describes the UPPER BOUND (worst case); best case is described by Big-Ω (Omega)",
         "severity": "moderate",
     },
@@ -227,10 +264,58 @@ CS_MISCONCEPTION_TAXONOMY = {
         "description": "Thinking O(n²) is always slower than O(n log n)",
         "concepts": ["o_n2", "o_n_log_n", "time_complexity"],
         "common_claim": "O(n log n) algorithms are always faster than O(n²)",
+        "distinctive_phrases": ["o(n log n) always faster", "always faster than o(n^2)", "n log n beats n squared", "log n always wins", "lower complexity always faster"],
         "correct": "For small n, O(n²) algorithms with low constant factors (like insertion sort) can be faster than O(n log n) algorithms",
         "severity": "minor",
     },
 }
+
+
+# ============================================================================
+# Framework Fix #18 (2026-06-15): taxonomy ↔ KG cross-reference helpers.
+# Add (a) defensive validation against future referential drift, and (b) a
+# reverse-lookup API so the dashboard/verifier can answer "which
+# misconceptions attach to this KG concept?" without scanning the dict.
+# ============================================================================
+
+def taxonomy_for_concept(concept_id: str) -> list[str]:
+    """Return the list of taxonomy IDs (e.g. DS-LIST-01) that reference
+    a given KG concept_id. Empty list if no misconception attaches.
+
+    Used by the dashboard to surface "misconceptions that involve this
+    concept" when an educator clicks a node, and by the verifier to
+    enrich a low-coverage warning with relevant misconception context.
+    """
+    return [tid for tid, t in CS_MISCONCEPTION_TAXONOMY.items()
+            if concept_id in t.get("concepts", [])]
+
+
+def validate_taxonomy_against_kg(kg_concept_ids: set[str]) -> dict:
+    """Defensive check that every concept_id referenced by the taxonomy
+    exists in the given KG's concept set. Returns a dict with:
+      - missing_refs: list of (taxonomy_id, concept_id) tuples that
+        reference unknown concepts
+      - unattached_kg_concepts: count of KG concepts with no taxonomy
+        entry (informational, not an error)
+      - referenced_count: total distinct concept_ids the taxonomy uses
+
+    Call at pipeline init to fail fast if someone renames a KG concept
+    without updating the taxonomy, or vice versa. The current return
+    contract is non-throwing — callers decide whether missing_refs is
+    an error in their context.
+    """
+    referenced: set[str] = set()
+    missing: list[tuple[str, str]] = []
+    for tid, t in CS_MISCONCEPTION_TAXONOMY.items():
+        for cid in t.get("concepts", []):
+            referenced.add(cid)
+            if cid not in kg_concept_ids:
+                missing.append((tid, cid))
+    return {
+        "missing_refs": missing,
+        "unattached_kg_concepts": len(kg_concept_ids - referenced),
+        "referenced_count": len(referenced),
+    }
 
 
 MISCONCEPTION_ANALYSIS_SYSTEM = """You are an expert CS educator analyzing student misconceptions about Data Structures.
@@ -283,6 +368,7 @@ class MisconceptionDetector:
     """
 
     def __init__(self, api_key: str, model: str = "claude-haiku-4-5-20251001"):
+        from conceptgrade.llm_client import LLMClient as Groq
         self.client = Groq(api_key=api_key)
         self.model = model
         self.taxonomy = CS_MISCONCEPTION_TAXONOMY
@@ -343,6 +429,21 @@ class MisconceptionDetector:
             MisconceptionReport with detected misconceptions and remediation
         """
         report = MisconceptionReport()
+
+        # Framework Fix #9 (2026-06-15): short-circuit on OUT_OF_KG questions.
+        # When the upstream extractor flagged the question as outside the KG's
+        # coverage, the absence of detected incorrect relationships is a
+        # property of KG scope, not of student understanding. Emit an explicit
+        # "not assessed" summary instead of the misleading
+        # "All demonstrated relationships appear correct" early return.
+        if concept_graph and concept_graph.get("out_of_kg_domain", False):
+            report.summary = (
+                "Misconceptions not assessed — question is outside the "
+                "knowledge graph's domain coverage. KG-based misconception "
+                "detection cannot help here; rely on student-vs-reference "
+                "scoring only."
+            )
+            return report
 
         # Extract incorrect relationships from comparison result
         incorrect_rels = []
@@ -487,3 +588,129 @@ class MisconceptionDetector:
             report.overall_accuracy = max(0.0, 1.0 - normalized_penalty)
 
         return report
+
+
+# ================================================================
+# False Belief Detector: Identifies explicit false claims
+# Distinct from misconceptions (KG-based) or omissions (0 matched)
+# ================================================================
+
+FALSE_BELIEF_SYSTEM = """You are an expert CS educator analyzing student responses for EXPLICIT FALSE BELIEFS.
+
+Important distinction:
+- FALSE BELIEF: Student explicitly claims something wrong (e.g., "A stack is FIFO" or "Hash tables are always O(1)")
+- OMISSION: Student just didn't mention a concept (NOT a false belief)
+- VAGUE: Student's answer is imprecise but not explicitly wrong (NOT a false belief)
+
+Focus on identifying statements where the student makes a DEFINITIVE CLAIM that contradicts correct CS understanding."""
+
+
+FALSE_BELIEF_USER = """Analyze this Data Structures student response for EXPLICIT FALSE BELIEFS:
+
+QUESTION: {question}
+STUDENT ANSWER: {student_answer}
+
+Identify statements where the student EXPLICITLY CLAIMS something FALSE.
+Do NOT flag omissions, vague statements, or missing concepts.
+DO flag: "A stack is FIFO", "Hash tables are always O(1)", "BFS uses a stack", etc.
+
+Return ONLY valid JSON:
+{{
+  "false_beliefs": [
+    {{
+      "false_belief_id": "FB-1",
+      "severity": "critical|moderate|minor",
+      "student_claim": "exact quote or close paraphrase of what they claimed",
+      "correct_understanding": "what is actually correct",
+      "explanation": "why the student's claim is wrong",
+      "confidence": 0.0-1.0
+    }}
+  ],
+  "summary": "brief summary of any explicit false beliefs found"
+}}"""
+
+
+class FalseBeliefDetector:
+    """
+    Detects explicit false beliefs in student responses.
+
+    Distinct from:
+    - MisconceptionDetector: Uses KG comparison to find incorrect relationships
+    - Omissions: Missing concepts are NOT false beliefs
+
+    False beliefs are explicit claims that contradict correct understanding.
+    """
+
+    def __init__(self, api_key: str, model: str = "claude-haiku-4-5-20251001"):
+        from conceptgrade.llm_client import LLMClient as Groq
+        self.client = Groq(api_key=api_key)
+        self.model = model
+
+    def _call_llm(self, system: str, user: str, max_tokens: int = 600) -> str:
+        response = self.client.chat.completions.create(
+            model=self.model,
+            messages=[
+                {"role": "system", "content": system},
+                {"role": "user", "content": user}
+            ],
+            temperature=0.1,
+            max_tokens=max_tokens,
+        )
+        return response.choices[0].message.content
+
+    def _parse_json(self, text: str) -> dict:
+        from conceptgrade.llm_client import parse_llm_json
+        return parse_llm_json(text)
+
+    def detect(
+        self,
+        question: str,
+        student_answer: str,
+    ) -> list[DetectedFalseBelief]:
+        """
+        Detect explicit false beliefs in a student's response.
+
+        Args:
+            question: The assessment question
+            student_answer: Student's free-text response
+
+        Returns:
+            List of DetectedFalseBelief objects (empty if none found)
+        """
+        false_beliefs = []
+
+        # LLM-based analysis for explicit false claims
+        user_prompt = FALSE_BELIEF_USER.format(
+            question=question,
+            student_answer=student_answer,
+        )
+
+        try:
+            raw = self._call_llm(FALSE_BELIEF_SYSTEM, user_prompt)
+            parsed = self._parse_json(raw)
+
+            for fb_data in parsed.get("false_beliefs", []):
+                try:
+                    severity = Severity(fb_data.get("severity", "moderate"))
+                except ValueError:
+                    severity = Severity.MODERATE
+
+                false_belief = DetectedFalseBelief(
+                    false_belief_id=fb_data.get("false_belief_id", f"FB-{len(false_beliefs) + 1}"),
+                    severity=severity,
+                    student_claim=fb_data.get("student_claim", ""),
+                    correct_understanding=fb_data.get("correct_understanding", ""),
+                    explanation=fb_data.get("explanation", ""),
+                    confidence=float(fb_data.get("confidence", 0.5)),
+                )
+                false_beliefs.append(false_belief)
+
+        except Exception as e:
+            err = str(e)
+            if "429" in err or "529" in err or "rate_limit" in err.lower() or "overloaded" in err.lower():
+                raise  # propagate so key rotator can handle it
+            # On LLM failure, return empty list (no false beliefs detected)
+            # This is safe: if LLM fails, we don't want to make false claims about false beliefs
+            false_beliefs = []
+
+        return false_beliefs

@@ -1,0 +1,34 @@
+{
+  "baseline_n473": {
+    "label": "PAPER-CURRENT: N=473 (with 105 duplicates)",
+    "n": 473,
+    "mae_cllm": 1.208245243128964,
+    "mae_c5": 1.1797040169133193,
+    "reduction_pct": 2.3622047244094477,
+    "ci_low": -5.570461414129811,
+    "ci_high": 9.595098766707682,
+    "n_c5_better": 132,
+    "n_cllm_better": 146,
+    "n_ties": 195,
+    "p_wilcoxon_two": 0.339950325738422,
+    "p_wilcoxon_one_less": 0.169975162869211,
+    "p_paired_t": 0.5403846744692629,
+    "cohens_dz": -0.028170941106835923
+  },
+  "corrected_n368": {
+    "label": "CORRECTED: N=368 (dedupd)",
+    "n": 368,
+    "mae_cllm": 1.1480978260869565,
+    "mae_c5": 1.141304347826087,
+    "reduction_pct": 0.591715976331366,
+    "ci_low": -8.661885456945708,
+    "ci_high": 9.351204916088225,
+    "n_c5_better": 95,
+    "n_cllm_better": 113,
+    "n_ties": 160,
+    "p_wilcoxon_two": 0.7023426364520946,
+    "p_wilcoxon_one_less": 0.3511713182260473,
+    "p_paired_t": 0.8980757487550532,
+    "cohens_dz": -0.006681909500658243
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "n_reliable_with_traces": 113,
+  "n_high_disagreement_with_traces": 2,
+  "features_tested": [
+    "n_contradicts",
+    "n_supports",
+    "n_uncertain",
+    "contradicts_ratio",
+    "n_steps",
+    "net_confidence",
+    "n_unique_kg_nodes",
+    "gap_badges_proxy"
+  ]
+}

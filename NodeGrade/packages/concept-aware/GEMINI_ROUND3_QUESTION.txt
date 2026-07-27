@@ -1,0 +1,84 @@
+Round 3 follow-up. In Round 2 you gave me five sharp critiques on my run_validation_budget.py script and Paper 2 reframing. I want you to review my responses and tell me what I either got wrong, did not actually fix, or made worse by trying to fix.
+
+# Your Round 2 critiques (verbatim)
+
+1. **Cost estimates 3x too low**: "your token assumptions are dangerously naive. A 700-token input for cross-dataset ASAG is a fantasy... Expect the true Claude phase to land closer to $4.00-$5.00, not $1.55."
+
+2. **Phase 1 is methodologically fatal**: "Collapsing a 5-layer sequential pipeline into a single Gemini Flash call... [you would be] optimizing hyperparameters for a hallucinated proxy, not your actual architecture."
+
+3. **Franken-baseline hazard**: "Having the script automatically switch from Claude 3.5 Sonnet to GPT-4o-mini if a key is missing or an API error occurs creates a scientifically worthless 'Franken-baseline.'"
+
+4. **User study ceiling effect**: "If the pipeline completely collapses and extracts nothing, the failure is incredibly loud. Even in a text-only summary (Condition A), a user will instantly see an empty output... creating a ceiling effect that will completely wash out your dashboard's statistical power at N=64."
+
+5. **VIS paper reframing too defensive**: "You swung too far into an equally dangerous trap. You have framed your VIS paper as 'we built a beautiful dashboard to babysit a broken AI that fails on 2/3 of our datasets.'"
+
+# What I did in response
+
+## Change 1: Killed Phase 1 entirely
+
+Removed the single-call signal-vector extraction. The weight-sensitivity tables stay removed in Paper 1 — I accept the gap rather than fill it with hallucinated proxies. Script header docstring records this decision explicitly.
+
+## Change 2: Re-estimated tokens, raised them aggressively
+
+New per-call estimates (Phase 2 zero-shot grading):
+- input: 1,400 tokens (was 700)
+- output: 120 tokens (was 50)
+
+New cost estimates (Phase 2 + Phase 3 combined, 520 + 50 = 570 samples):
+- Claude 3.5 Sonnet: $3.65 total (was $1.55 — landed within 25% of your "$4-5" prediction)
+- GPT-4o: $2.84
+- GPT-4o-mini: $0.17
+
+Hard cap: $15 (was $25; lowered since Phase 1 is dead)
+
+## Change 3: Hardened Phase 2 against Franken-baseline
+
+- `--model` is now REQUIRED for `--execute` (script exits with code 2 if missing)
+- On any API error mid-run, the script ABORTS rather than falling back
+- Cache key includes the model name, so cached results from different models are not silently mixed
+- No retry logic with exponential backoff yet — I deliberately chose hard-abort over retry-with-same-model because the cached batch responses already cost $0 to re-run
+
+## Change 4: Replaced Kaggle catastrophic stratum with silent-failure stratum
+
+NEW user study task-set stratification:
+- 1/3 reliable items: pipeline grade is correct (|grade - human| <= 0.5), drawn from Mohler-like answers where in-domain d_z = -0.30 effect concentrates. Correct decision = ACCEPT.
+- 1/3 silent-failure items: pipeline assigns high-confidence (>= 4.0/5.0) grade that human disagrees with (<= 2.5/5.0). Drawn from DigiKlausur and Mohler instances meeting this criterion in cached data. Correct decision = MODIFY or REJECT.
+- 1/3 ambiguous items: pipeline grade within 1.0 of human grade. Either ACCEPT or MODIFY counts as correct (base-rate anchor only, not individually scored as detection).
+
+Primary outcome H1' is now silent-failure stratum accuracy, not the original CA-rate. Powered at 80% for d >= 0.7.
+
+## Change 5: Added Phase 3 per your $5-addition suggestion
+
+Error-archetype analysis on top 50 |C5_fix - human| discrepancies in DigiKlausur. Each disagreement sent to the chosen frontier model. Model classifies into 7 archetypes (missed_concept, spurious_concept, rubric_mismatch, scale_calibration, depth_misjudge, partial_credit_error, other) with severity. Output produces a failure-archetype distribution table for both papers.
+
+## Change 6: Re-reframed Paper 2 again
+
+You said Round 2's reframing was too defensive ("babysit a broken AI"). I re-reframed to lead with the general structural-ASAG class rather than ConceptGrade-specific failure. Abstract now opens with: "Knowledge-graph-grounded automated short-answer grading systems are a maturing class of architectures, but their effectiveness depends sharply on how well the KG covers the domain vocabulary of the answers being graded." Dashboard contribution is now framed as "structural-confidence triage in cross-domain KG-grounded ASAG" rather than "fix our broken pipeline."
+
+# What I need from you (Round 3)
+
+Be specific. Be skeptical. Tell me what I screwed up.
+
+1. **Cost estimate re-review.** Are $3.65 (Claude) / $2.84 (GPT-4o) / $0.17 (GPT-4o-mini) realistic now, or am I STILL undercounting? You earlier said "$4-5 for Claude" — I'm at $3.65. Where is the missing $0.50-$1.50?
+
+2. **Phase 3 design check.** Is error-archetype analysis on 50 samples enough to produce a meaningful distribution table? Should I be running it on more samples, or stratifying across Mohler/DigiKlausur/Kaggle to compare archetype-distributions per dataset? What's the most likely way this Phase 3 result reads as "interesting but unactionable"?
+
+3. **Silent-failure stratification check.** My new failure stratum requires "pipeline confident high score AND human low score" - i.e., I'm using human disagreement as the failure label. Does this introduce circularity? Specifically: if the dashboard helps educators detect cases where human and pipeline disagree, am I just testing "can humans tell when humans and pipelines disagree" rather than "can humans tell when the pipeline is wrong"?
+
+4. **Re-reframing audit.** I dropped "babysit broken AI" but kept the cross-dataset heterogeneity data front and center. Is "structural-confidence triage in cross-domain KG-grounded ASAG" actually a contribution a VIS reviewer cares about, or is it still describing a tool whose existence presupposes a problem the reviewer doesn't think they have?
+
+5. **Hard-abort policy check.** The script aborts on any API error rather than retrying. Is this actually correct, or am I going to have a half-finished cache after a single transient 429 rate-limit error and end up paying twice on resume?
+
+6. **What's still wrong that I haven't asked about?** Round 1 you caught 5 things. Round 2 you caught 5 things. What does Round 3 catch?
+
+Respond as structured JSON:
+{
+  "cost_estimate_re_review": "...",
+  "phase3_design_check": "...",
+  "silent_failure_stratification_check": "...",
+  "re_reframing_audit": "...",
+  "hard_abort_policy_check": "...",
+  "what_else_is_wrong": [...],
+  "should_i_actually_run_this_or_skip": "run_phase3_only | run_both | skip_both | re-design_first",
+  "overall_advice": "..."
+}

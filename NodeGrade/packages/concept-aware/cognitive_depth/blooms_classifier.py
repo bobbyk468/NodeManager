@@ -198,23 +198,41 @@ class BloomsClassifier:
             BloomsClassification with level, confidence, and reasoning
         """
         # Extract evidence from concept graph and comparison
-        num_concepts = 0
-        concept_list = "none extracted"
-        num_rels = 0
-        correct_rels = "N/A"
-        misconceptions = "none"
-        integration = "N/A"
-        kg_depth = "not assessed"
+        # Framework Fix #26 (2026-06-15): mirror of Fix #8 — when the
+        # upstream extractor flagged the question as OUT_OF_KG_DOMAIN, the
+        # "0 concepts / 0 relationships" evidence is a property of KG
+        # scope, not student understanding. Surface "OUT OF KG COVERAGE"
+        # instead so the LLM doesn't anchor on Level 1 (Remember) for an
+        # answer the system literally cannot assess via the KG. This file
+        # is a legacy standalone (production uses CognitiveDepthClassifier)
+        # but the same defect class lurks here so apply for symmetry.
+        out_of_kg = bool(concept_graph and concept_graph.get("out_of_kg_domain", False))
+        if out_of_kg:
+            num_concepts = "OUT OF KG COVERAGE"
+            concept_list = "OUT OF KG COVERAGE — classify from text only"
+            num_rels = "OUT OF KG COVERAGE"
+            correct_rels = "OUT OF KG COVERAGE"
+            misconceptions = "not assessed (question outside KG coverage)"
+            integration = "OUT OF KG COVERAGE"
+            kg_depth = "OUT OF KG COVERAGE"
+        else:
+            num_concepts = 0
+            concept_list = "none extracted"
+            num_rels = 0
+            correct_rels = "N/A"
+            misconceptions = "none"
+            integration = "N/A"
+            kg_depth = "not assessed"
 
-        if concept_graph:
-            concepts = concept_graph.get("concepts", [])
-            num_concepts = len(concepts)
-            concept_list = ", ".join(
-                c.get("concept_id", c.get("id", "?")) for c in concepts[:15]
-            )
-            rels = concept_graph.get("relationships", [])
-            num_rels = len(rels)
-            kg_depth = concept_graph.get("overall_depth", "not assessed")
+            if concept_graph:
+                concepts = concept_graph.get("concepts", [])
+                num_concepts = len(concepts)
+                concept_list = ", ".join(
+                    c.get("concept_id", c.get("id", "?")) for c in concepts[:15]
+                )
+                rels = concept_graph.get("relationships", [])
+                num_rels = len(rels)
+                kg_depth = concept_graph.get("overall_depth", "not assessed")
 
         if comparison_result:
             scores = comparison_result.get("scores", {})

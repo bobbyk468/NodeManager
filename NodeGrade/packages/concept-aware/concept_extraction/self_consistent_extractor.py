@@ -177,10 +177,22 @@ class SelfConsistentExtractor:
         depth_votes = Counter(g.overall_depth for g in runs)
         majority_depth = depth_votes.most_common(1)[0][0]
 
+        # ── Domain match score (Framework Fix #11, 2026-06-15) ─────────────
+        # domain_match_score is deterministic from the question text and the
+        # KG (computed once per run during _build_question_ontology), so all
+        # N runs should produce the same value. Average defensively in case
+        # of future stochasticity; if all runs are missing the field, default
+        # to 1.0 (legacy behaviour). Without this propagation, the merged
+        # graph silently drops the OUT_OF_KG signal that Fixes #2b/#8/#9/#10
+        # depend on.
+        scores = [getattr(g, "domain_match_score", 1.0) for g in runs]
+        merged_domain_match = sum(scores) / len(scores) if scores else 1.0
+
         merged = StudentConceptGraph(
             question=question,
             student_answer=answer,
             overall_depth=majority_depth,
+            domain_match_score=round(merged_domain_match, 4),
         )
         merged.concepts = accepted_concepts
         merged.relationships = accepted_rels

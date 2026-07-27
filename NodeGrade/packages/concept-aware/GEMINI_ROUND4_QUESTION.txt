@@ -1,0 +1,98 @@
+Round 4. In Round 3 you told me to "re-design_first" and specifically to verify whether the dashboard's internal signals look statistically anomalous during silent failures. I did that. Results below. I have two specific decisions on the table and need your verdict.
+
+# Empirical validity check (per your Round 3 advice)
+
+Threshold for "silent failure" = pipeline c5 score >= 4.0 AND human score <= 2.5. Threshold for "reliable" = |c5 - human| <= 0.5.
+
+Per-dataset, per-signal Mann-Whitney U test (alpha = 0.05):
+
+| Dataset      | n reliable | n silent-fail | matched_n         | chain_pct           | SOLO (chi2)         | Bloom (chi2)        |
+|--------------|-----------|--------------|-------------------|---------------------|---------------------|---------------------|
+| Mohler       | 113       | 0            | n/a               | n/a                 | n/a                 | n/a                 |
+| DigiKlausur  | 285       | 62           | p=0.099 (d=-0.37) | p<0.0001 (d=-0.70)  | p<0.0001 (chi2=27.7) | p=0.46              |
+| Kaggle ASAG  | 187       | 68           | p=1.0 (degenerate, all zeros) | p=1.0 (degenerate) | n/a (all Prestructural) | not tested         |
+
+Combined "high-confidence" indicator (chain_pct >= 80% AND matched_n >= median AND SOLO in {Extended Abstract, Relational}) on DigiKlausur:
+- True positive rate (catches silent-failure): 77.4% (48/62)
+- False positive rate (false alarm on reliable): 49.1% (140/285)
+
+So:
+- Mohler has zero qualifying silent-failure cases
+- Kaggle is structurally blind (the pipeline's upstream extraction collapsed on all 473 samples; reliable and silent-failure cases have identical internal signals)
+- On DigiKlausur only chain_pct (= zero-grounding banner) and SOLO are statistically discriminating; matched_n and Bloom are not
+- Even on DigiKlausur, combining the discriminating signals yields 77% TP / 49% FP — moderate, not clean
+
+# What this means for the originally proposed dashboard contribution
+
+Paper 2 originally proposed a 5-component dashboard:
+1. Concept-coverage heatmap (matched_n based) — empirically does NOT discriminate silent failures
+2. Topological reasoning trace with gap badges (TRM-based) — not tested in cached data
+3. KG subgraph view (matched_n based) — empirically does NOT discriminate
+4. SOLO/Bloom indicator band — chi-square distinguishes SOLO; Bloom does NOT
+5. Zero-grounding banner (chain_pct based) — empirically DOES discriminate (p<0.0001)
+
+Of the 5 components, only 2 (zero-grounding banner + SOLO band) are empirically backed as discriminating silent failures on the only dataset where silent failures exist (DigiKlausur).
+
+# Two decisions on the table
+
+**Decision Q1:** What should H1' (the user study primary outcome hypothesis) be?
+
+  Option A: NARROW
+    "On DigiKlausur-derived silent-failure items, educators using
+     Condition B (dashboard with zero-grounding banner + SOLO band)
+     achieve strictly higher correct-rejection accuracy than
+     educators using Condition A (text-only summary)."
+
+  Option B: KEEP BROADER + ADD SCOPE FOOTNOTE
+    Current text: "Condition B yields strictly higher failure-detection
+     accuracy than Condition A" with footnote disclosing the empirical
+     finding that only chain_pct and SOLO are statistically
+     discriminating in cached data, and that Mohler/Kaggle strata are
+     therefore excluded from the silent-failure detection task set.
+
+**Decision Q2:** What should Paper 2 do with the matched_n heatmap and Bloom indicators in the "Contributions" list?
+
+  Option X: DROP them from the contribution claim and from the user-study
+    dashboard (acknowledge they were originally hypothesized to help but
+    cached data shows they don't discriminate silent failures).
+
+  Option Y: KEEP them with an honest "alternate use case" framing:
+    "matched_n heatmap supports concept-coverage triage on reliable
+     answers; Bloom indicator helps cognitive-depth audit. Neither
+     is empirically backed as a silent-failure discriminator."
+
+  Option Z: REMOVE them from the dashboard ENTIRELY and submit a
+    3-component dashboard (zero-grounding banner + SOLO band + TRM
+    reasoning trace), with TRM still untested but theoretically motivated.
+
+# What I want from you
+
+Be specific. Tell me what I should pick and what I should not pick. Don't be diplomatic.
+
+1. **Q1 vs Q1**: Which framing -- narrow (A) or broader-with-footnote (B) -- gives the best VIS-reviewer outcome? Be brutal about why.
+
+2. **Q2 X / Y / Z**: Which of the three options should I take? Specifically: does removing 2 of 5 dashboard components weaken the contribution past the threshold a VIS reviewer can accept?
+
+3. **Sanity check on running the validation script.** Given the empirical findings, is there any value in running Phase 2 (frontier baseline) or Phase 3 (error archetypes) at all? Or should I skip both and just rely on what cached data has already shown?
+
+4. **Bigger picture.** Should this paper proceed to VIS 2027 in its current shape, get reframed for a workshop, or be split apart (Paper 1 = full submission with cross-dataset honesty; Paper 2 = withdrawn until a real user study runs)? Pick one and defend it.
+
+5. **What am I missing in the validity check itself?** Is comparing reliable vs silent-failure on internal signals actually the right framing, or is there a better empirical pre-check that would have revealed something the Mann-Whitney U test missed?
+
+6. **The TRM reasoning trace component (gap badges) is not tested in cached data.** Should I (a) run a separate validity check on it from cached LRM traces, (b) drop it like matched_n/Bloom, (c) keep it with a "theoretical motivation only" caveat?
+
+Respond as structured JSON:
+{
+  "q1_recommendation": "narrow" | "broader_with_footnote",
+  "q1_justification": "...",
+  "q2_recommendation": "X_drop" | "Y_keep_with_alternate" | "Z_remove_from_dashboard",
+  "q2_justification": "...",
+  "should_run_phase2": "yes" | "no",
+  "should_run_phase3": "yes" | "no",
+  "phase_run_justification": "...",
+  "publication_path_recommendation": "vis2027_current" | "vis2027_reframed" | "workshop" | "split_papers" | "withdraw_p2",
+  "publication_path_justification": "...",
+  "validity_check_gaps": [...],
+  "trm_gap_badges_recommendation": "a_validity_check" | "b_drop" | "c_keep_caveat",
+  "overall_verdict": "..."
+}

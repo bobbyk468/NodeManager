@@ -1,0 +1,752 @@
+SCORING GUIDE — based on proportion of reference answer content correctly demonstrated:
+- 5.0: Student correctly explains virtually all key ideas (≥90% of reference content)
+- 4.5: Student correctly explains the great majority (≥80%); only very minor omissions
+- 4.0: Student correctly explains most key ideas (≥70%); one clear gap
+- 3.5: Student correctly explains a solid majority (≥60%) with reasonable depth
+- 3.0: Student correctly explains about half the reference content (~50%)
+- 2.5: Student correctly explains several key ideas (30–50%); substantial content missing
+- 2.0: Student correctly explains 1–2 key ideas accurately; most reference content missing
+- 1.5: Student shows partial understanding of 1 concept but cannot explain mechanisms
+- 1.0: Student shows awareness of the topic but no accurate explanations
+- 0.5: Single marginally relevant statement; no explanation
+- 0.0: No relevant content
+
+Score what the student got RIGHT. Missing vocabulary alone does not lower the score.
+Use 0.25 increments only.
+
+You are an expert grader. Grade each student answer below using ONLY the question, reference answer, and student answer. Do NOT use any external knowledge graphs or structured evidence.
+
+Return a JSON object:
+{
+  "scores": {
+    "<id>": X.X,
+    ...
+  }
+}
+
+Grade all 80 samples. Use 0.25 increments.
+
+======================================================================
+
+--- SAMPLE ID: 240 ---
+QUESTION: What causes wind?
+
+REFERENCE ANSWER:
+Movement of air from high to low pressure.
+
+STUDENT ANSWER:
+Air moves around.
+
+--- SAMPLE ID: 241 ---
+QUESTION: What is a cold front?
+
+REFERENCE ANSWER:
+A boundary where a cold air mass replaces a warm one.
+
+STUDENT ANSWER:
+Cold air pushing warm air.
+
+--- SAMPLE ID: 242 ---
+QUESTION: What is a warm front?
+
+REFERENCE ANSWER:
+A boundary where warm air moves over cold air.
+
+STUDENT ANSWER:
+Warm air goes over cold.
+
+--- SAMPLE ID: 243 ---
+QUESTION: What is a tornado?
+
+REFERENCE ANSWER:
+A rotating column of air extending from a storm to the ground.
+
+STUDENT ANSWER:
+Big spinning air storm.
+
+--- SAMPLE ID: 244 ---
+QUESTION: What is a hurricane?
+
+REFERENCE ANSWER:
+A large tropical storm with strong winds and rain.
+
+STUDENT ANSWER:
+A big storm with wind.
+
+--- SAMPLE ID: 245 ---
+QUESTION: What is a drought?
+
+REFERENCE ANSWER:
+A long period without rain.
+
+STUDENT ANSWER:
+When there is no rain.
+
+--- SAMPLE ID: 246 ---
+QUESTION: What is a blizzard?
+
+REFERENCE ANSWER:
+A severe snowstorm with strong winds.
+
+STUDENT ANSWER:
+Snow falling with strong wind.
+
+--- SAMPLE ID: 247 ---
+QUESTION: What is fog?
+
+REFERENCE ANSWER:
+A cloud that forms near the ground.
+
+STUDENT ANSWER:
+Mist close to the ground.
+
+--- SAMPLE ID: 248 ---
+QUESTION: What is dew?
+
+REFERENCE ANSWER:
+Water droplets that form on surfaces in the morning.
+
+STUDENT ANSWER:
+Drops seen on grass in morning.
+
+--- SAMPLE ID: 249 ---
+QUESTION: What is the water cycle?
+
+REFERENCE ANSWER:
+The continuous movement of water through evaporation, condensation, and precipitation.
+
+STUDENT ANSWER:
+Water goes up and comes down.
+
+--- SAMPLE ID: 250 ---
+QUESTION: What is evaporation?
+
+REFERENCE ANSWER:
+The process where liquid water turns into vapor.
+
+STUDENT ANSWER:
+Water drying up.
+
+--- SAMPLE ID: 251 ---
+QUESTION: What is condensation?
+
+REFERENCE ANSWER:
+Water vapor turning into liquid.
+
+STUDENT ANSWER:
+Water forming from air.
+
+--- SAMPLE ID: 252 ---
+QUESTION: What is global warming?
+
+REFERENCE ANSWER:
+The increase in Earth's average temperature.
+
+STUDENT ANSWER:
+Earth getting hotter.
+
+--- SAMPLE ID: 253 ---
+QUESTION: What are greenhouse gases?
+
+REFERENCE ANSWER:
+Gases that trap heat in the atmosphere.
+
+STUDENT ANSWER:
+Bad gases in the air.
+
+--- SAMPLE ID: 254 ---
+QUESTION: Name two greenhouse gases.
+
+REFERENCE ANSWER:
+Carbon dioxide and methane.
+
+STUDENT ANSWER:
+Smoke and dust.
+
+--- SAMPLE ID: 255 ---
+QUESTION: What is the greenhouse effect?
+
+REFERENCE ANSWER:
+The process by which greenhouse gases trap heat.
+
+STUDENT ANSWER:
+Earth becoming warm like a greenhouse.
+
+--- SAMPLE ID: 256 ---
+QUESTION: What is a weather satellite?
+
+REFERENCE ANSWER:
+A satellite that monitors weather patterns from space.
+
+STUDENT ANSWER:
+It sees weather from above.
+
+--- SAMPLE ID: 257 ---
+QUESTION: What is weathering?
+
+REFERENCE ANSWER:
+Breaking down of rocks by weather.
+
+STUDENT ANSWER:
+Rocks break by air or water.
+
+--- SAMPLE ID: 258 ---
+QUESTION: Which planet is closest to the Sun?
+
+REFERENCE ANSWER:
+Mercury.
+
+STUDENT ANSWER:
+Mercury, I think.
+
+--- SAMPLE ID: 259 ---
+QUESTION: What is the Sun?
+
+REFERENCE ANSWER:
+The Sun is a star at the center of our solar system.
+
+STUDENT ANSWER:
+Sun gives light.
+
+--- SAMPLE ID: 260 ---
+QUESTION: How many moons does Earth have?
+
+REFERENCE ANSWER:
+One.
+
+STUDENT ANSWER:
+Just one moon.
+
+--- SAMPLE ID: 261 ---
+QUESTION: What is a moon?
+
+REFERENCE ANSWER:
+A moon is a natural satellite that orbits a planet.
+
+STUDENT ANSWER:
+Moon goes around Earth.
+
+--- SAMPLE ID: 262 ---
+QUESTION: What is a comet?
+
+REFERENCE ANSWER:
+A small icy body that orbits the Sun and has a tail.
+
+STUDENT ANSWER:
+Has a tail.
+
+--- SAMPLE ID: 263 ---
+QUESTION: Which planet has the most moons?
+
+REFERENCE ANSWER:
+Jupiter.
+
+STUDENT ANSWER:
+Jupiter has many.
+
+--- SAMPLE ID: 264 ---
+QUESTION: What is a satellite?
+
+REFERENCE ANSWER:
+A natural or artificial object that orbits a planet.
+
+STUDENT ANSWER:
+Something that goes around.
+
+--- SAMPLE ID: 265 ---
+QUESTION: What is a space probe?
+
+REFERENCE ANSWER:
+An unmanned spacecraft sent to explore space.
+
+STUDENT ANSWER:
+It goes to space.
+
+--- SAMPLE ID: 266 ---
+QUESTION: What is the Milky Way?
+
+REFERENCE ANSWER:
+The galaxy that contains our solar system.
+
+STUDENT ANSWER:
+A big group of stars.
+
+--- SAMPLE ID: 267 ---
+QUESTION: What is space?
+
+REFERENCE ANSWER:
+The vast, empty region beyond Earth's atmosphere.
+
+STUDENT ANSWER:
+Big and empty.
+
+--- SAMPLE ID: 268 ---
+QUESTION: What is the water cycle?
+
+REFERENCE ANSWER:
+The water cycle is the continuous movement of water through evaporation, condensation, precipitation, and collection.
+
+STUDENT ANSWER:
+It's a circle of water.
+
+--- SAMPLE ID: 269 ---
+QUESTION: What is condensation?
+
+REFERENCE ANSWER:
+The process where water vapor cools and changes back into liquid.
+
+STUDENT ANSWER:
+Water turns into gas.
+
+--- SAMPLE ID: 270 ---
+QUESTION: What is precipitation?
+
+REFERENCE ANSWER:
+Water falling from the sky as rain, snow, sleet, or hail.
+
+STUDENT ANSWER:
+It's when water goes up.
+
+--- SAMPLE ID: 271 ---
+QUESTION: What is evaporation?
+
+REFERENCE ANSWER:
+The process by which water changes into vapor due to heat.
+
+STUDENT ANSWER:
+Water becomes ice.
+
+--- SAMPLE ID: 272 ---
+QUESTION: What is transpiration?
+
+REFERENCE ANSWER:
+Water released by plants into the air.
+
+STUDENT ANSWER:
+When plants eat water.
+
+--- SAMPLE ID: 273 ---
+QUESTION: What is groundwater?
+
+REFERENCE ANSWER:
+Water stored beneath the Earth's surface.
+
+STUDENT ANSWER:
+Water above ground.
+
+--- SAMPLE ID: 274 ---
+QUESTION: What is fog?
+
+REFERENCE ANSWER:
+A cloud that forms near the ground.
+
+STUDENT ANSWER:
+Rain in the sky.
+
+--- SAMPLE ID: 275 ---
+QUESTION: What is sleet?
+
+REFERENCE ANSWER:
+Frozen raindrops.
+
+STUDENT ANSWER:
+Warm ice.
+
+--- SAMPLE ID: 276 ---
+QUESTION: What is condensation?
+
+REFERENCE ANSWER:
+The process where water vapor cools and turns into liquid.
+
+STUDENT ANSWER:
+It makes water hot.
+
+--- SAMPLE ID: 277 ---
+QUESTION: What is transpiration?
+
+REFERENCE ANSWER:
+Release of water vapor by plants.
+
+STUDENT ANSWER:
+Trees drink water.
+
+--- SAMPLE ID: 278 ---
+QUESTION: What are microorganisms?
+
+REFERENCE ANSWER:
+Microorganisms are tiny living organisms that can only be seen under a microscope.
+
+STUDENT ANSWER:
+Tiny things we can't see.
+
+--- SAMPLE ID: 279 ---
+QUESTION: Are all microorganisms harmful?
+
+REFERENCE ANSWER:
+No, some microorganisms are helpful while others can cause diseases.
+
+STUDENT ANSWER:
+Some are bad.
+
+--- SAMPLE ID: 280 ---
+QUESTION: Name one harmful effect of microorganisms.
+
+REFERENCE ANSWER:
+They cause diseases like cholera and typhoid.
+
+STUDENT ANSWER:
+They make us sick.
+
+--- SAMPLE ID: 281 ---
+QUESTION: Name a disease caused by a virus.
+
+REFERENCE ANSWER:
+Influenza (flu) is caused by a virus.
+
+STUDENT ANSWER:
+Cold is from virus.
+
+--- SAMPLE ID: 282 ---
+QUESTION: What is fermentation?
+
+REFERENCE ANSWER:
+A process where microorganisms convert sugars into alcohol or acids.
+
+STUDENT ANSWER:
+It changes food.
+
+--- SAMPLE ID: 283 ---
+QUESTION: What is pasteurization?
+
+REFERENCE ANSWER:
+Heating food to kill harmful microorganisms without affecting the taste.
+
+STUDENT ANSWER:
+Heat food.
+
+--- SAMPLE ID: 284 ---
+QUESTION: What connects muscles to bones?
+
+REFERENCE ANSWER:
+Tendons.
+
+STUDENT ANSWER:
+Muscles.
+
+--- SAMPLE ID: 285 ---
+QUESTION: What is weather?
+
+REFERENCE ANSWER:
+When it rains sometimes
+
+STUDENT ANSWER:
+The short-term atmospheric conditions in a specific place
+
+--- SAMPLE ID: 286 ---
+QUESTION: What is climate?
+
+REFERENCE ANSWER:
+How hot or cold a place is
+
+STUDENT ANSWER:
+The long-term average of weather patterns over decades
+
+--- SAMPLE ID: 287 ---
+QUESTION: What causes wind?
+
+REFERENCE ANSWER:
+Trees moving
+
+STUDENT ANSWER:
+Differences in air pressure due to uneven heating of Earth's surface
+
+--- SAMPLE ID: 288 ---
+QUESTION: What is humidity?
+
+REFERENCE ANSWER:
+When you sweat a lot
+
+STUDENT ANSWER:
+The amount of water vapor in the air
+
+--- SAMPLE ID: 289 ---
+QUESTION: What is a hurricane?
+
+REFERENCE ANSWER:
+A really big storm
+
+STUDENT ANSWER:
+A tropical cyclone with sustained winds over 74 mph
+
+--- SAMPLE ID: 290 ---
+QUESTION: What is global warming?
+
+REFERENCE ANSWER:
+Summers getting hotter
+
+STUDENT ANSWER:
+Long-term rise in Earth's average temperature
+
+--- SAMPLE ID: 291 ---
+QUESTION: What is precipitation?
+
+REFERENCE ANSWER:
+Anything falling from sky
+
+STUDENT ANSWER:
+Rain, snow, sleet or hail falling from clouds
+
+--- SAMPLE ID: 292 ---
+QUESTION: What is a cold front?
+
+REFERENCE ANSWER:
+When winter comes
+
+STUDENT ANSWER:
+Boundary where cold air replaces warm air
+
+--- SAMPLE ID: 293 ---
+QUESTION: What is a tornado?
+
+REFERENCE ANSWER:
+A spinning cloud
+
+STUDENT ANSWER:
+Violently rotating column of air touching ground
+
+--- SAMPLE ID: 294 ---
+QUESTION: What is the greenhouse effect?
+
+REFERENCE ANSWER:
+Plants growing faster
+
+STUDENT ANSWER:
+Trapping of heat by atmospheric gases
+
+--- SAMPLE ID: 295 ---
+QUESTION: What is a drought?
+
+REFERENCE ANSWER:
+No swimming pools
+
+STUDENT ANSWER:
+Prolonged period of abnormally low rainfall
+
+--- SAMPLE ID: 296 ---
+QUESTION: What is sleet?
+
+REFERENCE ANSWER:
+Half rain half snow
+
+STUDENT ANSWER:
+Ice pellets formed when snow melts and refreezes
+
+--- SAMPLE ID: 297 ---
+QUESTION: What is a weather satellite?
+
+REFERENCE ANSWER:
+A flying camera
+
+STUDENT ANSWER:
+Spacecraft observing Earth's atmospheric conditions
+
+--- SAMPLE ID: 298 ---
+QUESTION: What is a blizzard?
+
+REFERENCE ANSWER:
+Lots of snow
+
+STUDENT ANSWER:
+Severe snowstorm with strong winds
+
+--- SAMPLE ID: 299 ---
+QUESTION: What is evaporation?
+
+REFERENCE ANSWER:
+When water disappears
+
+STUDENT ANSWER:
+The process where liquid water changes to water vapor due to heat
+
+--- SAMPLE ID: 300 ---
+QUESTION: What is the water cycle?
+
+REFERENCE ANSWER:
+Water moving around
+
+STUDENT ANSWER:
+Continuous movement of water between atmosphere, land, and oceans
+
+--- SAMPLE ID: 301 ---
+QUESTION: What is a warm front?
+
+REFERENCE ANSWER:
+When warm weather comes
+
+STUDENT ANSWER:
+Boundary where warm air mass replaces cooler air mass
+
+--- SAMPLE ID: 302 ---
+QUESTION: What is respiration in plants?
+
+REFERENCE ANSWER:
+Respiration in plants is the process of breaking down food to release energy and carbon dioxide.
+
+STUDENT ANSWER:
+Respiration is how plants and animals take in oxygen and great energy.
+
+--- SAMPLE ID: 303 ---
+QUESTION: What is a habitat?
+
+REFERENCE ANSWER:
+A habitat is the natural home of a plant or an animal.
+
+STUDENT ANSWER:
+A habitat is like a home for animals and plants. It's where they live and find everything they need to survive, like food, water, and shelter.
+
+--- SAMPLE ID: 304 ---
+QUESTION: Define force.
+
+REFERENCE ANSWER:
+A force is a push or pull acting on an object.
+
+STUDENT ANSWER:
+Force is a push or a pull. It's what makes things move, stop, or change direction. Like when you push a swing or pull a wagon!
+
+--- SAMPLE ID: 305 ---
+QUESTION: What is soil erosion?
+
+REFERENCE ANSWER:
+Soil erosion is the removal of soil by wind, water or human activity.
+
+STUDENT ANSWER:
+Soil erosion is when the top layer of soil, which is really important for plants, gets carried away by wind or water. It's like the ground is washing or blowing away.
+
+--- SAMPLE ID: 306 ---
+QUESTION: What is inertia?
+
+REFERENCE ANSWER:
+Inertia is the tendency of an object to resist change in its motion.
+
+STUDENT ANSWER:
+Inertia is like a thing's laziness! It means that an object that is not moving wants to stay not moving, and an object that is moving wants to keep moving in the same direction, unless something pushes or pulls it to change.
+
+--- SAMPLE ID: 307 ---
+QUESTION: What are microorganisms?
+
+REFERENCE ANSWER:
+Microorganisms are tiny living things that cannot be seen with the naked eye.
+
+STUDENT ANSWER:
+micro organisms are small things seen with naked eye
+
+--- SAMPLE ID: 308 ---
+QUESTION: Name three types of microorganisms.
+
+REFERENCE ANSWER:
+Bacteria, viruses, and fungi.
+
+STUDENT ANSWER:
+Fungi, bacteria, and yeasts
+
+--- SAMPLE ID: 309 ---
+QUESTION: Are all microorganisms harmful?
+
+REFERENCE ANSWER:
+No, some microorganisms are helpful and others are harmful.
+
+STUDENT ANSWER:
+No, not all microorganisms are bad. Some are usefull
+
+--- SAMPLE ID: 310 ---
+QUESTION: Name a disease caused by a virus.
+
+REFERENCE ANSWER:
+Flu is caused by a virus.
+
+STUDENT ANSWER:
+Flu is viral fever.
+
+--- SAMPLE ID: 311 ---
+QUESTION: Name one harmful effect of microorganisms.
+
+REFERENCE ANSWER:
+They can cause diseases like typhoid and cholera.
+
+STUDENT ANSWER:
+They make people sick
+
+--- SAMPLE ID: 312 ---
+QUESTION: What is germination?
+
+REFERENCE ANSWER:
+Germination is the process by which a seed grows into a new plant.
+
+STUDENT ANSWER:
+it is when seed start growing
+
+--- SAMPLE ID: 313 ---
+QUESTION: How do seeds spread?
+
+REFERENCE ANSWER:
+Seeds spread through wind, water, and animals.
+
+STUDENT ANSWER:
+Wind and animals take seed away
+
+--- SAMPLE ID: 314 ---
+QUESTION: What is pollination?
+
+REFERENCE ANSWER:
+Pollination is the transfer of pollen from one flower to another.
+
+STUDENT ANSWER:
+Transfer of pollens in flowers
+
+--- SAMPLE ID: 315 ---
+QUESTION: What is the role of petals in a flower?
+
+REFERENCE ANSWER:
+Petals attract insects to help with pollination.
+
+STUDENT ANSWER:
+Petals are beautiful
+
+--- SAMPLE ID: 316 ---
+QUESTION: What are microorganisms?
+
+REFERENCE ANSWER:
+Microorganisms are tiny living things that cannot be seen without a microscope.
+
+STUDENT ANSWER:
+Very small living being
+
+--- SAMPLE ID: 317 ---
+QUESTION: Name three types of microorganisms.
+
+REFERENCE ANSWER:
+Bacteria, viruses, and fungi are three types of microorganisms.
+
+STUDENT ANSWER:
+fungus, virus, bacteria
+
+--- SAMPLE ID: 318 ---
+QUESTION: Are all microorganisms harmful?
+
+REFERENCE ANSWER:
+No, some are helpful, while others can cause diseases.
+
+STUDENT ANSWER:
+some are good and bad
+
+--- SAMPLE ID: 319 ---
+QUESTION: Name a disease caused by a virus.
+
+REFERENCE ANSWER:
+Flu is caused by a virus.
+
+STUDENT ANSWER:
+Covid-19
+
+======================================================================
+Grade all 80 samples. Return only the JSON object.

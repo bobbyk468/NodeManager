@@ -1,0 +1,76 @@
+Round 5 (final review). You have given me four rounds of consultation. Each round caught real issues:
+- R1: said $150 plan was overkill, flagged "polishing a sinking ship," "VIS paper crisis," "Machine-IRR illusion"
+- R2: said Phase 1 was methodologically fatal, flagged Franken-baseline, ceiling effect, reframing direction
+- R3: said re-design first, demanded empirical validation of the silent-failure premise before any spend
+- R4: said split papers, narrow H1' to chain_pct+SOLO, hold back Paper 2 from VIS 2027 until N=64 study runs
+
+I executed your R4 verdict. Here is the final state of the package. I want your honest, brutal verdict on whether it is now ready to release. Not "improve marginally" — actual ship/no-ship.
+
+# Current state of the package
+
+## Paper 1 (NLP/EdAI venue submission)
+- Title: ConceptGrade: A Concept-Aware Framework for Automated Short Answer Grading on Knowledge-Graph-Aligned CS Benchmarks
+- Length: 15 pages, 933 KB PDF
+- Headline ML claim: 32.4% MAE reduction on Mohler 2011 (n=120, 10 questions x 12 responses; Wilcoxon two-tailed p=0.0026; paired d_z=0.30)
+- Cross-dataset disclosure: heterogeneous (I^2=70%); per-dataset d_z=-0.30/-0.07/-0.03; random-effects pool CI [-0.21, +0.01] crosses zero
+- Honest disclosures in body: 70 of 120 paired predictions are tied; non-tied subset analysis shows 50.7% MAE reduction (n=50, d_z=0.48); cluster bootstrap CI on Mohler test [2.5%, 56.0%]; per-question 8/10 wins
+- Sentence-BERT MiniLM and MPNet baselines on same n=90 test split (MAE 1.83 / 1.93)
+- Signal-source ablation: concepts_only (MAE 0.217) beats full system (MAE 0.223); explicitly disclosed; Verifier-data-leakage concern defused
+- Misconception taxonomy machine-IRR pilot (kappa_micro=0.33, fair); explicitly framed as machine, not human, IRR
+- Limitations section explicitly acknowledges: single-author KG, single-author taxonomy, no frontier-LLM comparison, no full Mohler 630-sample run
+- Mechanical verification: 170/170 claims verified by verify_all_paper_claims.py against cached data including 18 anti-fabrication regex patterns
+- Bibliography clean (no undefined refs); LaTeX compiles with 1 sub-pixel hbox warning
+
+## Paper 2 (held back from IEEE VIS 2027)
+- Title: ConceptGrade Dashboard: A Visual Analytics System for Educator Co-Auditing of Knowledge-Graph-Grounded Short Answer Grading
+- Status header explicitly says: "Submission status: design-and-protocol document, pre-data-collection. User-study results are not reported in this paper; this is a design-and-protocol paper, not a completed empirical evaluation. ... we explicitly defer the IEEE VIS conference submission of this manuscript until the N=64 user study has been executed."
+- Primary outcome (narrowed per Round 3): silent-failure detection accuracy on DigiKlausur-derived items only; dashboard's discriminating affordances reduced to chain_pct (zero-grounding banner) + SOLO band (the only 2 of 5 components empirically validated as discriminators)
+- matched_n heatmap, Bloom band, TRM gap-badges retained but explicitly reframed as "descriptive metadata for routine grading and cognitive-depth auditing, not silent-failure triage indicators" (per Round 4 Option Y)
+- Empirical validity check results (n=347 DigiKlausur with usable strata): chain_pct p<0.0001, SOLO p<0.0001, matched_n p=0.099, Bloom p=0.46, TRM topological_gap_count p=0.69, multivariate logistic regression accuracy 0.816 vs majority baseline 0.821 (no hidden interaction signal)
+- Mock figures all labeled PRE-SUBMISSION PLACEHOLDER
+- OSF preregistration document, IRB protocol, pilot protocol, and validation gate protocol all committed as supplementary materials with explicit [OSF-ID-TBD] and [IRB-PROTOCOL-TBD] placeholders
+- N=64 user study planned for summer 2026; VIS 2028 target
+
+## run_validation_budget.py (script ready, not yet executed)
+- Hard MAX_BUDGET = $15; default --dry-run; --model required for --execute
+- Phase 2 (frontier-LLM zero-shot baseline, n=520 across Mohler+DK+Kaggle): dry-run estimates $3.12 Claude / $2.44 GPT-4o / $0.15 GPT-4o-mini
+- Phase 3 (error-archetype analysis, cross-dataset 25 Mohler + 25 DigiKlausur): dry-run $0.79 Claude / $0.64 GPT-4o / $0.04 GPT-4o-mini
+- 3-retry exponential backoff on transient errors (429/503/network); hard abort on persistent errors; no model fallback
+- Continuous 2-decimal scoring to mitigate zero-shot rounding bias
+- Aggressive caching, checkpoint every 10 samples
+
+## Audit trail
+- All 5 Gemini consultation rounds saved as data/gemini_*.json
+- 4 empirical validity checks saved (silent_failure, multivariate, trm Mohler, trm DigiKlausur)
+- 170-check verifier passes
+- 38/38 unit tests pass
+
+# Six questions for you
+
+Be specific. Be terminal. Don't ask me to do another round of polish.
+
+1. **Paper 1: ship or no-ship.** Given the honest cross-dataset heterogeneity disclosure, the signal-source ablation that shows concepts_only beats full system, and the explicit limitations on single-author KG and no frontier-LLM comparison, can this paper be submitted to a NLP/EdAI venue this month and have a non-zero chance of acceptance? Or is the cross-dataset null result a hard barrier for any reviewer?
+
+2. **Paper 2 publication channel.** "Design-and-protocol document, pre-data-collection" is not a standard IEEE VIS category. Does this manuscript fit any real venue right now (HCI workshop? OSF preprint? CHI Late-Breaking?) or is it strictly an internal preregistration record that should not be circulated until the user study runs?
+
+3. **Should I run Phase 2 + Phase 3 NOW or after the user study?** Phase 2 ($3) gives me a frontier-LLM baseline for Paper 1 immediately. Phase 3 ($0.79) gives me a failure-archetype distribution for Paper 2 later. Is there value in running them now if Paper 2 is held back to 2028?
+
+4. **What is the highest-impact single sentence I should change in Paper 1's abstract before submitting?** (If you say "none, ship it" that's a valid answer.)
+
+5. **What would cause a reviewer to reject Paper 1 in the first paragraph?** Pick the one most likely thing. If your answer is "the cross-dataset disclosure," tell me whether scrubbing it or hardening it is the right move.
+
+6. **What did all four prior rounds miss that's still present in this final state?** If the answer is "nothing," say so explicitly. Don't fabricate a critique to be useful.
+
+Respond as structured JSON:
+{
+  "paper_1_ship_verdict": "ship" | "no_ship" | "ship_with_caveat",
+  "paper_1_ship_justification": "...",
+  "paper_2_publication_channel": "vis_2028" | "chi_LBR" | "hci_workshop" | "osf_preprint_only" | "internal_only",
+  "paper_2_channel_justification": "...",
+  "run_phases_now_or_later": "now" | "after_user_study" | "skip_entirely",
+  "phase_run_justification": "...",
+  "paper_1_abstract_one_sentence_fix": "...",
+  "most_likely_paragraph_1_rejection_reason": "...",
+  "what_prior_rounds_missed": "...",
+  "overall_terminal_verdict": "..."
+}

@@ -1,0 +1,180 @@
+\begin{thebibliography}{10}
+
+\bibitem{Amershi2014}
+S.~Amershi, M.~Cakmak, W.~B. Knox, and T.~Kulesza.
+\newblock Power to the people: The role of humans in interactive machine
+  learning.
+\newblock {\em AI Magazine}, 35(4):105--120, 2014.
+
+\bibitem{Baldonado2000}
+M.~Q.~W. Baldonado, A.~Woodruff, and A.~Kuchinsky.
+\newblock Guidelines for using multiple views in information visualization.
+\newblock In {\em Proceedings of the Working Conference on Advanced Visual
+  Interfaces (AVI)}, pp. 110--119. ACM, 2000.
+
+\bibitem{Becker1987}
+R.~A. Becker and W.~S. Cleveland.
+\newblock Brushing scatterplots.
+\newblock {\em Technometrics}, 29(2):127--142, 1987.
+
+\bibitem{Burrows2015}
+S.~Burrows, I.~Gurevych, and B.~Stein.
+\newblock The eras and trends of automatic short answer grading.
+\newblock {\em International Journal of Artificial Intelligence in Education},
+  25(1):60--117, 2015.
+
+\bibitem{Corbett1994}
+A.~T. Corbett and J.~R. Anderson.
+\newblock Knowledge tracing: Modeling the acquisition of procedural knowledge.
+\newblock {\em User Modeling and User-Adapted Interaction}, 4(4):253--278,
+  1994.
+
+\bibitem{Endert2017}
+A.~Endert, W.~Ribarsky, C.~Turkay, B.~L.~W. Wong, I.~Nabney, I.~D{\'i}az et al.
+\newblock The state of the art in integrating machine learning into visual
+  analytics.
+\newblock {\em Computer Graphics Forum}, 36(8):458--486, 2017.
+
+\bibitem{Holzinger2016}
+A.~Holzinger.
+\newblock Interactive machine learning for health informatics: When do we need
+  the human-in-the-loop?
+\newblock {\em Brain Informatics}, 3(2):119--131, 2016.
+
+\bibitem{Jain2019}
+S.~Jain and B.~C. Wallace.
+\newblock Attention is not explanation.
+\newblock In {\em Proceedings of the 2019 Conference of the North American
+  Chapter of the Association for Computational Linguistics (NAACL)}, pp.
+  3543--3556. Association for Computational Linguistics, 2019.
+
+\bibitem{Keim2008}
+D.~A. Keim, F.~Mansmann, J.~Schneidewind, J.~Thomas, and H.~Ziegler.
+\newblock Visual analytics: Scope and challenges.
+\newblock In {\em Visual Data Mining: Theory, Techniques and Tools for Visual
+  Analytics}, pp. 76--90. Springer, Berlin, Heidelberg, 2008.
+
+\bibitem{Klein2007}
+G.~Klein, B.~Moon, and R.~R. Hoffman.
+\newblock Making sense of sensemaking 1: Alternative perspectives.
+\newblock {\em IEEE Intelligent Systems}, 21(4):70--73, 2006.
+
+\bibitem{Lanham2023}
+T.~Lanham et al.
+\newblock Measuring faithfulness in chain-of-thought reasoning.
+\newblock {\em arXiv preprint arXiv:2307.13702}, 2023.
+
+\bibitem{Leacock2003}
+C.~Leacock and M.~Chodorow.
+\newblock {C-rater}: Automated scoring of short-answer questions.
+\newblock In {\em Computers and the Humanities}, vol.~37, pp. 389--405.
+  Springer, 2003.
+
+\bibitem{Liang2018}
+C.~Liang, J.~Ye, Z.~Wu, B.~Pursel, and C.~L. Giles.
+\newblock Investigating prerequisite relationships among knowledge concepts in
+  moocs.
+\newblock In {\em Proceedings of the 11th International Conference on
+  Educational Data Mining (EDM)}, 2018.
+
+\bibitem{Liu2024}
+Z.~Liu et al.
+\newblock Accuracy and interpretability limits of large language models on
+  short-answer grading.
+\newblock {\em Educational Technology \& Society}, 2024.
+\newblock [To be fully populated when citation is confirmed].
+
+\bibitem{Lundberg2017}
+S.~M. Lundberg and S.-I. Lee.
+\newblock A unified approach to interpreting model predictions.
+\newblock In {\em Advances in Neural Information Processing Systems (NeurIPS)},
+  vol.~30, 2017.
+
+\bibitem{Mohler2011}
+M.~Mohler, R.~Bunescu, and R.~Mihalcea.
+\newblock Learning to grade short answer questions using semantic similarity
+  measures and dependency graph alignments.
+\newblock In {\em Proceedings of the 49th Annual Meeting of the Association for
+  Computational Linguistics (ACL)}, pp. 752--762. Association for Computational
+  Linguistics, Portland, Oregon, 2011.
+
+\bibitem{Nakagawa2019}
+H.~Nakagawa, Y.~Iwasawa, and Y.~Matsuo.
+\newblock Graph-based knowledge tracing: Modeling student proficiency using
+  graph neural network.
+\newblock In {\em Proceedings of the IEEE/WIC/ACM International Conference on
+  Web Intelligence (WI)}, pp. 156--163. ACM, 2019.
+
+\bibitem{North2000}
+C.~North and B.~Shneiderman.
+\newblock Snap-together visualization: Can users construct and operate
+  coordinated visualizations?
+\newblock In {\em Proceedings of the SIGCHI Conference on Human Factors in
+  Computing Systems (CHI)}, pp. 262--269. ACM, 2000.
+
+\bibitem{Pirolli2005}
+P.~Pirolli and S.~Card.
+\newblock The sensemaking process and leverage points for analyst technology as
+  identified through cognitive task analysis.
+\newblock In {\em Proceedings of the International Conference on Intelligence
+  Analysis}, vol.~5, pp. 2--4, 2005.
+
+\bibitem{Ribeiro2016}
+M.~T. Ribeiro, S.~Singh, and C.~Guestrin.
+\newblock ``{Why} should {I} trust you?'': Explaining the predictions of any
+  classifier.
+\newblock In {\em Proceedings of the 22nd ACM SIGKDD International Conference
+  on Knowledge Discovery and Data Mining}, pp. 1135--1144. ACM, 2016.
+
+\bibitem{Sacha2014}
+D.~Sacha, A.~Stoffel, F.~Stoffel, B.~C. Kwon, G.~Ellis, and D.~A. Keim.
+\newblock Knowledge generation model for visual analytics.
+\newblock {\em IEEE Transactions on Visualization and Computer Graphics},
+  20(12):1604--1613, 2014.
+
+\bibitem{Settles2009}
+B.~Settles.
+\newblock Active learning literature survey.
+\newblock Technical Report 1648, University of Wisconsin--Madison, 2009.
+
+\bibitem{Shneiderman1996}
+B.~Shneiderman.
+\newblock The eyes have it: A task by data type taxonomy for information
+  visualizations.
+\newblock In {\em Proceedings of the IEEE Symposium on Visual Languages}, pp.
+  336--343. IEEE, 1996.
+
+\bibitem{Simard2017}
+P.~Y. Simard, S.~Amershi, D.~M. Chickering, et al.
+\newblock Machine teaching: A new paradigm for building machine learning
+  systems.
+\newblock {\em arXiv preprint arXiv:1707.06742}, 2017.
+
+\bibitem{Thomas2005}
+J.~J. Thomas and K.~A. Cook.
+\newblock {\em Illuminating the Path: The Research and Development Agenda for
+  Visual Analytics}.
+\newblock IEEE Computer Society, 2005.
+
+\bibitem{Turpin2023}
+M.~Turpin, J.~Michael, E.~Perez, and S.~R. Bowman.
+\newblock Language models don't always say what they think: Unfaithful
+  explanations in chain-of-thought prompting.
+\newblock {\em Advances in Neural Information Processing Systems (NeurIPS)},
+  2023.
+
+\bibitem{Wei2022_CoT}
+J.~Wei, X.~Wang, D.~Schuurmans, et al.
+\newblock Chain-of-thought prompting elicits reasoning in large language
+  models.
+\newblock In {\em Advances in Neural Information Processing Systems (NeurIPS)},
+  vol.~35, 2022.
+
+\bibitem{Wei2023_GEVAL}
+Y.~Wei et al.
+\newblock {G-Eval}: {NLG} evaluation using {GPT-4} with better human alignment.
+\newblock In {\em Proceedings of the 2023 Conference on Empirical Methods in
+  Natural Language Processing (EMNLP)}. Association for Computational
+  Linguistics, 2023.
+
+\end{thebibliography}

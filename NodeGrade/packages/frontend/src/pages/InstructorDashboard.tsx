@@ -245,9 +245,9 @@ function InstructorDashboardInner() {
         setDatasets(data.datasets);
       })
       .catch(() => {
-        setDatasets(['mohler', 'digiklausur', 'kaggle_asag']);
+        setDatasets([]);
       });
-  }, []);
+  }, [fetchKey]);
 
   const selectedDataset = datasets[selectedTab] ?? '';
 

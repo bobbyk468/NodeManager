@@ -28,6 +28,14 @@ function intensityToColor(intensity: number, selected: boolean): string {
   return scale[idx];
 }
 
+/**
+ * ConceptCoverageHeatmap — Shows which domain concepts students struggled to demonstrate.
+ *
+ * IMPORTANT: This heatmap displays CONCEPT COVERAGE (missed/correctly demonstrated concepts),
+ * not explicit misconceptions (false beliefs). True misconception detection is future work.
+ * Severity levels (critical/moderate/minor) reflect student performance level at the time
+ * of the concept gap (e.g., a critical miss = a high-scoring student failed to demonstrate a key concept).
+ */
 export const MisconceptionHeatmap: React.FC<Props> = ({
   spec,
   condition = 'B',
@@ -46,8 +54,8 @@ export const MisconceptionHeatmap: React.FC<Props> = ({
           {spec.title}
         </Typography>
         <Typography variant="body2" color="text.secondary" sx={{ p: 1 }}>
-          No misconception data available for this dataset. Misconception heatmap requires
-          live pipeline output.
+          No concept coverage data available for this dataset. The heatmap requires
+          live pipeline output to analyze which domain concepts students demonstrated.
         </Typography>
       </Box>
     );
@@ -107,10 +115,13 @@ export const MisconceptionHeatmap: React.FC<Props> = ({
       onMouseEnter={() => logEvent(condition, dataset, 'chart_hover', { viz_id: spec.viz_id })}
     >
       <Typography variant="subtitle2" gutterBottom sx={{ fontWeight: 600 }}>
-        {spec.title}
+        {spec.title || 'Concept Coverage by Student Performance Level'}
       </Typography>
       <Typography variant="caption" color="text.secondary" display="block" mb={0.5}>
-        {spec.subtitle}
+        {spec.subtitle || 'Shows which concepts students struggled to demonstrate. Severity indicates the student\'s overall score level when the concept gap occurred.'}
+      </Typography>
+      <Typography variant="caption" color="warning.main" display="block" mb={1} sx={{ fontStyle: 'italic' }}>
+        Note: This displays concept coverage gaps, not explicit false beliefs. True misconception detection is future work.
       </Typography>
       {isInteractive && (
         <Typography variant="caption" color="primary" display="block" mb={1} sx={{ fontStyle: 'italic' }}>

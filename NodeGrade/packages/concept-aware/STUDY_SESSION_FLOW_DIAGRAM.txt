@@ -1,0 +1,306 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║         ConceptGrade User Study: Complete Session Flow Diagram               ║
+║                        (Print this poster for reference)                     ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+                                 START OF SESSION
+                                        │
+                                        ▼
+              ┌─────────────────────────────────────────┐
+              │  5 MIN BEFORE: Pre-Session Verification │
+              │  ✓ Kill old processes                   │
+              │  ✓ Free ports 5173 & 3001               │
+              │  ✓ Check database connectivity           │
+              │  ✓ Create session directory              │
+              └─────────────────────────────────────────┘
+                                        │
+                                        ▼
+              ┌─────────────────────────────────────────┐
+              │  MINUTES 0-2: Briefing & Consent        │
+              │  • Introduce study                       │
+              │  • Obtain signatures                     │
+              │  ✓ START audio recorder                 │
+              │  ✓ START screen recorder                │
+              │  • Set 20-min kitchen timer             │
+              └─────────────────────────────────────────┘
+                                        │
+                   ┌────────────────────┴────────────────────┐
+                   │                                         │
+                   ▼                                         ▼
+        ┌──────────────────────┐              ┌──────────────────────┐
+        │ CONDITION A: CONTROL │              │ CONDITION B: TREAT.  │
+        │  (Text Summary Only) │              │ (Full Dashboard)     │
+        └──────────────────────┘              └──────────────────────┘
+                   │                                         │
+                   ▼                                         ▼
+      ┌─ MIN 2-7: Summary ─────────┐      ┌─ MIN 2-7: Dashboard ──┐
+      │                            │      │                       │
+      │ • Print summary statistics │      │ • Start frontend      │
+      │   (MAE, p-value, by SOLO)  │      │   (npm run dev)       │
+      │ • Hand to participant      │      │ • Start backend       │
+      │ • "Read & explore"         │      │   (npm run start:api) │
+      │ • 5-minute read time       │      │ • Start event logger  │
+      │                            │      │ • "Explore dashboard" │
+      └────────────┬───────────────┘      │ • 2-3 min free explore
+                   │                      │                       │
+                   │ (Participant         │ (Participant explores │
+                   │  reads summary)      │  heatmap, radar, KG)  │
+                   │                      └───────────┬───────────┘
+                   │                                  │
+                   └──────────────────┬───────────────┘
+                                      │
+                                      ▼
+              ┌─────────────────────────────────────────┐
+              │  MINUTES 7-17: TASK EXECUTION           │
+              │                                         │
+              │  BOTH CONDITIONS GET SAME QUESTION:    │
+              │  "Which concept do students struggle    │
+              │   with most? Prioritize for office     │
+              │   hours?"                               │
+              │                                         │
+              │  ✓ Start 10-minute task timer          │
+              │  • Participant completes written form  │
+              │  • Keep audio/screen recording going   │
+              │                                         │
+              │  CONDITION A:                           │
+              │  → Reference printed summary sheet      │
+              │  → No interactive tools                 │
+              │                                         │
+              │  CONDITION B:                           │
+              │  → Explore dashboard features          │
+              │  → Click heatmap, drag radar, hover KG │
+              │  → Log all interactions                 │
+              │                                         │
+              │  TIME PROMPTS:                          │
+              │  • T=12 min: "5 minutes left"           │
+              │  • T=15 min: "2 minutes left"           │
+              │  • T=17 min: "Collect form"             │
+              └─────────────────────────────────────────┘
+                                        │
+                                        ▼
+              ┌─────────────────────────────────────────┐
+              │  MINUTES 17-18: SUS QUESTIONNAIRE       │
+              │  (System Usability Scale)               │
+              │                                         │
+              │  • Hand 10-item SUS form                │
+              │  • Rate experience 1-5 (Likert)        │
+              │  • ~1 minute to complete                │
+              │  • Calculate score: (sum-10) × 2.5     │
+              └─────────────────────────────────────────┘
+                                        │
+                   ┌────────────────────┴────────────────┐
+                   │                                     │
+                   ▼ (CONDITION A: END)         ▼ (CONDITION B)
+        ┌──────────────────────┐     ┌──────────────────────────┐
+        │  Proceed to Close    │     │  MINUTES 18-20:          │
+        │  (Skip rubric editor)│     │  Rubric Editor           │
+        │                      │     │                          │
+        │                      │     │  • Show Rubric interface │
+        │                      │     │  • Refine grading        │
+        │                      │     │    criteria              │
+        │                      │     │  • Log all edits with    │
+        │                      │     │    KG node associations  │
+        │                      │     │  • 2 minutes             │
+        │                      │     └──────────────┬───────────┘
+        │                      │                    │
+        └──────────┬───────────┴────────────────────┘
+                   │
+                   ▼
+       ┌──────────────────────────────────┐
+       │  MINUTE 20: SESSION CLOSE        │
+       │                                  │
+       │  ✓ STOP audio recorder           │
+       │  ✓ STOP screen recorder          │
+       │  • Collect consent forms         │
+       │  • Collect SUS forms             │
+       │  • Collect task answer sheets    │
+       │  • Thank participant             │
+       │  • Provide contact info card     │
+       └────────────┬─────────────────────┘
+                    │
+                    ▼
+       ┌──────────────────────────────────┐
+       │  POST-SESSION (1 minute)         │
+       │                                  │
+       │  $ python3 run_dashboard_session │
+       │    --finalize --participant ...  │
+       │                                  │
+       │  Export to JSON:                 │
+       │  • session_logs/$ID/final.json   │
+       │  • recordings/$ID/audio.wav      │
+       │  • recordings/$ID/screen.mp4     │
+       └────────────┬─────────────────────┘
+                    │
+                    ▼
+       ┌──────────────────────────────────┐
+       │  VALIDATION CHECK                │
+       │                                  │
+       │  $ python3 analyze_study_logs.py │
+       │    --participant $ID --verbose   │
+       │                                  │
+       │  Expected output:                │
+       │  ✓ Session complete              │
+       │  ✓ Audio file OK (20+ min)       │
+       │  ✓ Task answer recorded          │
+       │  ✓ SUS score recorded            │
+       │  ✓ Status: GO ✓                  │
+       └────────────┬─────────────────────┘
+                    │
+                    ▼
+       ┌──────────────────────────────────┐
+       │  UPDATE TRACKING SHEET           │
+       │                                  │
+       │  data/participant_assignment.csv │
+       │  Update row for this participant:│
+       │  • session_completed: ✓          │
+       │  • status: COMPLETE              │
+       │  • notes: [any issues/highlights]│
+       └────────────┬─────────────────────┘
+                    │
+                    ▼
+       ┌──────────────────────────────────┐
+       │  AFTER EVERY 5 SESSIONS          │
+       │                                  │
+       │  $ python3 analyze_study_logs.py │
+       │    --csv --pilot                 │
+       │                                  │
+       │  Check: task_completion_rate     │
+       │  • >= 0.5: GO ✓ (continue)       │
+       │  • < 0.5: NO-GO ✗ (debug)        │
+       └────────────┬─────────────────────┘
+                    │
+                    ▼
+           ┌────────────────────┐
+           │ CONTINUE WITH      │
+           │ NEXT PARTICIPANT   │
+           │ (Or debug if needed)│
+           └────────────────────┘
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+QUICK REFERENCE: KEY TIMINGS & MILESTONES
+
+ 0 min  ├─ START: Briefing & Consent
+        │  ├─ Audio/Screen recording START
+        │  └─ Kitchen timer START (20 min)
+        │
+ 2 min  ├─ CONDITION-SPECIFIC INTRO (2-7)
+        │  ├─ A: Hand summary sheet
+        │  └─ B: Launch dashboard
+        │
+ 7 min  ├─ TASK EXECUTION BEGINS (7-17)
+        │  └─ Participant works for 10 minutes
+        │
+12 min  ├─ PROMPT: "5 minutes left"
+        │
+15 min  ├─ PROMPT: "2 minutes left"
+        │
+17 min  ├─ Collect task answer form
+        │
+18 min  ├─ SUS QUESTIONNAIRE (1 minute)
+        │
+19 min  ├─ CONDITION B ONLY: Rubric Editor (1 min)
+        │
+20 min  ├─ SESSION END
+        │  ├─ Stop audio/screen recording
+        │  ├─ Collect all forms
+        │  ├─ Thank participant
+        │  └─ Final data export
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+CRITICAL CHECKLIST (Don't forget these!)
+
+Pre-Session (5 min before):
+  ☐ Clear old processes
+  ☐ Free ports 5173 & 3001
+  ☐ Check DB connectivity
+  ☐ Create session directories
+
+During Session:
+  ☐ Audio recorder ON (check mic level)
+  ☐ Screen recorder ON
+  ☐ Kitchen timer started
+  ☐ Consent forms signed (2 copies)
+  ☐ Condition-specific materials ready
+
+Task Execution:
+  ☐ Time prompts at 5-min and 2-min marks
+  ☐ Think-aloud recording continuous
+  ☐ Dashboard interactions logged (Condition B)
+  ☐ Task answer form collected
+
+Post-Session:
+  ☐ Audio/screen files saved with correct names
+  ☐ SUS form collected & scored
+  ☐ Consent forms filed
+  ☐ Session JSON exported
+  ☐ Validation check run
+  ☐ Assignment sheet updated
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+TROUBLESHOOTING QUICK LINKS
+
+Problem                     Solution
+─────────────────────────   ─────────────────────────────────────────
+Audio silent                Check mic in System Preferences
+Dashboard won't load        curl http://localhost:5173/ then restart
+Port 5173 in use            lsof -ti:5173 | xargs kill -9
+Database locked             rm -f data/study_sessions.db.lock
+Session crashed             pkill -f "npm run dev"; restart all
+Participant won't answer     Mark NO-GO; document reason; reschedule
+
+For more details, see STUDY_SESSION_SOP.md Part 7 (Troubleshooting)
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+DAILY OPERATIONS
+
+MORNING:
+  1. Print assignment sheet → identify today's participant
+  2. Prepare consent forms (2 copies)
+  3. Backup yesterday's data: tar -czf data/backups/...
+  4. Verify systems ready: npm --version && python3 --version
+
+AFTER EACH SESSION:
+  1. Move audio/screen files to: data/recordings/$PARTICIPANT_ID/
+  2. Run validation check
+  3. Update assignment sheet status
+  4. Save session JSON
+
+END OF DAY:
+  1. Generate daily report
+  2. Backup all session data
+  3. Check validation gate (every 5 sessions)
+
+END OF WEEK:
+  1. Generate weekly report
+  2. Email status to PI
+  3. Assess recruitment progress
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+TARGET TIMELINE
+
+Week 1-2:  5 sessions  (Sessions 1-5,   Gate 1)
+Week 3-4:  5 sessions  (Sessions 6-10,  Continue)
+Week 5-6:  10 sessions (Sessions 11-20, Gate 2)
+Week 7-8:  10 sessions (Sessions 21-30, Complete)
+
+Target: N=30 complete by July 31, 2026
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+PRINT THIS DOCUMENT & LAMINATE IT
+Keep it on your desk during all study sessions
+Reference it when in doubt
+
+Last Updated: 2026-05-06
+For full details, see: STUDY_SESSION_SOP.md

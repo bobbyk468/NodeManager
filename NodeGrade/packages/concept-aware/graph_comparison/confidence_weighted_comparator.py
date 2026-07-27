@@ -47,10 +47,14 @@ try:
         ConceptGap,
     )
     from knowledge_graph.domain_graph import DomainKnowledgeGraph
-    from concept_extraction.extractor import StudentConceptGraph
 except ImportError:
     from comparator import KnowledgeGraphComparator, ComparisonResult, ConceptGap
     from knowledge_graph.domain_graph import DomainKnowledgeGraph
+# Framework Fix #29: StudentConceptGraph used as type annotation only —
+# move to TYPE_CHECKING to break the circular-import chain.
+from typing import TYPE_CHECKING as _TYPE_CHECKING
+if _TYPE_CHECKING:
+    from concept_extraction.extractor import StudentConceptGraph
     from concept_extraction.extractor import StudentConceptGraph
 
 
@@ -90,6 +94,22 @@ class ConfidenceWeightedComparator(KnowledgeGraphComparator):
             weights = {"coverage": 0.4, "accuracy": 0.3, "integration": 0.3}
 
         result = ComparisonResult()
+
+        # Framework Fix #12 (2026-06-15): same OUT_OF_KG short-circuit as Fix #10.
+        # The confidence-weighted variant overrides compare() but inherits the
+        # vacuous-perfect-score behaviour: _weighted_coverage returns 1.0 on
+        # empty expected_set, _compute_relationship_accuracy (inherited)
+        # returns 1.0 on empty rels — overall_score = 0.7 for Kaggle answers
+        # the system cannot assess. Particularly important because this
+        # comparator is used by the ablation study.
+        if getattr(student_graph, "out_of_kg_domain", False):
+            result.out_of_kg_domain = True
+            result.depth_assessment = "not_assessed"
+            result.feedback_points = [
+                "Question is outside the knowledge graph's domain coverage; "
+                "KG-based scoring not applicable. Use student-vs-reference grading."
+            ]
+            return result
 
         # Determine expected concepts
         if expected_concepts:
@@ -161,7 +181,10 @@ class ConfidenceWeightedComparator(KnowledgeGraphComparator):
         When alpha=1 a concept with confidence 0.5 contributes half as much.
         """
         if not expected_concepts:
-            return 1.0, list(student_concepts), []
+            # Framework Fix #15 (2026-06-15): same correction as the parent
+            # _compute_concept_coverage. Empty expected set is degenerate;
+            # return 0.0, not the misleading "1.0 = vacuously perfect".
+            return 0.0, [], []
 
         matched = []
         missing = []
@@ -326,7 +349,13 @@ class ConfidenceWeightedComparator(KnowledgeGraphComparator):
         ]
 
         if not q_tokens:
-            return 1.0  # No content words — assume KG is relevant
+            # Framework Fix #14 (2026-06-15): conservative default when we
+            # cannot measure overlap. Returning 1.0 ("assume KG is relevant")
+            # caused the verifier to over-trust the KG for questions that
+            # were just stopwords; 0.0 forces the verifier to fall back on
+            # holistic grading. Same defect class as the OUT_OF_KG chain
+            # (Fixes #2b–#13) but at the ρ-computation level.
+            return 0.0
 
         matched = sum(1 for t in q_tokens if t in kg_vocab)
         return min(1.0, matched / len(q_tokens))

@@ -269,8 +269,18 @@ def main(dataset: str, n_samples: int | None, dry_run: bool = False) -> None:
 
     try:
         _, p_wil = wilcoxon(np.abs(c5_scores - human), np.abs(cllm_scores - human))
-    except Exception:
-        p_wil = 1.0
+        wilcoxon_note = None
+    except Exception as _wil_err:
+        # Framework Fix #23 (2026-06-15): "Wilcoxon failed to run" is a
+        # different finding from "Wilcoxon ran and was non-significant".
+        # The old default p_wil=1.0 silently presented the former as the
+        # latter — biased interpretation toward "no effect". Use NaN and
+        # surface the failure reason so the downstream reporter can flag
+        # the metric as "n/a (test could not run: <reason>)" instead of
+        # printing a misleading p=1.0.
+        p_wil = float("nan")
+        wilcoxon_note = f"{type(_wil_err).__name__}: {str(_wil_err)[:200]}"
+        print(f"  [Wilcoxon] could not compute on {dataset}: {wilcoxon_note}")
 
     print()
     print(f"{'='*70}")

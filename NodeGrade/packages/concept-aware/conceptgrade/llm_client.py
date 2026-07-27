@@ -23,10 +23,71 @@ Swap provider simply by passing a different model name to create().
 from __future__ import annotations
 
 import json
-import re
 import os
+import re
+import threading
+import time
+from pathlib import Path
 
 DEFAULT_MODEL = "claude-haiku-4-5-20251001"
+
+
+# ============================================================================
+# Framework Fix #22 (2026-06-15): request-level logging.
+#
+# Every LLM call routed through LLMClient is logged via a thread-safe JSONL
+# writer when the CONCEPTGRADE_LLM_LOG env var is set. This survives the
+# downstream `except Exception` catches in the verifier and cognitive depth
+# classifier, so a silently-degraded score still has a trail in the log.
+#
+# Activate by setting CONCEPTGRADE_LLM_LOG to a file path. Set to "stderr"
+# to log to standard error (useful for ad-hoc debugging). Default OFF so
+# batch runs don't accidentally write multi-GB logs.
+#
+# Log line format (one JSON object per line):
+#   { "ts": <epoch>, "provider": "anthropic|google|openai|deepseek",
+#     "model": "...", "prompt_chars": N, "latency_ms": M,
+#     "outcome": "success" | "error",
+#     "error_type": "ValueError" (only when outcome=error),
+#     "error_message": "..." (only when outcome=error),
+#     "response_chars": N (only when outcome=success) }
+# ============================================================================
+
+
+class _LLMLogger:
+    """Thread-safe JSONL appender. Owns its own write lock."""
+
+    def __init__(self, target: str | None):
+        self._target = target  # None | "stderr" | filesystem path
+        self._lock = threading.Lock()
+        self._handle = None
+        if target and target != "stderr":
+            p = Path(target)
+            p.parent.mkdir(parents=True, exist_ok=True)
+            self._handle = p.open("a", buffering=1)
+
+    @property
+    def enabled(self) -> bool:
+        return self._target is not None
+
+    def write(self, record: dict) -> None:
+        if not self.enabled:
+            return
+        line = json.dumps(record, ensure_ascii=False, default=str)
+        with self._lock:
+            if self._target == "stderr":
+                import sys as _sys
+                print(line, file=_sys.stderr, flush=True)
+            else:
+                self._handle.write(line + "\n")
+
+
+_LLM_LOG = _LLMLogger(os.environ.get("CONCEPTGRADE_LLM_LOG") or None)
+
+
+def _prompt_chars(messages: list[dict]) -> int:
+    """Sum of message-content character lengths — coarse prompt-size proxy."""
+    return sum(len(str(m.get("content", ""))) for m in messages)
 
 
 def parse_llm_json(text: str) -> dict:
@@ -120,9 +181,17 @@ def detect_provider(model: str) -> str:
 # ── Anthropic backend ──────────────────────────────────────────────────────────
 
 class _AnthropicCompletions:
+    # Framework Fix #21 (2026-06-15): 60s default timeout matching Gemini.
+    # Without this we relied on the anthropic SDK's default (10 minutes
+    # historically), which could hang a batch run on a stuck connection.
+    DEFAULT_TIMEOUT_S = 60.0
+
     def __init__(self, api_key: str):
         import anthropic
-        self._client = anthropic.Anthropic(api_key=api_key)
+        self._client = anthropic.Anthropic(
+            api_key=api_key,
+            timeout=self.DEFAULT_TIMEOUT_S,
+        )
 
     def create(
         self,
@@ -147,7 +216,25 @@ class _AnthropicCompletions:
             messages=user_messages,
             temperature=temperature,
         )
-        return _Response(response.content[0].text)
+        # Same null/empty-content protection as Gemini/DeepSeek/OpenAI (Fix #20/#21).
+        # response.content may be an empty list when stop_reason == "max_tokens"
+        # with no assistant text emitted, or contain only non-text blocks.
+        if not response.content:
+            raise ValueError(
+                f"Anthropic returned empty content list "
+                f"(model={model}, stop_reason={getattr(response, 'stop_reason', 'unknown')}). "
+                f"Possible causes: max_tokens hit before text emission, "
+                f"tool-use-only response, or upstream API error."
+            )
+        first = response.content[0]
+        text = getattr(first, "text", None)
+        if not text:
+            raise ValueError(
+                f"Anthropic first content block has no text "
+                f"(model={model}, block_type={getattr(first, 'type', 'unknown')}, "
+                f"stop_reason={getattr(response, 'stop_reason', 'unknown')})."
+            )
+        return _Response(text)
 
 
 # ── Google Gemini backend ──────────────────────────────────────────────────────
@@ -305,8 +392,24 @@ class _DeepSeekCompletions:
             temperature=temperature,
             max_tokens=max_tokens,
         )
-        content           = resp.choices[0].message.content or ""
-        reasoning_content = getattr(resp.choices[0].message, "reasoning_content", "") or ""
+        # Framework Fix #20 (2026-06-15): explicit-raise on null content,
+        # matching the Gemini backend's pattern. The old `or ""` silently
+        # produced an empty response which downstream parse_llm_json then
+        # raised on, losing the actual cause (rate limit, safety block,
+        # max_tokens hit). Now the caller sees a clear ValueError with
+        # diagnostic context so the pipeline-level error handler can
+        # decide between retry, key-rotation, and heuristic fallback.
+        msg = resp.choices[0].message
+        content = msg.content
+        if content is None or content == "":
+            finish = getattr(resp.choices[0], "finish_reason", "unknown")
+            raise ValueError(
+                f"DeepSeek returned empty content "
+                f"(model={model}, finish_reason={finish}). "
+                f"Possible causes: rate limit, max_tokens hit, "
+                f"safety block, or upstream API error."
+            )
+        reasoning_content = getattr(msg, "reasoning_content", "") or ""
         return _DeepSeekResponse(content, reasoning_content)
 
     async def async_create(
@@ -328,9 +431,14 @@ class _DeepSeekCompletions:
 # ── OpenAI backend ─────────────────────────────────────────────────────────────
 
 class _OpenAICompletions:
+    # Framework Fix #21 (2026-06-15): 60s default timeout matching Gemini
+    # and Anthropic. Without this we relied on the openai SDK's default
+    # (10 minutes), which could hang a batch run on a stuck connection.
+    DEFAULT_TIMEOUT_S = 60.0
+
     def __init__(self, api_key: str):
         from openai import OpenAI
-        self._client = OpenAI(api_key=api_key)
+        self._client = OpenAI(api_key=api_key, timeout=self.DEFAULT_TIMEOUT_S)
 
     def create(
         self,
@@ -346,7 +454,17 @@ class _OpenAICompletions:
             temperature=temperature,
             max_tokens=max_tokens,
         )
-        return _Response(response.choices[0].message.content)
+        # Same null-content protection as DeepSeek (Fix #20).
+        content = response.choices[0].message.content
+        if content is None or content == "":
+            finish = getattr(response.choices[0], "finish_reason", "unknown")
+            raise ValueError(
+                f"OpenAI returned empty content "
+                f"(model={model}, finish_reason={finish}). "
+                f"Possible causes: rate limit, max_tokens hit, "
+                f"content filter, or upstream API error."
+            )
+        return _Response(content)
 
 
 # ── Unified Chat wrapper ───────────────────────────────────────────────────────
@@ -406,7 +524,14 @@ class LLMClient:
 
 
 class _DeferredCompletionsAPI:
-    """Completions dispatcher — routes each call to the right backend."""
+    """Completions dispatcher — routes each call to the right backend.
+
+    Framework Fix #22 (2026-06-15): the create() method is the single
+    point all LLM calls flow through, so we instrument it here once instead
+    of per-backend. Every call writes a structured log line when
+    CONCEPTGRADE_LLM_LOG is set, with outcome + latency + error details
+    preserved across any downstream try/except masking.
+    """
 
     def __init__(self, client: LLMClient):
         self._client = client
@@ -421,13 +546,44 @@ class _DeferredCompletionsAPI:
     ) -> _Response:
         provider = self._client._provider or detect_provider(model)
         backend = self._client._get_completions(provider)
-        return backend.create(
-            model=model,
-            messages=messages,
-            temperature=temperature,
-            max_tokens=max_tokens,
-            **kwargs,
-        )
+        log_enabled = _LLM_LOG.enabled
+        t0 = time.time() if log_enabled else 0.0
+        try:
+            resp = backend.create(
+                model=model,
+                messages=messages,
+                temperature=temperature,
+                max_tokens=max_tokens,
+                **kwargs,
+            )
+        except Exception as e:
+            if log_enabled:
+                _LLM_LOG.write({
+                    "ts": time.time(),
+                    "provider": provider,
+                    "model": model,
+                    "prompt_chars": _prompt_chars(messages),
+                    "latency_ms": round((time.time() - t0) * 1000, 1),
+                    "outcome": "error",
+                    "error_type": type(e).__name__,
+                    "error_message": str(e)[:500],
+                })
+            raise
+        if log_enabled:
+            try:
+                resp_chars = len(resp.choices[0].message.content or "")
+            except Exception:
+                resp_chars = -1
+            _LLM_LOG.write({
+                "ts": time.time(),
+                "provider": provider,
+                "model": model,
+                "prompt_chars": _prompt_chars(messages),
+                "latency_ms": round((time.time() - t0) * 1000, 1),
+                "outcome": "success",
+                "response_chars": resp_chars,
+            })
+        return resp
 
 
 class _DeferredChatAPI:

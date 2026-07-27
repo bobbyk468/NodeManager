@@ -1,7 +1,7 @@
 {
   "meta": {
     "study": "ConceptGrade Complete Research Study",
-    "timestamp": "2026-03-23T07:04:35.744131",
+    "timestamp": "2026-05-06T17:54:50.911838",
     "n_samples": 120,
     "n_questions": 10
   },
@@ -450,7 +450,7 @@
     "ds_graph": {
       "domain": "Data Structures",
       "concepts": 101,
-      "relationships": 138,
+      "relationships": 152,
       "coverage_topics": [
         "Linked Lists",
         "Arrays",
@@ -519,7 +519,7 @@
         "weighted_graph"
       ]
     },
-    "latex": "% Cross-Domain Knowledge Graph Statistics\n\\begin{table}[h]\\centering\n\\caption{Expert knowledge graphs constructed for ConceptGrade. Shared concepts are foundational CS concepts (e.g., time\\_complexity, recursion, node) present in both domains.}\n\\label{tab:kgstats}\n\\begin{tabular}{@{}lrrrl@{}}\\toprule\n\\textbf{Knowledge Graph} & \\textbf{Concepts} & \\textbf{Relationships} & \\textbf{Shared} & \\textbf{Coverage} \\\\\\midrule\nData Structures & 101 & 138 & \\multirow{2}{*}{31} & Linked lists, trees, graphs, hashing \\\\\nAlgorithms & 74 & 203 & & Sorting, searching, DP, graph algorithms \\\\\n\\bottomrule\\end{tabular}\\end{table}"
+    "latex": "% Cross-Domain Knowledge Graph Statistics\n\\begin{table}[h]\\centering\n\\caption{Expert knowledge graphs constructed for ConceptGrade. Shared concepts are foundational CS concepts (e.g., time\\_complexity, recursion, node) present in both domains.}\n\\label{tab:kgstats}\n\\begin{tabular}{@{}lrrrl@{}}\\toprule\n\\textbf{Knowledge Graph} & \\textbf{Concepts} & \\textbf{Relationships} & \\textbf{Shared} & \\textbf{Coverage} \\\\\\midrule\nData Structures & 101 & 152 & \\multirow{2}{*}{31} & Linked lists, trees, graphs, hashing \\\\\nAlgorithms & 74 & 203 & & Sorting, searching, DP, graph algorithms \\\\\n\\bottomrule\\end{tabular}\\end{table}"
   },
   "study_d_ceiling": {
     "per_question": {

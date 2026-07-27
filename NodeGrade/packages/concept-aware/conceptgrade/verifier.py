@@ -322,11 +322,26 @@ class LLMVerifier:
             else analysis.get("chain_coverage_summary", "not computed")
         )
 
-        # Low-KG-confidence note: when concept coverage or KG relevance is low,
-        # tell the verifier to rely on holistic assessment rather than KG evidence.
-        cov_score = comparison_result.get("scores", {}).get("concept_coverage", 1.0)
-        rho = comparison_result.get("scores", {}).get("kg_relevance_score", 1.0)
-        if cov_score < 0.30 or rho < 0.25:
+        # Framework Fix #13 (2026-06-15): explicit OUT_OF_KG_DOMAIN path.
+        # When the comparator flagged the question as outside the KG's coverage
+        # (Fix #10), the KG concept lists / chain coverage zeros are artefacts
+        # of scope, not student understanding. Tell the verifier to ignore the
+        # KG block entirely and skip the kg_score blend (otherwise a
+        # verifier_weight<1.0 config silently drags the final toward 0).
+        scores = comparison_result.get("scores", {})
+        out_of_kg = bool(scores.get("out_of_kg_domain", False))
+        cov_score = scores.get("concept_coverage", 1.0)
+        rho = scores.get("kg_relevance_score", 1.0)
+        if out_of_kg:
+            kg_confidence_note = (
+                "⚠ KG OUT-OF-DOMAIN: This question is OUTSIDE the knowledge "
+                "graph's coverage. The KG concept lists, chain coverage, "
+                "Bloom/SOLO levels, and misconception counts below are "
+                "artefacts of that scope mismatch — NOT properties of the "
+                "student's answer. Ignore all KG evidence and grade purely on "
+                "student answer vs. reference answer.\n"
+            )
+        elif cov_score < 0.30 or rho < 0.25:
             kg_confidence_note = (
                 "⚠ KG RELEVANCE LOW (coverage={:.0%}, ρ={:.0%}): The knowledge graph may not fully "
                 "represent this topic's domain vocabulary. Rely primarily on your holistic assessment "
@@ -403,11 +418,18 @@ class LLMVerifier:
 
         # Blend: at verifier_weight=1.0 the KG analysis informs the prompt
         # but the LLM holistic grade drives the final score.
-        final = (1.0 - self.verifier_weight) * kg_score + self.verifier_weight * verified
+        # Framework Fix #13: when OUT_OF_KG, force the blend to skip kg_score
+        # entirely (it's 0.0 from Fix #10 and would drag the final down under
+        # any verifier_weight<1.0 configuration).
+        if out_of_kg:
+            final = verified
+        else:
+            final = (1.0 - self.verifier_weight) * kg_score + self.verifier_weight * verified
 
         print(
             f"  [Verifier] KG={kg_score * 5:.1f}/5 → verified={verified * 5:.1f}/5 "
             f"({direction}) → final={final * 5:.2f}/5"
+            + (" [OUT_OF_KG: KG blend skipped]" if out_of_kg else "")
         )
 
         return VerifierResult(
@@ -474,9 +496,23 @@ class LLMVerifier:
             else comparison_result.get("analysis", {}).get("chain_coverage_summary", "not computed")
         )
 
-        cov_score = comparison_result.get("scores", {}).get("concept_coverage", 1.0)
-        rho = comparison_result.get("scores", {}).get("kg_relevance_score", 1.0)
-        if cov_score < 0.30 or rho < 0.25:
+        # Framework Fix #13 (2026-06-15): explicit OUT_OF_KG_DOMAIN path,
+        # mirroring the verify() fix so SURE (multi-persona) verification
+        # behaves consistently when the KG cannot cover the question.
+        scores = comparison_result.get("scores", {})
+        out_of_kg = bool(scores.get("out_of_kg_domain", False))
+        cov_score = scores.get("concept_coverage", 1.0)
+        rho = scores.get("kg_relevance_score", 1.0)
+        if out_of_kg:
+            kg_confidence_note = (
+                "⚠ KG OUT-OF-DOMAIN: This question is OUTSIDE the knowledge "
+                "graph's coverage. The KG concept lists, chain coverage, "
+                "Bloom/SOLO levels, and misconception counts below are "
+                "artefacts of that scope mismatch — NOT properties of the "
+                "student's answer. Ignore all KG evidence and grade purely on "
+                "student answer vs. reference answer.\n"
+            )
+        elif cov_score < 0.30 or rho < 0.25:
             kg_confidence_note = (
                 "⚠ KG RELEVANCE LOW (coverage={:.0%}, ρ={:.0%}): The knowledge graph may not fully "
                 "represent this topic's domain vocabulary. Rely primarily on your holistic assessment "
@@ -563,13 +599,19 @@ class LLMVerifier:
         median_01 = statistics.median(scores_01)
         requires_review = spread > HUMAN_REVIEW_THRESHOLD
 
-        final = (1.0 - self.verifier_weight) * kg_score + self.verifier_weight * median_01
+        # Framework Fix #13: when OUT_OF_KG, skip the kg_score blend (it's 0
+        # from Fix #10 and would drag the final down under verifier_weight<1.0).
+        if out_of_kg:
+            final = median_01
+        else:
+            final = (1.0 - self.verifier_weight) * kg_score + self.verifier_weight * median_01
         final = round(final, 4)
 
         print(
             f"  [SURE] KG={kg_score * 5:.1f}/5 → median={median_01 * 5:.1f}/5 "
             f"spread={spread * 5:.2f}/5 "
             f"{'⚠ REVIEW' if requires_review else 'OK'} → final={final * 5:.2f}/5"
+            + (" [OUT_OF_KG: KG blend skipped]" if out_of_kg else "")
         )
 
         return SureResult(

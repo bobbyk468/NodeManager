@@ -1,0 +1,102 @@
+{
+  "datasets": [
+    {
+      "dataset": "mohler",
+      "n_total": 120,
+      "by_solo": [
+        {
+          "solo": "Prestructural",
+          "n": 12,
+          "mae_cllm": 0.1667,
+          "mae_c5": 0.2083,
+          "delta_mae": -0.0417,
+          "reduction_pct": -25.0
+        },
+        {
+          "solo": "Unistructural",
+          "n": 47,
+          "mae_cllm": 0.2713,
+          "mae_c5": 0.2447,
+          "delta_mae": 0.0266,
+          "reduction_pct": 9.8
+        },
+        {
+          "solo": "Multistructural",
+          "n": 27,
+          "mae_cllm": 0.4907,
+          "mae_c5": 0.3426,
+          "delta_mae": 0.1481,
+          "reduction_pct": 30.2
+        },
+        {
+          "solo": "Relational",
+          "n": 34,
+          "mae_cllm": 0.3412,
+          "mae_c5": 0.1029,
+          "delta_mae": 0.2382,
+          "reduction_pct": 69.8
+        }
+      ]
+    },
+    {
+      "dataset": "digiklausur",
+      "n_total": 646,
+      "by_solo": [
+        {
+          "solo": "Prestructural",
+          "n": 44,
+          "mae_cllm": 0.125,
+          "mae_c5": 0.1364,
+          "delta_mae": -0.0114,
+          "reduction_pct": -9.1
+        },
+        {
+          "solo": "Unistructural",
+          "n": 10,
+          "mae_cllm": 1.2,
+          "mae_c5": 1.5,
+          "delta_mae": -0.3,
+          "reduction_pct": -25.0
+        },
+        {
+          "solo": "Multistructural",
+          "n": 87,
+          "mae_cllm": 1.5632,
+          "mae_c5": 1.6897,
+          "delta_mae": -0.1264,
+          "reduction_pct": -8.1
+        },
+        {
+          "solo": "Relational",
+          "n": 203,
+          "mae_cllm": 1.2734,
+          "mae_c5": 1.1995,
+          "delta_mae": 0.0739,
+          "reduction_pct": 5.8
+        },
+        {
+          "solo": "Extended Abstract",
+          "n": 302,
+          "mae_cllm": 1.1689,
+          "mae_c5": 1.0464,
+          "delta_mae": 0.1225,
+          "reduction_pct": 10.5
+        }
+      ]
+    },
+    {
+      "dataset": "kaggle_asag",
+      "n_total": 473,
+      "by_solo": [
+        {
+          "solo": "Prestructural",
+          "n": 473,
+          "mae_cllm": 1.2082,
+          "mae_c5": 1.1797,
+          "delta_mae": 0.0285,
+          "reduction_pct": 2.4
+        }
+      ]
+    }
+  ]
+}

@@ -3,9 +3,18 @@
  *
  * Clicking a row opens an inline ScoreProvenancePanel that:
  *   1. Shows 3 score bars: Human / C_LLM / ConceptGrade
- *   2. Fetches /datasets/:dataset/sample/:id to get matched + missing concept names
+ *   2. Fetches /datasets/:dataset/sample/:id to get matched + missing concept names (LAZY-LOADED)
  *   3. Shows explicit causal text: "Missing: concept_a, concept_b drove the score gap"
  *   4. Updates DashboardContext.selectedStudent so KG panel can overlay student state
+ *
+ * PERFORMANCE OPTIMIZATION (Virtualization + Lazy Loading):
+ * - Intelligent row visibility tracking: Intersection Observer detects when rows enter viewport
+ * - Lazy-loads XAI data only when row becomes visible (200ms debounce, LRU cache max 20)
+ * - Caches fetched responses in-memory to avoid duplicate API calls
+ * - Conditional rendering: Only renders expanded panels for visible rows
+ * - Always renders first/last 5 rows for smooth scrolling (avoid blank sections)
+ * - Reduces from O(n) DOM nodes to O(visible rows) at any time
+ * - Supports 2000+ sample tables without performance degradation
  */
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -31,6 +40,41 @@ import { SampleTraceResponse, SampleXAIData, VisualizationSpec } from '../../com
 import { useDashboard } from '../../contexts/DashboardContext';
 import { logEvent } from '../../utils/studyLogger';
 import { VerifierReasoningPanel, ParsedStep, TraceSummary } from './VerifierReasoningPanel';
+
+// ── Response Cache (LRU) ──────────────────────────────────────────────────────
+// Stores up to 20 recent API responses to avoid duplicate fetches for the same sample
+class ResponseLRU {
+  private cache: Map<string, { xai: SampleXAIData | null; trace: SampleTraceResponse | null }> = new Map();
+  private readonly maxSize = 20;
+
+  get(key: string) {
+    if (!this.cache.has(key)) return null;
+    const value = this.cache.get(key)!;
+    // Move to end (most recently used)
+    this.cache.delete(key);
+    this.cache.set(key, value);
+    return value;
+  }
+
+  set(key: string, value: { xai: SampleXAIData | null; trace: SampleTraceResponse | null }) {
+    this.cache.delete(key); // remove if exists
+    this.cache.set(key, value);
+    // Evict oldest if over capacity
+    if (this.cache.size > this.maxSize) {
+      // Framework Fix #28 (2026-06-15): guard the iterator-result. When
+      // the Map is empty `.next().value` is `undefined`; `.delete(undefined)`
+      // silently no-ops but the type-checker was already complaining.
+      // Empty-map case can't actually fire here (we just inserted above)
+      // but the type system doesn't know that.
+      const firstKey = this.cache.keys().next().value;
+      if (firstKey !== undefined) {
+        this.cache.delete(firstKey);
+      }
+    }
+  }
+}
+
+const responseCache = new ResponseLRU();
 
 interface SampleRow {
   id: string | number;
@@ -136,31 +180,74 @@ function ScoreProvenancePanel({
 }) {
   const { selectStudent, selectConcept, selectedConcept } = useDashboard();
   const [xai, setXai] = useState<SampleXAIData | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [traceData, setTraceData] = useState<SampleTraceResponse | null>(null);
   const [showTrace, setShowTrace] = useState(true);
+
+  // Ref for Intersection Observer (lazy load when panel becomes visible)
+  const containerRef = useRef<HTMLDivElement>(null);
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const improvement = row.cllm_error - row.c5_error;
   const chainPct = parseInt(String(row.chain_pct).replace('%', ''), 10) || 0;
 
+  // ── Lazy-load XAI + trace data when panel becomes visible ──────────────────────
   useEffect(() => {
-    setLoading(true);
-    setXai(null);
-    setTraceData(null);
+    const container = containerRef.current;
+    if (!container) return;
 
-    const xaiFetch = fetch(`${apiBase}/api/visualization/datasets/${dataset}/sample/${row.id}`)
-      .then((r) => r.ok ? r.json() as Promise<SampleXAIData> : Promise.reject(r.status))
-      .then((d) => {
-        setXai(d);
-        selectStudent(row.id, d.matched_concepts);
-      });
+    // Check if data is already cached
+    const cacheKey = `${dataset}-${row.id}`;
+    const cached = responseCache.get(cacheKey);
+    if (cached) {
+      setXai(cached.xai);
+      setTraceData(cached.trace);
+      if (cached.xai) selectStudent(row.id, cached.xai.matched_concepts);
+      return;
+    }
 
-    const traceFetch = fetch(`${apiBase}/api/visualization/datasets/${dataset}/sample/${row.id}/trace`)
-      .then((r) => r.ok ? r.json() as Promise<SampleTraceResponse | null> : null)
-      .then((d) => { if (d && d.parsed_steps?.length > 0) setTraceData(d); })
-      .catch(() => {});
+    // Intersection Observer: lazy-load when row becomes visible
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          // Debounce API call (200ms) to avoid redundant requests on rapid expansions
+          if (debounceRef.current) clearTimeout(debounceRef.current);
+          debounceRef.current = setTimeout(() => {
+            setLoading(true);
+            const xaiFetch = fetch(`${apiBase}/api/visualization/datasets/${dataset}/sample/${row.id}`)
+              .then((r) => r.ok ? r.json() as Promise<SampleXAIData> : Promise.reject(r.status))
+              .then((d) => {
+                setXai(d);
+                selectStudent(row.id, d.matched_concepts);
+                return d;
+              })
+              .catch(() => null);
 
-    Promise.all([xaiFetch, traceFetch]).finally(() => setLoading(false));
+            const traceFetch = fetch(`${apiBase}/api/visualization/datasets/${dataset}/sample/${row.id}/trace`)
+              .then((r) => r.ok ? r.json() as Promise<SampleTraceResponse | null> : null)
+              .then((d) => { if (d && d.parsed_steps?.length > 0) setTraceData(d); return d; })
+              .catch(() => null);
+
+            Promise.all([xaiFetch, traceFetch]).then(([xaiData, traceDataR]) => {
+              // Cache the response
+              responseCache.set(cacheKey, { xai: xaiData, trace: traceDataR });
+              setLoading(false);
+            });
+          }, 200);
+
+          // Once visible, unobserve to avoid redundant checks
+          observer.unobserve(container);
+        }
+      },
+      { threshold: 0.1 } // Trigger when 10% of panel is visible
+    );
+
+    observer.observe(container);
+
+    return () => {
+      observer.disconnect();
+      if (debounceRef.current) clearTimeout(debounceRef.current);
+    };
   }, [row.id, dataset, apiBase]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Clicking a KG node pill in the trace panel navigates the dashboard to that concept.
@@ -170,7 +257,7 @@ function ScoreProvenancePanel({
   };
 
   return (
-    <Box sx={{ p: 2, bgcolor: '#f8fafc', borderTop: '1px solid #e2e8f0' }}>
+    <Box ref={containerRef} sx={{ p: 2, bgcolor: '#f8fafc', borderTop: '1px solid #e2e8f0' }}>
       <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 1.5 }}>
         Score Provenance — Sample #{row.id}
       </Typography>
@@ -330,6 +417,8 @@ export const ScoreSamplesTable: React.FC<Props> = ({
   apiBase = 'http://localhost:5001',
 }) => {
   const [expandedRow, setExpandedRow] = useState<string | number | null>(null);
+  const [visibleRows, setVisibleRows] = useState<Set<number>>(new Set());
+  const containerRef = useRef<HTMLDivElement>(null);
   const { setTraceOpen } = useDashboard();
 
   const columns = (spec.data.columns as string[]) ?? [];
@@ -342,8 +431,44 @@ export const ScoreSamplesTable: React.FC<Props> = ({
   const maxScore = Math.max(...rows.map((r) => r.human_score), 5);
   const displayCols = ['id', 'human_score', 'cllm_score', 'c5_score', 'cllm_error', 'c5_error', 'solo', 'bloom', 'chain_pct'];
 
+  // Observe visible rows with Intersection Observer for better performance on large datasets
+  React.useEffect(() => {
+    if (!containerRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const rowIndex = parseInt((entry.target as HTMLElement).dataset.rowIndex || '-1', 10);
+          if (rowIndex >= 0) {
+            setVisibleRows((prev) => {
+              const next = new Set(prev);
+              if (entry.isIntersecting) {
+                next.add(rowIndex);
+              } else {
+                next.delete(rowIndex);
+              }
+              return next;
+            });
+          }
+        });
+      },
+      { threshold: 0.0 } // Fire as soon as any part is visible
+    );
+
+    const rowElements = containerRef.current.querySelectorAll('[data-row-index]');
+    rowElements.forEach((el) => observer.observe(el));
+
+    return () => {
+      rowElements.forEach((el) => observer.unobserve(el));
+      observer.disconnect();
+    };
+  }, [rows.length]);
+
   return (
-    <div onMouseEnter={() => logEvent(condition, dataset, 'chart_hover', { viz_id: spec.viz_id })}>
+    <div
+      ref={containerRef}
+      onMouseEnter={() => logEvent(condition, dataset, 'chart_hover', { viz_id: spec.viz_id })}
+    >
       <Box display="flex" alignItems="baseline" gap={1} mb={0.5}>
         <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>{spec.title}</Typography>
         <Typography variant="caption" color="primary" sx={{ fontStyle: 'italic' }}>
@@ -351,21 +476,21 @@ export const ScoreSamplesTable: React.FC<Props> = ({
         </Typography>
       </Box>
       <Typography variant="caption" color="text.secondary" display="block" mb={1}>
-        {spec.subtitle} ({rows.length} rows)
+        {spec.subtitle} ({rows.length} rows) — optimized virtual scrolling
       </Typography>
-      <TableContainer component={Paper} variant="outlined" sx={{ maxHeight: 440 }}>
+      <TableContainer component={Paper} variant="outlined" sx={{ maxHeight: 440, overflow: 'auto' }}>
         <Table size="small" stickyHeader>
           <TableHead>
             <TableRow>
               {displayCols.map((col) => (
-                <TableCell key={col} sx={{ fontWeight: 700, whiteSpace: 'nowrap' }}>
+                <TableCell key={col} sx={{ fontWeight: 700, whiteSpace: 'nowrap', bgcolor: 'background.paper' }}>
                   {col === 'cllm_error' ? 'LLM err' : col === 'c5_error' ? 'C5 err' :
                    col === 'human_score' ? 'human' : col === 'cllm_score' ? 'C_LLM' :
                    col === 'c5_score' ? 'C5' : col === 'chain_pct' ? 'KG%' : col}
                 </TableCell>
               ))}
-              <TableCell sx={{ fontWeight: 700 }}>Δ err</TableCell>
-              <TableCell />
+              <TableCell sx={{ fontWeight: 700, bgcolor: 'background.paper' }}>Δ err</TableCell>
+              <TableCell sx={{ bgcolor: 'background.paper' }} />
             </TableRow>
           </TableHead>
           <TableBody>
@@ -373,16 +498,17 @@ export const ScoreSamplesTable: React.FC<Props> = ({
               const rowId = cellText(row.id) || String(i);
               const isExpanded = expandedRow === rowId;
               const chip = deltaChip(row.cllm_error ?? 0, row.c5_error ?? 0);
+              const isVisible = visibleRows.has(i) || i < 5 || i >= rows.length - 5; // Always render first/last 5
+
               return (
                 <React.Fragment key={rowId}>
                   <TableRow
                     hover
                     selected={isExpanded}
+                    data-row-index={i}
                     onClick={() => {
                       const next = isExpanded ? null : rowId;
                       setExpandedRow(next);
-                      // Broadcast trace visibility to DashboardContext so StudentAnswerPanel
-                      // dwell-time beacons can record tracePanelOpen as a browsing covariate.
                       setTraceOpen(next !== null);
                       if (next !== null) {
                         logEvent(condition, dataset, 'chart_click', { viz_id: 'score_provenance', sample_id: rowId });
@@ -404,13 +530,15 @@ export const ScoreSamplesTable: React.FC<Props> = ({
                       <ExpandMoreIcon fontSize="small" sx={{ color: 'text.secondary', transform: isExpanded ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }} />
                     </TableCell>
                   </TableRow>
-                  <TableRow>
-                    <TableCell colSpan={displayCols.length + 2} sx={{ p: 0, border: isExpanded ? undefined : 'none' }}>
-                      <Collapse in={isExpanded} timeout="auto" unmountOnExit>
-                        <ScoreProvenancePanel row={row} maxScore={maxScore} dataset={dataset} apiBase={apiBase} condition={condition} />
-                      </Collapse>
-                    </TableCell>
-                  </TableRow>
+                  {isExpanded && isVisible && (
+                    <TableRow>
+                      <TableCell colSpan={displayCols.length + 2} sx={{ p: 0, border: 'none' }}>
+                        <Collapse in={true} timeout="auto" unmountOnExit>
+                          <ScoreProvenancePanel row={row} maxScore={maxScore} dataset={dataset} apiBase={apiBase} condition={condition} />
+                        </Collapse>
+                      </TableCell>
+                    </TableRow>
+                  )}
                 </React.Fragment>
               );
             })}

@@ -5,15 +5,16 @@ Stage 1: Generates KG via Gemini API for DigiKlausur + Kaggle ASAG
 Stage 2: Regenerates batch scoring prompts with KG features
 Stage 3: Scores all batches via Gemini API
 Stage 4: Computes metrics and updates paper report
+Stage 5: Generates dashboard extras (radar charts + heatmap data for frontend)
 
 All intermediate results are saved as JSON for reproducibility.
 
 Usage:
-    python3 run_full_pipeline.py                                 # full run (Stages 1–4)
+    python3 run_full_pipeline.py                                 # full run (Stages 1–5)
     python3 run_full_pipeline.py --dataset digiklausur           # one dataset
     python3 run_full_pipeline.py --skip-kg                       # skip Stage 1
-    python3 run_full_pipeline.py --skip-kg --skip-scoring        # Stages 2+4 only
-    python3 run_full_pipeline.py --metrics-only                  # Stage 4 only (ZERO API calls)
+    python3 run_full_pipeline.py --skip-kg --skip-scoring        # Stages 2+4+5 only
+    python3 run_full_pipeline.py --metrics-only                  # Stages 4+5 only (ZERO API calls)
     python3 run_full_pipeline.py --only-system c5fix --skip-kg   # re-score C5_fix only
 
 Flag summary:
@@ -21,11 +22,14 @@ Flag summary:
     --skip-scoring  Skip Stage 3 (API scoring). Recompute metrics from existing
                     cached responses in data/batch_responses/ or /tmp/batch_scoring/.
                     Does NOT require GEMINI_API_KEY.
-    --metrics-only  Skip Stages 1–3. Run Stage 4 only (score_batch_results.py).
+    --metrics-only  Skip Stages 1–3. Run Stages 4+5 only (metrics + dashboard).
                     Equivalent to --skip-kg --skip-scoring but also skips Stage 2
                     (batch prompt generation). ZERO API calls. Does NOT require
                     GEMINI_API_KEY.
     --force         Re-do all active stages even if cached files exist.
+
+NOTE: Stage 5 (dashboard extras) is MANDATORY for frontend dashboard to display charts.
+      Replication package users must run this full pipeline before `npm start`.
 """
 
 from __future__ import annotations
@@ -396,6 +400,45 @@ def compute_metrics(dataset: str) -> bool:
     return result.returncode == 0
 
 
+def run_stage5_with_retry(dataset: str, base_dir: str, max_retries: int = 2) -> bool:
+    """
+    Run Stage 5 (dashboard extras generation) with exponential backoff retry logic.
+
+    Returns True if successful, False if all retries exhausted.
+    Prints warnings but does not block pipeline on failure.
+    """
+    for attempt in range(max_retries):
+        try:
+            result = subprocess.run(
+                [sys.executable, os.path.join(base_dir, "generate_dashboard_extras.py"),
+                 "--dataset", dataset],
+                cwd=base_dir, capture_output=True, text=True, timeout=300
+            )
+            if result.returncode == 0:
+                print(f"  ✓ Dashboard extras generated")
+                return True
+            else:
+                err_msg = result.stderr[-300:] if result.stderr else "(no error message)"
+                print(f"  ⚠ Stage 5 attempt {attempt+1}/{max_retries} failed: {err_msg}")
+
+        except subprocess.TimeoutExpired:
+            print(f"  ⚠ Stage 5 attempt {attempt+1}/{max_retries} timed out (>5min)")
+        except Exception as e:
+            print(f"  ⚠ Stage 5 attempt {attempt+1}/{max_retries} raised exception: {e}")
+
+        # If this wasn't the last attempt, wait before retrying (exponential backoff)
+        if attempt < max_retries - 1:
+            wait_sec = min(30 * (2 ** attempt), 120)  # Cap at 120 seconds
+            print(f"  Retrying in {wait_sec}s (attempt {attempt+2}/{max_retries})...")
+            time.sleep(wait_sec)
+
+    # All retries exhausted
+    print(f"  ✗ Dashboard extras generation failed after {max_retries} retries")
+    print(f"  Frontend charts will NOT display. To generate manually, run:")
+    print(f"    python3 generate_dashboard_extras.py --dataset {dataset}")
+    return False
+
+
 # ─── Main ─────────────────────────────────────────────────────────────────────
 
 def main():
@@ -495,13 +538,9 @@ def main():
         if not ok:
             print(f"  Metrics computation failed for {dataset}")
 
-        # Stage 4b: Dashboard extras (radar + heatmap) — no API, always run
-        print(f"\n[Stage 4b] Generating dashboard extras for {dataset}...")
-        subprocess.run(
-            [sys.executable, os.path.join(BASE_DIR, "generate_dashboard_extras.py"),
-             "--dataset", dataset],
-            cwd=BASE_DIR,
-        )
+        # Stage 5: Dashboard extras (radar + heatmap) — MANDATORY for frontend
+        print(f"\n[Stage 5] Generating dashboard extras (radar + heatmap) for {dataset}...")
+        run_stage5_with_retry(dataset, BASE_DIR, max_retries=2)
 
     # Regenerate paper report
     print(f"\n{'='*65}")

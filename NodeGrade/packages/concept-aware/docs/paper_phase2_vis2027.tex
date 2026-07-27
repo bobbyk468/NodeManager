@@ -1,4 +1,6 @@
-\documentclass[11pt]{article}
+%% IEEE VIS 2027 / VAST Track — VGTC Conference Paper (double-blind review submission)
+\documentclass[journal,review]{vgtc}
+
 \usepackage{cite}
 \usepackage{graphicx}
 \usepackage{amsmath}
@@ -9,61 +11,116 @@
 \usepackage{multirow}
 \usepackage{xcolor}
 \usepackage{listings}
+\usepackage{microtype}
 \graphicspath{{figures/}{docs/figures/}}
 
-% Article-mode compatibility for VGTC metadata macros.
-\providecommand{\onlineid}[1]{}
-\providecommand{\authorfooter}[1]{}
-\providecommand{\shortauthortitle}[1]{}
-\providecommand{\CCScatlist}[1]{}
-\providecommand{\CCScat}[3]{}
-\newcommand{\cgabstracttext}{}
-\renewcommand{\abstract}[1]{\gdef\cgabstracttext{#1}}
-\newcommand{\cgkeywordstext}{}
-\providecommand{\keywords}[1]{\gdef\cgkeywordstext{#1}}
-
+%% VGTC paper metadata
 \onlineid{0}
+
+\vgtccategory{Research}
 
 \title{ConceptGrade: A Visual Analytics System for Human-AI Co-Auditing of Knowledge Graph-Grounded Grading}
 
-\author{Anonymous}
-\authorfooter{
-  Anonymous authors.
+\author{Anonymous Submission}
+\authorfooter{Anonymous submission for double-blind review.}
+
+\shortauthortitle{ConceptGrade: VA for Grading Co-Auditing}
+
+\abstract{%
+Knowledge-graph-grounded automated short-answer grading systems are a maturing class of architectures, but their effectiveness depends sharply on how well the KG covers the domain vocabulary of the answers being graded. The same KG-grounded scoring pipeline can be near-instructor-grade on in-domain answers and silently miscalibrated on adjacent-domain or out-of-domain answers --- and the educator using it currently has no actionable interface for distinguishing the two regimes per-answer. This paper contributes a visual analytics design for that specific operational problem: \emph{structural-confidence triage} in cross-domain KG-grounded ASAG. We present ConceptGrade Dashboard, a system that surfaces three architectural reliability signals --- the topological-continuity of the LLM's reasoning over the KG, the agreement between the KG-coverage signal and the LLM's confidence, and the upstream concept-extraction grounding density --- as interactive visual affordances. We instantiate and evaluate the dashboard on top of an existing KG-grounded pipeline (ConceptGrade) whose ML accuracy we have separately characterised on three datasets totalling $1{,}239$ paired student-answer predictions across $177$ questions, finding strong in-domain performance ($32.4\%$ MAE reduction on Mohler 2011, $n=120$; Wilcoxon two-tailed $p = 0.0026$, paired $d_z = 0.30$) and explicit cross-domain heterogeneity ($I^2 = 70\%$). The dashboard's design treats this heterogeneity as the per-answer triage problem it actually is, not as a system-level limitation: each visual encoding maps to a specific architectural condition under which a structural ASAG pipeline can be reliable, marginal, or fail. A pre-registered controlled study with $N=64$ domain-expert educators is designed to evaluate whether the dashboard's structural-confidence indicators yield higher \emph{silent-failure detection accuracy} --- the regime where numeric summaries provably cannot disambiguate --- than a text-summary baseline. The core technical contribution is the visual encoding of \emph{Topological Reasoning Mapping} projected onto the domain KG, together with the failure-detection user-study design. We argue that the load-bearing gap in deployed KG-grounded ASAG is not a more capable model or a richer feature set, but an interface that lets the educator see, per answer, whether the structural assumptions on which the score depends actually hold.%
 }
 
-\shortauthortitle{ConceptGrade: Visual Analytics for Grading Co-Auditing}
-
-\abstract{
-Automated grading systems increasingly rely on large language models to assess student understanding at scale. Yet educators remain skeptical---not because they doubt the model's accuracy, but because they cannot audit the model's reasoning. We present ConceptGrade, a visual analytics system that enables educators to co-audit both machine reasoning and student knowledge gaps simultaneously. The core contribution is Topological Reasoning Mapping (TRM), which projects a reasoning model's chain-of-thought onto a structured knowledge graph topology, exposing structural reasoning leaps and domain-specific misconceptions. We evaluate ConceptGrade on 1,239 graded student answers from three domains (CS, Neural Networks, Elementary Science), demonstrating 32.4\% MAE reduction over an LLM baseline (Wilcoxon p=0.003). A controlled user study with N=\textit{[pending]} domain-expert educators validates that the system helps instructors identify concept gaps faster and with greater confidence than text-only summaries. We argue that the missing link in automated grading is not a better model, but a better interface---one that projects the model's reasoning onto the educator's domain knowledge, creating a \textit{shared visual topology} for co-auditing.
-}
-
-\CCScatlist{
-  \CCScat{Human-centered computing}{Visualization}{Visual analytics};
-  \CCScat{Social and professional topics}{Computing education}
-}
-
-\keywords{
-visual analytics, automated grading, knowledge graphs, human-AI collaboration, educator trust, educational data mining
-}
+\keywords{visual analytics, automated grading, knowledge graphs, human-AI collaboration, educator trust, educational data mining}
 
 \newtheorem{definition}{Definition}
 
 \begin{document}
+
+\firstsection{Introduction}
 \maketitle
-\begin{abstract}
-\cgabstracttext
-\end{abstract}
-\noindent\textbf{Keywords: } \cgkeywordstext
 
-% ────────────────────────────────────────────────────────────────────────────────
-% 1. INTRODUCTION
-% ────────────────────────────────────────────────────────────────────────────────
+%% NOTE: \firstsection{Introduction} above causes vgtc to auto-generate the
+%% first \section heading inside \maketitle. The explicit \section{Introduction}
+%% below is intentionally omitted — vgtc handles it via \firstsectiontxt.
 
-\section{Introduction}
+%% Body of Introduction:
 
-Large language models (LLMs) have achieved impressive accuracy on short-answer grading tasks~\cite{Liu2024,Wei2023_GEVAL}. Yet in high-stakes educational contexts---where a grade affects a student's transcript and an instructor's pedagogical decisions---accuracy alone is insufficient. Educators demand \textit{explainability}: they need to understand not just \textit{what} the system decided, but \textit{why}. Without this transparency, automated grading remains a black-box verdict, no more trustworthy to a skeptical instructor than a random number. Moreover, recent work has raised concerns that LLM chain-of-thought reasoning does not always reflect the true causal mechanism of the model's output~\cite{Turpin2023,Lanham2023}, further motivating the need for external validation of reasoning against domain structure rather than blind trust in generated traces.
+\noindent\textbf{Submission status: design-and-protocol document,
+pre-data-collection.} This paper describes (i)~the ConceptGrade
+dashboard's design rationale, (ii)~the pre-registered protocol for a
+controlled user study with $N=64$ domain-expert educators, and
+(iii)~projected effect sizes from mock data so readers can audit the
+analysis plan. \textbf{User-study results are \emph{not} reported in
+this paper; this is a design-and-protocol paper, not a completed
+empirical evaluation.} All figures in the Results section
+(§\ref{sec:evaluation_user_study}) are explicitly labelled
+\textsc{Pre-Submission Placeholder} and will be replaced by real data
+in a post-collection revision. Empirical claims about ML
+grading accuracy on the three datasets (Mohler, DigiKlausur,
+Kaggle ASAG) use real cached results computed in the companion paper.
+Following five rounds of external expert consultation (recorded as
+Gemini-2.5-flash advisory rounds 1--5 in supplementary materials
+\texttt{data/gemini\_*\_review.json}), and per the explicit Round-5
+terminal verdict that ``peer-reviewed HCI and VIS venues including
+workshops and CHI LBR do not accept design papers that feature
+explicit placeholders for their primary user studies,'' \textbf{this
+manuscript will not be submitted to any peer-reviewed venue in its
+present form}. The present version is being released as an
+\emph{OSF preprint only} for transparent open-science registration of
+the dashboard design and the user-study protocol, anchoring the
+pre-registered hypotheses publicly before $N=64$ data collection
+begins. A submission-ready manuscript with collected behavioural data
+is targeted for IEEE VIS 2028 (or an equivalent peer-reviewed venue)
+after the summer 2026 study has been executed and the placeholder
+figures are replaced.
 
-The core problem is an \textit{opacity gap}: LLM reasoning chains are linear, sequential, and often verbose, making it cognitively taxing for domain experts to audit them against their own knowledge of the discipline. A CS instructor reading an LLM's chain-of-thought about sorting algorithms cannot easily see whether the model's reasoning follows the prerequisite structure of CS (basic sorting $\rightarrow$ time complexity $\rightarrow$ sorting networks), or if it has hallucinated leaps between unrelated concepts.
+Large language models have achieved impressive aggregate accuracy on
+short-answer grading tasks~\cite{Liu2024,Wei2023_GEVAL}, and a growing
+family of \emph{structural} or \emph{KG-grounded} systems augments
+those models with explicit domain-knowledge anchoring to improve
+in-domain reliability. But in high-stakes educational contexts a
+quieter empirical regularity is the harder problem: \emph{the same
+structural ASAG pipeline can be near-instructor-grade on one
+answer and silently miscalibrated on the next, even within a single
+classroom dataset, and the educator using it has no actionable
+per-answer indication of which regime they are in.} The aggregate
+accuracy number on the venue benchmark is not the operational
+quantity the educator needs.
+
+This paper addresses that gap as a visual analytics design problem.
+Concretely, we contribute ConceptGrade Dashboard, a coordinated
+multi-view system that surfaces three architectural reliability signals
+for each graded answer: (i)~the topological-continuity of the LLM
+reasoning trace projected onto the domain knowledge graph (TRM
+gap-badges and structural-leap indicators), (ii)~the agreement between
+the KG concept-coverage signal and the LLM's verbal confidence (a
+\textsc{Contradicts}-chip strip), and (iii)~the upstream concept-extraction
+grounding density (a zero-grounding banner). Each indicator maps to a
+specific architectural condition under which a structural-ASAG
+pipeline can be reliable, marginal, or fail. We instantiate the
+dashboard on top of an existing KG-grounded pipeline (ConceptGrade),
+whose own cached cross-dataset evaluation provides a real, non-trivial
+heterogeneity distribution to design against: strong in-domain effect
+($d_z = -0.30$ on Mohler), marginal adjacent-domain effect
+($d_z = -0.07$ on DigiKlausur), and a null out-of-domain effect on
+Kaggle ASAG ($d_z = -0.03$). Recent work raising concerns that LLM
+chain-of-thought reasoning does not always reflect the true causal
+mechanism of the model's
+output~\cite{Turpin2023,Lanham2023} further motivates external
+diagnostic surfaces over blind trust in generated traces.
+
+The core operational problem is therefore not just an
+\textit{opacity gap} (``the model's reasoning is hard to read'') but a
+\textit{per-answer structural-confidence gap}: the educator needs to
+know, for the specific student answer in front of them, whether the
+structural assumptions on which the score depends actually hold. A
+CS instructor reading an LLM's chain-of-thought about sorting
+algorithms cannot easily see whether the model's reasoning follows
+the prerequisite structure of CS (basic sorting $\rightarrow$ time complexity
+$\rightarrow$ sorting networks), or whether the pipeline has produced an
+empty matched-concept set and is silently fabricating a score from
+text similarity. The dashboard surfaces both classes of structural
+ambiguity in the same visual workflow.
 
 We argue that the missing link is not a better model, but a better interface---one that projects the model's reasoning onto the educator's domain knowledge, creating a \textit{shared visual topology} for co-auditing.
 
@@ -77,7 +134,7 @@ ConceptGrade is a visual analytics system designed around this principle. It ena
   \label{fig:dashboard_teaser}
 \end{figure*}
 
-The core technical contribution is \textbf{Topological Reasoning Mapping (TRM)}: a formal framework that evaluates whether sequential reasoning steps map to topologically continuous regions of a knowledge graph. TRM answers the question: \textit{Does the model's reasoning follow the logical structure of the domain, or does it jump between unrelated concepts?}
+The core technical contribution is \textbf{Topological Reasoning Mapping (TRM)}: an \emph{evaluation criterion} grounded in knowledge-graph topology, together with the visual encoding that makes the criterion auditable by a domain expert. TRM does not introduce new mathematics---the underlying primitives (concept set intersection, $k$-hop neighbourhood, edge-label match) are standard graph operations---but it operationalises an under-specified construct in the XAI/grading literature: \emph{whether an LRM's reasoning chain is structurally consistent with the domain it claims to reason about}. TRM answers the question: \textit{Does the model's reasoning follow the logical structure of the domain, or does it jump between unrelated concepts?}
 
 \subsection{Why Co-Auditing Matters}
 
@@ -94,13 +151,56 @@ The key moment of epistemic update is observable and measurable. When an educato
 In summary, our contributions are:
 
 \begin{enumerate}
-  \item \textbf{Topological Reasoning Mapping (TRM)}---the first technique to evaluate topological continuity of LLM reasoning chains against a domain Knowledge Graph, exposing structural leaps between disconnected KG regions that signal hallucinations or ungrounded inferences (Section~\ref{sec:system_design}).
+  \item \textbf{Failure-Mode Triage as a Visual-Analytics Contribution.}---We
+  reframe the educator-facing role of a KG-grounded grading dashboard from
+  ``confirm the AI grade is correct'' to ``identify and triage the
+  reliability boundary of the AI grader.'' This is empirically motivated
+  by our companion paper's cross-dataset heterogeneity ($d_z = -0.30$
+  in-domain, $d_z = -0.07$ adjacent-domain, $d_z = -0.03$ null;
+  $I^2 = 70\%$): the architecture itself produces silent failures
+  (empty matched-concept sets, SOLO-classifier collapse) and the
+  dashboard's first job is to surface those failures
+  (Section~\ref{sec:system_design}).
 
-  \item \textbf{Bidirectional Co-Auditing Interface}---a VA system linking LLM trace visualization $\to$ knowledge graph subgraph $\to$ rubric editor through shared selection and brushing; the Click-to-Add interaction eliminates lexical ambiguity in rubric annotation (Section~\ref{sec:implementation}).
+  \item \textbf{Topological Reasoning Mapping (TRM) as a diagnostic
+  rendering.}---The TRM projection of LLM reasoning steps onto a domain
+  KG is repositioned in this paper from a ``theoretical framework'' to
+  an \emph{evaluation criterion plus a diagnostic visual encoding}: a
+  CONTRADICTS-step indicator, a structural-leap gap badge, and a
+  zero-grounding banner each map to a specific architectural failure
+  mode disclosed in our companion ML evaluation
+  (Section~\ref{sec:system_design}).
 
-  \item \textbf{Empirical ML Accuracy Evidence}---32.4\% MAE reduction over an LLM-only baseline on the Mohler 2011 CS dataset (Wilcoxon p=0.003); cross-dataset evaluation on DigiKlausur (NN, p=0.049) and Kaggle ASAG (p=0.348, not significant), establishing domain boundary conditions for when TRM excels (Section~\ref{sec:evaluation_accuracy}).
+  \item \textbf{Bidirectional Co-Auditing Interface.}---A VA system
+  linking LLM trace visualization $\to$ knowledge-graph subgraph $\to$
+  rubric editor through shared selection and brushing. The
+  Click-to-Add interaction eliminates lexical ambiguity in rubric
+  annotation \emph{and} doubles as the failure-mode override path: a
+  CONTRADICTS step the educator notices is one click from becoming a
+  new rubric criterion that retrains future grading decisions
+  (Section~\ref{sec:implementation}).
 
-  \item \textbf{Controlled Educator User Study}---N=\textit{[pending]} domain-expert instructors and TAs in two conditions (control: summary only; treatment: full interactive dashboard); quantitative (SUS scores, time-to-insight, task accuracy) and qualitative (think-aloud, causal attribution) evidence that the system increases confidence in automated grades and accelerates misconception diagnosis (Section~\ref{sec:evaluation_user_study}).
+  \item \textbf{Cross-Dataset Empirical Grounding (companion-paper
+  results).}---$32.4\%$ MAE reduction over an identical-model LLM
+  baseline on Mohler 2011 ($n = 120$; Wilcoxon $p = 0.0026$), $4.9\%$
+  reduction on DigiKlausur ($p = 0.0489$, $d_z = -0.07$, below
+  Cohen's practical-effect threshold), and no significant effect on
+  Kaggle ASAG ($p = 0.348$). The heterogeneity ($I^2 = 70\%$, random-effects
+  CI $[-0.21, +0.01]$ crosses zero) is taken as the dashboard's
+  use-case --- the educator's task is to detect which regime each
+  graded answer is in (Section~\ref{sec:evaluation_accuracy}).
+
+  \item \textbf{Pre-Registered Educator Failure-Detection Study.}---A
+  controlled study with $N = 64$ domain-expert instructors and TAs in
+  two conditions (control: summary only; treatment: full interactive
+  dashboard), with a \emph{failure-detection} primary outcome:
+  participants are scored on their ability to correctly accept reliable
+  AI grades and override unreliable ones (Mohler-like, DigiKlausur-like,
+  and Kaggle-like answers stratified into the task set). This replaces
+  the original generic ``does the dashboard help?'' question with a
+  falsifiable, reliability-boundary-oriented hypothesis. Study design,
+  pre-registered hypotheses, and projected analyses appear in
+  Section~\ref{sec:evaluation_user_study}.
 \end{enumerate}
 
 % ────────────────────────────────────────────────────────────────────────────────
@@ -183,6 +283,8 @@ The five formal definitions above map directly onto the visual elements of the V
 
 This tight formal-to-visual correspondence is a deliberate design choice: it allows a reviewer with domain expertise to reproduce our TRM analysis by inspection of the visual panel, and it allows us to claim that the interactive artifacts the educator sees are not visual metaphors but direct encodings of formally-defined structural properties.
 
+\textbf{Implementation Note:} TRM's topological continuity check (Definitions 1--3 above) operates on KG node sets $N_i$. A separate, complementary mechanism determines the \textit{grounding quality} of individual step mappings---specifically, whether a predicted $N_i$ is actually supported by the student's answer text rather than hallucinated by the LLM. This grounding check is implemented via token-level Longest Common Subsequence (LCS) matching (Algorithm~1 in the companion paper): a step $s_i$ is considered textually grounded if its token sequence has $\geq 75\%$ LCS match ratio with the student answer. These are distinct operations: topological adjacency ($N_i \cap N_{i+1} \neq \emptyset$) evaluates reasoning structure; LCS grounding evaluates evidence quality.
+
 \subsubsection{Zero-Grounding Degeneration} \label{sec:zero_grounding}
 
 A critical edge case arises when grounding density reaches 0 (no reasoning steps map to the KG). In this scenario, LeapCount mathematically defaults to 0, masking a fundamental failure: the LLM's reasoning is entirely disconnected from the domain structure. This \textit{zero-grounding degeneration} is a false negative for continuity evaluation. Educators must be alerted when GrDensity = 0, as it signals either (1) a completely hallucinated reasoning chain, (2) a KG so narrow it cannot capture the domain, or (3) an LLM generating off-topic verbose preamble without engaging the problem. In practice, the system flags zero-density cases separately with a "no grounding found" indicator, preventing misinterpretation of a zero leap count as evidence of sound reasoning.
@@ -254,7 +356,7 @@ Co-auditing inverts this asymmetry. In ConceptGrade, neither the model's weights
 
 This design operationalizes Endert et al.'s~\cite{Endert2017} semantic interaction principle: the educator acts in the domain's conceptual vocabulary (KG node names), and the system translates those actions into structured model constraints (rubric criteria with KG anchors). The full co-auditing workflow maps onto Sacha et al.'s~\cite{Sacha2014} knowledge generation loop: the educator perceives structural anomalies in the LLM's trace (a CONTRADICTS step at a prerequisite concept), interprets them against the KG's prerequisite structure, generates a hypothesis about the class-wide misconception, and confirms it by refining the rubric. Unlike IMT---where the loop terminates at model convergence---the co-auditing loop terminates at pedagogical knowledge: the educator leaves the session with a richer, more explicit understanding of what distinguishes strong from weak student answers in their domain.
 
-This framing reveals a bibliographic gap of independent interest to the VAST community. The VA sensemaking formalisms reviewed above---Pirolli and Card's dual-loop model~\cite{Pirolli2005}, Klein's Data/Frame theory~\cite{Klein2007}, Sacha's knowledge generation model~\cite{Sacha2014}---were developed in the context of intelligence analysis, business intelligence, and scientific discovery. None have been applied to rubric-based pedagogical assessment. ConceptGrade provides the first empirical instantiation of these models in an instructor's grading workflow, enabling us to test whether VA sensemaking theory generalizes to the educational domain. Our N=30 educator user study (Section~\ref{sec:evaluation_user_study}) is designed to produce exactly this evidence.
+This framing reveals a bibliographic gap of independent interest to the VAST community. The VA sensemaking formalisms reviewed above---Pirolli and Card's dual-loop model~\cite{Pirolli2005}, Klein's Data/Frame theory~\cite{Klein2007}, Sacha's knowledge generation model~\cite{Sacha2014}---were developed in the context of intelligence analysis, business intelligence, and scientific discovery. None have been applied to rubric-based pedagogical assessment. ConceptGrade provides the first empirical instantiation of these models in an instructor's grading workflow, enabling us to test whether VA sensemaking theory generalizes to the educational domain. Our $N\geq 64$ educator user study (Section~\ref{sec:evaluation_user_study}) is designed to produce exactly this evidence, ensuring 80\% statistical power for medium-sized effects ($d=0.5$).
 
 \subsection{Knowledge Graphs in Education}
 
@@ -296,14 +398,38 @@ ConceptGrade follows a 3-tier client-server architecture:
 
 \subsection{Core UI Components}
 
-\subsubsection{Misconception Heatmap}
-A 2D heatmap where rows are student concepts and columns are class-aggregated error patterns. Color encodes misconception severity (how many students missed this concept). Clicking a cell filters downstream views to show only students affected by that misconception.
+\subsubsection{Concept-Coverage Heatmap}
+
+\textbf{Reliability scope.} The class-wide overview is rendered as a
+\emph{concept-coverage} heatmap, not a misconception heatmap. Cells encode the
+fraction of students in the class who failed to demonstrate a given KG concept
+in their answer (concept-coverage failure rate), a quantity directly derived
+from the graph-matching pipeline. This is distinct from---and a deliberate
+restriction relative to---a true \emph{misconception} heatmap, which would
+require reliable per-cell labels from the 16-entry CS misconception taxonomy.
+Our machine-IRR pilot on the taxonomy (Paper~1, \S3.4) found only fair
+agreement ($\kappa_{\text{micro}} = 0.33$) between two heuristic coding
+channels, which we interpret as a lower bound on human reliability but as
+insufficient to support a top-level visualization. We therefore plot
+concept-coverage gaps (the higher-reliability signal) at the top level and
+expose misconception-taxonomy matches only as tooltips on the per-answer
+trace panel, where the instructor can adjudicate them against the underlying
+text.
+
+A 2D heatmap where rows are KG concepts and columns are class-aggregated
+coverage-failure bins. Color encodes the fraction of students who omitted or
+mismatched the concept. Clicking a cell filters downstream views to show only
+students with the corresponding coverage gap.
 
 \begin{figure}[t]
   \centering
   \includegraphics[width=\columnwidth]{heatmap_closeup.png}
-  \caption{\textbf{Misconception Heatmap Close-up.}
-  Concepts and severity bins are encoded in a dense matrix with color-coded counts, allowing instructors to quickly identify high-impact concept gaps and pivot into supporting evidence.}
+  \caption{\textbf{Concept-Coverage Heatmap Close-up.}
+  KG concepts (rows) $\times$ class-aggregated coverage-failure bins (columns).
+  Color = fraction of students failing to demonstrate the concept; cells link
+  to the per-answer trace panel. Misconception-taxonomy matches are surfaced
+  only on the trace panel, not on this overview, because the taxonomy's
+  machine-IRR $\kappa$ is in the fair-agreement range (see Paper~1, \S3.4).}
   \label{fig:heatmap_visual}
 \end{figure}
 
@@ -342,36 +468,30 @@ All five components share a reactive state via React Context (DashboardContext).
 \begin{figure}[ht]
 \centering
 \begin{verbatim}
-+-----------------------------------------------------+
-|            DashboardContext (Shared State)          |
-|   selectedConcept | selectedSeverity | filterBounds |
-+-----------------------------------------------------+
-                        v ^
-         +--------------+--------------+
-         v              v              v
-    +---------+  +-----------+  +----------+
-    | Heatmap |  | KG Panel  |  | Radar    |
-    | (Click) |  | (Hover)   |  | (Drag)   |
-    +---------+  +-----------+  +----------+
-         |              |              |
-         +--------------+--------------+
-                        v
-         +------------------------------+
-         |   Student Answer Panel       |
-         |  (Filters to selected group) |
-         +------------------------------+
-                        v
-         +------------------------------+
-         |   Verifier Trace Panel       |
-         |  (Highlights linked steps)   |
-         +------------------------------+
-                        v
-         +------------------------------+
-         |      Rubric Editor           |
-         |  (Logs KG node associations) |
-         +------------------------------+
++--------------------------------------+
+| DashboardContext (Shared State)      |
+| concept | severity | filterBounds   |
++--------------------------------------+
+              v ^
+    +---------+---------+---------+
+    v         v         v         v
+ +-------+ +------+ +------+ +-------+
+ |Heatmap| |KG    | |Radar | |Answer |
+ |(Click)| |Panel | |(Drag)| |Table  |
+ +-------+ |(Hover| +------+ +-------+
+           +------+
+              v
+    +---------------------+
+    | Verifier Trace      |
+    | (Highlights steps)  |
+    +---------------------+
+              v
+    +---------------------+
+    | Rubric Editor       |
+    | (KG node logging)   |
+    +---------------------+
 \end{verbatim}
-\caption{DashboardContext: Reactive State Flow. Selection in any view propagates to downstream views; each interaction is logged with context (heatmap cell $\to$ concept + severity, KG node $\to$ node ID, etc.).}
+\caption{DashboardContext reactive state flow. Selections in any view propagate downstream; each interaction is logged with KG context for causal attribution.}
 \label{fig:dashboard_context}
 \end{figure}
 
@@ -402,6 +522,12 @@ To evaluate the system scientifically, we gate the interactive components by con
   \item \textbf{Condition B (Treatment)}: Instructors see the same task question, but have access to all five interactive components above.
 \end{itemize}
 
+\textbf{Treatment Components in Condition B.} The Condition B treatment integrates three major components:
+(1)~\textit{Interactive visualizations} (Bloom's taxonomy heatmap, concept coverage radar, KG subgraph),
+(2)~\textit{Student reasoning traces} with zero-grounding indicators and structural leap detection, and
+(3)~\textit{Inline rubric editor} with CONTRADICTS annotation for Click-to-Add rubric refinement.
+This design does not isolate individual component effects; future work will employ a $2 \times 2$ factorial design to measure visualization, trace context, and editor contributions separately.
+
 After answering the task, instructors complete a System Usability Scale (SUS) questionnaire and then use the Rubric Editor to refine grading criteria. Event logging captures all interactions (heatmap clicks, radar brushing, KG node hovers, rubric edits) with millisecond timestamps.
 
 \subsection{Design Rationale: Exposing AI Limits as First-Class Information}
@@ -424,12 +550,13 @@ This philosophy aligns with the principle that trustworthy XAI systems should ex
 
 \subsection{Datasets and Metrics}
 
-We evaluate ConceptGrade on three datasets:
+We evaluate ConceptGrade on three datasets totalling $1{,}239$
+paired student-answer predictions across $177$ questions:
 
 \begin{itemize}
-  \item \textbf{Mohler 2011}: 120 student answers on data structures (CS domain), with expert rubrics and QWK inter-rater reliability $\rho=0.98$.
-  \item \textbf{DigiKlausur}: 646 answers on neural network fundamentals (NN domain), collected from a university exam cohort.
-  \item \textbf{Kaggle ASAG}: 473 answers from a mixed-domain short-answer grading benchmark (elementary science, K--8).
+  \item \textbf{Mohler 2011}: 120 student answers on data structures (CS domain) across 10 questions, with expert rubrics and inter-rater agreement $r = 0.985$ (QWK $= 0.984$).
+  \item \textbf{DigiKlausur}: 646 answers on neural network fundamentals (NN domain) across 17 questions, collected from a university exam cohort.
+  \item \textbf{Kaggle ASAG}: 473 answers from a mixed-domain short-answer grading benchmark (elementary science, K--8) across 150 unique questions. On this dataset the pipeline's upstream LLM concept-extraction layer produced empty matched-concept sets on $473/473$ samples ($100\%$), an architectural-prediction failure mode the dashboard surfaces as a zero-grounding banner.
 \end{itemize}
 
 We report Pearson $r$, Mean Absolute Error (MAE), and Root Mean Squared Error (RMSE) against human expert grades, using a Wilcoxon signed-rank test to assess statistical significance.
@@ -438,14 +565,15 @@ We report Pearson $r$, Mean Absolute Error (MAE), and Root Mean Squared Error (R
 
 \begin{table}[ht]
 \centering
-\caption{ConceptGrade (C5\_fix) vs. LLM Baseline (C\_LLM) on Mohler 2011 (CS Data Structures).}
+\caption{ConceptGrade (C5\_fix) vs.\ LLM Baseline on Mohler 2011 (CS Data Structures). ** $p<0.01$ (Wilcoxon).}
 \label{tab:mohler_accuracy}
-\begin{tabular}{lcccccc}
+\small
+\begin{tabular}{lccccc}
 \toprule
-\textbf{System} & \textbf{Pearson $r$} & \textbf{MAE} & \textbf{RMSE} & \textbf{QWK} & \textbf{Wilcoxon $p$} & \textbf{Sig.} \\
+\textbf{System} & \textbf{$r$} & \textbf{MAE} & \textbf{RMSE} & \textbf{QWK} & \textbf{$p$} \\
 \midrule
-C\_LLM Baseline & 0.9709 & 0.3300 & 0.4667 & 0.9514 & \multirow{2}{*}{0.0026} & \multirow{2}{*}{**} \\
-C5\_fix (ours) & \textbf{0.9820} & \textbf{0.2229} & \textbf{0.3315} & \textbf{0.9750} & & \\
+C\_LLM Baseline & 0.9709 & 0.3300 & 0.4667 & 0.9514 & \multirow{2}{*}{0.0026**} \\
+C5\_fix (ours) & \textbf{0.9820} & \textbf{0.2229} & \textbf{0.3315} & \textbf{0.9750} & \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -456,11 +584,12 @@ The per-question error analysis (Table~\ref{tab:per_question}) shows that Concep
 
 \begin{table}[ht]
 \centering
-\caption{Per-Question Error Analysis: SOLO Level Breakdown (Mohler 2011).}
+\caption{Per-Question Error Analysis: SOLO Level Breakdown (Mohler 2011). $\Delta$ MAE = reduction vs.\ baseline.}
 \label{tab:per_question}
+\small
 \begin{tabular}{lcccc}
 \toprule
-\textbf{SOLO Level} & \textbf{Count} & \textbf{C\_LLM MAE} & \textbf{C5 MAE} & \textbf{$\Delta$ MAE (reduction)} \\
+\textbf{SOLO Level} & \textbf{$n$} & \textbf{Baseline} & \textbf{C5} & \textbf{$\Delta$ MAE} \\
 \midrule
 Prestructural & 8 & 0.450 & 0.375 & +0.075 \\
 Unistructural & 18 & 0.389 & 0.333 & +0.056 \\
@@ -477,28 +606,21 @@ The largest gains (+0.238 MAE, 70\% error reduction) occur in Relational-level a
 
 \begin{table}[ht]
 \centering
-\caption{Cross-Dataset Evaluation: ConceptGrade Generalization Across CS Education Domains.}
+\caption{Cross-Dataset Evaluation: ConceptGrade vs.\ LLM Baseline. * $p<0.05$, ** $p<0.01$, n.s. = not significant.}
 \label{tab:multidataset}
-\begin{tabular}{lcccccc}
+\small
+\begin{tabular}{lccccc}
 \toprule
-\textbf{Dataset} & \textbf{Domain} & \textbf{$n$} & \textbf{System} & \textbf{MAE} & \textbf{$p$-value} & \textbf{Status} \\
+\textbf{Dataset} & \textbf{Dom.} & \textbf{$n$} & \textbf{Base MAE} & \textbf{C5 MAE} & \textbf{$p$} \\
 \midrule
-\multirow{2}{*}{Mohler 2011} & \multirow{2}{*}{CS Data Structures} & \multirow{2}{*}{120} &
-C\_LLM Baseline & 0.3300 & \multirow{2}{*}{0.0026} & \multirow{2}{*}{**} \\
-& & & C5\_fix (ours) & \textbf{0.2229} & & \\
-\midrule
-\multirow{2}{*}{DigiKlausur} & \multirow{2}{*}{Neural Networks} & \multirow{2}{*}{646} &
-C\_LLM Baseline & 1.1842 & \multirow{2}{*}{0.0489} & \multirow{2}{*}{*} \\
-& & & C5\_fix (ours) & \textbf{1.1262} & & \\
-\midrule
-\multirow{2}{*}{Kaggle ASAG} & \multirow{2}{*}{Elementary Science} & \multirow{2}{*}{473} &
-C\_LLM Baseline & 1.2082 & \multirow{2}{*}{0.3400} & \multirow{2}{*}{n.s.} \\
-& & & C5\_fix (ours) & 1.1797 & & \\
+Mohler 2011 & CS DS & 120 & 0.3300 & \textbf{0.2229} & 0.0026** \\
+DigiKlausur & NN & 646 & 1.1842 & \textbf{1.1262} & 0.0489* \\
+Kaggle ASAG & Sci & 473 & 1.2082 & 1.1797 & 0.348\textsuperscript{n.s.} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-ConceptGrade significantly improves performance on the high-vocabulary-specificity CS domain (Mohler: p=0.0026) and modestly improves the mid-specificity Neural Networks domain (DigiKlausur: p=0.0489). However, on the low-vocabulary-specificity Kaggle ASAG benchmark (elementary science), the improvement is not significant (p=0.3400, n.s.).
+ConceptGrade significantly improves performance on the high-vocabulary-specificity CS domain (Mohler: p=0.0026) and modestly improves the mid-specificity Neural Networks domain (DigiKlausur: p=0.0489). However, on the low-vocabulary-specificity Kaggle ASAG benchmark (elementary science), the improvement is not significant ($p=0.348$, n.s.).
 
 \subsection{Component Contribution Analysis}
 
@@ -506,20 +628,21 @@ To isolate the contribution of Topological Reasoning Mapping (KG grounding) from
 
 \begin{table}[ht]
 \centering
-\caption{Ablation Study: Component Contribution to MAE Reduction (Mohler 2011 dataset, $n=120$).}
+\caption{Ablation Study: Component Contribution to MAE Reduction (Mohler 2011, $n=120$). Improvement vs.\ LLM Baseline.}
 \label{tab:ablation}
+\small
 \begin{tabular}{lcc}
 \toprule
-\textbf{System Configuration} & \textbf{MAE} & \textbf{Improvement vs. Baseline} \\
+\textbf{System Configuration} & \textbf{MAE} & \textbf{Improvement} \\
 \midrule
 C\_LLM Baseline (zero-shot LLM) & 0.3300 & --- \\
-+ Knowledge Graph Grounding (TRM) & 0.2808 & 14.9\% ↓ \\
-+ Verifier Confidence (C4, fine-tuned) & 0.2229 & 32.4\% ↓ \\
++ Knowledge Graph Grounding (TRM) & 0.2808 & 14.9\% $\downarrow$ \\
++ Verifier Confidence (C4, fine-tuned) & 0.2229 & 32.4\% $\downarrow$ \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-The Knowledge Graph component (TRM) alone accounts for a 14.9\% MAE reduction, demonstrating that topological reasoning alignment is the core technical contribution. The additional Verifier confidence stage contributes a further 17.5\% improvement, validating the synergy between structural grounding and probabilistic refinement. This decomposition proves that TRM---not the Verifier alone---is the novel contribution driving the system's advantage in vocabulary-specific domains.
+The Knowledge Graph component (TRM) alone accounts for a 14.9\% MAE reduction, indicating that topological reasoning alignment is the primary engineering lever in our pipeline. The additional Verifier confidence stage contributes a further 17.5\% improvement, consistent with synergy between structural grounding and probabilistic refinement. We interpret this decomposition as evidence that the KG-grounding component---rather than the Verifier alone---accounts for most of the system's advantage in vocabulary-specific domains.
 
 \subsection{Confidence Intervals}
 
@@ -560,13 +683,57 @@ This dual reporting---honest ML results + user study validation---reflects scien
 
 \subsection{Study Design}
 
-We describe a controlled mixed-methods study designed to evaluate whether the interactive ConceptGrade dashboard helps instructors diagnose class-wide misconceptions faster and with greater confidence compared to a text-summary baseline. Data collection is pending IRB approval; this section presents the study design and pre-registered analysis plan.
+We describe a controlled mixed-methods study designed to evaluate whether the interactive ConceptGrade dashboard helps instructors diagnose class-wide misconceptions faster and with greater confidence compared to a text-summary baseline. The full IRB protocol is included in supplementary materials (\texttt{IRB\_PROTOCOL.md}); for camera-ready submission, the protocol number and approval date will be filled in at \texttt{[IRB-PROTOCOL-TBD]} and \texttt{[IRB-DATE-TBD]} respectively. Recruitment will not open until IRB approval is on file; no data are collected before that point.
 
-\textit{Pre-Registration:} The study is registered on the Open Science Framework (OSF) prior to participant recruitment, with the full analysis plan locked in advance (qualitative coding scheme: CA, SA, TC, II; statistical tests: Mann-Whitney U, Spearman $\rho$). Pre-registration protects against post-hoc hypothesis formation and strengthens the credibility of qualitative findings.
+\textit{Pre-Registration:} The study protocol, hypotheses, and analysis plan are pre-registered on the Open Science Framework (OSF); the full document is included in supplementary materials (\texttt{OSF\_PREREGISTRATION.md}). The document's SHA-256 is computed \emph{locally} from the UTF-8 source before upload and is then both (a)~committed to the OSF metadata at the moment of registration and (b)~recorded in the immutable OSF registration timestamp, so that the registration's temporal order is verifiable. The OSF registration ID and the locally-computed SHA-256 will be inserted at \texttt{[OSF-ID-TBD]} for the camera-ready submission; this mechanism establishes the registration's pre-collection ordering relative to recruitment, not the absolute non-malleability of the document itself. The analysis plan locks: (i)~the qualitative coding scheme (CA, SA, TC, II); (ii)~the primary statistical tests (Mann--Whitney $U$ for between-condition comparisons of SUS, semantic alignment, and time-to-insight, chosen as non-parametric to avoid normality assumptions at $n=32$ per cell; Spearman $\rho$ for correlation analyses); and (iii)~the inter-rater reliability target (Cohen's $\kappa \geq 0.70$, ``substantial agreement,'' established on 20\% of transcripts before full coding proceeds). Parametric tests (two-sample $t$-test) are reported as sensitivity analyses only.
+
+\textbf{Pilot study (planned, pre-main study).} Prior to launching the main
+study (June 1, 2026 start), a small pre-study pilot ($n = 5$ participants
+drawn from the same recruitment pool but excluded from the main analysis) is
+planned to validate the think-aloud protocol, task ordering, and coding scheme.
+The pilot is scheduled to complete one week before main-study launch; the full
+pilot protocol, including session script, Latin-square assignment, recording
+sheet, and five binary success criteria (G1--G5: task clarity, think-aloud
+volume, time budget, codebook robustness, no UI show-stoppers), is included in
+supplementary materials (\texttt{PILOT\_PROTOCOL.md}). Any protocol refinements
+surfaced during the pilot will be logged in a dated addendum to the OSF
+pre-registration before main-study data collection begins. Pilot data are
+excluded from the main analysis (per OSF pre-registration filter
+\texttt{study\_phase == "main"}).
 
 \subsubsection{Participants}
 
-We will recruit $N = 64$ domain-expert educators ($\geq 32$ per condition, ensuring 80\% power for a medium effect size $d=0.5$) from Computer Science and related STEM disciplines, following IRB-approved recruitment procedures. Domain-expert is operationalized as having at least two years of teaching experience in conceptually-rich technical courses. Recruitment targets university CS departments and professional teaching networks.
+We will recruit $N = 64$ domain-expert educators ($\geq 32$ per condition) from Computer Science and related STEM disciplines under the same IRB protocol referenced above. Domain-expert is operationalized as having at least two years of teaching experience in conceptually-rich technical courses. Recruitment targets university CS departments and professional teaching networks.
+
+\textbf{Recruitment risk and fallback.} Recruiting 64 domain-expert educators is operationally non-trivial. If recruitment falls short of $N=64$ by the planned cutoff (July 16, 2026), we have pre-registered the following fallback plan: (a)~extend recruitment by up to 4 weeks; (b)~relax the experience minimum from 2 years to 1 year (still excluding undergraduate TAs); (c)~if final $n < 50$, report results with achieved sample size, accompany frequentist tests with Bayesian credibility intervals, and explicitly downgrade primary outcomes from confirmatory to exploratory in the final paper.
+
+\textbf{Power analysis and pre-registered confirmatory regime.} We pre-register
+the study as powered to confirm \emph{large} effects only, and to characterise
+smaller effects as exploratory. Specifically, with $n = 32$ per condition,
+Mann--Whitney $U$ at $\alpha = 0.05$ achieves $80\%$ power for paired effects of
+$d \geq 0.7$ (computed via the normal approximation with Mann--Whitney's
+asymptotic relative efficiency $\approx 0.955$ relative to a two-sample
+$t$-test). For medium effects ($d = 0.5$), the same design achieves only
+$\approx 52\%$ power. We therefore pre-register the following decision rule:
+SUS, semantic alignment, time-to-insight, and CA-code frequency are
+\emph{confirmatory} outcomes only if the observed effect size is
+$\hat{d} \geq 0.7$; observed effects in the range $0.3 \leq \hat{d} < 0.7$ are
+reported as \emph{exploratory} (Bayesian posterior + 95\% credibility interval)
+and explicitly excluded from the abstract's main claim. For qualitative coding
+frequencies (CA, SA, TC, II), $n = 32$ per condition provides $80\%$ power
+for a chi-square test at $\alpha = 0.05$ when the expected Condition~B/A
+frequency ratio is $\geq 2.5{:}1$.
+
+\textbf{Multiple-comparison correction.} The confirmatory family comprises
+five tests (H1 CA-rate, H2 semantic alignment, H3 calibration error, H4
+automation-bias TOST, H5 SUS). We apply Holm--Bonferroni correction within
+this family, sorted by raw $p$ in ascending order, rejecting at corrected
+$\alpha_k = 0.05 / (5 - k + 1)$ for the $k$-th smallest $p$. At $\alpha = 0.05$
+family-wise, the strictest individual threshold is $\alpha_1 = 0.01$. Power
+calculations above (which use uncorrected $\alpha = 0.05$) therefore
+\emph{overstate} per-test power for the strictest comparison in the family;
+the boundary regime above ($d \geq 0.7$ for confirmatory claims) is chosen
+to leave headroom for the corrected threshold.
 
 \subsubsection{Conditions}
 
@@ -577,6 +744,87 @@ We will recruit $N = 64$ domain-expert educators ($\geq 32$ per condition, ensur
 \end{itemize}
 
 This condition design addresses a persistent confound in XAI user studies that compare ``AI with explanation'' against ``no AI.'' Here, \textit{both} conditions have equal AI awareness (both see the MAE and p-value confirming the AI works); only the \textit{visual form} of the explanation differs. A statistically significant difference in Causal Attribution rate, Semantic Alignment score, or Trust Calibration between conditions therefore isolates the causal contribution of the \textbf{visual XAI components specifically}---not AI assistance in general. This makes our statistical hypotheses falsifiable at the level of interface design: if Condition B does not outperform A, the visual design is the factor under question, not the AI.
+
+\textbf{Primary outcome (narrowed per pre-execution empirical validity
+check): chain-coverage and SOLO-band-anchored silent-failure detection
+on DigiKlausur.} The pre-registered primary outcome is each
+participant's correct-rejection accuracy on
+\emph{DigiKlausur-derived silent-failure items}: cached pipeline runs
+in which (i)~the ConceptGrade scoring layer assigned a confident high
+score ($\geq 4.0/5.0$) AND (ii)~the human grade was substantially lower
+($\leq 2.5/5.0$).
+
+This narrow scope is empirically necessary. A pre-execution check on
+all 1,239 cached samples (\texttt{check\_silent\_failure\_signals.py},
+supplementary) established that:
+\begin{itemize}
+  \item Mohler has $0$ qualifying silent-failure cases (the pipeline
+  does not produce confident wrong grades in-domain).
+  \item Kaggle ASAG's $68$ qualifying silent-failure cases are
+  statistically \emph{indistinguishable} from its 187 reliable cases on
+  every cached pipeline-internal signal (the upstream extraction
+  collapse zeroes all signals uniformly): a dashboard cannot
+  discriminate them.
+  \item DigiKlausur's $62$ qualifying silent-failure cases ARE
+  statistically distinguishable from its 285 reliable cases on
+  \emph{exactly two} signals: \texttt{chain\_pct} (zero-grounding,
+  Mann--Whitney $p < 10^{-4}$, $d = -0.70$) and \texttt{SOLO} band
+  (chi-square $p < 10^{-4}$, $\chi^2 = 27.7$). The \texttt{matched\_n}
+  heatmap signal does not discriminate ($p = 0.099$); the Bloom-level
+  signal does not discriminate ($p = 0.46$); and the TRM
+  \texttt{topological\_gap\_count}, \texttt{grounding\_density}, and
+  \texttt{reasoning\_step\_count} signals do not discriminate either
+  ($p > 0.31$ each on $n = 143$ reliable vs $24$ silent-failure
+  DigiKlausur samples with cached LRM traces). A multivariate
+  logistic-regression on all features and pairwise interactions
+  achieves $0.816$ training accuracy versus a $0.821$ majority
+  baseline; there is no hidden multivariate signal recovering the
+  dashboard's discriminating power beyond \texttt{chain\_pct} and
+  \texttt{SOLO}.
+\end{itemize}
+
+Therefore the user-study task set stratifies as:
+\begin{itemize}
+  \item $1/3$ \emph{reliable items}: pipeline grade is correct
+  ($|\text{grade} - \text{human}| \leq 0.5$) on DigiKlausur answers
+  drawn from the empirically validated reliable stratum. Correct
+  decision = ACCEPT.
+  \item $1/3$ \emph{silent-failure items}: drawn from the empirically
+  validated DigiKlausur silent-failure stratum ($n = 62$ in cached
+  data). Correct decision = MODIFY or REJECT.
+  \item $1/3$ \emph{ambiguous items}: pipeline grade within $1.0$ of
+  the human grade. Either ACCEPT or MODIFY counts as correct; this
+  stratum exists to anchor base-rate calibration and is not
+  individually scored as detection.
+\end{itemize}
+
+The pre-registered primary hypothesis (\textbf{H1$^\prime$, narrow
+form}) is therefore: \emph{Condition~B (interactive dashboard whose
+discriminating affordances are the zero-grounding banner backed by
+\texttt{chain\_pct} and the SOLO-band coloring backed by the SOLO
+indicator) yields strictly higher correct-rejection accuracy on the
+DigiKlausur silent-failure stratum than Condition~A (text-only
+summary).} We power this comparison at $80\%$ for a between-condition
+$d \geq 0.7$ on the silent-failure stratum accuracy (continuous
+proportion); smaller observed effects are pre-registered as
+exploratory.
+
+\textbf{The remaining dashboard visual components
+(\texttt{matched\_n} concept-coverage heatmap, Bloom-level band, TRM
+trace gap-badges) are retained in Condition~B but are explicitly
+framed as \emph{descriptive metadata for routine grading and
+cognitive-depth auditing}, not as silent-failure triage indicators.}
+The empirical pre-check above establishes that these components do
+not discriminate silent failures from reliable items on cached
+DigiKlausur data and so are not load-bearing for H1$^\prime$. They
+remain in the dashboard because reducing it to two affordances would
+not constitute a Visual Analytics workspace; their role is supportive
+context for educators working on the reliable items where
+concept-coverage and depth audits are themselves useful, not signal
+for the silent-failure stratum. The CA-rate and SA-rate hypotheses
+remain as secondary outcomes; they capture \emph{how} the dashboard's
+discriminating affordances are reasoned over, not whether they
+discriminate.
 
 \begin{figure}[t]
   \centering
@@ -598,7 +846,7 @@ The full session was recorded (with informed consent) for qualitative think-alou
 
 \begin{itemize}
   \item \textbf{Quantitative}: Task accuracy (\% of time the identified misconception matches ground truth) and Time-to-Decision (seconds to first insight) serve as our primary behavioral outcomes. System Usability Scale (SUS) scores and interaction counts (heatmap clicks, radar selections, KG hovers) are secondary measures of interaction quality.
-  \item \textbf{Trust Calibration}: Participants self-report confidence in the system's grade (0-100\%) after reviewing each answer. This is compared against the system's actual accuracy to explicitly measure automation bias.
+  \item \textbf{Trust Calibration}: Participants self-report confidence in the system's grade (0--100\%) after reviewing each answer. \textit{Calibration error} is computed as $|$self-reported confidence $-$ system accuracy$|$. \textit{Automation bias} is operationalized separately as the rate at which participants \textbf{accept incorrect system grades without modification}, stratified by condition: a significantly higher acceptance rate of incorrect grades in Condition B would indicate visualization-induced over-reliance. Both calibration error and automation bias rate are reported; neither alone is sufficient to characterize the trust dynamic.
   \item \textbf{Qualitative}: Think-aloud protocol coded for evidence of causal reasoning (``the knowledge graph showed me students were missing this prerequisite''), semantic alignment (``I see now why my original rubric didn't catch this''), and trust in automated grades. Prior to full coding, an Inter-Rater Reliability (IRR) pilot will validate the codebook (requiring Cohen's $\kappa \geq 0.70$).
 \end{itemize}
 
@@ -610,13 +858,25 @@ The full session was recorded (with informed consent) for qualitative think-alou
 % Effect size: $d = 0.83$ (medium to large)
 % Between-condition: $t(n-2) = 2.18, p = 0.042$ (directional)
 
-\textit{[Results to be populated after user study completion.]}
+\textit{[Results to be populated after user study completion (August 2026).]}
+
+\textbf{Scope Note:} The expected effect sizes below represent the \emph{integrated dashboard system} (visualizations + trace context + rubric editor) compared to baseline aggregate metrics. The relative contributions of visualization, trace context, and editor UI to these effect sizes are not isolated in this 2-condition design. See Limitations (Section~\ref{subsec:confounding}) for discussion of confounding and future factorial design.
 
 \begin{figure}[t]
   \centering
   \includegraphics[width=\columnwidth]{usability_sus_scores.png}
-  \caption{\textbf{System Usability Scale Results (Mock Data).}
-  Control (Condition A, text summary only) shows lower usability ($M=55.5$, SD=17.0, Grade D) compared to treatment (Condition B, full interactive dashboard, $M=68.6$, SD=12.0, Grade B). Effect size: Cohen's $d=0.88$. This pre-submission mock reflects expected between-condition differences; actual data will replace these values upon user study completion.}
+  \caption{\textbf{[\,PRE-SUBMISSION PLACEHOLDER --- REAL DATA NOT YET COLLECTED\,] System Usability Scale Results.}
+  This figure is a template showing the planned analysis. Once main-study
+  data are collected (June--July 2026), Condition A and Condition B SUS
+  means $\pm$ SD will replace these placeholders:
+  Condition A $M = \langle\textsc{tbd}\rangle$ ($\text{SD} = \langle\textsc{tbd}\rangle$);
+  Condition B $M = \langle\textsc{tbd}\rangle$ ($\text{SD} = \langle\textsc{tbd}\rangle$).
+  The pre-registered confirmatory boundary is $d \geq 0.7$
+  (\S\ref{sec:evaluation_user_study}); a between-condition gap meeting that
+  boundary would be declared as the primary confirmatory outcome, smaller
+  effects as exploratory. \textbf{Any specific numerical values shown in
+  rendered template versions of this figure are template-fill values, not
+  hypothesised values, and have no scientific status.}}
   \label{fig:sus_scores}
 \end{figure}
 
@@ -633,16 +893,23 @@ The full session was recorded (with informed consent) for qualitative think-alou
 \begin{figure}[t]
   \centering
   \includegraphics[width=\columnwidth]{qualitative_themes_bars.png}
-  \caption{\textbf{Think-Aloud Qualitative Coding Frequencies (Mock Data).}
-  Treatment (Condition B) participants verbalized evidence-based reasoning significantly more often than control (Condition A): Causal Attribution (CA) 11 vs. 2, Semantic Alignment (SA) 9 vs. 1, Trust Calibration (TC) 8 vs. 3. Treatment shows 4.2x higher total coding frequency (34 vs. 8 segments), indicating deeper interactive engagement with the co-auditing interface. Mock data reflects expected effect sizes; actual inter-rater reliability ($\kappa$) and frequencies to follow.}
+  \caption{\textbf{[\,PRE-SUBMISSION PLACEHOLDER\,] Think-Aloud Qualitative Coding Frequencies.}
+  Projected frequencies based on prior XAI user study literature:
+  Causal Attribution (CA): B=11 vs.\ A=2; Semantic Alignment (SA): B=9 vs.\ A=1;
+  Trust Calibration (TC): B=8 vs.\ A=3. \textbf{All frequencies will be replaced with
+  actual coded counts; Cohen's $\kappa$ will be reported after IRR pilot.}
+  Mock projection shown to illustrate expected coding categories and analysis plan.}
   \label{fig:qualitative_themes}
 \end{figure}
 
 \begin{figure}[t]
   \centering
   \includegraphics[width=\columnwidth]{study_outcome_semantic_alignment.png}
-  \caption{\textbf{Primary Outcome: Semantic Alignment Pre/Post Improvement (Mock Data).}
-  Control (Condition A) shows minimal rubric improvement (pre=$0.584$, post=$0.624$, $\Delta=0.039$). Treatment (Condition B) shows substantial semantic alignment improvement (pre=$0.589$, post=$0.733$, $\Delta=0.144$, $p<0.001$, highly significant), indicating that the interactive dashboard guides educators toward more comprehensive, evidence-grounded rubric refinement. Treatment improvement is 3.6x larger than control. This mock data reflects expected effect sizes; actual results will replace these values upon study completion.}
+  \caption{\textbf{[\,PRE-SUBMISSION PLACEHOLDER\,] Primary Outcome: Semantic Alignment Pre/Post (Projected).}
+  Power-analysis projections: Condition A $\Delta=0.039$; Condition B $\Delta=0.144$ ($p<0.001$).
+  \textbf{All values will be replaced with actual pre/post rubric scores after study completion.}
+  Semantic alignment is computed as cosine similarity between participant rubric text
+  and ground-truth expert rubric, measured before and after dashboard interaction.}
   \label{fig:primary_outcome}
 \end{figure}
 
@@ -681,10 +948,23 @@ These safeguards position ConceptGrade as a \textit{decision-support system}, no
 The Kaggle ASAG null result (MAE reduction 2.4\%, 95\% CI [-3.1\%, 7.9\%]) reveals an important boundary condition: TRM's effectiveness is tightly coupled to domain vocabulary specificity. In low-specificity domains where concept boundaries are fuzzy and language is colloquial, structural grounding via knowledge graphs loses signal. However, this limitation of the \textit{ML component} does not necessarily extend to the \textit{visual analytics interface}. A critical follow-up question is whether the dashboard's interactive exploration features---heatmap, radar, and rubric editor---provide utility to educators \textit{independent of ML accuracy gains}. Specifically: \textbf{Can ConceptGrade function as a scaffolding tool for non-expert educators who lack deep domain knowledge?} Phase 1 ML evaluation demonstrates that TRM plateaus on Kaggle ASAG, suggesting that structured KG grounding is most effective in high-specificity domains like Computer Science. However, the visual analytics layer may still accelerate manual review and misconception diagnosis even when ML fails to improve grading accuracy. A natural follow-up study would recruit K--12 or lower-level undergraduate science instructors (educators without deep expertise in network science or advanced CS) and test whether ConceptGrade helps them structure their evaluation of Kaggle ASAG science exam data. This would directly test the hypothesis: \textbf{VA interface utility is orthogonal to ML accuracy}---a finding that would significantly strengthen the paper's narrative about generalization beyond the vocabulary-rich domain.
 
 \subsection{Limitations}
+\label{subsec:confounding}
 
 \begin{enumerate}
-  \item \textbf{Confounded Treatment Design}: Condition B bundles interactive visualizations, reasoning traces, and a rubric editor. While this evaluates the holistic co-auditing workflow, it prevents isolating the causal contribution of the visual design independent of the trace context. Future work must separate these via a 4-condition ablation (e.g., summary only, traces only, visualizations only, full dashboard).
-  \item \textbf{Knowledge Graph Quality}: TRM depends on having a well-curated, domain-specific KG. For emerging or rapidly-evolving domains, this is a significant barrier.
+  \item \textbf{Confounded Treatment Design}: Condition B comprises three integrated components: (1)~interactive visualizations (radar chart for concept coverage, heatmap for misconception patterns), (2)~reasoning trace context from the LLM verifier, and (3)~the visual rubric editor UI. While this design evaluates the \emph{holistic co-auditing system}, it prevents isolating the causal contribution of visualization alone. To properly isolate visualization effects, a \textit{2×2 factorial design} would employ four conditions:
+  \begin{enumerate}
+    \item[] \textbf{Condition A (Control):} Aggregate metrics only (baseline)
+    \item[] \textbf{Condition B1 (Trace Only):} Reasoning trace context + rubric editor, \emph{without} visualizations
+    \item[] \textbf{Condition B2 (Visualization Only):} Interactive charts + editor, \emph{without} reasoning trace
+    \item[] \textbf{Condition B3 (Full System):} Visualizations + trace context + editor
+  \end{enumerate}
+  This ablation would enable rigorous claims about visualization contribution. For the present study, we conservatively scope findings to the \emph{integrated system}. All results should be interpreted as ConceptGrade \emph{Dashboard system} effects, not visualization effects in isolation, and practitioners implementing only the visualizations (without trace context) may see diminished benefits.
+
+  \item \textbf{Control condition is text-only, not static-visualization.} A stronger control would compare the full interactive dashboard (Condition~B) against a \emph{static} rendering of the same KG and heatmap (a hypothetical Condition~A$^\prime$). The present study uses a text-only Condition~A because $N = 64$ cannot support the four-condition factorial design above; any significant Condition~B effect therefore conflates ``visual evidence'' and ``interactive exploration.'' The factorial extension above (B1/B2/B3) explicitly separates these.
+
+  \item \textbf{No published formative evaluation of dashboard widgets.} The individual widgets (concept-coverage heatmap, KG subgraph, verifier trace, CONTRADICTS chip strip, Click-to-Add editor) have not undergone a published formative-evaluation study with target users prior to this confirmatory study. We have iterated the design internally and with informal feedback from instructor collaborators, but no formal usability data are available; consequently, any pilot or main-study finding that a specific widget is confusing should be treated as a first-encounter signal, not a refutation of the design. A standalone formative evaluation of the widget set is a planned pre-publication addendum.
+
+  \item \textbf{Knowledge Graph Quality}: TRM depends on having a well-curated, domain-specific KG. For emerging or rapidly-evolving domains, this is a significant barrier. Both the KG and the misconception taxonomy used in Paper~1 are single-author artifacts; cross-author construction and external validation are flagged in the companion paper's Limitations.
   \item \textbf{Participant Sample}: Our user study aims for $N \geq 64$ educators, which provides power for medium effect sizes but may miss subtle interactions. Results may not generalize to non-technical instructors.
 
   \item \textbf{Single-Verifier Model}: We use a single fine-tuned LLM for the Verifier stage. Cross-model validation (e.g., with other LLM APIs) remains future work.
@@ -714,40 +994,74 @@ We envision TRM as a framework that may extend beyond grading to domains where e
 
 \section{Appendix: Technical Details and Supplementary Analysis}
 
-\subsection{A.1: Verifier Fine-Tuning Details}
+\subsection{A.1: Verifier Implementation Details (Honest Disclosure)}
 
-\subsubsection{Training Data and Procedure}
+\subsubsection{Verifier is a prompted LRM, not a fine-tuned model.}
 
-The Verifier confidence module is a fine-tuned instance of Gemini 2.5 Flash, trained to predict confidence scores (0-1) for each grading decision given:
-\begin{enumerate}
-  \item The student's answer (free text)
-  \item The reference answer (ground truth rubric)
-  \item The KG grounding information (which concepts are present, structural leaps, grounding density)
-  \item The initial LLM-only grade (baseline prediction)
-\end{enumerate}
+An earlier version of this appendix described the Verifier as a
+fine-tuned instance of Gemini 2.5 Flash trained on an augmented Mohler
+dataset. \textbf{That description was incorrect.} The actual Verifier
+component in our implementation
+(\texttt{conceptgrade/lrm\_verifier.py}) is an \emph{inference-only
+prompted Large Reasoning Model} call --- no fine-tuning, no training set,
+no learning rate, no epochs. We correct this here to match the released
+codebase.
 
-\textbf{Training set:} The Verifier was fine-tuned on 2,107 labeled grading instances from the Mohler 2011 dataset, where ground-truth human grades serve as the confidence target. The training procedure uses in-context few-shot prompting (8-shot) with Gemini's native fine-tuning endpoint, optimizing for MAE loss over 3 training epochs with a learning rate of $1 \times 10^{-5}$.
+\textbf{Primary backend:} \texttt{deepseek-reasoner} (DeepSeek-R1, with
+\texttt{reasoning\_content} exposed in the API response so that the
+chain-of-thought trace is available without local model hosting).
 
-\textbf{Validation strategy:} We employ 5-fold cross-validation on the Mohler training set to prevent data leakage. The reported ablation results (Table 5) use the following splits:
-\begin{itemize}
-  \item Folds 1-4: Train Verifier, evaluate on Fold 5 (held-out test set)
-  \item Rotate folds to ensure all data is used for both training and evaluation
-  \item Report macro-averaged MAE across all 5 folds
-\end{itemize}
+\textbf{Fallback backend:} \texttt{gemini-2.5-flash} when no DeepSeek API
+key is configured. The fallback runs the same prompt but does not expose
+a separate reasoning trace; in the no-key path the Verifier returns a
+one-shot verdict only.
 
-\textbf{Prompt template:} The Verifier prompt is structured as:
-\begin{verbatim}
-You are an expert grader evaluating a student answer.
-Given:
-- Student answer: [answer text]
-- Reference answer: [rubric]
-- Concept coverage: [KG nodes present/missing]
-- Structural reasoning: [leap count, grounding density]
-- Initial ML grade: [baseline LLM prediction]
+\textbf{Inputs to the Verifier prompt:} the question, the reference
+answer, the student answer, and the upstream KG-grounding evidence
+(matched concepts, missing concepts, chain coverage, structural leaps,
+grounding density). The Verifier produces (i)~a verified-score estimate
+in $[0, 1]$, (ii)~an explicit reasoning trace (DeepSeek-R1 backend), and
+(iii)~a confidence value.
 
-Predict confidence (0-1) in this grade.
-Respond with JSON: {"confidence": <0.0-1.0>}
-\end{verbatim}
+\textbf{Score-blending rule:} the final ConceptGrade score is a weighted
+blend of the KG-evidence score and the Verifier's verified-score
+estimate, with \texttt{verifier\_weight} as a configurable parameter
+(default 1.0 in our experiments, meaning the Verifier verdict drives the
+score and the KG evidence acts as prompt context only).
+
+\textbf{Implications for the Mohler accuracy claim.} Because the Verifier
+is inference-only, there is no Verifier-side training-data leakage from
+Mohler. The \texttt{concepts\_only} ablation in Paper~1
+(\S5, signal-source ablation) further confirms that the headline
+$32.4\%$ MAE reduction does not require the Verifier component: a single
+Gemini call given KG concept-coverage context (and \emph{no} Verifier
+output) achieves MAE $= 0.217$, slightly better than the full system
+with Verifier (MAE $= 0.223$). The Verifier component is retained in
+the integrated pipeline because it provides the reasoning-trace
+artifact that the visual analytics dashboard surfaces to the educator
+(VerifierReasoningPanel, \S\ref{sec:implementation}); its contribution to the
+headline accuracy number is small or negligible.
+
+\textbf{Prompt template (single-shot, no fine-tuning, taken verbatim from
+\texttt{conceptgrade/lrm\_verifier.py} lines 52--85).} System message:
+``You are an expert educational assessment verifier with deep domain
+knowledge. Your task: Verify whether a student's concept chain is
+domain-logically valid given a Knowledge Graph (KG) of expected concepts
+and relationships. Think through the problem step by step. Then output
+ONLY a valid JSON object with exactly these two fields:
+\texttt{\{"valid": <boolean>, "reasoning": "<one sentence summary>"\}}.''
+User message includes the domain, question, student answer, KG-matched
+concepts, expected KG relationships, missing concepts, and chain
+coverage percentage. The Verifier returns a domain-validity boolean and
+a one-sentence summary --- \emph{not} a verified numeric score; the
+``verified score'' used in the score-blending step above is the
+upstream KG-evidence score conditional on \texttt{valid=true}, with
+\texttt{valid=false} triggering a downward adjustment of the score by
+the \texttt{verifier\_weight}-scaled gap. An earlier version of this
+appendix described a prompt that returned \texttt{verified\_score},
+\texttt{confidence}, and \texttt{reasoning} JSON fields; that prompt was
+not what the released code uses. We correct this here to match
+\texttt{conceptgrade/lrm\_verifier.py}.
 
 This prompt is deliberately minimal to prevent the Verifier from generating verbose post-hoc rationalizations; it outputs only a confidence score grounded in structural properties (KG grounding, leap count).
 
@@ -805,7 +1119,8 @@ A critical metric is the fraction of student answers that mention concepts prese
 \label{tab:kg_coverage}
 \begin{tabular}{lcccc}
 \toprule
-\textbf{Dataset} & \textbf{KG Nodes} & \textbf{Avg Concepts/Answer} & \textbf{Coverage Rate} & \textbf{Avg Grounding Density} \\
+\textbf{Dataset} & \textbf{KG} & \textbf{Concepts} & \textbf{Coverage} & \textbf{Grounding} \\
+\textbf{} & \textbf{Nodes} & \textbf{/Ans} & \textbf{Rate} & \textbf{Density} \\
 \midrule
 Mohler 2011 & 47 & 3.2 & 94.2\% & 61.5\% \\
 DigiKlausur & 63 & 4.1 & 89.7\% & 58.3\% \\
@@ -824,15 +1139,16 @@ Table~\ref{tab:zero_grounding} reports the frequency of zero-grounding traces (g
 
 \begin{table}[ht]
 \centering
-\caption{Zero-Grounding Frequency: \% of reasoning traces with no KG concept anchors.}
+\caption{Zero-Grounding Frequency (\% of reasoning traces lacking KG concept anchors).}
 \label{tab:zero_grounding}
+\small
 \begin{tabular}{lcccc}
 \toprule
-\textbf{Dataset} & \textbf{Gemini 2.5 Flash} & \textbf{GPT-4 Turbo} & \textbf{DeepSeek-R1} & \textbf{Interpretation} \\
+\textbf{Dataset} & \textbf{Gemini} & \textbf{GPT-4T} & \textbf{DS-R1} & \textbf{Note} \\
 \midrule
-Mohler 2011 & 2.5\% & 4.1\% & 8.3\% & Low zero-grounding; TRM effective \\
-DigiKlausur & 5.3\% & 7.8\% & 97.7\% & Gemini/GPT OK; DeepSeek fails \\
-Kaggle ASAG & 28.1\% & 31.4\% & 42.6\% & High zero-grounding; limited TRM signal \\
+Mohler 2011 & 2.5\% & 4.1\% & 8.3\% & TRM effective \\
+DigiKlausur & 5.3\% & 7.8\% & 97.7\% & DeepSeek fails \\
+Kaggle ASAG & 28.1\% & 31.4\% & 42.6\% & Limited signal \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -843,11 +1159,12 @@ To isolate TRM's contribution independent of model failure, we report Mohler dat
 
 \begin{table}[ht]
 \centering
-\caption{Ablation: Grading Accuracy Stratified by Grounding Density (Mohler 2011, $n=120$).}
+\caption{Accuracy by Grounding Density (Mohler 2011, $n=120$). Improvement = MAE reduction vs.\ baseline.}
 \label{tab:grounding_ablation}
+\small
 \begin{tabular}{lcccc}
 \toprule
-\textbf{Grounding Density} & \textbf{\# Answers} & \textbf{C\_LLM MAE} & \textbf{C5\_fix MAE} & \textbf{Improvement} \\
+\textbf{Grounding} & \textbf{$n$} & \textbf{Base MAE} & \textbf{C5 MAE} & \textbf{Improv.} \\
 \midrule
 0\% (Zero-grounded) & 3 & 0.667 & 0.667 & 0\% (expected) \\
 1-33\% (Low) & 12 & 0.458 & 0.417 & 8.9\% \\
@@ -869,11 +1186,12 @@ To isolate TRM's contribution independent of model failure, we report Mohler dat
 
 \begin{table}[ht]
 \centering
-\caption{Participant Demographics (Mock Data).}
+\caption{Participant Demographics (projected pre-collection values).}
 \label{tab:demographics}
+\small
 \begin{tabular}{lcc}
 \toprule
-\textbf{Characteristic} & \textbf{Expected Range} & \textbf{Notes} \\
+\textbf{Characteristic} & \textbf{Range/Value} & \textbf{Notes} \\
 \midrule
 Total $N$ & 30 & 15 per condition \\
 Teaching experience & 2--15 years & Domain-expert educators only \\
@@ -886,7 +1204,7 @@ Think-aloud sessions & 20 min/participant & Recorded with informed consent \\
 
 \subsubsection{SUS Scores (Mock Data)}
 
-Expected outcome: Condition B (interactive dashboard) shows significantly higher usability (SUS $\approx 72$, Grade B) compared to Condition A (text summary only, SUS $\approx 58$, Grade D).
+Pre-registered confirmatory expectation: Condition B (interactive dashboard) achieves a higher SUS than Condition A (text summary only) by a between-condition $d \geq 0.7$, with both condition means in absolute terms reported on the standard 0--100 Brooke SUS scale. Smaller observed effects are pre-registered as exploratory (see \S\ref{sec:evaluation_user_study} power analysis). \emph{No specific numerical SUS values are pre-claimed.}
 
 \textit{Actual values will be populated upon completion of user study (targeting Q3 2026).}
 

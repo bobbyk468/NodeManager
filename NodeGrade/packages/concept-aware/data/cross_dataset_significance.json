@@ -1,0 +1,156 @@
+{
+  "per_dataset": [
+    {
+      "name": "mohler",
+      "n_total": 120,
+      "n_questions": 10,
+      "n_ties": 70,
+      "n_nontied": 50,
+      "mae_cllm": 0.33,
+      "mae_c5": 0.2229,
+      "mae_reduction_pct": 32.45,
+      "W_plus": 344.5,
+      "p_two_tailed": 0.0026,
+      "p_one_tailed": 0.0013,
+      "d_z": -0.295,
+      "post_hoc_power": 0.943,
+      "F2_nontied": {
+        "n_nontied": 50,
+        "n_ties": 70,
+        "mae_cllm_nontied": 0.507,
+        "mae_c5_nontied": 0.25,
+        "mae_reduction_pct_nontied": 50.69,
+        "d_z_nontied": -0.484,
+        "p_two_tailed_nontied": 0.0026,
+        "p_one_tailed_nontied": 0.0013
+      },
+      "F3_LOOCV_question_level": {
+        "n_clusters": 10,
+        "p_two_tailed_clustered": 0.0488,
+        "p_one_tailed_clustered": 0.0244,
+        "loocv_p_two_min": 0.0078,
+        "loocv_p_two_max": 0.0977,
+        "loocv_p_one_min": 0.0039,
+        "loocv_p_one_max": 0.0488,
+        "n_loocv_two_sig_005": 1,
+        "n_loocv_one_sig_005": 10
+      }
+    },
+    {
+      "name": "digiklausur",
+      "n_total": 646,
+      "n_questions": 17,
+      "n_ties": 198,
+      "n_nontied": 448,
+      "mae_cllm": 1.1842,
+      "mae_c5": 1.1262,
+      "mae_reduction_pct": 4.9,
+      "W_plus": 44996.0,
+      "p_two_tailed": 0.0489,
+      "p_one_tailed": 0.0244,
+      "d_z": -0.067,
+      "post_hoc_power": 0.524,
+      "F2_nontied": {
+        "n_nontied": 448,
+        "n_ties": 198,
+        "mae_cllm_nontied": 1.3292,
+        "mae_c5_nontied": 1.2455,
+        "mae_reduction_pct_nontied": 6.3,
+        "d_z_nontied": -0.081,
+        "p_two_tailed_nontied": 0.0489,
+        "p_one_tailed_nontied": 0.0244
+      },
+      "F3_LOOCV_question_level": {
+        "n_clusters": 17,
+        "p_two_tailed_clustered": 0.1705,
+        "p_one_tailed_clustered": 0.0852,
+        "loocv_p_two_min": 0.05,
+        "loocv_p_two_max": 0.2679,
+        "loocv_p_one_min": 0.025,
+        "loocv_p_one_max": 0.1339,
+        "n_loocv_two_sig_005": 1,
+        "n_loocv_one_sig_005": 3
+      }
+    },
+    {
+      "name": "kaggle_asag",
+      "n_total": 473,
+      "n_questions": 150,
+      "n_ties": 195,
+      "n_nontied": 278,
+      "mae_cllm": 1.2082,
+      "mae_c5": 1.1797,
+      "mae_reduction_pct": 2.36,
+      "W_plus": 18128.0,
+      "p_two_tailed": 0.34,
+      "p_one_tailed": 0.17,
+      "d_z": -0.028,
+      "post_hoc_power": 0.151,
+      "F2_nontied": {
+        "n_nontied": 278,
+        "n_ties": 195,
+        "mae_cllm_nontied": 1.2698,
+        "mae_c5_nontied": 1.2212,
+        "mae_reduction_pct_nontied": 3.82,
+        "d_z_nontied": -0.037,
+        "p_two_tailed_nontied": 0.34,
+        "p_one_tailed_nontied": 0.17
+      },
+      "F3_LOOCV_question_level": {
+        "n_clusters": 150,
+        "p_two_tailed_clustered": 0.796,
+        "p_one_tailed_clustered": 0.602,
+        "loocv_p_two_min": 0.6742,
+        "loocv_p_two_max": 0.9199,
+        "loocv_p_one_min": 0.5401,
+        "loocv_p_one_max": 0.6629,
+        "n_loocv_two_sig_005": 0,
+        "n_loocv_one_sig_005": 0
+      }
+    }
+  ],
+  "totals": {
+    "total_n": 1239,
+    "total_questions": 177,
+    "total_ties": 463,
+    "total_nontied": 776
+  },
+  "meta_analysis": {
+    "per_dataset_d_z": [
+      -0.295,
+      -0.067,
+      -0.028
+    ],
+    "per_dataset_n": [
+      120.0,
+      646.0,
+      473.0
+    ],
+    "fixed_effects": {
+      "d_z": -0.0733,
+      "se": 0.0285,
+      "ci_95": [
+        -0.1291,
+        -0.0175
+      ],
+      "z": -2.574,
+      "p_two_tailed": 0.010063,
+      "p_one_tailed_C5_better": 0.005032
+    },
+    "random_effects_DL": {
+      "d_z": -0.1015,
+      "se": 0.0575,
+      "ci_95": [
+        -0.2142,
+        0.0112
+      ],
+      "tau2": 0.0066,
+      "I2_percent": 69.9,
+      "z": -1.765,
+      "p_two_tailed": 0.077613,
+      "p_one_tailed_C5_better": 0.038806
+    },
+    "Q_statistic": 6.648,
+    "df": 2
+  }
+}

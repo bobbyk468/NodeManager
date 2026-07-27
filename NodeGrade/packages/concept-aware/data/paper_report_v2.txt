@@ -192,8 +192,8 @@ RESULTS ACROSS 3 BENCHMARKS — 1239 answers total
 Scientifically defensible tiered claim:
   (a) Statistically significant on 2 dataset(s) (Mohler 2011, DigiKlausur: p=0.0026 / p=0.0489)
   (b) Directionally consistent on 1 dataset(s) (Kaggle ASAG: 2.4% MAE, p=0.3400)
-  (c) Pooled Digi+Kaggle one-sided Wilcoxon (n=1119): p=0.0166
-  (d) Fisher combined across all 3 datasets: p=0.0014
+  (c) Pooled Digi+Kaggle one-sided Wilcoxon (n=1119): p=0.0184
+  (d) Fisher combined across all 3 datasets: p=0.0015
 
 RESULTS TABLE:
   Dataset                Domain               n   C_LLM MAE  C5_fix MAE    Delta    p-val  Verdict
@@ -202,8 +202,8 @@ RESULTS TABLE:
   DigiKlausur            Neural Nets        646      1.1842      1.1262    -4.9%   0.0489  SIGNIFICANT
   Kaggle ASAG            Elem. Science      473      1.2082      1.1797    -2.4%   0.3400  directional
   ----------------------------------------------------------------------------------------
-  Pooled (Digi+Kaggle)   mixed             1119           —           —        —   0.0166  one-sided
-  Fisher (all datasets)  cross-domain      1239           —           —        —   0.0014  combined
+  Pooled (Digi+Kaggle)   mixed             1119           —           —        —   0.0184  one-sided
+  Fisher (all datasets)  cross-domain      1239           —           —        —   0.0015  combined
 
   DigiKlausur — rubric-snapped sensitivity ({0, 2.5, 5}):
     C_LLM MAE=1.0372  C5_fix MAE=0.9868  reduction=4.9%  p=0.3685
@@ -231,7 +231,7 @@ Paragraph 1 — Why DigiKlausur benefits:
   chain. The structured rubric tightly matches the KG topology: each of the
   17 DigiKlausur questions maps to 4–8 KG concepts with explicit
   PREREQUISITE_FOR and PRODUCES edges. ConceptGrade's 4.9% MAE reduction
-  (p=0.049) on DigiKlausur demonstrates that KG augmentation scales beyond
+  (p=0.0489) on DigiKlausur demonstrates that KG augmentation scales beyond
   the original Mohler CS benchmark to other technical STEM domains.
 
 Paragraph 2 — Why Kaggle ASAG benefits less:
@@ -245,15 +245,15 @@ Paragraph 2 — Why Kaggle ASAG benefits less:
   matching), and the KG evidence block in the C5_fix prompt either adds
   noise (matching vague words to wrong concepts) or is omitted entirely
   via the KG_MIN_COVERAGE threshold. This explains the directional but
-  non-significant MAE reduction (3.2%, p=0.319).
+  non-significant MAE reduction (2.4%, p=0.3400).
 
 Paragraph 3 — The vocabulary complexity hypothesis:
   Across all three benchmarks, the magnitude of KG benefit follows a strict
   gradient correlated with question complexity and lexical specificity:
 
-    Mohler CS (complex, n=120):            -32.4% MAE, p=0.0013  ← largest gain
-    DigiKlausur Neural Nets (complex, n=646): -4.9% MAE, p=0.049  ← significant
-    Kaggle ASAG Elementary (simple, n=473):   -3.2% MAE, p=0.319  ← directional
+    Mohler CS (complex, n=120):            32.4% MAE, p=0.0026  ← largest gain
+    DigiKlausur Neural Nets (complex, n=646): 4.9% MAE, p=0.0489  ← significant
+    Kaggle ASAG Elementary (simple, n=473):   2.4% MAE, p=0.3400  ← directional
 
   This ordering is not coincidental. KG augmentation is effective when:
   (1) the domain vocabulary is technical with low polysemy,
@@ -283,14 +283,14 @@ of the domain vocabulary:
     rarely used accidentally. When a student uses these terms, it is a strong
     signal of understanding. The KG anchors the LLM to check whether the
     student correctly applies these concepts in their structural relationships.
-    Result: Large MAE reductions (-32.4%, -4.9%).
+    Result: Large MAE reductions (32.4%, 4.9%).
 
   LOW SPECIFICITY (Kaggle ASAG, Elementary Science):
     Concepts like "energy", "water", "plants", or "oxygen" are high-frequency
     everyday words. A student can write a fluent, confident answer containing
     all expected concept words while explaining them entirely incorrectly
     (e.g., "Plants breathe in energy to make water"). Keyword presence is a
-    weak correctness signal. Result: Smaller MAE reduction (-3.2%), p=0.319.
+    weak correctness signal. Result: Smaller MAE reduction (2.4%), p=0.3400.
 
 --- B. THE LLM FLOOR EFFECT ---
 

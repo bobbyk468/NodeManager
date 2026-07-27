@@ -27,12 +27,18 @@ from datetime import datetime
 
 from knowledge_graph.domain_graph import DomainKnowledgeGraph
 from knowledge_graph.ds_knowledge_graph import build_data_structures_graph
-from concept_extraction.extractor import ConceptExtractor, StudentConceptGraph
-from concept_extraction.self_consistent_extractor import SelfConsistentExtractor
+# Framework Fix #29 (2026-06-15): the imports below are LAZY (deferred to
+# the call sites in __init__ / assess_student). Importing them at module
+# level created a circular dependency: concept_extraction/__init__.py loads
+# extractor.py, which imports conceptgrade.llm_client, which triggers
+# conceptgrade/__init__.py → pipeline.py → back to concept_extraction
+# while it is still mid-load → ImportError. Lazy import breaks the cycle
+# without changing observable behaviour because all uses are inside
+# instance methods (no module-level type hints reference these classes).
 from graph_comparison.comparator import KnowledgeGraphComparator
 from graph_comparison.confidence_weighted_comparator import ConfidenceWeightedComparator
 from cognitive_depth.cognitive_depth_classifier import CognitiveDepthClassifier
-from misconception_detection.detector import MisconceptionDetector
+from misconception_detection.detector import MisconceptionDetector, FalseBeliefDetector
 from nl_query_engine.parser import NLQueryParser, ParsedQuery, QueryType
 from conceptgrade.cache import ResponseCache
 from conceptgrade.verifier import LLMVerifier
@@ -169,23 +175,33 @@ class ConceptGradePipeline:
         sc_inter_run_delay: float = 0.0,
         # ── Hierarchical KG ──────────────────────────────────────────────
         use_hierarchical_kg: bool = False,
+        # ── Score blending weights (for ablation studies) ─────────────────
+        kg_weight: float = 0.05,
+        holistic_weight: float = 0.95,
+        # ── Extraction confidence filtering ──────────────────────────────
+        extraction_confidence_threshold: float = 0.70,
     ):
         """
         Initialize the ConceptGrade pipeline.
 
         Args:
-            api_key                : Groq API key
-            domain_graph           : Expert knowledge graph (defaults to DS graph)
-            model                  : LLM model name
-            rate_limit_delay       : Seconds between API calls for rate limiting
-            use_self_consistency   : Ext-1 — majority-vote extraction (3 LLM calls)
-            use_confidence_weighting: Ext-2 — weight coverage by extraction confidence
-            use_llm_verifier       : Ext-3 — LLM judge post-scoring
-            verifier_weight        : Blend weight for verifier (0=KG only, 1=LLM only)
-            sc_n_runs              : Number of self-consistency runs
-            sc_min_votes           : Minimum votes to accept a concept
-            use_hierarchical_kg    : Split domain KG into primary/secondary tiers and
-                                     score as: min(1.0, p_cov*0.80 + s_cov*0.20)
+            api_key                      : Groq API key
+            domain_graph                 : Expert knowledge graph (defaults to DS graph)
+            model                        : LLM model name
+            rate_limit_delay             : Seconds between API calls for rate limiting
+            use_self_consistency         : Ext-1 — majority-vote extraction (3 LLM calls)
+            use_confidence_weighting     : Ext-2 — weight coverage by extraction confidence
+            use_llm_verifier             : Ext-3 — LLM judge post-scoring
+            verifier_weight              : Blend weight for verifier (0=KG only, 1=LLM only)
+            sc_n_runs                    : Number of self-consistency runs
+            sc_min_votes                 : Minimum votes to accept a concept
+            use_hierarchical_kg          : Split domain KG into primary/secondary tiers and
+                                           score as: min(1.0, p_cov*0.80 + s_cov*0.20)
+            kg_weight                    : Weight for KG formula score in final blend (default 0.05)
+            holistic_weight              : Weight for LLM holistic score in final blend (default 0.95)
+            extraction_confidence_threshold: Minimum confidence score for accepting extracted concepts
+                                           (default: 0.70). Lower threshold increases false positives;
+                                           higher threshold may miss valid concepts.
         """
         self.api_key = api_key
         self.model = model
@@ -198,8 +214,29 @@ class ConceptGradePipeline:
         self.use_sure_verifier       = use_sure_verifier
         self.use_hierarchical_kg     = use_hierarchical_kg
 
+        # Score blending weights (for ablation studies)
+        self.kg_weight = kg_weight
+        self.holistic_weight = holistic_weight
+
+        # Extraction confidence filtering
+        self.extraction_confidence_threshold = extraction_confidence_threshold
+
+        # Validate weight parameters sum to ~1.0
+        weight_sum = kg_weight + holistic_weight
+        if abs(weight_sum - 1.0) > 0.01:
+            raise ValueError(
+                f"Weight parameters must sum to approximately 1.0 (±0.01). "
+                f"Got kg_weight={kg_weight} + holistic_weight={holistic_weight} = {weight_sum}. "
+                f"Suggestion: Use kg_weight + holistic_weight = 1.0 for proper score normalization."
+            )
+
         # Layer 1: Domain Knowledge Graph
         self.domain_graph = domain_graph or build_data_structures_graph()
+
+        # Framework Fix #29: lazy imports of concept_extraction modules.
+        # See module-level comment for the circular-import rationale.
+        from concept_extraction.extractor import ConceptExtractor
+        from concept_extraction.self_consistent_extractor import SelfConsistentExtractor
 
         # Layer 2: Concept Extraction + Comparison
         # Extension 1: Self-Consistent Extractor (3 LLM calls with majority vote)
@@ -223,9 +260,27 @@ class ConceptGradePipeline:
         else:
             self.comparator = KnowledgeGraphComparator(domain_graph=self.domain_graph)
 
-        # Layer 3-4: Cognitive Depth (combined 1 call) + Misconceptions
+        # Layer 3-4: Cognitive Depth (combined 1 call) + Misconceptions + False Beliefs
         self.cognitive_depth_clf = CognitiveDepthClassifier(api_key=api_key, model=model)
         self.misconception_det = MisconceptionDetector(api_key=api_key, model=model)
+        self.false_belief_det = FalseBeliefDetector(api_key=api_key, model=model)
+
+        # Framework Fix #18 (2026-06-15): defensive taxonomy/KG consistency
+        # check. Catches future drift where a KG concept is renamed without
+        # updating misconception entries (or vice versa). Non-throwing —
+        # logs to stderr so the pipeline still runs but the operator sees
+        # the broken refs.
+        from misconception_detection.detector import validate_taxonomy_against_kg
+        _kg_ids = {c.id for c in self.domain_graph.get_all_concepts()}
+        _audit = validate_taxonomy_against_kg(_kg_ids)
+        if _audit["missing_refs"]:
+            import sys as _sys
+            print(
+                f"[Pipeline] WARN: misconception taxonomy references "
+                f"{len(_audit['missing_refs'])} concept(s) absent from the KG: "
+                f"{_audit['missing_refs'][:3]}",
+                file=_sys.stderr,
+            )
 
         # Extension 3: LLM Verifier
         self.verifier = LLMVerifier(
@@ -279,6 +334,8 @@ class ConceptGradePipeline:
             result.misconceptions = cached["misconceptions"]
             # Reconstruct graph object so we can re-run comparison
             try:
+                # Framework Fix #29: lazy import to avoid circular dependency
+                from concept_extraction.extractor import StudentConceptGraph
                 concept_graph_obj = StudentConceptGraph.from_dict(result.concept_graph)
             except Exception as e:
                 print(f"  [Cache] Warning: Failed to reconstruct concept graph: {e}")
@@ -290,6 +347,44 @@ class ConceptGradePipeline:
                 concept_graph_obj = self.extractor.extract(
                     question=question, student_answer=answer
                 )
+
+                # ── NEW: Filter low-confidence concepts ──
+                if concept_graph_obj and hasattr(concept_graph_obj, 'concepts'):
+                    raw_concepts = concept_graph_obj.concepts if isinstance(concept_graph_obj.concepts, list) else []
+                    filtered_concepts = [
+                        c for c in raw_concepts
+                        if (isinstance(c, dict) and c.get('confidence', 0.5) >= self.extraction_confidence_threshold) or
+                           (hasattr(c, 'confidence') and c.confidence >= self.extraction_confidence_threshold)
+                    ]
+
+                    # Filter relationships: keep only those where both endpoints survived filtering
+                    if filtered_concepts:
+                        concept_ids = {
+                            c['concept_id'] if isinstance(c, dict) else c.concept_id
+                            for c in filtered_concepts
+                        }
+                        filtered_relationships = []
+                        for r in (concept_graph_obj.relationships if hasattr(concept_graph_obj, 'relationships') else []):
+                            src_id = r['source_id'] if isinstance(r, dict) else r.source_id
+                            tgt_id = r['target_id'] if isinstance(r, dict) else r.target_id
+                            if src_id in concept_ids and tgt_id in concept_ids:
+                                filtered_relationships.append(r)
+
+                        # Log filtering statistics
+                        n_filtered = len(raw_concepts) - len(filtered_concepts)
+                        if n_filtered > 0:
+                            import logging
+                            logger = logging.getLogger(__name__)
+                            logger.debug(
+                                f"Concept extraction filtering: removed {n_filtered} concepts "
+                                f"below confidence threshold {self.extraction_confidence_threshold} "
+                                f"(kept {len(filtered_concepts)} / {len(raw_concepts)})"
+                            )
+
+                        # Update graph with filtered concepts/relationships
+                        concept_graph_obj.concepts = filtered_concepts
+                        concept_graph_obj.relationships = filtered_relationships
+
                 result.concept_graph = concept_graph_obj.to_dict()
             except Exception as e:
                 err = str(e)
@@ -320,12 +415,20 @@ class ConceptGradePipeline:
                 )
 
             def _run_misc():
-                return self.misconception_det.detect(
+                misc_report = self.misconception_det.detect(
                     question=question,
                     student_answer=answer,
                     concept_graph=result.concept_graph,
                     comparison_result=_tmp_comp,
                 )
+                # Also detect explicit false beliefs
+                false_beliefs = self.false_belief_det.detect(
+                    question=question,
+                    student_answer=answer,
+                )
+                # Merge false beliefs into the misconception report
+                misc_report.false_beliefs = false_beliefs
+                return misc_report
 
             with ThreadPoolExecutor(max_workers=2) as pool:
                 f_depth = pool.submit(_run_depth)
@@ -395,12 +498,15 @@ class ConceptGradePipeline:
             cached_entry["holistic_score"] = holistic_score
             self.cache.set(llm_key, cached_entry)
 
-        # Blend: 5% KG formula + 95% LLM holistic.
+        # Blend: kg_weight * KG formula + holistic_weight * LLM holistic.
+        # Default: 5% KG formula + 95% LLM holistic.
         # KG formula is biased low (max ~0.75 for most answers), so a larger weight
         # systematically underscores mid-range answers. 5% keeps KG as a floor signal
         # while letting the reference-anchored holistic scorer drive calibration.
         # Verifier (C4/C5) overrides this score downstream with full KG+reference evidence.
-        result.overall_score  = min(1.0, max(0.0, 0.05 * kg_score + 0.95 * holistic_score))
+        # For ablation: set kg_weight=0.50, holistic_weight=0.50 (50/50 blend) or
+        # kg_weight=1.0, holistic_weight=0.0 (pure KG) to test weighting sensitivity.
+        result.overall_score  = min(1.0, max(0.0, self.kg_weight * kg_score + self.holistic_weight * holistic_score))
         result.depth_category = self._categorize_depth(result)
 
         # ── Extension 3: LLM Verifier  (LLM call 4, cached separately) ─────

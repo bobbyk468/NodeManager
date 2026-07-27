@@ -1,0 +1,4 @@
+{"session_id":"e171a34e-5703-41f4-83bc-7ca09ff15ae5","condition":"B","dataset":"","event_type":"page_view","timestamp_ms":1778061368521,"elapsed_ms":43,"payload":{"session_id":"e171a34e-5703-41f4-83bc-7ca09ff15ae5","is_study":true}}
+{"session_id":"e171a34e-5703-41f4-83bc-7ca09ff15ae5","condition":"B","dataset":"digiklausur","event_type":"tab_change","timestamp_ms":1778061368556,"elapsed_ms":78,"payload":{"dataset":"digiklausur"}}
+{"session_id":"e171a34e-5703-41f4-83bc-7ca09ff15ae5","condition":"B","dataset":"digiklausur","event_type":"chart_hover","timestamp_ms":1778061370636,"elapsed_ms":2158,"payload":{"viz_id":"score_scatter"}}
+{"session_id":"e171a34e-5703-41f4-83bc-7ca09ff15ae5","condition":"B","dataset":"digiklausur","event_type":"chart_click","timestamp_ms":1778061370648,"elapsed_ms":2170,"payload":{"viz_id":"score_provenance","sample_id":"0"}}
