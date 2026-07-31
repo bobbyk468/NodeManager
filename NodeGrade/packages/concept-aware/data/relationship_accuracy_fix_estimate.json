@@ -1,0 +1,9 @@
+{
+  "n_affected": 216,
+  "mean_delta_knowledge": 0.18624907229344725,
+  "mean_estimated_score_delta_0to5": 0.5587472168803417,
+  "orig_mae_subgroup": 2.6875,
+  "estimated_fixed_mae_subgroup": 2.139543381410257,
+  "cllm_mae_subgroup": 1.1527777777777777,
+  "caveat": "Estimate assumes misc_penalty=0 and depth unaffected; blooms/SOLO/misc per-sample values not present in cached Phase A file, so this is NOT an exact end-to-end pipeline re-run like the domain-match bug-fix validation."
+}

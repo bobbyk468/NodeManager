@@ -1,0 +1,61 @@
+{
+  "raw_text": "{\n  \"scores\": {\n    \"E12.Q02.A19\": {\n      \"blooms_level\": 1,\n      \"blooms_label\": \"Remember\",\n      \"solo_level\": 2,\n      \"solo_label\": \"Unistructural\"\n    },\n    \"E12.Q02.A20\": {\n      \"blooms_level\": 1,\n      \"blooms_label\": \"Remember\",\n      \"solo_level\": 2,\n      \"solo_label\": \"Unistructural\"\n    },\n    \"E12.Q02.A21\": {\n      \"blooms_level\": 2,\n      \"blooms_label\": \"Understand\",\n      \"solo_level\": 3,\n      \"solo_label\": \"Multistructural\"\n    },\n    \"E12.Q02.A22\": {\n      \"blooms_level\": 2,\n      \"blooms_label\": \"Understand\",\n      \"solo_level\": 3,\n      \"solo_label\": \"Multistructural\"\n    },\n    \"E12.Q02.A23\": {\n      \"blooms_level\": 1,\n      \"blooms_label\": \"Remember\",\n      \"solo_level\": 2,\n      \"solo_label\": \"Unistructural\"\n    },\n    \"E12.Q02.A24\": {\n      \"blooms_level\": 1,\n      \"blooms_label\": \"Remember\",\n      \"solo_level\": 2,\n      \"solo_label\": \"Unistructural\"\n    },\n    \"E12.Q02.A25\": {\n      \"blooms_level\": 1,\n      \"blooms_label\": \"Remember\",\n      \"solo_level\": 2,\n      \"solo_label\": \"Unistructural\"\n    },\n    \"E12.Q02.A26\": {\n      \"blooms_level\": 1,\n      \"blooms_label\": \"Remember\",\n      \"solo_level\": 2,\n      \"solo_label\": \"Unistructural\"\n    },\n    \"E12.Q02.A27\": {\n      \"blooms_level\": 1,\n      \"blooms_label\": \"Remember\",\n      \"solo_level\": 2,\n      \"solo_label\": \"Unistructural\"\n    }\n  }\n}",
+  "parsed": {
+    "scores": {
+      "E12.Q02.A19": {
+        "blooms_level": 1,
+        "blooms_label": "Remember",
+        "solo_level": 2,
+        "solo_label": "Unistructural"
+      },
+      "E12.Q02.A20": {
+        "blooms_level": 1,
+        "blooms_label": "Remember",
+        "solo_level": 2,
+        "solo_label": "Unistructural"
+      },
+      "E12.Q02.A21": {
+        "blooms_level": 2,
+        "blooms_label": "Understand",
+        "solo_level": 3,
+        "solo_label": "Multistructural"
+      },
+      "E12.Q02.A22": {
+        "blooms_level": 2,
+        "blooms_label": "Understand",
+        "solo_level": 3,
+        "solo_label": "Multistructural"
+      },
+      "E12.Q02.A23": {
+        "blooms_level": 1,
+        "blooms_label": "Remember",
+        "solo_level": 2,
+        "solo_label": "Unistructural"
+      },
+      "E12.Q02.A24": {
+        "blooms_level": 1,
+        "blooms_label": "Remember",
+        "solo_level": 2,
+        "solo_label": "Unistructural"
+      },
+      "E12.Q02.A25": {
+        "blooms_level": 1,
+        "blooms_label": "Remember",
+        "solo_level": 2,
+        "solo_label": "Unistructural"
+      },
+      "E12.Q02.A26": {
+        "blooms_level": 1,
+        "blooms_label": "Remember",
+        "solo_level": 2,
+        "solo_label": "Unistructural"
+      },
+      "E12.Q02.A27": {
+        "blooms_level": 1,
+        "blooms_label": "Remember",
+        "solo_level": 2,
+        "solo_label": "Unistructural"
+      }
+    }
+  }
+}

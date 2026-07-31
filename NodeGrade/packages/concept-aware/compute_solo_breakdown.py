@@ -24,16 +24,38 @@ SOLO_ORDER = ["Prestructural", "Unistructural", "Multistructural",
               "Relational", "Extended Abstract"]
 
 
+SOLO_LEVEL_TO_LABEL = {
+    1: "Prestructural", 2: "Unistructural", 3: "Multistructural",
+    4: "Relational", 5: "Extended Abstract",
+}
+
+
 def compute_one(ds: str) -> dict:
-    with (BASE / "data" / f"{ds}_eval_results.json").open() as f:
-        d = json.load(f)
-    results = d["results"]
-    by_solo: dict[str, list[tuple[float, float]]] = defaultdict(list)
-    for r in results:
-        solo = r.get("solo", "Unknown")
-        err_cllm = abs(r["human_score"] - r["cllm_score"])
-        err_c5 = abs(r["human_score"] - r["c5_score"])
-        by_solo[solo].append((err_cllm, err_c5))
+    # 2026-07-28 correction: Mohler now loads from the real, KG-aligned
+    # re-evaluation (data/mohler_real_eval_results.json), not the
+    # fabricated fixture data/mohler_eval_results.json was computed on
+    # (see REPRODUCIBILITY.md). Its rows store solo_level (int), not a
+    # solo label string, so map through SOLO_LEVEL_TO_LABEL.
+    if ds == "mohler":
+        with (BASE / "data" / "mohler_real_eval_results.json").open() as f:
+            d = json.load(f)
+        results = d["results"]
+        by_solo: dict[str, list[tuple[float, float]]] = defaultdict(list)
+        for r in results:
+            solo = SOLO_LEVEL_TO_LABEL.get(r.get("solo_level"), "Unknown")
+            err_cllm = abs(r["human_score"] - r["cllm_score"])
+            err_c5 = abs(r["human_score"] - r["c5_score"])
+            by_solo[solo].append((err_cllm, err_c5))
+    else:
+        with (BASE / "data" / f"{ds}_eval_results.json").open() as f:
+            d = json.load(f)
+        results = d["results"]
+        by_solo: dict[str, list[tuple[float, float]]] = defaultdict(list)
+        for r in results:
+            solo = r.get("solo", "Unknown")
+            err_cllm = abs(r["human_score"] - r["cllm_score"])
+            err_c5 = abs(r["human_score"] - r["c5_score"])
+            by_solo[solo].append((err_cllm, err_c5))
 
     rows = []
     for solo in SOLO_ORDER + ["Unknown"]:

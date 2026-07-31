@@ -1,0 +1,25 @@
+{
+  "n": 1262,
+  "mae_cllm": 1.2820919175911252,
+  "mae_c5": 1.1770998415213947,
+  "models": {
+    "minilm": {
+      "model": "sentence-transformers/all-MiniLM-L6-v2 (frozen, no fine-tune)",
+      "mae": 1.5806906949463058,
+      "rmse": 1.8785727456466663,
+      "pearson_r": 0.41634060373110904,
+      "c5_vs_bert_p_two_tailed": 4.6592881540144504e-24,
+      "c5_vs_bert_p_one_tailed": 2.3296440770072252e-24,
+      "cllm_vs_bert_p_two_tailed": 1.0869766646419133e-10
+    },
+    "mpnet": {
+      "model": "sentence-transformers/all-mpnet-base-v2 (frozen, no fine-tune)",
+      "mae": 1.4791357893653203,
+      "rmse": 1.770966252060733,
+      "pearson_r": 0.430427386745109,
+      "c5_vs_bert_p_two_tailed": 4.6049754288038274e-12,
+      "c5_vs_bert_p_one_tailed": 2.3024877144019137e-12,
+      "cllm_vs_bert_p_two_tailed": 0.00012666434149730094
+    }
+  }
+}

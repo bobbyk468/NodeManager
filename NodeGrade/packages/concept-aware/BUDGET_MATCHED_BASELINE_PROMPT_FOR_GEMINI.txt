@@ -1,0 +1,864 @@
+# Experiment #1 (of 4 decisive experiments) — Call-budget-matched baseline
+# Purpose: test whether C5_fix's advantage over C_LLM survives once C_LLM
+# gets the same inference budget (7 LLM calls) that C5_fix actually uses.
+# Paste everything below the dashes into aistudio.google.com,
+# gemini-2.5-flash, temperature 0.7 (NOT 0.0 -- we need variation across
+# the 7 attempts), response format JSON.
+# ------------------------------------------------------------
+
+SCORING GUIDE — based on proportion of reference answer content correctly demonstrated:
+- 5.0: Student correctly explains virtually all key ideas (>=90% of reference content)
+- 4.5: Student correctly explains the great majority (>=80%); only very minor omissions
+- 4.0: Student correctly explains most key ideas (>=70%); one clear gap
+- 3.5: Student correctly explains a solid majority (>=60%) with reasonable depth
+- 3.0: Student correctly explains about half the reference content (~50%)
+- 2.5: Student correctly explains several key ideas (30-50%); substantial content missing
+- 2.0: Student correctly explains 1-2 key ideas accurately; most reference content missing
+- 1.5: Student shows partial understanding of 1 concept but cannot explain mechanisms
+- 1.0: Student shows awareness of the topic but no accurate explanations
+- 0.5: Single marginally relevant statement; no explanation
+- 0.0: No relevant content
+Use 0.25 increments only.
+
+You are an expert grader. This is a SELF-CONSISTENCY ENSEMBLE task: for each
+student answer below, produce SEVEN independent grading attempts, as if you
+were seven different graders (or the same grader re-reasoning from scratch
+seven separate times) each reaching their own judgment without seeing the
+others' scores. Each of the 7 attempts must involve genuinely
+re-deriving the score from the question, reference answer, and student
+answer -- do not just repeat the same number seven times, and do not let
+attempt N be influenced by attempts 1..N-1. Some legitimate score variation
+across the 7 attempts is expected and desired (this measures grading
+uncertainty), but each individual attempt should still be a careful,
+independent judgment using the scoring guide above -- vary your emphasis,
+noticed details, or borderline calls across attempts the way independent
+human graders would, not randomly.
+
+For each sample, grade using ONLY the question, reference answer, and
+student answer (no external knowledge graph or structured evidence).
+
+Return a JSON object:
+{
+  "scores": {
+    "<id>": [s1, s2, s3, s4, s5, s6, s7],
+    ...
+  }
+}
+
+Grade all 90 samples, 7 independent attempts each. Use 0.25 increments only.
+Return ONLY the JSON object, no other text.
+
+======================================================================
+
+--- SAMPLE ID: 3 ---
+QUESTION: Define a linked list and describe its basic operations.
+
+REFERENCE ANSWER:
+A linked list is a linear data structure where each element (node) contains data and a pointer to the next node. Basic operations include insertion (at head, tail, or position), deletion, traversal, and search. Insertion at head is O(1), while search requires O(n) traversal.
+
+STUDENT ANSWER:
+Linked lists store elements in nodes. Each node points to the next one. You can insert and delete elements. They are better than arrays for insertions.
+
+--- SAMPLE ID: 4 ---
+QUESTION: Define a linked list and describe its basic operations.
+
+REFERENCE ANSWER:
+A linked list is a linear data structure where each element (node) contains data and a pointer to the next node. Basic operations include insertion (at head, tail, or position), deletion, traversal, and search. Insertion at head is O(1), while search requires O(n) traversal.
+
+STUDENT ANSWER:
+A linked list is a chain of nodes. You can traverse it from start to end. Inserting is possible at any position.
+
+--- SAMPLE ID: 5 ---
+QUESTION: Define a linked list and describe its basic operations.
+
+REFERENCE ANSWER:
+A linked list is a linear data structure where each element (node) contains data and a pointer to the next node. Basic operations include insertion (at head, tail, or position), deletion, traversal, and search. Insertion at head is O(1), while search requires O(n) traversal.
+
+STUDENT ANSWER:
+It is a list where each element links to the next. You can add and remove elements from it.
+
+--- SAMPLE ID: 6 ---
+QUESTION: Define a linked list and describe its basic operations.
+
+REFERENCE ANSWER:
+A linked list is a linear data structure where each element (node) contains data and a pointer to the next node. Basic operations include insertion (at head, tail, or position), deletion, traversal, and search. Insertion at head is O(1), while search requires O(n) traversal.
+
+STUDENT ANSWER:
+A linked list stores data in a sequence. You can access any element by its index number in O(1) time.
+
+--- SAMPLE ID: 7 ---
+QUESTION: Define a linked list and describe its basic operations.
+
+REFERENCE ANSWER:
+A linked list is a linear data structure where each element (node) contains data and a pointer to the next node. Basic operations include insertion (at head, tail, or position), deletion, traversal, and search. Insertion at head is O(1), while search requires O(n) traversal.
+
+STUDENT ANSWER:
+A linked list is like an array but with pointers between elements.
+
+--- SAMPLE ID: 8 ---
+QUESTION: Define a linked list and describe its basic operations.
+
+REFERENCE ANSWER:
+A linked list is a linear data structure where each element (node) contains data and a pointer to the next node. Basic operations include insertion (at head, tail, or position), deletion, traversal, and search. Insertion at head is O(1), while search requires O(n) traversal.
+
+STUDENT ANSWER:
+It is a type of array that uses dynamic memory.
+
+--- SAMPLE ID: 9 ---
+QUESTION: Define a linked list and describe its basic operations.
+
+REFERENCE ANSWER:
+A linked list is a linear data structure where each element (node) contains data and a pointer to the next node. Basic operations include insertion (at head, tail, or position), deletion, traversal, and search. Insertion at head is O(1), while search requires O(n) traversal.
+
+STUDENT ANSWER:
+Linked lists are data structures in programming.
+
+--- SAMPLE ID: 10 ---
+QUESTION: Define a linked list and describe its basic operations.
+
+REFERENCE ANSWER:
+A linked list is a linear data structure where each element (node) contains data and a pointer to the next node. Basic operations include insertion (at head, tail, or position), deletion, traversal, and search. Insertion at head is O(1), while search requires O(n) traversal.
+
+STUDENT ANSWER:
+A list of things stored in memory.
+
+--- SAMPLE ID: 11 ---
+QUESTION: Define a linked list and describe its basic operations.
+
+REFERENCE ANSWER:
+A linked list is a linear data structure where each element (node) contains data and a pointer to the next node. Basic operations include insertion (at head, tail, or position), deletion, traversal, and search. Insertion at head is O(1), while search requires O(n) traversal.
+
+STUDENT ANSWER:
+It stores numbers.
+
+--- SAMPLE ID: 15 ---
+QUESTION: Compare arrays and linked lists in terms of time complexity for access and insertion.
+
+REFERENCE ANSWER:
+Arrays provide O(1) random access by index due to contiguous memory, but insertion requires O(n) shifting. Linked lists require O(n) for access by traversal, but insertion at the head is O(1) by pointer manipulation. Arrays are better for random access; linked lists for frequent insertions.
+
+STUDENT ANSWER:
+Random access is O(1) for arrays and O(n) for linked lists. Insertion is O(n) for arrays (shifting) and O(1) for linked lists at head.
+
+--- SAMPLE ID: 16 ---
+QUESTION: Compare arrays and linked lists in terms of time complexity for access and insertion.
+
+REFERENCE ANSWER:
+Arrays provide O(1) random access by index due to contiguous memory, but insertion requires O(n) shifting. Linked lists require O(n) for access by traversal, but insertion at the head is O(1) by pointer manipulation. Arrays are better for random access; linked lists for frequent insertions.
+
+STUDENT ANSWER:
+Arrays are faster to access elements. Linked lists are better for inserting because you don't need to shift anything.
+
+--- SAMPLE ID: 17 ---
+QUESTION: Compare arrays and linked lists in terms of time complexity for access and insertion.
+
+REFERENCE ANSWER:
+Arrays provide O(1) random access by index due to contiguous memory, but insertion requires O(n) shifting. Linked lists require O(n) for access by traversal, but insertion at the head is O(1) by pointer manipulation. Arrays are better for random access; linked lists for frequent insertions.
+
+STUDENT ANSWER:
+Arrays are fast to access. Linked lists are fast to insert. Arrays need shifting for insertion.
+
+--- SAMPLE ID: 18 ---
+QUESTION: Compare arrays and linked lists in terms of time complexity for access and insertion.
+
+REFERENCE ANSWER:
+Arrays provide O(1) random access by index due to contiguous memory, but insertion requires O(n) shifting. Linked lists require O(n) for access by traversal, but insertion at the head is O(1) by pointer manipulation. Arrays are better for random access; linked lists for frequent insertions.
+
+STUDENT ANSWER:
+Arrays use indices so access is fast. Linked lists need you to go through each element.
+
+--- SAMPLE ID: 19 ---
+QUESTION: Compare arrays and linked lists in terms of time complexity for access and insertion.
+
+REFERENCE ANSWER:
+Arrays provide O(1) random access by index due to contiguous memory, but insertion requires O(n) shifting. Linked lists require O(n) for access by traversal, but insertion at the head is O(1) by pointer manipulation. Arrays are better for random access; linked lists for frequent insertions.
+
+STUDENT ANSWER:
+Both arrays and linked lists store data. Arrays are faster because they use memory addresses.
+
+--- SAMPLE ID: 20 ---
+QUESTION: Compare arrays and linked lists in terms of time complexity for access and insertion.
+
+REFERENCE ANSWER:
+Arrays provide O(1) random access by index due to contiguous memory, but insertion requires O(n) shifting. Linked lists require O(n) for access by traversal, but insertion at the head is O(1) by pointer manipulation. Arrays are better for random access; linked lists for frequent insertions.
+
+STUDENT ANSWER:
+Linked lists are more flexible for insertion. Arrays are rigid.
+
+--- SAMPLE ID: 21 ---
+QUESTION: Compare arrays and linked lists in terms of time complexity for access and insertion.
+
+REFERENCE ANSWER:
+Arrays provide O(1) random access by index due to contiguous memory, but insertion requires O(n) shifting. Linked lists require O(n) for access by traversal, but insertion at the head is O(1) by pointer manipulation. Arrays are better for random access; linked lists for frequent insertions.
+
+STUDENT ANSWER:
+Linked lists are always faster than arrays for everything.
+
+--- SAMPLE ID: 22 ---
+QUESTION: Compare arrays and linked lists in terms of time complexity for access and insertion.
+
+REFERENCE ANSWER:
+Arrays provide O(1) random access by index due to contiguous memory, but insertion requires O(n) shifting. Linked lists require O(n) for access by traversal, but insertion at the head is O(1) by pointer manipulation. Arrays are better for random access; linked lists for frequent insertions.
+
+STUDENT ANSWER:
+They both store elements but differently.
+
+--- SAMPLE ID: 23 ---
+QUESTION: Compare arrays and linked lists in terms of time complexity for access and insertion.
+
+REFERENCE ANSWER:
+Arrays provide O(1) random access by index due to contiguous memory, but insertion requires O(n) shifting. Linked lists require O(n) for access by traversal, but insertion at the head is O(1) by pointer manipulation. Arrays are better for random access; linked lists for frequent insertions.
+
+STUDENT ANSWER:
+I don't know the difference.
+
+--- SAMPLE ID: 27 ---
+QUESTION: Explain how a stack works and give a real-world example of its use.
+
+REFERENCE ANSWER:
+A stack is a LIFO (Last In First Out) data structure. The main operations are push (add to top), pop (remove from top), and peek (view top without removing). Time complexity is O(1) for all operations. A real-world example is the undo function in text editors — each action is pushed onto a stack, and undo pops the most recent action.
+
+STUDENT ANSWER:
+A stack is LIFO. You push elements on and pop them off. A real example is undo in a text editor.
+
+--- SAMPLE ID: 28 ---
+QUESTION: Explain how a stack works and give a real-world example of its use.
+
+REFERENCE ANSWER:
+A stack is a LIFO (Last In First Out) data structure. The main operations are push (add to top), pop (remove from top), and peek (view top without removing). Time complexity is O(1) for all operations. A real-world example is the undo function in text editors — each action is pushed onto a stack, and undo pops the most recent action.
+
+STUDENT ANSWER:
+A stack uses last in first out. You can add elements at the top and remove from the top. It is used in recursion.
+
+--- SAMPLE ID: 29 ---
+QUESTION: Explain how a stack works and give a real-world example of its use.
+
+REFERENCE ANSWER:
+A stack is a LIFO (Last In First Out) data structure. The main operations are push (add to top), pop (remove from top), and peek (view top without removing). Time complexity is O(1) for all operations. A real-world example is the undo function in text editors — each action is pushed onto a stack, and undo pops the most recent action.
+
+STUDENT ANSWER:
+A stack stores elements and you can add or remove them from the top. It works like a pile of books.
+
+--- SAMPLE ID: 30 ---
+QUESTION: Explain how a stack works and give a real-world example of its use.
+
+REFERENCE ANSWER:
+A stack is a LIFO (Last In First Out) data structure. The main operations are push (add to top), pop (remove from top), and peek (view top without removing). Time complexity is O(1) for all operations. A real-world example is the undo function in text editors — each action is pushed onto a stack, and undo pops the most recent action.
+
+STUDENT ANSWER:
+A stack is LIFO. You can push and pop elements.
+
+--- SAMPLE ID: 31 ---
+QUESTION: Explain how a stack works and give a real-world example of its use.
+
+REFERENCE ANSWER:
+A stack is a LIFO (Last In First Out) data structure. The main operations are push (add to top), pop (remove from top), and peek (view top without removing). Time complexity is O(1) for all operations. A real-world example is the undo function in text editors — each action is pushed onto a stack, and undo pops the most recent action.
+
+STUDENT ANSWER:
+A stack is a data structure. Elements are added and removed in order.
+
+--- SAMPLE ID: 32 ---
+QUESTION: Explain how a stack works and give a real-world example of its use.
+
+REFERENCE ANSWER:
+A stack is a LIFO (Last In First Out) data structure. The main operations are push (add to top), pop (remove from top), and peek (view top without removing). Time complexity is O(1) for all operations. A real-world example is the undo function in text editors — each action is pushed onto a stack, and undo pops the most recent action.
+
+STUDENT ANSWER:
+A stack is first in first out. You add at the end and remove from the beginning.
+
+--- SAMPLE ID: 33 ---
+QUESTION: Explain how a stack works and give a real-world example of its use.
+
+REFERENCE ANSWER:
+A stack is a LIFO (Last In First Out) data structure. The main operations are push (add to top), pop (remove from top), and peek (view top without removing). Time complexity is O(1) for all operations. A real-world example is the undo function in text editors — each action is pushed onto a stack, and undo pops the most recent action.
+
+STUDENT ANSWER:
+A stack is used to store temporary data.
+
+--- SAMPLE ID: 34 ---
+QUESTION: Explain how a stack works and give a real-world example of its use.
+
+REFERENCE ANSWER:
+A stack is a LIFO (Last In First Out) data structure. The main operations are push (add to top), pop (remove from top), and peek (view top without removing). Time complexity is O(1) for all operations. A real-world example is the undo function in text editors — each action is pushed onto a stack, and undo pops the most recent action.
+
+STUDENT ANSWER:
+Stacks are used in programming.
+
+--- SAMPLE ID: 35 ---
+QUESTION: Explain how a stack works and give a real-world example of its use.
+
+REFERENCE ANSWER:
+A stack is a LIFO (Last In First Out) data structure. The main operations are push (add to top), pop (remove from top), and peek (view top without removing). Time complexity is O(1) for all operations. A real-world example is the undo function in text editors — each action is pushed onto a stack, and undo pops the most recent action.
+
+STUDENT ANSWER:
+It is a type of list.
+
+--- SAMPLE ID: 39 ---
+QUESTION: What is a binary search tree (BST) and what is the time complexity of search?
+
+REFERENCE ANSWER:
+A binary search tree is a binary tree where for each node, all values in the left subtree are less than the node and all values in the right subtree are greater. Search complexity is O(log n) for a balanced BST because each comparison halves the search space. In the worst case (degenerate/skewed tree), search is O(n).
+
+STUDENT ANSWER:
+A BST is an ordered binary tree. For each node, left < node < right. Search takes O(log n) in the average case.
+
+--- SAMPLE ID: 40 ---
+QUESTION: What is a binary search tree (BST) and what is the time complexity of search?
+
+REFERENCE ANSWER:
+A binary search tree is a binary tree where for each node, all values in the left subtree are less than the node and all values in the right subtree are greater. Search complexity is O(log n) for a balanced BST because each comparison halves the search space. In the worst case (degenerate/skewed tree), search is O(n).
+
+STUDENT ANSWER:
+A binary search tree is ordered. Searching in it is fast because you go left or right at each node.
+
+--- SAMPLE ID: 41 ---
+QUESTION: What is a binary search tree (BST) and what is the time complexity of search?
+
+REFERENCE ANSWER:
+A binary search tree is a binary tree where for each node, all values in the left subtree are less than the node and all values in the right subtree are greater. Search complexity is O(log n) for a balanced BST because each comparison halves the search space. In the worst case (degenerate/skewed tree), search is O(n).
+
+STUDENT ANSWER:
+A BST is a tree where you can search for elements. The search is always O(log n).
+
+--- SAMPLE ID: 42 ---
+QUESTION: What is a binary search tree (BST) and what is the time complexity of search?
+
+REFERENCE ANSWER:
+A binary search tree is a binary tree where for each node, all values in the left subtree are less than the node and all values in the right subtree are greater. Search complexity is O(log n) for a balanced BST because each comparison halves the search space. In the worst case (degenerate/skewed tree), search is O(n).
+
+STUDENT ANSWER:
+It is a tree with a specific ordering. Search involves comparing nodes.
+
+--- SAMPLE ID: 43 ---
+QUESTION: What is a binary search tree (BST) and what is the time complexity of search?
+
+REFERENCE ANSWER:
+A binary search tree is a binary tree where for each node, all values in the left subtree are less than the node and all values in the right subtree are greater. Search complexity is O(log n) for a balanced BST because each comparison halves the search space. In the worst case (degenerate/skewed tree), search is O(n).
+
+STUDENT ANSWER:
+A BST stores elements in a tree structure ordered left to right.
+
+--- SAMPLE ID: 44 ---
+QUESTION: What is a binary search tree (BST) and what is the time complexity of search?
+
+REFERENCE ANSWER:
+A binary search tree is a binary tree where for each node, all values in the left subtree are less than the node and all values in the right subtree are greater. Search complexity is O(log n) for a balanced BST because each comparison halves the search space. In the worst case (degenerate/skewed tree), search is O(n).
+
+STUDENT ANSWER:
+It is a tree data structure. You can find elements in it.
+
+--- SAMPLE ID: 45 ---
+QUESTION: What is a binary search tree (BST) and what is the time complexity of search?
+
+REFERENCE ANSWER:
+A binary search tree is a binary tree where for each node, all values in the left subtree are less than the node and all values in the right subtree are greater. Search complexity is O(log n) for a balanced BST because each comparison halves the search space. In the worst case (degenerate/skewed tree), search is O(n).
+
+STUDENT ANSWER:
+A binary search tree lets you search quickly.
+
+--- SAMPLE ID: 46 ---
+QUESTION: What is a binary search tree (BST) and what is the time complexity of search?
+
+REFERENCE ANSWER:
+A binary search tree is a binary tree where for each node, all values in the left subtree are less than the node and all values in the right subtree are greater. Search complexity is O(log n) for a balanced BST because each comparison halves the search space. In the worst case (degenerate/skewed tree), search is O(n).
+
+STUDENT ANSWER:
+It is a type of sorted array.
+
+--- SAMPLE ID: 47 ---
+QUESTION: What is a binary search tree (BST) and what is the time complexity of search?
+
+REFERENCE ANSWER:
+A binary search tree is a binary tree where for each node, all values in the left subtree are less than the node and all values in the right subtree are greater. Search complexity is O(log n) for a balanced BST because each comparison halves the search space. In the worst case (degenerate/skewed tree), search is O(n).
+
+STUDENT ANSWER:
+I am not sure what a BST is.
+
+--- SAMPLE ID: 51 ---
+QUESTION: Explain the difference between BFS and DFS graph traversal algorithms.
+
+REFERENCE ANSWER:
+BFS (Breadth-First Search) explores all neighbors at the current depth before moving deeper, using a queue. DFS (Depth-First Search) explores as deep as possible before backtracking, using a stack or recursion. BFS finds the shortest path in unweighted graphs and uses O(V) space for the queue. DFS uses O(V) space for the recursion stack and is useful for topological sorting and cycle detection.
+
+STUDENT ANSWER:
+BFS visits all neighbors before going deeper using a queue. DFS explores paths as deep as possible using recursion or a stack.
+
+--- SAMPLE ID: 52 ---
+QUESTION: Explain the difference between BFS and DFS graph traversal algorithms.
+
+REFERENCE ANSWER:
+BFS (Breadth-First Search) explores all neighbors at the current depth before moving deeper, using a queue. DFS (Depth-First Search) explores as deep as possible before backtracking, using a stack or recursion. BFS finds the shortest path in unweighted graphs and uses O(V) space for the queue. DFS uses O(V) space for the recursion stack and is useful for topological sorting and cycle detection.
+
+STUDENT ANSWER:
+BFS and DFS are ways to traverse graphs. BFS uses a queue and DFS uses a stack.
+
+--- SAMPLE ID: 53 ---
+QUESTION: Explain the difference between BFS and DFS graph traversal algorithms.
+
+REFERENCE ANSWER:
+BFS (Breadth-First Search) explores all neighbors at the current depth before moving deeper, using a queue. DFS (Depth-First Search) explores as deep as possible before backtracking, using a stack or recursion. BFS finds the shortest path in unweighted graphs and uses O(V) space for the queue. DFS uses O(V) space for the recursion stack and is useful for topological sorting and cycle detection.
+
+STUDENT ANSWER:
+BFS visits nodes level by level. DFS visits deeply first. They have different use cases.
+
+--- SAMPLE ID: 54 ---
+QUESTION: Explain the difference between BFS and DFS graph traversal algorithms.
+
+REFERENCE ANSWER:
+BFS (Breadth-First Search) explores all neighbors at the current depth before moving deeper, using a queue. DFS (Depth-First Search) explores as deep as possible before backtracking, using a stack or recursion. BFS finds the shortest path in unweighted graphs and uses O(V) space for the queue. DFS uses O(V) space for the recursion stack and is useful for topological sorting and cycle detection.
+
+STUDENT ANSWER:
+BFS is breadth first and DFS is depth first. BFS is better for shortest path.
+
+--- SAMPLE ID: 55 ---
+QUESTION: Explain the difference between BFS and DFS graph traversal algorithms.
+
+REFERENCE ANSWER:
+BFS (Breadth-First Search) explores all neighbors at the current depth before moving deeper, using a queue. DFS (Depth-First Search) explores as deep as possible before backtracking, using a stack or recursion. BFS finds the shortest path in unweighted graphs and uses O(V) space for the queue. DFS uses O(V) space for the recursion stack and is useful for topological sorting and cycle detection.
+
+STUDENT ANSWER:
+BFS uses a stack and DFS uses a queue. They both visit all nodes in a graph.
+
+--- SAMPLE ID: 56 ---
+QUESTION: Explain the difference between BFS and DFS graph traversal algorithms.
+
+REFERENCE ANSWER:
+BFS (Breadth-First Search) explores all neighbors at the current depth before moving deeper, using a queue. DFS (Depth-First Search) explores as deep as possible before backtracking, using a stack or recursion. BFS finds the shortest path in unweighted graphs and uses O(V) space for the queue. DFS uses O(V) space for the recursion stack and is useful for topological sorting and cycle detection.
+
+STUDENT ANSWER:
+Both visit every node in a graph but in different orders.
+
+--- SAMPLE ID: 57 ---
+QUESTION: Explain the difference between BFS and DFS graph traversal algorithms.
+
+REFERENCE ANSWER:
+BFS (Breadth-First Search) explores all neighbors at the current depth before moving deeper, using a queue. DFS (Depth-First Search) explores as deep as possible before backtracking, using a stack or recursion. BFS finds the shortest path in unweighted graphs and uses O(V) space for the queue. DFS uses O(V) space for the recursion stack and is useful for topological sorting and cycle detection.
+
+STUDENT ANSWER:
+BFS is faster than DFS for most problems.
+
+--- SAMPLE ID: 58 ---
+QUESTION: Explain the difference between BFS and DFS graph traversal algorithms.
+
+REFERENCE ANSWER:
+BFS (Breadth-First Search) explores all neighbors at the current depth before moving deeper, using a queue. DFS (Depth-First Search) explores as deep as possible before backtracking, using a stack or recursion. BFS finds the shortest path in unweighted graphs and uses O(V) space for the queue. DFS uses O(V) space for the recursion stack and is useful for topological sorting and cycle detection.
+
+STUDENT ANSWER:
+They are graph algorithms.
+
+--- SAMPLE ID: 59 ---
+QUESTION: Explain the difference between BFS and DFS graph traversal algorithms.
+
+REFERENCE ANSWER:
+BFS (Breadth-First Search) explores all neighbors at the current depth before moving deeper, using a queue. DFS (Depth-First Search) explores as deep as possible before backtracking, using a stack or recursion. BFS finds the shortest path in unweighted graphs and uses O(V) space for the queue. DFS uses O(V) space for the recursion stack and is useful for topological sorting and cycle detection.
+
+STUDENT ANSWER:
+Graph traversal methods.
+
+--- SAMPLE ID: 63 ---
+QUESTION: What is a hash table and how are collisions handled?
+
+REFERENCE ANSWER:
+A hash table maps keys to values using a hash function that converts keys to array indices. Average operations are O(1). Collisions occur when two keys hash to the same index. Common resolution methods: chaining (linked list at each bucket) and open addressing (probing for next empty slot — linear, quadratic, or double hashing).
+
+STUDENT ANSWER:
+A hash table converts keys to indices using a hash function for O(1) lookup. Collisions happen when two keys map to the same index, handled by chaining or probing.
+
+--- SAMPLE ID: 64 ---
+QUESTION: What is a hash table and how are collisions handled?
+
+REFERENCE ANSWER:
+A hash table maps keys to values using a hash function that converts keys to array indices. Average operations are O(1). Collisions occur when two keys hash to the same index. Common resolution methods: chaining (linked list at each bucket) and open addressing (probing for next empty slot — linear, quadratic, or double hashing).
+
+STUDENT ANSWER:
+A hash table uses a hash function to find storage locations. Collisions can be resolved by chaining or by finding the next available slot.
+
+--- SAMPLE ID: 65 ---
+QUESTION: What is a hash table and how are collisions handled?
+
+REFERENCE ANSWER:
+A hash table maps keys to values using a hash function that converts keys to array indices. Average operations are O(1). Collisions occur when two keys hash to the same index. Common resolution methods: chaining (linked list at each bucket) and open addressing (probing for next empty slot — linear, quadratic, or double hashing).
+
+STUDENT ANSWER:
+A hash table stores data using a hash function. If two things go to the same place it's a collision and we handle it with chaining.
+
+--- SAMPLE ID: 66 ---
+QUESTION: What is a hash table and how are collisions handled?
+
+REFERENCE ANSWER:
+A hash table maps keys to values using a hash function that converts keys to array indices. Average operations are O(1). Collisions occur when two keys hash to the same index. Common resolution methods: chaining (linked list at each bucket) and open addressing (probing for next empty slot — linear, quadratic, or double hashing).
+
+STUDENT ANSWER:
+A hash table maps keys to buckets using a function. Collisions happen and need to be resolved.
+
+--- SAMPLE ID: 67 ---
+QUESTION: What is a hash table and how are collisions handled?
+
+REFERENCE ANSWER:
+A hash table maps keys to values using a hash function that converts keys to array indices. Average operations are O(1). Collisions occur when two keys hash to the same index. Common resolution methods: chaining (linked list at each bucket) and open addressing (probing for next empty slot — linear, quadratic, or double hashing).
+
+STUDENT ANSWER:
+Hash tables are fast for storing data. They sometimes have collisions.
+
+--- SAMPLE ID: 68 ---
+QUESTION: What is a hash table and how are collisions handled?
+
+REFERENCE ANSWER:
+A hash table maps keys to values using a hash function that converts keys to array indices. Average operations are O(1). Collisions occur when two keys hash to the same index. Common resolution methods: chaining (linked list at each bucket) and open addressing (probing for next empty slot — linear, quadratic, or double hashing).
+
+STUDENT ANSWER:
+Hash tables are fast for storing data. They always take O(1) time.
+
+--- SAMPLE ID: 69 ---
+QUESTION: What is a hash table and how are collisions handled?
+
+REFERENCE ANSWER:
+A hash table maps keys to values using a hash function that converts keys to array indices. Average operations are O(1). Collisions occur when two keys hash to the same index. Common resolution methods: chaining (linked list at each bucket) and open addressing (probing for next empty slot — linear, quadratic, or double hashing).
+
+STUDENT ANSWER:
+A hash table is like an array but uses hashing.
+
+--- SAMPLE ID: 70 ---
+QUESTION: What is a hash table and how are collisions handled?
+
+REFERENCE ANSWER:
+A hash table maps keys to values using a hash function that converts keys to array indices. Average operations are O(1). Collisions occur when two keys hash to the same index. Common resolution methods: chaining (linked list at each bucket) and open addressing (probing for next empty slot — linear, quadratic, or double hashing).
+
+STUDENT ANSWER:
+Hash tables store data efficiently.
+
+--- SAMPLE ID: 71 ---
+QUESTION: What is a hash table and how are collisions handled?
+
+REFERENCE ANSWER:
+A hash table maps keys to values using a hash function that converts keys to array indices. Average operations are O(1). Collisions occur when two keys hash to the same index. Common resolution methods: chaining (linked list at each bucket) and open addressing (probing for next empty slot — linear, quadratic, or double hashing).
+
+STUDENT ANSWER:
+A table that uses hashing.
+
+--- SAMPLE ID: 75 ---
+QUESTION: Explain recursion and the role of the base case. Give an example.
+
+REFERENCE ANSWER:
+Recursion is a technique where a function calls itself to solve smaller instances of the same problem. Every recursive function must have a base case — a condition that terminates the recursion without further calls — to prevent infinite recursion. Example: factorial(n) = n × factorial(n-1) with base case factorial(0)=1.
+
+STUDENT ANSWER:
+Recursion is calling a function from itself. The base case stops the recursion. Example: computing factorial recursively.
+
+--- SAMPLE ID: 76 ---
+QUESTION: Explain recursion and the role of the base case. Give an example.
+
+REFERENCE ANSWER:
+Recursion is a technique where a function calls itself to solve smaller instances of the same problem. Every recursive function must have a base case — a condition that terminates the recursion without further calls — to prevent infinite recursion. Example: factorial(n) = n × factorial(n-1) with base case factorial(0)=1.
+
+STUDENT ANSWER:
+A recursive function calls itself. The base case prevents infinite looping.
+
+--- SAMPLE ID: 77 ---
+QUESTION: Explain recursion and the role of the base case. Give an example.
+
+REFERENCE ANSWER:
+Recursion is a technique where a function calls itself to solve smaller instances of the same problem. Every recursive function must have a base case — a condition that terminates the recursion without further calls — to prevent infinite recursion. Example: factorial(n) = n × factorial(n-1) with base case factorial(0)=1.
+
+STUDENT ANSWER:
+Recursion means a function calls itself. It needs a stop condition.
+
+--- SAMPLE ID: 78 ---
+QUESTION: Explain recursion and the role of the base case. Give an example.
+
+REFERENCE ANSWER:
+Recursion is a technique where a function calls itself to solve smaller instances of the same problem. Every recursive function must have a base case — a condition that terminates the recursion without further calls — to prevent infinite recursion. Example: factorial(n) = n × factorial(n-1) with base case factorial(0)=1.
+
+STUDENT ANSWER:
+Recursion is when a function uses itself. You need a base case to stop.
+
+--- SAMPLE ID: 79 ---
+QUESTION: Explain recursion and the role of the base case. Give an example.
+
+REFERENCE ANSWER:
+Recursion is a technique where a function calls itself to solve smaller instances of the same problem. Every recursive function must have a base case — a condition that terminates the recursion without further calls — to prevent infinite recursion. Example: factorial(n) = n × factorial(n-1) with base case factorial(0)=1.
+
+STUDENT ANSWER:
+A function that calls itself is recursive. It eventually stops.
+
+--- SAMPLE ID: 80 ---
+QUESTION: Explain recursion and the role of the base case. Give an example.
+
+REFERENCE ANSWER:
+Recursion is a technique where a function calls itself to solve smaller instances of the same problem. Every recursive function must have a base case — a condition that terminates the recursion without further calls — to prevent infinite recursion. Example: factorial(n) = n × factorial(n-1) with base case factorial(0)=1.
+
+STUDENT ANSWER:
+Recursion is a programming technique used to repeat operations.
+
+--- SAMPLE ID: 81 ---
+QUESTION: Explain recursion and the role of the base case. Give an example.
+
+REFERENCE ANSWER:
+Recursion is a technique where a function calls itself to solve smaller instances of the same problem. Every recursive function must have a base case — a condition that terminates the recursion without further calls — to prevent infinite recursion. Example: factorial(n) = n × factorial(n-1) with base case factorial(0)=1.
+
+STUDENT ANSWER:
+Recursion means doing something again and again.
+
+--- SAMPLE ID: 82 ---
+QUESTION: Explain recursion and the role of the base case. Give an example.
+
+REFERENCE ANSWER:
+Recursion is a technique where a function calls itself to solve smaller instances of the same problem. Every recursive function must have a base case — a condition that terminates the recursion without further calls — to prevent infinite recursion. Example: factorial(n) = n × factorial(n-1) with base case factorial(0)=1.
+
+STUDENT ANSWER:
+It is a loop that calls a function.
+
+--- SAMPLE ID: 83 ---
+QUESTION: Explain recursion and the role of the base case. Give an example.
+
+REFERENCE ANSWER:
+Recursion is a technique where a function calls itself to solve smaller instances of the same problem. Every recursive function must have a base case — a condition that terminates the recursion without further calls — to prevent infinite recursion. Example: factorial(n) = n × factorial(n-1) with base case factorial(0)=1.
+
+STUDENT ANSWER:
+I don't understand recursion.
+
+--- SAMPLE ID: 87 ---
+QUESTION: Explain the quicksort algorithm and its average and worst-case time complexity.
+
+REFERENCE ANSWER:
+Quicksort is a divide-and-conquer sorting algorithm. It selects a pivot element, partitions the array so all elements smaller than the pivot come before it and larger after it, then recursively sorts both partitions. Average-case complexity is O(n log n) with a good pivot choice. Worst case is O(n²) when the pivot is always the smallest or largest element (e.g., sorted array with first-element pivot).
+
+STUDENT ANSWER:
+Quicksort divides the array around a pivot, puts smaller elements left and larger right, and recursively sorts. Average complexity is O(n log n).
+
+--- SAMPLE ID: 88 ---
+QUESTION: Explain the quicksort algorithm and its average and worst-case time complexity.
+
+REFERENCE ANSWER:
+Quicksort is a divide-and-conquer sorting algorithm. It selects a pivot element, partitions the array so all elements smaller than the pivot come before it and larger after it, then recursively sorts both partitions. Average-case complexity is O(n log n) with a good pivot choice. Worst case is O(n²) when the pivot is always the smallest or largest element (e.g., sorted array with first-element pivot).
+
+STUDENT ANSWER:
+Quicksort picks a pivot and divides the array. It is O(n log n) on average.
+
+--- SAMPLE ID: 89 ---
+QUESTION: Explain the quicksort algorithm and its average and worst-case time complexity.
+
+REFERENCE ANSWER:
+Quicksort is a divide-and-conquer sorting algorithm. It selects a pivot element, partitions the array so all elements smaller than the pivot come before it and larger after it, then recursively sorts both partitions. Average-case complexity is O(n log n) with a good pivot choice. Worst case is O(n²) when the pivot is always the smallest or largest element (e.g., sorted array with first-element pivot).
+
+STUDENT ANSWER:
+Quicksort sorts by choosing a pivot and partitioning. It is fast in practice.
+
+--- SAMPLE ID: 90 ---
+QUESTION: Explain the quicksort algorithm and its average and worst-case time complexity.
+
+REFERENCE ANSWER:
+Quicksort is a divide-and-conquer sorting algorithm. It selects a pivot element, partitions the array so all elements smaller than the pivot come before it and larger after it, then recursively sorts both partitions. Average-case complexity is O(n log n) with a good pivot choice. Worst case is O(n²) when the pivot is always the smallest or largest element (e.g., sorted array with first-element pivot).
+
+STUDENT ANSWER:
+Quicksort is a fast sorting algorithm. It divides the array each step.
+
+--- SAMPLE ID: 91 ---
+QUESTION: Explain the quicksort algorithm and its average and worst-case time complexity.
+
+REFERENCE ANSWER:
+Quicksort is a divide-and-conquer sorting algorithm. It selects a pivot element, partitions the array so all elements smaller than the pivot come before it and larger after it, then recursively sorts both partitions. Average-case complexity is O(n log n) with a good pivot choice. Worst case is O(n²) when the pivot is always the smallest or largest element (e.g., sorted array with first-element pivot).
+
+STUDENT ANSWER:
+Quicksort sorts an array quickly. It has O(n log n) complexity always.
+
+--- SAMPLE ID: 92 ---
+QUESTION: Explain the quicksort algorithm and its average and worst-case time complexity.
+
+REFERENCE ANSWER:
+Quicksort is a divide-and-conquer sorting algorithm. It selects a pivot element, partitions the array so all elements smaller than the pivot come before it and larger after it, then recursively sorts both partitions. Average-case complexity is O(n log n) with a good pivot choice. Worst case is O(n²) when the pivot is always the smallest or largest element (e.g., sorted array with first-element pivot).
+
+STUDENT ANSWER:
+It sorts by dividing the array recursively.
+
+--- SAMPLE ID: 93 ---
+QUESTION: Explain the quicksort algorithm and its average and worst-case time complexity.
+
+REFERENCE ANSWER:
+Quicksort is a divide-and-conquer sorting algorithm. It selects a pivot element, partitions the array so all elements smaller than the pivot come before it and larger after it, then recursively sorts both partitions. Average-case complexity is O(n log n) with a good pivot choice. Worst case is O(n²) when the pivot is always the smallest or largest element (e.g., sorted array with first-element pivot).
+
+STUDENT ANSWER:
+Quicksort is the fastest sorting algorithm.
+
+--- SAMPLE ID: 94 ---
+QUESTION: Explain the quicksort algorithm and its average and worst-case time complexity.
+
+REFERENCE ANSWER:
+Quicksort is a divide-and-conquer sorting algorithm. It selects a pivot element, partitions the array so all elements smaller than the pivot come before it and larger after it, then recursively sorts both partitions. Average-case complexity is O(n log n) with a good pivot choice. Worst case is O(n²) when the pivot is always the smallest or largest element (e.g., sorted array with first-element pivot).
+
+STUDENT ANSWER:
+A sorting algorithm that is recursive.
+
+--- SAMPLE ID: 95 ---
+QUESTION: Explain the quicksort algorithm and its average and worst-case time complexity.
+
+REFERENCE ANSWER:
+Quicksort is a divide-and-conquer sorting algorithm. It selects a pivot element, partitions the array so all elements smaller than the pivot come before it and larger after it, then recursively sorts both partitions. Average-case complexity is O(n log n) with a good pivot choice. Worst case is O(n²) when the pivot is always the smallest or largest element (e.g., sorted array with first-element pivot).
+
+STUDENT ANSWER:
+I don't know.
+
+--- SAMPLE ID: 99 ---
+QUESTION: What is dynamic programming and what are its two key properties?
+
+REFERENCE ANSWER:
+Dynamic programming (DP) solves problems by breaking them into overlapping subproblems and storing results to avoid recomputation. The two key properties are: (1) Optimal substructure — the optimal solution is built from optimal solutions to subproblems; (2) Overlapping subproblems — the same subproblems are solved multiple times, making memoization or tabulation beneficial.
+
+STUDENT ANSWER:
+DP solves problems by solving subproblems once and storing results. Optimal substructure means the problem can be solved via subproblem solutions. Overlapping subproblems means the same subproblems appear repeatedly.
+
+--- SAMPLE ID: 100 ---
+QUESTION: What is dynamic programming and what are its two key properties?
+
+REFERENCE ANSWER:
+Dynamic programming (DP) solves problems by breaking them into overlapping subproblems and storing results to avoid recomputation. The two key properties are: (1) Optimal substructure — the optimal solution is built from optimal solutions to subproblems; (2) Overlapping subproblems — the same subproblems are solved multiple times, making memoization or tabulation beneficial.
+
+STUDENT ANSWER:
+Dynamic programming uses memoization to avoid repeating work. It requires that the problem has optimal substructure and overlapping subproblems.
+
+--- SAMPLE ID: 101 ---
+QUESTION: What is dynamic programming and what are its two key properties?
+
+REFERENCE ANSWER:
+Dynamic programming (DP) solves problems by breaking them into overlapping subproblems and storing results to avoid recomputation. The two key properties are: (1) Optimal substructure — the optimal solution is built from optimal solutions to subproblems; (2) Overlapping subproblems — the same subproblems are solved multiple times, making memoization or tabulation beneficial.
+
+STUDENT ANSWER:
+DP breaks problems into smaller ones and stores results. It needs optimal substructure.
+
+--- SAMPLE ID: 102 ---
+QUESTION: What is dynamic programming and what are its two key properties?
+
+REFERENCE ANSWER:
+Dynamic programming (DP) solves problems by breaking them into overlapping subproblems and storing results to avoid recomputation. The two key properties are: (1) Optimal substructure — the optimal solution is built from optimal solutions to subproblems; (2) Overlapping subproblems — the same subproblems are solved multiple times, making memoization or tabulation beneficial.
+
+STUDENT ANSWER:
+Dynamic programming stores answers to subproblems for reuse. It avoids repetitive computation.
+
+--- SAMPLE ID: 103 ---
+QUESTION: What is dynamic programming and what are its two key properties?
+
+REFERENCE ANSWER:
+Dynamic programming (DP) solves problems by breaking them into overlapping subproblems and storing results to avoid recomputation. The two key properties are: (1) Optimal substructure — the optimal solution is built from optimal solutions to subproblems; (2) Overlapping subproblems — the same subproblems are solved multiple times, making memoization or tabulation beneficial.
+
+STUDENT ANSWER:
+DP is an optimization technique that caches results.
+
+--- SAMPLE ID: 104 ---
+QUESTION: What is dynamic programming and what are its two key properties?
+
+REFERENCE ANSWER:
+Dynamic programming (DP) solves problems by breaking them into overlapping subproblems and storing results to avoid recomputation. The two key properties are: (1) Optimal substructure — the optimal solution is built from optimal solutions to subproblems; (2) Overlapping subproblems — the same subproblems are solved multiple times, making memoization or tabulation beneficial.
+
+STUDENT ANSWER:
+Dynamic programming solves complex problems using recursion.
+
+--- SAMPLE ID: 105 ---
+QUESTION: What is dynamic programming and what are its two key properties?
+
+REFERENCE ANSWER:
+Dynamic programming (DP) solves problems by breaking them into overlapping subproblems and storing results to avoid recomputation. The two key properties are: (1) Optimal substructure — the optimal solution is built from optimal solutions to subproblems; (2) Overlapping subproblems — the same subproblems are solved multiple times, making memoization or tabulation beneficial.
+
+STUDENT ANSWER:
+It programs things dynamically.
+
+--- SAMPLE ID: 106 ---
+QUESTION: What is dynamic programming and what are its two key properties?
+
+REFERENCE ANSWER:
+Dynamic programming (DP) solves problems by breaking them into overlapping subproblems and storing results to avoid recomputation. The two key properties are: (1) Optimal substructure — the optimal solution is built from optimal solutions to subproblems; (2) Overlapping subproblems — the same subproblems are solved multiple times, making memoization or tabulation beneficial.
+
+STUDENT ANSWER:
+DP is a programming paradigm.
+
+--- SAMPLE ID: 107 ---
+QUESTION: What is dynamic programming and what are its two key properties?
+
+REFERENCE ANSWER:
+Dynamic programming (DP) solves problems by breaking them into overlapping subproblems and storing results to avoid recomputation. The two key properties are: (1) Optimal substructure — the optimal solution is built from optimal solutions to subproblems; (2) Overlapping subproblems — the same subproblems are solved multiple times, making memoization or tabulation beneficial.
+
+STUDENT ANSWER:
+I don't know what dynamic programming is.
+
+--- SAMPLE ID: 111 ---
+QUESTION: Explain Big-O notation and the difference between O(n), O(n log n), and O(n²).
+
+REFERENCE ANSWER:
+Big-O notation describes the upper bound on an algorithm's growth rate as input size n increases, ignoring constants and lower-order terms. O(n) is linear — time grows proportionally with n (e.g., linear search). O(n log n) is log-linear — typical of efficient sorting algorithms like merge sort. O(n²) is quadratic — common in algorithms with nested loops like bubble sort, grows much faster than O(n log n).
+
+STUDENT ANSWER:
+Big-O measures how fast an algorithm's time grows with input size. O(n) is linear, O(n log n) is better than O(n²) and used in good sorting algorithms.
+
+--- SAMPLE ID: 112 ---
+QUESTION: Explain Big-O notation and the difference between O(n), O(n log n), and O(n²).
+
+REFERENCE ANSWER:
+Big-O notation describes the upper bound on an algorithm's growth rate as input size n increases, ignoring constants and lower-order terms. O(n) is linear — time grows proportionally with n (e.g., linear search). O(n log n) is log-linear — typical of efficient sorting algorithms like merge sort. O(n²) is quadratic — common in algorithms with nested loops like bubble sort, grows much faster than O(n log n).
+
+STUDENT ANSWER:
+Big-O describes algorithm complexity. O(n) means linear, O(n²) means quadratic. O(n log n) is between them.
+
+--- SAMPLE ID: 113 ---
+QUESTION: Explain Big-O notation and the difference between O(n), O(n log n), and O(n²).
+
+REFERENCE ANSWER:
+Big-O notation describes the upper bound on an algorithm's growth rate as input size n increases, ignoring constants and lower-order terms. O(n) is linear — time grows proportionally with n (e.g., linear search). O(n log n) is log-linear — typical of efficient sorting algorithms like merge sort. O(n²) is quadratic — common in algorithms with nested loops like bubble sort, grows much faster than O(n log n).
+
+STUDENT ANSWER:
+Big-O measures how long an algorithm takes. O(n) is linear, O(n²) is slower.
+
+--- SAMPLE ID: 114 ---
+QUESTION: Explain Big-O notation and the difference between O(n), O(n log n), and O(n²).
+
+REFERENCE ANSWER:
+Big-O notation describes the upper bound on an algorithm's growth rate as input size n increases, ignoring constants and lower-order terms. O(n) is linear — time grows proportionally with n (e.g., linear search). O(n log n) is log-linear — typical of efficient sorting algorithms like merge sort. O(n²) is quadratic — common in algorithms with nested loops like bubble sort, grows much faster than O(n log n).
+
+STUDENT ANSWER:
+Big-O is how we measure algorithm speed. Smaller Big-O is better.
+
+--- SAMPLE ID: 115 ---
+QUESTION: Explain Big-O notation and the difference between O(n), O(n log n), and O(n²).
+
+REFERENCE ANSWER:
+Big-O notation describes the upper bound on an algorithm's growth rate as input size n increases, ignoring constants and lower-order terms. O(n) is linear — time grows proportionally with n (e.g., linear search). O(n log n) is log-linear — typical of efficient sorting algorithms like merge sort. O(n²) is quadratic — common in algorithms with nested loops like bubble sort, grows much faster than O(n log n).
+
+STUDENT ANSWER:
+Big-O notation tells us how efficient code is.
+
+--- SAMPLE ID: 116 ---
+QUESTION: Explain Big-O notation and the difference between O(n), O(n log n), and O(n²).
+
+REFERENCE ANSWER:
+Big-O notation describes the upper bound on an algorithm's growth rate as input size n increases, ignoring constants and lower-order terms. O(n) is linear — time grows proportionally with n (e.g., linear search). O(n log n) is log-linear — typical of efficient sorting algorithms like merge sort. O(n²) is quadratic — common in algorithms with nested loops like bubble sort, grows much faster than O(n log n).
+
+STUDENT ANSWER:
+O(n²) is always bad. O(n) is always good.
+
+--- SAMPLE ID: 117 ---
+QUESTION: Explain Big-O notation and the difference between O(n), O(n log n), and O(n²).
+
+REFERENCE ANSWER:
+Big-O notation describes the upper bound on an algorithm's growth rate as input size n increases, ignoring constants and lower-order terms. O(n) is linear — time grows proportionally with n (e.g., linear search). O(n log n) is log-linear — typical of efficient sorting algorithms like merge sort. O(n²) is quadratic — common in algorithms with nested loops like bubble sort, grows much faster than O(n log n).
+
+STUDENT ANSWER:
+It measures how fast code runs.
+
+--- SAMPLE ID: 118 ---
+QUESTION: Explain Big-O notation and the difference between O(n), O(n log n), and O(n²).
+
+REFERENCE ANSWER:
+Big-O notation describes the upper bound on an algorithm's growth rate as input size n increases, ignoring constants and lower-order terms. O(n) is linear — time grows proportionally with n (e.g., linear search). O(n log n) is log-linear — typical of efficient sorting algorithms like merge sort. O(n²) is quadratic — common in algorithms with nested loops like bubble sort, grows much faster than O(n log n).
+
+STUDENT ANSWER:
+Big-O is a math concept.
+
+--- SAMPLE ID: 119 ---
+QUESTION: Explain Big-O notation and the difference between O(n), O(n log n), and O(n²).
+
+REFERENCE ANSWER:
+Big-O notation describes the upper bound on an algorithm's growth rate as input size n increases, ignoring constants and lower-order terms. O(n) is linear — time grows proportionally with n (e.g., linear search). O(n log n) is log-linear — typical of efficient sorting algorithms like merge sort. O(n²) is quadratic — common in algorithms with nested loops like bubble sort, grows much faster than O(n log n).
+
+STUDENT ANSWER:
+I don't know what Big-O means.
+
+======================================================================
+Grade all 90 samples, 7 attempts each. Return only the JSON object.

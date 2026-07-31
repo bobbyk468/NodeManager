@@ -1,0 +1,27 @@
+{
+  "n": 1262,
+  "raw": {
+    "mae_cllm": 1.2820919175911252,
+    "mae_c5": 1.1770998415213947
+  },
+  "linear": {
+    "mae_cllm_calibrated": 0.40767388969194673,
+    "mae_c5_calibrated": 0.42785929449003807,
+    "pct_improvement_cllm": 68.2024444504798,
+    "pct_improvement_c5": 63.651401572101776,
+    "wilcoxon_p_two_tailed": 0.002624936909578287,
+    "wilcoxon_p_one_tailed_cllm_better": 0.0013124684547891434,
+    "d_z_c5_minus_cllm": 0.07416252708628396,
+    "winner": "C_LLM"
+  },
+  "isotonic": {
+    "mae_cllm_calibrated": 0.37458475465236596,
+    "mae_c5_calibrated": 0.3923875346476831,
+    "pct_improvement_cllm": 70.78331518100829,
+    "pct_improvement_c5": 66.66488934867883,
+    "wilcoxon_p_two_tailed": 0.033895310362651275,
+    "wilcoxon_p_one_tailed_cllm_better": 0.016947655181325638,
+    "d_z_c5_minus_cllm": 0.05651013393412168,
+    "winner": "C_LLM"
+  }
+}

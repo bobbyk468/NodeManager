@@ -1,0 +1,92 @@
+[
+  {
+    "label": "Mohler 46q headline: C_LLM(x1) vs C5_fix(single)",
+    "n": 2524,
+    "n_questions": 46,
+    "levels": [
+      "C5_fix",
+      "C_LLM"
+    ],
+    "coefficient": 0.10499207606973056,
+    "lrt_chi2": 8.679861430206074,
+    "lrt_p": 0.003217454489200784,
+    "wald_p": 0.003190688263157308,
+    "converged_full": true,
+    "converged_reduced": true
+  },
+  {
+    "label": "Mohler 46q FAIR CONTROL: C_LLM x7 vs Verifier x7",
+    "n": 2524,
+    "n_questions": 46,
+    "levels": [
+      "C_LLM_x7",
+      "Verifier_x7"
+    ],
+    "coefficient": -0.08696513470681462,
+    "lrt_chi2": 6.238682313134632,
+    "lrt_p": 0.01249894361395308,
+    "wald_p": 0.012443592298709314,
+    "converged_full": true,
+    "converged_reduced": true
+  },
+  {
+    "label": "Mohler combined 50q headline: C_LLM(x1) vs C5_fix(single)",
+    "n": 2742,
+    "n_questions": 50,
+    "levels": [
+      "C5_fix",
+      "C_LLM"
+    ],
+    "coefficient": 0.10430342815463176,
+    "lrt_chi2": 9.254470514926652,
+    "lrt_p": 0.002349212465246731,
+    "wald_p": 0.0023288639700014195,
+    "converged_full": true,
+    "converged_reduced": true
+  },
+  {
+    "label": "DigiKlausur headline: C_LLM(x1) vs C5fix(single)",
+    "n": 1292,
+    "n_questions": 17,
+    "levels": [
+      "C5fix",
+      "C_LLM"
+    ],
+    "coefficient": 0.058049535603715244,
+    "lrt_chi2": 1.3395173450953735,
+    "lrt_p": 0.2471191033048467,
+    "wald_p": 0.24699495053175835,
+    "converged_full": true,
+    "converged_reduced": true
+  },
+  {
+    "label": "DigiKlausur FAIR CONTROL: C_LLM x7 vs C5fix x7",
+    "n": 1292,
+    "n_questions": 17,
+    "levels": [
+      "C5fix_x7",
+      "C_LLM_x7"
+    ],
+    "coefficient": 0.07120743034055727,
+    "lrt_chi2": 2.6793232149811956,
+    "lrt_p": 0.10165892392998763,
+    "wald_p": 0.10147876649639258,
+    "converged_full": true,
+    "converged_reduced": true
+  },
+  {
+    "label": "Kaggle ASAG (deduped) headline: C_LLM(x1) vs C5fix(single)",
+    "n": 736,
+    "n_questions": 150,
+    "levels": [
+      "C5fix",
+      "C_LLM"
+    ],
+    "coefficient": 0.006793478260869595,
+    "lrt_chi2": 0.007785872474414646,
+    "lrt_p": 0.9296878404851223,
+    "wald_p": 0.9296878057337955,
+    "converged_full": true,
+    "converged_reduced": true
+  }
+]

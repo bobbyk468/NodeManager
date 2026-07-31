@@ -283,12 +283,31 @@ class _GoogleCompletions:
                 contents=user_content,
                 config=config,
             )
-        with _cf.ThreadPoolExecutor(max_workers=1) as _pool:
-            _fut = _pool.submit(_call)
-            try:
-                response = _fut.result(timeout=60)  # 60-second hard timeout per call
-            except _cf.TimeoutError:
-                raise TimeoutError(f"Gemini API timed out after 60s (model={model})")
+        # Framework Fix (2026-07-28): `with ThreadPoolExecutor(...) as _pool`
+        # calls pool.shutdown(wait=True) on exit -- including on the
+        # TimeoutError exception path below -- which BLOCKS until the
+        # worker thread actually finishes. If the underlying HTTP request
+        # is genuinely hung (no socket-level read timeout, connection
+        # established but server never responds), that thread never
+        # finishes, so shutdown(wait=True) blocks forever and the 60s
+        # timeout this code is supposed to enforce never actually reaches
+        # the caller. Observed repeatedly during the real-Mohler
+        # re-evaluation run (2026-07-27/28): "established TCP connection,
+        # zero progress, no error" hangs lasting 20 min to 8+ hours.
+        # Fix: don't use the blocking context-manager exit. On timeout,
+        # shut down without waiting so the main thread is never blocked by
+        # a stuck worker; the orphaned thread is leaked (dies with the
+        # process or when the hung connection eventually errors out) but
+        # that's a far better failure mode than hanging indefinitely.
+        _pool = _cf.ThreadPoolExecutor(max_workers=1)
+        _fut = _pool.submit(_call)
+        try:
+            response = _fut.result(timeout=60)  # 60-second hard timeout per call
+        except _cf.TimeoutError:
+            _pool.shutdown(wait=False, cancel_futures=True)
+            raise TimeoutError(f"Gemini API timed out after 60s (model={model})")
+        else:
+            _pool.shutdown(wait=False)
         text = response.text
         if text is None:
             raise ValueError(

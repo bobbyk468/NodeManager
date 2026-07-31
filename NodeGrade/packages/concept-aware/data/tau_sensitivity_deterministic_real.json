@@ -1,0 +1,55 @@
+{
+  "n": 1262,
+  "sweep": [
+    {
+      "tau": 0.7,
+      "mae": 1.9003565768621236,
+      "r": 0.1430363151684548,
+      "avg_coverage": 0.8027369255150555,
+      "avg_n_concepts_kept": 2.868462757527734
+    },
+    {
+      "tau": 0.75,
+      "mae": 1.9025356576862125,
+      "r": 0.1375124321732334,
+      "avg_coverage": 0.8186390649762283,
+      "avg_n_concepts_kept": 2.6085578446909667
+    },
+    {
+      "tau": 0.8,
+      "mae": 1.9041204437400951,
+      "r": 0.14563376828231236,
+      "avg_coverage": 0.8202361331220285,
+      "avg_n_concepts_kept": 2.5618066561014263
+    },
+    {
+      "tau": 0.85,
+      "mae": 1.9681061806656102,
+      "r": 0.20145667772563425,
+      "avg_coverage": 0.836808557844691,
+      "avg_n_concepts_kept": 2.1148969889064975
+    },
+    {
+      "tau": 0.9,
+      "mae": 1.9863312202852614,
+      "r": 0.20472039107610118,
+      "avg_coverage": 0.8373045958795563,
+      "avg_n_concepts_kept": 2.061014263074485
+    },
+    {
+      "tau": 0.95,
+      "mae": 2.046553090332805,
+      "r": 0.21414137067763184,
+      "avg_coverage": 0.83557147385103,
+      "avg_n_concepts_kept": 1.8771790808240887
+    },
+    {
+      "tau": 1.0,
+      "mae": 2.061608557844691,
+      "r": 0.21290423993563654,
+      "avg_coverage": 0.8343898573692552,
+      "avg_n_concepts_kept": 1.8438985736925515
+    }
+  ],
+  "note": "Deterministic KG-comparison layer only (pre-holistic, pre-verifier). Does not reflect how C5_fix (verifier-driven) would respond to tau, since the holistic and verifier prompts both embed tau-filtered concept evidence and were not re-run at these tau values."
+}

@@ -1,0 +1,59 @@
+{
+  "n": 1371,
+  "n_questions": 50,
+  "cllm": {
+    "mae": 1.301239970824216,
+    "pearson_r": 0.7822240950356087,
+    "spearman_r": 0.8213001264009789,
+    "qwk": 0.49250763312024115,
+    "rmse": 1.7411859938581742
+  },
+  "c5_fix_single": {
+    "mae": 1.1969365426695842,
+    "pearson_r": 0.778916682498025,
+    "spearman_r": 0.8076519960665423,
+    "qwk": 0.515443570526815,
+    "rmse": 1.5520391988252125
+  },
+  "verifier_x7": {
+    "mae": 1.1714077315827862,
+    "pearson_r": 0.7863151462399124,
+    "spearman_r": 0.8096420845245699,
+    "qwk": 0.5263680122421321,
+    "rmse": 1.5173444113740084
+  },
+  "verifier_x7_vs_cllm": {
+    "d_z": 0.18989809467226437,
+    "p_response_two_tailed": 1.4508523968180553e-13,
+    "p_response_one_tailed": 7.254261984090277e-14,
+    "p_cluster_two_tailed": 0.029656441850613932,
+    "p_cluster_one_tailed": 0.014828220925306966,
+    "question_wins": 27,
+    "question_total": 50,
+    "loocv_one_tailed_significant_folds": 50,
+    "loocv_two_tailed_significant_folds": 50
+  },
+  "verifier_x7_vs_c5_single": {
+    "d_z": 0.08750432292811787,
+    "p_response_two_tailed": 0.0007640681958924559,
+    "p_response_one_tailed": 0.00038203409794622796,
+    "p_cluster_two_tailed": 0.33267421377281015,
+    "p_cluster_one_tailed": 0.16633710688640507,
+    "question_wins": 24,
+    "question_total": 50,
+    "loocv_one_tailed_significant_folds": 0,
+    "loocv_two_tailed_significant_folds": 0
+  },
+  "c5_single_vs_cllm_reference": {
+    "d_z": 0.15325480458137417,
+    "p_response_two_tailed": 1.1865358665076464e-08,
+    "p_response_one_tailed": 5.932679332538232e-09,
+    "p_cluster_two_tailed": 0.06572326459176797,
+    "p_cluster_one_tailed": 0.032861632295883986,
+    "question_wins": 30,
+    "question_total": 50,
+    "loocv_one_tailed_significant_folds": 50,
+    "loocv_two_tailed_significant_folds": 10
+  },
+  "note": "verifier_x7 design (K=7, temperature=0.7, median) was fixed in advance matching the already-validated C_LLM x7 budget-matched experiment -- no hyperparameter was tuned on this data, unlike the retracted ensemble."
+}

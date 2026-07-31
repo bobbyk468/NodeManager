@@ -1,0 +1,2930 @@
+[
+  {
+    "id": "E09.Q06.A07",
+    "qid": "E09.Q06",
+    "human_score": 5.0,
+    "kg_score": 0.0,
+    "cllm_score": 1.0,
+    "c5_fix": 1.0,
+    "kg_err": 5.0,
+    "cllm_err": 4.0,
+    "question": "What is the stack operation corresponding to the enqueue operation in queues?",
+    "reference_answer": "push",
+    "student_answer": "Not sure what this question means. You can use the stack \"push\" operation and the enqueue operation to detect palindromes.",
+    "concepts": [
+      {
+        "concept_id": "push",
+        "confidence": 1.0,
+        "evidence": "stack \"push\" operation",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "enqueue",
+        "confidence": 1.0,
+        "evidence": "enqueue operation",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "stack",
+        "confidence": 1.0,
+        "evidence": "stack",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "queue",
+        "confidence": 1.0,
+        "evidence": "queues",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [
+      "palindromes",
+      "detect",
+      "palindrome_detection"
+    ],
+    "domain_match_score": 0.545,
+    "out_of_kg_domain": false,
+    "matched_concepts": [
+      "push",
+      "queue",
+      "enqueue",
+      "stack"
+    ],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 1.0,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 0.8667,
+      "overall": 0.66,
+      "out_of_kg_domain": false,
+      "anchor_ratio": 1.0,
+      "clustering_coefficient": 0.0,
+      "graph_diameter": 3,
+      "kg_relevance_score": 0.6667
+    }
+  },
+  {
+    "id": "E07.Q04.A04",
+    "qid": "E07.Q04",
+    "human_score": 5.0,
+    "kg_score": 0.5,
+    "cllm_score": 5.0,
+    "c5_fix": 5.0,
+    "kg_err": 4.5,
+    "cllm_err": 0.0,
+    "question": "How are linked lists passed as arguments to a function?",
+    "reference_answer": "By reference.",
+    "student_answer": "Pass-by-reference",
+    "concepts": [
+      {
+        "concept_id": "linked_list",
+        "confidence": 1.0,
+        "evidence": "linked lists",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "pointer",
+        "confidence": 0.8,
+        "evidence": "Pass-by-reference",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [
+      "arguments",
+      "function",
+      "Pass-by-reference"
+    ],
+    "domain_match_score": 0.347,
+    "out_of_kg_domain": false,
+    "matched_concepts": [
+      "pointer",
+      "linked_list"
+    ],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 0.9212,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 1.0,
+      "overall": 0.6685,
+      "out_of_kg_domain": false,
+      "anchor_ratio": 1.0,
+      "clustering_coefficient": 0.0,
+      "graph_diameter": 1,
+      "kg_relevance_score": 0.4
+    }
+  },
+  {
+    "id": "E07.Q04.A21",
+    "qid": "E07.Q04",
+    "human_score": 5.0,
+    "kg_score": 0.5,
+    "cllm_score": 5.0,
+    "c5_fix": 5.0,
+    "kg_err": 4.5,
+    "cllm_err": 0.0,
+    "question": "How are linked lists passed as arguments to a function?",
+    "reference_answer": "By reference.",
+    "student_answer": "by refrenece",
+    "concepts": [
+      {
+        "concept_id": "linked_list",
+        "confidence": 1.0,
+        "evidence": "linked lists",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "pointer",
+        "confidence": 0.8,
+        "evidence": "by refrenece",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [
+      "programming_construct",
+      "arguments"
+    ],
+    "domain_match_score": 0.347,
+    "out_of_kg_domain": false,
+    "matched_concepts": [
+      "pointer",
+      "linked_list"
+    ],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 0.9212,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 1.0,
+      "overall": 0.6685,
+      "out_of_kg_domain": false,
+      "anchor_ratio": 1.0,
+      "clustering_coefficient": 0.0,
+      "graph_diameter": 1,
+      "kg_relevance_score": 0.4
+    }
+  },
+  {
+    "id": "E09.Q02.A17",
+    "qid": "E09.Q02",
+    "human_score": 5.0,
+    "kg_score": 0.5,
+    "cllm_score": 5.0,
+    "c5_fix": 5.0,
+    "kg_err": 4.5,
+    "cllm_err": 0.0,
+    "question": "What are the two main functions defined by a queue?",
+    "reference_answer": "enqueue and dequeue",
+    "student_answer": "The two functions are, Enqueue and Dequeue",
+    "concepts": [],
+    "unmapped_terms": [
+      "Dequeue",
+      "functions",
+      "operation",
+      "queue",
+      "Enqueue"
+    ],
+    "domain_match_score": 0.0995,
+    "out_of_kg_domain": false,
+    "matched_concepts": [],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 0.0,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 0.0,
+      "overall": 0.0,
+      "out_of_kg_domain": false,
+      "anchor_ratio": 0.0,
+      "clustering_coefficient": 0.0,
+      "graph_diameter": 0,
+      "kg_relevance_score": 0.2
+    }
+  },
+  {
+    "id": "E09.Q02.A25",
+    "qid": "E09.Q02",
+    "human_score": 5.0,
+    "kg_score": 0.5,
+    "cllm_score": 5.0,
+    "c5_fix": 5.0,
+    "kg_err": 4.5,
+    "cllm_err": 0.0,
+    "question": "What are the two main functions defined by a queue?",
+    "reference_answer": "enqueue and dequeue",
+    "student_answer": "enqueue dequeue",
+    "concepts": [],
+    "unmapped_terms": [
+      "dequeue",
+      "enqueue"
+    ],
+    "domain_match_score": 0.0995,
+    "out_of_kg_domain": false,
+    "matched_concepts": [],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 0.0,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 0.0,
+      "overall": 0.0,
+      "out_of_kg_domain": false,
+      "anchor_ratio": 0.0,
+      "clustering_coefficient": 0.0,
+      "graph_diameter": 0,
+      "kg_relevance_score": 0.2
+    }
+  },
+  {
+    "id": "E09.Q04.A20",
+    "qid": "E09.Q04",
+    "human_score": 5.0,
+    "kg_score": 0.5,
+    "cllm_score": 1.0,
+    "c5_fix": 1.5,
+    "kg_err": 4.5,
+    "cllm_err": 4.0,
+    "question": "How can you implement a queue with a list?",
+    "reference_answer": "Keep the rear of the queue pointing to the tail of the linked list, so the enqueue operation is done at the end of the list, and keep the front of the queue pointing to the head of the linked list, so the dequeue operation is done at the beginning of the list.",
+    "student_answer": "each element of a queue can be allocated in the nodes of an linked list. New elements should be added to the head of the list, with each dequeued element coming off the tail.",
+    "concepts": [
+      {
+        "concept_id": "queue",
+        "confidence": 1.0,
+        "evidence": "each element of a queue",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "node",
+        "confidence": 0.9667,
+        "evidence": "allocated in the nodes of an linked list",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "linked_list",
+        "confidence": 1.0,
+        "evidence": "linked list",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "enqueue",
+        "confidence": 0.8,
+        "evidence": "New elements should be added to the head of the list",
+        "is_correct_usage": false
+      },
+      {
+        "concept_id": "dequeue",
+        "confidence": 0.8,
+        "evidence": "each dequeued element coming off the tail",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [
+      "tail",
+      "head"
+    ],
+    "domain_match_score": 0.7926,
+    "out_of_kg_domain": false,
+    "matched_concepts": [
+      "node",
+      "dequeue",
+      "queue",
+      "enqueue",
+      "linked_list"
+    ],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 0.9356,
+      "relationship_accuracy": 0.25,
+      "integration_quality": 0.84,
+      "overall": 0.7012,
+      "out_of_kg_domain": false,
+      "anchor_ratio": 1.0,
+      "clustering_coefficient": 0.0,
+      "graph_diameter": 3,
+      "kg_relevance_score": 0.5
+    }
+  },
+  {
+    "id": "E04.Q02.A15",
+    "qid": "E04.Q02",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 4.5,
+    "c5_fix": 2.5,
+    "kg_err": 4.0,
+    "cllm_err": 0.5,
+    "question": "What is the main difference between strings declared using the type string versus strings declared using an array of characters?",
+    "reference_answer": "The strings declared using an array of characters have a null element added at the end of the array.",
+    "student_answer": "The array of characters has a null character 0 at the end of the array to signify the array 's end. The string does not have this.",
+    "concepts": [
+      {
+        "concept_id": "array",
+        "confidence": 1.0,
+        "evidence": "array of characters",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "data_structure",
+        "confidence": 0.8,
+        "evidence": "string",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [
+      "string",
+      "null character 0"
+    ],
+    "domain_match_score": 0.9906,
+    "out_of_kg_domain": false,
+    "matched_concepts": [
+      "array",
+      "data_structure"
+    ],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 0.9,
+      "relationship_accuracy": 0.3333,
+      "integration_quality": 1.0,
+      "overall": 0.76,
+      "out_of_kg_domain": false,
+      "anchor_ratio": 1.0,
+      "clustering_coefficient": 0.0,
+      "graph_diameter": 1,
+      "kg_relevance_score": 0.1429
+    }
+  },
+  {
+    "id": "E04.Q03.A03",
+    "qid": "E04.Q03",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 5.0,
+    "c5_fix": 5.0,
+    "kg_err": 4.0,
+    "cllm_err": 0.0,
+    "question": "How are arrays passed to functions?",
+    "reference_answer": "by reference.",
+    "student_answer": "Arrays are passed by reference Individual array elements passed by value Functions that take arrays as arguments Function prototypes may include parameter names const array parameters",
+    "concepts": [],
+    "unmapped_terms": [
+      "passed by value",
+      "Function prototypes",
+      "Functions",
+      "take arrays as arguments",
+      "Arrays",
+      "Individual array elements",
+      "parameter names",
+      "passed by reference",
+      "const array parameters"
+    ],
+    "domain_match_score": 0.0995,
+    "out_of_kg_domain": false,
+    "matched_concepts": [],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 0.0,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 0.0,
+      "overall": 0.0,
+      "out_of_kg_domain": false,
+      "anchor_ratio": 0.0,
+      "clustering_coefficient": 0.0,
+      "graph_diameter": 0,
+      "kg_relevance_score": 0.0
+    }
+  },
+  {
+    "id": "E04.Q03.A19",
+    "qid": "E04.Q03",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 5.0,
+    "c5_fix": 5.0,
+    "kg_err": 4.0,
+    "cllm_err": 0.0,
+    "question": "How are arrays passed to functions?",
+    "reference_answer": "by reference.",
+    "student_answer": "specifying array name and passing as reference in an argument into the function",
+    "concepts": [],
+    "unmapped_terms": [
+      "array name",
+      "arrays",
+      "argument",
+      "passing as reference",
+      "function"
+    ],
+    "domain_match_score": 0.0995,
+    "out_of_kg_domain": false,
+    "matched_concepts": [],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 0.0,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 0.0,
+      "overall": 0.0,
+      "out_of_kg_domain": false,
+      "anchor_ratio": 0.0,
+      "clustering_coefficient": 0.0,
+      "graph_diameter": 0,
+      "kg_relevance_score": 0.0
+    }
+  },
+  {
+    "id": "E04.Q04.A25",
+    "qid": "E04.Q04",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 2.0,
+    "c5_fix": 2.0,
+    "kg_err": 4.0,
+    "cllm_err": 3.0,
+    "question": "What is the difference between an array declared as static, and one that is not?",
+    "reference_answer": "The arrays declared as static live throughout the life of the program; that is, they are initialized only once, when the function that declares the array it is first called.",
+    "student_answer": "Only constants can be used to declare the size of automatic and static arrays Exists for the duration of the program Is initialized when its declaration is first encountered All elements are initialized to zero if not explicitly initialized",
+    "concepts": [
+      {
+        "concept_id": "array",
+        "confidence": 1.0,
+        "evidence": "arrays",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [
+      "initialized",
+      "duration of the program",
+      "automatic",
+      "static arrays",
+      "elements",
+      "static",
+      "zero",
+      "declaration",
+      "explicitly initialized",
+      "constants"
+    ],
+    "domain_match_score": 1.0,
+    "out_of_kg_domain": false,
+    "matched_concepts": [
+      "array"
+    ],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 1.0,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 0.5,
+      "overall": 0.55,
+      "out_of_kg_domain": false,
+      "kg_relevance_score": 0.3333
+    }
+  },
+  {
+    "id": "E05.Q02.A02",
+    "qid": "E05.Q02",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 2.5,
+    "c5_fix": 2.0,
+    "kg_err": 4.0,
+    "cllm_err": 2.5,
+    "question": "In one sentence, what is the main idea implemented by selection sort?",
+    "reference_answer": "Taking one array element at a time, from left to right, it identifies the minimum from the remaining elements and swaps it with the current element.",
+    "student_answer": "Finds the minimum value and swap it with the value in the first position.",
+    "concepts": [
+      {
+        "concept_id": "selection_sort",
+        "confidence": 1.0,
+        "evidence": "selection sort",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [
+      "minimum value",
+      "first position",
+      "operation"
+    ],
+    "domain_match_score": 0.149,
+    "out_of_kg_domain": false,
+    "matched_concepts": [
+      "selection_sort"
+    ],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 1.0,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 0.5,
+      "overall": 0.55,
+      "out_of_kg_domain": false,
+      "kg_relevance_score": 0.2857
+    }
+  },
+  {
+    "id": "E05.Q02.A07",
+    "qid": "E05.Q02",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 3.0,
+    "c5_fix": 2.0,
+    "kg_err": 4.0,
+    "cllm_err": 2.0,
+    "question": "In one sentence, what is the main idea implemented by selection sort?",
+    "reference_answer": "Taking one array element at a time, from left to right, it identifies the minimum from the remaining elements and swaps it with the current element.",
+    "student_answer": "Find the smallest and put it in the current position till you get to the end.",
+    "concepts": [
+      {
+        "concept_id": "selection_sort",
+        "confidence": 1.0,
+        "evidence": "Find the smallest and put it in the current position till you get to the end.",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [
+      "operation"
+    ],
+    "domain_match_score": 0.149,
+    "out_of_kg_domain": false,
+    "matched_concepts": [
+      "selection_sort"
+    ],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 1.0,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 0.5,
+      "overall": 0.55,
+      "out_of_kg_domain": false,
+      "kg_relevance_score": 0.2857
+    }
+  },
+  {
+    "id": "E05.Q04.A02",
+    "qid": "E05.Q04",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 2.5,
+    "c5_fix": 2.0,
+    "kg_err": 4.0,
+    "cllm_err": 2.5,
+    "question": "What is the base case for a recursive implementation of merge sort?",
+    "reference_answer": "When the size of the array to be sorted is 1 -LRB- or 2 -RRB-",
+    "student_answer": "The base case for a recursive implementation of merge sort is one.",
+    "concepts": [
+      {
+        "concept_id": "merge_sort",
+        "confidence": 1.0,
+        "evidence": "merge sort",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "recursion",
+        "confidence": 1.0,
+        "evidence": "recursive implementation",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [
+      "one",
+      "abstract_concept"
+    ],
+    "domain_match_score": 0.2975,
+    "out_of_kg_domain": false,
+    "matched_concepts": [
+      "recursion",
+      "merge_sort"
+    ],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 1.0,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 1.0,
+      "overall": 0.7,
+      "out_of_kg_domain": false,
+      "anchor_ratio": 1.0,
+      "clustering_coefficient": 0.0,
+      "graph_diameter": 1,
+      "kg_relevance_score": 0.5
+    }
+  },
+  {
+    "id": "E05.Q04.A04",
+    "qid": "E05.Q04",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 4.5,
+    "c5_fix": 4.0,
+    "kg_err": 4.0,
+    "cllm_err": 0.5,
+    "question": "What is the base case for a recursive implementation of merge sort?",
+    "reference_answer": "When the size of the array to be sorted is 1 -LRB- or 2 -RRB-",
+    "student_answer": "there is one object in the split array to sort.",
+    "concepts": [
+      {
+        "concept_id": "merge_sort",
+        "confidence": 1.0,
+        "evidence": "merge sort",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "recursion",
+        "confidence": 1.0,
+        "evidence": "recursive implementation",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [
+      "split",
+      "operation",
+      "sort",
+      "split array",
+      "one object",
+      "abstract_concept",
+      "object"
+    ],
+    "domain_match_score": 0.2975,
+    "out_of_kg_domain": false,
+    "matched_concepts": [
+      "recursion",
+      "merge_sort"
+    ],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 1.0,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 1.0,
+      "overall": 0.7,
+      "out_of_kg_domain": false,
+      "anchor_ratio": 1.0,
+      "clustering_coefficient": 0.0,
+      "graph_diameter": 1,
+      "kg_relevance_score": 0.5
+    }
+  },
+  {
+    "id": "E05.Q04.A07",
+    "qid": "E05.Q04",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 4.5,
+    "c5_fix": 2.0,
+    "kg_err": 4.0,
+    "cllm_err": 0.5,
+    "question": "What is the base case for a recursive implementation of merge sort?",
+    "reference_answer": "When the size of the array to be sorted is 1 -LRB- or 2 -RRB-",
+    "student_answer": "Best case is one element. One element is sorted.",
+    "concepts": [
+      {
+        "concept_id": "merge_sort",
+        "confidence": 1.0,
+        "evidence": "merge sort",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "recursion",
+        "confidence": 0.9333,
+        "evidence": "recursive",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [
+      "abstract_concept",
+      "best case"
+    ],
+    "domain_match_score": 0.2975,
+    "out_of_kg_domain": false,
+    "matched_concepts": [
+      "recursion",
+      "merge_sort"
+    ],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 0.9667,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 1.0,
+      "overall": 0.6867,
+      "out_of_kg_domain": false,
+      "anchor_ratio": 1.0,
+      "clustering_coefficient": 0.0,
+      "graph_diameter": 1,
+      "kg_relevance_score": 0.5
+    }
+  },
+  {
+    "id": "E05.Q04.A14",
+    "qid": "E05.Q04",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 4.5,
+    "c5_fix": 4.0,
+    "kg_err": 4.0,
+    "cllm_err": 0.5,
+    "question": "What is the base case for a recursive implementation of merge sort?",
+    "reference_answer": "When the size of the array to be sorted is 1 -LRB- or 2 -RRB-",
+    "student_answer": "A list or array of only 1 element.",
+    "concepts": [
+      {
+        "concept_id": "merge_sort",
+        "confidence": 1.0,
+        "evidence": "merge sort",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "recursion",
+        "confidence": 1.0,
+        "evidence": "recursive implementation",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "data_structure",
+        "confidence": 0.75,
+        "evidence": "list or array",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [
+      "1 element",
+      "base case",
+      "abstract_concept",
+      "array",
+      "element",
+      "list"
+    ],
+    "domain_match_score": 0.2975,
+    "out_of_kg_domain": false,
+    "matched_concepts": [
+      "recursion",
+      "merge_sort",
+      "data_structure"
+    ],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 0.9375,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 0.9,
+      "overall": 0.645,
+      "out_of_kg_domain": false,
+      "anchor_ratio": 1.0,
+      "clustering_coefficient": 0.0,
+      "graph_diameter": 1,
+      "kg_relevance_score": 0.5
+    }
+  },
+  {
+    "id": "E05.Q04.A16",
+    "qid": "E05.Q04",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 4.5,
+    "c5_fix": 4.0,
+    "kg_err": 4.0,
+    "cllm_err": 0.5,
+    "question": "What is the base case for a recursive implementation of merge sort?",
+    "reference_answer": "When the size of the array to be sorted is 1 -LRB- or 2 -RRB-",
+    "student_answer": "A single Element on the Array.",
+    "concepts": [
+      {
+        "concept_id": "merge_sort",
+        "confidence": 1.0,
+        "evidence": "merge sort",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "recursion",
+        "confidence": 1.0,
+        "evidence": "recursive implementation",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "data_structure",
+        "confidence": 0.7,
+        "evidence": "Array",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [
+      "abstract_concept",
+      "Element"
+    ],
+    "domain_match_score": 0.2975,
+    "out_of_kg_domain": false,
+    "matched_concepts": [
+      "recursion",
+      "merge_sort",
+      "data_structure"
+    ],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 0.925,
+      "relationship_accuracy": 0.5,
+      "integration_quality": 1.0,
+      "overall": 0.82,
+      "out_of_kg_domain": false,
+      "anchor_ratio": 1.0,
+      "clustering_coefficient": 0.0,
+      "graph_diameter": 1,
+      "kg_relevance_score": 0.5
+    }
+  },
+  {
+    "id": "E05.Q04.A17",
+    "qid": "E05.Q04",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 4.5,
+    "c5_fix": 4.0,
+    "kg_err": 4.0,
+    "cllm_err": 0.5,
+    "question": "What is the base case for a recursive implementation of merge sort?",
+    "reference_answer": "When the size of the array to be sorted is 1 -LRB- or 2 -RRB-",
+    "student_answer": "There is only one element in the subarray.",
+    "concepts": [
+      {
+        "concept_id": "merge_sort",
+        "confidence": 1.0,
+        "evidence": "merge sort",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "recursion",
+        "confidence": 1.0,
+        "evidence": "recursive implementation",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [
+      "one element in the subarray",
+      "abstract_concept",
+      "element"
+    ],
+    "domain_match_score": 0.2975,
+    "out_of_kg_domain": false,
+    "matched_concepts": [
+      "recursion",
+      "merge_sort"
+    ],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 1.0,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 1.0,
+      "overall": 0.7,
+      "out_of_kg_domain": false,
+      "anchor_ratio": 1.0,
+      "clustering_coefficient": 0.0,
+      "graph_diameter": 1,
+      "kg_relevance_score": 0.5
+    }
+  },
+  {
+    "id": "E05.Q04.A21",
+    "qid": "E05.Q04",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 4.5,
+    "c5_fix": 4.0,
+    "kg_err": 4.0,
+    "cllm_err": 0.5,
+    "question": "What is the base case for a recursive implementation of merge sort?",
+    "reference_answer": "When the size of the array to be sorted is 1 -LRB- or 2 -RRB-",
+    "student_answer": "one element in an array",
+    "concepts": [
+      {
+        "concept_id": "merge_sort",
+        "confidence": 1.0,
+        "evidence": "merge sort",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "recursion",
+        "confidence": 1.0,
+        "evidence": "recursive implementation",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "data_structure",
+        "confidence": 0.7,
+        "evidence": "array",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [
+      "one element",
+      "abstract_concept"
+    ],
+    "domain_match_score": 0.2975,
+    "out_of_kg_domain": false,
+    "matched_concepts": [
+      "recursion",
+      "merge_sort",
+      "data_structure"
+    ],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 0.925,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 0.9,
+      "overall": 0.64,
+      "out_of_kg_domain": false,
+      "anchor_ratio": 1.0,
+      "clustering_coefficient": 0.0,
+      "graph_diameter": 1,
+      "kg_relevance_score": 0.5
+    }
+  },
+  {
+    "id": "E07.Q04.A19",
+    "qid": "E07.Q04",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 5.0,
+    "c5_fix": 4.0,
+    "kg_err": 4.0,
+    "cllm_err": 0.0,
+    "question": "How are linked lists passed as arguments to a function?",
+    "reference_answer": "By reference.",
+    "student_answer": "linked lists are passed by reference, specificly the Head pointer",
+    "concepts": [
+      {
+        "concept_id": "linked_list",
+        "confidence": 1.0,
+        "evidence": "linked lists",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "pointer",
+        "confidence": 1.0,
+        "evidence": "reference",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "head",
+        "confidence": 1.0,
+        "evidence": "Head pointer",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [
+      "passed",
+      "passed by reference"
+    ],
+    "domain_match_score": 0.347,
+    "out_of_kg_domain": false,
+    "matched_concepts": [
+      "pointer",
+      "linked_list",
+      "head"
+    ],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 1.0,
+      "relationship_accuracy": 0.6667,
+      "integration_quality": 1.0,
+      "overall": 0.9,
+      "out_of_kg_domain": false,
+      "anchor_ratio": 1.0,
+      "clustering_coefficient": 0.0,
+      "graph_diameter": 2,
+      "kg_relevance_score": 0.4
+    }
+  },
+  {
+    "id": "E07.Q05.A09",
+    "qid": "E07.Q05",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 5.0,
+    "c5_fix": 5.0,
+    "kg_err": 4.0,
+    "cllm_err": 0.0,
+    "question": "What is the difference between a circular linked list and a basic linked list?",
+    "reference_answer": "The last element in a circular linked list points to the head of the list.",
+    "student_answer": "A circular linked list has the last node point back to the head of the linked list.",
+    "concepts": [
+      {
+        "concept_id": "circular_linked_list",
+        "confidence": 1.0,
+        "evidence": "A circular linked list",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "linked_list",
+        "confidence": 1.0,
+        "evidence": "a basic linked list",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "node",
+        "confidence": 0.9,
+        "evidence": "the last node",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "head",
+        "confidence": 0.9,
+        "evidence": "the head of the linked list",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "pointer",
+        "confidence": 0.8,
+        "evidence": "point back to",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [],
+    "domain_match_score": 0.7926,
+    "out_of_kg_domain": false,
+    "matched_concepts": [
+      "circular_linked_list",
+      "node",
+      "pointer",
+      "head",
+      "linked_list"
+    ],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 0.9227,
+      "relationship_accuracy": 0.8,
+      "integration_quality": 0.6667,
+      "overall": 0.8091,
+      "out_of_kg_domain": false,
+      "anchor_ratio": 1.0,
+      "clustering_coefficient": 0.0,
+      "graph_diameter": 2,
+      "kg_relevance_score": 0.625
+    }
+  },
+  {
+    "id": "E08.Q01.A06",
+    "qid": "E08.Q01",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 3.0,
+    "c5_fix": 3.0,
+    "kg_err": 4.0,
+    "cllm_err": 2.0,
+    "question": "What is a stack?",
+    "reference_answer": "A data structure that can store elements, which has the property that the last item added will be the first to be removed -LRB- or last-in-first-out -RRB-",
+    "student_answer": "A data structure that stores data using LIFO.",
+    "concepts": [
+      {
+        "concept_id": "data_structure",
+        "confidence": 1.0,
+        "evidence": "A data structure",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "stack",
+        "confidence": 1.0,
+        "evidence": "A data structure that stores data using LIFO.",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "lifo",
+        "confidence": 1.0,
+        "evidence": "LIFO",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [],
+    "domain_match_score": 0.0,
+    "out_of_kg_domain": true,
+    "matched_concepts": [],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 0.0,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 0.0,
+      "overall": 0.0,
+      "out_of_kg_domain": true
+    }
+  },
+  {
+    "id": "E08.Q01.A11",
+    "qid": "E08.Q01",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 2.0,
+    "c5_fix": 3.0,
+    "kg_err": 4.0,
+    "cllm_err": 3.0,
+    "question": "What is a stack?",
+    "reference_answer": "A data structure that can store elements, which has the property that the last item added will be the first to be removed -LRB- or last-in-first-out -RRB-",
+    "student_answer": "a data structure that moves elements in last in first out",
+    "concepts": [
+      {
+        "concept_id": "data_structure",
+        "confidence": 1.0,
+        "evidence": "a data structure",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "stack",
+        "confidence": 1.0,
+        "evidence": "a stack",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "lifo",
+        "confidence": 1.0,
+        "evidence": "last in first out",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [
+      "moves elements"
+    ],
+    "domain_match_score": 0.0,
+    "out_of_kg_domain": true,
+    "matched_concepts": [],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 0.0,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 0.0,
+      "overall": 0.0,
+      "out_of_kg_domain": true
+    }
+  },
+  {
+    "id": "E08.Q01.A12",
+    "qid": "E08.Q01",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 3.5,
+    "c5_fix": 3.0,
+    "kg_err": 4.0,
+    "cllm_err": 1.5,
+    "question": "What is a stack?",
+    "reference_answer": "A data structure that can store elements, which has the property that the last item added will be the first to be removed -LRB- or last-in-first-out -RRB-",
+    "student_answer": "Stores a set of elements in a last in first out order.",
+    "concepts": [
+      {
+        "concept_id": "stack",
+        "confidence": 1.0,
+        "evidence": "Stores a set of elements in a last in first out order.",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "lifo",
+        "confidence": 1.0,
+        "evidence": "last in first out order",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "data_structure",
+        "confidence": 0.8,
+        "evidence": "Stores a set of elements",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "node",
+        "confidence": 0.7,
+        "evidence": "set of elements",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [],
+    "domain_match_score": 0.0,
+    "out_of_kg_domain": true,
+    "matched_concepts": [],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 0.0,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 0.0,
+      "overall": 0.0,
+      "out_of_kg_domain": true
+    }
+  },
+  {
+    "id": "E08.Q01.A13",
+    "qid": "E08.Q01",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 2.0,
+    "c5_fix": 3.0,
+    "kg_err": 4.0,
+    "cllm_err": 3.0,
+    "question": "What is a stack?",
+    "reference_answer": "A data structure that can store elements, which has the property that the last item added will be the first to be removed -LRB- or last-in-first-out -RRB-",
+    "student_answer": "A list that can be added to or removed from only from the top.",
+    "concepts": [
+      {
+        "concept_id": "stack",
+        "confidence": 1.0,
+        "evidence": "A list that can be added to or removed from only from the top.",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "array",
+        "confidence": 0.8,
+        "evidence": "A list",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "insertion",
+        "confidence": 1.0,
+        "evidence": "added to",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "deletion",
+        "confidence": 1.0,
+        "evidence": "removed from",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [
+      "top"
+    ],
+    "domain_match_score": 0.0,
+    "out_of_kg_domain": true,
+    "matched_concepts": [],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 0.0,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 0.0,
+      "overall": 0.0,
+      "out_of_kg_domain": true
+    }
+  },
+  {
+    "id": "E08.Q02.A07",
+    "qid": "E08.Q02",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 5.0,
+    "c5_fix": 5.0,
+    "kg_err": 4.0,
+    "cllm_err": 0.0,
+    "question": "What are the two main functions defined by a stack?",
+    "reference_answer": "push and pop",
+    "student_answer": "Push -LRB- insert -RRB- and pop -LRB- retrieve -RRB- .",
+    "concepts": [],
+    "unmapped_terms": [
+      "insertion_operation",
+      "stack_data_structure",
+      "push_operation",
+      "retrieval_operation",
+      "retrieve",
+      "pop_operation"
+    ],
+    "domain_match_score": 0.0995,
+    "out_of_kg_domain": false,
+    "matched_concepts": [],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 0.0,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 0.0,
+      "overall": 0.0,
+      "out_of_kg_domain": false,
+      "anchor_ratio": 0.0,
+      "clustering_coefficient": 0.0,
+      "graph_diameter": 0,
+      "kg_relevance_score": 0.2
+    }
+  },
+  {
+    "id": "E08.Q02.A10",
+    "qid": "E08.Q02",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 5.0,
+    "c5_fix": 5.0,
+    "kg_err": 4.0,
+    "cllm_err": 0.0,
+    "question": "What are the two main functions defined by a stack?",
+    "reference_answer": "push and pop",
+    "student_answer": "pop and push",
+    "concepts": [],
+    "unmapped_terms": [
+      "pop",
+      "stack",
+      "push"
+    ],
+    "domain_match_score": 0.0995,
+    "out_of_kg_domain": false,
+    "matched_concepts": [],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 0.0,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 0.0,
+      "overall": 0.0,
+      "out_of_kg_domain": false,
+      "anchor_ratio": 0.0,
+      "clustering_coefficient": 0.0,
+      "graph_diameter": 0,
+      "kg_relevance_score": 0.2
+    }
+  },
+  {
+    "id": "E08.Q02.A13",
+    "qid": "E08.Q02",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 5.0,
+    "c5_fix": 5.0,
+    "kg_err": 4.0,
+    "cllm_err": 0.0,
+    "question": "What are the two main functions defined by a stack?",
+    "reference_answer": "push and pop",
+    "student_answer": "pop and push",
+    "concepts": [],
+    "unmapped_terms": [
+      "pop",
+      "stack",
+      "push"
+    ],
+    "domain_match_score": 0.0995,
+    "out_of_kg_domain": false,
+    "matched_concepts": [],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 0.0,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 0.0,
+      "overall": 0.0,
+      "out_of_kg_domain": false,
+      "anchor_ratio": 0.0,
+      "clustering_coefficient": 0.0,
+      "graph_diameter": 0,
+      "kg_relevance_score": 0.2
+    }
+  },
+  {
+    "id": "E08.Q02.A15",
+    "qid": "E08.Q02",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 5.0,
+    "c5_fix": 5.0,
+    "kg_err": 4.0,
+    "cllm_err": 0.0,
+    "question": "What are the two main functions defined by a stack?",
+    "reference_answer": "push and pop",
+    "student_answer": "pop and push",
+    "concepts": [],
+    "unmapped_terms": [
+      "pop",
+      "stack",
+      "push"
+    ],
+    "domain_match_score": 0.0995,
+    "out_of_kg_domain": false,
+    "matched_concepts": [],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 0.0,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 0.0,
+      "overall": 0.0,
+      "out_of_kg_domain": false,
+      "anchor_ratio": 0.0,
+      "clustering_coefficient": 0.0,
+      "graph_diameter": 0,
+      "kg_relevance_score": 0.2
+    }
+  },
+  {
+    "id": "E09.Q01.A11",
+    "qid": "E09.Q01",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 2.5,
+    "c5_fix": 2.5,
+    "kg_err": 4.0,
+    "cllm_err": 2.5,
+    "question": "What is a queue?",
+    "reference_answer": "A data structure that can store elements, which has the property that the last item added will be the last to be removed -LRB- or first-in-first-out -RRB- .",
+    "student_answer": "A queue is a FIFO data structure.",
+    "concepts": [
+      {
+        "concept_id": "queue",
+        "confidence": 1.0,
+        "evidence": "A queue",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "fifo",
+        "confidence": 1.0,
+        "evidence": "FIFO",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "data_structure",
+        "confidence": 1.0,
+        "evidence": "data structure",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [],
+    "domain_match_score": 0.0,
+    "out_of_kg_domain": true,
+    "matched_concepts": [],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 0.0,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 0.0,
+      "overall": 0.0,
+      "out_of_kg_domain": true
+    }
+  },
+  {
+    "id": "E09.Q01.A12",
+    "qid": "E09.Q01",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 3.0,
+    "c5_fix": 3.0,
+    "kg_err": 4.0,
+    "cllm_err": 2.0,
+    "question": "What is a queue?",
+    "reference_answer": "A data structure that can store elements, which has the property that the last item added will be the last to be removed -LRB- or first-in-first-out -RRB- .",
+    "student_answer": "A queue is a first in first out data structure.",
+    "concepts": [
+      {
+        "concept_id": "queue",
+        "confidence": 1.0,
+        "evidence": "A queue is a first in first out data structure.",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "fifo",
+        "confidence": 1.0,
+        "evidence": "first in first out",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "data_structure",
+        "confidence": 1.0,
+        "evidence": "data structure",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [],
+    "domain_match_score": 0.0,
+    "out_of_kg_domain": true,
+    "matched_concepts": [],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 0.0,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 0.0,
+      "overall": 0.0,
+      "out_of_kg_domain": true
+    }
+  },
+  {
+    "id": "E09.Q01.A14",
+    "qid": "E09.Q01",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 3.5,
+    "c5_fix": 3.0,
+    "kg_err": 4.0,
+    "cllm_err": 1.5,
+    "question": "What is a queue?",
+    "reference_answer": "A data structure that can store elements, which has the property that the last item added will be the last to be removed -LRB- or first-in-first-out -RRB- .",
+    "student_answer": "A first in, first out Abstract Data type that can be used to store values.",
+    "concepts": [
+      {
+        "concept_id": "queue",
+        "confidence": 1.0,
+        "evidence": "A first in, first out Abstract Data type that can be used to store values.",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "fifo",
+        "confidence": 1.0,
+        "evidence": "first in, first out",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "abstract_data_type",
+        "confidence": 1.0,
+        "evidence": "Abstract Data type",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "data_structure",
+        "confidence": 0.8,
+        "evidence": "store values",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [
+      "values"
+    ],
+    "domain_match_score": 0.0,
+    "out_of_kg_domain": true,
+    "matched_concepts": [],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 0.0,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 0.0,
+      "overall": 0.0,
+      "out_of_kg_domain": true
+    }
+  },
+  {
+    "id": "E09.Q01.A15",
+    "qid": "E09.Q01",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 3.5,
+    "c5_fix": 3.0,
+    "kg_err": 4.0,
+    "cllm_err": 1.5,
+    "question": "What is a queue?",
+    "reference_answer": "A data structure that can store elements, which has the property that the last item added will be the last to be removed -LRB- or first-in-first-out -RRB- .",
+    "student_answer": "Stores a set of elements in a particular order with a First In, First Out principle",
+    "concepts": [
+      {
+        "concept_id": "queue",
+        "confidence": 1.0,
+        "evidence": "Stores a set of elements in a particular order with a First In, First Out principle",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "data_structure",
+        "confidence": 0.8,
+        "evidence": "Stores a set of elements",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "fifo",
+        "confidence": 1.0,
+        "evidence": "First In, First Out principle",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [
+      "particular order"
+    ],
+    "domain_match_score": 0.0,
+    "out_of_kg_domain": true,
+    "matched_concepts": [],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 0.0,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 0.0,
+      "overall": 0.0,
+      "out_of_kg_domain": true
+    }
+  },
+  {
+    "id": "E09.Q01.A18",
+    "qid": "E09.Q01",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 3.0,
+    "c5_fix": 3.0,
+    "kg_err": 4.0,
+    "cllm_err": 2.0,
+    "question": "What is a queue?",
+    "reference_answer": "A data structure that can store elements, which has the property that the last item added will be the last to be removed -LRB- or first-in-first-out -RRB- .",
+    "student_answer": "a finite ordered list with zero or more elements, based upon First In First Out",
+    "concepts": [
+      {
+        "concept_id": "queue",
+        "confidence": 1.0,
+        "evidence": "a queue",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "data_structure",
+        "confidence": 0.7333,
+        "evidence": "list",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "fifo",
+        "confidence": 1.0,
+        "evidence": "First In First Out",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [
+      "zero or more",
+      "zero or more elements",
+      "finite ordered",
+      "finite"
+    ],
+    "domain_match_score": 0.0,
+    "out_of_kg_domain": true,
+    "matched_concepts": [],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 0.0,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 0.0,
+      "overall": 0.0,
+      "out_of_kg_domain": true
+    }
+  },
+  {
+    "id": "E09.Q01.A19",
+    "qid": "E09.Q01",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 3.0,
+    "c5_fix": 3.0,
+    "kg_err": 4.0,
+    "cllm_err": 2.0,
+    "question": "What is a queue?",
+    "reference_answer": "A data structure that can store elements, which has the property that the last item added will be the last to be removed -LRB- or first-in-first-out -RRB- .",
+    "student_answer": "a data structure that performs operations in the order of first in first out FIFO",
+    "concepts": [
+      {
+        "concept_id": "data_structure",
+        "confidence": 1.0,
+        "evidence": "a data structure",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "queue",
+        "confidence": 1.0,
+        "evidence": "a data structure that performs operations in the order of first in first out FIFO",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "fifo",
+        "confidence": 1.0,
+        "evidence": "first in first out FIFO",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [
+      "operation"
+    ],
+    "domain_match_score": 0.0,
+    "out_of_kg_domain": true,
+    "matched_concepts": [],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 0.0,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 0.0,
+      "overall": 0.0,
+      "out_of_kg_domain": true
+    }
+  },
+  {
+    "id": "E09.Q01.A23",
+    "qid": "E09.Q01",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 3.0,
+    "c5_fix": 2.0,
+    "kg_err": 4.0,
+    "cllm_err": 2.0,
+    "question": "What is a queue?",
+    "reference_answer": "A data structure that can store elements, which has the property that the last item added will be the last to be removed -LRB- or first-in-first-out -RRB- .",
+    "student_answer": "A data structure that removes nodes from the head and adds nodes at the tail.",
+    "concepts": [
+      {
+        "concept_id": "data_structure",
+        "confidence": 1.0,
+        "evidence": "A data structure",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "queue",
+        "confidence": 1.0,
+        "evidence": "A data structure that removes nodes from the head and adds nodes at the tail.",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "deletion",
+        "confidence": 0.9,
+        "evidence": "removes nodes",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "node",
+        "confidence": 0.8,
+        "evidence": "nodes",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "head",
+        "confidence": 1.0,
+        "evidence": "from the head",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "insertion",
+        "confidence": 0.9,
+        "evidence": "adds nodes",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "tail",
+        "confidence": 1.0,
+        "evidence": "at the tail",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [],
+    "domain_match_score": 0.0,
+    "out_of_kg_domain": true,
+    "matched_concepts": [],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 0.0,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 0.0,
+      "overall": 0.0,
+      "out_of_kg_domain": true
+    }
+  },
+  {
+    "id": "E09.Q01.A24",
+    "qid": "E09.Q01",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 3.0,
+    "c5_fix": 3.0,
+    "kg_err": 4.0,
+    "cllm_err": 2.0,
+    "question": "What is a queue?",
+    "reference_answer": "A data structure that can store elements, which has the property that the last item added will be the last to be removed -LRB- or first-in-first-out -RRB- .",
+    "student_answer": "a queue is a list of things that follows the first in first out behavior",
+    "concepts": [
+      {
+        "concept_id": "queue",
+        "confidence": 1.0,
+        "evidence": "a queue is a list of things",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "array",
+        "confidence": 0.7,
+        "evidence": "a list of things",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "fifo",
+        "confidence": 1.0,
+        "evidence": "first in first out behavior",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [
+      "behavior",
+      "things"
+    ],
+    "domain_match_score": 0.0,
+    "out_of_kg_domain": true,
+    "matched_concepts": [],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 0.0,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 0.0,
+      "overall": 0.0,
+      "out_of_kg_domain": true
+    }
+  },
+  {
+    "id": "E09.Q01.A25",
+    "qid": "E09.Q01",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 3.5,
+    "c5_fix": 3.0,
+    "kg_err": 4.0,
+    "cllm_err": 1.5,
+    "question": "What is a queue?",
+    "reference_answer": "A data structure that can store elements, which has the property that the last item added will be the last to be removed -LRB- or first-in-first-out -RRB- .",
+    "student_answer": "a queue is a storage container that holds its objects in a first in, first out priority",
+    "concepts": [
+      {
+        "concept_id": "queue",
+        "confidence": 1.0,
+        "evidence": "a queue is a storage container",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "data_structure",
+        "confidence": 0.8,
+        "evidence": "a queue is a storage container",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "fifo",
+        "confidence": 1.0,
+        "evidence": "first in, first out priority",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [
+      "priority",
+      "storage container",
+      "holds its objects"
+    ],
+    "domain_match_score": 0.0,
+    "out_of_kg_domain": true,
+    "matched_concepts": [],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 0.0,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 0.0,
+      "overall": 0.0,
+      "out_of_kg_domain": true
+    }
+  },
+  {
+    "id": "E09.Q02.A00",
+    "qid": "E09.Q02",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 5.0,
+    "c5_fix": 5.0,
+    "kg_err": 4.0,
+    "cllm_err": 0.0,
+    "question": "What are the two main functions defined by a queue?",
+    "reference_answer": "enqueue and dequeue",
+    "student_answer": "enqueue which adds data to the queue and dequeue which deletes data from the queue",
+    "concepts": [
+      {
+        "concept_id": "queue",
+        "confidence": 1.0,
+        "evidence": "queue",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "enqueue",
+        "confidence": 1.0,
+        "evidence": "enqueue",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "dequeue",
+        "confidence": 1.0,
+        "evidence": "dequeue",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [
+      "data",
+      "add_operation",
+      "delete_operation"
+    ],
+    "domain_match_score": 0.0995,
+    "out_of_kg_domain": false,
+    "matched_concepts": [
+      "queue",
+      "dequeue",
+      "enqueue"
+    ],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 1.0,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 1.0,
+      "overall": 0.7,
+      "out_of_kg_domain": false,
+      "anchor_ratio": 1.0,
+      "clustering_coefficient": 0.0,
+      "graph_diameter": 2,
+      "kg_relevance_score": 0.2
+    }
+  },
+  {
+    "id": "E09.Q02.A01",
+    "qid": "E09.Q02",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 4.0,
+    "c5_fix": 3.5,
+    "kg_err": 4.0,
+    "cllm_err": 1.0,
+    "question": "What are the two main functions defined by a queue?",
+    "reference_answer": "enqueue and dequeue",
+    "student_answer": "enqueue, which inserts a specified element at the head of the specified queue, and dequeue, which removes the specified element from the queue.",
+    "concepts": [],
+    "unmapped_terms": [
+      "dequeue",
+      "element",
+      "queue",
+      "head",
+      "enqueue"
+    ],
+    "domain_match_score": 0.0995,
+    "out_of_kg_domain": false,
+    "matched_concepts": [],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 0.0,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 0.0,
+      "overall": 0.0,
+      "out_of_kg_domain": false,
+      "anchor_ratio": 0.0,
+      "clustering_coefficient": 0.0,
+      "graph_diameter": 0,
+      "kg_relevance_score": 0.2
+    }
+  },
+  {
+    "id": "E09.Q02.A03",
+    "qid": "E09.Q02",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 5.0,
+    "c5_fix": 5.0,
+    "kg_err": 4.0,
+    "cllm_err": 0.0,
+    "question": "What are the two main functions defined by a queue?",
+    "reference_answer": "enqueue and dequeue",
+    "student_answer": "The two main functions are enqueue and dequeue.",
+    "concepts": [
+      {
+        "concept_id": "enqueue",
+        "confidence": 1.0,
+        "evidence": "enqueue",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "dequeue",
+        "confidence": 1.0,
+        "evidence": "dequeue",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "queue",
+        "confidence": 1.0,
+        "evidence": "queue",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [
+      "functions"
+    ],
+    "domain_match_score": 0.0995,
+    "out_of_kg_domain": false,
+    "matched_concepts": [
+      "queue",
+      "dequeue",
+      "enqueue"
+    ],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 1.0,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 1.0,
+      "overall": 0.7,
+      "out_of_kg_domain": false,
+      "anchor_ratio": 1.0,
+      "clustering_coefficient": 0.0,
+      "graph_diameter": 2,
+      "kg_relevance_score": 0.2
+    }
+  },
+  {
+    "id": "E09.Q02.A04",
+    "qid": "E09.Q02",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 5.0,
+    "c5_fix": 5.0,
+    "kg_err": 4.0,
+    "cllm_err": 0.0,
+    "question": "What are the two main functions defined by a queue?",
+    "reference_answer": "enqueue and dequeue",
+    "student_answer": "Enqueue and Dequeue",
+    "concepts": [
+      {
+        "concept_id": "enqueue",
+        "confidence": 1.0,
+        "evidence": "Enqueue",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "dequeue",
+        "confidence": 1.0,
+        "evidence": "Dequeue",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "queue",
+        "confidence": 1.0,
+        "evidence": "queue",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [
+      "functions"
+    ],
+    "domain_match_score": 0.0995,
+    "out_of_kg_domain": false,
+    "matched_concepts": [
+      "queue",
+      "dequeue",
+      "enqueue"
+    ],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 1.0,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 1.0,
+      "overall": 0.7,
+      "out_of_kg_domain": false,
+      "anchor_ratio": 1.0,
+      "clustering_coefficient": 0.0,
+      "graph_diameter": 2,
+      "kg_relevance_score": 0.2
+    }
+  },
+  {
+    "id": "E09.Q02.A05",
+    "qid": "E09.Q02",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 5.0,
+    "c5_fix": 5.0,
+    "kg_err": 4.0,
+    "cllm_err": 0.0,
+    "question": "What are the two main functions defined by a queue?",
+    "reference_answer": "enqueue and dequeue",
+    "student_answer": "Enqueue and Dequeue",
+    "concepts": [
+      {
+        "concept_id": "enqueue",
+        "confidence": 1.0,
+        "evidence": "Enqueue",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "dequeue",
+        "confidence": 1.0,
+        "evidence": "Dequeue",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "queue",
+        "confidence": 1.0,
+        "evidence": "queue",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [
+      "enqueue_operation",
+      "queue_data_structure",
+      "dequeue_operation"
+    ],
+    "domain_match_score": 0.0995,
+    "out_of_kg_domain": false,
+    "matched_concepts": [
+      "queue",
+      "dequeue",
+      "enqueue"
+    ],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 1.0,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 0.0,
+      "overall": 0.4,
+      "out_of_kg_domain": false,
+      "anchor_ratio": 1.0,
+      "clustering_coefficient": 0.0,
+      "graph_diameter": 2,
+      "kg_relevance_score": 0.2
+    }
+  },
+  {
+    "id": "E09.Q02.A14",
+    "qid": "E09.Q02",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 5.0,
+    "c5_fix": 4.0,
+    "kg_err": 4.0,
+    "cllm_err": 0.0,
+    "question": "What are the two main functions defined by a queue?",
+    "reference_answer": "enqueue and dequeue",
+    "student_answer": "enque -LRB- Data -RRB- , Deque -LRB- -RRB-",
+    "concepts": [
+      {
+        "concept_id": "enqueue",
+        "confidence": 1.0,
+        "evidence": "enque",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "dequeue",
+        "confidence": 1.0,
+        "evidence": "Deque",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "queue",
+        "confidence": 0.8,
+        "evidence": "queue",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [
+      "data",
+      "Data"
+    ],
+    "domain_match_score": 0.0995,
+    "out_of_kg_domain": false,
+    "matched_concepts": [
+      "queue",
+      "dequeue",
+      "enqueue"
+    ],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 0.9048,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 1.0,
+      "overall": 0.6619,
+      "out_of_kg_domain": false,
+      "anchor_ratio": 1.0,
+      "clustering_coefficient": 0.0,
+      "graph_diameter": 2,
+      "kg_relevance_score": 0.2
+    }
+  },
+  {
+    "id": "E09.Q03.A26",
+    "qid": "E09.Q03",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 0.5,
+    "c5_fix": 0.5,
+    "kg_err": 4.0,
+    "cllm_err": 4.5,
+    "question": "How can you implement a queue with an array?",
+    "reference_answer": "Use a circular array. Keep the rear of the queue toward the end of the array, and the front toward the beginning, and allow the rear pointer to wrap around.",
+    "student_answer": "Boolean isFullQ -LRB- queue -RRB- :: equals rear equals equals MAX QUEUE SIZE-1",
+    "concepts": [
+      {
+        "concept_id": "queue",
+        "confidence": 1.0,
+        "evidence": "queue",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [
+      "Boolean",
+      "MAX QUEUE SIZE-1",
+      "rear",
+      "isFullQ"
+    ],
+    "domain_match_score": 0.7926,
+    "out_of_kg_domain": false,
+    "matched_concepts": [
+      "queue"
+    ],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 1.0,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 0.5,
+      "overall": 0.55,
+      "out_of_kg_domain": false,
+      "kg_relevance_score": 0.5
+    }
+  },
+  {
+    "id": "E09.Q04.A10",
+    "qid": "E09.Q04",
+    "human_score": 4.5,
+    "kg_score": 0.5,
+    "cllm_score": 2.0,
+    "c5_fix": 1.5,
+    "kg_err": 4.0,
+    "cllm_err": 2.5,
+    "question": "How can you implement a queue with a list?",
+    "reference_answer": "Keep the rear of the queue pointing to the tail of the linked list, so the enqueue operation is done at the end of the list, and keep the front of the queue pointing to the head of the linked list, so the dequeue operation is done at the beginning of the list.",
+    "student_answer": "make a linked list and add on to the front and delete from the back, keep track of both to do so.",
+    "concepts": [
+      {
+        "concept_id": "linked_list",
+        "confidence": 1.0,
+        "evidence": "make a linked list",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "queue",
+        "confidence": 1.0,
+        "evidence": "a linked list and add on to the front and delete from the back",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "enqueue",
+        "confidence": 0.8,
+        "evidence": "add on to the front",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "dequeue",
+        "confidence": 0.8,
+        "evidence": "delete from the back",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [
+      "front",
+      "back",
+      "keep track of both"
+    ],
+    "domain_match_score": 0.7926,
+    "out_of_kg_domain": false,
+    "matched_concepts": [
+      "queue",
+      "linked_list",
+      "dequeue",
+      "enqueue"
+    ],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 0.929,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 1.0,
+      "overall": 0.6716,
+      "out_of_kg_domain": false,
+      "anchor_ratio": 1.0,
+      "clustering_coefficient": 0.0,
+      "graph_diameter": 2,
+      "kg_relevance_score": 0.5
+    }
+  },
+  {
+    "id": "E09.Q04.A12",
+    "qid": "E09.Q04",
+    "human_score": 4.5,
+    "kg_score": 0.5,
+    "cllm_score": 1.0,
+    "c5_fix": 1.5,
+    "kg_err": 4.0,
+    "cllm_err": 3.5,
+    "question": "How can you implement a queue with a list?",
+    "reference_answer": "Keep the rear of the queue pointing to the tail of the linked list, so the enqueue operation is done at the end of the list, and keep the front of the queue pointing to the head of the linked list, so the dequeue operation is done at the beginning of the list.",
+    "student_answer": "throw in data at the head and take it out at the tail",
+    "concepts": [
+      {
+        "concept_id": "queue",
+        "confidence": 1.0,
+        "evidence": "queue",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "enqueue",
+        "confidence": 0.8,
+        "evidence": "throw in data at the head",
+        "is_correct_usage": false
+      },
+      {
+        "concept_id": "dequeue",
+        "confidence": 0.8,
+        "evidence": "take it out at the tail",
+        "is_correct_usage": false
+      }
+    ],
+    "unmapped_terms": [
+      "data",
+      "list",
+      "tail",
+      "head"
+    ],
+    "domain_match_score": 0.7926,
+    "out_of_kg_domain": false,
+    "matched_concepts": [
+      "queue",
+      "dequeue",
+      "enqueue"
+    ],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 0.8952,
+      "relationship_accuracy": 0.5,
+      "integration_quality": 1.0,
+      "overall": 0.8081,
+      "out_of_kg_domain": false,
+      "anchor_ratio": 1.0,
+      "clustering_coefficient": 0.0,
+      "graph_diameter": 2,
+      "kg_relevance_score": 0.5
+    }
+  },
+  {
+    "id": "E10.Q02.A02",
+    "qid": "E10.Q02",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 4.0,
+    "c5_fix": 4.0,
+    "kg_err": 4.0,
+    "cllm_err": 1.0,
+    "question": "What is the height of a tree?",
+    "reference_answer": "The length of the longest path from the root to any of its leaves.",
+    "student_answer": "The height of a tree is the number of nodes on the longest path from the root to a leaf.",
+    "concepts": [
+      {
+        "concept_id": "tree_height",
+        "confidence": 1.0,
+        "evidence": "The height of a tree is the number of nodes on the longest path from the root to a leaf.",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [
+      "abstract_concept"
+    ],
+    "domain_match_score": 0.1985,
+    "out_of_kg_domain": false,
+    "matched_concepts": [
+      "tree_height"
+    ],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 1.0,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 0.5,
+      "overall": 0.55,
+      "out_of_kg_domain": false
+    }
+  },
+  {
+    "id": "E10.Q02.A03",
+    "qid": "E10.Q02",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 4.0,
+    "c5_fix": 4.0,
+    "kg_err": 4.0,
+    "cllm_err": 1.0,
+    "question": "What is the height of a tree?",
+    "reference_answer": "The length of the longest path from the root to any of its leaves.",
+    "student_answer": "The number of nodes on the longest path from the root of the tree to a leaf.",
+    "concepts": [
+      {
+        "concept_id": "tree_height",
+        "confidence": 1.0,
+        "evidence": "The number of nodes on the longest path from the root of the tree to a leaf.",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "data_structure",
+        "confidence": 0.7,
+        "evidence": "root",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [
+      "nodes",
+      "path",
+      "abstract_concept"
+    ],
+    "domain_match_score": 0.1985,
+    "out_of_kg_domain": false,
+    "matched_concepts": [
+      "tree_height",
+      "data_structure"
+    ],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 0.7778,
+      "relationship_accuracy": 1.0,
+      "integration_quality": 0.45,
+      "overall": 0.7461,
+      "out_of_kg_domain": false
+    }
+  },
+  {
+    "id": "E10.Q02.A05",
+    "qid": "E10.Q02",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 4.5,
+    "c5_fix": 4.5,
+    "kg_err": 4.0,
+    "cllm_err": 0.5,
+    "question": "What is the height of a tree?",
+    "reference_answer": "The length of the longest path from the root to any of its leaves.",
+    "student_answer": "the height of a tree is the length from the root to the furthest leaf",
+    "concepts": [
+      {
+        "concept_id": "tree_height",
+        "confidence": 1.0,
+        "evidence": "the height of a tree is the length from the root to the furthest leaf",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [
+      "tree",
+      "leaf",
+      "length",
+      "root"
+    ],
+    "domain_match_score": 0.1985,
+    "out_of_kg_domain": false,
+    "matched_concepts": [
+      "tree_height"
+    ],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 1.0,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 0.5,
+      "overall": 0.55,
+      "out_of_kg_domain": false
+    }
+  },
+  {
+    "id": "E10.Q02.A07",
+    "qid": "E10.Q02",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 3.5,
+    "c5_fix": 4.0,
+    "kg_err": 4.0,
+    "cllm_err": 1.5,
+    "question": "What is the height of a tree?",
+    "reference_answer": "The length of the longest path from the root to any of its leaves.",
+    "student_answer": "The height of a tree is the number of levels between the root and the leaf farthest away from it.",
+    "concepts": [
+      {
+        "concept_id": "tree_height",
+        "confidence": 1.0,
+        "evidence": "The height of a tree is the number of levels between the root and the leaf farthest away from it.",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [
+      "abstract_concept_leaf",
+      "abstract_concept.leaf",
+      "abstract_concept.root",
+      "abstract_concept.tree",
+      "levels",
+      "farthest away",
+      "abstract_concept",
+      "abstract_concept_tree",
+      "abstract_concept_root"
+    ],
+    "domain_match_score": 0.1985,
+    "out_of_kg_domain": false,
+    "matched_concepts": [
+      "tree_height"
+    ],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 1.0,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 0.5,
+      "overall": 0.55,
+      "out_of_kg_domain": false
+    }
+  },
+  {
+    "id": "E10.Q02.A10",
+    "qid": "E10.Q02",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 4.5,
+    "c5_fix": 4.5,
+    "kg_err": 4.0,
+    "cllm_err": 0.5,
+    "question": "What is the height of a tree?",
+    "reference_answer": "The length of the longest path from the root to any of its leaves.",
+    "student_answer": "the distance from the deepest leaf to the root",
+    "concepts": [
+      {
+        "concept_id": "tree_height",
+        "confidence": 1.0,
+        "evidence": "the height of a tree",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [
+      "tree",
+      "leaf",
+      "abstract_concept"
+    ],
+    "domain_match_score": 0.1985,
+    "out_of_kg_domain": false,
+    "matched_concepts": [
+      "tree_height"
+    ],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 1.0,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 0.5,
+      "overall": 0.55,
+      "out_of_kg_domain": false
+    }
+  },
+  {
+    "id": "E10.Q02.A14",
+    "qid": "E10.Q02",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 4.0,
+    "c5_fix": 4.0,
+    "kg_err": 4.0,
+    "cllm_err": 1.0,
+    "question": "What is the height of a tree?",
+    "reference_answer": "The length of the longest path from the root to any of its leaves.",
+    "student_answer": "The number of nodes on the longest path from the root to the leaf.",
+    "concepts": [
+      {
+        "concept_id": "tree_height",
+        "confidence": 1.0,
+        "evidence": "The number of nodes on the longest path from the root to the leaf.",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "data_structure",
+        "confidence": 0.7,
+        "evidence": "root",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [
+      "abstract_concept.leaf",
+      "abstract_concept.node",
+      "abstract_concept.root",
+      "nodes",
+      "abstract_concept",
+      "leaf",
+      "abstract_concept.path",
+      "data_structure.tree",
+      "root"
+    ],
+    "domain_match_score": 0.1985,
+    "out_of_kg_domain": false,
+    "matched_concepts": [
+      "tree_height",
+      "data_structure"
+    ],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 0.7778,
+      "relationship_accuracy": 1.0,
+      "integration_quality": 0.6,
+      "overall": 0.7911,
+      "out_of_kg_domain": false
+    }
+  },
+  {
+    "id": "E10.Q02.A15",
+    "qid": "E10.Q02",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 4.0,
+    "c5_fix": 4.0,
+    "kg_err": 4.0,
+    "cllm_err": 1.0,
+    "question": "What is the height of a tree?",
+    "reference_answer": "The length of the longest path from the root to any of its leaves.",
+    "student_answer": "The height of a tree is the number of nodes on the longes path from the root to a leaf.",
+    "concepts": [
+      {
+        "concept_id": "tree_height",
+        "confidence": 1.0,
+        "evidence": "The height of a tree is the number of nodes on the longes path from the root to a leaf.",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [
+      "data_structure:root",
+      "abstract_concept",
+      "data_structure:node",
+      "data_structure:leaf",
+      "abstract_concept:path",
+      "data_structure:tree"
+    ],
+    "domain_match_score": 0.1985,
+    "out_of_kg_domain": false,
+    "matched_concepts": [
+      "tree_height"
+    ],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 1.0,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 0.5,
+      "overall": 0.55,
+      "out_of_kg_domain": false
+    }
+  },
+  {
+    "id": "E10.Q02.A20",
+    "qid": "E10.Q02",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 4.0,
+    "c5_fix": 4.0,
+    "kg_err": 4.0,
+    "cllm_err": 1.0,
+    "question": "What is the height of a tree?",
+    "reference_answer": "The length of the longest path from the root to any of its leaves.",
+    "student_answer": "The number of nodes on the longest path from the root to a leaf.",
+    "concepts": [
+      {
+        "concept_id": "tree_height",
+        "confidence": 1.0,
+        "evidence": "The number of nodes on the longest path from the root to a leaf.",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [
+      "abstract_concept.leaf",
+      "abstract_concept.node",
+      "abstract_concept.path",
+      "number",
+      "abstract_concept.root",
+      "nodes",
+      "abstract_concept",
+      "longest"
+    ],
+    "domain_match_score": 0.1985,
+    "out_of_kg_domain": false,
+    "matched_concepts": [
+      "tree_height"
+    ],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 1.0,
+      "relationship_accuracy": 0.0,
+      "integration_quality": 0.5,
+      "overall": 0.55,
+      "out_of_kg_domain": false
+    }
+  },
+  {
+    "id": "E10.Q04.A04",
+    "qid": "E10.Q04",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 5.0,
+    "c5_fix": 4.0,
+    "kg_err": 4.0,
+    "cllm_err": 0.0,
+    "question": "What is a binary tree?",
+    "reference_answer": "A tree for which the maximum number of children per node is two.",
+    "student_answer": "A tree in which each parent has a maximum of 2 children.",
+    "concepts": [
+      {
+        "concept_id": "tree",
+        "confidence": 1.0,
+        "evidence": "A tree",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "binary_tree",
+        "confidence": 1.0,
+        "evidence": "A tree in which each parent has a maximum of 2 children.",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [
+      "parent",
+      "children"
+    ],
+    "domain_match_score": 0.248,
+    "out_of_kg_domain": false,
+    "matched_concepts": [
+      "tree",
+      "binary_tree"
+    ],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 1.0,
+      "relationship_accuracy": 0.5,
+      "integration_quality": 1.0,
+      "overall": 0.85,
+      "out_of_kg_domain": false,
+      "anchor_ratio": 1.0,
+      "clustering_coefficient": 0.0,
+      "graph_diameter": 1
+    }
+  },
+  {
+    "id": "E10.Q04.A10",
+    "qid": "E10.Q04",
+    "human_score": 4.5,
+    "kg_score": 0.5,
+    "cllm_score": 4.5,
+    "c5_fix": 2.5,
+    "kg_err": 4.0,
+    "cllm_err": 0.0,
+    "question": "What is a binary tree?",
+    "reference_answer": "A tree for which the maximum number of children per node is two.",
+    "student_answer": "A binary search tree is a tree that also has the condition that each node may have at maximum 2 children",
+    "concepts": [
+      {
+        "concept_id": "binary_search_tree",
+        "confidence": 1.0,
+        "evidence": "A binary search tree",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "tree",
+        "confidence": 1.0,
+        "evidence": "is a tree",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "binary_tree",
+        "confidence": 0.8,
+        "evidence": "each node may have at maximum 2 children",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [],
+    "domain_match_score": 0.248,
+    "out_of_kg_domain": false,
+    "matched_concepts": [
+      "tree",
+      "binary_search_tree",
+      "binary_tree"
+    ],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 0.94,
+      "relationship_accuracy": 0.5,
+      "integration_quality": 0.8,
+      "overall": 0.766,
+      "out_of_kg_domain": false,
+      "anchor_ratio": 1.0,
+      "clustering_coefficient": 0.0,
+      "graph_diameter": 2
+    }
+  },
+  {
+    "id": "E10.Q04.A11",
+    "qid": "E10.Q04",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 5.0,
+    "c5_fix": 4.0,
+    "kg_err": 4.0,
+    "cllm_err": 0.0,
+    "question": "What is a binary tree?",
+    "reference_answer": "A tree for which the maximum number of children per node is two.",
+    "student_answer": "a tree where each parent can have at max two children.",
+    "concepts": [
+      {
+        "concept_id": "tree",
+        "confidence": 1.0,
+        "evidence": "a tree",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "binary_tree",
+        "confidence": 1.0,
+        "evidence": "a binary tree",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "subtree",
+        "confidence": 0.7,
+        "evidence": "two children",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [
+      "parent",
+      "children"
+    ],
+    "domain_match_score": 0.248,
+    "out_of_kg_domain": false,
+    "matched_concepts": [
+      "tree",
+      "subtree",
+      "binary_tree"
+    ],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 0.9678,
+      "relationship_accuracy": 0.5,
+      "integration_quality": 1.0,
+      "overall": 0.8371,
+      "out_of_kg_domain": false,
+      "anchor_ratio": 1.0,
+      "clustering_coefficient": 0.0,
+      "graph_diameter": 2
+    }
+  },
+  {
+    "id": "E10.Q04.A21",
+    "qid": "E10.Q04",
+    "human_score": 4.5,
+    "kg_score": 0.5,
+    "cllm_score": 4.5,
+    "c5_fix": 3.0,
+    "kg_err": 4.0,
+    "cllm_err": 0.0,
+    "question": "What is a binary tree?",
+    "reference_answer": "A tree for which the maximum number of children per node is two.",
+    "student_answer": "a binary tree is a special search tree where each node has either 2, 1, or 0 children",
+    "concepts": [
+      {
+        "concept_id": "binary_tree",
+        "confidence": 1.0,
+        "evidence": "a binary tree is a special search tree",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "binary_search_tree",
+        "confidence": 1.0,
+        "evidence": "special search tree",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "tree",
+        "confidence": 0.8,
+        "evidence": "a binary tree is a special search tree",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [
+      "child",
+      "node",
+      "children"
+    ],
+    "domain_match_score": 0.248,
+    "out_of_kg_domain": false,
+    "matched_concepts": [
+      "tree",
+      "binary_search_tree",
+      "binary_tree"
+    ],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 0.932,
+      "relationship_accuracy": 0.5,
+      "integration_quality": 1.0,
+      "overall": 0.8228,
+      "out_of_kg_domain": false,
+      "anchor_ratio": 1.0,
+      "clustering_coefficient": 0.0,
+      "graph_diameter": 2
+    }
+  },
+  {
+    "id": "E10.Q05.A19",
+    "qid": "E10.Q05",
+    "human_score": 5.0,
+    "kg_score": 1.0,
+    "cllm_score": 4.0,
+    "c5_fix": 2.5,
+    "kg_err": 4.0,
+    "cllm_err": 1.0,
+    "question": "What is a binary search tree?",
+    "reference_answer": "A binary tree that has the property that for any node the left child is smaller than the parent which in turn is smaller than the right child.",
+    "student_answer": "a binary tree with a special organization of data. where the left child of the element is less than it, and the right child is larger than it.",
+    "concepts": [
+      {
+        "concept_id": "binary_search_tree",
+        "confidence": 1.0,
+        "evidence": "a binary search tree",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "binary_tree",
+        "confidence": 1.0,
+        "evidence": "a binary tree",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "data_structure",
+        "confidence": 0.8,
+        "evidence": "organization of data",
+        "is_correct_usage": true
+      }
+    ],
+    "unmapped_terms": [
+      "right child",
+      "left child",
+      "element"
+    ],
+    "domain_match_score": 0.446,
+    "out_of_kg_domain": false,
+    "matched_concepts": [
+      "binary_search_tree",
+      "data_structure",
+      "binary_tree"
+    ],
+    "missing_concepts": [],
+    "scores": {
+      "concept_coverage": 0.9535,
+      "relationship_accuracy": 0.6667,
+      "integration_quality": 1.0,
+      "overall": 0.8814,
+      "out_of_kg_domain": false,
+      "anchor_ratio": 1.0,
+      "clustering_coefficient": 0.0,
+      "graph_diameter": 1
+    }
+  }
+]

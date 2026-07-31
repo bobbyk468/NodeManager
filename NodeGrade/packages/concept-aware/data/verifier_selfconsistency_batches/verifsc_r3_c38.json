@@ -1,0 +1,82 @@
+{
+  "raw_text": "{\n  \"scores\": {\n    \"E11.Q05.A04\": {\n      \"verified_score\": 4.5\n    },\n    \"E11.Q05.A05\": {\n      \"verified_score\": 4.5\n    },\n    \"E11.Q05.A06\": {\n      \"verified_score\": 5.0\n    },\n    \"E11.Q05.A07\": {\n      \"verified_score\": 4.5\n    },\n    \"E11.Q05.A08\": {\n      \"verified_score\": 5.0\n    },\n    \"E11.Q05.A09\": {\n      \"verified_score\": 5.0\n    },\n    \"E11.Q05.A10\": {\n      \"verified_score\": 2.5\n    },\n    \"E11.Q05.A11\": {\n      \"verified_score\": 5.0\n    },\n    \"E11.Q05.A12\": {\n      \"verified_score\": 5.0\n    },\n    \"E11.Q05.A13\": {\n      \"verified_score\": 5.0\n    },\n    \"E11.Q05.A14\": {\n      \"verified_score\": 5.0\n    },\n    \"E11.Q05.A15\": {\n      \"verified_score\": 5.0\n    },\n    \"E11.Q05.A16\": {\n      \"verified_score\": 2.5\n    },\n    \"E11.Q05.A17\": {\n      \"verified_score\": 4.5\n    },\n    \"E11.Q05.A18\": {\n      \"verified_score\": 4.5\n    },\n    \"E11.Q05.A19\": {\n      \"verified_score\": 4.5\n    },\n    \"E11.Q05.A20\": {\n      \"verified_score\": 4.5\n    },\n    \"E11.Q05.A21\": {\n      \"verified_score\": 5.0\n    },\n    \"E11.Q05.A22\": {\n      \"verified_score\": 5.0\n    },\n    \"E11.Q05.A23\": {\n      \"verified_score\": 5.0\n    },\n    \"E11.Q05.A24\": {\n      \"verified_score\": 4.5\n    },\n    \"E11.Q05.A25\": {\n      \"verified_score\": 5.0\n    },\n    \"E11.Q05.A26\": {\n      \"verified_score\": 4.5\n    },\n    \"E11.Q05.A27\": {\n      \"verified_score\": 2.5\n    },\n    \"E11.Q05.A28\": {\n      \"verified_score\": 5.0\n    }\n  }\n}",
+  "parsed": {
+    "scores": {
+      "E11.Q05.A04": {
+        "verified_score": 4.5
+      },
+      "E11.Q05.A05": {
+        "verified_score": 4.5
+      },
+      "E11.Q05.A06": {
+        "verified_score": 5.0
+      },
+      "E11.Q05.A07": {
+        "verified_score": 4.5
+      },
+      "E11.Q05.A08": {
+        "verified_score": 5.0
+      },
+      "E11.Q05.A09": {
+        "verified_score": 5.0
+      },
+      "E11.Q05.A10": {
+        "verified_score": 2.5
+      },
+      "E11.Q05.A11": {
+        "verified_score": 5.0
+      },
+      "E11.Q05.A12": {
+        "verified_score": 5.0
+      },
+      "E11.Q05.A13": {
+        "verified_score": 5.0
+      },
+      "E11.Q05.A14": {
+        "verified_score": 5.0
+      },
+      "E11.Q05.A15": {
+        "verified_score": 5.0
+      },
+      "E11.Q05.A16": {
+        "verified_score": 2.5
+      },
+      "E11.Q05.A17": {
+        "verified_score": 4.5
+      },
+      "E11.Q05.A18": {
+        "verified_score": 4.5
+      },
+      "E11.Q05.A19": {
+        "verified_score": 4.5
+      },
+      "E11.Q05.A20": {
+        "verified_score": 4.5
+      },
+      "E11.Q05.A21": {
+        "verified_score": 5.0
+      },
+      "E11.Q05.A22": {
+        "verified_score": 5.0
+      },
+      "E11.Q05.A23": {
+        "verified_score": 5.0
+      },
+      "E11.Q05.A24": {
+        "verified_score": 4.5
+      },
+      "E11.Q05.A25": {
+        "verified_score": 5.0
+      },
+      "E11.Q05.A26": {
+        "verified_score": 4.5
+      },
+      "E11.Q05.A27": {
+        "verified_score": 2.5
+      },
+      "E11.Q05.A28": {
+        "verified_score": 5.0
+      }
+    }
+  }
+}

@@ -283,35 +283,24 @@ class LLMVerifier:
             raise ValueError("verifier_weight must be in [0, 1]")
         self.verifier_weight = verifier_weight
 
-    def verify(
+    def build_user_prompt(
         self,
         question: str,
         student_answer: str,
-        kg_score: float,
         comparison_result: dict,
         blooms: dict,
         solo: dict,
         misconceptions: dict,
         reference_answer: str = "",
         mode: str = "sag",
-    ) -> VerifierResult:
+    ) -> tuple[str, str, bool]:
         """
-        Verify and optionally adjust the KG-computed score.
-
-        Parameters
-        ----------
-        question         : Assessment question
-        student_answer   : Student's free-text response
-        kg_score         : Overall score from ConceptGradePipeline
-        comparison_result: Output of KnowledgeGraphComparator.compare().to_dict()
-        blooms           : Bloom's classification dict
-        solo             : SOLO classification dict
-        mode             : "sag" (default) or "lag" — selects calibrated prompt for essays
-        misconceptions   : Misconception detection dict
-
-        Returns
-        -------
-        VerifierResult with blended final score
+        Build (system_prompt, user_prompt, out_of_kg) for a single sample,
+        WITHOUT calling the LLM. Extracted from verify() so callers that need
+        to batch many samples into one prompt (e.g. a retuning grid search
+        that would otherwise need one verifier call per sample) can reuse the
+        exact same prompt-construction logic verify() uses for a single call,
+        rather than re-deriving it and risking drift.
         """
         analysis = comparison_result.get("analysis", comparison_result)
 
@@ -392,9 +381,51 @@ class LLMVerifier:
             topological_note=topological_note,
         )
         user_prompt = user_template.format(**fmt_kwargs)
+        system_prompt = VERIFIER_SYSTEM_LAG if mode == "lag" else VERIFIER_SYSTEM
+        return system_prompt, user_prompt, out_of_kg
+
+    def verify(
+        self,
+        question: str,
+        student_answer: str,
+        kg_score: float,
+        comparison_result: dict,
+        blooms: dict,
+        solo: dict,
+        misconceptions: dict,
+        reference_answer: str = "",
+        mode: str = "sag",
+    ) -> VerifierResult:
+        """
+        Verify and optionally adjust the KG-computed score.
+
+        Parameters
+        ----------
+        question         : Assessment question
+        student_answer   : Student's free-text response
+        kg_score         : Overall score from ConceptGradePipeline
+        comparison_result: Output of KnowledgeGraphComparator.compare().to_dict()
+        blooms           : Bloom's classification dict
+        solo             : SOLO classification dict
+        mode             : "sag" (default) or "lag" — selects calibrated prompt for essays
+        misconceptions   : Misconception detection dict
+
+        Returns
+        -------
+        VerifierResult with blended final score
+        """
+        system_prompt, user_prompt, out_of_kg = self.build_user_prompt(
+            question=question,
+            student_answer=student_answer,
+            comparison_result=comparison_result,
+            blooms=blooms,
+            solo=solo,
+            misconceptions=misconceptions,
+            reference_answer=reference_answer,
+            mode=mode,
+        )
 
         try:
-            system_prompt = VERIFIER_SYSTEM_LAG if mode == "lag" else VERIFIER_SYSTEM
             raw = self._call_llm(system_prompt, user_prompt)
             parsed = self._parse_json(raw)
             raw_score = float(parsed.get("verified_score", kg_score * 5))

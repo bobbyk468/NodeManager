@@ -10,6 +10,7 @@ against the expert domain knowledge graph.
 
 import json
 import re
+import string
 from dataclasses import dataclass, field
 from typing import Optional
 from conceptgrade.llm_client import LLMClient as Groq
@@ -254,11 +255,25 @@ class ConceptExtractor:
         q_lower = question.lower()
         seed_ids: list[str] = []
 
+        # Bug fix (2026-07-31): the old `q_lower.split()` left trailing
+        # punctuation attached to the last word of a question ("queue?"),
+        # which then never substring-matched the clean KG text ("queue").
+        # This caused every "What is a <concept>?" question to silently
+        # find zero seed concepts and get misclassified OUT_OF_KG_DOMAIN
+        # regardless of extraction quality (see REPRODUCIBILITY.md,
+        # "Offline KG-grounding failure-mode analysis", Finding 1).
+        # Strip leading/trailing punctuation per token (not a blunt regex
+        # extraction) so short CS terms ("map", "set", "dag") and internal
+        # hyphens ("big-o", "depth-first") both survive tokenization, and
+        # only length-filter on the cleaned token.
+        q_words = [
+            w for w in (t.strip(string.punctuation) for t in q_lower.split())
+            if len(w) > 3
+        ]
         for c in self.domain_graph.get_all_concepts():
             # Match on id, name, description, or aliases
             text = f"{c.id} {c.name} {c.description} {' '.join(c.aliases or [])}".lower()
             # Score: how many question words appear in the concept text
-            q_words = [w for w in q_lower.split() if len(w) > 3]
             if any(w in text for w in q_words):
                 seed_ids.append(c.id)
 

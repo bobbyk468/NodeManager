@@ -110,6 +110,26 @@ class ComparisonResult:
     # assessable" from "0.0 because incorrect".
     out_of_kg_domain: bool = False
 
+    # Fix (2026-07-31): concept_coverage's ground truth. When the caller
+    # supplies a real `expected_concepts` list, coverage measures the
+    # student against that external gold set and is trustworthy. When no
+    # `expected_concepts` is supplied -- the case for every production
+    # call in this codebase today -- coverage falls back to comparing the
+    # student's concepts against themselves, which is tautologically 1.0
+    # for any non-empty extraction regardless of correctness (see
+    # REPRODUCIBILITY.md, "Finding 3"). `coverage_validated=False` marks
+    # this explicitly so downstream aggregation (pipeline.py) can exclude
+    # the dimension rather than silently trust a vacuous number. This is
+    # NOT a claim that coverage is permanently uncomputable -- only that
+    # it was not validated for this specific comparison, because no
+    # external ground truth was supplied. Three candidate automated
+    # ground-truth sources (question keyword-match seed set, its 1-hop KG
+    # expansion, reference-answer concept extraction) were evaluated
+    # offline and rejected -- see REPRODUCIBILITY.md's "Finding 3" section
+    # for the full evidence and the pre-committed stopping rule that ended
+    # that search.
+    coverage_validated: bool = True
+
     def to_dict(self) -> dict:
         scores: dict = {
             "concept_coverage": round(self.concept_coverage_score, 4),
@@ -117,6 +137,7 @@ class ComparisonResult:
             "integration_quality": round(self.integration_quality_score, 4),
             "overall": round(self.overall_score, 4),
             "out_of_kg_domain": self.out_of_kg_domain,
+            "coverage_validated": self.coverage_validated,
         }
         if self.primary_coverage_score > 0.0 or self.secondary_coverage_score > 0.0:
             scores["primary_coverage"]   = round(self.primary_coverage_score, 4)
@@ -298,8 +319,14 @@ class KnowledgeGraphComparator:
         if expected_concepts:
             expected_set = set(expected_concepts)
         else:
-            # Use the question-relevant subgraph
+            # No external ground truth supplied -- fall back to the
+            # student's own concepts so downstream code (matched/missing
+            # lists, feedback) keeps working, but flag the resulting
+            # coverage number as unvalidated (see ComparisonResult
+            # docstring, "Finding 3"): it is tautologically high and must
+            # not be trusted by aggregate scoring.
             expected_set = student_graph.concept_ids
+            result.coverage_validated = False
 
         student_concept_ids = student_graph.concept_ids
 

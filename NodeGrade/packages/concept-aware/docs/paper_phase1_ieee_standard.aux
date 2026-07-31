@@ -1,0 +1,71 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}{section.1}\protected@file@percent }
+\citation{mohler2009}
+\citation{mohler2011}
+\citation{sultan2016}
+\citation{semeval2013}
+\citation{bert_asag,devlin2019}
+\citation{llm_asag1,llm_asag2}
+\citation{kg_prereq}
+\citation{kg_its}
+\citation{concept_map}
+\citation{emirtekin2025}
+\citation{biggs1982}
+\citation{bloom1956,anderson2001}
+\@writefile{toc}{\contentsline {section}{\numberline {II}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-A}}Automated Short Answer Grading}{2}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-B}}Knowledge Graphs in Education}{2}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-C}}Bloom's and SOLO Taxonomies}{2}{subsection.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {III}System Design}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-A}}Expert Domain Knowledge Graph}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces ConceptGrade five-layer architecture: concept extraction, KG comparison, cognitive depth, misconception detection, and score synthesis with Verifier blending at deployed weight $w=1.0$.}}{2}{figure.1}\protected@file@percent }
+\newlabel{fig:architecture}{{1}{2}{ConceptGrade five-layer architecture: concept extraction, KG comparison, cognitive depth, misconception detection, and score synthesis with Verifier blending at deployed weight $w=1.0$}{figure.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-B}}Concept Extraction (Layer 1)}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-C}}Knowledge Graph Comparison (Layer 2)}{2}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-D}}Cognitive Depth (Layer 3) and Misconception Detection (Layer 4)}{2}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-E}}Score Synthesis and Verification (Layer 5)}{3}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {IV}Experimental Setup}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-A}}Datasets}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-B}}Baseline and Metrics}{3}{subsection.4.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Provenance status of all three evaluation datasets.}}{3}{figure.2}\protected@file@percent }
+\newlabel{fig:provenance}{{2}{3}{Provenance status of all three evaluation datasets}{figure.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Evaluation on the real Mohler benchmark ($n=1{,}262$, 46 questions).}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:main}{{I}{3}{Evaluation on the real Mohler benchmark ($n=1{,}262$, 46 questions)}{table.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {V}Results}{3}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-A}}Main Evaluation}{3}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-B}}Component Ablation}{3}{subsection.5.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Real-data 3-condition ablation ($n=1{,}262$).}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:ablation}{{II}{4}{Real-data 3-condition ablation ($n=1{,}262$)}{table.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Knowledge-component MAE for the baseline versus all six tested repairs; every candidate underperforms the baseline.}}{4}{figure.3}\protected@file@percent }
+\newlabel{fig:diagnostic}{{3}{4}{Knowledge-component MAE for the baseline versus all six tested repairs; every candidate underperforms the baseline}{figure.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-C}}Self-Consistency Ensembling}{4}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:selfconsistency}{{\mbox  {V-C}}{4}{Self-Consistency Ensembling}{subsection.5.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces Self-consistency ensembling ($K{=}7$, $T{=}0.7$, mean-aggregated) vs.\ C\_LLM. Kaggle ASAG uses the deduplicated $n=368$ sample.}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:selfconsistency}{{III}{4}{Self-consistency ensembling ($K{=}7$, $T{=}0.7$, mean-aggregated) vs.\ C\_LLM. Kaggle ASAG uses the deduplicated $n=368$ sample}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {IV}{\ignorespaces Fair-control comparison: Verifier/C5fix$\times 7$ vs.\ an equally-resourced C\_LLM$\times 7$, in place of the single-call baseline used in Table~\ref {tab:selfconsistency}.}}{4}{table.4}\protected@file@percent }
+\newlabel{tab:faircontrol}{{IV}{4}{Fair-control comparison: Verifier/C5fix$\times 7$ vs.\ an equally-resourced C\_LLM$\times 7$, in place of the single-call baseline used in Table~\ref {tab:selfconsistency}}{table.4}{}}
+\bibstyle{IEEEtran}
+\bibcite{mohler2009}{1}
+\bibcite{mohler2011}{2}
+\bibcite{sultan2016}{3}
+\bibcite{semeval2013}{4}
+\bibcite{devlin2019}{5}
+\bibcite{bert_asag}{6}
+\bibcite{emirtekin2025}{7}
+\bibcite{bloom1956}{8}
+\bibcite{anderson2001}{9}
+\bibcite{biggs1982}{10}
+\bibcite{kg_its}{11}
+\bibcite{kg_prereq}{12}
+\bibcite{concept_map}{13}
+\bibcite{llm_asag1}{14}
+\bibcite{llm_asag2}{15}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-D}}Cross-Dataset Boundary Characterisation}{5}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {VI}Discussion and Limitations}{5}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {VII}Conclusion}{5}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{References}{5}{section*.1}\protected@file@percent }
+\bibcite{qwk_scale}{16}
+\gdef \@abspage@last{6}

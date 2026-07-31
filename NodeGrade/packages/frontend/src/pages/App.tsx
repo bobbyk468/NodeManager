@@ -1,6 +1,5 @@
 /* eslint-disable simple-import-sort/imports */
 import {
-  createTheme,
   CssBaseline,
   GlobalStyles,
   ThemeProvider,
@@ -20,6 +19,7 @@ import {
 import ErrorBoundary from '@/components/ErrorBoundary'
 import Editor from '@/pages/Editor'
 import ValidationDashboard from '@/pages/ValidationDashboard'
+import { getAppTheme } from '@/theme'
 import { LtiRegister } from './lti/LtiRegister'
 import StudentView from './StudentView'
 import InstructorDashboard from './InstructorDashboard'
@@ -172,12 +172,7 @@ export const App = () => {
   )
 
   const theme = useMemo(
-    () =>
-      createTheme({
-        palette: {
-          mode: mode ?? (prefersDarkMode ? 'dark' : 'light')
-        }
-      }),
+    () => getAppTheme(mode ?? (prefersDarkMode ? 'dark' : 'light')),
     [mode, prefersDarkMode]
   )
 

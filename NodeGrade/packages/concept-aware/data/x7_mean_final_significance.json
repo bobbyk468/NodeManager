@@ -1,0 +1,138 @@
+{
+  "note": "x7-mean (mean aggregation of 7 self-consistency attempts, temperature=0.7) supersedes x7-median as the reference design -- strictly better on Mohler and DigiKlausur, no worse on Kaggle ASAG (which remains null on this mechanism regardless of aggregation choice, consistent with no real KG signal to denoise there). Zero new API calls versus the median version -- same underlying data, different aggregation function.",
+  "mohler_combined": {
+    "cllm": {
+      "mae": 1.301239970824216,
+      "pearson_r": 0.7822240950356087,
+      "spearman_r": 0.8213001264009789,
+      "qwk": 0.49250763312024115,
+      "rmse": 1.7411859938581742
+    },
+    "single": {
+      "mae": 1.1969365426695842,
+      "pearson_r": 0.778916682498025,
+      "spearman_r": 0.8076519960665423,
+      "qwk": 0.515443570526815,
+      "rmse": 1.5520391988252125
+    },
+    "x7_mean": {
+      "mae": 1.1734135667396062,
+      "pearson_r": 0.7901461407019389,
+      "spearman_r": 0.8146336667145146,
+      "qwk": 0.5282763388740601,
+      "rmse": 1.5094070451699741
+    },
+    "x7_mean_vs_cllm": {
+      "d_z": 0.19353228529845484,
+      "p_response_two_tailed": 3.799844477340598e-15,
+      "p_response_one_tailed": 1.899922238670299e-15,
+      "p_cluster_two_tailed": 0.02639976956997958,
+      "p_cluster_one_tailed": 0.01319988478498979,
+      "question_wins": 28,
+      "question_total": 50,
+      "loocv_one_tailed_significant_folds": 50,
+      "loocv_two_tailed_significant_folds": 50
+    },
+    "x7_mean_vs_single": {
+      "d_z": 0.08770324762771378,
+      "p_response_two_tailed": 0.0013243688982413403,
+      "p_response_one_tailed": 0.0006621844491206701,
+      "p_cluster_two_tailed": 0.4296593305490084,
+      "p_cluster_one_tailed": 0.2148296652745042,
+      "question_wins": 26,
+      "question_total": 50,
+      "loocv_one_tailed_significant_folds": 0,
+      "loocv_two_tailed_significant_folds": 0
+    }
+  },
+  "digiklausur": {
+    "cllm": {
+      "mae": 1.1842105263157894,
+      "pearson_r": 0.7005545629443234,
+      "spearman_r": 0.6442299680505128,
+      "qwk": 0.5961862810396554,
+      "rmse": 1.533425312447427
+    },
+    "single": {
+      "mae": 1.1261609907120742,
+      "pearson_r": 0.6200202485165213,
+      "spearman_r": 0.525588849901725,
+      "qwk": 0.5883938817017393,
+      "rmse": 1.4704256876110324
+    },
+    "x7_mean": {
+      "mae": 1.0394736842105263,
+      "pearson_r": 0.7269124236212609,
+      "spearman_r": 0.633006742934382,
+      "qwk": 0.6620568237053783,
+      "rmse": 1.2931409908788065
+    },
+    "x7_mean_vs_cllm": {
+      "d_z": 0.21605252245304016,
+      "p_response_two_tailed": 3.836643759089777e-07,
+      "p_response_one_tailed": 1.9183218795448885e-07,
+      "p_cluster_two_tailed": 0.017425537109375,
+      "p_cluster_one_tailed": 0.0087127685546875,
+      "question_wins": 13,
+      "question_total": 17,
+      "loocv_one_tailed_significant_folds": 17,
+      "loocv_two_tailed_significant_folds": 17
+    },
+    "x7_mean_vs_single": {
+      "d_z": 0.14512228647375314,
+      "p_response_two_tailed": 0.0017576702016814146,
+      "p_response_one_tailed": 0.0008788351008407073,
+      "p_cluster_two_tailed": 0.27618520590056095,
+      "p_cluster_one_tailed": 0.13809260295028047,
+      "question_wins": 10,
+      "question_total": 17,
+      "loocv_one_tailed_significant_folds": 0,
+      "loocv_two_tailed_significant_folds": 0
+    }
+  },
+  "kaggle_asag_deduped": {
+    "cllm": {
+      "mae": 1.1480978260869565,
+      "pearson_r": 0.6662711016578143,
+      "spearman_r": 0.606546545882906,
+      "qwk": 0.6205073493295024,
+      "rmse": 1.581461040221709
+    },
+    "single": {
+      "mae": 1.141304347826087,
+      "pearson_r": 0.6115730453351008,
+      "spearman_r": 0.5129097980590193,
+      "qwk": 0.589740121073915,
+      "rmse": 1.5837146756638467
+    },
+    "x7_mean": {
+      "mae": 1.1209239130434783,
+      "pearson_r": 0.6441165652133503,
+      "spearman_r": 0.5540513742319363,
+      "qwk": 0.6178353167470458,
+      "rmse": 1.5549273015300356
+    },
+    "x7_mean_vs_cllm": {
+      "d_z": 0.03205581905803767,
+      "p_response_two_tailed": 0.14482496661208064,
+      "p_response_one_tailed": 0.07241248330604032,
+      "p_cluster_two_tailed": 0.09202992562269088,
+      "p_cluster_one_tailed": 0.04601496281134544,
+      "question_wins": 69,
+      "question_total": 150,
+      "loocv_one_tailed_significant_folds": 98,
+      "loocv_two_tailed_significant_folds": 0
+    },
+    "x7_mean_vs_single": {
+      "d_z": 0.024688352426005165,
+      "p_response_two_tailed": 0.5684249658011387,
+      "p_response_one_tailed": 0.28421248290056933,
+      "p_cluster_two_tailed": 0.1513361802182409,
+      "p_cluster_one_tailed": 0.07566809010912046,
+      "question_wins": 68,
+      "question_total": 150,
+      "loocv_one_tailed_significant_folds": 0,
+      "loocv_two_tailed_significant_folds": 0
+    }
+  }
+}

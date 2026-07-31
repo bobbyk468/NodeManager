@@ -1,0 +1,23 @@
+{
+  "n_samples": 1156,
+  "n_empty_ref_samples": 30,
+  "mean_expected_size": 3.2301038062283736,
+  "results": {
+    "current (self-referential)": {
+      "mae": 1.1640998053633218,
+      "pearson_r": 0.11806515829555139,
+      "fpr": 0.06501182033096926,
+      "low_quality_correction_rate": 0.0,
+      "n_low_quality_vacuous": 18
+    },
+    "reference-answer": {
+      "mae": 1.3842175746107266,
+      "pearson_r": 0.200025128156899,
+      "fpr": 0.2553191489361702,
+      "low_quality_correction_rate": 0.7222222222222222,
+      "n_low_quality_vacuous": 18
+    }
+  },
+  "hard_case_n": 517,
+  "easy_case_n": 639
+}

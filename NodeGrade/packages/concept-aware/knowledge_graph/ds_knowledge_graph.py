@@ -4,6 +4,17 @@ Expert-Curated Data Structures Domain Knowledge Graph.
 This is the reference knowledge graph for Computer Science Data Structures,
 built from standard curriculum (Cormen et al., Goodrich & Tamassia).
 Covers concepts typically assessed in the Mohler dataset.
+
+Version history:
+  1.0-expert  Initial release: 101 concepts, 138 relationships.
+              This is the snapshot used to compute the evaluation numbers
+              reported in Paper 1 (docs/paper_phase1_ieee.tex).
+  1.1-expert  KG-completion pass (2026-06-15): wired 15 previously-isolated
+              concepts and added operation-pair contrast edges (push/pop,
+              enqueue/dequeue, fifo/lifo, etc). 101 concepts, 187
+              relationships. NOT the snapshot the evaluation numbers in
+              Paper 1 were computed against -- re-evaluation on this
+              version is a documented open item (see paper Limitations).
 """
 
 from .ontology import Concept, Relationship, ConceptType as CT, RelationshipType as RT
@@ -13,11 +24,11 @@ from .domain_graph import DomainKnowledgeGraph
 def build_data_structures_graph() -> DomainKnowledgeGraph:
     """
     Build the expert-validated Data Structures knowledge graph.
-    
+
     Covers: Arrays, Linked Lists, Stacks, Queues, Trees, Graphs,
     Hash Tables, Sorting, Searching, Complexity Analysis, Recursion.
     """
-    graph = DomainKnowledgeGraph(domain="data_structures", version="1.0-expert")
+    graph = DomainKnowledgeGraph(domain="data_structures", version="1.1-expert")
 
     # ========================================================
     # ABSTRACT / FOUNDATIONAL CONCEPTS

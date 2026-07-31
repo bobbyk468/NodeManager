@@ -782,6 +782,17 @@ class ConceptGradePipeline:
         concept_coverage = scores.get("concept_coverage", 0)
         rel_accuracy     = scores.get("relationship_accuracy", 0)
         integration      = scores.get("integration_quality", 0)
+        # Fix (2026-07-31): concept_coverage is tautological (student
+        # concepts compared against themselves) whenever the comparator
+        # wasn't given an external `expected_concepts` ground truth --
+        # true for every production call today. Three automated candidate
+        # ground-truth sources were evaluated offline and rejected (see
+        # REPRODUCIBILITY.md, "Finding 3"); this excludes the unvalidated
+        # number from the composite score rather than trusting it, without
+        # claiming coverage is permanently uncomputable -- if a caller
+        # ever does supply real expected_concepts, coverage_validated is
+        # True and this dimension is used normally.
+        coverage_validated = scores.get("coverage_validated", True)
 
         blooms_normalized = (assessment.blooms.get("level", 1) - 1) / 5  # 0–1
         solo_normalized   = (assessment.solo.get("level", 1)   - 1) / 4  # 0–1
@@ -804,6 +815,22 @@ class ConceptGradePipeline:
                 concept_coverage = min(1.0, p_cov * 0.80 + s_cov * 0.20)
 
         # Knowledge: primary signal, spans true 0–1
+        #
+        # RETRACTED (2026-07-31): excluding unvalidated coverage and
+        # renormalizing onto {rel_accuracy, integration} was tried and
+        # offline-validated against the real comparator on all 1,156
+        # in-domain real Mohler samples (verify_finding3_fix_live.py).
+        # Result: WORSE on every metric -- MAE 1.164->1.614 (+38.6%),
+        # Pearson r 0.118->0.082, False Penalty Rate 9.0%->32.5%. Root
+        # cause: rel_accuracy is itself still broken (documented, unfixed
+        # Finding 2 -- zeroed by design for structurally relationship-free
+        # correct answers, ~21% of in-domain samples), so leaning the
+        # composite more heavily on it makes things worse, not better.
+        # `coverage_validated` is still computed and exposed in
+        # ComparisonResult/to_dict() as a diagnostic flag (useful,
+        # harmless), but the knowledge formula deliberately does NOT act
+        # on it until Finding 2 is independently fixed and re-validated.
+        # See REPRODUCIBILITY.md, "Finding 3" for the full evidence trail.
         knowledge = (
             concept_coverage * 0.45 +
             rel_accuracy     * 0.35 +

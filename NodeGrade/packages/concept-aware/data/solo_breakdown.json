@@ -2,39 +2,47 @@
   "datasets": [
     {
       "dataset": "mohler",
-      "n_total": 120,
+      "n_total": 1262,
       "by_solo": [
         {
           "solo": "Prestructural",
-          "n": 12,
-          "mae_cllm": 0.1667,
-          "mae_c5": 0.2083,
-          "delta_mae": -0.0417,
-          "reduction_pct": -25.0
+          "n": 71,
+          "mae_cllm": 1.8239,
+          "mae_c5": 1.669,
+          "delta_mae": 0.1549,
+          "reduction_pct": 8.5
         },
         {
           "solo": "Unistructural",
-          "n": 47,
-          "mae_cllm": 0.2713,
-          "mae_c5": 0.2447,
-          "delta_mae": 0.0266,
-          "reduction_pct": 9.8
+          "n": 481,
+          "mae_cllm": 1.3035,
+          "mae_c5": 1.2921,
+          "delta_mae": 0.0114,
+          "reduction_pct": 0.9
         },
         {
           "solo": "Multistructural",
-          "n": 27,
-          "mae_cllm": 0.4907,
-          "mae_c5": 0.3426,
-          "delta_mae": 0.1481,
-          "reduction_pct": 30.2
+          "n": 414,
+          "mae_cllm": 1.413,
+          "mae_c5": 1.25,
+          "delta_mae": 0.163,
+          "reduction_pct": 11.5
         },
         {
           "solo": "Relational",
-          "n": 34,
-          "mae_cllm": 0.3412,
-          "mae_c5": 0.1029,
-          "delta_mae": 0.2382,
-          "reduction_pct": 69.8
+          "n": 291,
+          "mae_cllm": 0.9347,
+          "mae_c5": 0.7715,
+          "delta_mae": 0.1632,
+          "reduction_pct": 17.5
+        },
+        {
+          "solo": "Extended Abstract",
+          "n": 5,
+          "mae_cllm": 0.9,
+          "mae_c5": 0.7,
+          "delta_mae": 0.2,
+          "reduction_pct": 22.2
         }
       ]
     },

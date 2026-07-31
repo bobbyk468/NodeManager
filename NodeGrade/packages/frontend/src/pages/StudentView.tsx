@@ -94,6 +94,7 @@ export const StudentView = () => {
         <CircularProgressWithLabel value={processingPercentage} />
       </Backdrop>
       <Container
+        maxWidth={false}
         style={{
           height: '100vh',
           overflowY: 'scroll'
@@ -104,9 +105,9 @@ export const StudentView = () => {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            justifyContent: 'center'
+            justifyContent: 'flex-start',
+            py: { xs: 3, sm: 5 }
           }}
-          padding={2}
         >
           <TaskView
             question={questionOverride ?? question}

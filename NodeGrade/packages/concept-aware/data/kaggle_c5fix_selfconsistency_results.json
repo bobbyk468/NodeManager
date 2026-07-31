@@ -1,0 +1,6273 @@
+{
+  "dataset": "kaggle_asag_dedup",
+  "n": 368,
+  "mae_cllm": 1.1480978260869565,
+  "mae_c5_single": 1.141304347826087,
+  "mae_c5fix_x7": 1.1283967391304348,
+  "c5fix_x7_vs_cllm_p_two": 0.11243237503766015,
+  "c5fix_x7_vs_cllm_p_one": 0.05621618751883008,
+  "c5fix_x7_vs_single_p_two": 0.59026478273588,
+  "c5fix_x7_vs_single_p_one": 0.29513239136794,
+  "c5fix_x7_vs_cllm_cluster_p_two": 0.07808084418012703,
+  "c5fix_x7_vs_cllm_cluster_p_one": 0.03904042209006352,
+  "c5fix_x7_vs_cllm_cluster_wins": 59,
+  "c5fix_x7_vs_cllm_cluster_n_q": 150,
+  "per_sample": [
+    {
+      "id": 0,
+      "qid": "KA001",
+      "human_score": 3.0,
+      "cllm_score": 2.0,
+      "c5_fix_single": 2.0,
+      "c5fix_x7_attempts": [
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ],
+      "c5fix_x7_median": 2.0
+    },
+    {
+      "id": 1,
+      "qid": "KA002",
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        5.0,
+        4.5,
+        5.0,
+        5.0,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 2,
+      "qid": "KA003",
+      "human_score": 5.0,
+      "cllm_score": 4.5,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        5.0,
+        5.0,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 3,
+      "qid": "KA004",
+      "human_score": 2.0,
+      "cllm_score": 3.0,
+      "c5_fix_single": 1.0,
+      "c5fix_x7_attempts": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "c5fix_x7_median": 1.0
+    },
+    {
+      "id": 4,
+      "qid": "KA005",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        5.0,
+        5.0,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 5,
+      "qid": "KA006",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.0,
+        5.0,
+        5.0,
+        4.5,
+        4.5,
+        3.0
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 6,
+      "qid": "KA007",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        4.5
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 7,
+      "qid": "KA008",
+      "human_score": 2.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 0.5,
+      "c5fix_x7_attempts": [
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "c5fix_x7_median": 0.5
+    },
+    {
+      "id": 8,
+      "qid": "KA009",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 9,
+      "qid": "KA005",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        4.5
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 10,
+      "qid": "KA006",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 1.5,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 11,
+      "qid": "KA007",
+      "human_score": 5.0,
+      "cllm_score": 3.5,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        4.5
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 12,
+      "qid": "KA010",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 13,
+      "qid": "KA011",
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "c5fix_x7_median": 3.0
+    },
+    {
+      "id": 14,
+      "qid": "KA012",
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        3.0
+      ],
+      "c5fix_x7_median": 4.0
+    },
+    {
+      "id": 15,
+      "qid": "KA013",
+      "human_score": 4.0,
+      "cllm_score": 1.5,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        3.0,
+        3.0,
+        3.0,
+        4.0,
+        4.0,
+        4.5
+      ],
+      "c5fix_x7_median": 4.0
+    },
+    {
+      "id": 16,
+      "qid": "KA014",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 17,
+      "qid": "KA015",
+      "human_score": 4.0,
+      "cllm_score": 3.0,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        4.0,
+        3.0
+      ],
+      "c5fix_x7_median": 3.0
+    },
+    {
+      "id": 18,
+      "qid": "KA016",
+      "human_score": 4.0,
+      "cllm_score": 3.5,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.5
+      ],
+      "c5fix_x7_median": 4.0
+    },
+    {
+      "id": 19,
+      "qid": "KA017",
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        3.0
+      ],
+      "c5fix_x7_median": 4.0
+    },
+    {
+      "id": 20,
+      "qid": "KA018",
+      "human_score": 4.0,
+      "cllm_score": 3.0,
+      "c5_fix_single": 2.5,
+      "c5fix_x7_attempts": [
+        4.5,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        4.0,
+        3.0
+      ],
+      "c5fix_x7_median": 3.0
+    },
+    {
+      "id": 21,
+      "qid": "KA019",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        4.5
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 22,
+      "qid": "KA020",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        4.5
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 23,
+      "qid": "KA021",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        4.5
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 24,
+      "qid": "KA022",
+      "human_score": 4.0,
+      "cllm_score": 2.0,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        3.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        3.0
+      ],
+      "c5fix_x7_median": 4.0
+    },
+    {
+      "id": 25,
+      "qid": "KA023",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 26,
+      "qid": "KA024",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 27,
+      "qid": "KA025",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 28,
+      "qid": "KA026",
+      "human_score": 5.0,
+      "cllm_score": 3.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        5.0,
+        4.5,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        4.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 29,
+      "qid": "KA027",
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 0.0,
+      "c5fix_x7_attempts": [
+        0.5,
+        0.0,
+        1.0,
+        0.5,
+        0.5,
+        0.5,
+        0.0
+      ],
+      "c5fix_x7_median": 0.5
+    },
+    {
+      "id": 30,
+      "qid": "KA028",
+      "human_score": 3.0,
+      "cllm_score": 1.0,
+      "c5_fix_single": 1.0,
+      "c5fix_x7_attempts": [
+        1.0,
+        1.0,
+        2.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "c5fix_x7_median": 1.0
+    },
+    {
+      "id": 31,
+      "qid": "KA029",
+      "human_score": 1.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 0.5,
+      "c5fix_x7_attempts": [
+        1.0,
+        0.5,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.5
+      ],
+      "c5fix_x7_median": 1.0
+    },
+    {
+      "id": 32,
+      "qid": "KA030",
+      "human_score": 1.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 0.5,
+      "c5fix_x7_attempts": [
+        0.5,
+        0.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.0
+      ],
+      "c5fix_x7_median": 1.0
+    },
+    {
+      "id": 33,
+      "qid": "KA018",
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 2.5,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        4.0,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 34,
+      "qid": "KA031",
+      "human_score": 1.0,
+      "cllm_score": 1.0,
+      "c5_fix_single": 0.5,
+      "c5fix_x7_attempts": [
+        1.0,
+        0.5,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "c5fix_x7_median": 1.0
+    },
+    {
+      "id": 35,
+      "qid": "KA032",
+      "human_score": 0.0,
+      "cllm_score": 0.5,
+      "c5_fix_single": 0.5,
+      "c5fix_x7_attempts": [
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "c5fix_x7_median": 0.5
+    },
+    {
+      "id": 36,
+      "qid": "KA033",
+      "human_score": 3.0,
+      "cllm_score": 1.0,
+      "c5_fix_single": 1.0,
+      "c5fix_x7_attempts": [
+        0.5,
+        0.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.0
+      ],
+      "c5fix_x7_median": 1.0
+    },
+    {
+      "id": 37,
+      "qid": "KA034",
+      "human_score": 0.0,
+      "cllm_score": 2.0,
+      "c5_fix_single": 0.5,
+      "c5fix_x7_attempts": [
+        0.5,
+        2.0,
+        2.0,
+        0.5,
+        0.5,
+        0.5,
+        2.0
+      ],
+      "c5fix_x7_median": 0.5
+    },
+    {
+      "id": 38,
+      "qid": "KA035",
+      "human_score": 2.0,
+      "cllm_score": 1.0,
+      "c5_fix_single": 1.5,
+      "c5fix_x7_attempts": [
+        1.0,
+        1.0,
+        2.0,
+        1.0,
+        1.0,
+        1.0,
+        1.5
+      ],
+      "c5fix_x7_median": 1.0
+    },
+    {
+      "id": 39,
+      "qid": "KA036",
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 0.0,
+      "c5fix_x7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "c5fix_x7_median": 0.0
+    },
+    {
+      "id": 40,
+      "qid": "KA037",
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.0
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 41,
+      "qid": "KA038",
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        5.0,
+        4.0
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 42,
+      "qid": "KA039",
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        5.0,
+        4.0
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 43,
+      "qid": "KA040",
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.0
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 44,
+      "qid": "KA041",
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.0
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 45,
+      "qid": "KA042",
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 0.0,
+      "c5fix_x7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "c5fix_x7_median": 0.0
+    },
+    {
+      "id": 46,
+      "qid": "KA043",
+      "human_score": 3.0,
+      "cllm_score": 3.0,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        5.0,
+        4.0
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 47,
+      "qid": "KA044",
+      "human_score": 3.0,
+      "cllm_score": 1.5,
+      "c5_fix_single": 0.5,
+      "c5fix_x7_attempts": [
+        1.0,
+        1.0,
+        2.0,
+        1.0,
+        1.0,
+        4.0,
+        2.0
+      ],
+      "c5fix_x7_median": 1.0
+    },
+    {
+      "id": 48,
+      "qid": "KA045",
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        5.0,
+        4.0
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 49,
+      "qid": "KA046",
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        5.0,
+        4.0
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 50,
+      "qid": "KA047",
+      "human_score": 2.0,
+      "cllm_score": 1.0,
+      "c5_fix_single": 1.5,
+      "c5fix_x7_attempts": [
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "c5fix_x7_median": 0.5
+    },
+    {
+      "id": 51,
+      "qid": "KA048",
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "c5fix_x7_median": 0.5
+    },
+    {
+      "id": 52,
+      "qid": "KA049",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        4.5,
+        1.0,
+        1.0,
+        4.5,
+        4.5,
+        1.0,
+        1.0
+      ],
+      "c5fix_x7_median": 1.0
+    },
+    {
+      "id": 53,
+      "qid": "KA003",
+      "human_score": 2.0,
+      "cllm_score": 4.0,
+      "c5_fix_single": 1.0,
+      "c5fix_x7_attempts": [
+        0.5,
+        0.5,
+        0.5,
+        1.0,
+        1.0,
+        0.5,
+        0.5
+      ],
+      "c5fix_x7_median": 0.5
+    },
+    {
+      "id": 54,
+      "qid": "KA011",
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        1.0,
+        1.0,
+        4.5,
+        4.5,
+        1.0,
+        1.0
+      ],
+      "c5fix_x7_median": 1.0
+    },
+    {
+      "id": 55,
+      "qid": "KA050",
+      "human_score": 2.0,
+      "cllm_score": 1.0,
+      "c5_fix_single": 1.0,
+      "c5fix_x7_attempts": [
+        1.0,
+        0.5,
+        0.5,
+        1.0,
+        1.0,
+        0.5,
+        0.5
+      ],
+      "c5fix_x7_median": 0.5
+    },
+    {
+      "id": 56,
+      "qid": "KA022",
+      "human_score": 2.0,
+      "cllm_score": 1.5,
+      "c5_fix_single": 1.0,
+      "c5fix_x7_attempts": [
+        2.5,
+        0.5,
+        0.75,
+        1.0,
+        1.0,
+        0.5,
+        0.5
+      ],
+      "c5fix_x7_median": 0.75
+    },
+    {
+      "id": 57,
+      "qid": "KA023",
+      "human_score": 3.0,
+      "cllm_score": 1.5,
+      "c5_fix_single": 1.0,
+      "c5fix_x7_attempts": [
+        2.5,
+        0.5,
+        0.75,
+        1.0,
+        1.0,
+        0.5,
+        0.5
+      ],
+      "c5fix_x7_median": 0.75
+    },
+    {
+      "id": 58,
+      "qid": "KA051",
+      "human_score": 4.0,
+      "cllm_score": 3.0,
+      "c5_fix_single": 1.5,
+      "c5fix_x7_attempts": [
+        2.5,
+        0.5,
+        0.75,
+        2.0,
+        1.0,
+        0.5,
+        0.5
+      ],
+      "c5fix_x7_median": 0.75
+    },
+    {
+      "id": 59,
+      "qid": "KA017",
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        3.0,
+        1.0,
+        1.0,
+        3.0,
+        3.0,
+        1.0,
+        0.5
+      ],
+      "c5fix_x7_median": 1.0
+    },
+    {
+      "id": 60,
+      "qid": "KA052",
+      "human_score": 3.0,
+      "cllm_score": 1.0,
+      "c5_fix_single": 1.0,
+      "c5fix_x7_attempts": [
+        1.5,
+        0.5,
+        0.5,
+        0.5,
+        1.0,
+        0.5,
+        0.5
+      ],
+      "c5fix_x7_median": 0.5
+    },
+    {
+      "id": 61,
+      "qid": "KA053",
+      "human_score": 3.0,
+      "cllm_score": 3.5,
+      "c5_fix_single": 1.0,
+      "c5fix_x7_attempts": [
+        2.5,
+        0.5,
+        0.75,
+        1.0,
+        1.0,
+        0.5,
+        0.5
+      ],
+      "c5fix_x7_median": 0.75
+    },
+    {
+      "id": 62,
+      "qid": "KA054",
+      "human_score": 3.0,
+      "cllm_score": 1.0,
+      "c5_fix_single": 1.0,
+      "c5fix_x7_attempts": [
+        0.5,
+        0.0,
+        0.5,
+        0.5,
+        0.0,
+        0.0,
+        0.5
+      ],
+      "c5fix_x7_median": 0.5
+    },
+    {
+      "id": 63,
+      "qid": "KA055",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 64,
+      "qid": "KA056",
+      "human_score": 4.0,
+      "cllm_score": 3.5,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        3.0,
+        1.0,
+        1.0,
+        2.0,
+        3.0,
+        1.0,
+        0.5
+      ],
+      "c5fix_x7_median": 1.0
+    },
+    {
+      "id": 65,
+      "qid": "KA057",
+      "human_score": 3.0,
+      "cllm_score": 1.0,
+      "c5_fix_single": 1.0,
+      "c5fix_x7_attempts": [
+        1.5,
+        0.5,
+        0.75,
+        0.5,
+        1.0,
+        0.5,
+        0.5
+      ],
+      "c5fix_x7_median": 0.5
+    },
+    {
+      "id": 66,
+      "qid": "KA058",
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 1.0,
+      "c5fix_x7_attempts": [
+        2.5,
+        0.5,
+        1.0,
+        2.0,
+        1.0,
+        0.5,
+        0.5
+      ],
+      "c5fix_x7_median": 1.0
+    },
+    {
+      "id": 67,
+      "qid": "KA059",
+      "human_score": 4.0,
+      "cllm_score": 3.5,
+      "c5_fix_single": 1.0,
+      "c5fix_x7_attempts": [
+        2.5,
+        0.5,
+        0.75,
+        2.0,
+        1.0,
+        0.5,
+        0.5
+      ],
+      "c5fix_x7_median": 0.75
+    },
+    {
+      "id": 68,
+      "qid": "KA060",
+      "human_score": 3.0,
+      "cllm_score": 2.0,
+      "c5_fix_single": 1.0,
+      "c5fix_x7_attempts": [
+        2.5,
+        0.5,
+        0.75,
+        1.0,
+        1.0,
+        0.5,
+        0.5
+      ],
+      "c5fix_x7_median": 0.75
+    },
+    {
+      "id": 69,
+      "qid": "KA061",
+      "human_score": 5.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 1.0,
+      "c5fix_x7_attempts": [
+        1.0,
+        0.0,
+        0.5,
+        1.0,
+        0.0,
+        0.0,
+        0.5
+      ],
+      "c5fix_x7_median": 0.5
+    },
+    {
+      "id": 70,
+      "qid": "KA062",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        3.5,
+        1.0,
+        1.0,
+        2.0,
+        3.0,
+        1.0,
+        1.0
+      ],
+      "c5fix_x7_median": 1.0
+    },
+    {
+      "id": 71,
+      "qid": "KA063",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        4.5,
+        5.0,
+        4.5,
+        5.0,
+        4.5,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 72,
+      "qid": "KA064",
+      "human_score": 4.0,
+      "cllm_score": 4.5,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        3.5,
+        3.0,
+        3.0,
+        4.0,
+        4.0,
+        3.0,
+        4.0
+      ],
+      "c5fix_x7_median": 3.5
+    },
+    {
+      "id": 73,
+      "qid": "KA065",
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.0,
+        4.5,
+        4.0
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 74,
+      "qid": "KA066",
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 1.0,
+      "c5fix_x7_attempts": [
+        2.5,
+        0.5,
+        0.75,
+        1.0,
+        1.0,
+        0.5,
+        0.5
+      ],
+      "c5fix_x7_median": 0.75
+    },
+    {
+      "id": 75,
+      "qid": "KA067",
+      "human_score": 2.0,
+      "cllm_score": 1.5,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        2.5,
+        2.0,
+        2.5,
+        2.5,
+        2.5,
+        2.0,
+        2.5
+      ],
+      "c5fix_x7_median": 2.5
+    },
+    {
+      "id": 76,
+      "qid": "KA068",
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 77,
+      "qid": "KA069",
+      "human_score": 3.0,
+      "cllm_score": 1.0,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        2.5,
+        3.0,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5
+      ],
+      "c5fix_x7_median": 2.5
+    },
+    {
+      "id": 78,
+      "qid": "KA070",
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.5,
+        4.5,
+        4.0
+      ],
+      "c5fix_x7_median": 4.0
+    },
+    {
+      "id": 79,
+      "qid": "KA030",
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 80,
+      "qid": "KA071",
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.5,
+        4.0,
+        4.0
+      ],
+      "c5fix_x7_median": 4.0
+    },
+    {
+      "id": 81,
+      "qid": "KA072",
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 82,
+      "qid": "KA072",
+      "human_score": 1.0,
+      "cllm_score": 4.5,
+      "c5_fix_single": 2.0,
+      "c5fix_x7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "c5fix_x7_median": 3.0
+    },
+    {
+      "id": 83,
+      "qid": "KA073",
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 4.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 84,
+      "qid": "KA074",
+      "human_score": 1.0,
+      "cllm_score": 4.5,
+      "c5_fix_single": 4.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 85,
+      "qid": "KA075",
+      "human_score": 1.0,
+      "cllm_score": 4.5,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "c5fix_x7_median": 3.0
+    },
+    {
+      "id": 86,
+      "qid": "KA076",
+      "human_score": 2.0,
+      "cllm_score": 4.5,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 87,
+      "qid": "KA077",
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 88,
+      "qid": "KA078",
+      "human_score": 1.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 89,
+      "qid": "KA079",
+      "human_score": 2.0,
+      "cllm_score": 3.0,
+      "c5_fix_single": 4.0,
+      "c5fix_x7_attempts": [
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.5,
+        4.0,
+        4.0
+      ],
+      "c5fix_x7_median": 4.0
+    },
+    {
+      "id": 90,
+      "qid": "KA080",
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 91,
+      "qid": "KA081",
+      "human_score": 1.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 92,
+      "qid": "KA082",
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 93,
+      "qid": "KA083",
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 94,
+      "qid": "KA084",
+      "human_score": 2.0,
+      "cllm_score": 3.0,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        2.5,
+        3.0,
+        2.5,
+        2.5,
+        2.5,
+        2.0,
+        2.5
+      ],
+      "c5fix_x7_median": 2.5
+    },
+    {
+      "id": 95,
+      "qid": "KA038",
+      "human_score": 1.0,
+      "cllm_score": 4.5,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 96,
+      "qid": "KA039",
+      "human_score": 1.0,
+      "cllm_score": 4.5,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 97,
+      "qid": "KA044",
+      "human_score": 1.0,
+      "cllm_score": 2.0,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        2.5,
+        2.0,
+        2.0,
+        2.0,
+        2.5,
+        2.0,
+        2.5
+      ],
+      "c5fix_x7_median": 2.0
+    },
+    {
+      "id": 98,
+      "qid": "KA085",
+      "human_score": 2.0,
+      "cllm_score": 4.0,
+      "c5_fix_single": 3.5,
+      "c5fix_x7_attempts": [
+        3.0,
+        3.0,
+        3.5,
+        3.5,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "c5fix_x7_median": 3.0
+    },
+    {
+      "id": 99,
+      "qid": "KA085",
+      "human_score": 1.0,
+      "cllm_score": 2.0,
+      "c5_fix_single": 2.5,
+      "c5fix_x7_attempts": [
+        2.0,
+        2.5,
+        2.5,
+        2.0,
+        2.5,
+        2.5,
+        2.0
+      ],
+      "c5fix_x7_median": 2.5
+    },
+    {
+      "id": 100,
+      "qid": "KA086",
+      "human_score": 0.0,
+      "cllm_score": 1.5,
+      "c5_fix_single": 1.0,
+      "c5fix_x7_attempts": [
+        0.5,
+        1.0,
+        0.5,
+        0.5,
+        1.0,
+        0.5,
+        0.5
+      ],
+      "c5fix_x7_median": 0.5
+    },
+    {
+      "id": 101,
+      "qid": "KA078",
+      "human_score": 1.0,
+      "cllm_score": 1.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        2.0,
+        0.5,
+        2.0,
+        1.0,
+        2.0,
+        2.0,
+        2.0
+      ],
+      "c5fix_x7_median": 2.0
+    },
+    {
+      "id": 102,
+      "qid": "KA073",
+      "human_score": 1.0,
+      "cllm_score": 0.5,
+      "c5_fix_single": 1.0,
+      "c5fix_x7_attempts": [
+        1.0,
+        0.5,
+        1.0,
+        0.5,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "c5fix_x7_median": 1.0
+    },
+    {
+      "id": 103,
+      "qid": "KA087",
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 104,
+      "qid": "KA081",
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 105,
+      "qid": "KA082",
+      "human_score": 2.0,
+      "cllm_score": 4.5,
+      "c5_fix_single": 4.0,
+      "c5fix_x7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "c5fix_x7_median": 3.0
+    },
+    {
+      "id": 106,
+      "qid": "KA072",
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        4.0,
+        4.5,
+        4.0,
+        4.0,
+        4.5
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 107,
+      "qid": "KA066",
+      "human_score": 1.0,
+      "cllm_score": 4.5,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 108,
+      "qid": "KA088",
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 109,
+      "qid": "KA089",
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 0.0,
+      "c5fix_x7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "c5fix_x7_median": 0.0
+    },
+    {
+      "id": 110,
+      "qid": "KA090",
+      "human_score": 1.0,
+      "cllm_score": 2.5,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        2.0,
+        3.0,
+        2.0,
+        3.0,
+        3.0,
+        2.0,
+        2.0
+      ],
+      "c5fix_x7_median": 2.0
+    },
+    {
+      "id": 111,
+      "qid": "KA089",
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 0.0,
+      "c5fix_x7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "c5fix_x7_median": 0.0
+    },
+    {
+      "id": 112,
+      "qid": "KA060",
+      "human_score": 3.0,
+      "cllm_score": 2.5,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        3.0,
+        3.5,
+        3.5,
+        3.5,
+        3.0,
+        3.5,
+        3.0
+      ],
+      "c5fix_x7_median": 3.5
+    },
+    {
+      "id": 113,
+      "qid": "KA091",
+      "human_score": 4.0,
+      "cllm_score": 4.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        4.0,
+        3.0,
+        3.0,
+        3.0,
+        4.0,
+        3.0,
+        3.0
+      ],
+      "c5fix_x7_median": 3.0
+    },
+    {
+      "id": 114,
+      "qid": "KA058",
+      "human_score": 3.0,
+      "cllm_score": 4.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.0,
+        4.5,
+        4.5
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 115,
+      "qid": "KA059",
+      "human_score": 3.0,
+      "cllm_score": 4.5,
+      "c5_fix_single": 4.0,
+      "c5fix_x7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "c5fix_x7_median": 3.0
+    },
+    {
+      "id": 116,
+      "qid": "KA092",
+      "human_score": 2.0,
+      "cllm_score": 3.5,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        2.0,
+        2.5,
+        2.0,
+        3.0,
+        2.5,
+        2.0,
+        2.0
+      ],
+      "c5fix_x7_median": 2.0
+    },
+    {
+      "id": 117,
+      "qid": "KA093",
+      "human_score": 4.0,
+      "cllm_score": 4.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        5.0,
+        4.5,
+        5.0,
+        5.0,
+        4.5,
+        4.5
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 118,
+      "qid": "KA001",
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 4.0,
+      "c5fix_x7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        4.0,
+        3.0,
+        3.0
+      ],
+      "c5fix_x7_median": 3.0
+    },
+    {
+      "id": 119,
+      "qid": "KA094",
+      "human_score": 3.0,
+      "cllm_score": 4.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        3.0,
+        4.5,
+        4.0,
+        3.0,
+        3.0
+      ],
+      "c5fix_x7_median": 4.0
+    },
+    {
+      "id": 120,
+      "qid": "KA095",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 121,
+      "qid": "KA096",
+      "human_score": 4.0,
+      "cllm_score": 4.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.0,
+        4.5,
+        4.5
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 122,
+      "qid": "KA071",
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 123,
+      "qid": "KA051",
+      "human_score": 4.0,
+      "cllm_score": 4.5,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        5.0,
+        4.5,
+        4.5,
+        5.0,
+        4.5,
+        4.5
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 124,
+      "qid": "KA097",
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 125,
+      "qid": "KA098",
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 126,
+      "qid": "KA099",
+      "human_score": 4.0,
+      "cllm_score": 4.5,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 127,
+      "qid": "KA050",
+      "human_score": 4.0,
+      "cllm_score": 4.5,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        4.5,
+        5.0,
+        5.0,
+        4.5,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 128,
+      "qid": "KA100",
+      "human_score": 4.0,
+      "cllm_score": 4.5,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 129,
+      "qid": "KA044",
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 130,
+      "qid": "KA101",
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 131,
+      "qid": "KA102",
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 132,
+      "qid": "KA084",
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 133,
+      "qid": "KA022",
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 134,
+      "qid": "KA023",
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 135,
+      "qid": "KA103",
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 136,
+      "qid": "KA104",
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 137,
+      "qid": "KA062",
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 138,
+      "qid": "KA105",
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 139,
+      "qid": "KA106",
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 140,
+      "qid": "KA107",
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 141,
+      "qid": "KA095",
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 142,
+      "qid": "KA007",
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 143,
+      "qid": "KA108",
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 144,
+      "qid": "KA109",
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 145,
+      "qid": "KA110",
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 146,
+      "qid": "KA002",
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 147,
+      "qid": "KA111",
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 148,
+      "qid": "KA093",
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 149,
+      "qid": "KA057",
+      "human_score": 0.0,
+      "cllm_score": 1.0,
+      "c5_fix_single": 1.0,
+      "c5fix_x7_attempts": [
+        1.0,
+        1.0,
+        1.0,
+        2.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "c5fix_x7_median": 1.0
+    },
+    {
+      "id": 150,
+      "qid": "KA112",
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 0.0,
+      "c5fix_x7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "c5fix_x7_median": 0.0
+    },
+    {
+      "id": 151,
+      "qid": "KA113",
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 0.0,
+      "c5fix_x7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "c5fix_x7_median": 0.0
+    },
+    {
+      "id": 152,
+      "qid": "KA059",
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 0.0,
+      "c5fix_x7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "c5fix_x7_median": 0.0
+    },
+    {
+      "id": 153,
+      "qid": "KA058",
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 0.0,
+      "c5fix_x7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "c5fix_x7_median": 0.0
+    },
+    {
+      "id": 154,
+      "qid": "KA061",
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 0.0,
+      "c5fix_x7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "c5fix_x7_median": 0.0
+    },
+    {
+      "id": 155,
+      "qid": "KA061",
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 0.0,
+      "c5fix_x7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "c5fix_x7_median": 0.0
+    },
+    {
+      "id": 156,
+      "qid": "KA112",
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 0.0,
+      "c5fix_x7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "c5fix_x7_median": 0.0
+    },
+    {
+      "id": 157,
+      "qid": "KA113",
+      "human_score": 0.0,
+      "cllm_score": 0.5,
+      "c5_fix_single": 0.0,
+      "c5fix_x7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "c5fix_x7_median": 0.0
+    },
+    {
+      "id": 158,
+      "qid": "KA055",
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 0.0,
+      "c5fix_x7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "c5fix_x7_median": 0.0
+    },
+    {
+      "id": 159,
+      "qid": "KA059",
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 0.0,
+      "c5fix_x7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "c5fix_x7_median": 0.0
+    },
+    {
+      "id": 160,
+      "qid": "KA058",
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 0.5,
+      "c5fix_x7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "c5fix_x7_median": 0.0
+    },
+    {
+      "id": 161,
+      "qid": "KA108",
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 162,
+      "qid": "KA007",
+      "human_score": 4.0,
+      "cllm_score": 4.5,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 163,
+      "qid": "KA093",
+      "human_score": 4.0,
+      "cllm_score": 4.5,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 164,
+      "qid": "KA109",
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 165,
+      "qid": "KA064",
+      "human_score": 4.0,
+      "cllm_score": 2.5,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        3.0,
+        3.0,
+        4.0,
+        4.0,
+        4.0,
+        4.5,
+        3.0
+      ],
+      "c5fix_x7_median": 4.0
+    },
+    {
+      "id": 166,
+      "qid": "KA111",
+      "human_score": 4.0,
+      "cllm_score": 3.5,
+      "c5_fix_single": 3.5,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        4.0,
+        4.5,
+        4.0,
+        4.5,
+        4.5
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 167,
+      "qid": "KA110",
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 168,
+      "qid": "KA007",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 169,
+      "qid": "KA109",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 170,
+      "qid": "KA063",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 171,
+      "qid": "KA110",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 172,
+      "qid": "KA111",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 173,
+      "qid": "KA022",
+      "human_score": 5.0,
+      "cllm_score": 4.5,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 174,
+      "qid": "KA023",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 175,
+      "qid": "KA065",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 0.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.0,
+        4.5,
+        4.5
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 176,
+      "qid": "KA087",
+      "human_score": 5.0,
+      "cllm_score": 4.0,
+      "c5_fix_single": 4.0,
+      "c5fix_x7_attempts": [
+        4.0,
+        4.5,
+        4.5,
+        4.0,
+        4.5,
+        4.0,
+        4.5
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 177,
+      "qid": "KA077",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 178,
+      "qid": "KA075",
+      "human_score": 5.0,
+      "cllm_score": 4.5,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        3.0,
+        4.0,
+        4.0,
+        3.0,
+        4.0,
+        3.0,
+        4.5
+      ],
+      "c5fix_x7_median": 4.0
+    },
+    {
+      "id": 179,
+      "qid": "KA088",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        3.0,
+        5.0
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 180,
+      "qid": "KA074",
+      "human_score": 5.0,
+      "cllm_score": 4.0,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        4.0,
+        5.0,
+        4.5,
+        4.5,
+        4.0,
+        4.5,
+        5.0
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 181,
+      "qid": "KA069",
+      "human_score": 5.0,
+      "cllm_score": 4.5,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        5.0
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 182,
+      "qid": "KA068",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        5.0
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 183,
+      "qid": "KA073",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 184,
+      "qid": "KA072",
+      "human_score": 5.0,
+      "cllm_score": 3.5,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        5.0
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 185,
+      "qid": "KA092",
+      "human_score": 5.0,
+      "cllm_score": 4.5,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        3.0,
+        4.5,
+        4.0,
+        3.0,
+        4.0,
+        3.0,
+        4.5
+      ],
+      "c5fix_x7_median": 4.0
+    },
+    {
+      "id": 186,
+      "qid": "KA092",
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 0.0,
+      "c5fix_x7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "c5fix_x7_median": 0.0
+    },
+    {
+      "id": 187,
+      "qid": "KA080",
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 0.0,
+      "c5fix_x7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "c5fix_x7_median": 0.0
+    },
+    {
+      "id": 188,
+      "qid": "KA081",
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 0.0,
+      "c5fix_x7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "c5fix_x7_median": 0.0
+    },
+    {
+      "id": 189,
+      "qid": "KA082",
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 0.0,
+      "c5fix_x7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "c5fix_x7_median": 0.0
+    },
+    {
+      "id": 190,
+      "qid": "KA039",
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 0.0,
+      "c5fix_x7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "c5fix_x7_median": 0.0
+    },
+    {
+      "id": 191,
+      "qid": "KA038",
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 0.0,
+      "c5fix_x7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "c5fix_x7_median": 0.0
+    },
+    {
+      "id": 192,
+      "qid": "KA016",
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 0.0,
+      "c5fix_x7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "c5fix_x7_median": 0.0
+    },
+    {
+      "id": 193,
+      "qid": "KA015",
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 0.0,
+      "c5fix_x7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "c5fix_x7_median": 0.0
+    },
+    {
+      "id": 194,
+      "qid": "KA093",
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 0.0,
+      "c5fix_x7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "c5fix_x7_median": 0.0
+    },
+    {
+      "id": 195,
+      "qid": "KA079",
+      "human_score": 2.0,
+      "cllm_score": 0.5,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "c5fix_x7_median": 1.0
+    },
+    {
+      "id": 196,
+      "qid": "KA080",
+      "human_score": 2.0,
+      "cllm_score": 4.5,
+      "c5_fix_single": 4.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        4.0,
+        4.5,
+        4.0,
+        4.5,
+        4.5
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 197,
+      "qid": "KA081",
+      "human_score": 2.0,
+      "cllm_score": 4.5,
+      "c5_fix_single": 4.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        4.0,
+        4.5,
+        4.0,
+        4.5,
+        4.5
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 198,
+      "qid": "KA082",
+      "human_score": 2.0,
+      "cllm_score": 4.5,
+      "c5_fix_single": 4.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        4.0,
+        4.5,
+        4.0,
+        4.5,
+        4.5
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 199,
+      "qid": "KA083",
+      "human_score": 2.0,
+      "cllm_score": 4.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        4.0,
+        4.5,
+        4.0,
+        4.5,
+        4.5
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 200,
+      "qid": "KA038",
+      "human_score": 2.0,
+      "cllm_score": 1.0,
+      "c5_fix_single": 2.0,
+      "c5fix_x7_attempts": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "c5fix_x7_median": 1.0
+    },
+    {
+      "id": 201,
+      "qid": "KA039",
+      "human_score": 2.0,
+      "cllm_score": 1.0,
+      "c5_fix_single": 2.0,
+      "c5fix_x7_attempts": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "c5fix_x7_median": 1.0
+    },
+    {
+      "id": 202,
+      "qid": "KA016",
+      "human_score": 2.0,
+      "cllm_score": 1.5,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        1.0,
+        1.0,
+        2.0,
+        1.0,
+        2.0,
+        1.0,
+        1.0
+      ],
+      "c5fix_x7_median": 1.0
+    },
+    {
+      "id": 203,
+      "qid": "KA015",
+      "human_score": 2.0,
+      "cllm_score": 4.5,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        1.0,
+        1.0,
+        2.0,
+        1.0,
+        2.0,
+        1.0,
+        1.0
+      ],
+      "c5fix_x7_median": 1.0
+    },
+    {
+      "id": 204,
+      "qid": "KA022",
+      "human_score": 2.0,
+      "cllm_score": 4.5,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        1.0,
+        1.0,
+        2.0,
+        1.0,
+        2.0,
+        1.0,
+        1.0
+      ],
+      "c5fix_x7_median": 1.0
+    },
+    {
+      "id": 205,
+      "qid": "KA023",
+      "human_score": 2.0,
+      "cllm_score": 4.5,
+      "c5_fix_single": 2.0,
+      "c5fix_x7_attempts": [
+        1.0,
+        1.0,
+        2.0,
+        1.0,
+        2.0,
+        1.0,
+        1.0
+      ],
+      "c5fix_x7_median": 1.0
+    },
+    {
+      "id": 206,
+      "qid": "KA021",
+      "human_score": 2.0,
+      "cllm_score": 4.0,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        1.0,
+        1.0,
+        2.0,
+        1.0,
+        2.0,
+        1.0,
+        1.0
+      ],
+      "c5fix_x7_median": 1.0
+    },
+    {
+      "id": 207,
+      "qid": "KA020",
+      "human_score": 2.0,
+      "cllm_score": 4.5,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        1.0,
+        1.0,
+        2.0,
+        1.0,
+        2.0,
+        1.0,
+        1.0
+      ],
+      "c5fix_x7_median": 1.0
+    },
+    {
+      "id": 208,
+      "qid": "KA019",
+      "human_score": 2.0,
+      "cllm_score": 4.5,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        1.0,
+        1.0,
+        2.0,
+        1.0,
+        2.0,
+        1.0,
+        1.0
+      ],
+      "c5fix_x7_median": 1.0
+    },
+    {
+      "id": 209,
+      "qid": "KA028",
+      "human_score": 5.0,
+      "cllm_score": 4.5,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        3.0,
+        3.0,
+        4.0,
+        4.5,
+        4.0,
+        3.0,
+        4.0
+      ],
+      "c5fix_x7_median": 4.0
+    },
+    {
+      "id": 210,
+      "qid": "KA024",
+      "human_score": 5.0,
+      "cllm_score": 3.5,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        2.5,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        1.0,
+        3.0
+      ],
+      "c5fix_x7_median": 3.0
+    },
+    {
+      "id": 211,
+      "qid": "KA029",
+      "human_score": 5.0,
+      "cllm_score": 4.5,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 212,
+      "qid": "KA031",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        5.0,
+        4.5,
+        4.5,
+        4.0,
+        4.5,
+        4.5
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 213,
+      "qid": "KA032",
+      "human_score": 5.0,
+      "cllm_score": 4.5,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.0,
+        4.5,
+        4.5
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 214,
+      "qid": "KA025",
+      "human_score": 5.0,
+      "cllm_score": 4.5,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.0,
+        4.5,
+        4.5,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "c5fix_x7_median": 4.0
+    },
+    {
+      "id": 215,
+      "qid": "KA026",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.0,
+        4.0,
+        4.5
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 216,
+      "qid": "KA027",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        4.5,
+        5.0,
+        4.5,
+        4.5,
+        4.0,
+        4.0,
+        4.5
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 217,
+      "qid": "KA033",
+      "human_score": 5.0,
+      "cllm_score": 4.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        4.5,
+        5.0,
+        4.5,
+        4.5,
+        4.0,
+        4.0,
+        4.5
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 218,
+      "qid": "KA035",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.0,
+        4.5,
+        4.5,
+        4.0,
+        4.0,
+        4.5
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 219,
+      "qid": "KA038",
+      "human_score": 5.0,
+      "cllm_score": 4.5,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.0,
+        4.5,
+        4.5,
+        4.0,
+        4.0,
+        4.5
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 220,
+      "qid": "KA039",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.0,
+        4.5,
+        4.5,
+        4.0,
+        4.0,
+        4.5
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 221,
+      "qid": "KA045",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 4.0,
+      "c5fix_x7_attempts": [
+        2.5,
+        3.0,
+        2.0,
+        1.0,
+        3.0,
+        1.0,
+        4.5
+      ],
+      "c5fix_x7_median": 2.5
+    },
+    {
+      "id": 222,
+      "qid": "KA046",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        2.5,
+        3.0,
+        2.0,
+        1.0,
+        3.0,
+        1.0,
+        4.5
+      ],
+      "c5fix_x7_median": 2.5
+    },
+    {
+      "id": 223,
+      "qid": "KA034",
+      "human_score": 5.0,
+      "cllm_score": 1.5,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        1.0,
+        1.0,
+        2.0,
+        1.0,
+        2.0,
+        1.0,
+        1.0
+      ],
+      "c5fix_x7_median": 1.0
+    },
+    {
+      "id": 224,
+      "qid": "KA041",
+      "human_score": 5.0,
+      "cllm_score": 4.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        2.5,
+        3.0,
+        2.0,
+        1.0,
+        3.0,
+        1.0,
+        3.0
+      ],
+      "c5fix_x7_median": 2.5
+    },
+    {
+      "id": 225,
+      "qid": "KA042",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.0,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.0
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 226,
+      "qid": "KA043",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        4.5,
+        5.0,
+        4.5,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 227,
+      "qid": "KA040",
+      "human_score": 5.0,
+      "cllm_score": 4.5,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.0
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 228,
+      "qid": "KA048",
+      "human_score": 5.0,
+      "cllm_score": 4.5,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        4.0,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.0
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 229,
+      "qid": "KA047",
+      "human_score": 5.0,
+      "cllm_score": 4.5,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        4.0,
+        4.0,
+        4.0,
+        4.5,
+        4.5,
+        4.0,
+        4.0
+      ],
+      "c5fix_x7_median": 4.0
+    },
+    {
+      "id": 230,
+      "qid": "KA036",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        4.5,
+        5.0,
+        4.5,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 231,
+      "qid": "KA037",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        4.5,
+        5.0,
+        4.5,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 232,
+      "qid": "KA070",
+      "human_score": 1.0,
+      "cllm_score": 2.0,
+      "c5_fix_single": 2.0,
+      "c5fix_x7_attempts": [
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ],
+      "c5fix_x7_median": 2.0
+    },
+    {
+      "id": 233,
+      "qid": "KA071",
+      "human_score": 1.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        4.5,
+        5.0,
+        4.5,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 234,
+      "qid": "KA090",
+      "human_score": 2.0,
+      "cllm_score": 1.0,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        2.5,
+        2.5,
+        2.0,
+        2.0,
+        2.5,
+        2.0,
+        2.0
+      ],
+      "c5fix_x7_median": 2.0
+    },
+    {
+      "id": 235,
+      "qid": "KA012",
+      "human_score": 2.0,
+      "cllm_score": 1.5,
+      "c5_fix_single": 1.0,
+      "c5fix_x7_attempts": [
+        1.0,
+        2.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "c5fix_x7_median": 1.0
+    },
+    {
+      "id": 236,
+      "qid": "KA096",
+      "human_score": 3.0,
+      "cllm_score": 4.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        4.0,
+        3.0,
+        2.5,
+        4.5,
+        2.5,
+        3.0,
+        3.0
+      ],
+      "c5fix_x7_median": 3.0
+    },
+    {
+      "id": 237,
+      "qid": "KA100",
+      "human_score": 3.0,
+      "cllm_score": 2.5,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        4.0,
+        4.0,
+        3.0,
+        3.0,
+        3.0,
+        4.0,
+        3.0
+      ],
+      "c5fix_x7_median": 3.0
+    },
+    {
+      "id": 238,
+      "qid": "KA098",
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        5.0,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 239,
+      "qid": "KA051",
+      "human_score": 3.0,
+      "cllm_score": 4.5,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.0
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 240,
+      "qid": "KA097",
+      "human_score": 3.0,
+      "cllm_score": 3.0,
+      "c5_fix_single": 1.0,
+      "c5fix_x7_attempts": [
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ],
+      "c5fix_x7_median": 2.0
+    },
+    {
+      "id": 241,
+      "qid": "KA106",
+      "human_score": 3.0,
+      "cllm_score": 4.5,
+      "c5_fix_single": 3.5,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.0
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 242,
+      "qid": "KA107",
+      "human_score": 3.0,
+      "cllm_score": 4.5,
+      "c5_fix_single": 3.5,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.0
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 243,
+      "qid": "KA101",
+      "human_score": 3.0,
+      "cllm_score": 3.0,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        4.0,
+        4.0,
+        3.0,
+        4.5,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "c5fix_x7_median": 3.0
+    },
+    {
+      "id": 244,
+      "qid": "KA102",
+      "human_score": 3.0,
+      "cllm_score": 3.5,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        4.0,
+        4.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "c5fix_x7_median": 3.0
+    },
+    {
+      "id": 245,
+      "qid": "KA103",
+      "human_score": 3.0,
+      "cllm_score": 3.0,
+      "c5_fix_single": 3.5,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        4.5,
+        4.5,
+        4.5,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 246,
+      "qid": "KA104",
+      "human_score": 3.0,
+      "cllm_score": 2.75,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.0
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 247,
+      "qid": "KA099",
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.0,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.0
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 248,
+      "qid": "KA084",
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.0
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 249,
+      "qid": "KA050",
+      "human_score": 3.0,
+      "cllm_score": 2.5,
+      "c5_fix_single": 2.0,
+      "c5fix_x7_attempts": [
+        3.0,
+        3.0,
+        2.5,
+        3.0,
+        2.0,
+        3.0,
+        3.0
+      ],
+      "c5fix_x7_median": 3.0
+    },
+    {
+      "id": 250,
+      "qid": "KA022",
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 2.0,
+      "c5fix_x7_attempts": [
+        4.0,
+        3.0,
+        3.0,
+        4.0,
+        3.0,
+        4.0,
+        3.0
+      ],
+      "c5fix_x7_median": 3.0
+    },
+    {
+      "id": 251,
+      "qid": "KA023",
+      "human_score": 3.0,
+      "cllm_score": 4.5,
+      "c5_fix_single": 2.0,
+      "c5fix_x7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "c5fix_x7_median": 3.0
+    },
+    {
+      "id": 252,
+      "qid": "KA015",
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        3.0,
+        4.0,
+        4.5,
+        3.0,
+        4.5,
+        4.5
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 253,
+      "qid": "KA013",
+      "human_score": 3.0,
+      "cllm_score": 2.0,
+      "c5_fix_single": 2.0,
+      "c5fix_x7_attempts": [
+        2.0,
+        1.0,
+        1.0,
+        2.0,
+        2.0,
+        2.0,
+        1.0
+      ],
+      "c5fix_x7_median": 2.0
+    },
+    {
+      "id": 254,
+      "qid": "KA014",
+      "human_score": 3.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 1.0,
+      "c5fix_x7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "c5fix_x7_median": 0.0
+    },
+    {
+      "id": 255,
+      "qid": "KA016",
+      "human_score": 3.0,
+      "cllm_score": 2.5,
+      "c5_fix_single": 2.0,
+      "c5fix_x7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "c5fix_x7_median": 3.0
+    },
+    {
+      "id": 256,
+      "qid": "KA062",
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        4.0,
+        3.0,
+        3.0,
+        4.0,
+        3.0,
+        4.0,
+        3.0
+      ],
+      "c5fix_x7_median": 3.0
+    },
+    {
+      "id": 257,
+      "qid": "KA095",
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.0,
+        4.0,
+        4.5,
+        4.0,
+        4.5,
+        3.0
+      ],
+      "c5fix_x7_median": 4.0
+    },
+    {
+      "id": 258,
+      "qid": "KA112",
+      "human_score": 1.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 259,
+      "qid": "KA057",
+      "human_score": 1.0,
+      "cllm_score": 1.0,
+      "c5_fix_single": 1.0,
+      "c5fix_x7_attempts": [
+        2.0,
+        1.5,
+        1.0,
+        2.0,
+        2.0,
+        2.0,
+        1.0
+      ],
+      "c5fix_x7_median": 2.0
+    },
+    {
+      "id": 260,
+      "qid": "KA055",
+      "human_score": 1.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 261,
+      "qid": "KA113",
+      "human_score": 1.0,
+      "cllm_score": 2.75,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        3.0,
+        2.0,
+        2.0,
+        2.5,
+        2.0,
+        2.5,
+        2.0
+      ],
+      "c5fix_x7_median": 2.0
+    },
+    {
+      "id": 262,
+      "qid": "KA058",
+      "human_score": 1.0,
+      "cllm_score": 2.0,
+      "c5_fix_single": 1.5,
+      "c5fix_x7_attempts": [
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ],
+      "c5fix_x7_median": 2.0
+    },
+    {
+      "id": 263,
+      "qid": "KA054",
+      "human_score": 1.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        3.0,
+        2.0,
+        3.0,
+        5.0,
+        3.0,
+        5.0,
+        2.0
+      ],
+      "c5fix_x7_median": 3.0
+    },
+    {
+      "id": 264,
+      "qid": "KA053",
+      "human_score": 1.0,
+      "cllm_score": 1.5,
+      "c5_fix_single": 1.0,
+      "c5fix_x7_attempts": [
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ],
+      "c5fix_x7_median": 2.0
+    },
+    {
+      "id": 265,
+      "qid": "KA056",
+      "human_score": 1.0,
+      "cllm_score": 2.0,
+      "c5_fix_single": 2.0,
+      "c5fix_x7_attempts": [
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ],
+      "c5fix_x7_median": 2.0
+    },
+    {
+      "id": 266,
+      "qid": "KA091",
+      "human_score": 1.0,
+      "cllm_score": 3.0,
+      "c5_fix_single": 2.0,
+      "c5fix_x7_attempts": [
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ],
+      "c5fix_x7_median": 2.0
+    },
+    {
+      "id": 267,
+      "qid": "KA052",
+      "human_score": 1.0,
+      "cllm_score": 2.5,
+      "c5_fix_single": 2.0,
+      "c5fix_x7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "c5fix_x7_median": 3.0
+    },
+    {
+      "id": 268,
+      "qid": "KA050",
+      "human_score": 0.0,
+      "cllm_score": 3.0,
+      "c5_fix_single": 1.0,
+      "c5fix_x7_attempts": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "c5fix_x7_median": 1.0
+    },
+    {
+      "id": 269,
+      "qid": "KA023",
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 0.0,
+      "c5fix_x7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "c5fix_x7_median": 0.0
+    },
+    {
+      "id": 270,
+      "qid": "KA051",
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 0.0,
+      "c5fix_x7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "c5fix_x7_median": 0.0
+    },
+    {
+      "id": 271,
+      "qid": "KA022",
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 0.0,
+      "c5fix_x7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "c5fix_x7_median": 0.0
+    },
+    {
+      "id": 272,
+      "qid": "KA094",
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 0.0,
+      "c5fix_x7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "c5fix_x7_median": 0.0
+    },
+    {
+      "id": 273,
+      "qid": "KA049",
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 0.0,
+      "c5fix_x7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "c5fix_x7_median": 0.0
+    },
+    {
+      "id": 274,
+      "qid": "KA099",
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 0.0,
+      "c5fix_x7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "c5fix_x7_median": 0.0
+    },
+    {
+      "id": 275,
+      "qid": "KA105",
+      "human_score": 0.0,
+      "cllm_score": 0.5,
+      "c5_fix_single": 1.0,
+      "c5fix_x7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "c5fix_x7_median": 0.0
+    },
+    {
+      "id": 276,
+      "qid": "KA023",
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 0.0,
+      "c5fix_x7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "c5fix_x7_median": 0.0
+    },
+    {
+      "id": 277,
+      "qid": "KA094",
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 0.0,
+      "c5fix_x7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "c5fix_x7_median": 0.0
+    },
+    {
+      "id": 278,
+      "qid": "KA004",
+      "human_score": 1.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        3.0,
+        4.0,
+        2.5,
+        3.0,
+        4.0
+      ],
+      "c5fix_x7_median": 4.0
+    },
+    {
+      "id": 279,
+      "qid": "KA005",
+      "human_score": 1.0,
+      "cllm_score": 3.5,
+      "c5_fix_single": 2.0,
+      "c5fix_x7_attempts": [
+        3.0,
+        3.0,
+        2.5,
+        4.5,
+        2.0,
+        4.5,
+        4.5
+      ],
+      "c5fix_x7_median": 3.0
+    },
+    {
+      "id": 280,
+      "qid": "KA114",
+      "human_score": 1.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 2.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        3.0,
+        5.0,
+        4.0,
+        4.5,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 281,
+      "qid": "KA006",
+      "human_score": 1.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        3.0,
+        5.0,
+        4.0,
+        4.5,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 282,
+      "qid": "KA115",
+      "human_score": 1.0,
+      "cllm_score": 1.0,
+      "c5_fix_single": 1.0,
+      "c5fix_x7_attempts": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "c5fix_x7_median": 1.0
+    },
+    {
+      "id": 283,
+      "qid": "KA067",
+      "human_score": 1.0,
+      "cllm_score": 2.0,
+      "c5_fix_single": 2.0,
+      "c5fix_x7_attempts": [
+        3.0,
+        3.0,
+        1.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ],
+      "c5fix_x7_median": 2.0
+    },
+    {
+      "id": 284,
+      "qid": "KA086",
+      "human_score": 1.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 0.0,
+      "c5fix_x7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "c5fix_x7_median": 0.0
+    },
+    {
+      "id": 285,
+      "qid": "KA096",
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        4.5,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 286,
+      "qid": "KA100",
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        4.5,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 287,
+      "qid": "KA097",
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        4.5,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 288,
+      "qid": "KA098",
+      "human_score": 2.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        4.5,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 289,
+      "qid": "KA102",
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 4.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        4.5,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 290,
+      "qid": "KA015",
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        4.5,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 291,
+      "qid": "KA051",
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        4.5,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 292,
+      "qid": "KA106",
+      "human_score": 2.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        4.5,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 293,
+      "qid": "KA101",
+      "human_score": 2.0,
+      "cllm_score": 3.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        4.5,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 294,
+      "qid": "KA016",
+      "human_score": 2.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        4.5,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 295,
+      "qid": "KA103",
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        4.5,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 296,
+      "qid": "KA105",
+      "human_score": 2.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        4.5,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 297,
+      "qid": "KA062",
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        4.5,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 298,
+      "qid": "KA104",
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        4.5,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 299,
+      "qid": "KA022",
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        4.5,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 300,
+      "qid": "KA050",
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 301,
+      "qid": "KA107",
+      "human_score": 2.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 303,
+      "qid": "KA002",
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 304,
+      "qid": "KA076",
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 305,
+      "qid": "KA003",
+      "human_score": 5.0,
+      "cllm_score": 4.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 306,
+      "qid": "KA088",
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 308,
+      "qid": "KA009",
+      "human_score": 4.0,
+      "cllm_score": 4.0,
+      "c5_fix_single": 4.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 311,
+      "qid": "KA114",
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 2.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 312,
+      "qid": "KA108",
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 313,
+      "qid": "KA010",
+      "human_score": 4.0,
+      "cllm_score": 4.0,
+      "c5_fix_single": 4.0,
+      "c5fix_x7_attempts": [
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "c5fix_x7_median": 4.0
+    },
+    {
+      "id": 316,
+      "qid": "KA004",
+      "human_score": 4.0,
+      "cllm_score": 3.0,
+      "c5_fix_single": 2.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 320,
+      "qid": "KA115",
+      "human_score": 4.0,
+      "cllm_score": 3.0,
+      "c5_fix_single": 2.0,
+      "c5fix_x7_attempts": [
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "c5fix_x7_median": 4.0
+    },
+    {
+      "id": 321,
+      "qid": "KA008",
+      "human_score": 4.0,
+      "cllm_score": 3.0,
+      "c5_fix_single": 2.5,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 323,
+      "qid": "KA108",
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 4.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 327,
+      "qid": "KA013",
+      "human_score": 4.0,
+      "cllm_score": 2.0,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 329,
+      "qid": "KA015",
+      "human_score": 4.0,
+      "cllm_score": 3.0,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 330,
+      "qid": "KA016",
+      "human_score": 4.0,
+      "cllm_score": 3.5,
+      "c5_fix_single": 2.5,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 364,
+      "qid": "KA049",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 372,
+      "qid": "KA052",
+      "human_score": 3.0,
+      "cllm_score": 1.0,
+      "c5_fix_single": 1.0,
+      "c5fix_x7_attempts": [
+        2.0,
+        2.0,
+        2.0,
+        4.0,
+        2.0,
+        3.0,
+        2.0
+      ],
+      "c5fix_x7_median": 2.0
+    },
+    {
+      "id": 375,
+      "qid": "KA055",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 411,
+      "qid": "KA085",
+      "human_score": 1.0,
+      "cllm_score": 2.0,
+      "c5_fix_single": 2.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.0,
+        4.0,
+        4.5,
+        4.0,
+        3.0,
+        4.0
+      ],
+      "c5fix_x7_median": 4.0
+    },
+    {
+      "id": 426,
+      "qid": "KA076",
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 0.0,
+      "c5fix_x7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "c5fix_x7_median": 0.0
+    },
+    {
+      "id": 427,
+      "qid": "KA088",
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 0.0,
+      "c5fix_x7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "c5fix_x7_median": 0.0
+    },
+    {
+      "id": 428,
+      "qid": "KA009",
+      "human_score": 2.0,
+      "cllm_score": 4.0,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        3.5,
+        3.5,
+        4.5,
+        3.0,
+        4.5,
+        4.0,
+        4.0
+      ],
+      "c5fix_x7_median": 4.0
+    },
+    {
+      "id": 429,
+      "qid": "KA114",
+      "human_score": 2.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 2.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 430,
+      "qid": "KA108",
+      "human_score": 2.0,
+      "cllm_score": 3.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        2.5
+      ],
+      "c5fix_x7_median": 3.0
+    },
+    {
+      "id": 431,
+      "qid": "KA010",
+      "human_score": 2.0,
+      "cllm_score": 4.0,
+      "c5_fix_single": 4.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        3.0,
+        3.5,
+        4.0,
+        4.5,
+        4.0,
+        4.0
+      ],
+      "c5fix_x7_median": 4.0
+    },
+    {
+      "id": 432,
+      "qid": "KA004",
+      "human_score": 2.0,
+      "cllm_score": 2.0,
+      "c5_fix_single": 2.0,
+      "c5fix_x7_attempts": [
+        2.5,
+        2.0,
+        2.0,
+        2.0,
+        2.5,
+        2.0,
+        2.5
+      ],
+      "c5fix_x7_median": 2.0
+    },
+    {
+      "id": 433,
+      "qid": "KA115",
+      "human_score": 2.0,
+      "cllm_score": 4.0,
+      "c5_fix_single": 2.5,
+      "c5fix_x7_attempts": [
+        3.0,
+        2.5,
+        2.5,
+        2.5,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "c5fix_x7_median": 3.0
+    },
+    {
+      "id": 434,
+      "qid": "KA008",
+      "human_score": 2.0,
+      "cllm_score": 1.5,
+      "c5_fix_single": 1.0,
+      "c5fix_x7_attempts": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        2.0,
+        2.5
+      ],
+      "c5fix_x7_median": 1.0
+    },
+    {
+      "id": 435,
+      "qid": "KA108",
+      "human_score": 2.0,
+      "cllm_score": 3.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "c5fix_x7_median": 3.0
+    },
+    {
+      "id": 436,
+      "qid": "KA116",
+      "human_score": 4.0,
+      "cllm_score": 4.0,
+      "c5_fix_single": 3.5,
+      "c5fix_x7_attempts": [
+        4.0,
+        3.0,
+        3.5,
+        3.0,
+        4.0,
+        3.5,
+        3.0
+      ],
+      "c5fix_x7_median": 3.5
+    },
+    {
+      "id": 437,
+      "qid": "KA117",
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        4.0,
+        4.0,
+        4.5,
+        4.0,
+        4.0,
+        4.5,
+        4.0
+      ],
+      "c5fix_x7_median": 4.0
+    },
+    {
+      "id": 438,
+      "qid": "KA118",
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.0,
+        4.0,
+        5.0,
+        4.5,
+        4.5,
+        4.0
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 439,
+      "qid": "KA119",
+      "human_score": 4.0,
+      "cllm_score": 4.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        4.0,
+        4.5,
+        4.5,
+        4.5,
+        4.0
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 440,
+      "qid": "KA120",
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 441,
+      "qid": "KA121",
+      "human_score": 4.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 442,
+      "qid": "KA122",
+      "human_score": 5.0,
+      "cllm_score": 4.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.0,
+        5.0,
+        5.0,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 443,
+      "qid": "KA123",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 444,
+      "qid": "KA124",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 445,
+      "qid": "KA125",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 446,
+      "qid": "KA126",
+      "human_score": 5.0,
+      "cllm_score": 4.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 447,
+      "qid": "KA127",
+      "human_score": 5.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.0,
+        4.5,
+        5.0,
+        4.0,
+        4.5,
+        4.5
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 448,
+      "qid": "KA128",
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        5.0,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 449,
+      "qid": "KA129",
+      "human_score": 3.0,
+      "cllm_score": 4.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.0,
+        4.5,
+        4.0,
+        4.5,
+        4.5,
+        4.0
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 450,
+      "qid": "KA130",
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        4.5,
+        4.0,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "c5fix_x7_median": 4.5
+    },
+    {
+      "id": 451,
+      "qid": "KA131",
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 452,
+      "qid": "KA132",
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 453,
+      "qid": "KA133",
+      "human_score": 3.0,
+      "cllm_score": 5.0,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "c5fix_x7_median": 5.0
+    },
+    {
+      "id": 454,
+      "qid": "KA134",
+      "human_score": 2.0,
+      "cllm_score": 1.0,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.5
+      ],
+      "c5fix_x7_median": 2.0
+    },
+    {
+      "id": 455,
+      "qid": "KA135",
+      "human_score": 2.0,
+      "cllm_score": 2.0,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        2.0,
+        2.0,
+        1.0,
+        1.0,
+        2.0,
+        2.0,
+        1.5
+      ],
+      "c5fix_x7_median": 2.0
+    },
+    {
+      "id": 456,
+      "qid": "KA136",
+      "human_score": 2.0,
+      "cllm_score": 4.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "c5fix_x7_median": 3.0
+    },
+    {
+      "id": 457,
+      "qid": "KA137",
+      "human_score": 2.0,
+      "cllm_score": 2.0,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        2.0,
+        2.5,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ],
+      "c5fix_x7_median": 2.0
+    },
+    {
+      "id": 458,
+      "qid": "KA138",
+      "human_score": 2.0,
+      "cllm_score": 3.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.0
+      ],
+      "c5fix_x7_median": 2.5
+    },
+    {
+      "id": 459,
+      "qid": "KA139",
+      "human_score": 2.0,
+      "cllm_score": 3.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "c5fix_x7_median": 3.0
+    },
+    {
+      "id": 460,
+      "qid": "KA140",
+      "human_score": 1.0,
+      "cllm_score": 4.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "c5fix_x7_median": 3.0
+    },
+    {
+      "id": 461,
+      "qid": "KA141",
+      "human_score": 1.0,
+      "cllm_score": 3.0,
+      "c5_fix_single": 2.0,
+      "c5fix_x7_attempts": [
+        2.0,
+        2.0,
+        1.5,
+        1.5,
+        1.0,
+        1.0,
+        1.5
+      ],
+      "c5fix_x7_median": 1.5
+    },
+    {
+      "id": 462,
+      "qid": "KA142",
+      "human_score": 1.0,
+      "cllm_score": 4.5,
+      "c5_fix_single": 5.0,
+      "c5fix_x7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.5,
+        3.0,
+        3.0,
+        2.0
+      ],
+      "c5fix_x7_median": 3.0
+    },
+    {
+      "id": 463,
+      "qid": "KA143",
+      "human_score": 1.0,
+      "cllm_score": 2.0,
+      "c5_fix_single": 3.0,
+      "c5fix_x7_attempts": [
+        2.0,
+        2.0,
+        1.5,
+        1.5,
+        1.5,
+        1.5,
+        1.5
+      ],
+      "c5fix_x7_median": 1.5
+    },
+    {
+      "id": 464,
+      "qid": "KA144",
+      "human_score": 1.0,
+      "cllm_score": 4.0,
+      "c5_fix_single": 4.5,
+      "c5fix_x7_attempts": [
+        2.5,
+        3.0,
+        2.5,
+        2.5,
+        2.5,
+        2.0,
+        2.0
+      ],
+      "c5fix_x7_median": 2.5
+    },
+    {
+      "id": 465,
+      "qid": "KA145",
+      "human_score": 1.0,
+      "cllm_score": 1.0,
+      "c5_fix_single": 2.0,
+      "c5fix_x7_attempts": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.5
+      ],
+      "c5fix_x7_median": 1.0
+    },
+    {
+      "id": 466,
+      "qid": "KA146",
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 0.0,
+      "c5fix_x7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "c5fix_x7_median": 0.0
+    },
+    {
+      "id": 467,
+      "qid": "KA058",
+      "human_score": 0.0,
+      "cllm_score": 2.0,
+      "c5_fix_single": 0.0,
+      "c5fix_x7_attempts": [
+        0.0,
+        0.0,
+        0.5,
+        0.0,
+        0.0,
+        0.5,
+        0.0
+      ],
+      "c5fix_x7_median": 0.0
+    },
+    {
+      "id": 468,
+      "qid": "KA059",
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 0.0,
+      "c5fix_x7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "c5fix_x7_median": 0.0
+    },
+    {
+      "id": 469,
+      "qid": "KA147",
+      "human_score": 0.0,
+      "cllm_score": 2.0,
+      "c5_fix_single": 0.0,
+      "c5fix_x7_attempts": [
+        0.0,
+        0.0,
+        0.5,
+        0.0,
+        0.0,
+        0.5,
+        0.0
+      ],
+      "c5fix_x7_median": 0.0
+    },
+    {
+      "id": 470,
+      "qid": "KA148",
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 0.0,
+      "c5fix_x7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "c5fix_x7_median": 0.0
+    },
+    {
+      "id": 471,
+      "qid": "KA149",
+      "human_score": 0.0,
+      "cllm_score": 0.0,
+      "c5_fix_single": 0.0,
+      "c5fix_x7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "c5fix_x7_median": 0.0
+    },
+    {
+      "id": 472,
+      "qid": "KA150",
+      "human_score": 0.0,
+      "cllm_score": 1.0,
+      "c5_fix_single": 2.0,
+      "c5fix_x7_attempts": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.5
+      ],
+      "c5fix_x7_median": 1.0
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "raw_text": "{\n  \"scores\": {\n    \"102\": {\n      \"verified_score\": 2.0,\n      \"adjustment_direction\": \"confirm\",\n      \"confidence\": 1.0\n    },\n    \"103\": {\n      \"verified_score\": 1.0,\n      \"adjustment_direction\": \"confirm\",\n      \"confidence\": 1.0\n    },\n    \"104\": {\n      \"verified_score\": 0.5,\n      \"adjustment_direction\": \"confirm\",\n      \"confidence\": 1.0\n    },\n    \"105\": {\n      \"verified_score\": 0.0,\n      \"adjustment_direction\": \"confirm\",\n      \"confidence\": 1.0\n    },\n    \"106\": {\n      \"verified_score\": 0.5,\n      \"adjustment_direction\": \"confirm\",\n      \"confidence\": 1.0\n    },\n    \"107\": {\n      \"verified_score\": 0.0,\n      \"adjustment_direction\": \"confirm\",\n      \"confidence\": 1.0\n    },\n    \"108\": {\n      \"verified_score\": 5.0,\n      \"adjustment_direction\": \"confirm\",\n      \"confidence\": 1.0\n    },\n    \"109\": {\n      \"verified_score\": 4.5,\n      \"adjustment_direction\": \"confirm\",\n      \"confidence\": 1.0\n    },\n    \"110\": {\n      \"verified_score\": 4.0,\n      \"adjustment_direction\": \"confirm\",\n      \"confidence\": 1.0\n    },\n    \"111\": {\n      \"verified_score\": 3.0,\n      \"adjustment_direction\": \"confirm\",\n      \"confidence\": 1.0\n    },\n    \"112\": {\n      \"verified_score\": 3.0,\n      \"adjustment_direction\": \"confirm\",\n      \"confidence\": 1.0\n    },\n    \"113\": {\n      \"verified_score\": 2.5,\n      \"adjustment_direction\": \"confirm\",\n      \"confidence\": 1.0\n    },\n    \"114\": {\n      \"verified_score\": 1.5,\n      \"adjustment_direction\": \"confirm\",\n      \"confidence\": 1.0\n    },\n    \"115\": {\n      \"verified_score\": 1.5,\n      \"adjustment_direction\": \"confirm\",\n      \"confidence\": 1.0\n    },\n    \"116\": {\n      \"verified_score\": 0.5,\n      \"adjustment_direction\": \"confirm\",\n      \"confidence\": 1.0\n    },\n    \"117\": {\n      \"verified_score\": 1.0,\n      \"adjustment_direction\": \"confirm\",\n      \"confidence\": 1.0\n    },\n    \"118\": {\n      \"verified_score\": 0.5,\n      \"adjustment_direction\": \"confirm\",\n      \"confidence\": 1.0\n    },\n    \"119\": {\n      \"verified_score\": 0.0,\n      \"adjustment_direction\": \"confirm\",\n      \"confidence\": 1.0\n    }\n  }\n}",
+  "scores": {
+    "102": {
+      "verified_score": 2.0,
+      "adjustment_direction": "confirm",
+      "confidence": 1.0
+    },
+    "103": {
+      "verified_score": 1.0,
+      "adjustment_direction": "confirm",
+      "confidence": 1.0
+    },
+    "104": {
+      "verified_score": 0.5,
+      "adjustment_direction": "confirm",
+      "confidence": 1.0
+    },
+    "105": {
+      "verified_score": 0.0,
+      "adjustment_direction": "confirm",
+      "confidence": 1.0
+    },
+    "106": {
+      "verified_score": 0.5,
+      "adjustment_direction": "confirm",
+      "confidence": 1.0
+    },
+    "107": {
+      "verified_score": 0.0,
+      "adjustment_direction": "confirm",
+      "confidence": 1.0
+    },
+    "108": {
+      "verified_score": 5.0,
+      "adjustment_direction": "confirm",
+      "confidence": 1.0
+    },
+    "109": {
+      "verified_score": 4.5,
+      "adjustment_direction": "confirm",
+      "confidence": 1.0
+    },
+    "110": {
+      "verified_score": 4.0,
+      "adjustment_direction": "confirm",
+      "confidence": 1.0
+    },
+    "111": {
+      "verified_score": 3.0,
+      "adjustment_direction": "confirm",
+      "confidence": 1.0
+    },
+    "112": {
+      "verified_score": 3.0,
+      "adjustment_direction": "confirm",
+      "confidence": 1.0
+    },
+    "113": {
+      "verified_score": 2.5,
+      "adjustment_direction": "confirm",
+      "confidence": 1.0
+    },
+    "114": {
+      "verified_score": 1.5,
+      "adjustment_direction": "confirm",
+      "confidence": 1.0
+    },
+    "115": {
+      "verified_score": 1.5,
+      "adjustment_direction": "confirm",
+      "confidence": 1.0
+    },
+    "116": {
+      "verified_score": 0.5,
+      "adjustment_direction": "confirm",
+      "confidence": 1.0
+    },
+    "117": {
+      "verified_score": 1.0,
+      "adjustment_direction": "confirm",
+      "confidence": 1.0
+    },
+    "118": {
+      "verified_score": 0.5,
+      "adjustment_direction": "confirm",
+      "confidence": 1.0
+    },
+    "119": {
+      "verified_score": 0.0,
+      "adjustment_direction": "confirm",
+      "confidence": 1.0
+    }
+  }
+}

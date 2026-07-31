@@ -1,0 +1,66 @@
+{
+  "n": 1262,
+  "n_questions": 46,
+  "cllm_1call": {
+    "mae": 1.2820919175911252,
+    "pearson_r": 0.7904227392602011,
+    "spearman_r": 0.8250739170184587,
+    "qwk": 0.5004729131359502,
+    "rmse": 1.7242559662312302
+  },
+  "cllm_x7_mean": {
+    "mae": 1.2379160063391441,
+    "pearson_r": 0.7900075493552331,
+    "spearman_r": 0.8222961860532964,
+    "qwk": 0.5110250670394998,
+    "rmse": 1.6770066864229995
+  },
+  "c5_fix_single": {
+    "mae": 1.1770998415213947,
+    "pearson_r": 0.7840710205118525,
+    "spearman_r": 0.8083286267242219,
+    "qwk": 0.5237154382944332,
+    "rmse": 1.532596173201191
+  },
+  "verifier_x7_mean": {
+    "mae": 1.1509508716323296,
+    "pearson_r": 0.7968228647547857,
+    "spearman_r": 0.8166188305780445,
+    "qwk": 0.5382478635216792,
+    "rmse": 1.485235044656699
+  },
+  "verifier_x7_vs_cllm_x7_head_to_head": {
+    "d_z": 0.1293476084020186,
+    "p_response_two_tailed": 9.211583547336008e-06,
+    "p_response_one_tailed": 4.605791773668004e-06,
+    "p_cluster_two_tailed": 0.2558530613701284,
+    "p_cluster_one_tailed": 0.1279265306850642,
+    "question_wins": 26,
+    "question_total": 46,
+    "loocv_one_tailed_significant_folds": 0,
+    "loocv_two_tailed_significant_folds": 0
+  },
+  "cllm_x7_vs_cllm_1call": {
+    "d_z": 0.0980493106718327,
+    "p_response_two_tailed": 3.5758429912788186e-06,
+    "p_response_one_tailed": 1.7879214956394093e-06,
+    "p_cluster_two_tailed": 0.1040730150027671,
+    "p_cluster_one_tailed": 0.05203650750138355,
+    "question_wins": 27,
+    "question_total": 46,
+    "loocv_one_tailed_significant_folds": 17,
+    "loocv_two_tailed_significant_folds": 0
+  },
+  "verifier_x7_vs_cllm_1call": {
+    "d_z": 0.19764359237707002,
+    "p_response_two_tailed": 2.6440540452083184e-14,
+    "p_response_one_tailed": 1.3220270226041592e-14,
+    "p_cluster_two_tailed": 0.048604507474437855,
+    "p_cluster_one_tailed": 0.024302253737218928,
+    "question_wins": 24,
+    "question_total": 46,
+    "loocv_one_tailed_significant_folds": 46,
+    "loocv_two_tailed_significant_folds": 25
+  },
+  "verdict": "Verifier x7 beats C_LLM x7 -- the architecture adds value beyond plain self-consistency"
+}

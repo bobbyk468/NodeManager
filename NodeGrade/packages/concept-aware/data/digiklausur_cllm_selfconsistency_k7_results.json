@@ -1,0 +1,10999 @@
+{
+  "n": 646,
+  "n_questions": 17,
+  "k": 7,
+  "mae_cllm_1call": 1.1842105263157894,
+  "mae_cllm_k7": 1.1106811145510835,
+  "mae_c5fix_x7": 1.0394736842105263,
+  "c5fix_x7_vs_cllm_k7_p_two": 0.00059739168131706,
+  "c5fix_x7_vs_cllm_k7_p_one": 0.00029869584065853,
+  "c5fix_x7_vs_cllm_k7_cluster_p_two": 0.088653564453125,
+  "c5fix_x7_vs_cllm_k7_cluster_p_one": 0.0443267822265625,
+  "c5fix_x7_vs_cllm_k7_cluster_wins": 12,
+  "loocv_one_tailed_significant_folds": 5,
+  "loocv_two_tailed_significant_folds": 2,
+  "per_sample": [
+    {
+      "id": 0,
+      "qid": "1",
+      "human_score": 5.0,
+      "cllm_1call": 5.0,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "cllm_k7_mean": 5.0
+    },
+    {
+      "id": 1,
+      "qid": "1",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.5
+    },
+    {
+      "id": 2,
+      "qid": "1",
+      "human_score": 2.5,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ],
+      "cllm_k7_mean": 2.0
+    },
+    {
+      "id": 3,
+      "qid": "1",
+      "human_score": 5.0,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        1.5,
+        1.5,
+        1.5,
+        1.5,
+        1.5,
+        1.5,
+        1.5
+      ],
+      "cllm_k7_mean": 1.5
+    },
+    {
+      "id": 4,
+      "qid": "1",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        3.5,
+        3.0,
+        3.0,
+        3.5,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 5,
+      "qid": "1",
+      "human_score": 2.5,
+      "cllm_1call": 1.5,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        1.0,
+        1.5,
+        1.0,
+        1.5,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "cllm_k7_mean": 1.25
+    },
+    {
+      "id": 6,
+      "qid": "1",
+      "human_score": 5.0,
+      "cllm_1call": 5.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "cllm_k7_mean": 5.0
+    },
+    {
+      "id": 7,
+      "qid": "1",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        3.5,
+        3.5,
+        3.5,
+        3.5,
+        3.5,
+        3.5,
+        3.5
+      ],
+      "cllm_k7_mean": 3.5
+    },
+    {
+      "id": 8,
+      "qid": "1",
+      "human_score": 5.0,
+      "cllm_1call": 1.5,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        1.5,
+        2.0,
+        1.5,
+        2.0,
+        1.5,
+        1.5,
+        1.5
+      ],
+      "cllm_k7_mean": 1.75
+    },
+    {
+      "id": 9,
+      "qid": "1",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 10,
+      "qid": "1",
+      "human_score": 2.5,
+      "cllm_1call": 1.5,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        1.0,
+        1.5,
+        1.5,
+        1.5,
+        1.0,
+        1.0,
+        1.5
+      ],
+      "cllm_k7_mean": 1.25
+    },
+    {
+      "id": 11,
+      "qid": "1",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        4.5,
+        4.0,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.5
+    },
+    {
+      "id": 12,
+      "qid": "1",
+      "human_score": 5.0,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        1.5,
+        2.0,
+        2.0,
+        2.0,
+        1.5,
+        2.0,
+        1.5
+      ],
+      "cllm_k7_mean": 1.75
+    },
+    {
+      "id": 13,
+      "qid": "1",
+      "human_score": 5.0,
+      "cllm_1call": 5.0,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "cllm_k7_mean": 5.0
+    },
+    {
+      "id": 14,
+      "qid": "1",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.0,
+        4.5,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 4.25
+    },
+    {
+      "id": 15,
+      "qid": "1",
+      "human_score": 5.0,
+      "cllm_1call": 5.0,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        5.0,
+        5.0,
+        4.5,
+        4.5,
+        5.0,
+        4.5,
+        5.0
+      ],
+      "cllm_k7_mean": 4.75
+    },
+    {
+      "id": 16,
+      "qid": "1",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.5
+    },
+    {
+      "id": 17,
+      "qid": "1",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.5
+    },
+    {
+      "id": 18,
+      "qid": "1",
+      "human_score": 5.0,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        2.0,
+        2.5,
+        2.0,
+        2.0,
+        2.5
+      ],
+      "cllm_k7_mean": 2.25
+    },
+    {
+      "id": 19,
+      "qid": "1",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.0,
+        4.5,
+        4.0,
+        4.5
+      ],
+      "cllm_k7_mean": 4.25
+    },
+    {
+      "id": 20,
+      "qid": "1",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.5
+    },
+    {
+      "id": 21,
+      "qid": "1",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        5.0,
+        5.0,
+        4.5,
+        4.5,
+        4.5,
+        5.0,
+        5.0
+      ],
+      "cllm_k7_mean": 4.75
+    },
+    {
+      "id": 22,
+      "qid": "1",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.5
+    },
+    {
+      "id": 23,
+      "qid": "1",
+      "human_score": 2.5,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        2.5,
+        3.0,
+        3.0,
+        3.0,
+        2.5
+      ],
+      "cllm_k7_mean": 2.75
+    },
+    {
+      "id": 24,
+      "qid": "1",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        4.5,
+        5.0,
+        5.0,
+        4.5,
+        4.5,
+        4.5,
+        5.0
+      ],
+      "cllm_k7_mean": 4.75
+    },
+    {
+      "id": 25,
+      "qid": "1",
+      "human_score": 2.5,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        3.0,
+        2.5
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 26,
+      "qid": "1",
+      "human_score": 5.0,
+      "cllm_1call": 5.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.5
+    },
+    {
+      "id": 27,
+      "qid": "1",
+      "human_score": 2.5,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.0,
+        2.5,
+        2.5
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 28,
+      "qid": "1",
+      "human_score": 2.5,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.5,
+        2.0,
+        2.0
+      ],
+      "cllm_k7_mean": 2.0
+    },
+    {
+      "id": 29,
+      "qid": "1",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.5,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 30,
+      "qid": "1",
+      "human_score": 2.5,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.5,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 31,
+      "qid": "1",
+      "human_score": 2.5,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        2.0,
+        2.0,
+        2.0,
+        2.5,
+        2.0,
+        2.0,
+        2.0
+      ],
+      "cllm_k7_mean": 2.0
+    },
+    {
+      "id": 32,
+      "qid": "1",
+      "human_score": 2.5,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ],
+      "cllm_k7_mean": 2.0
+    },
+    {
+      "id": 33,
+      "qid": "1",
+      "human_score": 5.0,
+      "cllm_1call": 5.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.5
+    },
+    {
+      "id": 34,
+      "qid": "1",
+      "human_score": 2.5,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.5,
+        2.0,
+        2.0
+      ],
+      "cllm_k7_mean": 2.0
+    },
+    {
+      "id": 35,
+      "qid": "1",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.5,
+        4.0,
+        4.0,
+        4.5,
+        4.5,
+        4.5,
+        4.0
+      ],
+      "cllm_k7_mean": 4.25
+    },
+    {
+      "id": 36,
+      "qid": "1",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 4.0
+    },
+    {
+      "id": 37,
+      "qid": "1",
+      "human_score": 5.0,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        2.0,
+        2.5,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.5
+      ],
+      "cllm_k7_mean": 2.25
+    },
+    {
+      "id": 38,
+      "qid": "2",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.5
+    },
+    {
+      "id": 39,
+      "qid": "2",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.0,
+        3.0,
+        4.0,
+        3.5,
+        4.0,
+        3.5,
+        4.0
+      ],
+      "cllm_k7_mean": 3.75
+    },
+    {
+      "id": 40,
+      "qid": "2",
+      "human_score": 2.5,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        2.0,
+        2.0,
+        2.5,
+        2.0,
+        2.5,
+        2.5,
+        2.5
+      ],
+      "cllm_k7_mean": 2.25
+    },
+    {
+      "id": 41,
+      "qid": "2",
+      "human_score": 2.5,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 1.5,
+      "cllm_k7_attempts": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        2.0
+      ],
+      "cllm_k7_mean": 1.25
+    },
+    {
+      "id": 42,
+      "qid": "2",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 43,
+      "qid": "2",
+      "human_score": 5.0,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        2.0,
+        2.0,
+        3.5,
+        2.0,
+        1.0,
+        2.0,
+        2.5
+      ],
+      "cllm_k7_mean": 2.25
+    },
+    {
+      "id": 44,
+      "qid": "2",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        5.0,
+        5.0,
+        5.0,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.75
+    },
+    {
+      "id": 45,
+      "qid": "2",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.5,
+        4.0,
+        4.0,
+        4.0,
+        4.5,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 4.25
+    },
+    {
+      "id": 46,
+      "qid": "2",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.5,
+        4.0,
+        4.0,
+        3.5,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 4.0
+    },
+    {
+      "id": 47,
+      "qid": "2",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        3.5,
+        3.0,
+        3.0,
+        3.5,
+        3.5,
+        3.5,
+        3.5
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 48,
+      "qid": "2",
+      "human_score": 2.5,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        2.0,
+        2.0,
+        2.0,
+        1.5,
+        2.0,
+        2.0,
+        2.0
+      ],
+      "cllm_k7_mean": 2.0
+    },
+    {
+      "id": 49,
+      "qid": "2",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        5.0,
+        4.5,
+        5.0,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.75
+    },
+    {
+      "id": 50,
+      "qid": "2",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.5
+    },
+    {
+      "id": 51,
+      "qid": "2",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.5
+    },
+    {
+      "id": 52,
+      "qid": "2",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.5,
+        4.0,
+        4.0,
+        4.5,
+        4.0,
+        4.0,
+        4.5
+      ],
+      "cllm_k7_mean": 4.25
+    },
+    {
+      "id": 53,
+      "qid": "2",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        4.5,
+        4.0,
+        4.0,
+        4.5,
+        4.5,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 4.25
+    },
+    {
+      "id": 54,
+      "qid": "2",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 55,
+      "qid": "2",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.0,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.5
+    },
+    {
+      "id": 56,
+      "qid": "2",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        3.0,
+        2.5,
+        2.5,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 2.75
+    },
+    {
+      "id": 57,
+      "qid": "2",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.0,
+        4.5,
+        4.0
+      ],
+      "cllm_k7_mean": 4.25
+    },
+    {
+      "id": 58,
+      "qid": "2",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        3.5,
+        3.0,
+        3.0,
+        3.0,
+        3.5,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 59,
+      "qid": "2",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        4.0,
+        4.5,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 4.0
+    },
+    {
+      "id": 60,
+      "qid": "2",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        4.0,
+        4.5,
+        3.0,
+        3.5,
+        4.0,
+        4.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.75
+    },
+    {
+      "id": 61,
+      "qid": "2",
+      "human_score": 2.5,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        3.5,
+        3.0,
+        3.0,
+        3.5,
+        3.0,
+        3.5,
+        3.0
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 62,
+      "qid": "2",
+      "human_score": 5.0,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 2.75
+    },
+    {
+      "id": 63,
+      "qid": "2",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        3.0,
+        2.5
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 64,
+      "qid": "2",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        3.5,
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 4.0
+    },
+    {
+      "id": 65,
+      "qid": "2",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        4.0,
+        3.5,
+        3.5,
+        4.0,
+        3.5,
+        3.5,
+        4.0
+      ],
+      "cllm_k7_mean": 3.75
+    },
+    {
+      "id": 66,
+      "qid": "2",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        3.5,
+        3.0,
+        2.5,
+        2.5,
+        3.5,
+        3.5,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 67,
+      "qid": "2",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        3.5,
+        3.0,
+        2.5,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 68,
+      "qid": "2",
+      "human_score": 2.5,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        3.0,
+        2.5,
+        2.5,
+        3.0,
+        2.5,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 2.75
+    },
+    {
+      "id": 69,
+      "qid": "2",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        4.5,
+        4.0,
+        4.0,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.25
+    },
+    {
+      "id": 70,
+      "qid": "2",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        3.5,
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 4.0
+    },
+    {
+      "id": 71,
+      "qid": "2",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.0,
+        3.5,
+        3.5,
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 3.75
+    },
+    {
+      "id": 72,
+      "qid": "2",
+      "human_score": 2.5,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.0,
+        3.5,
+        3.5,
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 3.75
+    },
+    {
+      "id": 73,
+      "qid": "2",
+      "human_score": 5.0,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        2.0,
+        1.5,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ],
+      "cllm_k7_mean": 2.0
+    },
+    {
+      "id": 74,
+      "qid": "2",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        2.5,
+        2.0,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 75,
+      "qid": "2",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.75,
+        4.5
+      ],
+      "cllm_k7_mean": 4.5
+    },
+    {
+      "id": 76,
+      "qid": "3",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.5
+    },
+    {
+      "id": 77,
+      "qid": "3",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 78,
+      "qid": "3",
+      "human_score": 2.5,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 1.0,
+      "cllm_k7_attempts": [
+        1.5,
+        1.5,
+        1.5,
+        1.5,
+        1.5,
+        1.5,
+        2.0
+      ],
+      "cllm_k7_mean": 1.5
+    },
+    {
+      "id": 79,
+      "qid": "3",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.5
+      ],
+      "cllm_k7_mean": 4.0
+    },
+    {
+      "id": 80,
+      "qid": "3",
+      "human_score": 2.5,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        2.5,
+        3.0,
+        2.5,
+        2.5,
+        3.0,
+        2.75,
+        2.5
+      ],
+      "cllm_k7_mean": 2.75
+    },
+    {
+      "id": 81,
+      "qid": "3",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 82,
+      "qid": "3",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        4.5,
+        4.0,
+        4.5,
+        4.5,
+        4.0
+      ],
+      "cllm_k7_mean": 4.25
+    },
+    {
+      "id": 83,
+      "qid": "3",
+      "human_score": 2.5,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        1.0,
+        1.5,
+        1.5,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "cllm_k7_mean": 1.25
+    },
+    {
+      "id": 84,
+      "qid": "3",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        3.0,
+        3.5,
+        3.5,
+        3.5,
+        3.5,
+        3.75,
+        3.0
+      ],
+      "cllm_k7_mean": 3.5
+    },
+    {
+      "id": 85,
+      "qid": "3",
+      "human_score": 2.5,
+      "cllm_1call": 1.5,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        1.0,
+        1.5,
+        1.5,
+        1.5,
+        1.5,
+        1.0,
+        1.5
+      ],
+      "cllm_k7_mean": 1.25
+    },
+    {
+      "id": 86,
+      "qid": "3",
+      "human_score": 0.0,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        2.0,
+        2.0,
+        2.0,
+        1.5,
+        2.0,
+        1.5,
+        2.0
+      ],
+      "cllm_k7_mean": 1.75
+    },
+    {
+      "id": 87,
+      "qid": "3",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        3.5,
+        3.5,
+        4.0,
+        3.5,
+        4.0,
+        3.75,
+        4.0
+      ],
+      "cllm_k7_mean": 3.75
+    },
+    {
+      "id": 88,
+      "qid": "3",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        3.5,
+        3.5,
+        3.5,
+        3.5,
+        4.0,
+        3.5,
+        3.5
+      ],
+      "cllm_k7_mean": 3.5
+    },
+    {
+      "id": 89,
+      "qid": "3",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 0.0,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 90,
+      "qid": "3",
+      "human_score": 2.5,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        3.0,
+        2.5,
+        2.5
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 91,
+      "qid": "3",
+      "human_score": 0.0,
+      "cllm_1call": 0.5,
+      "c5fix_x7_single": 1.0,
+      "cllm_k7_attempts": [
+        0.5,
+        1.0,
+        1.0,
+        0.5,
+        1.0,
+        0.5,
+        0.5
+      ],
+      "cllm_k7_mean": 0.75
+    },
+    {
+      "id": 92,
+      "qid": "3",
+      "human_score": 5.0,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        2.0,
+        2.0,
+        2.5,
+        2.0,
+        2.5,
+        2.0,
+        2.0
+      ],
+      "cllm_k7_mean": 2.25
+    },
+    {
+      "id": 93,
+      "qid": "3",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.0,
+        3.5,
+        4.0,
+        4.0,
+        4.0,
+        3.75,
+        4.0
+      ],
+      "cllm_k7_mean": 4.0
+    },
+    {
+      "id": 94,
+      "qid": "3",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        3.5,
+        3.5,
+        3.5,
+        3.5,
+        3.5,
+        3.0,
+        3.5
+      ],
+      "cllm_k7_mean": 3.5
+    },
+    {
+      "id": 95,
+      "qid": "3",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.0,
+        3.5,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 4.0
+    },
+    {
+      "id": 96,
+      "qid": "3",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        3.0,
+        2.5,
+        2.5
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 97,
+      "qid": "3",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 0.0,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 98,
+      "qid": "3",
+      "human_score": 5.0,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 1.5,
+      "cllm_k7_attempts": [
+        1.0,
+        1.0,
+        1.5,
+        1.0,
+        1.5,
+        1.0,
+        1.0
+      ],
+      "cllm_k7_mean": 1.25
+    },
+    {
+      "id": 99,
+      "qid": "3",
+      "human_score": 0.0,
+      "cllm_1call": 1.5,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        2.0,
+        1.0,
+        2.0,
+        1.0,
+        2.0,
+        1.0,
+        1.0
+      ],
+      "cllm_k7_mean": 1.5
+    },
+    {
+      "id": 100,
+      "qid": "3",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 101,
+      "qid": "3",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 0.0,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 102,
+      "qid": "3",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        3.0,
+        3.5,
+        3.5,
+        3.75,
+        3.0,
+        3.5,
+        3.5
+      ],
+      "cllm_k7_mean": 3.5
+    },
+    {
+      "id": 103,
+      "qid": "3",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        3.5,
+        3.5,
+        3.0,
+        3.75,
+        3.5,
+        3.5,
+        3.5
+      ],
+      "cllm_k7_mean": 3.5
+    },
+    {
+      "id": 104,
+      "qid": "3",
+      "human_score": 2.5,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        2.5,
+        2.75,
+        2.5,
+        2.5,
+        2.5
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 105,
+      "qid": "3",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 106,
+      "qid": "3",
+      "human_score": 5.0,
+      "cllm_1call": 1.5,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.0,
+        2.5,
+        2.5
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 107,
+      "qid": "3",
+      "human_score": 2.5,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        2.5,
+        2.0,
+        2.5,
+        2.5,
+        2.0,
+        2.0,
+        2.5
+      ],
+      "cllm_k7_mean": 2.25
+    },
+    {
+      "id": 108,
+      "qid": "3",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        3.5,
+        3.5,
+        3.5,
+        3.75,
+        3.5,
+        3.5,
+        4.0
+      ],
+      "cllm_k7_mean": 3.5
+    },
+    {
+      "id": 109,
+      "qid": "3",
+      "human_score": 5.0,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        2.5,
+        3.0,
+        2.5,
+        2.5,
+        2.5
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 110,
+      "qid": "3",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 111,
+      "qid": "3",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 0.0,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 112,
+      "qid": "3",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        4.0,
+        3.5,
+        3.0,
+        3.75,
+        3.5,
+        3.5,
+        3.5
+      ],
+      "cllm_k7_mean": 3.5
+    },
+    {
+      "id": 113,
+      "qid": "3",
+      "human_score": 5.0,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 114,
+      "qid": "4",
+      "human_score": 2.5,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.5
+    },
+    {
+      "id": 115,
+      "qid": "4",
+      "human_score": 2.5,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        3.5,
+        4.0,
+        3.0,
+        4.5,
+        4.0,
+        4.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.75
+    },
+    {
+      "id": 116,
+      "qid": "4",
+      "human_score": 2.5,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        1.5,
+        1.5,
+        1.0,
+        1.0,
+        1.5,
+        1.5,
+        1.5
+      ],
+      "cllm_k7_mean": 1.25
+    },
+    {
+      "id": 117,
+      "qid": "4",
+      "human_score": 2.5,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        4.0,
+        4.5,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 4.0
+    },
+    {
+      "id": 118,
+      "qid": "4",
+      "human_score": 2.5,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        4.5,
+        4.5,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 4.25
+    },
+    {
+      "id": 119,
+      "qid": "4",
+      "human_score": 2.5,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        2.5,
+        2.0,
+        2.0,
+        2.5,
+        2.0,
+        2.5,
+        2.0
+      ],
+      "cllm_k7_mean": 2.25
+    },
+    {
+      "id": 120,
+      "qid": "4",
+      "human_score": 2.5,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        3.5,
+        3.5,
+        3.0,
+        3.5,
+        3.5,
+        3.0,
+        3.5
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 121,
+      "qid": "4",
+      "human_score": 2.5,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        3.5,
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 4.0
+    },
+    {
+      "id": 122,
+      "qid": "4",
+      "human_score": 2.5,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.5,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 123,
+      "qid": "4",
+      "human_score": 2.5,
+      "cllm_1call": 1.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        2.0,
+        1.5,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        1.5
+      ],
+      "cllm_k7_mean": 1.75
+    },
+    {
+      "id": 124,
+      "qid": "4",
+      "human_score": 2.5,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        3.5,
+        3.0,
+        3.0,
+        4.0,
+        3.5,
+        3.5,
+        3.0
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 125,
+      "qid": "4",
+      "human_score": 2.5,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        3.0
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 126,
+      "qid": "4",
+      "human_score": 2.5,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        4.0,
+        4.5,
+        4.5,
+        4.0,
+        4.5,
+        3.0,
+        4.0
+      ],
+      "cllm_k7_mean": 4.0
+    },
+    {
+      "id": 127,
+      "qid": "4",
+      "human_score": 2.5,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.0,
+        2.5
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 128,
+      "qid": "4",
+      "human_score": 2.5,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        3.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        3.0,
+        3.5
+      ],
+      "cllm_k7_mean": 3.75
+    },
+    {
+      "id": 129,
+      "qid": "4",
+      "human_score": 2.5,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        3.0,
+        4.0,
+        3.5,
+        4.0,
+        3.0,
+        3.0,
+        3.5
+      ],
+      "cllm_k7_mean": 3.5
+    },
+    {
+      "id": 130,
+      "qid": "4",
+      "human_score": 2.5,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 131,
+      "qid": "4",
+      "human_score": 2.5,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.5,
+        3.0,
+        3.0,
+        2.5,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 132,
+      "qid": "4",
+      "human_score": 2.5,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        2.0,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.0,
+        2.5
+      ],
+      "cllm_k7_mean": 2.25
+    },
+    {
+      "id": 133,
+      "qid": "4",
+      "human_score": 2.5,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        3.5,
+        3.0,
+        3.5,
+        3.5,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 134,
+      "qid": "4",
+      "human_score": 2.5,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.5,
+        3.0,
+        3.0,
+        2.5,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 135,
+      "qid": "4",
+      "human_score": 2.5,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "cllm_k7_mean": 1.0
+    },
+    {
+      "id": 136,
+      "qid": "4",
+      "human_score": 2.5,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        2.0,
+        2.5,
+        2.5,
+        2.5,
+        2.0,
+        2.0,
+        2.0
+      ],
+      "cllm_k7_mean": 2.25
+    },
+    {
+      "id": 137,
+      "qid": "4",
+      "human_score": 2.5,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.5,
+        3.0,
+        3.0,
+        2.5,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 138,
+      "qid": "4",
+      "human_score": 2.5,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        3.0,
+        2.5,
+        2.5,
+        2.5,
+        2.5
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 139,
+      "qid": "4",
+      "human_score": 2.5,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.5,
+        3.0,
+        3.0,
+        2.5,
+        3.5
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 140,
+      "qid": "4",
+      "human_score": 2.5,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        4.0,
+        3.5,
+        3.0,
+        2.5,
+        3.5
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 141,
+      "qid": "4",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        3.5,
+        3.5,
+        4.0,
+        3.5,
+        3.5,
+        3.5,
+        3.5
+      ],
+      "cllm_k7_mean": 3.5
+    },
+    {
+      "id": 142,
+      "qid": "4",
+      "human_score": 2.5,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        2.5,
+        3.0,
+        3.5,
+        3.0,
+        3.0,
+        2.5,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 143,
+      "qid": "4",
+      "human_score": 2.5,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        3.0,
+        3.5,
+        4.0,
+        3.5,
+        3.0,
+        3.0,
+        3.5
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 144,
+      "qid": "4",
+      "human_score": 2.5,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        3.0,
+        3.5,
+        3.5,
+        3.5,
+        3.0,
+        2.5,
+        3.0
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 145,
+      "qid": "4",
+      "human_score": 2.5,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        3.0,
+        3.5,
+        3.5,
+        3.5,
+        3.0,
+        2.5,
+        3.0
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 146,
+      "qid": "4",
+      "human_score": 2.5,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        3.5,
+        3.0,
+        3.5,
+        3.5,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 147,
+      "qid": "4",
+      "human_score": 5.0,
+      "cllm_1call": 5.0,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        5.0,
+        5.0,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.75
+    },
+    {
+      "id": 148,
+      "qid": "4",
+      "human_score": 2.5,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.0,
+        2.5
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 149,
+      "qid": "4",
+      "human_score": 2.5,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.0,
+        2.0,
+        2.0
+      ],
+      "cllm_k7_mean": 2.25
+    },
+    {
+      "id": 150,
+      "qid": "4",
+      "human_score": 2.5,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.0,
+        4.5,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 4.0
+    },
+    {
+      "id": 151,
+      "qid": "4",
+      "human_score": 2.5,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        3.0,
+        2.5,
+        2.5,
+        2.0,
+        2.5,
+        2.5,
+        2.0
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 152,
+      "qid": "5",
+      "human_score": 5.0,
+      "cllm_1call": 5.0,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.5
+    },
+    {
+      "id": 153,
+      "qid": "5",
+      "human_score": 2.5,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 4.0
+    },
+    {
+      "id": 154,
+      "qid": "5",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        3.5,
+        2.5,
+        3.0,
+        2.5,
+        2.0,
+        2.5,
+        2.5
+      ],
+      "cllm_k7_mean": 2.75
+    },
+    {
+      "id": 155,
+      "qid": "5",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.5
+    },
+    {
+      "id": 156,
+      "qid": "5",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        4.0,
+        3.5,
+        4.0,
+        4.0,
+        3.5,
+        3.0,
+        3.5
+      ],
+      "cllm_k7_mean": 3.75
+    },
+    {
+      "id": 157,
+      "qid": "5",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        4.0,
+        3.5,
+        4.0,
+        4.0,
+        3.5,
+        3.5,
+        3.5
+      ],
+      "cllm_k7_mean": 3.75
+    },
+    {
+      "id": 158,
+      "qid": "5",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.0,
+        3.5,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        3.5
+      ],
+      "cllm_k7_mean": 3.75
+    },
+    {
+      "id": 159,
+      "qid": "5",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 0.0,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 160,
+      "qid": "5",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.0,
+        3.5,
+        3.5,
+        3.0,
+        3.5,
+        3.0,
+        3.5
+      ],
+      "cllm_k7_mean": 3.5
+    },
+    {
+      "id": 161,
+      "qid": "5",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.0,
+        3.0,
+        3.5,
+        3.0,
+        3.5,
+        3.5,
+        3.5
+      ],
+      "cllm_k7_mean": 3.5
+    },
+    {
+      "id": 162,
+      "qid": "5",
+      "human_score": 0.0,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        2.0,
+        1.5,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ],
+      "cllm_k7_mean": 2.0
+    },
+    {
+      "id": 163,
+      "qid": "5",
+      "human_score": 0.0,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 1.5,
+      "cllm_k7_attempts": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "cllm_k7_mean": 1.0
+    },
+    {
+      "id": 164,
+      "qid": "5",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        3.0,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 165,
+      "qid": "5",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 4.0
+    },
+    {
+      "id": 166,
+      "qid": "5",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 4.0
+    },
+    {
+      "id": 167,
+      "qid": "5",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        3.5,
+        3.0,
+        3.5,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 168,
+      "qid": "5",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        3.5,
+        2.5,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 169,
+      "qid": "5",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.0,
+        3.5,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 4.0
+    },
+    {
+      "id": 170,
+      "qid": "5",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.5
+    },
+    {
+      "id": 171,
+      "qid": "5",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        4.0,
+        3.5,
+        3.5,
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 3.75
+    },
+    {
+      "id": 172,
+      "qid": "5",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 4.0
+    },
+    {
+      "id": 173,
+      "qid": "5",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        3.5,
+        3.5,
+        3.5,
+        4.0,
+        3.5,
+        3.5,
+        3.5
+      ],
+      "cllm_k7_mean": 3.5
+    },
+    {
+      "id": 174,
+      "qid": "5",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.5
+    },
+    {
+      "id": 175,
+      "qid": "5",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 176,
+      "qid": "5",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.0,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.5
+    },
+    {
+      "id": 177,
+      "qid": "5",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        3.0,
+        3.5,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.5
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 178,
+      "qid": "5",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        2.5,
+        3.0,
+        2.5,
+        2.5,
+        2.5
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 179,
+      "qid": "5",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        3.5,
+        4.0,
+        3.5,
+        4.0,
+        4.0,
+        3.5,
+        4.0
+      ],
+      "cllm_k7_mean": 3.75
+    },
+    {
+      "id": 180,
+      "qid": "5",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        2.5,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 181,
+      "qid": "5",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 4.0
+    },
+    {
+      "id": 182,
+      "qid": "5",
+      "human_score": 2.5,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        2.0,
+        2.0,
+        1.5,
+        2.0,
+        2.0,
+        1.5,
+        1.5
+      ],
+      "cllm_k7_mean": 1.75
+    },
+    {
+      "id": 183,
+      "qid": "5",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.5,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 184,
+      "qid": "5",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 0.0,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 185,
+      "qid": "5",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        3.0,
+        2.5,
+        3.0,
+        3.0,
+        2.5,
+        2.5,
+        3.0
+      ],
+      "cllm_k7_mean": 2.75
+    },
+    {
+      "id": 186,
+      "qid": "5",
+      "human_score": 2.5,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ],
+      "cllm_k7_mean": 2.0
+    },
+    {
+      "id": 187,
+      "qid": "5",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 0.0,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 188,
+      "qid": "5",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        3.0,
+        3.5,
+        3.5,
+        3.5,
+        3.5,
+        3.5,
+        3.5
+      ],
+      "cllm_k7_mean": 3.5
+    },
+    {
+      "id": 189,
+      "qid": "5",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 0.0,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 190,
+      "qid": "6",
+      "human_score": 2.5,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        3.0,
+        2.0,
+        2.0,
+        3.0,
+        3.0,
+        2.5,
+        3.0
+      ],
+      "cllm_k7_mean": 2.75
+    },
+    {
+      "id": 191,
+      "qid": "6",
+      "human_score": 2.5,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        2.5,
+        2.0,
+        2.0,
+        2.5,
+        2.0,
+        2.0,
+        2.0
+      ],
+      "cllm_k7_mean": 2.25
+    },
+    {
+      "id": 192,
+      "qid": "6",
+      "human_score": 2.5,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        3.0,
+        2.5,
+        2.5,
+        3.0,
+        2.5,
+        2.0,
+        2.5
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 193,
+      "qid": "6",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.0,
+        3.0,
+        3.0,
+        4.0,
+        3.5,
+        3.5,
+        3.5
+      ],
+      "cllm_k7_mean": 3.5
+    },
+    {
+      "id": 194,
+      "qid": "6",
+      "human_score": 2.5,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        3.5,
+        3.0,
+        3.0,
+        3.5,
+        3.5,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 195,
+      "qid": "6",
+      "human_score": 2.5,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        3.0,
+        2.5,
+        2.5,
+        3.0,
+        3.0,
+        2.5,
+        3.0
+      ],
+      "cllm_k7_mean": 2.75
+    },
+    {
+      "id": 196,
+      "qid": "6",
+      "human_score": 2.5,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ],
+      "cllm_k7_mean": 2.0
+    },
+    {
+      "id": 197,
+      "qid": "6",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.5
+    },
+    {
+      "id": 198,
+      "qid": "6",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.5
+    },
+    {
+      "id": 199,
+      "qid": "6",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        4.0,
+        3.5,
+        3.5,
+        4.0,
+        3.0,
+        3.5,
+        3.5
+      ],
+      "cllm_k7_mean": 3.5
+    },
+    {
+      "id": 200,
+      "qid": "6",
+      "human_score": 2.5,
+      "cllm_1call": 1.5,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        1.0,
+        1.5,
+        1.0,
+        1.5,
+        1.5,
+        1.5,
+        1.0
+      ],
+      "cllm_k7_mean": 1.25
+    },
+    {
+      "id": 201,
+      "qid": "6",
+      "human_score": 0.0,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        2.25,
+        2.0,
+        2.5,
+        2.5,
+        2.25
+      ],
+      "cllm_k7_mean": 2.25
+    },
+    {
+      "id": 202,
+      "qid": "6",
+      "human_score": 2.5,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        2.0,
+        2.5,
+        2.5,
+        2.0,
+        2.0,
+        2.5,
+        2.0
+      ],
+      "cllm_k7_mean": 2.25
+    },
+    {
+      "id": 203,
+      "qid": "6",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.5,
+        3.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.25
+    },
+    {
+      "id": 204,
+      "qid": "6",
+      "human_score": 2.5,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        3.5,
+        3.0,
+        3.75,
+        3.0,
+        3.5,
+        3.5,
+        3.0
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 205,
+      "qid": "6",
+      "human_score": 2.5,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.5,
+        3.0,
+        3.0,
+        3.5,
+        3.0
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 206,
+      "qid": "6",
+      "human_score": 2.5,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        2.0,
+        2.0,
+        2.5,
+        2.0,
+        2.5,
+        2.5,
+        2.0
+      ],
+      "cllm_k7_mean": 2.25
+    },
+    {
+      "id": 207,
+      "qid": "6",
+      "human_score": 2.5,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        3.5,
+        3.0,
+        3.75,
+        3.0,
+        3.5,
+        3.5,
+        3.5
+      ],
+      "cllm_k7_mean": 3.5
+    },
+    {
+      "id": 208,
+      "qid": "6",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        3.0,
+        2.5,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 2.75
+    },
+    {
+      "id": 209,
+      "qid": "6",
+      "human_score": 2.5,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        3.0,
+        2.5,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 210,
+      "qid": "6",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        3.0,
+        2.5,
+        3.0,
+        2.5,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 2.75
+    },
+    {
+      "id": 211,
+      "qid": "6",
+      "human_score": 2.5,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        2.5,
+        2.0,
+        2.5,
+        2.5,
+        2.5
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 212,
+      "qid": "6",
+      "human_score": 2.5,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        1.5,
+        1.5,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        1.75
+      ],
+      "cllm_k7_mean": 1.75
+    },
+    {
+      "id": 213,
+      "qid": "6",
+      "human_score": 2.5,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        1.5,
+        1.5,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        1.75
+      ],
+      "cllm_k7_mean": 1.75
+    },
+    {
+      "id": 214,
+      "qid": "6",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        2.0,
+        2.5,
+        2.75,
+        2.5,
+        2.5,
+        2.5,
+        2.5
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 215,
+      "qid": "6",
+      "human_score": 2.5,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        3.0,
+        2.0,
+        3.0,
+        3.0,
+        2.5
+      ],
+      "cllm_k7_mean": 2.75
+    },
+    {
+      "id": 216,
+      "qid": "6",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        3.0,
+        2.5,
+        3.0,
+        2.5,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 2.75
+    },
+    {
+      "id": 217,
+      "qid": "6",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        3.5,
+        3.0,
+        3.0,
+        3.0,
+        3.5,
+        3.5,
+        3.0
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 218,
+      "qid": "6",
+      "human_score": 5.0,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        2.0,
+        2.0,
+        2.5,
+        2.0,
+        2.5,
+        2.5,
+        2.0
+      ],
+      "cllm_k7_mean": 2.25
+    },
+    {
+      "id": 219,
+      "qid": "6",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.0,
+        3.0,
+        4.0,
+        3.5,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 3.75
+    },
+    {
+      "id": 220,
+      "qid": "6",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 221,
+      "qid": "6",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        3.5,
+        3.0,
+        3.5,
+        3.0,
+        3.5,
+        3.5,
+        3.0
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 222,
+      "qid": "6",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.0,
+        3.5,
+        4.0,
+        3.5,
+        4.0,
+        4.0,
+        3.75
+      ],
+      "cllm_k7_mean": 3.75
+    },
+    {
+      "id": 223,
+      "qid": "6",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        3.0,
+        2.5,
+        3.0,
+        2.5,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 2.75
+    },
+    {
+      "id": 224,
+      "qid": "6",
+      "human_score": 2.5,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.5,
+        1.0
+      ],
+      "cllm_k7_mean": 1.0
+    },
+    {
+      "id": 225,
+      "qid": "6",
+      "human_score": 2.5,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        2.5,
+        2.5,
+        2.5,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 2.75
+    },
+    {
+      "id": 226,
+      "qid": "6",
+      "human_score": 2.5,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        2.0,
+        2.0,
+        2.5,
+        2.5,
+        2.5
+      ],
+      "cllm_k7_mean": 2.25
+    },
+    {
+      "id": 227,
+      "qid": "6",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.5,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 4.0
+    },
+    {
+      "id": 228,
+      "qid": "7",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        3.5,
+        3.5,
+        3.0,
+        3.5,
+        3.0,
+        3.5,
+        3.5
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 229,
+      "qid": "7",
+      "human_score": 2.5,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        3.0,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 230,
+      "qid": "7",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        2.5,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.5,
+        2.5
+      ],
+      "cllm_k7_mean": 2.25
+    },
+    {
+      "id": 231,
+      "qid": "7",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.0,
+        3.5,
+        3.5,
+        3.5,
+        3.0,
+        3.5,
+        3.5
+      ],
+      "cllm_k7_mean": 3.5
+    },
+    {
+      "id": 232,
+      "qid": "7",
+      "human_score": 2.5,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.5
+      ],
+      "cllm_k7_mean": 2.25
+    },
+    {
+      "id": 233,
+      "qid": "7",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        3.5,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 234,
+      "qid": "7",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        2.5,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 235,
+      "qid": "7",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        3.5,
+        3.0,
+        3.0,
+        3.0,
+        2.5,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 236,
+      "qid": "7",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        4.0,
+        3.5,
+        3.5,
+        3.0,
+        3.0,
+        3.5,
+        3.5
+      ],
+      "cllm_k7_mean": 3.5
+    },
+    {
+      "id": 237,
+      "qid": "7",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        3.5,
+        2.5,
+        3.0,
+        2.5,
+        2.5,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 2.75
+    },
+    {
+      "id": 238,
+      "qid": "7",
+      "human_score": 2.5,
+      "cllm_1call": 1.5,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        1.5,
+        1.5,
+        1.5,
+        1.5,
+        1.0,
+        1.5,
+        1.5
+      ],
+      "cllm_k7_mean": 1.5
+    },
+    {
+      "id": 239,
+      "qid": "7",
+      "human_score": 2.5,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.0,
+        2.5
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 240,
+      "qid": "7",
+      "human_score": 2.5,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        1.5,
+        1.5,
+        1.5,
+        1.0,
+        1.0,
+        1.5,
+        1.5
+      ],
+      "cllm_k7_mean": 1.25
+    },
+    {
+      "id": 241,
+      "qid": "7",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.0
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 242,
+      "qid": "7",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        3.5,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 243,
+      "qid": "7",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        3.5,
+        3.0,
+        3.0,
+        2.5,
+        2.5,
+        2.5,
+        3.0
+      ],
+      "cllm_k7_mean": 2.75
+    },
+    {
+      "id": 244,
+      "qid": "7",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.5,
+        3.5,
+        3.5,
+        4.0,
+        3.5,
+        4.0,
+        3.5
+      ],
+      "cllm_k7_mean": 3.75
+    },
+    {
+      "id": 245,
+      "qid": "7",
+      "human_score": 5.0,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 1.5,
+      "cllm_k7_attempts": [
+        1.5,
+        1.5,
+        1.5,
+        1.0,
+        1.5,
+        1.5,
+        1.5
+      ],
+      "cllm_k7_mean": 1.5
+    },
+    {
+      "id": 246,
+      "qid": "7",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        3.5,
+        3.5,
+        3.5,
+        3.5,
+        3.5,
+        3.5,
+        3.5
+      ],
+      "cllm_k7_mean": 3.5
+    },
+    {
+      "id": 247,
+      "qid": "7",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.5,
+        4.0,
+        3.5,
+        4.0,
+        3.5,
+        3.5,
+        4.0
+      ],
+      "cllm_k7_mean": 3.75
+    },
+    {
+      "id": 248,
+      "qid": "7",
+      "human_score": 2.5,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 1.5,
+      "cllm_k7_attempts": [
+        1.0,
+        1.0,
+        1.5,
+        1.0,
+        1.5,
+        1.5,
+        1.5
+      ],
+      "cllm_k7_mean": 1.25
+    },
+    {
+      "id": 249,
+      "qid": "7",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 1.5,
+      "cllm_k7_attempts": [
+        2.0,
+        1.5,
+        1.5,
+        1.5,
+        1.5,
+        1.5,
+        2.0
+      ],
+      "cllm_k7_mean": 1.75
+    },
+    {
+      "id": 250,
+      "qid": "7",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.5
+    },
+    {
+      "id": 251,
+      "qid": "7",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 1.5,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 252,
+      "qid": "7",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 4.0
+    },
+    {
+      "id": 253,
+      "qid": "7",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 254,
+      "qid": "7",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        3.5,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.5
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 255,
+      "qid": "7",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        3.5,
+        3.0,
+        3.0,
+        3.0,
+        2.5,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 256,
+      "qid": "7",
+      "human_score": 2.5,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        3.5,
+        3.5,
+        3.5,
+        3.5,
+        3.0,
+        3.5,
+        3.5
+      ],
+      "cllm_k7_mean": 3.5
+    },
+    {
+      "id": 257,
+      "qid": "7",
+      "human_score": 5.0,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        1.5,
+        2.0,
+        2.0
+      ],
+      "cllm_k7_mean": 2.0
+    },
+    {
+      "id": 258,
+      "qid": "7",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        3.0,
+        3.5,
+        4.0
+      ],
+      "cllm_k7_mean": 3.75
+    },
+    {
+      "id": 259,
+      "qid": "7",
+      "human_score": 2.5,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        4.0,
+        3.5,
+        3.5,
+        4.0,
+        3.5
+      ],
+      "cllm_k7_mean": 3.75
+    },
+    {
+      "id": 260,
+      "qid": "7",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 4.0
+    },
+    {
+      "id": 261,
+      "qid": "7",
+      "human_score": 2.5,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        3.5,
+        3.5,
+        3.0,
+        3.5,
+        3.0,
+        3.5,
+        3.0
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 262,
+      "qid": "7",
+      "human_score": 2.5,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ],
+      "cllm_k7_mean": 2.0
+    },
+    {
+      "id": 263,
+      "qid": "7",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        4.0,
+        3.5,
+        3.5,
+        3.5,
+        3.5,
+        3.5,
+        3.5
+      ],
+      "cllm_k7_mean": 3.5
+    },
+    {
+      "id": 264,
+      "qid": "7",
+      "human_score": 2.5,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        3.5,
+        3.5,
+        3.0,
+        3.5,
+        3.0,
+        3.5,
+        3.5
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 265,
+      "qid": "7",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        3.0,
+        3.5,
+        3.0,
+        3.0,
+        3.5,
+        3.5,
+        3.0
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 266,
+      "qid": "8",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.5,
+        5.0,
+        5.0,
+        5.0,
+        4.5,
+        5.0,
+        4.5
+      ],
+      "cllm_k7_mean": 4.75
+    },
+    {
+      "id": 267,
+      "qid": "8",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 0.0,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 268,
+      "qid": "8",
+      "human_score": 2.5,
+      "cllm_1call": 0.5,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "cllm_k7_mean": 1.0
+    },
+    {
+      "id": 269,
+      "qid": "8",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        3.5,
+        4.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.75
+    },
+    {
+      "id": 270,
+      "qid": "8",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        4.0,
+        4.5,
+        4.5,
+        4.5,
+        4.0,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.25
+    },
+    {
+      "id": 271,
+      "qid": "8",
+      "human_score": 2.5,
+      "cllm_1call": 1.5,
+      "c5fix_x7_single": 0.5,
+      "cllm_k7_attempts": [
+        2.0,
+        2.0,
+        2.5,
+        2.0,
+        1.0,
+        2.0,
+        2.0
+      ],
+      "cllm_k7_mean": 2.0
+    },
+    {
+      "id": 272,
+      "qid": "8",
+      "human_score": 5.0,
+      "cllm_1call": 1.5,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        1.5,
+        2.0,
+        1.5,
+        1.5,
+        1.0,
+        1.5,
+        1.5
+      ],
+      "cllm_k7_mean": 1.5
+    },
+    {
+      "id": 273,
+      "qid": "8",
+      "human_score": 0.0,
+      "cllm_1call": 1.5,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        2.0,
+        2.0,
+        2.5,
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ],
+      "cllm_k7_mean": 2.0
+    },
+    {
+      "id": 274,
+      "qid": "8",
+      "human_score": 5.0,
+      "cllm_1call": 0.5,
+      "c5fix_x7_single": 1.0,
+      "cllm_k7_attempts": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.5,
+        1.0,
+        1.0
+      ],
+      "cllm_k7_mean": 1.0
+    },
+    {
+      "id": 275,
+      "qid": "8",
+      "human_score": 5.0,
+      "cllm_1call": 0.5,
+      "c5fix_x7_single": 1.0,
+      "cllm_k7_attempts": [
+        1.0,
+        1.0,
+        1.0,
+        0.5,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "cllm_k7_mean": 1.0
+    },
+    {
+      "id": 276,
+      "qid": "8",
+      "human_score": 5.0,
+      "cllm_1call": 0.5,
+      "c5fix_x7_single": 1.0,
+      "cllm_k7_attempts": [
+        1.0,
+        1.0,
+        1.0,
+        0.5,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "cllm_k7_mean": 1.0
+    },
+    {
+      "id": 277,
+      "qid": "8",
+      "human_score": 5.0,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 0.5,
+      "cllm_k7_attempts": [
+        1.0,
+        2.0,
+        2.0,
+        2.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "cllm_k7_mean": 1.5
+    },
+    {
+      "id": 278,
+      "qid": "8",
+      "human_score": 5.0,
+      "cllm_1call": 1.5,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        2.5,
+        1.5,
+        1.5,
+        1.5,
+        2.5,
+        2.5,
+        2.5
+      ],
+      "cllm_k7_mean": 2.0
+    },
+    {
+      "id": 279,
+      "qid": "8",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 0.0,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 280,
+      "qid": "8",
+      "human_score": 0.0,
+      "cllm_1call": 0.5,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        1.0,
+        1.0,
+        1.0,
+        0.75,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "cllm_k7_mean": 1.0
+    },
+    {
+      "id": 281,
+      "qid": "8",
+      "human_score": 5.0,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        2.0,
+        1.0,
+        1.5,
+        1.0,
+        1.5,
+        1.5,
+        1.5
+      ],
+      "cllm_k7_mean": 1.5
+    },
+    {
+      "id": 282,
+      "qid": "8",
+      "human_score": 5.0,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        2.0,
+        1.5,
+        1.5,
+        1.0,
+        1.5,
+        1.5,
+        2.0
+      ],
+      "cllm_k7_mean": 1.5
+    },
+    {
+      "id": 283,
+      "qid": "8",
+      "human_score": 2.5,
+      "cllm_1call": 0.5,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        1.5,
+        1.0,
+        1.0,
+        1.0,
+        1.5,
+        1.0,
+        1.5
+      ],
+      "cllm_k7_mean": 1.25
+    },
+    {
+      "id": 284,
+      "qid": "8",
+      "human_score": 0.0,
+      "cllm_1call": 0.5,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        1.5,
+        1.0,
+        1.0,
+        0.75,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "cllm_k7_mean": 1.0
+    },
+    {
+      "id": 285,
+      "qid": "8",
+      "human_score": 5.0,
+      "cllm_1call": 0.5,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        1.0,
+        1.0,
+        1.0,
+        0.5,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "cllm_k7_mean": 1.0
+    },
+    {
+      "id": 286,
+      "qid": "8",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 1.0,
+      "cllm_k7_attempts": [
+        4.5,
+        4.0,
+        4.5,
+        4.0,
+        4.5,
+        4.5,
+        4.0
+      ],
+      "cllm_k7_mean": 4.25
+    },
+    {
+      "id": 287,
+      "qid": "8",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 0.0,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 288,
+      "qid": "8",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        4.0,
+        3.0,
+        3.5,
+        3.0,
+        4.0,
+        3.0,
+        3.5
+      ],
+      "cllm_k7_mean": 3.5
+    },
+    {
+      "id": 289,
+      "qid": "8",
+      "human_score": 5.0,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.5,
+        3.0,
+        4.5,
+        3.0,
+        4.0
+      ],
+      "cllm_k7_mean": 3.5
+    },
+    {
+      "id": 290,
+      "qid": "8",
+      "human_score": 2.5,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        1.5,
+        1.0,
+        1.0,
+        1.0,
+        1.5,
+        1.5,
+        1.5
+      ],
+      "cllm_k7_mean": 1.25
+    },
+    {
+      "id": 291,
+      "qid": "8",
+      "human_score": 2.5,
+      "cllm_1call": 0.5,
+      "c5fix_x7_single": 1.0,
+      "cllm_k7_attempts": [
+        1.0,
+        1.0,
+        1.0,
+        0.5,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "cllm_k7_mean": 1.0
+    },
+    {
+      "id": 292,
+      "qid": "8",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 1.5,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 293,
+      "qid": "8",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        3.5,
+        2.5,
+        3.5,
+        2.5,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 294,
+      "qid": "8",
+      "human_score": 0.0,
+      "cllm_1call": 0.5,
+      "c5fix_x7_single": 0.5,
+      "cllm_k7_attempts": [
+        1.0,
+        1.0,
+        0.5,
+        0.75,
+        0.5,
+        1.0,
+        1.0
+      ],
+      "cllm_k7_mean": 0.75
+    },
+    {
+      "id": 295,
+      "qid": "8",
+      "human_score": 0.0,
+      "cllm_1call": 0.5,
+      "c5fix_x7_single": 0.5,
+      "cllm_k7_attempts": [
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "cllm_k7_mean": 0.5
+    },
+    {
+      "id": 296,
+      "qid": "8",
+      "human_score": 5.0,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        2.5,
+        2.0,
+        2.5,
+        2.0,
+        2.0,
+        2.5,
+        2.0
+      ],
+      "cllm_k7_mean": 2.25
+    },
+    {
+      "id": 297,
+      "qid": "8",
+      "human_score": 5.0,
+      "cllm_1call": 1.5,
+      "c5fix_x7_single": 1.5,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        2.5,
+        2.0,
+        2.0,
+        2.5,
+        2.5
+      ],
+      "cllm_k7_mean": 2.25
+    },
+    {
+      "id": 298,
+      "qid": "8",
+      "human_score": 5.0,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 0.5,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        4.0,
+        3.0,
+        4.5,
+        3.0,
+        4.0
+      ],
+      "cllm_k7_mean": 3.5
+    },
+    {
+      "id": 299,
+      "qid": "8",
+      "human_score": 0.0,
+      "cllm_1call": 0.5,
+      "c5fix_x7_single": 0.5,
+      "cllm_k7_attempts": [
+        1.0,
+        1.0,
+        1.0,
+        0.75,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "cllm_k7_mean": 1.0
+    },
+    {
+      "id": 300,
+      "qid": "8",
+      "human_score": 5.0,
+      "cllm_1call": 0.5,
+      "c5fix_x7_single": 0.5,
+      "cllm_k7_attempts": [
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "cllm_k7_mean": 0.5
+    },
+    {
+      "id": 301,
+      "qid": "8",
+      "human_score": 5.0,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        2.0,
+        2.0,
+        2.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "cllm_k7_mean": 1.5
+    },
+    {
+      "id": 302,
+      "qid": "8",
+      "human_score": 5.0,
+      "cllm_1call": 1.5,
+      "c5fix_x7_single": 1.0,
+      "cllm_k7_attempts": [
+        2.0,
+        1.0,
+        1.0,
+        1.5,
+        1.5,
+        1.0,
+        1.0
+      ],
+      "cllm_k7_mean": 1.25
+    },
+    {
+      "id": 303,
+      "qid": "8",
+      "human_score": 0.0,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "cllm_k7_mean": 1.0
+    },
+    {
+      "id": 304,
+      "qid": "9",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.5
+    },
+    {
+      "id": 305,
+      "qid": "9",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.5,
+        3.0,
+        4.5,
+        3.0,
+        3.0,
+        4.0,
+        4.5
+      ],
+      "cllm_k7_mean": 3.75
+    },
+    {
+      "id": 306,
+      "qid": "9",
+      "human_score": 2.5,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 307,
+      "qid": "9",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.5
+      ],
+      "cllm_k7_mean": 4.0
+    },
+    {
+      "id": 308,
+      "qid": "9",
+      "human_score": 2.5,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.0,
+        3.0,
+        4.0,
+        4.0,
+        3.0,
+        4.0,
+        4.5
+      ],
+      "cllm_k7_mean": 3.75
+    },
+    {
+      "id": 309,
+      "qid": "9",
+      "human_score": 2.5,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.5,
+        3.5,
+        4.5,
+        4.0,
+        3.5,
+        4.0,
+        4.5
+      ],
+      "cllm_k7_mean": 4.0
+    },
+    {
+      "id": 310,
+      "qid": "9",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        5.0,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        5.0
+      ],
+      "cllm_k7_mean": 4.75
+    },
+    {
+      "id": 311,
+      "qid": "9",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        3.0,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        3.0
+      ],
+      "cllm_k7_mean": 2.75
+    },
+    {
+      "id": 312,
+      "qid": "9",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "cllm_k7_mean": 5.0
+    },
+    {
+      "id": 313,
+      "qid": "9",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 0.0,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 314,
+      "qid": "9",
+      "human_score": 0.0,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.5,
+        1.0
+      ],
+      "cllm_k7_mean": 1.0
+    },
+    {
+      "id": 315,
+      "qid": "9",
+      "human_score": 2.5,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        3.0,
+        2.5,
+        3.5,
+        3.0,
+        3.0,
+        2.5,
+        3.5
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 316,
+      "qid": "9",
+      "human_score": 2.5,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        3.0,
+        2.5,
+        3.5,
+        2.5,
+        3.0,
+        2.5,
+        3.5
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 317,
+      "qid": "9",
+      "human_score": 2.5,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.5,
+        1.0
+      ],
+      "cllm_k7_mean": 1.0
+    },
+    {
+      "id": 318,
+      "qid": "9",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        5.0,
+        4.5,
+        5.0,
+        5.0,
+        4.5,
+        5.0,
+        5.0
+      ],
+      "cllm_k7_mean": 4.75
+    },
+    {
+      "id": 319,
+      "qid": "9",
+      "human_score": 2.5,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.5,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 320,
+      "qid": "9",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        3.5,
+        2.5,
+        2.5,
+        3.0,
+        3.5,
+        3.5,
+        4.0
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 321,
+      "qid": "9",
+      "human_score": 2.5,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.5
+    },
+    {
+      "id": 322,
+      "qid": "9",
+      "human_score": 5.0,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        2.5,
+        2.0,
+        2.0,
+        2.5,
+        2.5,
+        2.5,
+        2.5
+      ],
+      "cllm_k7_mean": 2.25
+    },
+    {
+      "id": 323,
+      "qid": "9",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        5.0,
+        4.5,
+        5.0,
+        5.0,
+        4.5,
+        5.0,
+        5.0
+      ],
+      "cllm_k7_mean": 4.75
+    },
+    {
+      "id": 324,
+      "qid": "9",
+      "human_score": 2.5,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        3.5,
+        3.0,
+        4.0,
+        3.0,
+        3.0,
+        3.0,
+        4.0
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 325,
+      "qid": "9",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.5
+    },
+    {
+      "id": 326,
+      "qid": "9",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.5,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 4.0
+    },
+    {
+      "id": 327,
+      "qid": "9",
+      "human_score": 2.5,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.0,
+        4.5,
+        4.5,
+        4.5,
+        4.0,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.25
+    },
+    {
+      "id": 328,
+      "qid": "9",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        4.5,
+        4.5,
+        4.0,
+        4.0,
+        4.5
+      ],
+      "cllm_k7_mean": 4.25
+    },
+    {
+      "id": 329,
+      "qid": "9",
+      "human_score": 2.5,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 330,
+      "qid": "9",
+      "human_score": 2.5,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.0,
+        4.5,
+        4.5,
+        4.5,
+        4.0,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.25
+    },
+    {
+      "id": 331,
+      "qid": "9",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 4.0
+    },
+    {
+      "id": 332,
+      "qid": "9",
+      "human_score": 2.5,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 333,
+      "qid": "9",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 4.0
+    },
+    {
+      "id": 334,
+      "qid": "9",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        2.5,
+        3.0,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 335,
+      "qid": "9",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        4.5,
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 4.0
+    },
+    {
+      "id": 336,
+      "qid": "9",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.0
+      ],
+      "cllm_k7_mean": 4.5
+    },
+    {
+      "id": 337,
+      "qid": "9",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 0.0,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 338,
+      "qid": "9",
+      "human_score": 0.0,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "cllm_k7_mean": 1.0
+    },
+    {
+      "id": 339,
+      "qid": "9",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        4.5,
+        4.5,
+        4.0,
+        4.0,
+        4.5
+      ],
+      "cllm_k7_mean": 4.25
+    },
+    {
+      "id": 340,
+      "qid": "9",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.0,
+        4.5,
+        4.5,
+        4.5,
+        4.0,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.25
+    },
+    {
+      "id": 341,
+      "qid": "9",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        3.0,
+        3.5,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 342,
+      "qid": "10",
+      "human_score": 2.5,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.0,
+        4.5,
+        4.0,
+        4.5
+      ],
+      "cllm_k7_mean": 4.25
+    },
+    {
+      "id": 343,
+      "qid": "10",
+      "human_score": 2.5,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 344,
+      "qid": "10",
+      "human_score": 2.5,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        2.0,
+        2.0,
+        2.5,
+        2.0,
+        2.0,
+        2.0,
+        2.5
+      ],
+      "cllm_k7_mean": 2.25
+    },
+    {
+      "id": 345,
+      "qid": "10",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.5
+    },
+    {
+      "id": 346,
+      "qid": "10",
+      "human_score": 2.5,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        3.5,
+        3.0,
+        3.5,
+        3.0,
+        3.0,
+        3.0,
+        3.5
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 347,
+      "qid": "10",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.5,
+        3.5,
+        3.0,
+        3.5
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 348,
+      "qid": "10",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        4.0,
+        3.5,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 4.0
+    },
+    {
+      "id": 349,
+      "qid": "10",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.0,
+        4.5,
+        4.5,
+        4.0,
+        4.5,
+        4.5,
+        4.0
+      ],
+      "cllm_k7_mean": 4.25
+    },
+    {
+      "id": 350,
+      "qid": "10",
+      "human_score": 2.5,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 351,
+      "qid": "10",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        3.5,
+        3.75,
+        3.5,
+        3.75,
+        3.5,
+        3.5,
+        3.75
+      ],
+      "cllm_k7_mean": 3.5
+    },
+    {
+      "id": 352,
+      "qid": "10",
+      "human_score": 2.5,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        2.0,
+        2.25,
+        2.0,
+        2.25,
+        2.0,
+        2.0,
+        2.25
+      ],
+      "cllm_k7_mean": 2.0
+    },
+    {
+      "id": 353,
+      "qid": "10",
+      "human_score": 2.5,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        3.0,
+        3.5,
+        3.5,
+        3.5,
+        3.5,
+        3.5,
+        3.75
+      ],
+      "cllm_k7_mean": 3.5
+    },
+    {
+      "id": 354,
+      "qid": "10",
+      "human_score": 2.5,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        2.5,
+        2.75,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 355,
+      "qid": "10",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        3.5,
+        4.0,
+        4.0,
+        3.75,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 4.0
+    },
+    {
+      "id": 356,
+      "qid": "10",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.0,
+        4.5,
+        4.0,
+        4.5,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 4.25
+    },
+    {
+      "id": 357,
+      "qid": "10",
+      "human_score": 2.5,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        2.5,
+        3.0,
+        3.5,
+        3.0,
+        3.0,
+        3.5,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 358,
+      "qid": "10",
+      "human_score": 2.5,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        2.5,
+        2.75,
+        2.5,
+        3.0,
+        2.5,
+        3.0,
+        2.75
+      ],
+      "cllm_k7_mean": 2.75
+    },
+    {
+      "id": 359,
+      "qid": "10",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        3.0,
+        3.25,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.5
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 360,
+      "qid": "10",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        3.0,
+        3.25,
+        3.0,
+        3.5,
+        3.5,
+        3.5,
+        3.5
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 361,
+      "qid": "10",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        3.5,
+        4.0,
+        3.5,
+        4.0,
+        3.5,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 3.75
+    },
+    {
+      "id": 362,
+      "qid": "10",
+      "human_score": 2.5,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        2.5,
+        3.0,
+        2.5,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 2.75
+    },
+    {
+      "id": 363,
+      "qid": "10",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        2.5,
+        3.5,
+        3.0,
+        3.5,
+        3.0,
+        3.0,
+        3.5
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 364,
+      "qid": "10",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        3.5,
+        3.5,
+        3.5,
+        3.75,
+        3.0,
+        3.5,
+        3.75
+      ],
+      "cllm_k7_mean": 3.5
+    },
+    {
+      "id": 365,
+      "qid": "10",
+      "human_score": 2.5,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        1.5,
+        2.0,
+        1.5,
+        2.0,
+        1.5,
+        2.0,
+        2.0
+      ],
+      "cllm_k7_mean": 1.75
+    },
+    {
+      "id": 366,
+      "qid": "10",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        3.5,
+        3.5,
+        3.75
+      ],
+      "cllm_k7_mean": 3.75
+    },
+    {
+      "id": 367,
+      "qid": "10",
+      "human_score": 2.5,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        2.5,
+        2.75,
+        2.5,
+        2.75,
+        2.5,
+        2.5,
+        2.5
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 368,
+      "qid": "10",
+      "human_score": 2.5,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.75
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 369,
+      "qid": "10",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        3.5,
+        3.75,
+        3.5,
+        3.75,
+        3.5,
+        3.5,
+        4.0
+      ],
+      "cllm_k7_mean": 3.75
+    },
+    {
+      "id": 370,
+      "qid": "10",
+      "human_score": 2.5,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        3.75,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 4.0
+    },
+    {
+      "id": 371,
+      "qid": "10",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        3.5,
+        3.5,
+        3.5,
+        3.5,
+        3.5,
+        3.0,
+        3.5
+      ],
+      "cllm_k7_mean": 3.5
+    },
+    {
+      "id": 372,
+      "qid": "10",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        3.5,
+        3.75,
+        3.5,
+        3.75,
+        3.5,
+        3.5,
+        3.75
+      ],
+      "cllm_k7_mean": 3.5
+    },
+    {
+      "id": 373,
+      "qid": "10",
+      "human_score": 2.5,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        2.5,
+        2.75,
+        2.5,
+        2.5,
+        2.75
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 374,
+      "qid": "10",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        3.75,
+        3.75,
+        4.0,
+        3.5,
+        4.0,
+        3.5,
+        4.0
+      ],
+      "cllm_k7_mean": 3.75
+    },
+    {
+      "id": 375,
+      "qid": "10",
+      "human_score": 2.5,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.75,
+        3.0,
+        3.0,
+        3.0,
+        3.75
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 376,
+      "qid": "10",
+      "human_score": 2.5,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        2.5,
+        2.25,
+        2.25,
+        2.25,
+        2.5,
+        2.25,
+        2.25
+      ],
+      "cllm_k7_mean": 2.25
+    },
+    {
+      "id": 377,
+      "qid": "10",
+      "human_score": 2.5,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        3.0,
+        2.5,
+        2.75,
+        3.0,
+        3.0,
+        2.5,
+        2.5
+      ],
+      "cllm_k7_mean": 2.75
+    },
+    {
+      "id": 378,
+      "qid": "10",
+      "human_score": 2.5,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.5
+    },
+    {
+      "id": 379,
+      "qid": "10",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        4.5,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 4.0
+    },
+    {
+      "id": 380,
+      "qid": "11",
+      "human_score": 5.0,
+      "cllm_1call": 5.0,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "cllm_k7_mean": 5.0
+    },
+    {
+      "id": 381,
+      "qid": "11",
+      "human_score": 2.5,
+      "cllm_1call": 5.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.5
+    },
+    {
+      "id": 382,
+      "qid": "11",
+      "human_score": 2.5,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        2.0,
+        1.75,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ],
+      "cllm_k7_mean": 2.0
+    },
+    {
+      "id": 383,
+      "qid": "11",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        3.5,
+        3.75,
+        3.75,
+        3.5,
+        3.75,
+        3.75,
+        3.75
+      ],
+      "cllm_k7_mean": 3.75
+    },
+    {
+      "id": 384,
+      "qid": "11",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        3.5,
+        3.75,
+        4.0,
+        3.5,
+        4.0,
+        3.5,
+        4.0
+      ],
+      "cllm_k7_mean": 3.75
+    },
+    {
+      "id": 385,
+      "qid": "11",
+      "human_score": 2.5,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        3.0,
+        3.5,
+        3.0,
+        3.0,
+        3.5,
+        3.5,
+        3.0
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 386,
+      "qid": "11",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        3.0,
+        3.5,
+        3.5,
+        3.0,
+        3.5,
+        3.5,
+        3.0
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 387,
+      "qid": "11",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        2.5,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        2.5
+      ],
+      "cllm_k7_mean": 2.75
+    },
+    {
+      "id": 388,
+      "qid": "11",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        3.5,
+        4.0,
+        3.75,
+        3.5,
+        3.5,
+        3.75,
+        3.5
+      ],
+      "cllm_k7_mean": 3.75
+    },
+    {
+      "id": 389,
+      "qid": "11",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.5,
+        3.5,
+        3.0
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 390,
+      "qid": "11",
+      "human_score": 2.5,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        2.5,
+        2.5,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 2.75
+    },
+    {
+      "id": 391,
+      "qid": "11",
+      "human_score": 5.0,
+      "cllm_1call": 5.0,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.5
+    },
+    {
+      "id": 392,
+      "qid": "11",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        4.0,
+        3.5,
+        4.0,
+        3.5,
+        4.0,
+        4.0,
+        3.75
+      ],
+      "cllm_k7_mean": 3.75
+    },
+    {
+      "id": 393,
+      "qid": "11",
+      "human_score": 5.0,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 1.0,
+      "cllm_k7_attempts": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "cllm_k7_mean": 1.0
+    },
+    {
+      "id": 394,
+      "qid": "11",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        4.0,
+        3.75,
+        3.5,
+        3.5,
+        4.0,
+        4.0,
+        3.5
+      ],
+      "cllm_k7_mean": 3.75
+    },
+    {
+      "id": 395,
+      "qid": "11",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        3.75,
+        4.0,
+        4.5,
+        4.25,
+        4.0
+      ],
+      "cllm_k7_mean": 4.0
+    },
+    {
+      "id": 396,
+      "qid": "11",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.0,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.5
+    },
+    {
+      "id": 397,
+      "qid": "11",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        4.0,
+        3.5,
+        3.5,
+        3.5,
+        4.0,
+        3.5,
+        3.5
+      ],
+      "cllm_k7_mean": 3.75
+    },
+    {
+      "id": 398,
+      "qid": "11",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.5,
+        4.0
+      ],
+      "cllm_k7_mean": 4.0
+    },
+    {
+      "id": 399,
+      "qid": "11",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        3.5,
+        3.5,
+        3.5,
+        3.5,
+        3.5,
+        3.5,
+        3.75
+      ],
+      "cllm_k7_mean": 3.5
+    },
+    {
+      "id": 400,
+      "qid": "11",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        3.75,
+        3.75,
+        3.0,
+        3.0,
+        3.75,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 401,
+      "qid": "11",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        4.5,
+        4.5,
+        4.0,
+        4.0,
+        4.5
+      ],
+      "cllm_k7_mean": 4.25
+    },
+    {
+      "id": 402,
+      "qid": "11",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 4.0
+    },
+    {
+      "id": 403,
+      "qid": "11",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        3.0
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 404,
+      "qid": "11",
+      "human_score": 5.0,
+      "cllm_1call": 1.5,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        1.5,
+        1.5,
+        2.0,
+        2.0,
+        1.75,
+        1.5,
+        2.0
+      ],
+      "cllm_k7_mean": 1.75
+    },
+    {
+      "id": 405,
+      "qid": "11",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        4.5,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.5
+      ],
+      "cllm_k7_mean": 4.25
+    },
+    {
+      "id": 406,
+      "qid": "11",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.75,
+        2.5,
+        2.5
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 407,
+      "qid": "11",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.5,
+        3.0,
+        3.5,
+        3.5
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 408,
+      "qid": "11",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.5
+    },
+    {
+      "id": 409,
+      "qid": "11",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 410,
+      "qid": "11",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 411,
+      "qid": "11",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.5,
+        3.25,
+        3.5,
+        3.5
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 412,
+      "qid": "11",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 2.75
+    },
+    {
+      "id": 413,
+      "qid": "11",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        3.5,
+        3.5,
+        4.0,
+        3.5,
+        3.5,
+        3.5,
+        4.0
+      ],
+      "cllm_k7_mean": 3.75
+    },
+    {
+      "id": 414,
+      "qid": "11",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        3.0,
+        3.5,
+        3.0,
+        3.0,
+        3.25,
+        3.5,
+        3.5
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 415,
+      "qid": "11",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        2.5,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 416,
+      "qid": "11",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        3.0,
+        3.5,
+        3.0,
+        3.5,
+        3.5,
+        3.5,
+        3.5
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 417,
+      "qid": "11",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        4.5,
+        4.5,
+        4.0,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.25
+    },
+    {
+      "id": 418,
+      "qid": "12",
+      "human_score": 5.0,
+      "cllm_1call": 5.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        5.0,
+        5.0,
+        4.5,
+        4.5,
+        5.0
+      ],
+      "cllm_k7_mean": 4.75
+    },
+    {
+      "id": 419,
+      "qid": "12",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.5,
+        3.5,
+        3.5,
+        3.5,
+        4.0
+      ],
+      "cllm_k7_mean": 3.5
+    },
+    {
+      "id": 420,
+      "qid": "12",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 0.0,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 421,
+      "qid": "12",
+      "human_score": 5.0,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        2.0,
+        2.0,
+        1.0,
+        1.0,
+        1.5,
+        1.0,
+        2.0
+      ],
+      "cllm_k7_mean": 1.5
+    },
+    {
+      "id": 422,
+      "qid": "12",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        3.0,
+        3.0,
+        2.5,
+        2.5,
+        3.5
+      ],
+      "cllm_k7_mean": 2.75
+    },
+    {
+      "id": 423,
+      "qid": "12",
+      "human_score": 0.0,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 1.5,
+      "cllm_k7_attempts": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "cllm_k7_mean": 1.0
+    },
+    {
+      "id": 424,
+      "qid": "12",
+      "human_score": 5.0,
+      "cllm_1call": 1.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        1.5,
+        1.5,
+        2.0,
+        2.0,
+        1.5,
+        1.5,
+        2.0
+      ],
+      "cllm_k7_mean": 1.75
+    },
+    {
+      "id": 425,
+      "qid": "12",
+      "human_score": 5.0,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 426,
+      "qid": "12",
+      "human_score": 2.5,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        2.5,
+        2.0,
+        2.5,
+        2.5,
+        2.5
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 427,
+      "qid": "12",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 0.0,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 428,
+      "qid": "12",
+      "human_score": 0.0,
+      "cllm_1call": 0.5,
+      "c5fix_x7_single": 1.5,
+      "cllm_k7_attempts": [
+        1.0,
+        1.0,
+        1.0,
+        0.5,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "cllm_k7_mean": 1.0
+    },
+    {
+      "id": 429,
+      "qid": "12",
+      "human_score": 2.5,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        3.0,
+        2.5,
+        3.0,
+        2.5,
+        2.5,
+        2.5,
+        3.0
+      ],
+      "cllm_k7_mean": 2.75
+    },
+    {
+      "id": 430,
+      "qid": "12",
+      "human_score": 2.5,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 1.0,
+      "cllm_k7_attempts": [
+        1.5,
+        1.5,
+        1.5,
+        1.0,
+        1.0,
+        1.0,
+        1.5
+      ],
+      "cllm_k7_mean": 1.25
+    },
+    {
+      "id": 431,
+      "qid": "12",
+      "human_score": 2.5,
+      "cllm_1call": 1.5,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        2.0,
+        2.0,
+        1.5,
+        1.5,
+        2.0,
+        2.0,
+        1.5
+      ],
+      "cllm_k7_mean": 1.75
+    },
+    {
+      "id": 432,
+      "qid": "12",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 0.0,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 433,
+      "qid": "12",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 0.0,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 434,
+      "qid": "12",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        4.5,
+        3.5,
+        4.5,
+        3.5,
+        3.5,
+        3.5,
+        4.0
+      ],
+      "cllm_k7_mean": 3.75
+    },
+    {
+      "id": 435,
+      "qid": "12",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 0.0,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 436,
+      "qid": "12",
+      "human_score": 2.5,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        2.0,
+        2.0,
+        2.5,
+        2.0,
+        2.0,
+        2.0,
+        2.5
+      ],
+      "cllm_k7_mean": 2.25
+    },
+    {
+      "id": 437,
+      "qid": "12",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        4.0,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.25
+    },
+    {
+      "id": 438,
+      "qid": "12",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.25
+    },
+    {
+      "id": 439,
+      "qid": "12",
+      "human_score": 2.5,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 1.5,
+      "cllm_k7_attempts": [
+        1.0,
+        1.0,
+        1.5,
+        1.0,
+        1.5,
+        1.0,
+        1.0
+      ],
+      "cllm_k7_mean": 1.25
+    },
+    {
+      "id": 440,
+      "qid": "12",
+      "human_score": 2.5,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        2.5,
+        3.0,
+        3.0,
+        2.5,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 2.75
+    },
+    {
+      "id": 441,
+      "qid": "12",
+      "human_score": 0.0,
+      "cllm_1call": 0.5,
+      "c5fix_x7_single": 0.5,
+      "cllm_k7_attempts": [
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "cllm_k7_mean": 0.5
+    },
+    {
+      "id": 442,
+      "qid": "12",
+      "human_score": 2.5,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        2.0,
+        2.0,
+        2.5,
+        2.0,
+        2.0,
+        2.5,
+        2.0
+      ],
+      "cllm_k7_mean": 2.25
+    },
+    {
+      "id": 443,
+      "qid": "12",
+      "human_score": 2.5,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.5
+      ],
+      "cllm_k7_mean": 2.0
+    },
+    {
+      "id": 444,
+      "qid": "12",
+      "human_score": 2.5,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        4.0,
+        3.5,
+        4.0,
+        3.5,
+        4.0,
+        3.5,
+        4.0
+      ],
+      "cllm_k7_mean": 3.75
+    },
+    {
+      "id": 445,
+      "qid": "12",
+      "human_score": 2.5,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        1.0,
+        1.5,
+        1.0,
+        1.0,
+        1.0,
+        1.5,
+        1.0
+      ],
+      "cllm_k7_mean": 1.25
+    },
+    {
+      "id": 446,
+      "qid": "12",
+      "human_score": 2.5,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        1.5,
+        1.0,
+        1.5,
+        1.0,
+        1.0,
+        1.5,
+        1.5
+      ],
+      "cllm_k7_mean": 1.25
+    },
+    {
+      "id": 447,
+      "qid": "12",
+      "human_score": 2.5,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "cllm_k7_mean": 1.0
+    },
+    {
+      "id": 448,
+      "qid": "12",
+      "human_score": 2.5,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        1.0,
+        1.0,
+        1.0,
+        0.5,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "cllm_k7_mean": 1.0
+    },
+    {
+      "id": 449,
+      "qid": "12",
+      "human_score": 0.0,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 1.0,
+      "cllm_k7_attempts": [
+        1.0,
+        1.0,
+        1.5,
+        1.5,
+        1.5,
+        1.0,
+        1.0
+      ],
+      "cllm_k7_mean": 1.25
+    },
+    {
+      "id": 450,
+      "qid": "12",
+      "human_score": 0.0,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 1.0,
+      "cllm_k7_attempts": [
+        2.0,
+        1.5,
+        2.0,
+        1.5,
+        2.0,
+        2.0,
+        2.0
+      ],
+      "cllm_k7_mean": 1.75
+    },
+    {
+      "id": 451,
+      "qid": "12",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 0.0,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 452,
+      "qid": "12",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 0.5,
+      "cllm_k7_attempts": [
+        0.5,
+        0.0,
+        0.0,
+        0.0,
+        0.5,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.25
+    },
+    {
+      "id": 453,
+      "qid": "12",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 0.0,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 454,
+      "qid": "12",
+      "human_score": 2.5,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 455,
+      "qid": "12",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.5
+    },
+    {
+      "id": 456,
+      "qid": "13",
+      "human_score": 5.0,
+      "cllm_1call": 5.0,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "cllm_k7_mean": 5.0
+    },
+    {
+      "id": 457,
+      "qid": "13",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.5
+    },
+    {
+      "id": 458,
+      "qid": "13",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 4.25
+    },
+    {
+      "id": 459,
+      "qid": "13",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        3.5,
+        3.5,
+        3.5,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 460,
+      "qid": "13",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 4.0
+    },
+    {
+      "id": 461,
+      "qid": "13",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 4.0
+    },
+    {
+      "id": 462,
+      "qid": "13",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        3.5,
+        3.5,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 3.75
+    },
+    {
+      "id": 463,
+      "qid": "13",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        3.5,
+        3.5,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 3.75
+    },
+    {
+      "id": 464,
+      "qid": "13",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.0,
+        3.5,
+        4.5,
+        4.0,
+        4.5
+      ],
+      "cllm_k7_mean": 4.25
+    },
+    {
+      "id": 465,
+      "qid": "13",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        4.0,
+        3.5,
+        3.0,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 3.75
+    },
+    {
+      "id": 466,
+      "qid": "13",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.0,
+        3.0,
+        3.5,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 467,
+      "qid": "13",
+      "human_score": 2.5,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        3.0,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 468,
+      "qid": "13",
+      "human_score": 2.5,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        3.5,
+        3.0,
+        3.0,
+        3.0,
+        3.5,
+        3.5,
+        3.5
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 469,
+      "qid": "13",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        3.5,
+        3.0,
+        3.0,
+        2.5,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 470,
+      "qid": "13",
+      "human_score": 2.5,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        3.5,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 471,
+      "qid": "13",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        3.0,
+        3.5,
+        3.0,
+        3.5,
+        3.0,
+        3.5,
+        3.5
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 472,
+      "qid": "13",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 473,
+      "qid": "13",
+      "human_score": 2.5,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        2.0,
+        1.5,
+        1.5,
+        1.5,
+        1.5,
+        1.5,
+        1.5
+      ],
+      "cllm_k7_mean": 1.5
+    },
+    {
+      "id": 474,
+      "qid": "13",
+      "human_score": 2.5,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        3.5,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 475,
+      "qid": "13",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.5
+    },
+    {
+      "id": 476,
+      "qid": "13",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.5
+    },
+    {
+      "id": 477,
+      "qid": "13",
+      "human_score": 2.5,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        4.0,
+        4.0,
+        3.5,
+        4.0,
+        3.5
+      ],
+      "cllm_k7_mean": 3.5
+    },
+    {
+      "id": 478,
+      "qid": "13",
+      "human_score": 2.5,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        3.0,
+        3.0,
+        2.5,
+        3.0,
+        2.5
+      ],
+      "cllm_k7_mean": 2.75
+    },
+    {
+      "id": 479,
+      "qid": "13",
+      "human_score": 2.5,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 1.0,
+      "cllm_k7_attempts": [
+        1.5,
+        1.5,
+        1.0,
+        1.5,
+        1.5,
+        1.5,
+        1.5
+      ],
+      "cllm_k7_mean": 1.5
+    },
+    {
+      "id": 480,
+      "qid": "13",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.0,
+        4.5,
+        4.0,
+        4.5,
+        4.0,
+        4.5,
+        4.0
+      ],
+      "cllm_k7_mean": 4.25
+    },
+    {
+      "id": 481,
+      "qid": "13",
+      "human_score": 2.5,
+      "cllm_1call": 1.5,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        1.0,
+        1.0,
+        1.5,
+        1.5,
+        1.5,
+        1.0,
+        1.0
+      ],
+      "cllm_k7_mean": 1.25
+    },
+    {
+      "id": 482,
+      "qid": "13",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.5,
+        2.5,
+        3.0,
+        2.5
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 483,
+      "qid": "13",
+      "human_score": 2.5,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.5,
+        4.0,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.0
+      ],
+      "cllm_k7_mean": 4.25
+    },
+    {
+      "id": 484,
+      "qid": "13",
+      "human_score": 2.5,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        4.5,
+        4.0,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.0
+      ],
+      "cllm_k7_mean": 4.25
+    },
+    {
+      "id": 485,
+      "qid": "13",
+      "human_score": 2.5,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        3.5,
+        3.0,
+        3.0,
+        4.0,
+        4.0,
+        4.0,
+        3.5
+      ],
+      "cllm_k7_mean": 3.5
+    },
+    {
+      "id": 486,
+      "qid": "13",
+      "human_score": 2.5,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        4.5,
+        4.0,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.0
+      ],
+      "cllm_k7_mean": 4.25
+    },
+    {
+      "id": 487,
+      "qid": "13",
+      "human_score": 2.5,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 488,
+      "qid": "13",
+      "human_score": 0.0,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 1.5,
+      "cllm_k7_attempts": [
+        0.5,
+        0.5,
+        1.0,
+        0.5,
+        1.0,
+        0.5,
+        0.5
+      ],
+      "cllm_k7_mean": 0.75
+    },
+    {
+      "id": 489,
+      "qid": "13",
+      "human_score": 2.5,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        3.0,
+        3.5,
+        3.5,
+        4.0,
+        3.5,
+        3.5,
+        3.0
+      ],
+      "cllm_k7_mean": 3.5
+    },
+    {
+      "id": 490,
+      "qid": "13",
+      "human_score": 0.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        2.5,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        2.5
+      ],
+      "cllm_k7_mean": 2.75
+    },
+    {
+      "id": 491,
+      "qid": "13",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.5
+    },
+    {
+      "id": 492,
+      "qid": "13",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.5,
+        3.5,
+        3.5,
+        4.0,
+        3.5
+      ],
+      "cllm_k7_mean": 3.5
+    },
+    {
+      "id": 493,
+      "qid": "13",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 0.0,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 494,
+      "qid": "14",
+      "human_score": 5.0,
+      "cllm_1call": 5.0,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "cllm_k7_mean": 5.0
+    },
+    {
+      "id": 495,
+      "qid": "14",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.0,
+        3.5,
+        4.0,
+        3.5,
+        3.5,
+        3.0,
+        3.5
+      ],
+      "cllm_k7_mean": 3.5
+    },
+    {
+      "id": 496,
+      "qid": "14",
+      "human_score": 2.5,
+      "cllm_1call": 0.5,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "cllm_k7_mean": 1.0
+    },
+    {
+      "id": 497,
+      "qid": "14",
+      "human_score": 5.0,
+      "cllm_1call": 4.5,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        4.5,
+        4.0,
+        4.0,
+        4.5,
+        4.5,
+        4.0,
+        4.5
+      ],
+      "cllm_k7_mean": 4.25
+    },
+    {
+      "id": 498,
+      "qid": "14",
+      "human_score": 2.5,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        2.0,
+        2.0,
+        2.5,
+        2.5,
+        2.5,
+        2.0,
+        2.5
+      ],
+      "cllm_k7_mean": 2.25
+    },
+    {
+      "id": 499,
+      "qid": "14",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.0
+      ],
+      "cllm_k7_mean": 4.5
+    },
+    {
+      "id": 500,
+      "qid": "14",
+      "human_score": 2.5,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 501,
+      "qid": "14",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        4.0,
+        3.75,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 4.0
+    },
+    {
+      "id": 502,
+      "qid": "14",
+      "human_score": 2.5,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.5,
+        3.5,
+        3.0
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 503,
+      "qid": "14",
+      "human_score": 2.5,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        2.5,
+        1.75,
+        2.5,
+        2.5,
+        2.0
+      ],
+      "cllm_k7_mean": 2.25
+    },
+    {
+      "id": 504,
+      "qid": "14",
+      "human_score": 2.5,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.5,
+        2.0,
+        2.0
+      ],
+      "cllm_k7_mean": 2.0
+    },
+    {
+      "id": 505,
+      "qid": "14",
+      "human_score": 2.5,
+      "cllm_1call": 1.5,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        2.5,
+        1.75,
+        2.5,
+        2.5,
+        2.0
+      ],
+      "cllm_k7_mean": 2.25
+    },
+    {
+      "id": 506,
+      "qid": "14",
+      "human_score": 2.5,
+      "cllm_1call": 1.5,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        2.5,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.5,
+        2.0
+      ],
+      "cllm_k7_mean": 2.25
+    },
+    {
+      "id": 507,
+      "qid": "14",
+      "human_score": 0.0,
+      "cllm_1call": 0.5,
+      "c5fix_x7_single": 1.0,
+      "cllm_k7_attempts": [
+        1.0,
+        1.0,
+        1.0,
+        0.5,
+        1.0,
+        1.0,
+        0.5
+      ],
+      "cllm_k7_mean": 0.75
+    },
+    {
+      "id": 508,
+      "qid": "14",
+      "human_score": 2.5,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        3.5,
+        3.5,
+        3.5,
+        3.5,
+        4.0,
+        3.5,
+        3.5
+      ],
+      "cllm_k7_mean": 3.5
+    },
+    {
+      "id": 509,
+      "qid": "14",
+      "human_score": 2.5,
+      "cllm_1call": 1.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        2.5,
+        2.0,
+        2.5,
+        2.5,
+        2.5
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 510,
+      "qid": "14",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        3.5,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 511,
+      "qid": "14",
+      "human_score": 2.5,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        2.0,
+        2.0,
+        2.0,
+        1.5,
+        2.5,
+        2.0,
+        2.0
+      ],
+      "cllm_k7_mean": 2.0
+    },
+    {
+      "id": 512,
+      "qid": "14",
+      "human_score": 2.5,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        3.5,
+        3.5,
+        3.5,
+        3.0,
+        3.5,
+        3.5,
+        4.0
+      ],
+      "cllm_k7_mean": 3.5
+    },
+    {
+      "id": 513,
+      "qid": "14",
+      "human_score": 2.5,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        1.5,
+        1.5,
+        1.5,
+        1.25,
+        1.5,
+        1.5,
+        1.5
+      ],
+      "cllm_k7_mean": 1.5
+    },
+    {
+      "id": 514,
+      "qid": "14",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.0,
+        3.5,
+        4.0,
+        4.0,
+        4.5
+      ],
+      "cllm_k7_mean": 4.25
+    },
+    {
+      "id": 515,
+      "qid": "14",
+      "human_score": 2.5,
+      "cllm_1call": 0.5,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "cllm_k7_mean": 1.0
+    },
+    {
+      "id": 516,
+      "qid": "14",
+      "human_score": 2.5,
+      "cllm_1call": 1.5,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        2.5,
+        2.0,
+        2.5,
+        2.5,
+        2.5
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 517,
+      "qid": "14",
+      "human_score": 2.5,
+      "cllm_1call": 0.5,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "cllm_k7_mean": 0.75
+    },
+    {
+      "id": 518,
+      "qid": "14",
+      "human_score": 2.5,
+      "cllm_1call": 0.5,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        1.0,
+        1.0,
+        1.0,
+        0.5,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "cllm_k7_mean": 1.0
+    },
+    {
+      "id": 519,
+      "qid": "14",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 4.0
+    },
+    {
+      "id": 520,
+      "qid": "14",
+      "human_score": 2.5,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        2.0,
+        2.0,
+        2.0,
+        1.75,
+        2.0,
+        2.0,
+        2.0
+      ],
+      "cllm_k7_mean": 2.0
+    },
+    {
+      "id": 521,
+      "qid": "14",
+      "human_score": 2.5,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.25,
+        3.5,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 522,
+      "qid": "14",
+      "human_score": 2.5,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.5,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 523,
+      "qid": "14",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 0.0,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 524,
+      "qid": "14",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        3.5,
+        3.5,
+        3.0,
+        3.0,
+        3.5,
+        3.5,
+        3.5
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 525,
+      "qid": "14",
+      "human_score": 2.5,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        2.5,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 526,
+      "qid": "14",
+      "human_score": 2.5,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.5
+    },
+    {
+      "id": 527,
+      "qid": "14",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        3.25,
+        3.5,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.75
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 528,
+      "qid": "14",
+      "human_score": 0.0,
+      "cllm_1call": 0.5,
+      "c5fix_x7_single": 1.0,
+      "cllm_k7_attempts": [
+        0.5,
+        1.0,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "cllm_k7_mean": 0.5
+    },
+    {
+      "id": 529,
+      "qid": "14",
+      "human_score": 2.5,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        2.0,
+        2.0,
+        2.0,
+        1.5,
+        2.0,
+        1.5,
+        1.75
+      ],
+      "cllm_k7_mean": 1.75
+    },
+    {
+      "id": 530,
+      "qid": "14",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.5,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 531,
+      "qid": "14",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 0.0,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 532,
+      "qid": "15",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        3.0,
+        3.5,
+        3.5,
+        3.0,
+        3.5,
+        3.5,
+        3.75
+      ],
+      "cllm_k7_mean": 3.5
+    },
+    {
+      "id": 533,
+      "qid": "15",
+      "human_score": 5.0,
+      "cllm_1call": 4.0,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        4.5,
+        4.0,
+        4.5,
+        4.0,
+        4.5,
+        4.0,
+        4.5
+      ],
+      "cllm_k7_mean": 4.25
+    },
+    {
+      "id": 534,
+      "qid": "15",
+      "human_score": 2.5,
+      "cllm_1call": 1.5,
+      "c5fix_x7_single": 1.5,
+      "cllm_k7_attempts": [
+        1.5,
+        1.5,
+        1.5,
+        1.0,
+        1.5,
+        1.0,
+        1.75
+      ],
+      "cllm_k7_mean": 1.5
+    },
+    {
+      "id": 535,
+      "qid": "15",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        3.5,
+        3.5,
+        3.5,
+        3.0,
+        4.0
+      ],
+      "cllm_k7_mean": 3.75
+    },
+    {
+      "id": 536,
+      "qid": "15",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        3.5,
+        3.75,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.5
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 537,
+      "qid": "15",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        3.0,
+        3.5,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.75
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 538,
+      "qid": "15",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        2.25,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        3.0
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 539,
+      "qid": "15",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        2.75,
+        2.75,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        3.0
+      ],
+      "cllm_k7_mean": 2.75
+    },
+    {
+      "id": 540,
+      "qid": "15",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        2.75,
+        3.0,
+        2.5,
+        3.0,
+        2.0,
+        2.5,
+        3.75
+      ],
+      "cllm_k7_mean": 2.75
+    },
+    {
+      "id": 541,
+      "qid": "15",
+      "human_score": 0.0,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 1.0,
+      "cllm_k7_attempts": [
+        1.0,
+        1.5,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "cllm_k7_mean": 1.0
+    },
+    {
+      "id": 542,
+      "qid": "15",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 0.0,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 543,
+      "qid": "15",
+      "human_score": 2.5,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 1.5,
+      "cllm_k7_attempts": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "cllm_k7_mean": 1.0
+    },
+    {
+      "id": 544,
+      "qid": "15",
+      "human_score": 2.5,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 1.0,
+      "cllm_k7_attempts": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "cllm_k7_mean": 1.0
+    },
+    {
+      "id": 545,
+      "qid": "15",
+      "human_score": 2.5,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        2.0,
+        2.0,
+        2.0,
+        1.5,
+        2.0,
+        2.0,
+        1.5
+      ],
+      "cllm_k7_mean": 1.75
+    },
+    {
+      "id": 546,
+      "qid": "15",
+      "human_score": 0.0,
+      "cllm_1call": 0.5,
+      "c5fix_x7_single": 0.5,
+      "cllm_k7_attempts": [
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "cllm_k7_mean": 0.5
+    },
+    {
+      "id": 547,
+      "qid": "15",
+      "human_score": 2.5,
+      "cllm_1call": 1.5,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        1.5,
+        2.0,
+        1.5,
+        1.5,
+        2.0,
+        1.5,
+        2.25
+      ],
+      "cllm_k7_mean": 1.75
+    },
+    {
+      "id": 548,
+      "qid": "15",
+      "human_score": 0.0,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 1.5,
+      "cllm_k7_attempts": [
+        0.5,
+        1.0,
+        0.5,
+        0.5,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "cllm_k7_mean": 0.75
+    },
+    {
+      "id": 549,
+      "qid": "15",
+      "human_score": 0.0,
+      "cllm_1call": 0.5,
+      "c5fix_x7_single": 0.5,
+      "cllm_k7_attempts": [
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "cllm_k7_mean": 0.5
+    },
+    {
+      "id": 550,
+      "qid": "15",
+      "human_score": 2.5,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        4.5,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.5
+      ],
+      "cllm_k7_mean": 4.25
+    },
+    {
+      "id": 551,
+      "qid": "15",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 0.0,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 552,
+      "qid": "15",
+      "human_score": 2.5,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        2.25,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        3.0,
+        2.5
+      ],
+      "cllm_k7_mean": 2.25
+    },
+    {
+      "id": 553,
+      "qid": "15",
+      "human_score": 0.0,
+      "cllm_1call": 0.5,
+      "c5fix_x7_single": 0.5,
+      "cllm_k7_attempts": [
+        0.5,
+        1.0,
+        1.0,
+        1.0,
+        0.5,
+        1.0,
+        1.0
+      ],
+      "cllm_k7_mean": 0.75
+    },
+    {
+      "id": 554,
+      "qid": "15",
+      "human_score": 2.5,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        1.5,
+        2.0,
+        2.0,
+        2.0,
+        1.5,
+        2.0,
+        2.0
+      ],
+      "cllm_k7_mean": 1.75
+    },
+    {
+      "id": 555,
+      "qid": "15",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 0.0,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 556,
+      "qid": "15",
+      "human_score": 2.5,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 1.0,
+      "cllm_k7_attempts": [
+        1.0,
+        1.5,
+        1.0,
+        1.5,
+        1.0,
+        1.5,
+        1.5
+      ],
+      "cllm_k7_mean": 1.25
+    },
+    {
+      "id": 557,
+      "qid": "15",
+      "human_score": 2.5,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        2.25,
+        2.0,
+        2.5,
+        2.5,
+        2.5,
+        3.5,
+        2.5
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 558,
+      "qid": "15",
+      "human_score": 2.5,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        2.5,
+        2.75,
+        2.5,
+        2.5,
+        2.5,
+        3.75,
+        3.0
+      ],
+      "cllm_k7_mean": 2.75
+    },
+    {
+      "id": 559,
+      "qid": "15",
+      "human_score": 2.5,
+      "cllm_1call": 1.5,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        1.5,
+        2.0,
+        1.5,
+        2.0,
+        1.5,
+        2.75,
+        2.0
+      ],
+      "cllm_k7_mean": 2.0
+    },
+    {
+      "id": 560,
+      "qid": "15",
+      "human_score": 2.5,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        1.75,
+        2.0,
+        1.5,
+        2.0,
+        2.0,
+        2.5,
+        2.5
+      ],
+      "cllm_k7_mean": 2.0
+    },
+    {
+      "id": 561,
+      "qid": "15",
+      "human_score": 2.5,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        1.0,
+        1.5,
+        1.0,
+        1.5,
+        1.0,
+        2.0,
+        2.0
+      ],
+      "cllm_k7_mean": 1.5
+    },
+    {
+      "id": 562,
+      "qid": "15",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        2.25,
+        2.5,
+        2.0,
+        2.5,
+        3.0,
+        3.5,
+        2.5
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 563,
+      "qid": "15",
+      "human_score": 2.5,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        1.0,
+        1.5,
+        1.0,
+        1.0,
+        1.0,
+        1.5,
+        1.5
+      ],
+      "cllm_k7_mean": 1.25
+    },
+    {
+      "id": 564,
+      "qid": "15",
+      "human_score": 5.0,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        2.25,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        3.0,
+        2.0
+      ],
+      "cllm_k7_mean": 2.25
+    },
+    {
+      "id": 565,
+      "qid": "15",
+      "human_score": 2.5,
+      "cllm_1call": 1.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        1.5,
+        1.5,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.5
+      ],
+      "cllm_k7_mean": 1.25
+    },
+    {
+      "id": 566,
+      "qid": "15",
+      "human_score": 0.0,
+      "cllm_1call": 0.5,
+      "c5fix_x7_single": 1.0,
+      "cllm_k7_attempts": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "cllm_k7_mean": 1.0
+    },
+    {
+      "id": 567,
+      "qid": "15",
+      "human_score": 2.5,
+      "cllm_1call": 1.5,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        1.0,
+        1.5,
+        1.0,
+        1.5,
+        1.5,
+        1.5,
+        1.5
+      ],
+      "cllm_k7_mean": 1.25
+    },
+    {
+      "id": 568,
+      "qid": "15",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        3.75,
+        3.0,
+        3.0,
+        3.5,
+        3.5,
+        3.75,
+        3.0
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 569,
+      "qid": "15",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 0.0,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 570,
+      "qid": "16",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        4.0,
+        4.5,
+        4.0,
+        4.0,
+        4.5
+      ],
+      "cllm_k7_mean": 3.75
+    },
+    {
+      "id": 571,
+      "qid": "16",
+      "human_score": 0.0,
+      "cllm_1call": 0.5,
+      "c5fix_x7_single": 1.5,
+      "cllm_k7_attempts": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.5,
+        1.0
+      ],
+      "cllm_k7_mean": 1.0
+    },
+    {
+      "id": 572,
+      "qid": "16",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 0.5,
+      "cllm_k7_attempts": [
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "cllm_k7_mean": 0.5
+    },
+    {
+      "id": 573,
+      "qid": "16",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 0.0,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 574,
+      "qid": "16",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        4.0,
+        4.0,
+        4.0,
+        3.0,
+        4.0
+      ],
+      "cllm_k7_mean": 3.5
+    },
+    {
+      "id": 575,
+      "qid": "16",
+      "human_score": 0.0,
+      "cllm_1call": 0.5,
+      "c5fix_x7_single": 1.5,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 576,
+      "qid": "16",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "cllm_k7_mean": 4.0
+    },
+    {
+      "id": 577,
+      "qid": "16",
+      "human_score": 0.0,
+      "cllm_1call": 0.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 578,
+      "qid": "16",
+      "human_score": 0.0,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        1.5,
+        1.5,
+        1.5,
+        1.5,
+        1.5,
+        1.5,
+        1.5
+      ],
+      "cllm_k7_mean": 1.5
+    },
+    {
+      "id": 579,
+      "qid": "16",
+      "human_score": 0.0,
+      "cllm_1call": 0.5,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 580,
+      "qid": "16",
+      "human_score": 0.0,
+      "cllm_1call": 0.5,
+      "c5fix_x7_single": 1.0,
+      "cllm_k7_attempts": [
+        1.0,
+        1.0,
+        0.5,
+        0.5,
+        1.0,
+        0.5,
+        0.5
+      ],
+      "cllm_k7_mean": 0.75
+    },
+    {
+      "id": 581,
+      "qid": "16",
+      "human_score": 2.5,
+      "cllm_1call": 0.5,
+      "c5fix_x7_single": 1.0,
+      "cllm_k7_attempts": [
+        1.0,
+        1.0,
+        0.5,
+        0.5,
+        1.0,
+        0.5,
+        0.5
+      ],
+      "cllm_k7_mean": 0.75
+    },
+    {
+      "id": 582,
+      "qid": "16",
+      "human_score": 0.0,
+      "cllm_1call": 0.5,
+      "c5fix_x7_single": 1.0,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 583,
+      "qid": "16",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        3.5,
+        3.75,
+        3.5,
+        3.75,
+        3.75,
+        4.0,
+        3.75
+      ],
+      "cllm_k7_mean": 3.75
+    },
+    {
+      "id": 584,
+      "qid": "16",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.5
+    },
+    {
+      "id": 585,
+      "qid": "16",
+      "human_score": 5.0,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.25
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 586,
+      "qid": "16",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.5,
+        4.0,
+        4.5
+      ],
+      "cllm_k7_mean": 4.25
+    },
+    {
+      "id": 587,
+      "qid": "16",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.25
+    },
+    {
+      "id": 588,
+      "qid": "16",
+      "human_score": 0.0,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 589,
+      "qid": "16",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 0.0,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 590,
+      "qid": "16",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        4.5,
+        4.0,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cllm_k7_mean": 4.25
+    },
+    {
+      "id": 591,
+      "qid": "16",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 0.5,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.5,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 592,
+      "qid": "16",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.5,
+        3.0,
+        4.0
+      ],
+      "cllm_k7_mean": 4.0
+    },
+    {
+      "id": 593,
+      "qid": "16",
+      "human_score": 0.0,
+      "cllm_1call": 0.5,
+      "c5fix_x7_single": 1.0,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 594,
+      "qid": "16",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        3.5,
+        3.0,
+        3.0,
+        3.5,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 595,
+      "qid": "16",
+      "human_score": 0.0,
+      "cllm_1call": 0.5,
+      "c5fix_x7_single": 1.5,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 596,
+      "qid": "16",
+      "human_score": 0.0,
+      "cllm_1call": 0.5,
+      "c5fix_x7_single": 1.5,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 597,
+      "qid": "16",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        5.0,
+        4.5
+      ],
+      "cllm_k7_mean": 4.5
+    },
+    {
+      "id": 598,
+      "qid": "16",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.5,
+        3.5,
+        3.0,
+        3.75
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 599,
+      "qid": "16",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.5,
+        5.0,
+        4.5,
+        4.0,
+        5.0,
+        4.5,
+        5.0
+      ],
+      "cllm_k7_mean": 4.75
+    },
+    {
+      "id": 600,
+      "qid": "16",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 601,
+      "qid": "16",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.5,
+        4.0,
+        4.5,
+        4.5,
+        4.5,
+        4.0,
+        4.5
+      ],
+      "cllm_k7_mean": 4.25
+    },
+    {
+      "id": 602,
+      "qid": "16",
+      "human_score": 0.0,
+      "cllm_1call": 0.5,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.25
+    },
+    {
+      "id": 603,
+      "qid": "16",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.5,
+        4.0,
+        4.5,
+        4.0,
+        4.0,
+        4.0,
+        4.5
+      ],
+      "cllm_k7_mean": 4.25
+    },
+    {
+      "id": 604,
+      "qid": "16",
+      "human_score": 0.0,
+      "cllm_1call": 0.5,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        0.5,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.25
+    },
+    {
+      "id": 605,
+      "qid": "16",
+      "human_score": 0.0,
+      "cllm_1call": 0.5,
+      "c5fix_x7_single": 1.0,
+      "cllm_k7_attempts": [
+        0.5,
+        0.0,
+        0.0,
+        0.0,
+        0.5,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.25
+    },
+    {
+      "id": 606,
+      "qid": "16",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.5,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 607,
+      "qid": "16",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.5,
+        4.5,
+        4.0,
+        4.5,
+        4.5,
+        3.5,
+        4.0
+      ],
+      "cllm_k7_mean": 4.25
+    },
+    {
+      "id": 608,
+      "qid": "17",
+      "human_score": 2.5,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.0,
+        4.5,
+        4.0,
+        3.5,
+        4.0,
+        3.5,
+        4.0
+      ],
+      "cllm_k7_mean": 4.0
+    },
+    {
+      "id": 609,
+      "qid": "17",
+      "human_score": 2.5,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.5,
+        3.5,
+        3.5
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 610,
+      "qid": "17",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 0.0,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 611,
+      "qid": "17",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 5.0,
+      "cllm_k7_attempts": [
+        3.0,
+        2.5,
+        3.0,
+        2.5,
+        3.0,
+        2.5,
+        2.5
+      ],
+      "cllm_k7_mean": 2.75
+    },
+    {
+      "id": 612,
+      "qid": "17",
+      "human_score": 2.5,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        3.5,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 613,
+      "qid": "17",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 0.0,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 614,
+      "qid": "17",
+      "human_score": 2.5,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        3.5,
+        3.0,
+        3.0,
+        2.5,
+        3.0,
+        3.0,
+        3.5
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 615,
+      "qid": "17",
+      "human_score": 2.5,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        3.0,
+        2.5,
+        3.0,
+        2.5,
+        2.5,
+        2.5,
+        3.0
+      ],
+      "cllm_k7_mean": 2.75
+    },
+    {
+      "id": 616,
+      "qid": "17",
+      "human_score": 5.0,
+      "cllm_1call": 1.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        1.0,
+        1.5,
+        1.0,
+        1.5,
+        1.5,
+        1.5,
+        1.0
+      ],
+      "cllm_k7_mean": 1.25
+    },
+    {
+      "id": 617,
+      "qid": "17",
+      "human_score": 0.0,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "cllm_k7_mean": 1.0
+    },
+    {
+      "id": 618,
+      "qid": "17",
+      "human_score": 0.0,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        2.0,
+        1.5,
+        2.0,
+        1.5,
+        2.0,
+        1.5,
+        1.5
+      ],
+      "cllm_k7_mean": 1.75
+    },
+    {
+      "id": 619,
+      "qid": "17",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        4.5,
+        4.0,
+        4.0,
+        4.0,
+        4.5
+      ],
+      "cllm_k7_mean": 4.25
+    },
+    {
+      "id": 620,
+      "qid": "17",
+      "human_score": 0.0,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 2.0,
+      "cllm_k7_attempts": [
+        0.5,
+        1.0,
+        0.5,
+        0.5,
+        1.0,
+        1.0,
+        0.5
+      ],
+      "cllm_k7_mean": 0.75
+    },
+    {
+      "id": 621,
+      "qid": "17",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 0.0,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 622,
+      "qid": "17",
+      "human_score": 2.5,
+      "cllm_1call": 2.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ],
+      "cllm_k7_mean": 2.0
+    },
+    {
+      "id": 623,
+      "qid": "17",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        3.5,
+        3.5,
+        4.0,
+        3.0,
+        3.0,
+        3.0,
+        3.5
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 624,
+      "qid": "17",
+      "human_score": 0.0,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "cllm_k7_mean": 1.0
+    },
+    {
+      "id": 625,
+      "qid": "17",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 0.0,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 626,
+      "qid": "17",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 4.5,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 627,
+      "qid": "17",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 0.0,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 628,
+      "qid": "17",
+      "human_score": 5.0,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        3.5,
+        4.0
+      ],
+      "cllm_k7_mean": 4.0
+    },
+    {
+      "id": 629,
+      "qid": "17",
+      "human_score": 5.0,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 630,
+      "qid": "17",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 0.0,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 631,
+      "qid": "17",
+      "human_score": 0.0,
+      "cllm_1call": 1.0,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        1.5,
+        1.5,
+        1.5,
+        1.5,
+        1.5,
+        1.5,
+        1.5
+      ],
+      "cllm_k7_mean": 1.5
+    },
+    {
+      "id": 632,
+      "qid": "17",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 1.0,
+      "cllm_k7_attempts": [
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "cllm_k7_mean": 0.5
+    },
+    {
+      "id": 633,
+      "qid": "17",
+      "human_score": 2.5,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 634,
+      "qid": "17",
+      "human_score": 2.5,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        3.0,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        3.0
+      ],
+      "cllm_k7_mean": 2.75
+    },
+    {
+      "id": 635,
+      "qid": "17",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 0.0,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 636,
+      "qid": "17",
+      "human_score": 2.5,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        3.5,
+        3.5,
+        3.5,
+        3.5,
+        3.5,
+        3.5,
+        4.0
+      ],
+      "cllm_k7_mean": 3.5
+    },
+    {
+      "id": 637,
+      "qid": "17",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 0.0,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 638,
+      "qid": "17",
+      "human_score": 2.5,
+      "cllm_1call": 2.5,
+      "c5fix_x7_single": 3.5,
+      "cllm_k7_attempts": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        2.5,
+        3.0
+      ],
+      "cllm_k7_mean": 3.0
+    },
+    {
+      "id": 639,
+      "qid": "17",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 0.0,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 640,
+      "qid": "17",
+      "human_score": 5.0,
+      "cllm_1call": 3.0,
+      "c5fix_x7_single": 3.0,
+      "cllm_k7_attempts": [
+        2.5,
+        2.5,
+        2.5,
+        2.5,
+        2.0,
+        2.5,
+        2.5
+      ],
+      "cllm_k7_mean": 2.5
+    },
+    {
+      "id": 641,
+      "qid": "17",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 0.0,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    },
+    {
+      "id": 642,
+      "qid": "17",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 1.0,
+      "cllm_k7_attempts": [
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "cllm_k7_mean": 0.5
+    },
+    {
+      "id": 643,
+      "qid": "17",
+      "human_score": 2.5,
+      "cllm_1call": 1.5,
+      "c5fix_x7_single": 2.5,
+      "cllm_k7_attempts": [
+        1.0,
+        1.5,
+        1.5,
+        1.5,
+        1.0,
+        1.5,
+        2.0
+      ],
+      "cllm_k7_mean": 1.5
+    },
+    {
+      "id": 644,
+      "qid": "17",
+      "human_score": 2.5,
+      "cllm_1call": 3.5,
+      "c5fix_x7_single": 4.0,
+      "cllm_k7_attempts": [
+        3.5,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.5
+      ],
+      "cllm_k7_mean": 3.25
+    },
+    {
+      "id": 645,
+      "qid": "17",
+      "human_score": 0.0,
+      "cllm_1call": 0.0,
+      "c5fix_x7_single": 0.0,
+      "cllm_k7_attempts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cllm_k7_mean": 0.0
+    }
+  ]
+}

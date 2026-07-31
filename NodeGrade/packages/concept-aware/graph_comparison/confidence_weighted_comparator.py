@@ -115,7 +115,13 @@ class ConfidenceWeightedComparator(KnowledgeGraphComparator):
         if expected_concepts:
             expected_set = set(expected_concepts)
         else:
+            # No external ground truth supplied -- see ComparisonResult's
+            # `coverage_validated` docstring ("Finding 3"). Coverage still
+            # gets computed below for feedback/dashboard purposes, but is
+            # flagged unvalidated so pipeline.py's aggregate score excludes
+            # it rather than trusting a tautological number.
             expected_set = student_graph.concept_ids
+            result.coverage_validated = False
 
         student_concept_ids = student_graph.concept_ids
 

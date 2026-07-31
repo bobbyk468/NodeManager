@@ -1,0 +1,43 @@
+{
+  "raw_text": "{\n  \"scores\": {\n    \"E12.Q10.A16\": {\n      \"verified_score\": 4.0\n    },\n    \"E12.Q10.A17\": {\n      \"verified_score\": 4.5\n    },\n    \"E12.Q10.A18\": {\n      \"verified_score\": 0.5\n    },\n    \"E12.Q10.A19\": {\n      \"verified_score\": 4.5\n    },\n    \"E12.Q10.A20\": {\n      \"verified_score\": 4.0\n    },\n    \"E12.Q10.A21\": {\n      \"verified_score\": 4.0\n    },\n    \"E12.Q10.A22\": {\n      \"verified_score\": 0.0\n    },\n    \"E12.Q10.A23\": {\n      \"verified_score\": 3.5\n    },\n    \"E12.Q10.A24\": {\n      \"verified_score\": 0.0\n    },\n    \"E12.Q10.A25\": {\n      \"verified_score\": 0.0\n    },\n    \"E12.Q10.A26\": {\n      \"verified_score\": 5.0\n    },\n    \"E12.Q10.A27\": {\n      \"verified_score\": 0.5\n    }\n  }\n}",
+  "parsed": {
+    "scores": {
+      "E12.Q10.A16": {
+        "verified_score": 4.0
+      },
+      "E12.Q10.A17": {
+        "verified_score": 4.5
+      },
+      "E12.Q10.A18": {
+        "verified_score": 0.5
+      },
+      "E12.Q10.A19": {
+        "verified_score": 4.5
+      },
+      "E12.Q10.A20": {
+        "verified_score": 4.0
+      },
+      "E12.Q10.A21": {
+        "verified_score": 4.0
+      },
+      "E12.Q10.A22": {
+        "verified_score": 0.0
+      },
+      "E12.Q10.A23": {
+        "verified_score": 3.5
+      },
+      "E12.Q10.A24": {
+        "verified_score": 0.0
+      },
+      "E12.Q10.A25": {
+        "verified_score": 0.0
+      },
+      "E12.Q10.A26": {
+        "verified_score": 5.0
+      },
+      "E12.Q10.A27": {
+        "verified_score": 0.5
+      }
+    }
+  }
+}

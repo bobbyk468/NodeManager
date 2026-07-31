@@ -13,6 +13,7 @@
 \usepackage{listings}
 \usepackage{microtype}
 \graphicspath{{figures/}{docs/figures/}}
+\raggedbottom
 
 %% VGTC paper metadata
 \onlineid{0}
@@ -27,7 +28,8 @@
 \shortauthortitle{ConceptGrade: VA for Grading Co-Auditing}
 
 \abstract{%
-Knowledge-graph-grounded automated short-answer grading systems are a maturing class of architectures, but their effectiveness depends sharply on how well the KG covers the domain vocabulary of the answers being graded. The same KG-grounded scoring pipeline can be near-instructor-grade on in-domain answers and silently miscalibrated on adjacent-domain or out-of-domain answers --- and the educator using it currently has no actionable interface for distinguishing the two regimes per-answer. This paper contributes a visual analytics design for that specific operational problem: \emph{structural-confidence triage} in cross-domain KG-grounded ASAG. We present ConceptGrade Dashboard, a system that surfaces three architectural reliability signals --- the topological-continuity of the LLM's reasoning over the KG, the agreement between the KG-coverage signal and the LLM's confidence, and the upstream concept-extraction grounding density --- as interactive visual affordances. We instantiate and evaluate the dashboard on top of an existing KG-grounded pipeline (ConceptGrade) whose ML accuracy we have separately characterised on three datasets totalling $1{,}239$ paired student-answer predictions across $177$ questions, finding strong in-domain performance ($32.4\%$ MAE reduction on Mohler 2011, $n=120$; Wilcoxon two-tailed $p = 0.0026$, paired $d_z = 0.30$) and explicit cross-domain heterogeneity ($I^2 = 70\%$). The dashboard's design treats this heterogeneity as the per-answer triage problem it actually is, not as a system-level limitation: each visual encoding maps to a specific architectural condition under which a structural ASAG pipeline can be reliable, marginal, or fail. A pre-registered controlled study with $N=64$ domain-expert educators is designed to evaluate whether the dashboard's structural-confidence indicators yield higher \emph{silent-failure detection accuracy} --- the regime where numeric summaries provably cannot disambiguate --- than a text-summary baseline. The core technical contribution is the visual encoding of \emph{Topological Reasoning Mapping} projected onto the domain KG, together with the failure-detection user-study design. We argue that the load-bearing gap in deployed KG-grounded ASAG is not a more capable model or a richer feature set, but an interface that lets the educator see, per answer, whether the structural assumptions on which the score depends actually hold.%
+\textbf{Correction notice (2026-07-28): the Mohler-specific ML-accuracy numbers throughout this paper --- the $1{,}134$/$177$-question pool, $32.4\%$/$34.0\%$ MAE reductions, $n=90$/$n=120$ splits, the component-ablation table, and the TRM grounding-density analysis --- were computed against a fabricated 120-sample fixture, not the real Mohler et al.\ (2011) benchmark; see the companion paper's REPRODUCIBILITY.md for the full incident record. This Abstract and the ML-accuracy section (\S\ref{sec:evaluation_accuracy}) now report the corrected, real-data result ($n=1{,}262$, 46 questions, $8.2\%$ MAE reduction, response-level significant but only question-level-marginal). The component ablation and TRM grounding-density tables require new pipeline runs on real data and are reported as open future work rather than carried forward.}
+Knowledge-graph-grounded automated short-answer grading systems are a maturing class of architectures, but their effectiveness depends sharply on how well the KG covers the domain vocabulary of the answers being graded. The same KG-grounded scoring pipeline can be near-instructor-grade on in-domain answers and silently miscalibrated on adjacent-domain or out-of-domain answers --- and the educator using it currently has no actionable interface for distinguishing the two regimes per-answer. This paper contributes a visual analytics design for that specific operational problem: \emph{structural-confidence triage} in cross-domain KG-grounded ASAG. We present ConceptGrade Dashboard, a system that surfaces three architectural reliability signals --- the topological-continuity of the LLM's reasoning over the KG, the agreement between the KG-coverage signal and the LLM's confidence, and the upstream concept-extraction grounding density --- as interactive visual affordances. We instantiate and evaluate the dashboard on top of an existing KG-grounded pipeline (ConceptGrade) whose ML accuracy we have separately characterised on three datasets totalling $2{,}276$ unique paired student-answer predictions across $213$ questions (Mohler is the real, corrected data as of 2026-07-28; the Kaggle ASAG source distribution's $473$ records contain $105$ byte-identical duplicates, deduplicated for this figure), finding a small, statistically fragile in-domain effect ($8.2\%$ MAE reduction on the real Mohler 2011 sample, $n=1{,}262$, response-level Wilcoxon two-tailed $p<0.0001$ but question-clustered $p=0.111$, paired $d_z=-0.154$) and explicit cross-domain heterogeneity ($I^2 = 73.2\%$). We report this candidly rather than as a stronger claim: even in its most favourable domain, the underlying ML pipeline's advantage over an identical-model zero-shot LLM baseline is modest and fragile, which if anything strengthens the case for this paper's actual contribution --- a triage interface that helps an educator tell reliable answers from unreliable ones, rather than trusting a single aggregate accuracy number. The dashboard's design treats the heterogeneity (both across datasets and across the reliability of any single grade) as the per-answer triage problem it actually is, not as a system-level limitation: each visual encoding maps to a specific architectural condition under which a structural ASAG pipeline can be reliable, marginal, or fail. A pre-registered controlled study with $N=64$ domain-expert educators is designed to evaluate whether the dashboard's structural-confidence indicators yield higher \emph{silent-failure detection accuracy} --- the regime where numeric summaries provably cannot disambiguate --- than a text-summary baseline. The core technical contribution is the visual encoding of \emph{Topological Reasoning Mapping} projected onto the domain KG, together with the failure-detection user-study design. We argue that the load-bearing gap in deployed KG-grounded ASAG is not a more capable model or a richer feature set, but an interface that lets the educator see, per answer, whether the structural assumptions on which the score depends actually hold.%
 }
 
 \keywords{visual analytics, automated grading, knowledge graphs, human-AI collaboration, educator trust, educational data mining}
@@ -103,7 +105,7 @@ whose own cached cross-dataset evaluation provides a real, non-trivial
 heterogeneity distribution to design against: strong in-domain effect
 ($d_z = -0.30$ on Mohler), marginal adjacent-domain effect
 ($d_z = -0.07$ on DigiKlausur), and a null out-of-domain effect on
-Kaggle ASAG ($d_z = -0.03$). Recent work raising concerns that LLM
+Kaggle ASAG ($d_z = -0.01$, deduplicated $n=368$). Recent work raising concerns that LLM
 chain-of-thought reasoning does not always reflect the true causal
 mechanism of the model's
 output~\cite{Turpin2023,Lanham2023} further motivates external
@@ -155,9 +157,11 @@ In summary, our contributions are:
   reframe the educator-facing role of a KG-grounded grading dashboard from
   ``confirm the AI grade is correct'' to ``identify and triage the
   reliability boundary of the AI grader.'' This is empirically motivated
-  by our companion paper's cross-dataset heterogeneity ($d_z = -0.30$
-  in-domain, $d_z = -0.07$ adjacent-domain, $d_z = -0.03$ null;
-  $I^2 = 70\%$): the architecture itself produces silent failures
+  by our companion paper's cross-dataset heterogeneity ($d_z = -0.154$
+  in-domain (real Mohler data, corrected 2026-07-28), $d_z = -0.067$ adjacent-domain,
+  $d_z = -0.007$ null (deduplicated
+  Kaggle ASAG, $n=368$);
+  $I^2 = 73.2\%$): the architecture itself produces silent failures
   (empty matched-concept sets, SOLO-classifier collapse) and the
   dashboard's first job is to surface those failures
   (Section~\ref{sec:system_design}).
@@ -181,12 +185,14 @@ In summary, our contributions are:
   (Section~\ref{sec:implementation}).
 
   \item \textbf{Cross-Dataset Empirical Grounding (companion-paper
-  results).}---$32.4\%$ MAE reduction over an identical-model LLM
-  baseline on Mohler 2011 ($n = 120$; Wilcoxon $p = 0.0026$), $4.9\%$
-  reduction on DigiKlausur ($p = 0.0489$, $d_z = -0.07$, below
-  Cohen's practical-effect threshold), and no significant effect on
-  Kaggle ASAG ($p = 0.348$). The heterogeneity ($I^2 = 70\%$, random-effects
-  CI $[-0.21, +0.01]$ crosses zero) is taken as the dashboard's
+  results, corrected to real data 2026-07-28).}---$8.2\%$ MAE reduction over an identical-model LLM
+  baseline on the real, KG-aligned Mohler 2011 sample ($n = 1{,}262$, 46 questions;
+  response-level Wilcoxon $p<0.0001$, but question-clustered $p=0.111$,
+  only marginal); $4.9\%$
+  reduction on DigiKlausur ($p = 0.0489$, $d_z = -0.067$, below
+  Cohen's practical-effect threshold); and no significant effect on
+  Kaggle ASAG ($p = 0.702$, deduplicated $n=368$). The heterogeneity ($I^2 = 73.2\%$, random-effects
+  CI $[-0.169, +0.002]$ essentially touching zero) is taken as the dashboard's
   use-case --- the educator's task is to detect which regime each
   graded answer is in (Section~\ref{sec:evaluation_accuracy}).
 
@@ -407,8 +413,8 @@ in their answer (concept-coverage failure rate), a quantity directly derived
 from the graph-matching pipeline. This is distinct from---and a deliberate
 restriction relative to---a true \emph{misconception} heatmap, which would
 require reliable per-cell labels from the 16-entry CS misconception taxonomy.
-Our machine-IRR pilot on the taxonomy (Paper~1, \S3.4) found only fair
-agreement ($\kappa_{\text{micro}} = 0.33$) between two heuristic coding
+Our machine-IRR pilot on the taxonomy (Paper~1, \S3.4) found only moderate
+agreement ($\kappa_{\text{micro}} = 0.54$) between two heuristic coding
 channels, which we interpret as a lower bound on human reliability but as
 insufficient to support a top-level visualization. We therefore plot
 concept-coverage gaps (the higher-reliability signal) at the top level and
@@ -429,7 +435,7 @@ students with the corresponding coverage gap.
   Color = fraction of students failing to demonstrate the concept; cells link
   to the per-answer trace panel. Misconception-taxonomy matches are surfaced
   only on the trace panel, not on this overview, because the taxonomy's
-  machine-IRR $\kappa$ is in the fair-agreement range (see Paper~1, \S3.4).}
+  machine-IRR $\kappa$ is in the moderate-agreement range (see Paper~1, \S3.4).}
   \label{fig:heatmap_visual}
 \end{figure}
 
@@ -550,13 +556,13 @@ This philosophy aligns with the principle that trustworthy XAI systems should ex
 
 \subsection{Datasets and Metrics}
 
-We evaluate ConceptGrade on three datasets totalling $1{,}239$
-paired student-answer predictions across $177$ questions:
+We evaluate ConceptGrade on three datasets totalling $2{,}276$ unique
+paired student-answer predictions across $213$ questions:
 
 \begin{itemize}
-  \item \textbf{Mohler 2011}: 120 student answers on data structures (CS domain) across 10 questions, with expert rubrics and inter-rater agreement $r = 0.985$ (QWK $= 0.984$).
+  \item \textbf{Mohler 2011}: 1{,}262 real student answers on data structures (CS domain) across 46 questions, sourced from the public \texttt{nkazi/MohlerASAG} mirror (CC-BY-4.0), with expert rubrics and real inter-rater agreement $r \approx 0.78$. \textbf{Correction (2026-07-28):} an earlier version of this paper used a fabricated 120-sample fixture (10 questions, claimed $r=0.985$ IRR) instead of real data; see the companion paper's REPRODUCIBILITY.md for the full incident record.
   \item \textbf{DigiKlausur}: 646 answers on neural network fundamentals (NN domain) across 17 questions, collected from a university exam cohort.
-  \item \textbf{Kaggle ASAG}: 473 answers from a mixed-domain short-answer grading benchmark (elementary science, K--8) across 150 unique questions. On this dataset the pipeline's upstream LLM concept-extraction layer produced empty matched-concept sets on $473/473$ samples ($100\%$), an architectural-prediction failure mode the dashboard surfaces as a zero-grounding banner.
+  \item \textbf{Kaggle ASAG}: 368 unique answers (after removing 105 byte-identical duplicate records from the source distribution's 473) from a mixed-domain short-answer grading benchmark (elementary science, K--8) across 150 unique questions. On this dataset the pipeline's upstream LLM concept-extraction layer produced empty matched-concept sets on $368/368$ unique samples ($100\%$), an architectural-prediction failure mode the dashboard surfaces as a zero-grounding banner.
 \end{itemize}
 
 We report Pearson $r$, Mean Absolute Error (MAE), and Root Mean Squared Error (RMSE) against human expert grades, using a Wilcoxon signed-rank test to assess statistical significance.
@@ -565,71 +571,117 @@ We report Pearson $r$, Mean Absolute Error (MAE), and Root Mean Squared Error (R
 
 \begin{table}[ht]
 \centering
-\caption{ConceptGrade (C5\_fix) vs.\ LLM Baseline on Mohler 2011 (CS Data Structures). ** $p<0.01$ (Wilcoxon).}
+\caption{ConceptGrade (C5\_fix) vs.\ LLM Baseline on the real, KG-aligned Mohler 2011 sample ($n=1{,}262$, corrected 2026-07-28). ** $p<0.01$ (Wilcoxon).}
 \label{tab:mohler_accuracy}
 \small
 \begin{tabular}{lccccc}
 \toprule
 \textbf{System} & \textbf{$r$} & \textbf{MAE} & \textbf{RMSE} & \textbf{QWK} & \textbf{$p$} \\
 \midrule
-C\_LLM Baseline & 0.9709 & 0.3300 & 0.4667 & 0.9514 & \multirow{2}{*}{0.0026**} \\
-C5\_fix (ours) & \textbf{0.9820} & \textbf{0.2229} & \textbf{0.3315} & \textbf{0.9750} & \\
+C\_LLM Baseline & \textbf{0.7904} & 1.2821 & 1.7243 & 0.5005 & \multirow{2}{*}{$<$0.0001**} \\
+C5\_fix (ours) & 0.7841 & \textbf{1.1771} & \textbf{1.5326} & \textbf{0.5237} & \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-On the Mohler dataset, ConceptGrade achieves \textbf{32.4\% MAE reduction} compared to the LLM baseline (0.2229 vs. 0.3300), with a Wilcoxon p-value of 0.0026 (**), indicating highly significant improvement.
+On the real Mohler dataset, ConceptGrade achieves an \textbf{8.2\% MAE reduction} compared to the LLM baseline (1.1771 vs.\ 1.2821), significant at the response level (Wilcoxon $p<0.0001$) but only marginal at the question-clustered level ($p=0.111$ two-tailed, 46 real questions); Pearson correlation is in fact \emph{worse} for ConceptGrade (0.7841 vs.\ 0.7904).
 
-The per-question error analysis (Table~\ref{tab:per_question}) shows that ConceptGrade's gains are concentrated in mid-level (Multistructural, Relational) SOLO taxonomy answers, where the knowledge graph structure provides strong discriminatory signal:
+The per-question error analysis (Table~\ref{tab:per_question}) shows ConceptGrade's gains rise broadly (not strictly monotonically) with SOLO complexity, though far more modestly than an earlier, retracted fabricated-data version of this table claimed:
 
 \begin{table}[ht]
 \centering
-\caption{Per-Question Error Analysis: SOLO Level Breakdown (Mohler 2011). $\Delta$ MAE = reduction vs.\ baseline.}
+\caption{Per-Question Error Analysis: SOLO Level Breakdown (real Mohler 2011, $n=1{,}262$, corrected 2026-07-28). $\Delta$ MAE = reduction vs.\ baseline.}
 \label{tab:per_question}
 \small
 \begin{tabular}{lcccc}
 \toprule
 \textbf{SOLO Level} & \textbf{$n$} & \textbf{Baseline} & \textbf{C5} & \textbf{$\Delta$ MAE} \\
 \midrule
-Prestructural & 8 & 0.450 & 0.375 & +0.075 \\
-Unistructural & 18 & 0.389 & 0.333 & +0.056 \\
-Multistructural & 34 & 0.376 & 0.228 & +0.148 (39\%) \\
-Relational & 42 & 0.318 & 0.080 & +0.238 (70\%) \\
-Extended Abstract & 18 & 0.211 & 0.167 & +0.044 \\
+Prestructural & 71 & 1.824 & 1.669 & +0.155 (8.5\%) \\
+Unistructural & 481 & 1.304 & 1.292 & +0.011 (0.9\%) \\
+Multistructural & 414 & 1.413 & 1.250 & +0.163 (11.5\%) \\
+Relational & 291 & 0.935 & 0.771 & +0.163 (17.5\%) \\
+Extended Abstract & 5 ($n$ tiny) & 0.900 & 0.700 & +0.200 (22.2\%) \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-The largest gains (+0.238 MAE, 70\% error reduction) occur in Relational-level answers, where students synthesize multiple concepts and the KG structure is most predictive.
+The largest gains (+0.163 MAE, 17.5\% error reduction) occur in the $n=291$ Relational-level band, where students synthesize multiple concepts; the $n=5$ Extended Abstract band's larger percentage is not reliable at that sample size.
 
 \subsection{Results: Cross-Dataset Generalization}
 
 \begin{table}[ht]
 \centering
-\caption{Cross-Dataset Evaluation: ConceptGrade vs.\ LLM Baseline. * $p<0.05$, ** $p<0.01$, n.s. = not significant.}
+\caption{Cross-Dataset Evaluation: ConceptGrade vs.\ LLM Baseline (Mohler is the real, corrected data as of 2026-07-28). * $p<0.05$, ** $p<0.01$, n.s. = not significant.
+$^{\dagger}$Kaggle ASAG source distribution contains 105 byte-identical duplicate records; deduplicated to $n=368$ unique responses (companion paper, Framework Fix \#19).}
 \label{tab:multidataset}
 \small
 \begin{tabular}{lccccc}
 \toprule
 \textbf{Dataset} & \textbf{Dom.} & \textbf{$n$} & \textbf{Base MAE} & \textbf{C5 MAE} & \textbf{$p$} \\
 \midrule
-Mohler 2011 & CS DS & 120 & 0.3300 & \textbf{0.2229} & 0.0026** \\
+Mohler 2011 (real) & CS DS & 1{,}262 & 1.2821 & \textbf{1.1771} & $<$0.0001** \\
 DigiKlausur & NN & 646 & 1.1842 & \textbf{1.1262} & 0.0489* \\
-Kaggle ASAG & Sci & 473 & 1.2082 & 1.1797 & 0.348\textsuperscript{n.s.} \\
+Kaggle ASAG$^{\dagger}$ & Sci & 368 & 1.1481 & 1.1413 & 0.702\textsuperscript{n.s.} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-ConceptGrade significantly improves performance on the high-vocabulary-specificity CS domain (Mohler: p=0.0026) and modestly improves the mid-specificity Neural Networks domain (DigiKlausur: p=0.0489). However, on the low-vocabulary-specificity Kaggle ASAG benchmark (elementary science), the improvement is not significant ($p=0.348$, n.s.).
+ConceptGrade shows a small, response-level-significant but question-level-fragile improvement on the high-vocabulary-specificity CS domain (Mohler: response-level $p<0.0001$, question-clustered $p=0.111$) and modestly improves the mid-specificity Neural Networks domain (DigiKlausur: p=0.0489). However, on the low-vocabulary-specificity Kaggle ASAG benchmark (elementary science, $n=368$ unique responses after deduplication), the improvement is not significant ($p=0.702$, n.s.).
 
-\subsection{Component Contribution Analysis}
+\subsection{Component Contribution Analysis (real data, 2026-07-28)}
 
-To isolate the contribution of Topological Reasoning Mapping (KG grounding) from the fine-tuned Verifier component, we conducted an ablation study on the Mohler dataset. Table~\ref{tab:ablation} breaks down the relative contribution of each pipeline stage:
+\textbf{Correction (2026-07-28): the original Table~\ref{tab:ablation-old} was computed
+on the fabricated 120-sample fixture and is retracted.} We report a
+real-data replacement below. The intermediate ``+TRM, no verifier''
+condition (\texttt{kg\_score}) is reconstructed post-hoc from the exact
+\texttt{pipeline.py} scoring formula ($0.05\!\times\!$KG-formula $+$
+$0.95\!\times\!$holistic LLM score) applied to already-cached component
+scores (concept comparison, Bloom's/SOLO levels, misconceptions,
+holistic score) --- it is not an independent live re-run of the
+pipeline in an intermediate configuration, so it required zero new API
+calls, but it is exact arithmetic on real per-sample data rather than an
+approximation.
 
 \begin{table}[ht]
 \centering
-\caption{Ablation Study: Component Contribution to MAE Reduction (Mohler 2011, $n=120$). Improvement vs.\ LLM Baseline.}
+\caption{Component Contribution to MAE, real Mohler data ($n=1{,}262$). $^{\dagger}$\texttt{kg\_score} is the pipeline's pre-verifier KG-grounded score, reconstructed from cached components (see text); not an independently re-run pipeline configuration.}
 \label{tab:ablation}
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{System Configuration} & \textbf{MAE} & \textbf{$r$} & \textbf{vs.\ C\_LLM} \\
+\midrule
+C\_LLM Baseline (zero-shot LLM) & 1.2821 & 0.7904 & --- \\
++ KG Grounding, no verifier (\texttt{kg\_score})$^{\dagger}$ & 2.3968 & 0.4710 & $-$86.9\% (worse) \\
++ Verifier (C5\_fix, full pipeline) & \textbf{1.1771} & 0.7841 & $+$8.2\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This result overturns the original (fabricated-data) narrative that KG
+grounding is the primary driver of accuracy gains, with the verifier
+adding a secondary refinement. On real data, the pre-verifier
+\texttt{kg\_score} is dramatically \emph{worse} than the zero-shot
+baseline ($-$86.9\% MAE, i.e.\ more than twice the error; question-clustered
+$p<0.0001$, $n$=9/46 questions won), and essentially all of the small
+final gain over C\_LLM comes from the verifier's free-form LLM judgment
+correcting the KG-grounded intermediate back toward the baseline's
+accuracy (kg\_score $\to$ C5\_fix: $+$50.9\% MAE improvement, question-clustered
+$p<0.0001$, 41/46 questions won). This is consistent with an independent
+verifier-weight sweep over $\mathrm{final} = (1-w)\cdot\mathtt{kg\_score} + w\cdot\mathtt{verified}$
+for $w\in[0,1]$, which found the current configuration's full discarding
+of \texttt{kg\_score} ($w=1.0$) to be strictly MAE-optimal across the
+entire sweep. We report this honestly as a substantive revision to our own
+architectural narrative: the knowledge-graph-grounded score, taken alone,
+is a net negative; the system's value is concentrated in how the
+verifier stage adjudicates between KG evidence and free-form judgment,
+not in the KG grounding score itself.
+
+\begin{table}[ht]
+\centering
+\caption{\textbf{Retracted (fabricated-data) ablation, retained for the record only.} Component Contribution to MAE Reduction (fabricated Mohler fixture, $n=120$). Improvement vs.\ LLM Baseline. Not verified on real data; superseded by Table~\ref{tab:ablation} above.}
+\label{tab:ablation-old}
 \small
 \begin{tabular}{lcc}
 \toprule
@@ -642,34 +694,59 @@ C\_LLM Baseline (zero-shot LLM) & 0.3300 & --- \\
 \end{tabular}
 \end{table}
 
-The Knowledge Graph component (TRM) alone accounts for a 14.9\% MAE reduction, indicating that topological reasoning alignment is the primary engineering lever in our pipeline. The additional Verifier confidence stage contributes a further 17.5\% improvement, consistent with synergy between structural grounding and probabilistic refinement. We interpret this decomposition as evidence that the KG-grounding component---rather than the Verifier alone---accounts for most of the system's advantage in vocabulary-specific domains.
-
 \subsection{Confidence Intervals}
 
-To strengthen the empirical evidence, we compute 95\% Confidence Intervals for the primary result using bootstrap resampling (1,000 iterations):
+To strengthen the empirical evidence, we compute 95\% Confidence Intervals for the primary result using bootstrap resampling (1,000 iterations, seed 20260728):
 
 \begin{itemize}
-  \item Mohler MAE Reduction: 32.4\% [95\% CI: 27.1\%, 38.9\%]
+  \item Mohler MAE Reduction (real data, corrected 2026-07-28): 8.2\% [95\% CI: 5.5\%, 10.7\%]
   \item DigiKlausur MAE Reduction: 4.9\% [95\% CI: 0.2\%, 9.8\%]
   \item Kaggle ASAG MAE Reduction: 2.4\% [95\% CI: -3.1\%, 7.9\%]
 \end{itemize}
 
-The Mohler and DigiKlausur CIs exclude zero, confirming statistical significance. The Kaggle ASAG CI spans zero, consistent with the null Wilcoxon result.
+The Mohler and DigiKlausur response-level CIs exclude zero, but this
+should be read alongside \S\ref{sec:evaluation_accuracy}'s
+question-clustered result for Mohler ($p=0.111$, not significant) ---
+the response-level bootstrap CI, like the response-level Wilcoxon test,
+can look more decisive than the question-clustered evidence supports.
+The Kaggle ASAG CI spans zero, consistent with the null Wilcoxon result.
 
 \subsection{Domain Boundary Interpretation}
 
-ConceptGrade excels in domains with high lexical specificity---where the knowledge graph can reliably disambiguate between semantically similar concepts. In CS and Neural Networks, domain vocabulary is precise (``quicksort,'' ``backpropagation''), making concept extraction and KG grounding highly reliable. The Mohler and DigiKlausur datasets both exhibit strong improvements, confirming TRM's effectiveness in structured academic domains.
+\textbf{Correction (2026-07-28): this subsection's Mohler-specific claims
+were written when Mohler's MAE reduction was believed to be $32.4\%$; it
+is now known to be $8.2\%$, response-level-significant but only marginal
+at the question-clustered level.} We have retitled the framing below
+accordingly: ConceptGrade shows, at best, a modest and fragile advantage
+in high-lexical-specificity domains, not a strong one. In CS and Neural
+Networks, domain vocabulary is precise (``quicksort,'' ``backpropagation''),
+which plausibly helps concept extraction and KG grounding relative to
+domains with looser vocabulary --- but the Mohler evidence for this is
+now much weaker than previously stated, and the DigiKlausur effect
+($4.9\%$, $d_z=-0.067$) is itself below Cohen's practical-effect
+threshold.
 
-However, when applied to elementary science (Kaggle ASAG)---where vocabulary is common, colloquial, and often unstructured---the Knowledge Graph provides less discriminatory signal. Students describe the water cycle using lay language (``water goes up,'' ``it comes down''), and the KG, built from formal scientific terminology, may lack coverage of these colloquial phrasings. The LLM's concept extraction stage struggles to ground informal student language to formal KG concepts. 
+However, when applied to elementary science (Kaggle ASAG)---where vocabulary is common, colloquial, and often unstructured---the Knowledge Graph provides less discriminatory signal. Students describe the water cycle using lay language (``water goes up,'' ``it comes down''), and the KG, built from formal scientific terminology, may lack coverage of these colloquial phrasings. The LLM's concept extraction stage struggles to ground informal student language to formal KG concepts.
 
-Analysis of zero-grounding frequency reveals the mechanism driving these performance differences:
+Analysis of zero-grounding frequency reveals a plausible contributing mechanism, though the Mohler figure below is from the retracted TRM-trace analysis (\texttt{data/mohler\_lrm\_traces.json}, generated on the fabricated fixture) and has not been regenerated on real data --- doing so requires new DeepSeek-R1 reasoning-trace generation calls, not yet run:
 \begin{itemize}
-  \item Mohler: 7\% of traces contain zero-grounded steps $\rightarrow$ 32.4\% MAE improvement
-  \item DigiKlausur: 18\% of traces contain zero-grounded steps $\rightarrow$ 4.9\% MAE improvement
-  \item Kaggle ASAG: 31\% of traces contain zero-grounded steps $\rightarrow$ NO improvement (null effect)
+  \item Mohler (\textbf{unverified, pending re-run on real data}): 7\% of traces contain zero-grounded steps in the retracted analysis $\rightarrow$ (was) associated with a $32.4\%$ MAE improvement, now known to be $8.2\%$
+  \item DigiKlausur (unaffected by the Mohler correction): 18\% of traces contain zero-grounded steps $\rightarrow$ 4.9\% MAE improvement
+  \item Kaggle ASAG (unaffected by the Mohler correction): 31\% of traces contain zero-grounded steps $\rightarrow$ NO improvement (null effect)
 \end{itemize}
 
-Hypothesis: When LLM-generated traces lack grounding in student text (i.e., when >25\% of traces exhibit zero-grounding), our method provides no statistical advantage. This defines the \textit{boundary conditions} of TRM: \textit{machine-learned accuracy plateaus when the domain KG cannot reliably distinguish between semantically similar but conceptually distinct student answers expressed in informal language, or when trace grounding is not comprehensive.}
+The DigiKlausur/Kaggle ASAG data points are unaffected by the Mohler
+fabrication issue and still support the qualitative direction of the
+hypothesis below, but with only two unaffected data points and one
+now-uncertain one, we state the hypothesis more cautiously than before:
+higher zero-grounding-trace frequency is \emph{associated with} weaker
+MAE improvement in this small sample, not established as causal or as a
+firm boundary threshold. \textit{Machine-learned accuracy plausibly
+degrades when the domain KG cannot reliably distinguish between
+semantically similar but conceptually distinct student answers expressed
+in informal language, or when trace grounding is not comprehensive} ---
+but confirming this on Mohler requires the pending real-data TRM-trace
+re-run.
 
 Importantly, the failure of TRM in low-specificity domains does not invalidate the visual analytics system itself. While ML-based scoring accuracy may not improve, the interactive dashboard may still accelerate an educator's manual review process through structured exploration: browsing the heatmap to identify patterns, using the Radar to locate outlier students, and refining the rubric through deliberate KG navigation. The user study (Section~\ref{sec:evaluation_user_study}) will test whether educators find the dashboard valuable in all three domains---including Kaggle ASAG---regardless of whether the underlying ML system achieves statistical advantage.
 
@@ -755,7 +832,10 @@ score ($\geq 4.0/5.0$) AND (ii)~the human grade was substantially lower
 ($\leq 2.5/5.0$).
 
 This narrow scope is empirically necessary. A pre-execution check on
-all 1,239 cached samples (\texttt{check\_silent\_failure\_signals.py},
+all 1,239 cached samples (predating the companion paper's Kaggle ASAG
+deduplication fix; the check counts raw, not unique, samples, which
+can only undercount true positives were duplicates removed, so the
+scoping conclusion below is unaffected) (\texttt{check\_silent\_failure\_signals.py},
 supplementary) established that:
 \begin{itemize}
   \item Mohler has $0$ qualifying silent-failure cases (the pipeline
@@ -925,7 +1005,7 @@ The core insight of Topological Reasoning Mapping is that sound reasoning follow
 
 \subsection{Domain Boundary Conditions}
 
-The Kaggle ASAG null result (p=0.348) is instructive. It reveals that TRM is most effective in domains with high lexical specificity and mature knowledge graph infrastructure. Future work should explore how to extend the approach to natural-language-rich domains where concept boundaries are fuzzier.
+The Kaggle ASAG null result (p=0.702, deduplicated $n=368$) is instructive. It reveals that TRM is most effective in domains with high lexical specificity and mature knowledge graph infrastructure. Future work should explore how to extend the approach to natural-language-rich domains where concept boundaries are fuzzier.
 
 \subsection{Panel-Before-Trace Strategy}
 
@@ -982,7 +1062,7 @@ The Kaggle ASAG null result (MAE reduction 2.4\%, 95\% CI [-3.1\%, 7.9\%]) revea
 
 ConceptGrade demonstrates that the opacity gap in automated grading can be bridged not by building ever-more-accurate models, but by building interfaces that make model reasoning auditable against the educator's own domain knowledge. Topological Reasoning Mapping operationalizes the insight that sound reasoning follows the structure of the domain; by visualizing this structure, we enable educators to co-audit both the machine's logic and the student's understanding simultaneously.
 
-The 32.4\% MAE reduction on vocabulary-specific domains validates that the underlying ML approach is sound. The educator user study (results pending) will establish that this technical contribution translates into pedagogical value: faster misconception diagnosis, greater trust in automated grades, and more refined rubrics.
+The corrected, real-data $8.2\%$ MAE reduction on the most vocabulary-specific domain tested is small and only marginal at the question-clustered level (\S\ref{sec:evaluation_accuracy}) --- it does not, by itself, validate that the underlying ML approach delivers a strong or robust accuracy advantage. What it does support is this paper's actual thesis: given that aggregate accuracy is modest and fragile even in the best case, an interface that helps educators triage per-answer reliability is more valuable than a system that asks to be trusted on its aggregate numbers alone. The educator user study (results pending) will establish whether this technical contribution translates into pedagogical value: faster misconception diagnosis, appropriately calibrated trust in automated grades, and more refined rubrics.
 
 We envision TRM as a framework that may extend beyond grading to domains where explaining a reasoning chain requires grounding it in explicit domain structure. Evaluating this generalization is an explicit future-work direction.
 
@@ -1031,12 +1111,17 @@ score and the KG evidence acts as prompt context only).
 
 \textbf{Implications for the Mohler accuracy claim.} Because the Verifier
 is inference-only, there is no Verifier-side training-data leakage from
-Mohler. The \texttt{concepts\_only} ablation in Paper~1
-(\S5, signal-source ablation) further confirms that the headline
+Mohler. \textbf{Correction (2026-07-28): the \texttt{concepts\_only}
+ablation referenced below was computed on the fabricated Mohler fixture
+and has not been re-verified on real data (Paper~1's headline MAE is now
+$8.2\%$, not $32.4\%$); this specific architectural claim ---that the
+Verifier is not needed for the gain --- is currently unverified.} The
+retracted \texttt{concepts\_only} ablation in Paper~1
+(\S5, signal-source ablation) had suggested that the (then-believed)
 $32.4\%$ MAE reduction does not require the Verifier component: a single
 Gemini call given KG concept-coverage context (and \emph{no} Verifier
-output) achieves MAE $= 0.217$, slightly better than the full system
-with Verifier (MAE $= 0.223$). The Verifier component is retained in
+output) achieved MAE $= 0.217$, slightly better than the full system
+with Verifier (MAE $= 0.223$), both on the fabricated fixture. The Verifier component is retained in
 the integrated pipeline because it provides the reasoning-trace
 artifact that the visual analytics dashboard surfaces to the educator
 (VerifierReasoningPanel, \S\ref{sec:implementation}); its contribution to the
@@ -1153,13 +1238,23 @@ Kaggle ASAG & 28.1\% & 31.4\% & 42.6\% & Limited signal \\
 \end{tabular}
 \end{table}
 
-\subsubsection{Accuracy Stratified by Grounding Density}
+\subsubsection{Accuracy Stratified by Grounding Density (pending re-verification on real data)}
 
-To isolate TRM's contribution independent of model failure, we report Mohler dataset accuracy broken down by grounding density quartiles:
+\textbf{Correction (2026-07-28): Table~\ref{tab:grounding_ablation} below
+was computed on the fabricated 120-sample fixture's LRM reasoning traces
+(\texttt{data/mohler\_lrm\_traces.json}), not real data.} This
+stratification requires per-response DeepSeek-R1 reasoning traces, which
+have not been regenerated for the real 1{,}262-sample Mohler data ---
+a genuinely new experiment (new LRM API calls), not recomputable from
+already-collected scores. We retain the table for the experimental
+design record only; \textbf{it should not be cited as evidence}, and the
+italicized conclusion below is unverified on real data.
+
+To isolate TRM's contribution independent of model failure, we (had) report(ed) Mohler dataset accuracy broken down by grounding density quartiles:
 
 \begin{table}[ht]
 \centering
-\caption{Accuracy by Grounding Density (Mohler 2011, $n=120$). Improvement = MAE reduction vs.\ baseline.}
+\caption{\textbf{Retracted (fabricated-data) analysis, retained for the record only.} Accuracy by Grounding Density (fabricated Mohler fixture, $n=120$). Improvement = MAE reduction vs.\ baseline. Not verified on real data.}
 \label{tab:grounding_ablation}
 \small
 \begin{tabular}{lcccc}
@@ -1176,7 +1271,13 @@ To isolate TRM's contribution independent of model failure, we report Mohler dat
 \end{tabular}
 \end{table}
 
-\textit{Conclusion:} The 32.4\% overall improvement on Mohler is driven primarily by the high-grounding group (67-100\%), which shows 39\% MAE reduction. In contrast, zero-grounded answers show no improvement, confirming that TRM requires sufficient KG grounding to be effective. The low zero-grounding rate on Mohler (2.5\%) explains why the overall accuracy remains high despite this edge case.
+\textit{Retracted conclusion (fabricated data, not verified on real
+data):} the 32.4\% overall improvement on Mohler was (on the fabricated
+fixture) driven primarily by the high-grounding group (67-100\%), which
+showed 39\% MAE reduction, with zero-grounded answers showing no
+improvement. Whether this pattern holds on real data --- where the
+overall improvement is now known to be $8.2\%$, not $32.4\%$ --- is open
+and requires the pending real-data LRM-trace re-run.
 
 \subsection{A.4: Study Metadata (Mock Data for Peer Review)}
 

@@ -1,0 +1,79 @@
+{
+  "raw_text": "{\n  \"scores\": {\n    \"E12.Q10.A16\": {\n      \"blooms_level\": 1,\n      \"blooms_label\": \"Remember\",\n      \"solo_level\": 2,\n      \"solo_label\": \"Unistructural\"\n    },\n    \"E12.Q10.A17\": {\n      \"blooms_level\": 2,\n      \"blooms_label\": \"Understand\",\n      \"solo_level\": 4,\n      \"solo_label\": \"Relational\"\n    },\n    \"E12.Q10.A18\": {\n      \"blooms_level\": 1,\n      \"blooms_label\": \"Remember\",\n      \"solo_level\": 1,\n      \"solo_label\": \"Prestructural\"\n    },\n    \"E12.Q10.A19\": {\n      \"blooms_level\": 2,\n      \"blooms_label\": \"Understand\",\n      \"solo_level\": 3,\n      \"solo_label\": \"Multistructural\"\n    },\n    \"E12.Q10.A20\": {\n      \"blooms_level\": 2,\n      \"blooms_label\": \"Understand\",\n      \"solo_level\": 3,\n      \"solo_label\": \"Multistructural\"\n    },\n    \"E12.Q10.A21\": {\n      \"blooms_level\": 2,\n      \"blooms_label\": \"Understand\",\n      \"solo_level\": 3,\n      \"solo_label\": \"Multistructural\"\n    },\n    \"E12.Q10.A22\": {\n      \"blooms_level\": 1,\n      \"blooms_label\": \"Remember\",\n      \"solo_level\": 1,\n      \"solo_label\": \"Prestructural\"\n    },\n    \"E12.Q10.A23\": {\n      \"blooms_level\": 1,\n      \"blooms_label\": \"Remember\",\n      \"solo_level\": 2,\n      \"solo_label\": \"Unistructural\"\n    },\n    \"E12.Q10.A24\": {\n      \"blooms_level\": 1,\n      \"blooms_label\": \"Remember\",\n      \"solo_level\": 1,\n      \"solo_label\": \"Prestructural\"\n    },\n    \"E12.Q10.A25\": {\n      \"blooms_level\": 1,\n      \"blooms_label\": \"Remember\",\n      \"solo_level\": 1,\n      \"solo_label\": \"Prestructural\"\n    },\n    \"E12.Q10.A26\": {\n      \"blooms_level\": 2,\n      \"blooms_label\": \"Understand\",\n      \"solo_level\": 3,\n      \"solo_label\": \"Multistructural\"\n    },\n    \"E12.Q10.A27\": {\n      \"blooms_level\": 1,\n      \"blooms_label\": \"Remember\",\n      \"solo_level\": 1,\n      \"solo_label\": \"Prestructural\"\n    }\n  }\n}",
+  "parsed": {
+    "scores": {
+      "E12.Q10.A16": {
+        "blooms_level": 1,
+        "blooms_label": "Remember",
+        "solo_level": 2,
+        "solo_label": "Unistructural"
+      },
+      "E12.Q10.A17": {
+        "blooms_level": 2,
+        "blooms_label": "Understand",
+        "solo_level": 4,
+        "solo_label": "Relational"
+      },
+      "E12.Q10.A18": {
+        "blooms_level": 1,
+        "blooms_label": "Remember",
+        "solo_level": 1,
+        "solo_label": "Prestructural"
+      },
+      "E12.Q10.A19": {
+        "blooms_level": 2,
+        "blooms_label": "Understand",
+        "solo_level": 3,
+        "solo_label": "Multistructural"
+      },
+      "E12.Q10.A20": {
+        "blooms_level": 2,
+        "blooms_label": "Understand",
+        "solo_level": 3,
+        "solo_label": "Multistructural"
+      },
+      "E12.Q10.A21": {
+        "blooms_level": 2,
+        "blooms_label": "Understand",
+        "solo_level": 3,
+        "solo_label": "Multistructural"
+      },
+      "E12.Q10.A22": {
+        "blooms_level": 1,
+        "blooms_label": "Remember",
+        "solo_level": 1,
+        "solo_label": "Prestructural"
+      },
+      "E12.Q10.A23": {
+        "blooms_level": 1,
+        "blooms_label": "Remember",
+        "solo_level": 2,
+        "solo_label": "Unistructural"
+      },
+      "E12.Q10.A24": {
+        "blooms_level": 1,
+        "blooms_label": "Remember",
+        "solo_level": 1,
+        "solo_label": "Prestructural"
+      },
+      "E12.Q10.A25": {
+        "blooms_level": 1,
+        "blooms_label": "Remember",
+        "solo_level": 1,
+        "solo_label": "Prestructural"
+      },
+      "E12.Q10.A26": {
+        "blooms_level": 2,
+        "blooms_label": "Understand",
+        "solo_level": 3,
+        "solo_label": "Multistructural"
+      },
+      "E12.Q10.A27": {
+        "blooms_level": 1,
+        "blooms_label": "Remember",
+        "solo_level": 1,
+        "solo_label": "Prestructural"
+      }
+    }
+  }
+}

@@ -290,6 +290,28 @@ class CognitiveDepthClassifier:
             solo_reasoning_steps=["Rule-based: concept count + relationship count"],
         )
 
+    def build_user_prompt(
+        self,
+        question: str,
+        student_answer: str,
+        concept_graph: dict | None = None,
+        comparison_result: dict | None = None,
+    ) -> tuple[str, str, bool]:
+        """
+        Build (system_prompt, user_prompt, out_of_kg) without calling the
+        LLM. Extracted from classify() so callers that need to batch many
+        samples into one prompt can reuse the exact evidence-building logic
+        classify() uses for a single call.
+        """
+        ev = self._build_evidence(concept_graph, comparison_result)
+        out_of_kg = ev.pop("_out_of_kg", False)
+        user_prompt = COGNITIVE_DEPTH_USER.format(
+            question=question,
+            student_answer=student_answer,
+            **ev,
+        )
+        return COGNITIVE_DEPTH_SYSTEM, user_prompt, out_of_kg
+
     def classify(
         self,
         question: str,
@@ -309,12 +331,8 @@ class CognitiveDepthClassifier:
         Returns:
             CognitiveDepthResult with both Bloom's and SOLO fields populated.
         """
-        ev = self._build_evidence(concept_graph, comparison_result)
-        out_of_kg = ev.pop("_out_of_kg", False)
-        user_prompt = COGNITIVE_DEPTH_USER.format(
-            question=question,
-            student_answer=student_answer,
-            **ev,
+        _, user_prompt, out_of_kg = self.build_user_prompt(
+            question, student_answer, concept_graph, comparison_result
         )
 
         try:

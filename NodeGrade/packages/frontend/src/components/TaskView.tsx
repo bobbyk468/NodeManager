@@ -1,5 +1,5 @@
 import { ServerEventPayload } from '@haski/ta-lib'
-import { Alert, Box, Button, Chip, Divider, FormControl, Stack, TextField, Tooltip, Typography } from '@mui/material'
+import { Alert, Box, Button, Card, Chip, Divider, FormControl, Stack, TextField, Tooltip, Typography } from '@mui/material'
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress'
 import { styled } from '@mui/material/styles'
 import { memo, useCallback, useEffect, useState } from 'react'
@@ -81,35 +81,52 @@ const TaskView = ({
   }, [keyDownHandlerCtrlEnter])
 
   return (
-    <Stack spacing={2} padding={2}>
-      <span id="rewardId" />
-      <Typography variant="h4">Task:</Typography>
-      {questionImage && (
-        <img
-          src={questionImage}
-          alt="Question"
-          style={{
-            maxWidth: '100%',
-            height: 'auto'
+    <Card sx={{ width: '100%', maxWidth: '60rem', p: { xs: 2.5, sm: 4 } }}>
+      <Stack spacing={2.5}>
+        <span id="rewardId" />
+        <Typography variant="h4">Task</Typography>
+        <Box
+          sx={{
+            p: 2,
+            borderRadius: 2,
+            bgcolor: 'primary.50',
+            border: '1px solid',
+            borderColor: 'primary.100'
           }}
-        />
-      )}
-      <Typography
-        style={{
-          maxWidth: '60rem' // Set a maximum width
-        }}
-        variant="body1"
-      >
-        {question}
-      </Typography>
-      <form
-        onSubmit={handleSubmit}
-        noValidate
-        autoComplete="off"
-        style={{ width: '100%' }}
-      >
-        <FormControl fullWidth error={!!error}>
-          <Stack spacing={2}>
+        >
+          <Typography
+            variant="overline"
+            color="primary.main"
+            fontWeight={700}
+            letterSpacing="0.08em"
+            sx={{ display: 'block', mb: 0.5 }}
+          >
+            Question
+          </Typography>
+          {questionImage && (
+            <img
+              src={questionImage}
+              alt="Question"
+              style={{
+                maxWidth: '100%',
+                height: 'auto',
+                borderRadius: 8,
+                marginBottom: 8
+              }}
+            />
+          )}
+          <Typography variant="body1" color="text.primary" fontWeight={500}>
+            {question}
+          </Typography>
+        </Box>
+        <form
+          onSubmit={handleSubmit}
+          noValidate
+          autoComplete="off"
+          style={{ width: '100%' }}
+        >
+          <FormControl fullWidth error={!!error}>
+            <Stack spacing={2}>
             <TextField
               id="outlined-multiline-static"
               label="Answer"
@@ -459,10 +476,11 @@ const TaskView = ({
                   }
                 }
               })}
-          </Stack>
-        </FormControl>
-      </form>
-    </Stack>
+            </Stack>
+          </FormControl>
+        </form>
+      </Stack>
+    </Card>
   )
 }
 export default memo(TaskView)

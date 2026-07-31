@@ -1,0 +1,12 @@
+{
+  "n_total_indomain": 1156,
+  "n_zero_relationships": 246,
+  "n_single_concept_zero_rel": 216,
+  "n_multi_concept_zero_rel": 30,
+  "n_correct_zero_rel_(human>=4)": 180,
+  "mae_kg_zero_rel_group": 2.6483739837398375,
+  "mae_cllm_zero_rel_group": 1.1808943089430894,
+  "mae_kg_has_rel_group": 2.279945054945055,
+  "mae_kg_correct_zero_rel_subgroup": 3.0444444444444443,
+  "mae_cllm_correct_zero_rel_subgroup": 0.9055555555555556
+}

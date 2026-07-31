@@ -15,9 +15,10 @@ applied to Mohler in `compute_clustered_significance.py`:
 Datasets, samples, and cluster structure (all real, all cached):
   - Mohler:        n =  120 samples,  10 questions ×  12 responses
   - DigiKlausur:   n =  646 samples,  17 questions ×  38 responses
-  - Kaggle ASAG:   n =  473 samples, 150 questions × ~3.2 responses (variable)
+  - Kaggle ASAG:   n =  368 samples (deduplicated from 473; see Fix #19),
+                   150 questions × ~2.5 responses (variable)
   ------------------------------------------------------------------
-  Total:           n = 1,239 samples, 177 questions
+  Total:           n = 1,134 samples, 177 questions
 
 Also computes a fixed-effects pooled cross-dataset effect via meta-analysis
 of paired Cohen's d_z (inverse-variance weighted).
@@ -54,17 +55,33 @@ def load_dataset_with_clusters(name: str) -> dict:
           'qid': list[str]     # one question_id per sample, length n
         }
     """
+    # 2026-07-28 correction: data/mohler_eval_results.json was computed on
+    # a fabricated 120-sample fixture (see REPRODUCIBILITY.md's "CRITICAL"
+    # section). Mohler now loads from the real, KG-aligned re-evaluation
+    # (data/mohler_real_eval_results.json, 46 questions, 1,262 responses,
+    # each row already carrying its real qid -- no need to derive one from
+    # a fixed 12-per-question index assumption, which was never true of
+    # the real, variably-sized dataset).
+    if name == "mohler":
+        eval_path = BASE / "data" / "mohler_real_eval_results.json"
+        with eval_path.open() as f:
+            ev = json.load(f)
+        results = ev["results"]
+        qids = [r["qid"] for r in results]
+        return {
+            "name": name,
+            "human": np.array([r["human_score"] for r in results], dtype=float),
+            "cllm": np.array([r["cllm_score"] for r in results], dtype=float),
+            "c5": np.array([r["c5_score"] for r in results], dtype=float),
+            "qid": qids,
+        }
+
     eval_path = BASE / "data" / f"{name}_eval_results.json"
     with eval_path.open() as f:
         ev = json.load(f)
     results = ev["results"]
 
-    # Recover question_id per sample by aligning with the raw dataset (Mohler is
-    # special — we re-derive from the loader)
-    if name == "mohler":
-        # 120 samples = 10 questions × 12; the eval file is in dataset order
-        qids = [f"Q{(i // 12) + 1}" for i in range(len(results))]
-    elif name == "digiklausur":
+    if name == "digiklausur":
         ds_path = BASE / "data" / "digiklausur_dataset.json"
         with ds_path.open() as f:
             ds = json.load(f)
@@ -75,6 +92,21 @@ def load_dataset_with_clusters(name: str) -> dict:
         with ds_path.open() as f:
             ds = json.load(f)
         assert len(ds) == len(results), f"Kaggle length mismatch: {len(ds)} vs {len(results)}"
+
+        # Framework Fix #19 (2026-06-15): the raw Kaggle ASAG source
+        # contains 105 byte-identical duplicate (question, reference,
+        # student_answer) records (473 -> 368 unique). Counting them
+        # twice inflates the effective N and biases variance/significance
+        # estimates in the cross-dataset pool. Filter both `ds` and
+        # `results` to the deduplicated index set before proceeding.
+        sys.path.insert(0, str(BASE))
+        from datasets.dataset_dedupe import dedupe_records
+        _, aligned_indices, dropped = dedupe_records(ds)
+        print(f"[cross-dataset] Kaggle ASAG dedup: {len(ds)} -> {len(aligned_indices)} "
+              f"unique ({dropped} duplicates removed)")
+        ds = [ds[i] for i in aligned_indices]
+        results = [results[i] for i in aligned_indices]
+
         # Derive question_id by deterministic ordering of unique question text
         q_to_id: dict[str, str] = {}
         qids = []

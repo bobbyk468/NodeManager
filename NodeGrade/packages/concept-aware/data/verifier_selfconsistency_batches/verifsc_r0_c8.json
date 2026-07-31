@@ -1,0 +1,82 @@
+{
+  "raw_text": "{\n  \"scores\": {\n    \"E04.Q05.A18\": {\n      \"verified_score\": 0.0\n    },\n    \"E04.Q05.A19\": {\n      \"verified_score\": 4.5\n    },\n    \"E04.Q05.A20\": {\n      \"verified_score\": 5.0\n    },\n    \"E04.Q05.A21\": {\n      \"verified_score\": 5.0\n    },\n    \"E04.Q05.A22\": {\n      \"verified_score\": 2.0\n    },\n    \"E04.Q05.A23\": {\n      \"verified_score\": 4.0\n    },\n    \"E04.Q05.A24\": {\n      \"verified_score\": 0.0\n    },\n    \"E04.Q05.A25\": {\n      \"verified_score\": 0.0\n    },\n    \"E04.Q05.A26\": {\n      \"verified_score\": 4.5\n    },\n    \"E04.Q05.A27\": {\n      \"verified_score\": 0.0\n    },\n    \"E04.Q05.A28\": {\n      \"verified_score\": 4.0\n    },\n    \"E04.Q05.A29\": {\n      \"verified_score\": 1.0\n    },\n    \"E05.Q01.A00\": {\n      \"verified_score\": 2.0\n    },\n    \"E05.Q01.A01\": {\n      \"verified_score\": 4.5\n    },\n    \"E05.Q01.A02\": {\n      \"verified_score\": 2.5\n    },\n    \"E05.Q01.A03\": {\n      \"verified_score\": 4.0\n    },\n    \"E05.Q01.A04\": {\n      \"verified_score\": 1.5\n    },\n    \"E05.Q01.A05\": {\n      \"verified_score\": 4.5\n    },\n    \"E05.Q01.A06\": {\n      \"verified_score\": 4.5\n    },\n    \"E05.Q01.A07\": {\n      \"verified_score\": 3.0\n    },\n    \"E05.Q01.A08\": {\n      \"verified_score\": 4.5\n    },\n    \"E05.Q01.A09\": {\n      \"verified_score\": 4.0\n    },\n    \"E05.Q01.A10\": {\n      \"verified_score\": 4.0\n    },\n    \"E05.Q01.A11\": {\n      \"verified_score\": 2.5\n    },\n    \"E05.Q01.A12\": {\n      \"verified_score\": 4.0\n    }\n  }\n}",
+  "parsed": {
+    "scores": {
+      "E04.Q05.A18": {
+        "verified_score": 0.0
+      },
+      "E04.Q05.A19": {
+        "verified_score": 4.5
+      },
+      "E04.Q05.A20": {
+        "verified_score": 5.0
+      },
+      "E04.Q05.A21": {
+        "verified_score": 5.0
+      },
+      "E04.Q05.A22": {
+        "verified_score": 2.0
+      },
+      "E04.Q05.A23": {
+        "verified_score": 4.0
+      },
+      "E04.Q05.A24": {
+        "verified_score": 0.0
+      },
+      "E04.Q05.A25": {
+        "verified_score": 0.0
+      },
+      "E04.Q05.A26": {
+        "verified_score": 4.5
+      },
+      "E04.Q05.A27": {
+        "verified_score": 0.0
+      },
+      "E04.Q05.A28": {
+        "verified_score": 4.0
+      },
+      "E04.Q05.A29": {
+        "verified_score": 1.0
+      },
+      "E05.Q01.A00": {
+        "verified_score": 2.0
+      },
+      "E05.Q01.A01": {
+        "verified_score": 4.5
+      },
+      "E05.Q01.A02": {
+        "verified_score": 2.5
+      },
+      "E05.Q01.A03": {
+        "verified_score": 4.0
+      },
+      "E05.Q01.A04": {
+        "verified_score": 1.5
+      },
+      "E05.Q01.A05": {
+        "verified_score": 4.5
+      },
+      "E05.Q01.A06": {
+        "verified_score": 4.5
+      },
+      "E05.Q01.A07": {
+        "verified_score": 3.0
+      },
+      "E05.Q01.A08": {
+        "verified_score": 4.5
+      },
+      "E05.Q01.A09": {
+        "verified_score": 4.0
+      },
+      "E05.Q01.A10": {
+        "verified_score": 4.0
+      },
+      "E05.Q01.A11": {
+        "verified_score": 2.5
+      },
+      "E05.Q01.A12": {
+        "verified_score": 4.0
+      }
+    }
+  }
+}

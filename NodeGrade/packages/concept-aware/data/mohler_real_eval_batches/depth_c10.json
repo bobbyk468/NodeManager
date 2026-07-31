@@ -1,0 +1,157 @@
+{
+  "raw_text": "{\n  \"scores\": {\n    \"E05.Q02.A10\": {\n      \"blooms_level\": 2,\n      \"blooms_label\": \"Understand\",\n      \"solo_level\": 3,\n      \"solo_label\": \"Multistructural\"\n    },\n    \"E05.Q02.A11\": {\n      \"blooms_level\": 2,\n      \"blooms_label\": \"Understand\",\n      \"solo_level\": 4,\n      \"solo_label\": \"Relational\"\n    },\n    \"E05.Q02.A12\": {\n      \"blooms_level\": 2,\n      \"blooms_label\": \"Understand\",\n      \"solo_level\": 3,\n      \"solo_label\": \"Multistructural\"\n    },\n    \"E05.Q02.A13\": {\n      \"blooms_level\": 2,\n      \"blooms_label\": \"Understand\",\n      \"solo_level\": 3,\n      \"solo_label\": \"Multistructural\"\n    },\n    \"E05.Q02.A14\": {\n      \"blooms_level\": 2,\n      \"blooms_label\": \"Understand\",\n      \"solo_level\": 4,\n      \"solo_label\": \"Relational\"\n    },\n    \"E05.Q02.A15\": {\n      \"blooms_level\": 2,\n      \"blooms_label\": \"Understand\",\n      \"solo_level\": 3,\n      \"solo_label\": \"Multistructural\"\n    },\n    \"E05.Q02.A16\": {\n      \"blooms_level\": 2,\n      \"blooms_label\": \"Understand\",\n      \"solo_level\": 3,\n      \"solo_label\": \"Multistructural\"\n    },\n    \"E05.Q02.A17\": {\n      \"blooms_level\": 1,\n      \"blooms_label\": \"Remember\",\n      \"solo_level\": 2,\n      \"solo_label\": \"Unistructural\"\n    },\n    \"E05.Q02.A18\": {\n      \"blooms_level\": 2,\n      \"blooms_label\": \"Understand\",\n      \"solo_level\": 3,\n      \"solo_label\": \"Multistructural\"\n    },\n    \"E05.Q02.A19\": {\n      \"blooms_level\": 2,\n      \"blooms_label\": \"Understand\",\n      \"solo_level\": 4,\n      \"solo_label\": \"Relational\"\n    },\n    \"E05.Q02.A20\": {\n      \"blooms_level\": 2,\n      \"blooms_label\": \"Understand\",\n      \"solo_level\": 3,\n      \"solo_label\": \"Multistructural\"\n    },\n    \"E05.Q02.A21\": {\n      \"blooms_level\": 2,\n      \"blooms_label\": \"Understand\",\n      \"solo_level\": 3,\n      \"solo_label\": \"Multistructural\"\n    },\n    \"E05.Q02.A22\": {\n      \"blooms_level\": 2,\n      \"blooms_label\": \"Understand\",\n      \"solo_level\": 3,\n      \"solo_label\": \"Multistructural\"\n    },\n    \"E05.Q02.A23\": {\n      \"blooms_level\": 2,\n      \"blooms_label\": \"Understand\",\n      \"solo_level\": 4,\n      \"solo_label\": \"Relational\"\n    },\n    \"E05.Q02.A24\": {\n      \"blooms_level\": 2,\n      \"blooms_label\": \"Understand\",\n      \"solo_level\": 3,\n      \"solo_label\": \"Multistructural\"\n    },\n    \"E05.Q02.A25\": {\n      \"blooms_level\": 2,\n      \"blooms_label\": \"Understand\",\n      \"solo_level\": 4,\n      \"solo_label\": \"Relational\"\n    },\n    \"E05.Q02.A26\": {\n      \"blooms_level\": 2,\n      \"blooms_label\": \"Understand\",\n      \"solo_level\": 3,\n      \"solo_label\": \"Multistructural\"\n    },\n    \"E05.Q02.A27\": {\n      \"blooms_level\": 2,\n      \"blooms_label\": \"Understand\",\n      \"solo_level\": 4,\n      \"solo_label\": \"Relational\"\n    },\n    \"E05.Q03.A00\": {\n      \"blooms_level\": 1,\n      \"blooms_label\": \"Remember\",\n      \"solo_level\": 3,\n      \"solo_label\": \"Multistructural\"\n    },\n    \"E05.Q03.A01\": {\n      \"blooms_level\": 2,\n      \"blooms_label\": \"Understand\",\n      \"solo_level\": 4,\n      \"solo_label\": \"Relational\"\n    },\n    \"E05.Q03.A02\": {\n      \"blooms_level\": 2,\n      \"blooms_label\": \"Understand\",\n      \"solo_level\": 4,\n      \"solo_label\": \"Relational\"\n    },\n    \"E05.Q03.A03\": {\n      \"blooms_level\": 2,\n      \"blooms_label\": \"Understand\",\n      \"solo_level\": 4,\n      \"solo_label\": \"Relational\"\n    },\n    \"E05.Q03.A04\": {\n      \"blooms_level\": 1,\n      \"blooms_label\": \"Remember\",\n      \"solo_level\": 2,\n      \"solo_label\": \"Unistructural\"\n    },\n    \"E05.Q03.A05\": {\n      \"blooms_level\": 2,\n      \"blooms_label\": \"Understand\",\n      \"solo_level\": 4,\n      \"solo_label\": \"Relational\"\n    },\n    \"E05.Q03.A06\": {\n      \"blooms_level\": 1,\n      \"blooms_label\": \"Remember\",\n      \"solo_level\": 2,\n      \"solo_label\": \"Unistructural\"\n    }\n  }\n}",
+  "parsed": {
+    "scores": {
+      "E05.Q02.A10": {
+        "blooms_level": 2,
+        "blooms_label": "Understand",
+        "solo_level": 3,
+        "solo_label": "Multistructural"
+      },
+      "E05.Q02.A11": {
+        "blooms_level": 2,
+        "blooms_label": "Understand",
+        "solo_level": 4,
+        "solo_label": "Relational"
+      },
+      "E05.Q02.A12": {
+        "blooms_level": 2,
+        "blooms_label": "Understand",
+        "solo_level": 3,
+        "solo_label": "Multistructural"
+      },
+      "E05.Q02.A13": {
+        "blooms_level": 2,
+        "blooms_label": "Understand",
+        "solo_level": 3,
+        "solo_label": "Multistructural"
+      },
+      "E05.Q02.A14": {
+        "blooms_level": 2,
+        "blooms_label": "Understand",
+        "solo_level": 4,
+        "solo_label": "Relational"
+      },
+      "E05.Q02.A15": {
+        "blooms_level": 2,
+        "blooms_label": "Understand",
+        "solo_level": 3,
+        "solo_label": "Multistructural"
+      },
+      "E05.Q02.A16": {
+        "blooms_level": 2,
+        "blooms_label": "Understand",
+        "solo_level": 3,
+        "solo_label": "Multistructural"
+      },
+      "E05.Q02.A17": {
+        "blooms_level": 1,
+        "blooms_label": "Remember",
+        "solo_level": 2,
+        "solo_label": "Unistructural"
+      },
+      "E05.Q02.A18": {
+        "blooms_level": 2,
+        "blooms_label": "Understand",
+        "solo_level": 3,
+        "solo_label": "Multistructural"
+      },
+      "E05.Q02.A19": {
+        "blooms_level": 2,
+        "blooms_label": "Understand",
+        "solo_level": 4,
+        "solo_label": "Relational"
+      },
+      "E05.Q02.A20": {
+        "blooms_level": 2,
+        "blooms_label": "Understand",
+        "solo_level": 3,
+        "solo_label": "Multistructural"
+      },
+      "E05.Q02.A21": {
+        "blooms_level": 2,
+        "blooms_label": "Understand",
+        "solo_level": 3,
+        "solo_label": "Multistructural"
+      },
+      "E05.Q02.A22": {
+        "blooms_level": 2,
+        "blooms_label": "Understand",
+        "solo_level": 3,
+        "solo_label": "Multistructural"
+      },
+      "E05.Q02.A23": {
+        "blooms_level": 2,
+        "blooms_label": "Understand",
+        "solo_level": 4,
+        "solo_label": "Relational"
+      },
+      "E05.Q02.A24": {
+        "blooms_level": 2,
+        "blooms_label": "Understand",
+        "solo_level": 3,
+        "solo_label": "Multistructural"
+      },
+      "E05.Q02.A25": {
+        "blooms_level": 2,
+        "blooms_label": "Understand",
+        "solo_level": 4,
+        "solo_label": "Relational"
+      },
+      "E05.Q02.A26": {
+        "blooms_level": 2,
+        "blooms_label": "Understand",
+        "solo_level": 3,
+        "solo_label": "Multistructural"
+      },
+      "E05.Q02.A27": {
+        "blooms_level": 2,
+        "blooms_label": "Understand",
+        "solo_level": 4,
+        "solo_label": "Relational"
+      },
+      "E05.Q03.A00": {
+        "blooms_level": 1,
+        "blooms_label": "Remember",
+        "solo_level": 3,
+        "solo_label": "Multistructural"
+      },
+      "E05.Q03.A01": {
+        "blooms_level": 2,
+        "blooms_label": "Understand",
+        "solo_level": 4,
+        "solo_label": "Relational"
+      },
+      "E05.Q03.A02": {
+        "blooms_level": 2,
+        "blooms_label": "Understand",
+        "solo_level": 4,
+        "solo_label": "Relational"
+      },
+      "E05.Q03.A03": {
+        "blooms_level": 2,
+        "blooms_label": "Understand",
+        "solo_level": 4,
+        "solo_label": "Relational"
+      },
+      "E05.Q03.A04": {
+        "blooms_level": 1,
+        "blooms_label": "Remember",
+        "solo_level": 2,
+        "solo_label": "Unistructural"
+      },
+      "E05.Q03.A05": {
+        "blooms_level": 2,
+        "blooms_label": "Understand",
+        "solo_level": 4,
+        "solo_label": "Relational"
+      },
+      "E05.Q03.A06": {
+        "blooms_level": 1,
+        "blooms_label": "Remember",
+        "solo_level": 2,
+        "solo_label": "Unistructural"
+      }
+    }
+  }
+}

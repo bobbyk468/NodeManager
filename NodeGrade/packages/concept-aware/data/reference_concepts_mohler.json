@@ -1,0 +1,2233 @@
+[
+  {
+    "question_id": "E03.Q06",
+    "question": "When defining a recursive function, what are possible causes for infinite recursion?",
+    "reference_answer": "If the recursion step is defined incorrectly, or if the base case is not included.",
+    "concepts": [
+      {
+        "concept_id": "recursion",
+        "confidence": 1.0,
+        "evidence": "If the recursion step is defined incorrectly, or if the base case is not included.",
+        "is_correct_usage": true
+      }
+    ],
+    "relationships": [],
+    "domain_match_score": 0.6440594059405941,
+    "out_of_kg_domain": false
+  },
+  {
+    "question_id": "E03.Q07",
+    "question": "What are the similarities between iteration and recursion?",
+    "reference_answer": "They both involve repetition; they both have termination tests; they can both occur infinitely.",
+    "concepts": [
+      {
+        "concept_id": "iteration",
+        "confidence": 1.0,
+        "evidence": "iteration",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "recursion",
+        "confidence": 1.0,
+        "evidence": "recursion",
+        "is_correct_usage": true
+      }
+    ],
+    "relationships": [],
+    "domain_match_score": 0.39653465346534655,
+    "out_of_kg_domain": false
+  },
+  {
+    "question_id": "E04.Q01",
+    "question": "What are the two different ways of specifying the length of an array?",
+    "reference_answer": "In the array declaration, or by using an initializer list.",
+    "concepts": [
+      {
+        "concept_id": "array",
+        "confidence": 1.0,
+        "evidence": "array",
+        "is_correct_usage": true
+      }
+    ],
+    "relationships": [],
+    "domain_match_score": 0.5450495049504951,
+    "out_of_kg_domain": false
+  },
+  {
+    "question_id": "E04.Q02",
+    "question": "What is the main difference between strings declared using the type string versus strings declared using an array of characters?",
+    "reference_answer": "The strings declared using an array of characters have a null element added at the end of the array.",
+    "concepts": [
+      {
+        "concept_id": "array",
+        "confidence": 1.0,
+        "evidence": "array of characters",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "data_structure",
+        "confidence": 0.8,
+        "evidence": "strings declared using the type string versus strings declared using an array of characters",
+        "is_correct_usage": true
+      }
+    ],
+    "relationships": [
+      {
+        "source_id": "data_structure",
+        "target_id": "array",
+        "relation_type": "is_a",
+        "confidence": 0.9,
+        "evidence": "strings declared using an array of characters",
+        "is_correct": true,
+        "misconception_note": ""
+      }
+    ],
+    "domain_match_score": 0.9905940594059406,
+    "out_of_kg_domain": false
+  },
+  {
+    "question_id": "E04.Q03",
+    "question": "How are arrays passed to functions?",
+    "reference_answer": "by reference.",
+    "concepts": [],
+    "relationships": [],
+    "domain_match_score": 0.09950495049504951,
+    "out_of_kg_domain": false
+  },
+  {
+    "question_id": "E04.Q04",
+    "question": "What is the difference between an array declared as static, and one that is not?",
+    "reference_answer": "The arrays declared as static live throughout the life of the program; that is, they are initialized only once, when the function that declares the array it is first called.",
+    "concepts": [
+      {
+        "concept_id": "array",
+        "confidence": 1.0,
+        "evidence": "an array declared as static, and one that is not",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "static_memory",
+        "confidence": 1.0,
+        "evidence": "arrays declared as static",
+        "is_correct_usage": true
+      }
+    ],
+    "relationships": [
+      {
+        "source_id": "array",
+        "target_id": "static_memory",
+        "relation_type": "has_property",
+        "confidence": 1.0,
+        "evidence": "an array declared as static",
+        "is_correct": true,
+        "misconception_note": ""
+      }
+    ],
+    "domain_match_score": 1.0,
+    "out_of_kg_domain": false
+  },
+  {
+    "question_id": "E04.Q05",
+    "question": "How many dimensions need to be specified when passing a multi-dimensional array as an argument to a function?",
+    "reference_answer": "All the dimensions, except the first one.",
+    "concepts": [
+      {
+        "concept_id": "array",
+        "confidence": 1.0,
+        "evidence": "multi-dimensional array",
+        "is_correct_usage": true
+      }
+    ],
+    "relationships": [],
+    "domain_match_score": 0.7430693069306932,
+    "out_of_kg_domain": false
+  },
+  {
+    "question_id": "E05.Q01",
+    "question": "In one sentence, what is the main idea implemented by insertion sort?",
+    "reference_answer": "Taking one array element at a time, from left to right, it inserts it in the right position among the already sorted elements on its left.",
+    "concepts": [
+      {
+        "concept_id": "insertion_sort",
+        "confidence": 1.0,
+        "evidence": "insertion sort",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "array",
+        "confidence": 0.9,
+        "evidence": "one array element",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "insertion",
+        "confidence": 0.9,
+        "evidence": "it inserts it",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "sorting",
+        "confidence": 0.8,
+        "evidence": "already sorted elements",
+        "is_correct_usage": true
+      }
+    ],
+    "relationships": [
+      {
+        "source_id": "insertion_sort",
+        "target_id": "insertion",
+        "relation_type": "uses",
+        "confidence": 1.0,
+        "evidence": "it inserts it in the right position",
+        "is_correct": true,
+        "misconception_note": ""
+      },
+      {
+        "source_id": "insertion_sort",
+        "target_id": "array",
+        "relation_type": "operates_on",
+        "confidence": 0.9,
+        "evidence": "Taking one array element at a time",
+        "is_correct": true,
+        "misconception_note": ""
+      },
+      {
+        "source_id": "insertion_sort",
+        "target_id": "sorting",
+        "relation_type": "is_a",
+        "confidence": 0.8,
+        "evidence": "already sorted elements",
+        "is_correct": true,
+        "misconception_note": ""
+      }
+    ],
+    "domain_match_score": 0.7925742574257426,
+    "out_of_kg_domain": false
+  },
+  {
+    "question_id": "E05.Q02",
+    "question": "In one sentence, what is the main idea implemented by selection sort?",
+    "reference_answer": "Taking one array element at a time, from left to right, it identifies the minimum from the remaining elements and swaps it with the current element.",
+    "concepts": [
+      {
+        "concept_id": "selection_sort",
+        "confidence": 1.0,
+        "evidence": "selection sort",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "array",
+        "confidence": 0.9,
+        "evidence": "one array element",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "sorting",
+        "confidence": 0.8,
+        "evidence": "identifies the minimum from the remaining elements and swaps it with the current element",
+        "is_correct_usage": true
+      }
+    ],
+    "relationships": [
+      {
+        "source_id": "selection_sort",
+        "target_id": "array",
+        "relation_type": "operates_on",
+        "confidence": 0.9,
+        "evidence": "Taking one array element at a time",
+        "is_correct": true,
+        "misconception_note": ""
+      },
+      {
+        "source_id": "selection_sort",
+        "target_id": "sorting",
+        "relation_type": "is_a",
+        "confidence": 0.8,
+        "evidence": "identifies the minimum from the remaining elements and swaps it with the current element",
+        "is_correct": true,
+        "misconception_note": ""
+      }
+    ],
+    "domain_match_score": 0.6935643564356436,
+    "out_of_kg_domain": false
+  },
+  {
+    "question_id": "E05.Q03",
+    "question": "What is the number of operations for insertion sort under a best-case scenario, and what is the best-case scenario?",
+    "reference_answer": "N -LRB- the length of the array -RRB- operations achieved for a sorted array.",
+    "concepts": [
+      {
+        "concept_id": "insertion_sort",
+        "confidence": 1.0,
+        "evidence": "insertion sort",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "array",
+        "confidence": 1.0,
+        "evidence": "array",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "o_n",
+        "confidence": 0.8,
+        "evidence": "N -LRB- the length of the array -RRB- operations",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "sorting",
+        "confidence": 0.9,
+        "evidence": "sorted array",
+        "is_correct_usage": true
+      }
+    ],
+    "relationships": [
+      {
+        "source_id": "insertion_sort",
+        "target_id": "o_n",
+        "relation_type": "has_complexity",
+        "confidence": 1.0,
+        "evidence": "N -LRB- the length of the array -RRB- operations achieved for a sorted array.",
+        "is_correct": true,
+        "misconception_note": ""
+      },
+      {
+        "source_id": "insertion_sort",
+        "target_id": "array",
+        "relation_type": "operates_on",
+        "confidence": 1.0,
+        "evidence": "N -LRB- the length of the array -RRB- operations achieved for a sorted array.",
+        "is_correct": true,
+        "misconception_note": ""
+      },
+      {
+        "source_id": "o_n",
+        "target_id": "array",
+        "relation_type": "has_property",
+        "confidence": 0.8,
+        "evidence": "N -LRB- the length of the array -RRB- operations",
+        "is_correct": true,
+        "misconception_note": ""
+      },
+      {
+        "source_id": "insertion_sort",
+        "target_id": "sorting",
+        "relation_type": "produces",
+        "confidence": 0.9,
+        "evidence": "sorted array",
+        "is_correct": true,
+        "misconception_note": ""
+      }
+    ],
+    "domain_match_score": 0.941089108910891,
+    "out_of_kg_domain": false
+  },
+  {
+    "question_id": "E05.Q04",
+    "question": "What is the base case for a recursive implementation of merge sort?",
+    "reference_answer": "When the size of the array to be sorted is 1 -LRB- or 2 -RRB-",
+    "concepts": [
+      {
+        "concept_id": "array",
+        "confidence": 1.0,
+        "evidence": "array",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "merge_sort",
+        "confidence": 1.0,
+        "evidence": "merge sort",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "recursion",
+        "confidence": 1.0,
+        "evidence": "recursive implementation",
+        "is_correct_usage": true
+      }
+    ],
+    "relationships": [
+      {
+        "source_id": "recursion",
+        "target_id": "merge_sort",
+        "relation_type": "implements",
+        "confidence": 1.0,
+        "evidence": "recursive implementation of merge sort",
+        "is_correct": true,
+        "misconception_note": ""
+      },
+      {
+        "source_id": "merge_sort",
+        "target_id": "array",
+        "relation_type": "operates_on",
+        "confidence": 0.9,
+        "evidence": "size of the array to be sorted",
+        "is_correct": true,
+        "misconception_note": ""
+      }
+    ],
+    "domain_match_score": 0.7925742574257426,
+    "out_of_kg_domain": false
+  },
+  {
+    "question_id": "E06.Q04",
+    "question": "How can an array be addressed in pointer or offset notation?",
+    "reference_answer": "By initializing a pointer to point to the first element of the array, and then incrementing this pointer with the index of the array element.",
+    "concepts": [
+      {
+        "concept_id": "pointer",
+        "confidence": 1.0,
+        "evidence": "initializing a pointer to point to the first element of the array, and then incrementing this pointer",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "array",
+        "confidence": 1.0,
+        "evidence": "first element of the array",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "index",
+        "confidence": 1.0,
+        "evidence": "index of the array element",
+        "is_correct_usage": true
+      }
+    ],
+    "relationships": [
+      {
+        "source_id": "pointer",
+        "target_id": "array",
+        "relation_type": "operates_on",
+        "confidence": 1.0,
+        "evidence": "initializing a pointer to point to the first element of the array",
+        "is_correct": true,
+        "misconception_note": ""
+      },
+      {
+        "source_id": "pointer",
+        "target_id": "index",
+        "relation_type": "uses",
+        "confidence": 1.0,
+        "evidence": "incrementing this pointer with the index of the array element",
+        "is_correct": true,
+        "misconception_note": ""
+      }
+    ],
+    "domain_match_score": 0.7430693069306932,
+    "out_of_kg_domain": false
+  },
+  {
+    "question_id": "E07.Q01",
+    "question": "What is a linked list?",
+    "reference_answer": "A collection of elements that can be allocated dynamically.",
+    "concepts": [
+      {
+        "concept_id": "data_structure",
+        "confidence": 0.8,
+        "evidence": "A collection of elements",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "node",
+        "confidence": 0.7,
+        "evidence": "elements",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "linked_list",
+        "confidence": 0.9,
+        "evidence": "A collection of elements that can be allocated dynamically.",
+        "is_correct_usage": true
+      }
+    ],
+    "relationships": [
+      {
+        "source_id": "linked_list",
+        "target_id": "data_structure",
+        "relation_type": "is_a",
+        "confidence": 0.8,
+        "evidence": "A collection of elements",
+        "is_correct": true,
+        "misconception_note": ""
+      },
+      {
+        "source_id": "linked_list",
+        "target_id": "node",
+        "relation_type": "has_part",
+        "confidence": 0.7,
+        "evidence": "collection of elements",
+        "is_correct": true,
+        "misconception_note": ""
+      }
+    ],
+    "domain_match_score": 0.4955445544554455,
+    "out_of_kg_domain": false
+  },
+  {
+    "question_id": "E07.Q02",
+    "question": "What is the main advantage of linked lists over arrays?",
+    "reference_answer": "The linked lists can be of variable length.",
+    "concepts": [
+      {
+        "concept_id": "linked_list",
+        "confidence": 1.0,
+        "evidence": "linked lists",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "array",
+        "confidence": 1.0,
+        "evidence": "arrays",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "data_structure",
+        "confidence": 0.8,
+        "evidence": "linked lists",
+        "is_correct_usage": true
+      }
+    ],
+    "relationships": [
+      {
+        "source_id": "linked_list",
+        "target_id": "array",
+        "relation_type": "contrasts_with",
+        "confidence": 0.9,
+        "evidence": "The linked lists can be of variable length.",
+        "is_correct": true,
+        "misconception_note": null
+      }
+    ],
+    "domain_match_score": 0.44603960396039605,
+    "out_of_kg_domain": false
+  },
+  {
+    "question_id": "E07.Q03",
+    "question": "What is the main advantage of arrays over linked lists?",
+    "reference_answer": "The elements in an array can be accessed directly -LRB- as opposed to linked lists, which require iterative traversal -RRB- .",
+    "concepts": [
+      {
+        "concept_id": "array",
+        "confidence": 1.0,
+        "evidence": "array",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "linked_list",
+        "confidence": 1.0,
+        "evidence": "linked lists",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "node",
+        "confidence": 0.7,
+        "evidence": "elements",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "algorithm",
+        "confidence": 0.7,
+        "evidence": "iterative traversal",
+        "is_correct_usage": true
+      }
+    ],
+    "relationships": [
+      {
+        "source_id": "array",
+        "target_id": "linked_list",
+        "relation_type": "contrasts_with",
+        "confidence": 1.0,
+        "evidence": "array can be accessed directly -LRB- as opposed to linked lists",
+        "is_correct": true,
+        "misconception_note": null
+      },
+      {
+        "source_id": "linked_list",
+        "target_id": "algorithm",
+        "relation_type": "uses",
+        "confidence": 1.0,
+        "evidence": "linked lists, which require iterative traversal",
+        "is_correct": true,
+        "misconception_note": null
+      },
+      {
+        "source_id": "node",
+        "target_id": "array",
+        "relation_type": "has_part",
+        "confidence": 0.8,
+        "evidence": "elements in an array",
+        "is_correct": true,
+        "misconception_note": null
+      },
+      {
+        "source_id": "node",
+        "target_id": "linked_list",
+        "relation_type": "has_part",
+        "confidence": 0.8,
+        "evidence": "elements ... linked lists",
+        "is_correct": true,
+        "misconception_note": null
+      }
+    ],
+    "domain_match_score": 0.44603960396039605,
+    "out_of_kg_domain": false
+  },
+  {
+    "question_id": "E07.Q04",
+    "question": "How are linked lists passed as arguments to a function?",
+    "reference_answer": "By reference.",
+    "concepts": [
+      {
+        "concept_id": "linked_list",
+        "confidence": 1.0,
+        "evidence": "linked lists",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "pointer",
+        "confidence": 1.0,
+        "evidence": "By reference",
+        "is_correct_usage": true
+      }
+    ],
+    "relationships": [
+      {
+        "source_id": "linked_list",
+        "target_id": "pointer",
+        "relation_type": "uses",
+        "confidence": 1.0,
+        "evidence": "How are linked lists passed as arguments to a function? By reference.",
+        "is_correct": true,
+        "misconception_note": ""
+      }
+    ],
+    "domain_match_score": 0.5450495049504951,
+    "out_of_kg_domain": false
+  },
+  {
+    "question_id": "E07.Q05",
+    "question": "What is the difference between a circular linked list and a basic linked list?",
+    "reference_answer": "The last element in a circular linked list points to the head of the list.",
+    "concepts": [
+      {
+        "concept_id": "circular_linked_list",
+        "confidence": 1.0,
+        "evidence": "circular linked list",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "linked_list",
+        "confidence": 1.0,
+        "evidence": "basic linked list",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "tail",
+        "confidence": 0.8,
+        "evidence": "last element",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "head",
+        "confidence": 1.0,
+        "evidence": "head of the list",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "pointer",
+        "confidence": 0.7,
+        "evidence": "points to",
+        "is_correct_usage": true
+      }
+    ],
+    "relationships": [
+      {
+        "source_id": "circular_linked_list",
+        "target_id": "linked_list",
+        "relation_type": "is_a",
+        "confidence": 0.9,
+        "evidence": "circular linked list and a basic linked list",
+        "is_correct": true,
+        "misconception_note": ""
+      },
+      {
+        "source_id": "tail",
+        "target_id": "head",
+        "relation_type": "uses",
+        "confidence": 1.0,
+        "evidence": "The last element in a circular linked list points to the head of the list.",
+        "is_correct": true,
+        "misconception_note": ""
+      },
+      {
+        "source_id": "tail",
+        "target_id": "pointer",
+        "relation_type": "uses",
+        "confidence": 1.0,
+        "evidence": "points to",
+        "is_correct": true,
+        "misconception_note": ""
+      },
+      {
+        "source_id": "circular_linked_list",
+        "target_id": "tail",
+        "relation_type": "has_part",
+        "confidence": 0.9,
+        "evidence": "The last element in a circular linked list",
+        "is_correct": true,
+        "misconception_note": ""
+      },
+      {
+        "source_id": "circular_linked_list",
+        "target_id": "head",
+        "relation_type": "has_part",
+        "confidence": 0.9,
+        "evidence": "head of the list",
+        "is_correct": true,
+        "misconception_note": ""
+      }
+    ],
+    "domain_match_score": 0.7925742574257426,
+    "out_of_kg_domain": false
+  },
+  {
+    "question_id": "E07.Q06",
+    "question": "What is the main advantage of a doubly-linked list over a basic linked list?",
+    "reference_answer": "All the deletion and insertion operations can be performed in constant time, including those operations performed before a given location in the list or at the end of the list.",
+    "concepts": [
+      {
+        "concept_id": "doubly_linked_list",
+        "confidence": 1.0,
+        "evidence": "doubly-linked list",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "linked_list",
+        "confidence": 1.0,
+        "evidence": "basic linked list",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "o_1",
+        "confidence": 1.0,
+        "evidence": "constant time",
+        "is_correct_usage": true
+      }
+    ],
+    "relationships": [
+      {
+        "source_id": "doubly_linked_list",
+        "target_id": "linked_list",
+        "relation_type": "variant_of",
+        "confidence": 1.0,
+        "evidence": "doubly-linked list over a basic linked list",
+        "is_correct": true,
+        "misconception_note": null
+      }
+    ],
+    "domain_match_score": 0.5450495049504951,
+    "out_of_kg_domain": false
+  },
+  {
+    "question_id": "E07.Q07",
+    "question": "What is the main disadvantage of a doubly-linked list over a basic linked list?",
+    "reference_answer": "Extra space required to store the back pointers.",
+    "concepts": [
+      {
+        "concept_id": "doubly_linked_list",
+        "confidence": 1.0,
+        "evidence": "doubly-linked list",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "linked_list",
+        "confidence": 1.0,
+        "evidence": "basic linked list",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "pointer",
+        "confidence": 1.0,
+        "evidence": "back pointers",
+        "is_correct_usage": true
+      }
+    ],
+    "relationships": [
+      {
+        "source_id": "doubly_linked_list",
+        "target_id": "linked_list",
+        "relation_type": "contrasts_with",
+        "confidence": 1.0,
+        "evidence": "disadvantage of a doubly-linked list over a basic linked list",
+        "is_correct": true,
+        "misconception_note": null
+      },
+      {
+        "source_id": "doubly_linked_list",
+        "target_id": "pointer",
+        "relation_type": "has_part",
+        "confidence": 1.0,
+        "evidence": "back pointers",
+        "is_correct": true,
+        "misconception_note": null
+      }
+    ],
+    "domain_match_score": 0.5450495049504951,
+    "out_of_kg_domain": false
+  },
+  {
+    "question_id": "E08.Q02",
+    "question": "What are the two main functions defined by a stack?",
+    "reference_answer": "push and pop",
+    "concepts": [
+      {
+        "concept_id": "push",
+        "confidence": 1.0,
+        "evidence": "push",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "pop",
+        "confidence": 1.0,
+        "evidence": "pop",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "stack",
+        "confidence": 0.8,
+        "evidence": "main functions defined by a stack",
+        "is_correct_usage": true
+      }
+    ],
+    "relationships": [
+      {
+        "source_id": "stack",
+        "target_id": "push",
+        "relation_type": "has_part",
+        "confidence": 1.0,
+        "evidence": "main functions defined by a stack",
+        "is_correct": true,
+        "misconception_note": null
+      },
+      {
+        "source_id": "stack",
+        "target_id": "pop",
+        "relation_type": "has_part",
+        "confidence": 1.0,
+        "evidence": "main functions defined by a stack",
+        "is_correct": true,
+        "misconception_note": null
+      }
+    ],
+    "domain_match_score": 0.39653465346534655,
+    "out_of_kg_domain": false
+  },
+  {
+    "question_id": "E08.Q03",
+    "question": "How can you implement a stack with an array?",
+    "reference_answer": "Keep the top of the stack toward the end of the array, so the push and pop operations will add or remove elements from the right side of the array.",
+    "concepts": [
+      {
+        "concept_id": "stack",
+        "confidence": 1.0,
+        "evidence": "stack",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "array",
+        "confidence": 1.0,
+        "evidence": "array",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "push",
+        "confidence": 1.0,
+        "evidence": "push",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "pop",
+        "confidence": 1.0,
+        "evidence": "pop",
+        "is_correct_usage": true
+      }
+    ],
+    "relationships": [
+      {
+        "source_id": "stack",
+        "target_id": "array",
+        "relation_type": "implements",
+        "confidence": 0.9,
+        "evidence": "implement a stack with an array",
+        "is_correct": true,
+        "misconception_note": null
+      },
+      {
+        "source_id": "push",
+        "target_id": "stack",
+        "relation_type": "operates_on",
+        "confidence": 1.0,
+        "evidence": "push and pop operations will add or remove elements from the right side of the array",
+        "is_correct": true,
+        "misconception_note": null
+      },
+      {
+        "source_id": "pop",
+        "target_id": "stack",
+        "relation_type": "operates_on",
+        "confidence": 1.0,
+        "evidence": "push and pop operations will add or remove elements from the right side of the array",
+        "is_correct": true,
+        "misconception_note": null
+      },
+      {
+        "source_id": "push",
+        "target_id": "array",
+        "relation_type": "operates_on",
+        "confidence": 0.8,
+        "evidence": "add or remove elements from the right side of the array",
+        "is_correct": true,
+        "misconception_note": null
+      },
+      {
+        "source_id": "pop",
+        "target_id": "array",
+        "relation_type": "operates_on",
+        "confidence": 0.8,
+        "evidence": "add or remove elements from the right side of the array",
+        "is_correct": true,
+        "misconception_note": null
+      }
+    ],
+    "domain_match_score": 1.0,
+    "out_of_kg_domain": false
+  },
+  {
+    "question_id": "E08.Q04",
+    "question": "How can you implement a stack with a list?",
+    "reference_answer": "Keep the top of the stack pointing to the head of the linked list, so the push and pop operations will add or remove elements at the beginning of the list.",
+    "concepts": [
+      {
+        "concept_id": "stack",
+        "confidence": 1.0,
+        "evidence": "stack",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "linked_list",
+        "confidence": 1.0,
+        "evidence": "linked list",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "head",
+        "confidence": 1.0,
+        "evidence": "head of the linked list",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "push",
+        "confidence": 1.0,
+        "evidence": "push",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "pop",
+        "confidence": 1.0,
+        "evidence": "pop",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "node",
+        "confidence": 0.7,
+        "evidence": "elements",
+        "is_correct_usage": true
+      }
+    ],
+    "relationships": [
+      {
+        "source_id": "stack",
+        "target_id": "linked_list",
+        "relation_type": "implements",
+        "confidence": 1.0,
+        "evidence": "implement a stack with a list",
+        "is_correct": true,
+        "misconception_note": ""
+      },
+      {
+        "source_id": "stack",
+        "target_id": "head",
+        "relation_type": "has_property",
+        "confidence": 0.9,
+        "evidence": "top of the stack pointing to the head of the linked list",
+        "is_correct": true,
+        "misconception_note": ""
+      },
+      {
+        "source_id": "push",
+        "target_id": "linked_list",
+        "relation_type": "operates_on",
+        "confidence": 0.9,
+        "evidence": "push and pop operations will add or remove elements at the beginning of the list",
+        "is_correct": true,
+        "misconception_note": ""
+      },
+      {
+        "source_id": "pop",
+        "target_id": "linked_list",
+        "relation_type": "operates_on",
+        "confidence": 0.9,
+        "evidence": "push and pop operations will add or remove elements at the beginning of the list",
+        "is_correct": true,
+        "misconception_note": ""
+      },
+      {
+        "source_id": "push",
+        "target_id": "node",
+        "relation_type": "produces",
+        "confidence": 0.8,
+        "evidence": "add or remove elements",
+        "is_correct": true,
+        "misconception_note": ""
+      },
+      {
+        "source_id": "pop",
+        "target_id": "node",
+        "relation_type": "produces",
+        "confidence": 0.8,
+        "evidence": "add or remove elements",
+        "is_correct": true,
+        "misconception_note": ""
+      }
+    ],
+    "domain_match_score": 1.0,
+    "out_of_kg_domain": false
+  },
+  {
+    "question_id": "E08.Q07",
+    "question": "What operations would you need to perform to find a given element on a stack?",
+    "reference_answer": "Pop all the elements and store them on another stack until the element is found, then push back all the elements on the original stack.",
+    "concepts": [
+      {
+        "concept_id": "pop",
+        "confidence": 1.0,
+        "evidence": "Pop all the elements",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "stack",
+        "confidence": 1.0,
+        "evidence": "on a stack",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "push",
+        "confidence": 1.0,
+        "evidence": "push back all the elements on the original stack",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "searching",
+        "confidence": 0.9,
+        "evidence": "find a given element",
+        "is_correct_usage": true
+      }
+    ],
+    "relationships": [
+      {
+        "source_id": "pop",
+        "target_id": "stack",
+        "relation_type": "operates_on",
+        "confidence": 1.0,
+        "evidence": "Pop all the elements and store them on another stack",
+        "is_correct": true,
+        "misconception_note": null
+      },
+      {
+        "source_id": "push",
+        "target_id": "stack",
+        "relation_type": "operates_on",
+        "confidence": 1.0,
+        "evidence": "push back all the elements on the original stack",
+        "is_correct": true,
+        "misconception_note": null
+      },
+      {
+        "source_id": "searching",
+        "target_id": "stack",
+        "relation_type": "operates_on",
+        "confidence": 0.9,
+        "evidence": "find a given element on a stack",
+        "is_correct": true,
+        "misconception_note": null
+      },
+      {
+        "source_id": "searching",
+        "target_id": "pop",
+        "relation_type": "uses",
+        "confidence": 0.9,
+        "evidence": "Pop all the elements and store them on another stack until the element is found",
+        "is_correct": true,
+        "misconception_note": null
+      },
+      {
+        "source_id": "searching",
+        "target_id": "push",
+        "relation_type": "uses",
+        "confidence": 0.9,
+        "evidence": "then push back all the elements on the original stack",
+        "is_correct": true,
+        "misconception_note": null
+      }
+    ],
+    "domain_match_score": 1.0,
+    "out_of_kg_domain": false
+  },
+  {
+    "question_id": "E09.Q02",
+    "question": "What are the two main functions defined by a queue?",
+    "reference_answer": "enqueue and dequeue",
+    "concepts": [
+      {
+        "concept_id": "enqueue",
+        "confidence": 1.0,
+        "evidence": "enqueue",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "dequeue",
+        "confidence": 1.0,
+        "evidence": "dequeue",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "queue",
+        "confidence": 0.8,
+        "evidence": "queue",
+        "is_correct_usage": true
+      }
+    ],
+    "relationships": [
+      {
+        "source_id": "queue",
+        "target_id": "enqueue",
+        "relation_type": "has_part",
+        "confidence": 1.0,
+        "evidence": "What are the two main functions defined by a queue? enqueue and dequeue",
+        "is_correct": true,
+        "misconception_note": ""
+      },
+      {
+        "source_id": "queue",
+        "target_id": "dequeue",
+        "relation_type": "has_part",
+        "confidence": 1.0,
+        "evidence": "What are the two main functions defined by a queue? enqueue and dequeue",
+        "is_correct": true,
+        "misconception_note": ""
+      }
+    ],
+    "domain_match_score": 0.39653465346534655,
+    "out_of_kg_domain": false
+  },
+  {
+    "question_id": "E09.Q03",
+    "question": "How can you implement a queue with an array?",
+    "reference_answer": "Use a circular array. Keep the rear of the queue toward the end of the array, and the front toward the beginning, and allow the rear pointer to wrap around.",
+    "concepts": [
+      {
+        "concept_id": "circular_queue",
+        "confidence": 1.0,
+        "evidence": "Use a circular array.",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "array",
+        "confidence": 1.0,
+        "evidence": "Use a circular array.",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "queue",
+        "confidence": 1.0,
+        "evidence": "Keep the rear of the queue toward the end of the array, and the front toward the beginning, and allow the rear pointer to wrap around.",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "enqueue",
+        "confidence": 0.8,
+        "evidence": "Keep the rear of the queue toward the end of the array, and the front toward the beginning, and allow the rear pointer to wrap around.",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "dequeue",
+        "confidence": 0.8,
+        "evidence": "Keep the rear of the queue toward the end of the array, and the front toward the beginning, and allow the rear pointer to wrap around.",
+        "is_correct_usage": true
+      }
+    ],
+    "relationships": [
+      {
+        "source_id": "circular_queue",
+        "target_id": "array",
+        "relation_type": "implements",
+        "confidence": 1.0,
+        "evidence": "Use a circular array.",
+        "is_correct": true,
+        "misconception_note": null
+      },
+      {
+        "source_id": "queue",
+        "target_id": "circular_queue",
+        "relation_type": "implements",
+        "confidence": 1.0,
+        "evidence": "How can you implement a queue with an array? Use a circular array.",
+        "is_correct": true,
+        "misconception_note": null
+      },
+      {
+        "source_id": "enqueue",
+        "target_id": "queue",
+        "relation_type": "operates_on",
+        "confidence": 0.9,
+        "evidence": "Keep the rear of the queue toward the end of the array, and the front toward the beginning, and allow the rear pointer to wrap around.",
+        "is_correct": true,
+        "misconception_note": null
+      },
+      {
+        "source_id": "dequeue",
+        "target_id": "queue",
+        "relation_type": "operates_on",
+        "confidence": 0.9,
+        "evidence": "Keep the rear of the queue toward the end of the array, and the front toward the beginning, and allow the rear pointer to wrap around.",
+        "is_correct": true,
+        "misconception_note": null
+      }
+    ],
+    "domain_match_score": 1.0,
+    "out_of_kg_domain": false
+  },
+  {
+    "question_id": "E09.Q04",
+    "question": "How can you implement a queue with a list?",
+    "reference_answer": "Keep the rear of the queue pointing to the tail of the linked list, so the enqueue operation is done at the end of the list, and keep the front of the queue pointing to the head of the linked list, so the dequeue operation is done at the beginning of the list.",
+    "concepts": [
+      {
+        "concept_id": "queue",
+        "confidence": 1.0,
+        "evidence": "Keep the rear of the queue pointing to the tail of the linked list, so the enqueue operation is done at the end of the list, and keep the front of the queue pointing to the head of the linked list, so the dequeue operation is done at the beginning of the list.",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "linked_list",
+        "confidence": 1.0,
+        "evidence": "Keep the rear of the queue pointing to the tail of the linked list, so the enqueue operation is done at the end of the list, and keep the front of the queue pointing to the head of the linked list, so the dequeue operation is done at the beginning of the list.",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "enqueue",
+        "confidence": 1.0,
+        "evidence": "so the enqueue operation is done at the end of the list",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "dequeue",
+        "confidence": 1.0,
+        "evidence": "so the dequeue operation is done at the beginning of the list.",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "tail",
+        "confidence": 0.81,
+        "evidence": "Keep the rear of the queue pointing to the tail of the linked list",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "tail",
+        "confidence": 1.0,
+        "evidence": "pointing to the tail of the linked list",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "head",
+        "confidence": 1.0,
+        "evidence": "pointing to the head of the linked list",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "head",
+        "confidence": 0.81,
+        "evidence": "keep the front of the queue pointing to the head of the linked list",
+        "is_correct_usage": true
+      }
+    ],
+    "relationships": [
+      {
+        "source_id": "queue",
+        "target_id": "linked_list",
+        "relation_type": "implements",
+        "confidence": 1.0,
+        "evidence": "How can you implement a queue with a list? Keep the rear of the queue pointing to the tail of the linked list, so the enqueue operation is done at the end of the list, and keep the front of the queue pointing to the head of the linked list, so the dequeue operation is done at the beginning of the list.",
+        "is_correct": true,
+        "misconception_note": null
+      },
+      {
+        "source_id": "tail",
+        "target_id": "linked_list",
+        "relation_type": "has_part",
+        "confidence": 1.0,
+        "evidence": "tail of the linked list",
+        "is_correct": true,
+        "misconception_note": null
+      },
+      {
+        "source_id": "head",
+        "target_id": "linked_list",
+        "relation_type": "has_part",
+        "confidence": 1.0,
+        "evidence": "head of the linked list",
+        "is_correct": true,
+        "misconception_note": null
+      },
+      {
+        "source_id": "enqueue",
+        "target_id": "linked_list",
+        "relation_type": "operates_on",
+        "confidence": 1.0,
+        "evidence": "the enqueue operation is done at the end of the list",
+        "is_correct": true,
+        "misconception_note": null
+      },
+      {
+        "source_id": "dequeue",
+        "target_id": "linked_list",
+        "relation_type": "operates_on",
+        "confidence": 1.0,
+        "evidence": "the dequeue operation is done at the beginning of the list",
+        "is_correct": true,
+        "misconception_note": null
+      }
+    ],
+    "domain_match_score": 1.0,
+    "out_of_kg_domain": false
+  },
+  {
+    "question_id": "E09.Q06",
+    "question": "What is the stack operation corresponding to the enqueue operation in queues?",
+    "reference_answer": "push",
+    "concepts": [
+      {
+        "concept_id": "push",
+        "confidence": 1.0,
+        "evidence": "push",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "enqueue",
+        "confidence": 1.0,
+        "evidence": "enqueue",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "stack",
+        "confidence": 0.8,
+        "evidence": "stack",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "queue",
+        "confidence": 0.8,
+        "evidence": "queues",
+        "is_correct_usage": true
+      }
+    ],
+    "relationships": [
+      {
+        "source_id": "push",
+        "target_id": "enqueue",
+        "relation_type": "contrasts_with",
+        "confidence": 1.0,
+        "evidence": "push",
+        "is_correct": true,
+        "misconception_note": ""
+      },
+      {
+        "source_id": "push",
+        "target_id": "stack",
+        "relation_type": "operates_on",
+        "confidence": 0.9,
+        "evidence": "stack operation corresponding to the enqueue operation",
+        "is_correct": true,
+        "misconception_note": ""
+      },
+      {
+        "source_id": "enqueue",
+        "target_id": "queue",
+        "relation_type": "operates_on",
+        "confidence": 0.9,
+        "evidence": "enqueue operation in queues",
+        "is_correct": true,
+        "misconception_note": ""
+      }
+    ],
+    "domain_match_score": 0.5450495049504951,
+    "out_of_kg_domain": false
+  },
+  {
+    "question_id": "E10.Q02",
+    "question": "What is the height of a tree?",
+    "reference_answer": "The length of the longest path from the root to any of its leaves.",
+    "concepts": [
+      {
+        "concept_id": "tree_height",
+        "confidence": 1.0,
+        "evidence": "The length of the longest path from the root to any of its leaves.",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "tree",
+        "confidence": 1.0,
+        "evidence": "tree",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "root",
+        "confidence": 1.0,
+        "evidence": "root",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "leaf",
+        "confidence": 1.0,
+        "evidence": "leaves",
+        "is_correct_usage": true
+      }
+    ],
+    "relationships": [
+      {
+        "source_id": "tree_height",
+        "target_id": "tree",
+        "relation_type": "has_property",
+        "confidence": 1.0,
+        "evidence": "The length of the longest path from the root to any of its leaves.",
+        "is_correct": true,
+        "misconception_note": null
+      },
+      {
+        "source_id": "tree_height",
+        "target_id": "root",
+        "relation_type": "uses",
+        "confidence": 1.0,
+        "evidence": "from the root",
+        "is_correct": true,
+        "misconception_note": null
+      },
+      {
+        "source_id": "tree_height",
+        "target_id": "leaf",
+        "relation_type": "uses",
+        "confidence": 1.0,
+        "evidence": "to any of its leaves",
+        "is_correct": true,
+        "misconception_note": null
+      }
+    ],
+    "domain_match_score": 0.9905940594059406,
+    "out_of_kg_domain": false
+  },
+  {
+    "question_id": "E10.Q04",
+    "question": "What is a binary tree?",
+    "reference_answer": "A tree for which the maximum number of children per node is two.",
+    "concepts": [
+      {
+        "concept_id": "tree",
+        "confidence": 1.0,
+        "evidence": "A tree",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "binary_tree",
+        "confidence": 1.0,
+        "evidence": "A binary tree",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "node",
+        "confidence": 0.9,
+        "evidence": "children per node",
+        "is_correct_usage": true
+      }
+    ],
+    "relationships": [
+      {
+        "source_id": "binary_tree",
+        "target_id": "tree",
+        "relation_type": "is_a",
+        "confidence": 1.0,
+        "evidence": "A tree for which the maximum number of children per node is two.",
+        "is_correct": true,
+        "misconception_note": null
+      },
+      {
+        "source_id": "node",
+        "target_id": "binary_tree",
+        "relation_type": "has_part",
+        "confidence": 0.9,
+        "evidence": "children per node",
+        "is_correct": true,
+        "misconception_note": null
+      },
+      {
+        "source_id": "binary_tree",
+        "target_id": "node",
+        "relation_type": "has_property",
+        "confidence": 1.0,
+        "evidence": "the maximum number of children per node is two",
+        "is_correct": true,
+        "misconception_note": null
+      }
+    ],
+    "domain_match_score": 1.0,
+    "out_of_kg_domain": false
+  },
+  {
+    "question_id": "E10.Q05",
+    "question": "What is a binary search tree?",
+    "reference_answer": "A binary tree that has the property that for any node the left child is smaller than the parent which in turn is smaller than the right child.",
+    "concepts": [
+      {
+        "concept_id": "binary_tree",
+        "confidence": 1.0,
+        "evidence": "A binary tree",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "binary_search_tree",
+        "confidence": 1.0,
+        "evidence": "A binary search tree",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "node",
+        "confidence": 1.0,
+        "evidence": "for any node",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "leaf",
+        "confidence": 0.7,
+        "evidence": "left child",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "root",
+        "confidence": 0.7,
+        "evidence": "parent",
+        "is_correct_usage": true
+      }
+    ],
+    "relationships": [
+      {
+        "source_id": "binary_search_tree",
+        "target_id": "binary_tree",
+        "relation_type": "is_a",
+        "confidence": 1.0,
+        "evidence": "A binary search tree that has the property that for any node the left child is smaller than the parent which in turn is smaller than the right child.",
+        "is_correct": true,
+        "misconception_note": ""
+      },
+      {
+        "source_id": "binary_search_tree",
+        "target_id": "node",
+        "relation_type": "has_part",
+        "confidence": 1.0,
+        "evidence": "for any node",
+        "is_correct": true,
+        "misconception_note": ""
+      },
+      {
+        "source_id": "node",
+        "target_id": "leaf",
+        "relation_type": "has_part",
+        "confidence": 0.9,
+        "evidence": "left child is smaller than the parent which in turn is smaller than the right child",
+        "is_correct": true,
+        "misconception_note": ""
+      },
+      {
+        "source_id": "node",
+        "target_id": "root",
+        "relation_type": "has_part",
+        "confidence": 0.9,
+        "evidence": "left child is smaller than the parent which in turn is smaller than the right child",
+        "is_correct": true,
+        "misconception_note": ""
+      },
+      {
+        "source_id": "binary_search_tree",
+        "target_id": "root",
+        "relation_type": "has_property",
+        "confidence": 1.0,
+        "evidence": "for any node the left child is smaller than the parent which in turn is smaller than the right child",
+        "is_correct": true,
+        "misconception_note": ""
+      },
+      {
+        "source_id": "binary_search_tree",
+        "target_id": "leaf",
+        "relation_type": "has_property",
+        "confidence": 1.0,
+        "evidence": "for any node the left child is smaller than the parent which in turn is smaller than the right child",
+        "is_correct": true,
+        "misconception_note": ""
+      }
+    ],
+    "domain_match_score": 1.0,
+    "out_of_kg_domain": false
+  },
+  {
+    "question_id": "E10.Q06",
+    "question": "What is the inorder traversal of a binary tree?",
+    "reference_answer": "Traverse the left subtree, then the root, then the right subtree.",
+    "concepts": [
+      {
+        "concept_id": "inorder",
+        "confidence": 1.0,
+        "evidence": "Traverse the left subtree, then the root, then the right subtree.",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "subtree",
+        "confidence": 1.0,
+        "evidence": "left subtree",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "root",
+        "confidence": 1.0,
+        "evidence": "the root",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "tree_traversal",
+        "confidence": 0.9,
+        "evidence": "Traverse the left subtree, then the root, then the right subtree.",
+        "is_correct_usage": true
+      }
+    ],
+    "relationships": [
+      {
+        "source_id": "inorder",
+        "target_id": "tree_traversal",
+        "relation_type": "is_a",
+        "confidence": 1.0,
+        "evidence": "Traverse the left subtree, then the root, then the right subtree.",
+        "is_correct": true,
+        "misconception_note": ""
+      },
+      {
+        "source_id": "inorder",
+        "target_id": "subtree",
+        "relation_type": "uses",
+        "confidence": 1.0,
+        "evidence": "Traverse the left subtree, then the root, then the right subtree.",
+        "is_correct": true,
+        "misconception_note": ""
+      },
+      {
+        "source_id": "inorder",
+        "target_id": "root",
+        "relation_type": "uses",
+        "confidence": 1.0,
+        "evidence": "Traverse the left subtree, then the root, then the right subtree.",
+        "is_correct": true,
+        "misconception_note": ""
+      }
+    ],
+    "domain_match_score": 1.0,
+    "out_of_kg_domain": false
+  },
+  {
+    "question_id": "E10.Q07",
+    "question": "How many comparisons does it take to find an element in a binary search tree?",
+    "reference_answer": "The height of the tree -LRB- or log of the number of elements in the tree -RRB- .",
+    "concepts": [
+      {
+        "concept_id": "tree_height",
+        "confidence": 1.0,
+        "evidence": "The height of the tree",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "tree",
+        "confidence": 1.0,
+        "evidence": "the tree",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "o_log_n",
+        "confidence": 0.9,
+        "evidence": "log of the number of elements in the tree",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "binary_search_tree",
+        "confidence": 1.0,
+        "evidence": "binary search tree",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "searching",
+        "confidence": 1.0,
+        "evidence": "find an element",
+        "is_correct_usage": true
+      }
+    ],
+    "relationships": [
+      {
+        "source_id": "searching",
+        "target_id": "binary_search_tree",
+        "relation_type": "operates_on",
+        "confidence": 1.0,
+        "evidence": "find an element in a binary search tree",
+        "is_correct": true,
+        "misconception_note": ""
+      },
+      {
+        "source_id": "searching",
+        "target_id": "tree_height",
+        "relation_type": "has_complexity",
+        "confidence": 1.0,
+        "evidence": "The height of the tree",
+        "is_correct": true,
+        "misconception_note": ""
+      },
+      {
+        "source_id": "tree_height",
+        "target_id": "o_log_n",
+        "relation_type": "is_a",
+        "confidence": 1.0,
+        "evidence": "The height of the tree -LRB- or log of the number of elements in the tree -RRB-",
+        "is_correct": true,
+        "misconception_note": ""
+      }
+    ],
+    "domain_match_score": 1.0,
+    "out_of_kg_domain": false
+  },
+  {
+    "question_id": "E11.Q05",
+    "question": "What is a recursive function?",
+    "reference_answer": "A function that calls itself.",
+    "concepts": [
+      {
+        "concept_id": "recursion",
+        "confidence": 1.0,
+        "evidence": "A function that calls itself.",
+        "is_correct_usage": true
+      }
+    ],
+    "relationships": [],
+    "domain_match_score": 0.347029702970297,
+    "out_of_kg_domain": false
+  },
+  {
+    "question_id": "E11.Q06",
+    "question": "What is the alternative way to solve a problem that could be solved through recursive functions?",
+    "reference_answer": "Through iteration.",
+    "concepts": [
+      {
+        "concept_id": "recursion",
+        "confidence": 1.0,
+        "evidence": "recursive functions",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "iteration",
+        "confidence": 1.0,
+        "evidence": "Through iteration",
+        "is_correct_usage": true
+      }
+    ],
+    "relationships": [
+      {
+        "source_id": "iteration",
+        "target_id": "recursion",
+        "relation_type": "contrasts_with",
+        "confidence": 1.0,
+        "evidence": "What is the alternative way to solve a problem that could be solved through recursive functions? Through iteration.",
+        "is_correct": true,
+        "misconception_note": null
+      }
+    ],
+    "domain_match_score": 0.8420792079207922,
+    "out_of_kg_domain": false
+  },
+  {
+    "question_id": "E11.Q07",
+    "question": "What is the difference between an array that is declared as static and one that is not?",
+    "reference_answer": "The static arrays are intialized only once when the function is called.",
+    "concepts": [
+      {
+        "concept_id": "array",
+        "confidence": 1.0,
+        "evidence": "static arrays",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "static_memory",
+        "confidence": 1.0,
+        "evidence": "static arrays",
+        "is_correct_usage": true
+      }
+    ],
+    "relationships": [
+      {
+        "source_id": "static_memory",
+        "target_id": "array",
+        "relation_type": "has_property",
+        "confidence": 1.0,
+        "evidence": "static arrays",
+        "is_correct": true,
+        "misconception_note": null
+      }
+    ],
+    "domain_match_score": 1.0,
+    "out_of_kg_domain": false
+  },
+  {
+    "question_id": "E11.Q10",
+    "question": "Briefly describe in one sentence how does merge sort work?",
+    "reference_answer": "It splits the original array into two, sorts each of the two halves, and then merges the sorted arrays.",
+    "concepts": [
+      {
+        "concept_id": "merge_sort",
+        "confidence": 1.0,
+        "evidence": "merge sort",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "array",
+        "confidence": 0.9,
+        "evidence": "original array",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "sorting",
+        "confidence": 0.9,
+        "evidence": "sorts each of the two halves",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "divide_and_conquer",
+        "confidence": 0.8,
+        "evidence": "splits the original array into two, sorts each of the two halves, and then merges the sorted arrays",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "recursion",
+        "confidence": 0.7,
+        "evidence": "sorts each of the two halves",
+        "is_correct_usage": true
+      }
+    ],
+    "relationships": [
+      {
+        "source_id": "merge_sort",
+        "target_id": "array",
+        "relation_type": "operates_on",
+        "confidence": 1.0,
+        "evidence": "splits the original array",
+        "is_correct": true,
+        "misconception_note": ""
+      },
+      {
+        "source_id": "merge_sort",
+        "target_id": "divide_and_conquer",
+        "relation_type": "is_a",
+        "confidence": 0.9,
+        "evidence": "It splits the original array into two, sorts each of the two halves, and then merges the sorted arrays.",
+        "is_correct": true,
+        "misconception_note": ""
+      },
+      {
+        "source_id": "merge_sort",
+        "target_id": "sorting",
+        "relation_type": "is_a",
+        "confidence": 1.0,
+        "evidence": "sorts each of the two halves",
+        "is_correct": true,
+        "misconception_note": ""
+      },
+      {
+        "source_id": "merge_sort",
+        "target_id": "recursion",
+        "relation_type": "uses",
+        "confidence": 0.8,
+        "evidence": "sorts each of the two halves",
+        "is_correct": true,
+        "misconception_note": ""
+      }
+    ],
+    "domain_match_score": 0.8420792079207922,
+    "out_of_kg_domain": false
+  },
+  {
+    "question_id": "E12.Q04",
+    "question": "Briefly, how does selection sort work?",
+    "reference_answer": "It selects the minimum from an array and places it on the first position, then it selects the minimum from the rest of the array and places it on the second position, and so forth.",
+    "concepts": [
+      {
+        "concept_id": "selection_sort",
+        "confidence": 1.0,
+        "evidence": "It selects the minimum from an array and places it on the first position, then it selects the minimum from the rest of the array and places it on the second position, and so forth.",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "array",
+        "confidence": 1.0,
+        "evidence": "from an array",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "sorting",
+        "confidence": 0.8,
+        "evidence": "It selects the minimum from an array and places it on the first position, then it selects the minimum from the rest of the array and places it on the second position, and so forth.",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "algorithm",
+        "confidence": 0.7,
+        "evidence": "It selects the minimum from an array and places it on the first position, then it selects the minimum from the rest of the array and places it on the second position, and so forth.",
+        "is_correct_usage": true
+      }
+    ],
+    "relationships": [
+      {
+        "source_id": "selection_sort",
+        "target_id": "algorithm",
+        "relation_type": "is_a",
+        "confidence": 0.9,
+        "evidence": "It selects the minimum from an array and places it on the first position, then it selects the minimum from the rest of the array and places it on the second position, and so forth.",
+        "is_correct": true,
+        "misconception_note": ""
+      },
+      {
+        "source_id": "selection_sort",
+        "target_id": "sorting",
+        "relation_type": "is_a",
+        "confidence": 0.9,
+        "evidence": "It selects the minimum from an array and places it on the first position, then it selects the minimum from the rest of the array and places it on the second position, and so forth.",
+        "is_correct": true,
+        "misconception_note": ""
+      },
+      {
+        "source_id": "selection_sort",
+        "target_id": "array",
+        "relation_type": "operates_on",
+        "confidence": 1.0,
+        "evidence": "It selects the minimum from an array",
+        "is_correct": true,
+        "misconception_note": ""
+      }
+    ],
+    "domain_match_score": 0.8420792079207922,
+    "out_of_kg_domain": false
+  },
+  {
+    "question_id": "E12.Q05",
+    "question": "What is the advantage of linked lists over arrays?",
+    "reference_answer": "Linked lists are dynamic structures, which allow for a variable number of elements to be stored.",
+    "concepts": [
+      {
+        "concept_id": "linked_list",
+        "confidence": 1.0,
+        "evidence": "Linked lists",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "array",
+        "confidence": 1.0,
+        "evidence": "arrays",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "data_structure",
+        "confidence": 0.8,
+        "evidence": "dynamic structures",
+        "is_correct_usage": true
+      }
+    ],
+    "relationships": [
+      {
+        "source_id": "linked_list",
+        "target_id": "data_structure",
+        "relation_type": "is_a",
+        "confidence": 0.8,
+        "evidence": "Linked lists are dynamic structures",
+        "is_correct": true,
+        "misconception_note": ""
+      },
+      {
+        "source_id": "linked_list",
+        "target_id": "array",
+        "relation_type": "contrasts_with",
+        "confidence": 0.9,
+        "evidence": "Linked lists over arrays",
+        "is_correct": true,
+        "misconception_note": ""
+      }
+    ],
+    "domain_match_score": 0.44603960396039605,
+    "out_of_kg_domain": false
+  },
+  {
+    "question_id": "E12.Q07",
+    "question": "What are the main operations associated with a stack?",
+    "reference_answer": "push and pop",
+    "concepts": [
+      {
+        "concept_id": "push",
+        "confidence": 1.0,
+        "evidence": "push",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "pop",
+        "confidence": 1.0,
+        "evidence": "pop",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "stack",
+        "confidence": 0.8,
+        "evidence": "main operations associated with a stack",
+        "is_correct_usage": true
+      }
+    ],
+    "relationships": [
+      {
+        "source_id": "stack",
+        "target_id": "push",
+        "relation_type": "has_part",
+        "confidence": 1.0,
+        "evidence": "main operations associated with a stack: push",
+        "is_correct": true,
+        "misconception_note": null
+      },
+      {
+        "source_id": "stack",
+        "target_id": "pop",
+        "relation_type": "has_part",
+        "confidence": 1.0,
+        "evidence": "main operations associated with a stack: pop",
+        "is_correct": true,
+        "misconception_note": null
+      }
+    ],
+    "domain_match_score": 0.7925742574257426,
+    "out_of_kg_domain": false
+  },
+  {
+    "question_id": "E12.Q08",
+    "question": "What is the Euler tour traversal of a tree?",
+    "reference_answer": "A walk around the tree, starting with the root, where each node is seen three times: from the left, from below, from the right.",
+    "concepts": [
+      {
+        "concept_id": "tree",
+        "confidence": 1.0,
+        "evidence": "tree",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "root",
+        "confidence": 1.0,
+        "evidence": "root",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "node",
+        "confidence": 1.0,
+        "evidence": "node",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "tree_traversal",
+        "confidence": 0.8,
+        "evidence": "A walk around the tree",
+        "is_correct_usage": true
+      }
+    ],
+    "relationships": [
+      {
+        "source_id": "tree_traversal",
+        "target_id": "tree",
+        "relation_type": "operates_on",
+        "confidence": 1.0,
+        "evidence": "A walk around the tree",
+        "is_correct": true,
+        "misconception_note": null
+      },
+      {
+        "source_id": "tree_traversal",
+        "target_id": "root",
+        "relation_type": "uses",
+        "confidence": 0.9,
+        "evidence": "starting with the root",
+        "is_correct": true,
+        "misconception_note": null
+      },
+      {
+        "source_id": "tree_traversal",
+        "target_id": "node",
+        "relation_type": "operates_on",
+        "confidence": 0.9,
+        "evidence": "each node is seen three times",
+        "is_correct": true,
+        "misconception_note": null
+      }
+    ],
+    "domain_match_score": 1.0,
+    "out_of_kg_domain": false
+  },
+  {
+    "question_id": "E12.Q09",
+    "question": "How do you delete a node from a binary search tree?",
+    "reference_answer": "Find the node, then replace it with the leftmost node from its right subtree -LRB- or the rightmost node from its left subtree -RRB- .",
+    "concepts": [
+      {
+        "concept_id": "deletion",
+        "confidence": 1.0,
+        "evidence": "delete a node",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "node",
+        "confidence": 1.0,
+        "evidence": "node",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "binary_search_tree",
+        "confidence": 1.0,
+        "evidence": "binary search tree",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "searching",
+        "confidence": 0.9,
+        "evidence": "Find the node",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "subtree",
+        "confidence": 1.0,
+        "evidence": "right subtree",
+        "is_correct_usage": true
+      }
+    ],
+    "relationships": [
+      {
+        "source_id": "deletion",
+        "target_id": "node",
+        "relation_type": "operates_on",
+        "confidence": 1.0,
+        "evidence": "delete a node",
+        "is_correct": true,
+        "misconception_note": ""
+      },
+      {
+        "source_id": "deletion",
+        "target_id": "binary_search_tree",
+        "relation_type": "operates_on",
+        "confidence": 1.0,
+        "evidence": "delete a node from a binary search tree",
+        "is_correct": true,
+        "misconception_note": ""
+      },
+      {
+        "source_id": "searching",
+        "target_id": "node",
+        "relation_type": "operates_on",
+        "confidence": 0.9,
+        "evidence": "Find the node",
+        "is_correct": true,
+        "misconception_note": ""
+      },
+      {
+        "source_id": "node",
+        "target_id": "subtree",
+        "relation_type": "has_part",
+        "confidence": 0.8,
+        "evidence": "leftmost node from its right subtree",
+        "is_correct": true,
+        "misconception_note": ""
+      }
+    ],
+    "domain_match_score": 1.0,
+    "out_of_kg_domain": false
+  },
+  {
+    "question_id": "E12.Q10",
+    "question": "How many steps does it take to search a node in a binary search tree?",
+    "reference_answer": "The height of the tree.",
+    "concepts": [
+      {
+        "concept_id": "tree_height",
+        "confidence": 1.0,
+        "evidence": "The height of the tree.",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "searching",
+        "confidence": 0.9,
+        "evidence": "search a node",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "binary_search_tree",
+        "confidence": 1.0,
+        "evidence": "binary search tree",
+        "is_correct_usage": true
+      },
+      {
+        "concept_id": "node",
+        "confidence": 0.9,
+        "evidence": "search a node",
+        "is_correct_usage": true
+      }
+    ],
+    "relationships": [
+      {
+        "source_id": "searching",
+        "target_id": "node",
+        "relation_type": "operates_on",
+        "confidence": 0.9,
+        "evidence": "search a node",
+        "is_correct": true,
+        "misconception_note": ""
+      },
+      {
+        "source_id": "searching",
+        "target_id": "binary_search_tree",
+        "relation_type": "operates_on",
+        "confidence": 0.9,
+        "evidence": "search a node in a binary search tree",
+        "is_correct": true,
+        "misconception_note": ""
+      },
+      {
+        "source_id": "searching",
+        "target_id": "tree_height",
+        "relation_type": "has_complexity",
+        "confidence": 1.0,
+        "evidence": "The height of the tree.",
+        "is_correct": true,
+        "misconception_note": ""
+      }
+    ],
+    "domain_match_score": 1.0,
+    "out_of_kg_domain": false
+  }
+]

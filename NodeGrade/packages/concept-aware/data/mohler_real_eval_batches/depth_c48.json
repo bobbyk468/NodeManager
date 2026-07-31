@@ -1,0 +1,157 @@
+{
+  "raw_text": "{\n  \"scores\": {\n    \"E12.Q08.A22\": {\n      \"blooms_level\": 1,\n      \"blooms_label\": \"Remember\",\n      \"solo_level\": 1,\n      \"solo_label\": \"Prestructural\"\n    },\n    \"E12.Q08.A23\": {\n      \"blooms_level\": 2,\n      \"blooms_label\": \"Understand\",\n      \"solo_level\": 2,\n      \"solo_label\": \"Unistructural\"\n    },\n    \"E12.Q08.A24\": {\n      \"blooms_level\": 2,\n      \"blooms_label\": \"Understand\",\n      \"solo_level\": 3,\n      \"solo_label\": \"Multistructural\"\n    },\n    \"E12.Q08.A25\": {\n      \"blooms_level\": 2,\n      \"blooms_label\": \"Understand\",\n      \"solo_level\": 3,\n      \"solo_label\": \"Multistructural\"\n    },\n    \"E12.Q08.A26\": {\n      \"blooms_level\": 1,\n      \"blooms_label\": \"Remember\",\n      \"solo_level\": 2,\n      \"solo_label\": \"Unistructural\"\n    },\n    \"E12.Q08.A27\": {\n      \"blooms_level\": 2,\n      \"blooms_label\": \"Understand\",\n      \"solo_level\": 2,\n      \"solo_label\": \"Unistructural\"\n    },\n    \"E12.Q09.A00\": {\n      \"blooms_level\": 3,\n      \"blooms_label\": \"Apply\",\n      \"solo_level\": 4,\n      \"solo_label\": \"Relational\"\n    },\n    \"E12.Q09.A01\": {\n      \"blooms_level\": 3,\n      \"blooms_label\": \"Apply\",\n      \"solo_level\": 4,\n      \"solo_label\": \"Relational\"\n    },\n    \"E12.Q09.A02\": {\n      \"blooms_level\": 2,\n      \"blooms_label\": \"Understand\",\n      \"solo_level\": 2,\n      \"solo_label\": \"Unistructural\"\n    },\n    \"E12.Q09.A03\": {\n      \"blooms_level\": 2,\n      \"blooms_label\": \"Understand\",\n      \"solo_level\": 3,\n      \"solo_label\": \"Multistructural\"\n    },\n    \"E12.Q09.A04\": {\n      \"blooms_level\": 2,\n      \"blooms_label\": \"Understand\",\n      \"solo_level\": 3,\n      \"solo_label\": \"Multistructural\"\n    },\n    \"E12.Q09.A05\": {\n      \"blooms_level\": 2,\n      \"blooms_label\": \"Understand\",\n      \"solo_level\": 3,\n      \"solo_label\": \"Multistructural\"\n    },\n    \"E12.Q09.A06\": {\n      \"blooms_level\": 3,\n      \"blooms_label\": \"Apply\",\n      \"solo_level\": 4,\n      \"solo_label\": \"Relational\"\n    },\n    \"E12.Q09.A07\": {\n      \"blooms_level\": 2,\n      \"blooms_label\": \"Understand\",\n      \"solo_level\": 3,\n      \"solo_label\": \"Multistructural\"\n    },\n    \"E12.Q09.A08\": {\n      \"blooms_level\": 2,\n      \"blooms_label\": \"Understand\",\n      \"solo_level\": 3,\n      \"solo_label\": \"Multistructural\"\n    },\n    \"E12.Q09.A09\": {\n      \"blooms_level\": 2,\n      \"blooms_label\": \"Understand\",\n      \"solo_level\": 3,\n      \"solo_label\": \"Multistructural\"\n    },\n    \"E12.Q09.A10\": {\n      \"blooms_level\": 1,\n      \"blooms_label\": \"Remember\",\n      \"solo_level\": 1,\n      \"solo_label\": \"Prestructural\"\n    },\n    \"E12.Q09.A11\": {\n      \"blooms_level\": 3,\n      \"blooms_label\": \"Apply\",\n      \"solo_level\": 4,\n      \"solo_label\": \"Relational\"\n    },\n    \"E12.Q09.A12\": {\n      \"blooms_level\": 3,\n      \"blooms_label\": \"Apply\",\n      \"solo_level\": 4,\n      \"solo_label\": \"Relational\"\n    },\n    \"E12.Q09.A13\": {\n      \"blooms_level\": 2,\n      \"blooms_label\": \"Understand\",\n      \"solo_level\": 3,\n      \"solo_label\": \"Multistructural\"\n    },\n    \"E12.Q09.A14\": {\n      \"blooms_level\": 2,\n      \"blooms_label\": \"Understand\",\n      \"solo_level\": 3,\n      \"solo_label\": \"Multistructural\"\n    },\n    \"E12.Q09.A15\": {\n      \"blooms_level\": 3,\n      \"blooms_label\": \"Apply\",\n      \"solo_level\": 4,\n      \"solo_label\": \"Relational\"\n    },\n    \"E12.Q09.A16\": {\n      \"blooms_level\": 1,\n      \"blooms_label\": \"Remember\",\n      \"solo_level\": 1,\n      \"solo_label\": \"Prestructural\"\n    },\n    \"E12.Q09.A17\": {\n      \"blooms_level\": 3,\n      \"blooms_label\": \"Apply\",\n      \"solo_level\": 4,\n      \"solo_label\": \"Relational\"\n    },\n    \"E12.Q09.A18\": {\n      \"blooms_level\": 2,\n      \"blooms_label\": \"Understand\",\n      \"solo_level\": 2,\n      \"solo_label\": \"Unistructural\"\n    }\n  }\n}",
+  "parsed": {
+    "scores": {
+      "E12.Q08.A22": {
+        "blooms_level": 1,
+        "blooms_label": "Remember",
+        "solo_level": 1,
+        "solo_label": "Prestructural"
+      },
+      "E12.Q08.A23": {
+        "blooms_level": 2,
+        "blooms_label": "Understand",
+        "solo_level": 2,
+        "solo_label": "Unistructural"
+      },
+      "E12.Q08.A24": {
+        "blooms_level": 2,
+        "blooms_label": "Understand",
+        "solo_level": 3,
+        "solo_label": "Multistructural"
+      },
+      "E12.Q08.A25": {
+        "blooms_level": 2,
+        "blooms_label": "Understand",
+        "solo_level": 3,
+        "solo_label": "Multistructural"
+      },
+      "E12.Q08.A26": {
+        "blooms_level": 1,
+        "blooms_label": "Remember",
+        "solo_level": 2,
+        "solo_label": "Unistructural"
+      },
+      "E12.Q08.A27": {
+        "blooms_level": 2,
+        "blooms_label": "Understand",
+        "solo_level": 2,
+        "solo_label": "Unistructural"
+      },
+      "E12.Q09.A00": {
+        "blooms_level": 3,
+        "blooms_label": "Apply",
+        "solo_level": 4,
+        "solo_label": "Relational"
+      },
+      "E12.Q09.A01": {
+        "blooms_level": 3,
+        "blooms_label": "Apply",
+        "solo_level": 4,
+        "solo_label": "Relational"
+      },
+      "E12.Q09.A02": {
+        "blooms_level": 2,
+        "blooms_label": "Understand",
+        "solo_level": 2,
+        "solo_label": "Unistructural"
+      },
+      "E12.Q09.A03": {
+        "blooms_level": 2,
+        "blooms_label": "Understand",
+        "solo_level": 3,
+        "solo_label": "Multistructural"
+      },
+      "E12.Q09.A04": {
+        "blooms_level": 2,
+        "blooms_label": "Understand",
+        "solo_level": 3,
+        "solo_label": "Multistructural"
+      },
+      "E12.Q09.A05": {
+        "blooms_level": 2,
+        "blooms_label": "Understand",
+        "solo_level": 3,
+        "solo_label": "Multistructural"
+      },
+      "E12.Q09.A06": {
+        "blooms_level": 3,
+        "blooms_label": "Apply",
+        "solo_level": 4,
+        "solo_label": "Relational"
+      },
+      "E12.Q09.A07": {
+        "blooms_level": 2,
+        "blooms_label": "Understand",
+        "solo_level": 3,
+        "solo_label": "Multistructural"
+      },
+      "E12.Q09.A08": {
+        "blooms_level": 2,
+        "blooms_label": "Understand",
+        "solo_level": 3,
+        "solo_label": "Multistructural"
+      },
+      "E12.Q09.A09": {
+        "blooms_level": 2,
+        "blooms_label": "Understand",
+        "solo_level": 3,
+        "solo_label": "Multistructural"
+      },
+      "E12.Q09.A10": {
+        "blooms_level": 1,
+        "blooms_label": "Remember",
+        "solo_level": 1,
+        "solo_label": "Prestructural"
+      },
+      "E12.Q09.A11": {
+        "blooms_level": 3,
+        "blooms_label": "Apply",
+        "solo_level": 4,
+        "solo_label": "Relational"
+      },
+      "E12.Q09.A12": {
+        "blooms_level": 3,
+        "blooms_label": "Apply",
+        "solo_level": 4,
+        "solo_label": "Relational"
+      },
+      "E12.Q09.A13": {
+        "blooms_level": 2,
+        "blooms_label": "Understand",
+        "solo_level": 3,
+        "solo_label": "Multistructural"
+      },
+      "E12.Q09.A14": {
+        "blooms_level": 2,
+        "blooms_label": "Understand",
+        "solo_level": 3,
+        "solo_label": "Multistructural"
+      },
+      "E12.Q09.A15": {
+        "blooms_level": 3,
+        "blooms_label": "Apply",
+        "solo_level": 4,
+        "solo_label": "Relational"
+      },
+      "E12.Q09.A16": {
+        "blooms_level": 1,
+        "blooms_label": "Remember",
+        "solo_level": 1,
+        "solo_label": "Prestructural"
+      },
+      "E12.Q09.A17": {
+        "blooms_level": 3,
+        "blooms_label": "Apply",
+        "solo_level": 4,
+        "solo_label": "Relational"
+      },
+      "E12.Q09.A18": {
+        "blooms_level": 2,
+        "blooms_label": "Understand",
+        "solo_level": 2,
+        "solo_label": "Unistructural"
+      }
+    }
+  }
+}

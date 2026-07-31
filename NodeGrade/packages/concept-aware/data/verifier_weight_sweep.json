@@ -1,0 +1,69 @@
+{
+  "n": 1262,
+  "mae_cllm": 1.2820919175911252,
+  "mae_verified_w1": 1.1770998415213947,
+  "mae_kg_formula_w0": 1.9141087369255152,
+  "sweep": [
+    {
+      "verifier_weight": 1.0,
+      "mae": 1.1770998415213947,
+      "p_one_tailed_vs_cllm": 2.5017607171185957e-08
+    },
+    {
+      "verifier_weight": 0.95,
+      "mae": 1.2123613312202852,
+      "p_one_tailed_vs_cllm": 7.610169254864676e-06
+    },
+    {
+      "verifier_weight": 0.9,
+      "mae": 1.2398969889064977,
+      "p_one_tailed_vs_cllm": 0.054160644396683194
+    },
+    {
+      "verifier_weight": 0.8,
+      "mae": 1.2910063391442155,
+      "p_one_tailed_vs_cllm": 0.9127374992607434
+    },
+    {
+      "verifier_weight": 0.7,
+      "mae": 1.3688589540412044,
+      "p_one_tailed_vs_cllm": 0.9999659862086043
+    },
+    {
+      "verifier_weight": 0.6,
+      "mae": 1.4322503961965134,
+      "p_one_tailed_vs_cllm": 0.9999999579399568
+    },
+    {
+      "verifier_weight": 0.5,
+      "mae": 1.5041600633914423,
+      "p_one_tailed_vs_cllm": 0.9999999999765737
+    },
+    {
+      "verifier_weight": 0.4,
+      "mae": 1.572107765451664,
+      "p_one_tailed_vs_cllm": 0.9999999999999777
+    },
+    {
+      "verifier_weight": 0.3,
+      "mae": 1.6531299524564185,
+      "p_one_tailed_vs_cllm": 1.0
+    },
+    {
+      "verifier_weight": 0.2,
+      "mae": 1.7327654516640254,
+      "p_one_tailed_vs_cllm": 1.0
+    },
+    {
+      "verifier_weight": 0.1,
+      "mae": 1.8201267828843106,
+      "p_one_tailed_vs_cllm": 1.0
+    },
+    {
+      "verifier_weight": 0.0,
+      "mae": 1.9003565768621236,
+      "p_one_tailed_vs_cllm": 1.0
+    }
+  ],
+  "note": "kg_formula_score is pipeline.py's _compute_overall_score() output (pure deterministic KG formula), NOT the pipeline's true internal pre-verifier kg_score (which also blends a separate holistic LLM call at 0.95 weight -- not run for the real dataset). See script docstring."
+}

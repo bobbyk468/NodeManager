@@ -1,0 +1,1110 @@
+{
+  "source": "nkazi/MohlerASAG (HuggingFace, CC-BY-4.0), derived from Mohler & Mihalcea (2011) ACL-HLT Texas Extended dataset",
+  "selection": "Manually identified DS-topic questions missed by the original keyword-matcher's literal substring matching; extension to mohler_real_kg_aligned.json, frozen 2026-07-28",
+  "extension_rationale": {
+    "E08.Q06": "infix/postfix expression evaluation -- stack-based (Data Structures: stacks)",
+    "E10.Q03": "'what is a leaf' -- tree terminology (Data Structures: trees/BSTs)",
+    "E11.Q09": "divide-and-conquer paradigm -- recursion/sorting-adjacent (Data Structures: recursion, sorting)",
+    "E12.Q02": "experimental algorithm-timing methodology -- borderline; the pipeline's own out-of-KG-domain detector will determine assessability, not this script"
+  },
+  "n_questions": 4,
+  "n_responses": 109,
+  "question_ids": [
+    "E08.Q06",
+    "E10.Q03",
+    "E11.Q09",
+    "E12.Q02"
+  ],
+  "samples": [
+    {
+      "id": "E08.Q06.A00",
+      "qid": "E08.Q06",
+      "question": "How are infix expressions evaluated by computers?",
+      "reference_answer": "First, they are converted into postfix form, followed by an evaluation of the postfix expression.",
+      "student_answer": "They are converted to post fix expressions. It still follow the order of precedence for the operators.",
+      "score_grader_1": 5.0,
+      "score_grader_2": 5.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E08.Q06.A01",
+      "qid": "E08.Q06",
+      "question": "How are infix expressions evaluated by computers?",
+      "reference_answer": "First, they are converted into postfix form, followed by an evaluation of the postfix expression.",
+      "student_answer": "They are first converted to postfix expressions and then evaluated.",
+      "score_grader_1": 5.0,
+      "score_grader_2": 5.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E08.Q06.A02",
+      "qid": "E08.Q06",
+      "question": "How are infix expressions evaluated by computers?",
+      "reference_answer": "First, they are converted into postfix form, followed by an evaluation of the postfix expression.",
+      "student_answer": "Computers cannot evaulate infix expressions, it must first convert infix to postfix expression then it can evaluate.",
+      "score_grader_1": 5.0,
+      "score_grader_2": 5.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E08.Q06.A03",
+      "qid": "E08.Q06",
+      "question": "How are infix expressions evaluated by computers?",
+      "reference_answer": "First, they are converted into postfix form, followed by an evaluation of the postfix expression.",
+      "student_answer": "By using parentheses to have order in the expression.",
+      "score_grader_1": 3.0,
+      "score_grader_2": 2.0,
+      "score_avg": 2.5
+    },
+    {
+      "id": "E08.Q06.A04",
+      "qid": "E08.Q06",
+      "question": "How are infix expressions evaluated by computers?",
+      "reference_answer": "First, they are converted into postfix form, followed by an evaluation of the postfix expression.",
+      "student_answer": "In postfix notation.",
+      "score_grader_1": 5.0,
+      "score_grader_2": 3.0,
+      "score_avg": 4.0
+    },
+    {
+      "id": "E08.Q06.A05",
+      "qid": "E08.Q06",
+      "question": "How are infix expressions evaluated by computers?",
+      "reference_answer": "First, they are converted into postfix form, followed by an evaluation of the postfix expression.",
+      "student_answer": "computers usually convert infix expressions to post fix expression and evaluate them using a stack.",
+      "score_grader_1": 5.0,
+      "score_grader_2": 5.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E08.Q06.A06",
+      "qid": "E08.Q06",
+      "question": "How are infix expressions evaluated by computers?",
+      "reference_answer": "First, they are converted into postfix form, followed by an evaluation of the postfix expression.",
+      "student_answer": "they are converted to postfix",
+      "score_grader_1": 5.0,
+      "score_grader_2": 5.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E08.Q06.A07",
+      "qid": "E08.Q06",
+      "question": "How are infix expressions evaluated by computers?",
+      "reference_answer": "First, they are converted into postfix form, followed by an evaluation of the postfix expression.",
+      "student_answer": "Infix expressions are interpreted as postfix expressions by implementing stacks.",
+      "score_grader_1": 5.0,
+      "score_grader_2": 5.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E08.Q06.A08",
+      "qid": "E08.Q06",
+      "question": "How are infix expressions evaluated by computers?",
+      "reference_answer": "First, they are converted into postfix form, followed by an evaluation of the postfix expression.",
+      "student_answer": "They are first converted into an equivalent postfix expression so it can be read by the computer.",
+      "score_grader_1": 5.0,
+      "score_grader_2": 5.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E08.Q06.A09",
+      "qid": "E08.Q06",
+      "question": "How are infix expressions evaluated by computers?",
+      "reference_answer": "First, they are converted into postfix form, followed by an evaluation of the postfix expression.",
+      "student_answer": "The computer translates the infix expression to a postfix expression, then solves.",
+      "score_grader_1": 5.0,
+      "score_grader_2": 5.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E08.Q06.A10",
+      "qid": "E08.Q06",
+      "question": "How are infix expressions evaluated by computers?",
+      "reference_answer": "First, they are converted into postfix form, followed by an evaluation of the postfix expression.",
+      "student_answer": "in postfix format",
+      "score_grader_1": 5.0,
+      "score_grader_2": 3.0,
+      "score_avg": 4.0
+    },
+    {
+      "id": "E08.Q06.A11",
+      "qid": "E08.Q06",
+      "question": "How are infix expressions evaluated by computers?",
+      "reference_answer": "First, they are converted into postfix form, followed by an evaluation of the postfix expression.",
+      "student_answer": "they use parenthisis and a stack to determine which evaluations need to be made first",
+      "score_grader_1": 3.0,
+      "score_grader_2": 3.0,
+      "score_avg": 3.0
+    },
+    {
+      "id": "E08.Q06.A12",
+      "qid": "E08.Q06",
+      "question": "How are infix expressions evaluated by computers?",
+      "reference_answer": "First, they are converted into postfix form, followed by an evaluation of the postfix expression.",
+      "student_answer": "By throwing variables into a postfix expression and operands onto a parentheses regulated stack until end parentheses and enough variables to operate on are encountered.",
+      "score_grader_1": 5.0,
+      "score_grader_2": 4.0,
+      "score_avg": 4.5
+    },
+    {
+      "id": "E08.Q06.A13",
+      "qid": "E08.Q06",
+      "question": "How are infix expressions evaluated by computers?",
+      "reference_answer": "First, they are converted into postfix form, followed by an evaluation of the postfix expression.",
+      "student_answer": "by being passed to the function by a leading term",
+      "score_grader_1": 3.0,
+      "score_grader_2": 0.0,
+      "score_avg": 1.5
+    },
+    {
+      "id": "E08.Q06.A14",
+      "qid": "E08.Q06",
+      "question": "How are infix expressions evaluated by computers?",
+      "reference_answer": "First, they are converted into postfix form, followed by an evaluation of the postfix expression.",
+      "student_answer": "i have an hard time explaining this so i will show how infix is evaluated instead. Start with an infix expression, like, -LRB- -LRB- -LRB- 5 plus 2 -RRB- multiplied by 5 -RRB- plus -LRB- 400 divided by -LRB- 2 plus 3 -RRB- -RRB- -RRB- , and push items until you get a \" -RRB- \" and once that happens, perform the operations until you reach an \" -LRB- \" ... with that complete, you will now have -LRB- -LRB- 7 multiplied by 5 -RRB- plus -LRB- 400 divided by -LRB- 2 plus 3 -RRB- -RRB- -RRB- as now the expression that will be evaluated ... perform last step again ... -LRB- 35 plus -LRB- 400 divided by -LRB- 2 plus 3 -RRB- -RRB- -RRB- is now the stack ... repeat agian ... -LRB- 35 plus -LRB- 400 divided by 5 -RRB- -RRB- is now the stack after that ... repeat ... -LRB- 35 plus 80 -RRB- is now the stack, repeat again ... 115 is now the stack, and is returned.",
+      "score_grader_1": 4.0,
+      "score_grader_2": 1.0,
+      "score_avg": 2.5
+    },
+    {
+      "id": "E08.Q06.A15",
+      "qid": "E08.Q06",
+      "question": "How are infix expressions evaluated by computers?",
+      "reference_answer": "First, they are converted into postfix form, followed by an evaluation of the postfix expression.",
+      "student_answer": "The infix expression is converted to postfix form",
+      "score_grader_1": 5.0,
+      "score_grader_2": 5.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E08.Q06.A16",
+      "qid": "E08.Q06",
+      "question": "How are infix expressions evaluated by computers?",
+      "reference_answer": "First, they are converted into postfix form, followed by an evaluation of the postfix expression.",
+      "student_answer": "by converting them to postfix expressions and putting the operations in a stack",
+      "score_grader_1": 5.0,
+      "score_grader_2": 5.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E08.Q06.A17",
+      "qid": "E08.Q06",
+      "question": "How are infix expressions evaluated by computers?",
+      "reference_answer": "First, they are converted into postfix form, followed by an evaluation of the postfix expression.",
+      "student_answer": "The computer converts the infix expression to postfix form. Then evaluates the postfix expression.",
+      "score_grader_1": 5.0,
+      "score_grader_2": 5.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E08.Q06.A18",
+      "qid": "E08.Q06",
+      "question": "How are infix expressions evaluated by computers?",
+      "reference_answer": "First, they are converted into postfix form, followed by an evaluation of the postfix expression.",
+      "student_answer": "infix expressions are converted to postfix expressions before they can be evaluated by a computer. Operands stay in the same order. Operators always follow the operands.",
+      "score_grader_1": 5.0,
+      "score_grader_2": 5.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E08.Q06.A19",
+      "qid": "E08.Q06",
+      "question": "How are infix expressions evaluated by computers?",
+      "reference_answer": "First, they are converted into postfix form, followed by an evaluation of the postfix expression.",
+      "student_answer": "infix expressions are pointers evaluated by reference to the memory location",
+      "score_grader_1": 3.0,
+      "score_grader_2": 0.0,
+      "score_avg": 1.5
+    },
+    {
+      "id": "E08.Q06.A20",
+      "qid": "E08.Q06",
+      "question": "How are infix expressions evaluated by computers?",
+      "reference_answer": "First, they are converted into postfix form, followed by an evaluation of the postfix expression.",
+      "student_answer": "computers convert infix expressions to postfix form before evaluation",
+      "score_grader_1": 5.0,
+      "score_grader_2": 5.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E08.Q06.A21",
+      "qid": "E08.Q06",
+      "question": "How are infix expressions evaluated by computers?",
+      "reference_answer": "First, they are converted into postfix form, followed by an evaluation of the postfix expression.",
+      "student_answer": "convert infix expressions to postfix expression and evaluate the postfix expression",
+      "score_grader_1": 5.0,
+      "score_grader_2": 5.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E08.Q06.A22",
+      "qid": "E08.Q06",
+      "question": "How are infix expressions evaluated by computers?",
+      "reference_answer": "First, they are converted into postfix form, followed by an evaluation of the postfix expression.",
+      "student_answer": "When an operand is entered, the computer Pushes it onto a stack When an operator is entered, the computer Applies it to the top two operands of the stack Pops the operands from the stack Pushes the result of the operation onto the stack",
+      "score_grader_1": 4.0,
+      "score_grader_2": 4.0,
+      "score_avg": 4.0
+    },
+    {
+      "id": "E08.Q06.A23",
+      "qid": "E08.Q06",
+      "question": "How are infix expressions evaluated by computers?",
+      "reference_answer": "First, they are converted into postfix form, followed by an evaluation of the postfix expression.",
+      "student_answer": "Computers convert an infix expression into a postfix expression. They then push the numbers onto a stack and pop them out as they are needed.",
+      "score_grader_1": 5.0,
+      "score_grader_2": 5.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E08.Q06.A24",
+      "qid": "E08.Q06",
+      "question": "How are infix expressions evaluated by computers?",
+      "reference_answer": "First, they are converted into postfix form, followed by an evaluation of the postfix expression.",
+      "student_answer": "infix expressions are converted to postfix, -LRB- i. e. 3 plus 2 is changed to 32 plus -RRB-",
+      "score_grader_1": 5.0,
+      "score_grader_2": 5.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E08.Q06.A25",
+      "qid": "E08.Q06",
+      "question": "How are infix expressions evaluated by computers?",
+      "reference_answer": "First, they are converted into postfix form, followed by an evaluation of the postfix expression.",
+      "student_answer": "they are transformed into post-fix expressions, then evaluated with a stack.",
+      "score_grader_1": 5.0,
+      "score_grader_2": 5.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E08.Q06.A26",
+      "qid": "E08.Q06",
+      "question": "How are infix expressions evaluated by computers?",
+      "reference_answer": "First, they are converted into postfix form, followed by an evaluation of the postfix expression.",
+      "student_answer": "Writing arithmetic expressions is called infix notation. This is because a binary operator -LRB- like \"plus\" -RRB- is written in between its two operands -LRB- as in \"a plus b\" -RRB- . There are two alternative forms of notation used in certain situations. One is prefix notation, in which an operator is written before its operands. In prefix notation, the sum of a and b is written \"plus a b\". This is the notation used to write function calls in mathematics and computer science. It is also used in the Lisp and Scheme programming languages. In postfix notation, an operator is written after its operands. The sum of a and b is written \"a b plus\". -LRB- You may have seen this as \"reverse Polish notation\". -RRB- Postfix notation forms the conceptual basis for the way that arithmetic expressions are evaluated by a computer. One important characteristic of both postfix and prefix notations is that they are unambiguous; no parentheses are needed to indicate the order of operations.",
+      "score_grader_1": 5.0,
+      "score_grader_2": 5.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E10.Q03.A00",
+      "qid": "E10.Q03",
+      "question": "What is a leaf?",
+      "reference_answer": "A node that has no children.",
+      "student_answer": "A leaf is a child of a parent node that has no children nodes of its own.",
+      "score_grader_1": 5.0,
+      "score_grader_2": 5.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E10.Q03.A01",
+      "qid": "E10.Q03",
+      "question": "What is a leaf?",
+      "reference_answer": "A node that has no children.",
+      "student_answer": "A leaf is a node with no children.",
+      "score_grader_1": 5.0,
+      "score_grader_2": 5.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E10.Q03.A02",
+      "qid": "E10.Q03",
+      "question": "What is a leaf?",
+      "reference_answer": "A node that has no children.",
+      "student_answer": "A node with no children.",
+      "score_grader_1": 5.0,
+      "score_grader_2": 5.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E10.Q03.A03",
+      "qid": "E10.Q03",
+      "question": "What is a leaf?",
+      "reference_answer": "A node that has no children.",
+      "student_answer": "A tree node with no children.",
+      "score_grader_1": 5.0,
+      "score_grader_2": 5.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E10.Q03.A04",
+      "qid": "E10.Q03",
+      "question": "What is a leaf?",
+      "reference_answer": "A node that has no children.",
+      "student_answer": "And end point of the tree ... a node that does not have any children.",
+      "score_grader_1": 5.0,
+      "score_grader_2": 5.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E10.Q03.A05",
+      "qid": "E10.Q03",
+      "question": "What is a leaf?",
+      "reference_answer": "A node that has no children.",
+      "student_answer": "a node with no children.",
+      "score_grader_1": 5.0,
+      "score_grader_2": 5.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E10.Q03.A06",
+      "qid": "E10.Q03",
+      "question": "What is a leaf?",
+      "reference_answer": "A node that has no children.",
+      "student_answer": "A new item to the tree --a child",
+      "score_grader_1": 4.0,
+      "score_grader_2": 2.0,
+      "score_avg": 3.0
+    },
+    {
+      "id": "E10.Q03.A07",
+      "qid": "E10.Q03",
+      "question": "What is a leaf?",
+      "reference_answer": "A node that has no children.",
+      "student_answer": "A leaf is a node with children, it is a terminating node.",
+      "score_grader_1": 4.0,
+      "score_grader_2": 0.0,
+      "score_avg": 2.0
+    },
+    {
+      "id": "E10.Q03.A08",
+      "qid": "E10.Q03",
+      "question": "What is a leaf?",
+      "reference_answer": "A node that has no children.",
+      "student_answer": "The node with degree 0.",
+      "score_grader_1": 5.0,
+      "score_grader_2": 3.0,
+      "score_avg": 4.0
+    },
+    {
+      "id": "E10.Q03.A09",
+      "qid": "E10.Q03",
+      "question": "What is a leaf?",
+      "reference_answer": "A node that has no children.",
+      "student_answer": "the node with degree 0",
+      "score_grader_1": 5.0,
+      "score_grader_2": 3.0,
+      "score_avg": 4.0
+    },
+    {
+      "id": "E10.Q03.A10",
+      "qid": "E10.Q03",
+      "question": "What is a leaf?",
+      "reference_answer": "A node that has no children.",
+      "student_answer": "a leaf is a node with no children",
+      "score_grader_1": 5.0,
+      "score_grader_2": 5.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E10.Q03.A11",
+      "qid": "E10.Q03",
+      "question": "What is a leaf?",
+      "reference_answer": "A node that has no children.",
+      "student_answer": "the last child on any branch",
+      "score_grader_1": 5.0,
+      "score_grader_2": 4.0,
+      "score_avg": 4.5
+    },
+    {
+      "id": "E10.Q03.A12",
+      "qid": "E10.Q03",
+      "question": "What is a leaf?",
+      "reference_answer": "A node that has no children.",
+      "student_answer": "The last value in the tree. A value with no children attatched.",
+      "score_grader_1": 5.0,
+      "score_grader_2": 5.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E10.Q03.A13",
+      "qid": "E10.Q03",
+      "question": "What is a leaf?",
+      "reference_answer": "A node that has no children.",
+      "student_answer": "a node with no children.",
+      "score_grader_1": 5.0,
+      "score_grader_2": 5.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E10.Q03.A14",
+      "qid": "E10.Q03",
+      "question": "What is a leaf?",
+      "reference_answer": "A node that has no children.",
+      "student_answer": "A node with no children.",
+      "score_grader_1": 5.0,
+      "score_grader_2": 5.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E10.Q03.A15",
+      "qid": "E10.Q03",
+      "question": "What is a leaf?",
+      "reference_answer": "A node that has no children.",
+      "student_answer": "A leaf is a node with no children",
+      "score_grader_1": 5.0,
+      "score_grader_2": 5.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E10.Q03.A16",
+      "qid": "E10.Q03",
+      "question": "What is a leaf?",
+      "reference_answer": "A node that has no children.",
+      "student_answer": "a node with degree 0. last node in the tree and furtherest away from the root.",
+      "score_grader_1": 5.0,
+      "score_grader_2": 3.0,
+      "score_avg": 4.0
+    },
+    {
+      "id": "E10.Q03.A17",
+      "qid": "E10.Q03",
+      "question": "What is a leaf?",
+      "reference_answer": "A node that has no children.",
+      "student_answer": "an endpoint on a tree that contains no pointers or pointers that are set to null",
+      "score_grader_1": 5.0,
+      "score_grader_2": 4.0,
+      "score_avg": 4.5
+    },
+    {
+      "id": "E10.Q03.A18",
+      "qid": "E10.Q03",
+      "question": "What is a leaf?",
+      "reference_answer": "A node that has no children.",
+      "student_answer": "A leaf is a node with no children.",
+      "score_grader_1": 5.0,
+      "score_grader_2": 5.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E10.Q03.A19",
+      "qid": "E10.Q03",
+      "question": "What is a leaf?",
+      "reference_answer": "A node that has no children.",
+      "student_answer": "an element in a tree that has no children",
+      "score_grader_1": 5.0,
+      "score_grader_2": 5.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E10.Q03.A20",
+      "qid": "E10.Q03",
+      "question": "What is a leaf?",
+      "reference_answer": "A node that has no children.",
+      "student_answer": "A node with no children.",
+      "score_grader_1": 5.0,
+      "score_grader_2": 5.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E10.Q03.A21",
+      "qid": "E10.Q03",
+      "question": "What is a leaf?",
+      "reference_answer": "A node that has no children.",
+      "student_answer": "a leaf is a node that has no children nodes",
+      "score_grader_1": 5.0,
+      "score_grader_2": 5.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E10.Q03.A22",
+      "qid": "E10.Q03",
+      "question": "What is a leaf?",
+      "reference_answer": "A node that has no children.",
+      "student_answer": "a leaf is a node with no children",
+      "score_grader_1": 5.0,
+      "score_grader_2": 5.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E10.Q03.A23",
+      "qid": "E10.Q03",
+      "question": "What is a leaf?",
+      "reference_answer": "A node that has no children.",
+      "student_answer": "The elements at the very bottom of an inverted tree -LRB- that is, those that have no elements below them -RRB- are called leaves.",
+      "score_grader_1": 5.0,
+      "score_grader_2": 5.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E11.Q09.A00",
+      "qid": "E11.Q09",
+      "question": "Briefly describe the divide-and-conquer paradigm.",
+      "reference_answer": "Divide a problem into smaller subproblems, solve them recursively, and then combine the solutions into a solution for the original problem.",
+      "student_answer": "For example we have an array on n elements, the divide and conquer splits up the array into equal halves and repeats this process until each element is by itself",
+      "score_grader_1": 9.0,
+      "score_grader_2": 6.0,
+      "score_avg": 4.0
+    },
+    {
+      "id": "E11.Q09.A01",
+      "qid": "E11.Q09",
+      "question": "Briefly describe the divide-and-conquer paradigm.",
+      "reference_answer": "Divide a problem into smaller subproblems, solve them recursively, and then combine the solutions into a solution for the original problem.",
+      "student_answer": "Divide and coquer means dividing a problem into 2 plus problems which are solved and then merged back together for a final solution to the whole problem.",
+      "score_grader_1": 10.0,
+      "score_grader_2": 10.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E11.Q09.A02",
+      "qid": "E11.Q09",
+      "question": "Briefly describe the divide-and-conquer paradigm.",
+      "reference_answer": "Divide a problem into smaller subproblems, solve them recursively, and then combine the solutions into a solution for the original problem.",
+      "student_answer": "The divide and conquer paradigm divides a problem into smaller and smaller portions that are easier to solve.",
+      "score_grader_1": 9.0,
+      "score_grader_2": 8.0,
+      "score_avg": 4.5
+    },
+    {
+      "id": "E11.Q09.A03",
+      "qid": "E11.Q09",
+      "question": "Briefly describe the divide-and-conquer paradigm.",
+      "reference_answer": "Divide a problem into smaller subproblems, solve them recursively, and then combine the solutions into a solution for the original problem.",
+      "student_answer": "Divide elements, recur then conquer, which works in merge sort and quicksort.",
+      "score_grader_1": 9.0,
+      "score_grader_2": 6.0,
+      "score_avg": 4.0
+    },
+    {
+      "id": "E11.Q09.A04",
+      "qid": "E11.Q09",
+      "question": "Briefly describe the divide-and-conquer paradigm.",
+      "reference_answer": "Divide a problem into smaller subproblems, solve them recursively, and then combine the solutions into a solution for the original problem.",
+      "student_answer": "To divide and conquer, you divide the program in half once or multiple times to the extent that the program as a whole is easier to work in groups to solve the problem.",
+      "score_grader_1": 9.0,
+      "score_grader_2": 8.0,
+      "score_avg": 4.5
+    },
+    {
+      "id": "E11.Q09.A05",
+      "qid": "E11.Q09",
+      "question": "Briefly describe the divide-and-conquer paradigm.",
+      "reference_answer": "Divide a problem into smaller subproblems, solve them recursively, and then combine the solutions into a solution for the original problem.",
+      "student_answer": "to divide one larger string or line of values and sepereate them into smallers lines to easily manipulate them and then replace them in the order in which they should be.",
+      "score_grader_1": 10.0,
+      "score_grader_2": 4.0,
+      "score_avg": 3.5
+    },
+    {
+      "id": "E11.Q09.A06",
+      "qid": "E11.Q09",
+      "question": "Briefly describe the divide-and-conquer paradigm.",
+      "reference_answer": "Divide a problem into smaller subproblems, solve them recursively, and then combine the solutions into a solution for the original problem.",
+      "student_answer": "Split the problem into smaller, more manageable parts, and proceed to address the smaller problems.",
+      "score_grader_1": 9.0,
+      "score_grader_2": 8.0,
+      "score_avg": 4.5
+    },
+    {
+      "id": "E11.Q09.A07",
+      "qid": "E11.Q09",
+      "question": "Briefly describe the divide-and-conquer paradigm.",
+      "reference_answer": "Divide a problem into smaller subproblems, solve them recursively, and then combine the solutions into a solution for the original problem.",
+      "student_answer": "dived and conquer is the breaking up of a large complex program into small easy to solve components.",
+      "score_grader_1": 9.0,
+      "score_grader_2": 8.0,
+      "score_avg": 4.5
+    },
+    {
+      "id": "E11.Q09.A08",
+      "qid": "E11.Q09",
+      "question": "Briefly describe the divide-and-conquer paradigm.",
+      "reference_answer": "Divide a problem into smaller subproblems, solve them recursively, and then combine the solutions into a solution for the original problem.",
+      "student_answer": "Dividing a larger problem into the smallest incident of the problem and solving the smallest incident.",
+      "score_grader_1": 9.0,
+      "score_grader_2": 8.0,
+      "score_avg": 4.5
+    },
+    {
+      "id": "E11.Q09.A09",
+      "qid": "E11.Q09",
+      "question": "Briefly describe the divide-and-conquer paradigm.",
+      "reference_answer": "Divide a problem into smaller subproblems, solve them recursively, and then combine the solutions into a solution for the original problem.",
+      "student_answer": "Break up very large data structures into smaller sub-units, that are easier to manipulate.",
+      "score_grader_1": 9.0,
+      "score_grader_2": 8.0,
+      "score_avg": 4.5
+    },
+    {
+      "id": "E11.Q09.A10",
+      "qid": "E11.Q09",
+      "question": "Briefly describe the divide-and-conquer paradigm.",
+      "reference_answer": "Divide a problem into smaller subproblems, solve them recursively, and then combine the solutions into a solution for the original problem.",
+      "student_answer": "The divide-and-conquer technique is where it takes the sorting algorithm and breaks up the array into smaller elements of the array to tackle the problem and run the algorithm.",
+      "score_grader_1": 8.5,
+      "score_grader_2": 8.0,
+      "score_avg": 4.0
+    },
+    {
+      "id": "E11.Q09.A11",
+      "qid": "E11.Q09",
+      "question": "Briefly describe the divide-and-conquer paradigm.",
+      "reference_answer": "Divide a problem into smaller subproblems, solve them recursively, and then combine the solutions into a solution for the original problem.",
+      "student_answer": "The divide-and-conquer paradigm divides the problem into two pieces and works on each piece separately, allowing for a faster approach to 2 separate smaller problems.",
+      "score_grader_1": 9.0,
+      "score_grader_2": 8.0,
+      "score_avg": 4.5
+    },
+    {
+      "id": "E11.Q09.A12",
+      "qid": "E11.Q09",
+      "question": "Briefly describe the divide-and-conquer paradigm.",
+      "reference_answer": "Divide a problem into smaller subproblems, solve them recursively, and then combine the solutions into a solution for the original problem.",
+      "student_answer": "Take a problem and divide it into a smaller problem and solve that smaller problem, or divide it into a smaller problem and solve it, thus solving the whole problem in the process.",
+      "score_grader_1": 9.0,
+      "score_grader_2": 9.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E11.Q09.A13",
+      "qid": "E11.Q09",
+      "question": "Briefly describe the divide-and-conquer paradigm.",
+      "reference_answer": "Divide a problem into smaller subproblems, solve them recursively, and then combine the solutions into a solution for the original problem.",
+      "student_answer": "The idea is to split the problem into half and solve for the smaller split-problems.",
+      "score_grader_1": 9.0,
+      "score_grader_2": 8.0,
+      "score_avg": 4.5
+    },
+    {
+      "id": "E11.Q09.A14",
+      "qid": "E11.Q09",
+      "question": "Briefly describe the divide-and-conquer paradigm.",
+      "reference_answer": "Divide a problem into smaller subproblems, solve them recursively, and then combine the solutions into a solution for the original problem.",
+      "student_answer": "The divide and conquer paradigm, splits a large problem into simpler problems, at which point it solves the simpler problems and merges the simple solutions together to answer the large problem.",
+      "score_grader_1": 10.0,
+      "score_grader_2": 10.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E11.Q09.A15",
+      "qid": "E11.Q09",
+      "question": "Briefly describe the divide-and-conquer paradigm.",
+      "reference_answer": "Divide a problem into smaller subproblems, solve them recursively, and then combine the solutions into a solution for the original problem.",
+      "student_answer": "Divide-and-conquer refers to abstraction, the act of separating large, complex problems into smaller, easier problems that can be solved by a relatively simple algorithm.",
+      "score_grader_1": 9.0,
+      "score_grader_2": 8.0,
+      "score_avg": 4.5
+    },
+    {
+      "id": "E11.Q09.A16",
+      "qid": "E11.Q09",
+      "question": "Briefly describe the divide-and-conquer paradigm.",
+      "reference_answer": "Divide a problem into smaller subproblems, solve them recursively, and then combine the solutions into a solution for the original problem.",
+      "student_answer": "It takes a large problem and splits it into two or more easier or faster solutions, and makes for better readability.",
+      "score_grader_1": 9.0,
+      "score_grader_2": 8.0,
+      "score_avg": 4.5
+    },
+    {
+      "id": "E11.Q09.A17",
+      "qid": "E11.Q09",
+      "question": "Briefly describe the divide-and-conquer paradigm.",
+      "reference_answer": "Divide a problem into smaller subproblems, solve them recursively, and then combine the solutions into a solution for the original problem.",
+      "student_answer": "it is the taking of a larger problem and splitting it into simpler smaller problems.",
+      "score_grader_1": 9.0,
+      "score_grader_2": 8.0,
+      "score_avg": 4.5
+    },
+    {
+      "id": "E11.Q09.A18",
+      "qid": "E11.Q09",
+      "question": "Briefly describe the divide-and-conquer paradigm.",
+      "reference_answer": "Divide a problem into smaller subproblems, solve them recursively, and then combine the solutions into a solution for the original problem.",
+      "student_answer": "It divides the problem into singular units and works on the problem piece by piece until the problem is solved.",
+      "score_grader_1": 9.0,
+      "score_grader_2": 8.0,
+      "score_avg": 4.5
+    },
+    {
+      "id": "E11.Q09.A19",
+      "qid": "E11.Q09",
+      "question": "Briefly describe the divide-and-conquer paradigm.",
+      "reference_answer": "Divide a problem into smaller subproblems, solve them recursively, and then combine the solutions into a solution for the original problem.",
+      "student_answer": "smaller parts are easier to compare than comparing the whole, so it divides the problem down in halves until it can easily compare, then works backwards putting it back together to give the solution.",
+      "score_grader_1": 10.0,
+      "score_grader_2": 10.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E11.Q09.A20",
+      "qid": "E11.Q09",
+      "question": "Briefly describe the divide-and-conquer paradigm.",
+      "reference_answer": "Divide a problem into smaller subproblems, solve them recursively, and then combine the solutions into a solution for the original problem.",
+      "student_answer": "a divide-and-conquer paradigm. takes some data, divides it into two parts, and works on each part indiviually until the item is found.",
+      "score_grader_1": 9.0,
+      "score_grader_2": 8.0,
+      "score_avg": 4.5
+    },
+    {
+      "id": "E11.Q09.A21",
+      "qid": "E11.Q09",
+      "question": "Briefly describe the divide-and-conquer paradigm.",
+      "reference_answer": "Divide a problem into smaller subproblems, solve them recursively, and then combine the solutions into a solution for the original problem.",
+      "student_answer": "The idea of divide and conquer is to take a large problem, split it into n smaller problems, making the program easier to read and modify.",
+      "score_grader_1": 9.0,
+      "score_grader_2": 8.0,
+      "score_avg": 4.5
+    },
+    {
+      "id": "E11.Q09.A22",
+      "qid": "E11.Q09",
+      "question": "Briefly describe the divide-and-conquer paradigm.",
+      "reference_answer": "Divide a problem into smaller subproblems, solve them recursively, and then combine the solutions into a solution for the original problem.",
+      "student_answer": "the divide and conquer paradigm is a recursive solution that keeps dividing the problem into halves until a base case is reached.",
+      "score_grader_1": 9.0,
+      "score_grader_2": 8.0,
+      "score_avg": 4.5
+    },
+    {
+      "id": "E11.Q09.A23",
+      "qid": "E11.Q09",
+      "question": "Briefly describe the divide-and-conquer paradigm.",
+      "reference_answer": "Divide a problem into smaller subproblems, solve them recursively, and then combine the solutions into a solution for the original problem.",
+      "student_answer": "dividing and conquering means breaking a problem into two smaller problems, solving both of those, and putting the two solutions together.",
+      "score_grader_1": 10.0,
+      "score_grader_2": 10.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E11.Q09.A24",
+      "qid": "E11.Q09",
+      "question": "Briefly describe the divide-and-conquer paradigm.",
+      "reference_answer": "Divide a problem into smaller subproblems, solve them recursively, and then combine the solutions into a solution for the original problem.",
+      "student_answer": "Divide the big problem into small problem, solve small problem and join small solved elements of the problem. if there is two ore more elements in the array, divide the array into parts and compare the elements, after comperison, conquer the elements. If array have n element, first half have n divided by 2 elements",
+      "score_grader_1": 10.0,
+      "score_grader_2": 10.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E11.Q09.A25",
+      "qid": "E11.Q09",
+      "question": "Briefly describe the divide-and-conquer paradigm.",
+      "reference_answer": "Divide a problem into smaller subproblems, solve them recursively, and then combine the solutions into a solution for the original problem.",
+      "student_answer": "divide the array in half, sort each half, then sort them back in one array",
+      "score_grader_1": 6.0,
+      "score_grader_2": 6.0,
+      "score_avg": 3.0
+    },
+    {
+      "id": "E11.Q09.A26",
+      "qid": "E11.Q09",
+      "question": "Briefly describe the divide-and-conquer paradigm.",
+      "reference_answer": "Divide a problem into smaller subproblems, solve them recursively, and then combine the solutions into a solution for the original problem.",
+      "student_answer": "You take a class and break down everything it is supposed to do into easily managed functions.",
+      "score_grader_1": 9.0,
+      "score_grader_2": 2.0,
+      "score_avg": 3.0
+    },
+    {
+      "id": "E11.Q09.A27",
+      "qid": "E11.Q09",
+      "question": "Briefly describe the divide-and-conquer paradigm.",
+      "reference_answer": "Divide a problem into smaller subproblems, solve them recursively, and then combine the solutions into a solution for the original problem.",
+      "student_answer": "this is shown by the use of. cpp and header files. by splitting the program up into smaller subsections of individual code, it becomes easier to write and keep up with as opposed to having all of your code in one file",
+      "score_grader_1": 9.0,
+      "score_grader_2": 2.0,
+      "score_avg": 3.0
+    },
+    {
+      "id": "E11.Q09.A28",
+      "qid": "E11.Q09",
+      "question": "Briefly describe the divide-and-conquer paradigm.",
+      "reference_answer": "Divide a problem into smaller subproblems, solve them recursively, and then combine the solutions into a solution for the original problem.",
+      "student_answer": "When a problem is too big, split it into smaller problems of the same type, and solve those, then from the solutions of the smaller problem, give the solution to the larger original problem.",
+      "score_grader_1": 9.0,
+      "score_grader_2": 10.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E11.Q09.A29",
+      "qid": "E11.Q09",
+      "question": "Briefly describe the divide-and-conquer paradigm.",
+      "reference_answer": "Divide a problem into smaller subproblems, solve them recursively, and then combine the solutions into a solution for the original problem.",
+      "student_answer": "it is the separating of large program into smaller classes then until target is reached.",
+      "score_grader_1": 10.0,
+      "score_grader_2": 3.0,
+      "score_avg": 3.5
+    },
+    {
+      "id": "E12.Q02.A00",
+      "qid": "E12.Q02",
+      "question": "What is the experimental approach for measuring the running time of an algorithm?",
+      "reference_answer": "Implement the algorithm and measure the physical running time.",
+      "student_answer": "Try several sets of data on an algorithm that includes worst case, best case, and random cases. Also try and run the same program on a different computer with the same specs",
+      "score_grader_1": 7.5,
+      "score_grader_2": 10.0,
+      "score_avg": 4.5
+    },
+    {
+      "id": "E12.Q02.A01",
+      "qid": "E12.Q02",
+      "question": "What is the experimental approach for measuring the running time of an algorithm?",
+      "reference_answer": "Implement the algorithm and measure the physical running time.",
+      "student_answer": "not answered",
+      "score_grader_1": 0.0,
+      "score_grader_2": 0.0,
+      "score_avg": 0.0
+    },
+    {
+      "id": "E12.Q02.A02",
+      "qid": "E12.Q02",
+      "question": "What is the experimental approach for measuring the running time of an algorithm?",
+      "reference_answer": "Implement the algorithm and measure the physical running time.",
+      "student_answer": "time complexity using big O logarthmic O -LRB- log n -RRB- linear O -LRB- n -RRB- exponential O -LRB- n to the power of 2 -RRB- quadratic O -LRB- n to the power of k -RRB- k is greater than or equal to 1 Polynomial O -LRB- a to the power of n -RRB- n is greater than 1",
+      "score_grader_1": 6.0,
+      "score_grader_2": 3.0,
+      "score_avg": 2.5
+    },
+    {
+      "id": "E12.Q02.A03",
+      "qid": "E12.Q02",
+      "question": "What is the experimental approach for measuring the running time of an algorithm?",
+      "reference_answer": "Implement the algorithm and measure the physical running time.",
+      "student_answer": "Using some sort of counting principle of the number of operations performed in an algorithm.",
+      "score_grader_1": 7.5,
+      "score_grader_2": 10.0,
+      "score_avg": 4.5
+    },
+    {
+      "id": "E12.Q02.A04",
+      "qid": "E12.Q02",
+      "question": "What is the experimental approach for measuring the running time of an algorithm?",
+      "reference_answer": "Implement the algorithm and measure the physical running time.",
+      "student_answer": "Experimental means you would actually write a prototype of the algorithm and measure the time it takes to run given certain parameters.",
+      "score_grader_1": 10.0,
+      "score_grader_2": 10.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E12.Q02.A05",
+      "qid": "E12.Q02",
+      "question": "What is the experimental approach for measuring the running time of an algorithm?",
+      "reference_answer": "Implement the algorithm and measure the physical running time.",
+      "student_answer": "measuring the relationship of running an algorithm with different input sizes.",
+      "score_grader_1": 7.5,
+      "score_grader_2": 10.0,
+      "score_avg": 4.5
+    },
+    {
+      "id": "E12.Q02.A06",
+      "qid": "E12.Q02",
+      "question": "What is the experimental approach for measuring the running time of an algorithm?",
+      "reference_answer": "Implement the algorithm and measure the physical running time.",
+      "student_answer": "Oposite of a theoretical assessment of the algorithm to determine runtime, but to run the code first to determine the the runtime. This is not recommended because it is a limited test. It does not include all possibilities of the data, nor the hardware used to process the data.",
+      "score_grader_1": 8.5,
+      "score_grader_2": 10.0,
+      "score_avg": 4.5
+    },
+    {
+      "id": "E12.Q02.A07",
+      "qid": "E12.Q02",
+      "question": "What is the experimental approach for measuring the running time of an algorithm?",
+      "reference_answer": "Implement the algorithm and measure the physical running time.",
+      "student_answer": "not answered",
+      "score_grader_1": 0.0,
+      "score_grader_2": 0.0,
+      "score_avg": 0.0
+    },
+    {
+      "id": "E12.Q02.A08",
+      "qid": "E12.Q02",
+      "question": "What is the experimental approach for measuring the running time of an algorithm?",
+      "reference_answer": "Implement the algorithm and measure the physical running time.",
+      "student_answer": "The experimental approach for measuring the running time is by using the Big O equation which tells you the running time.",
+      "score_grader_1": 7.5,
+      "score_grader_2": 3.0,
+      "score_avg": 3.0
+    },
+    {
+      "id": "E12.Q02.A09",
+      "qid": "E12.Q02",
+      "question": "What is the experimental approach for measuring the running time of an algorithm?",
+      "reference_answer": "Implement the algorithm and measure the physical running time.",
+      "student_answer": "You create and run the algorithm multiple times, while measuring the amount of time it takes, you then average the results.",
+      "score_grader_1": 10.0,
+      "score_grader_2": 10.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E12.Q02.A10",
+      "qid": "E12.Q02",
+      "question": "What is the experimental approach for measuring the running time of an algorithm?",
+      "reference_answer": "Implement the algorithm and measure the physical running time.",
+      "student_answer": "keep a value of how many operations it takes and add to this value each time a function is called.",
+      "score_grader_1": 7.5,
+      "score_grader_2": 6.0,
+      "score_avg": 3.5
+    },
+    {
+      "id": "E12.Q02.A11",
+      "qid": "E12.Q02",
+      "question": "What is the experimental approach for measuring the running time of an algorithm?",
+      "reference_answer": "Implement the algorithm and measure the physical running time.",
+      "student_answer": "BIG-OH",
+      "score_grader_1": 6.0,
+      "score_grader_2": 3.0,
+      "score_avg": 2.5
+    },
+    {
+      "id": "E12.Q02.A12",
+      "qid": "E12.Q02",
+      "question": "What is the experimental approach for measuring the running time of an algorithm?",
+      "reference_answer": "Implement the algorithm and measure the physical running time.",
+      "student_answer": "Running the program with various input data and measuring the running time with system time.",
+      "score_grader_1": 10.0,
+      "score_grader_2": 10.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E12.Q02.A13",
+      "qid": "E12.Q02",
+      "question": "What is the experimental approach for measuring the running time of an algorithm?",
+      "reference_answer": "Implement the algorithm and measure the physical running time.",
+      "student_answer": "You run a program with different data sizes, like 10 to the power of x. As you increase x and measure the completion speeds for the program, you can find patterns and attempt the measure the running time. It is very important to keep the same software and hardware however, which makes experimental testing inferior to theoretical in the eyes of most.",
+      "score_grader_1": 6.0,
+      "score_grader_2": 10.0,
+      "score_avg": 4.0
+    },
+    {
+      "id": "E12.Q02.A14",
+      "qid": "E12.Q02",
+      "question": "What is the experimental approach for measuring the running time of an algorithm?",
+      "reference_answer": "Implement the algorithm and measure the physical running time.",
+      "student_answer": "to run the program through and see how many times each thing is called and the runtime of each function is based on that.",
+      "score_grader_1": 7.0,
+      "score_grader_2": 10.0,
+      "score_avg": 4.5
+    },
+    {
+      "id": "E12.Q02.A15",
+      "qid": "E12.Q02",
+      "question": "What is the experimental approach for measuring the running time of an algorithm?",
+      "reference_answer": "Implement the algorithm and measure the physical running time.",
+      "student_answer": "the number of times a specific segments get called per unit work.",
+      "score_grader_1": 6.0,
+      "score_grader_2": 6.0,
+      "score_avg": 3.0
+    },
+    {
+      "id": "E12.Q02.A16",
+      "qid": "E12.Q02",
+      "question": "What is the experimental approach for measuring the running time of an algorithm?",
+      "reference_answer": "Implement the algorithm and measure the physical running time.",
+      "student_answer": "For every call into memory, add or multiply it into an equation of type O -LRB- n -RRB-",
+      "score_grader_1": 6.0,
+      "score_grader_2": 3.0,
+      "score_avg": 2.5
+    },
+    {
+      "id": "E12.Q02.A17",
+      "qid": "E12.Q02",
+      "question": "What is the experimental approach for measuring the running time of an algorithm?",
+      "reference_answer": "Implement the algorithm and measure the physical running time.",
+      "student_answer": "adding a time marker at the before the algorithm is called and another time marker immediately after so that you have the change in time, then you can calculate the efficiency by the speed of the computers cpu.",
+      "score_grader_1": 8.5,
+      "score_grader_2": 6.0,
+      "score_avg": 3.5
+    },
+    {
+      "id": "E12.Q02.A18",
+      "qid": "E12.Q02",
+      "question": "What is the experimental approach for measuring the running time of an algorithm?",
+      "reference_answer": "Implement the algorithm and measure the physical running time.",
+      "student_answer": "Big O -LRB- h -RRB- notation",
+      "score_grader_1": 6.0,
+      "score_grader_2": 3.0,
+      "score_avg": 2.5
+    },
+    {
+      "id": "E12.Q02.A19",
+      "qid": "E12.Q02",
+      "question": "What is the experimental approach for measuring the running time of an algorithm?",
+      "reference_answer": "Implement the algorithm and measure the physical running time.",
+      "student_answer": "the experimental approach measures actual running time in t. t equals seconds.",
+      "score_grader_1": 10.0,
+      "score_grader_2": 10.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E12.Q02.A20",
+      "qid": "E12.Q02",
+      "question": "What is the experimental approach for measuring the running time of an algorithm?",
+      "reference_answer": "Implement the algorithm and measure the physical running time.",
+      "student_answer": "running an algorithm on a specific set of data",
+      "score_grader_1": 6.0,
+      "score_grader_2": 10.0,
+      "score_avg": 4.0
+    },
+    {
+      "id": "E12.Q02.A21",
+      "qid": "E12.Q02",
+      "question": "What is the experimental approach for measuring the running time of an algorithm?",
+      "reference_answer": "Implement the algorithm and measure the physical running time.",
+      "student_answer": "In experimental terms, the running time of an algorithm is measured by the number of operations required to complete the function. This number can usually be expressed in big-O notation.",
+      "score_grader_1": 7.5,
+      "score_grader_2": 5.0,
+      "score_avg": 3.5
+    },
+    {
+      "id": "E12.Q02.A22",
+      "qid": "E12.Q02",
+      "question": "What is the experimental approach for measuring the running time of an algorithm?",
+      "reference_answer": "Implement the algorithm and measure the physical running time.",
+      "student_answer": "run the code for n-times and get average values, drop the constant and lowest number. for example if f -LRB- x -RRB- equals 3n plus 1 the running time will bef f -LRB- x -RRB- equals O -LRB- n -RRB-",
+      "score_grader_1": 9.0,
+      "score_grader_2": 5.0,
+      "score_avg": 4.0
+    },
+    {
+      "id": "E12.Q02.A23",
+      "qid": "E12.Q02",
+      "question": "What is the experimental approach for measuring the running time of an algorithm?",
+      "reference_answer": "Implement the algorithm and measure the physical running time.",
+      "student_answer": "to measure the actual time of the program to run. and calculate the running time using the input and operations done",
+      "score_grader_1": 10.0,
+      "score_grader_2": 10.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E12.Q02.A24",
+      "qid": "E12.Q02",
+      "question": "What is the experimental approach for measuring the running time of an algorithm?",
+      "reference_answer": "Implement the algorithm and measure the physical running time.",
+      "student_answer": "adding up the number of operations performed based on the worst case possible.",
+      "score_grader_1": 6.0,
+      "score_grader_2": 4.0,
+      "score_avg": 2.5
+    },
+    {
+      "id": "E12.Q02.A25",
+      "qid": "E12.Q02",
+      "question": "What is the experimental approach for measuring the running time of an algorithm?",
+      "reference_answer": "Implement the algorithm and measure the physical running time.",
+      "student_answer": "the experimental approach would be to run through the algorithm and see how long it takes",
+      "score_grader_1": 10.0,
+      "score_grader_2": 10.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E12.Q02.A26",
+      "qid": "E12.Q02",
+      "question": "What is the experimental approach for measuring the running time of an algorithm?",
+      "reference_answer": "Implement the algorithm and measure the physical running time.",
+      "student_answer": "trying it with different sets of inputs, and measuring the amount of time that the algorithm actually takes.",
+      "score_grader_1": 10.0,
+      "score_grader_2": 10.0,
+      "score_avg": 5.0
+    },
+    {
+      "id": "E12.Q02.A27",
+      "qid": "E12.Q02",
+      "question": "What is the experimental approach for measuring the running time of an algorithm?",
+      "reference_answer": "Implement the algorithm and measure the physical running time.",
+      "student_answer": "running the input with various inputs measuring the running time with system time",
+      "score_grader_1": 7.5,
+      "score_grader_2": 10.0,
+      "score_avg": 4.5
+    }
+  ]
+}

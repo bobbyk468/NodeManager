@@ -1,0 +1,10 @@
+{
+  "n_samples": 1156,
+  "n_flagged_unvalidated": 1156,
+  "mae_before": 1.1640996107266435,
+  "mae_after": 1.6135649968543568,
+  "pearson_r_before": 0.11806526219965692,
+  "pearson_r_after": 0.08199071887801945,
+  "fpr_before": 0.08983451536643026,
+  "fpr_after": 0.32505910165484636
+}

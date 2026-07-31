@@ -1,0 +1,65 @@
+{
+  "raw_text": "{\n  \"scores\": {\n    \"84\": {\n      \"verified_score\": 4.5,\n      \"adjustment_direction\": \"confirm\",\n      \"confidence\": 1.0\n    },\n    \"85\": {\n      \"verified_score\": 5.0,\n      \"adjustment_direction\": \"confirm\",\n      \"confidence\": 1.0\n    },\n    \"86\": {\n      \"verified_score\": 4.0,\n      \"adjustment_direction\": \"confirm\",\n      \"confidence\": 1.0\n    },\n    \"87\": {\n      \"verified_score\": 3.0,\n      \"adjustment_direction\": \"confirm\",\n      \"confidence\": 1.0\n    },\n    \"88\": {\n      \"verified_score\": 2.0,\n      \"adjustment_direction\": \"confirm\",\n      \"confidence\": 1.0\n    },\n    \"89\": {\n      \"verified_score\": 1.0,\n      \"adjustment_direction\": \"confirm\",\n      \"confidence\": 1.0\n    },\n    \"90\": {\n      \"verified_score\": 1.0,\n      \"adjustment_direction\": \"confirm\",\n      \"confidence\": 1.0\n    },\n    \"91\": {\n      \"verified_score\": 1.5,\n      \"adjustment_direction\": \"confirm\",\n      \"confidence\": 1.0\n    },\n    \"92\": {\n      \"verified_score\": 1.5,\n      \"adjustment_direction\": \"confirm\",\n      \"confidence\": 1.0\n    },\n    \"93\": {\n      \"verified_score\": 0.5,\n      \"adjustment_direction\": \"confirm\",\n      \"confidence\": 1.0\n    },\n    \"94\": {\n      \"verified_score\": 1.0,\n      \"adjustment_direction\": \"confirm\",\n      \"confidence\": 1.0\n    },\n    \"95\": {\n      \"verified_score\": 0.0,\n      \"adjustment_direction\": \"confirm\",\n      \"confidence\": 1.0\n    }\n  }\n}",
+  "scores": {
+    "84": {
+      "verified_score": 4.5,
+      "adjustment_direction": "confirm",
+      "confidence": 1.0
+    },
+    "85": {
+      "verified_score": 5.0,
+      "adjustment_direction": "confirm",
+      "confidence": 1.0
+    },
+    "86": {
+      "verified_score": 4.0,
+      "adjustment_direction": "confirm",
+      "confidence": 1.0
+    },
+    "87": {
+      "verified_score": 3.0,
+      "adjustment_direction": "confirm",
+      "confidence": 1.0
+    },
+    "88": {
+      "verified_score": 2.0,
+      "adjustment_direction": "confirm",
+      "confidence": 1.0
+    },
+    "89": {
+      "verified_score": 1.0,
+      "adjustment_direction": "confirm",
+      "confidence": 1.0
+    },
+    "90": {
+      "verified_score": 1.0,
+      "adjustment_direction": "confirm",
+      "confidence": 1.0
+    },
+    "91": {
+      "verified_score": 1.5,
+      "adjustment_direction": "confirm",
+      "confidence": 1.0
+    },
+    "92": {
+      "verified_score": 1.5,
+      "adjustment_direction": "confirm",
+      "confidence": 1.0
+    },
+    "93": {
+      "verified_score": 0.5,
+      "adjustment_direction": "confirm",
+      "confidence": 1.0
+    },
+    "94": {
+      "verified_score": 1.0,
+      "adjustment_direction": "confirm",
+      "confidence": 1.0
+    },
+    "95": {
+      "verified_score": 0.0,
+      "adjustment_direction": "confirm",
+      "confidence": 1.0
+    }
+  }
+}
