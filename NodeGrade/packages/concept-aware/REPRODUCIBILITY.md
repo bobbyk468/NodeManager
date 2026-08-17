@@ -1861,6 +1861,21 @@ GEMINI_API_KEY=...
 
 ---
 
+**Added 2026-08-17 (self-review pass): `compute_main_results_ci.py`.**
+Bootstrap $95\%$ CIs (5,000 resamples, seed=42, zero new API calls) for
+the headline Table III MAE and Pearson $r$ figures on the full real
+$n=1{,}262$ sample -- a gap noted during a self-conducted IEEE-reviewer
+read-through (the paper's bootstrap machinery had never been applied to
+the headline table itself, only to secondary analyses). MAE CIs
+non-overlapping (C\_LLM $[1.220, 1.348]$, C5\_fix $[1.123, 1.230]$),
+consistent with the already-reported significant Wilcoxon result;
+Pearson $r$ CIs overlap substantially (C\_LLM $[0.772, 0.809]$, C5\_fix
+$[0.766, 0.803]$), so that particular difference is reported in
+`paper/main.tex` as suggestive, not decisive. Output cached in
+`data/main_results_ci.json`.
+
+---
+
 ## Master verification command (~10 seconds, $0)
 
 **Read this before running the block below.** Not every script here operates

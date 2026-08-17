@@ -220,7 +220,10 @@ framework built around one idea: grading a CS short answer can be
 treated as a \emph{knowledge graph comparison problem}. Transform the
 student's response into a concept graph, measure how well it matches
 an expert-curated domain KG, and the score follows -- along with
-fine-grained diagnostic feedback that a bare number never could.
+fine-grained diagnostic feedback that a bare number never could. We
+built this architecture to test that idea rigorously rather than
+assume it works, and testing it rigorously -- including the ways it
+falls short -- is this paper's central contribution.
 
 \textbf{Contributions.} This paper makes the following contributions:
 \begin{enumerate}
@@ -232,9 +235,17 @@ fine-grained diagnostic feedback that a bare number never could.
         structured \texttt{StudentConceptGraph} objects from free-text answers.
   \item A KG comparison module computing coverage, integration, and accuracy scores
         via structural graph matching.
-  \item An empirical evaluation on the Mohler et al.\ (2011) benchmark with
-        bootstrap confidence intervals and Wilcoxon significance testing.
-  \item A full ablation study quantifying the contribution of each framework component.
+  \item A rigorous, multi-dataset empirical characterization of \emph{when and
+        why} the architecture's benefit appears, weakens, and disappears --
+        including a real-data ablation showing the KG-grounding component is
+        a net negative in isolation, and a cross-dataset boundary analysis
+        tying the effect's size to vocabulary distance from the KG
+        (\S\ref{subsec:crossdataset_sig}).
+  \item A diagnostic failure-mode analysis of two live scoring defects,
+        including five pre-registered repair attempts, none of which improved
+        performance under the evaluated criteria -- reported as evidence
+        against the repair mechanism tried, not as a solved bug list
+        (\S\ref{subsec:diagnostic_failure}).
 \end{enumerate}
 
 Every quantitative claim in this manuscript is cross-checked against
@@ -761,13 +772,19 @@ Table~\ref{tab:main_results} reports results for ConceptGrade
 (C5\_fix) and the LLM zero-shot baseline (C\_LLM) on this sample.
 ConceptGrade achieves MAE $=1.177$ against C\_LLM's $1.282$, an
 $8.2\%$ relative reduction that is statistically significant at the
-response level. The picture is mixed across metrics, though: QWK
-improves ($0.524$ vs.\ $0.501$) and RMSE improves ($1.533$ vs.\
-$1.724$), but Pearson correlation actually comes out \emph{worse} for
-ConceptGrade ($r=0.784$) than for the baseline ($r=0.790$). Both
-systems also systematically under-predict relative to human graders
-(mean human score $4.24/5$ vs.\ C\_LLM's $2.99$ and C5\_fix's
-$3.09$), a calibration gap worth noting on its own.
+response level (bootstrap $5{,}000$-resample $95\%$ CIs,
+non-overlapping: C\_LLM $[1.220, 1.348]$, C5\_fix $[1.123, 1.230]$;
+script: \texttt{compute\_main\_results\_ci.py}). The picture is mixed
+across metrics, though: QWK improves ($0.524$ vs.\ $0.501$) and RMSE
+improves ($1.533$ vs.\ $1.724$), but Pearson correlation actually
+comes out \emph{worse} for ConceptGrade ($r=0.784$) than for the
+baseline ($r=0.790$) --- and here the $95\%$ CIs \emph{do} overlap
+substantially (C\_LLM $[0.772, 0.809]$, C5\_fix $[0.766, 0.803]$), so
+this particular difference should be read as suggestive, not
+decisive, unlike the MAE gap. Both systems also systematically
+under-predict relative to human graders (mean human score $4.24/5$
+vs.\ C\_LLM's $2.99$ and C5\_fix's $3.09$), a calibration gap worth
+noting on its own.
 
 \begin{table*}[t]
 \caption{Evaluation Results on the real Mohler et al.\ (2011) CS Benchmark
@@ -958,7 +975,15 @@ margin}. Excluding Kaggle ASAG (extraction module collapsed, see
 below) strengthens the fixed-effects pool to $d_z=-0.125$ (95\% CI
 $[-0.169,-0.080]$), reported only as a sensitivity given the
 two-dataset random-effects pool remains underdetermined
-($I^2=69.1\%$).
+($I^2=69.1\%$). \textbf{We keep Kaggle ASAG in the primary pool
+rather than the excluded sensitivity by design, not oversight.}
+This section's contribution is a boundary characterisation, not a
+best-case generalisation estimate; dropping the one dataset with
+zero real KG signal from the headline pool would silently convert
+the pooled estimate into exactly the rosier, in-domain-biased number
+the boundary-characterisation framing exists to avoid. The
+Kaggle-excluded pool is available above for readers who want the
+stricter, two-dataset version.
 
 \textbf{Boundary characterisation (the real finding).} Line the
 per-dataset $d_z$ values up against domain vocabulary specificity and
@@ -1036,10 +1061,17 @@ CI/LOOCV detail is in \texttt{supplementary/secondary\_analyses.md}.
 \subsection{Self-Consistency Ensembling: A Response-Level-Robust, Question-Level-Fragile Improvement}
 \label{subsec:selfconsistency}
 
-The headline result below (Table~\ref{tab:selfconsistency}) has a
-clear weakness: question-level significance is only marginal
-(\S\ref{sec:results}) and the pooled cross-dataset effect is fragile
-(\S\ref{subsec:crossdataset_sig}). That raised an obvious question --
+\textbf{Read Table~\ref{tab:selfconsistency} together with
+Table~\ref{tab:faircontrol} below, not on its own} --- the first
+compares self-consistency against a single-call baseline, which this
+subsection goes on to show is not a fair comparison; the fair,
+equally-resourced version is Table~\ref{tab:faircontrol}, and its
+verdict is meaningfully weaker. We report both because the gap
+between them is itself the finding. The headline result below
+(Table~\ref{tab:selfconsistency}) has a clear weakness: question-level
+significance is only marginal (\S\ref{sec:results}) and the pooled
+cross-dataset effect is fragile (\S\ref{subsec:crossdataset_sig}). That
+raised an obvious question --
 is the fragility just noise in the scoring model's own single-call
 judgment, or does the architecture really have no effect worth
 detecting? \textbf{Design:} following \cite{wang2023selfconsistency},
