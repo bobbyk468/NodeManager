@@ -595,11 +595,16 @@ For each edge $(u_s, v_s) \in E_s$, we find the best matching edge in $G_e$:
 \subsubsection{Phase 3: Verifier Confidence Weighting}
 
 \textbf{The Verifier is not fine-tuned.} The actual implementation
-(\texttt{conceptgrade/verifier.py},
-\texttt{conceptgrade/lrm\_verifier.py}) is a prompted
-DeepSeek-R1/Gemini LLM call at inference time only, no training
-involved, consistent with Paper~2 §A.1 --- so there is no train/test
-data-leakage concern for the Verifier. The real, separate finding ---
+(\texttt{conceptgrade/verifier.py}) is a prompted
+\texttt{gemini-2.5-flash} LLM call at inference time only, no
+training involved --- the same model used for every other call in
+the pipeline (\S\ref{sec:limitations}), so there is no train/test
+data-leakage concern for the Verifier and no model-choice confound
+between it and the other layers. A separate, optional reasoning-model
+verifier module (\texttt{conceptgrade/lrm\_verifier.py}, which can
+call DeepSeek-R1 or fall back to Gemini) exists in the codebase for
+Paper~2's exploratory work (Paper~2 §A.1) but was not used to produce
+any number reported in this paper. The real, separate finding ---
 that the Verifier's free-form judgment, not the KG-grounded score, drives essentially all
 of C5\_fix's accuracy --- is an architectural result, detailed fully in
 \S\ref{sec:ablation}.
@@ -1684,6 +1689,27 @@ stack uses LIFO, not FIFO. Review the push/pop mechanism.}''). Few ASAG
 systems reach this diagnostic granularity without task-specific
 fine-tuning or manual annotation; here the KG and misconception taxonomy
 carry that information cost at authoring time, not inference time.
+
+\textbf{This feedback inherits the defects diagnosed in
+\S\ref{subsec:diagnostic_failure}, and should be read with that in
+mind.} The ``matched and missing concepts'' and ``incorrect
+relationships'' feedback above are generated directly from Layer~2's
+\texttt{concept\_coverage} and \texttt{relationship\_accuracy}
+signals --- the same two signals \S\ref{subsec:diagnostic_failure}
+found to be live, unfixed defects (coverage trivially $1.0$ for any
+answer extracting $\geq 1$ concept in $35.0\%$ of samples;
+relationship accuracy zeroed for structurally relationship-free
+correct answers in $21.3\%$). Because \texttt{verifier\_weight}$=1.0$
+discards these signals from the final \emph{score}
+(\S\ref{sec:ablation}), the defects do not bias the grade a student
+receives --- but they can still bias the \emph{explanation} shown
+alongside it, since that explanation is read directly from the same
+comparator output. A ``missing concepts'' list built from a
+self-referentially vacuous coverage signal, or an ``incorrect
+relationships'' flag on an answer with no relationships to
+misjudge, may not be reliable feedback even when the numeric score
+is fine. We have not separately audited the feedback text's accuracy
+against the score's; that audit is future work.
 
 \subsection{Comparison to LLM-Only Approaches}
 
