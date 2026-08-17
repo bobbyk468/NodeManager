@@ -1,14 +1,24 @@
 """
 LLM Client — multi-provider, provider-agnostic wrapper.
 
-Supports Anthropic (Claude), Google (Gemini), and OpenAI (GPT/o-series).
+Supports Anthropic (Claude), Google (Gemini), OpenAI (GPT/o-series),
+DeepSeek, and OpenRouter (aggregator: one key, many vendors' models).
 Provider is auto-detected from the model name — no call-site changes needed.
 
 Model name → Provider mapping
 ------------------------------
-  claude-*         → Anthropic  (claude-haiku-4-5-20251001, claude-sonnet-4-6, …)
-  gemini-*         → Google     (gemini-2.0-flash, gemini-flash-latest, …)
-  gpt-* / o1 / o3 → OpenAI     (gpt-4o, o3-mini, …)
+  claude-*           → Anthropic   (claude-haiku-4-5-20251001, claude-sonnet-4-6, …)
+  gemini-*           → Google      (gemini-2.0-flash, gemini-flash-latest, …)
+  gpt-* / o1 / o3    → OpenAI      (gpt-4o, o3-mini, …)
+  deepseek-*         → DeepSeek    (deepseek-reasoner, deepseek-chat)
+  <vendor>/<model>   → OpenRouter  (meta-llama/llama-3.3-70b-instruct,
+                                     mistralai/mistral-large, qwen/qwen-2.5-72b, …)
+
+OpenRouter is a separate case: its model names always contain a "/"
+(vendor/model), which none of the other four providers' names do, so
+that's the (unambiguous) detection signal. One OPENROUTER_API_KEY gets
+you dozens of vendors' models through one OpenAI-compatible endpoint --
+see load_openrouter_key() below for where that key is read from.
 
 Interface (unchanged from original):
     client = LLMClient(api_key=api_key)
@@ -45,7 +55,7 @@ DEFAULT_MODEL = "claude-haiku-4-5-20251001"
 # batch runs don't accidentally write multi-GB logs.
 #
 # Log line format (one JSON object per line):
-#   { "ts": <epoch>, "provider": "anthropic|google|openai|deepseek",
+#   { "ts": <epoch>, "provider": "anthropic|google|openai|deepseek|openrouter",
 #     "model": "...", "prompt_chars": N, "latency_ms": M,
 #     "outcome": "success" | "error",
 #     "error_type": "ValueError" (only when outcome=error),
@@ -164,7 +174,13 @@ class _Response:
 # ── Provider detection ─────────────────────────────────────────────────────────
 
 def detect_provider(model: str) -> str:
-    """Return 'anthropic', 'google', 'openai', or 'deepseek' based on model name prefix."""
+    """Return 'anthropic', 'google', 'openai', 'deepseek', or 'openrouter'
+    based on model name. Checked before the prefix rules below: any model
+    name containing "/" is a vendor/model pair, which is exclusively an
+    OpenRouter naming convention -- none of the other four providers ever
+    use "/" in a model name, so this is unambiguous."""
+    if "/" in model:
+        return "openrouter"
     m = model.lower()
     if m.startswith("claude"):
         return "anthropic"
@@ -176,6 +192,36 @@ def detect_provider(model: str) -> str:
         return "deepseek"
     # Fallback
     return "anthropic"
+
+
+# ── API key loading (backend/.env convention shared across this repo) ──────────
+
+def load_api_key(env_var: str) -> str:
+    """
+    Read a named API key, environment first, then packages/backend/.env
+    (this repo's established convention for local dev -- see
+    REPRODUCIBILITY.md and run_exp2_phase2_retune_cv.py's
+    _load_gemini_key() for the pre-existing single-purpose version this
+    generalises). Never logs or returns the key by any path other than
+    the return value itself.
+    """
+    val = os.environ.get(env_var)
+    if val:
+        return val
+    env_path = Path(__file__).resolve().parent.parent.parent / "backend" / ".env"
+    if env_path.exists():
+        for line in env_path.read_text().splitlines():
+            m = re.match(rf'^{re.escape(env_var)}=(.*)$', line.strip())
+            if m and m.group(1):
+                return m.group(1)
+    raise RuntimeError(
+        f"{env_var} not found in the environment or in {env_path}"
+    )
+
+
+def load_openrouter_key() -> str:
+    """Convenience wrapper: load_api_key('OPENROUTER_API_KEY')."""
+    return load_api_key("OPENROUTER_API_KEY")
 
 
 # ── Anthropic backend ──────────────────────────────────────────────────────────
@@ -447,6 +493,67 @@ class _DeepSeekCompletions:
         )
 
 
+# ── OpenRouter backend ──────────────────────────────────────────────────────────
+#
+# Aggregator: one OPENROUTER_API_KEY, one OpenAI-compatible endpoint,
+# dozens of vendors' models addressed as "vendor/model" (e.g.
+# "meta-llama/llama-3.3-70b-instruct", "mistralai/mistral-large",
+# "anthropic/claude-sonnet-4", "google/gemini-2.0-flash"). Useful for
+# frontier-model baseline comparisons without a separate account/key per
+# vendor. See https://openrouter.ai/models for the current catalog.
+
+class _OpenRouterCompletions:
+    BASE_URL = "https://openrouter.ai/api/v1"
+
+    def __init__(self, api_key: str):
+        self._api_key = api_key
+
+    def create(
+        self,
+        model: str,
+        messages: list[dict],
+        temperature: float = 0.1,
+        max_tokens: int = 1024,
+        **kwargs,
+    ) -> _Response:
+        from openai import OpenAI
+        client = OpenAI(api_key=self._api_key, base_url=self.BASE_URL)
+        response = client.chat.completions.create(
+            model=model,
+            messages=messages,
+            temperature=temperature,
+            max_tokens=max_tokens,
+        )
+        # Same null/empty-content protection as the other backends (Fix #20
+        # pattern) -- OpenRouter can return empty content on rate limits,
+        # upstream vendor errors, or a model refusing the request.
+        content = response.choices[0].message.content
+        if content is None or content == "":
+            finish = getattr(response.choices[0], "finish_reason", "unknown")
+            raise ValueError(
+                f"OpenRouter returned empty content "
+                f"(model={model}, finish_reason={finish}). "
+                f"Possible causes: rate limit, upstream vendor error, "
+                f"content filter, or the routed model refusing the request."
+            )
+        return _Response(content)
+
+    async def async_create(
+        self,
+        model: str,
+        messages: list[dict],
+        temperature: float = 0.1,
+        max_tokens: int = 1024,
+        **kwargs,
+    ) -> _Response:
+        import asyncio
+        loop = asyncio.get_event_loop()
+        return await loop.run_in_executor(
+            None,
+            lambda: self.create(model, messages, temperature, max_tokens, **kwargs),
+        )
+
+
 # ── OpenAI backend ─────────────────────────────────────────────────────────────
 
 class _OpenAICompletions:
@@ -516,6 +623,10 @@ class LLMClient:
         resp = client.chat.completions.create(
             model="gpt-4o-mini", messages=[...])
 
+        client = LLMClient(api_key=load_openrouter_key())
+        resp = client.chat.completions.create(
+            model="meta-llama/llama-3.3-70b-instruct", messages=[...])
+
         text = resp.choices[0].message.content  # same for all providers
     """
 
@@ -537,6 +648,8 @@ class LLMClient:
                 self._backends[provider] = _OpenAICompletions(self._api_key)
             elif provider == "deepseek":
                 self._backends[provider] = _DeepSeekCompletions(self._api_key)
+            elif provider == "openrouter":
+                self._backends[provider] = _OpenRouterCompletions(self._api_key)
             else:
                 raise ValueError(f"Unknown provider: {provider!r}")
         return self._backends[provider]
