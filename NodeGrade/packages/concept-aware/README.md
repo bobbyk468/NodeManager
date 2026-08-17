@@ -57,6 +57,15 @@ python3 compute_solo_breakdown.py               # per-SOLO-band MAE, all three d
 python3 compute_calibration_analysis.py         # post-hoc recalibration (Table: calibration)
 python3 compute_lmm_reanalysis.py               # linear mixed-effects sensitivity analysis
 python3 compute_taxonomy_kappa.py --all         # machine-IRR pilot for the misconception taxonomy (use --all, not the n=30 default)
+python3 compute_frontier_baselines_significance.py  # frontier-model comparison (Table: frontier); needs the cached data/mohler_real_eval_results_{claude,gpt,deepseek}.json files, no API calls
+```
+
+To reproduce the frontier-model comparison's underlying data from scratch (real API calls, ~$0.50 total via OpenRouter, needs `OPENROUTER_API_KEY` in `packages/backend/.env`):
+
+```bash
+python3 run_frontier_baselines_batched.py --model claude
+python3 run_frontier_baselines_batched.py --model gpt
+python3 run_frontier_baselines_batched.py --model deepseek
 ```
 
 **Before running anything else in this repo**, note two things

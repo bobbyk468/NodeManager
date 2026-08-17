@@ -1876,6 +1876,51 @@ $[0.766, 0.803]$), so that particular difference is reported in
 
 ---
 
+**Added 2026-08-17: frontier-model comparison (`paper/main.tex`
+§V-B, "Frontier Model Comparison").** Closed the paper's own
+previously-open "frontier-LLM baselines left to future work" item.
+Ran the identical C\_LLM zero-shot protocol (question + reference +
+student answer only, one call per sample, `build_cllm_prompt` from
+`generate_batch_scoring_prompts.py`) against the same real
+$n=1{,}262$ Mohler sample, substituting three other current models in
+place of `gemini-2.5-flash`, via OpenRouter (one `OPENROUTER_API_KEY`,
+routes to many vendors -- see `conceptgrade/llm_client.py`'s
+`_OpenRouterCompletions` backend, added the same day):
+`anthropic/claude-sonnet-5`, `openai/gpt-5.6-terra`,
+`deepseek/deepseek-chat-v3.1`. Script:
+`run_frontier_baselines_batched.py --model {claude,gpt,deepseek}`
+(chunked batching, 25 samples/call, same pattern as the Gemini
+C\_LLM run; ~$0.50 total cost across all three, confirmed against
+OpenRouter's `/api/v1/credits` endpoint before and after). Output:
+`data/mohler_real_eval_results_{claude,gpt,deepseek}.json`, same
+shape as the existing `mohler_real_eval_results.json`.
+
+Full statistical comparison (bootstrap 95% CIs, response-level and
+question-clustered Wilcoxon, both against Gemini C\_LLM and against
+ConceptGrade's own C5\_fix pipeline) in
+`compute_frontier_baselines_significance.py`, output cached in
+`data/frontier_baselines_significance.json`. Result: all three
+alternative models beat both baselines, at both statistical levels,
+with the largest and most robust effect sizes anywhere in this paper
+(GPT-5.6-terra: MAE 0.756 vs.\ C5\_fix's 1.177, $+35.7\%$, cluster
+$p<0.0001$, 38/46 questions). This is reported prominently in the
+paper (Abstract, Introduction point 6, new Results
+\S\ref{subsec:frontier}, Conclusion) rather than buried, consistent
+with this project's standing disclosure policy: a finding this
+robust and this unfavourable to the paper's own architecture does not
+get a smaller font than the favourable ones.
+
+Two explicit scope boundaries, stated in the paper and repeated here:
+this is the C\_LLM zero-shot baseline only, not a re-run of
+ConceptGrade's full 5-layer pipeline with an alternative model as the
+backbone across all layers -- that is a distinct, larger experiment,
+still open. And these are single untuned zero-shot calls with no
+iteration, which if anything makes the finding more unfavourable to
+ConceptGrade (whose synthesis weights did receive informal
+development-time tuning), not less.
+
+---
+
 ## Master verification command (~10 seconds, $0)
 
 **Read this before running the block below.** Not every script here operates

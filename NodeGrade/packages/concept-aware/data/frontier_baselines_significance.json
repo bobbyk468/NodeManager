@@ -1,0 +1,146 @@
+{
+  "claude": {
+    "vs_gemini_cllm": {
+      "comparison": "claude_vs_gemini_cllm",
+      "mae_ref": 1.2820919175911252,
+      "mae_cand": 0.9045166402535658,
+      "mae_reduction_pct": 29.44993819530284,
+      "mae_reduction_ci95": [
+        27.009066631885094,
+        31.923156193174155
+      ],
+      "pearson_r_cand": 0.840655108616475,
+      "response_level": {
+        "p_two_tailed": 1.2328131944660502e-69,
+        "p_one_tailed": 6.164065972330251e-70,
+        "d_z": 0.5435009852011718,
+        "n": 1262
+      },
+      "question_clustered": {
+        "p_two_tailed": 1.0963557004303923e-07,
+        "p_one_tailed": 5.4817785021519616e-08,
+        "n_questions": 46,
+        "wins": 38
+      }
+    },
+    "vs_c5fix": {
+      "comparison": "claude_vs_c5fix",
+      "mae_ref": 1.1770998415213947,
+      "mae_cand": 0.9045166402535658,
+      "mae_reduction_pct": 23.15718613261528,
+      "mae_reduction_ci95": [
+        20.186653920269773,
+        26.271486300318127
+      ],
+      "pearson_r_cand": 0.840655108616475,
+      "response_level": {
+        "p_two_tailed": 5.2288112921053474e-36,
+        "p_one_tailed": 2.6144056460526737e-36,
+        "d_z": 0.37706833184000926,
+        "n": 1262
+      },
+      "question_clustered": {
+        "p_two_tailed": 3.222318809638055e-06,
+        "p_one_tailed": 1.6111594048190275e-06,
+        "n_questions": 46,
+        "wins": 37
+      }
+    }
+  },
+  "gpt": {
+    "vs_gemini_cllm": {
+      "comparison": "gpt_vs_gemini_cllm",
+      "mae_ref": 1.2820919175911252,
+      "mae_cand": 0.756339144215531,
+      "mae_reduction_pct": 41.007416563658836,
+      "mae_reduction_ci95": [
+        38.17236094927525,
+        43.86221985387787
+      ],
+      "pearson_r_cand": 0.8346534808508395,
+      "response_level": {
+        "p_two_tailed": 2.8173115035200357e-83,
+        "p_one_tailed": 1.4086557517600179e-83,
+        "d_z": 0.6227453228873695,
+        "n": 1262
+      },
+      "question_clustered": {
+        "p_two_tailed": 1.83536021327248e-08,
+        "p_one_tailed": 9.1768010663624e-09,
+        "n_questions": 46,
+        "wins": 43
+      }
+    },
+    "vs_c5fix": {
+      "comparison": "gpt_vs_c5fix",
+      "mae_ref": 1.1770998415213947,
+      "mae_cand": 0.756339144215531,
+      "mae_reduction_pct": 35.745540222147426,
+      "mae_reduction_ci95": [
+        32.09566247332419,
+        39.287223078923944
+      ],
+      "pearson_r_cand": 0.8346534808508395,
+      "response_level": {
+        "p_two_tailed": 9.390252379252606e-57,
+        "p_one_tailed": 4.695126189626303e-57,
+        "d_z": 0.4811814815162822,
+        "n": 1262
+      },
+      "question_clustered": {
+        "p_two_tailed": 1.1313877527384608e-06,
+        "p_one_tailed": 5.656938763692304e-07,
+        "n_questions": 46,
+        "wins": 38
+      }
+    }
+  },
+  "deepseek": {
+    "vs_gemini_cllm": {
+      "comparison": "deepseek_vs_gemini_cllm",
+      "mae_ref": 1.2820919175911252,
+      "mae_cand": 0.911648177496038,
+      "mae_reduction_pct": 28.89369592088999,
+      "mae_reduction_ci95": [
+        25.95393017252541,
+        31.80982185108529
+      ],
+      "pearson_r_cand": 0.8124651687714364,
+      "response_level": {
+        "p_two_tailed": 2.0734477852384724e-47,
+        "p_one_tailed": 1.0367238926192362e-47,
+        "d_z": 0.44481878918810736,
+        "n": 1262
+      },
+      "question_clustered": {
+        "p_two_tailed": 8.035845038900015e-06,
+        "p_one_tailed": 4.017922519450008e-06,
+        "n_questions": 46,
+        "wins": 36
+      }
+    },
+    "vs_c5fix": {
+      "comparison": "deepseek_vs_c5fix",
+      "mae_ref": 1.1770998415213947,
+      "mae_cand": 0.911648177496038,
+      "mae_reduction_pct": 22.55132951868059,
+      "mae_reduction_ci95": [
+        19.14311129826398,
+        25.904684762931762
+      ],
+      "pearson_r_cand": 0.8124651687714364,
+      "response_level": {
+        "p_two_tailed": 3.421107236290869e-28,
+        "p_one_tailed": 1.7105536181454346e-28,
+        "d_z": 0.3252252850898242,
+        "n": 1262
+      },
+      "question_clustered": {
+        "p_two_tailed": 0.0002951803997746083,
+        "p_one_tailed": 0.00014759019988730415,
+        "n_questions": 46,
+        "wins": 31
+      }
+    }
+  }
+}

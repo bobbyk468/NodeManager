@@ -71,7 +71,14 @@ knowledge-graph grounding the architecture is named for. Most of the
 raw-error advantage traces to fixing a simple scale bias rather than
 better ranking, and a promising-looking self-consistency ensembling
 gain mostly disappears once the baseline receives the same number of
-model calls. We report all of this as evidence of where KG-grounded
+model calls. The single most robust result in this paper, though, is
+not favourable to our own architecture: re-running the identical
+zero-shot baseline protocol, untuned, with three other current models
+(Claude, GPT, DeepSeek in place of Gemini) beats \emph{both} the
+original baseline \emph{and} ConceptGrade's full pipeline, at every
+level of statistical scrutiny this paper applies -- suggesting model
+choice may matter more than the knowledge-graph architecture we set
+out to test. We report all of this as evidence of where KG-grounded
 ASAG is fragile and where its limits lie, not as proof that the
 approach generally works.
 \end{abstract}
@@ -146,11 +153,22 @@ across three independent ASAG datasets and 213 questions
         survives on both ($+7.0\%$/$+6.4\%$, $p<0.001$), but
         DigiKlausur's correlation advantage flips ($0.727$ vs.\
         $0.735$). No benefit on Kaggle ASAG, consistent with point 4.
+  \item This paper's single most robust finding is not favourable to
+        ConceptGrade: re-running the identical zero-shot C\_LLM
+        protocol with three other current models (Claude, GPT,
+        DeepSeek; \S\ref{subsec:frontier}), untuned, beats \emph{both}
+        the Gemini baseline \emph{and} ConceptGrade's full pipeline, at
+        both the response level (all $p<10^{-27}$) and the
+        question-clustered level (all $p<0.001$) --- a combination of
+        effect size and robustness nothing else in this paper reaches.
+        Model choice appears to matter more than the architecture this
+        paper is about.
 \end{enumerate}
 
-Comparisons against frontier LLMs, retrieval-augmented baselines, and an
-independently built knowledge graph are left for future work
-(\S\ref{sec:limitations}). This paper's purpose is to document
+Retrieval-augmented baselines and an independently built knowledge
+graph are left for future work (\S\ref{sec:limitations}); the
+frontier-LLM comparison originally planned as future work is reported
+directly above and in \S\ref{subsec:frontier}. This paper's purpose is to document
 \emph{when and why} a KG-LLM pipeline like this fails to add up to more
 than its parts in the ASAG setting. Readers looking for a triumphant new
 method should read that framing as intentional, not as an oversight.
@@ -848,6 +866,81 @@ $=1.177$; all $p<10^{-3}$) --- frozen sentence embeddings,
 uncalibrated to the 0--5 scale without supervised training, are simply
 not competitive with either LLM-based grader on real data.
 
+\subsection{Frontier Model Comparison: Does Model Choice Matter More Than Architecture?}
+\label{subsec:frontier}
+
+Every comparison up to this point holds the underlying LLM fixed at
+\texttt{gemini-2.5-flash}, by design (\S\ref{sec:intro}), to isolate
+architecture from model capability. That leaves one obvious question
+unaddressed: how much of C5\_fix's small, fragile edge over C\_LLM is
+actually about ConceptGrade's architecture, versus Gemini specifically
+being a weaker zero-shot grader than other current models on this
+task? We answer it directly. Using the identical C\_LLM protocol
+(question + reference answer + student answer only, zero-shot, no KG,
+one call per sample, $0.25$-increment scoring) and the identical real
+$1{,}262$-sample set, we re-ran the same prompt through three other
+current models via OpenRouter, with no tuning or iteration on any of
+them: \texttt{anthropic/claude-sonnet-5}, \texttt{openai/gpt-5.6-terra},
+and \texttt{deepseek/deepseek-chat-v3.1} (script:
+\texttt{run\_frontier\_baselines\_batched.py}; significance script:
+\texttt{compute\_frontier\_baselines\_significance.py}).
+
+\begin{table}[t]
+\caption{Zero-shot grading, same protocol, different models
+($n=1{,}262$). C5\_fix is ConceptGrade's full 5-layer pipeline (on
+Gemini) for reference. $\Delta$ vs.\ C5\_fix is response-level MAE
+reduction relative to ConceptGrade's own headline number.}
+\label{tab:frontier}
+\centering
+\footnotesize
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Model (zero-shot)} & \textbf{MAE} & \textbf{$r$} & \textbf{vs.\ C5\_fix} & \textbf{Cluster $p$ (vs.\ C5\_fix)} \\
+\midrule
+Gemini 2.5 Flash (C\_LLM) & 1.282 & 0.790 & $-8.9\%$ (worse) & --- \\
+DeepSeek-chat-v3.1        & 0.912 & 0.813 & $+22.6\%$ & $0.0003$ \\
+Claude Sonnet 5           & 0.905 & 0.841 & $+23.2\%$ & $<0.0001$ \\
+\textbf{GPT-5.6-terra}    & \textbf{0.756} & \textbf{0.835} & \textbf{$+35.7\%$} & $<0.0001$ \\
+\midrule
+ConceptGrade (C5\_fix, on Gemini) & 1.177 & 0.784 & --- & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{This is the strongest, most robust finding in this paper, and
+it does not favour ConceptGrade.} All three alternative models beat
+\emph{both} the Gemini C\_LLM baseline and ConceptGrade's full C5\_fix
+pipeline, at both the response level (all $p<10^{-27}$) and, unlike
+every other result in this paper, at the question-clustered level too
+(all $p<0.001$ two-tailed across the 46 questions; GPT wins 43/46,
+Claude 38/46, DeepSeek 36/46 questions against Gemini C\_LLM). Bootstrap
+$95\%$ CIs on the MAE reduction against C5\_fix exclude zero by a wide
+margin for all three (GPT $[32.1\%, 39.3\%]$, Claude $[20.2\%,
+26.3\%]$, DeepSeek $[19.1\%, 25.9\%]$). None of this paper's other
+claims reach this combination of effect size and robustness at every
+level tested.
+
+The honest reading is uncomfortable for this paper's central
+architecture: \textbf{simply switching the underlying zero-shot model,
+with no knowledge graph, no verifier, and no multi-layer pipeline at
+all, produces a larger and far more robust improvement than
+ConceptGrade's entire five-layer architecture built on a weaker
+model.} This directly answers this paper's own previously-open
+question about frontier-model baselines (\S\ref{sec:intro}), and the
+answer reframes how the $8.2\%$ headline result should be read: it may
+say as much about \texttt{gemini-2.5-flash}'s specific weaknesses as a
+zero-shot grader as it says about knowledge-graph grounding's value.
+Two important boundaries on this claim: first, these are single
+zero-shot calls with no tuning or iteration of any kind, whereas
+C5\_fix's synthesis weights received informal early-development tuning
+(\S\ref{sec:limitations}) --- if anything this makes the comparison
+\emph{more} unfavourable to ConceptGrade, not less, since the
+untuned alternative models still win. Second, we have not re-run
+ConceptGrade's full pipeline with any of these three models as the
+backbone in place of Gemini across all five layers; whether a
+KG-grounded architecture built on a stronger base model would close
+this gap, extend it, or become irrelevant is a direct, well-motivated
+next experiment that this comparison sets up but does not answer.
 
 \subsection{Post-hoc Recalibration: Scale Bias vs.\ Ranking Quality}
 \label{subsec:calibration}
@@ -1817,6 +1910,16 @@ shows the pre-verifier KG-grounded score is far \emph{worse} than the
 zero-shot baseline ($-86.9\%$ MAE). It's the verifier stage, not the
 knowledge graph, that produces almost all of ConceptGrade's small net
 gain.
+
+The frontier-model comparison (\S\ref{subsec:frontier}) sharpens this
+picture further, and not in ConceptGrade's favour. Re-running the
+identical zero-shot protocol with Claude, GPT, and DeepSeek in place
+of Gemini, untuned, beats \emph{both} the original baseline \emph{and}
+ConceptGrade's full pipeline at every level of scrutiny this paper
+applies -- response-level and question-clustered, all $p<0.001$ or
+smaller. Nothing else in this paper reaches that combination of effect
+size and robustness. Model choice, not knowledge-graph grounding,
+looks like the larger lever here.
 
 Self-consistency ensembling ($K{=}7$, temperature $0.7$,
 \S\ref{subsec:selfconsistency}) improves response-level MAE over a
