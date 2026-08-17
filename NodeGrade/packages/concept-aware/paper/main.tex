@@ -1698,6 +1698,23 @@ QWK ($0.501\to0.524$), but this is a mixed, modest picture rather than
 a clean improvement across every metric. See Table~\ref{tab:main_results}
 and \S\ref{sec:results} for the full numbers.
 
+\textbf{A fair-comparison reading, using two metrics that are already
+immune to the tuning asymmetry (\S\ref{sec:limitations}).} Pearson
+correlation is scale-invariant, so it cannot be moved by either
+system's output happening to sit closer to the human scale --- and on
+it, C\_LLM already wins ($r=0.7904$ vs.\ $0.7841$). The post-hoc
+isotonic calibration in \S\ref{subsec:calibration} independently
+removes each system's own scale/bias confound and reaches the same
+conclusion more sharply: once calibrated, C\_LLM's MAE ($0.3746$) is
+significantly \emph{lower} than C5\_fix's ($0.3924$, $p=0.034$).
+Both checks answer the same underlying question --- does C5\_fix's
+raw-score edge reflect better grading judgment, or an asymmetry
+between the two systems that has nothing to do with judgment quality
+--- without requiring a new, comparably-tuned C\_LLM prompt to be
+built and re-evaluated: two independent, zero-additional-cost checks
+already point the same direction, and it is not in ConceptGrade's
+favour.
+
 \textbf{Inference-compute disclosure.} Only Layer~2 (KG comparison) is
 offline, pure graph matching with no LLM involved; Layers~3--5 each
 make independent LLM calls (cognitive-depth classification: 1;
