@@ -1,0 +1,91 @@
+{
+  "student_id": "live_demo_doubly_linked_list",
+  "question": "Explain how a doubly linked list works and how it can be used to implement a deque (double-ended queue). Discuss the tradeoffs compared to a singly linked list.",
+  "segmentation": {
+    "strategy": "passthrough",
+    "n_segments": 1,
+    "total_words": 273,
+    "executive_summary": "",
+    "segments": [
+      {
+        "index": 1,
+        "label": "Full Answer",
+        "word_count": 273
+      }
+    ]
+  },
+  "segment_breakdown": [
+    {
+      "index": 1,
+      "label": "Full Answer",
+      "word_count": 273,
+      "score": 2.7,
+      "bloom": "Analyze",
+      "solo": "Relational",
+      "misconceptions": 2
+    }
+  ],
+  "aggregated": {
+    "final_score": 2.5,
+    "mean_segment_score": 2.7,
+    "segment_scores": [
+      2.7
+    ],
+    "inter_chunk_variance": 0.0,
+    "concepts": {
+      "covered": [
+        "doubly_linked_list",
+        "linked_list",
+        "node",
+        "pointer",
+        "deque",
+        "head",
+        "tail",
+        "o_1",
+        "push",
+        "array",
+        "iteration"
+      ],
+      "missing": [],
+      "count": 11
+    },
+    "depth": {
+      "bloom_sequence": [
+        4
+      ],
+      "modal_level": 4,
+      "modal_label": "Analyze",
+      "ceiling_level": 4,
+      "ceiling_label": "Analyze",
+      "consistency_index": 1.0,
+      "trajectory": "rising",
+      "trajectory_description": "Depth builds toward conclusion"
+    },
+    "misconceptions": [
+      {
+        "concept": "doubly_linked_list",
+        "description": "since a doubly linked list stores its nodes contiguously in memory the way an array does, iterating through it sequentially is just as cache-friendly as iterating through an array",
+        "severity": "isolated"
+      },
+      {
+        "concept": "doubly_linked_list",
+        "description": "iterating through it sequentially is just as cache-friendly as iterating through an array, so the extra pointer overhead doesn't really cost you anything in practice for large lists.",
+        "severity": "isolated"
+      }
+    ]
+  },
+  "feedback": {
+    "score": 2.5,
+    "one_line_summary": "A good explanation of doubly linked lists and deque implementation, but with a critical misconception regarding memory locality and cache performance for linked lists.",
+    "full_feedback": "You provided a solid explanation of how a doubly linked list operates, correctly identifying its core components like nodes, pointers, head, and tail. Your description of how a deque can be implemented using a doubly linked list was also clear and accurate.  You covered all the essential concepts for this question, demonstrating a good breadth of knowledge on the topic.  However, there's a significant misconception in your discussion of tradeoffs. You stated that a doubly linked list stores its nodes contiguously in memory like an array, and that iterating through it is just as cache-friendly. This is incorrect; linked list nodes are typically scattered in memory, which makes sequential access much less cache-friendly than arrays, and the extra pointer overhead absolutely has practical implications for performance, especially with large lists.  Your analysis consistently reached a good level, demonstrating a strong ability to break down and explain complex data structures.  To reach the next grade level, you need to correct your understanding of memory locality and cache performance for linked lists versus arrays. Focus on how memory allocation for nodes impacts cache utilization and the true cost of pointer indirection.",
+    "tone_level": "constructive",
+    "structured": {
+      "opening": "You provided a solid explanation of how a doubly linked list operates, correctly identifying its core components like nodes, pointers, head, and tail. Your description of how a deque can be implemented using a doubly linked list was also clear and accurate.",
+      "knowledge_gap_feedback": "You covered all the essential concepts for this question, demonstrating a good breadth of knowledge on the topic.",
+      "accuracy_gap_feedback": "However, there's a significant misconception in your discussion of tradeoffs. You stated that a doubly linked list stores its nodes contiguously in memory like an array, and that iterating through it is just as cache-friendly. This is incorrect; linked list nodes are typically scattered in memory, which makes sequential access much less cache-friendly than arrays, and the extra pointer overhead absolutely has practical implications for performance, especially with large lists.",
+      "depth_feedback": "Your analysis consistently reached a good level, demonstrating a strong ability to break down and explain complex data structures.",
+      "closing": "To reach the next grade level, you need to correct your understanding of memory locality and cache performance for linked lists versus arrays. Focus on how memory allocation for nodes impacts cache utilization and the true cost of pointer indirection."
+    }
+  },
+  "elapsed_seconds": 39.29
+}

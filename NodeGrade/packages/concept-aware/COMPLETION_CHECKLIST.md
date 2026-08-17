@@ -39,8 +39,8 @@
   - Effort: 2-4 hours if running
 
 ### Compilation Status
-- [x] Paper 1 PDF generated: `paper_phase1_ieee.pdf` (775 KB, 8 pages)
-- [x] LaTeX source: `paper_phase1_ieee.tex` (933 lines)
+- [x] Paper 1 PDF generated: `ConceptGrade_FullPaper.pdf` (775 KB, 8 pages)
+- [x] LaTeX source: `ConceptGrade_FullPaper.tex` (933 lines)
 - [x] All cross-references validated
 
 ---

@@ -1,94 +1,94 @@
 {
   "method": "machine-IRR pilot (Coder A = KG-rule, Coder B = lexical)",
-  "n_samples": 120,
+  "n_samples": 1262,
   "n_taxonomy_entries": 16,
   "k_min_lexical": 2,
-  "macro_kappa": 0.4651,
-  "macro_kappa_n_entries": 9,
-  "micro_kappa_pooled": 0.5413,
+  "macro_kappa": 0.0853,
+  "macro_kappa_n_entries": 8,
+  "micro_kappa_pooled": 0.1159,
   "micro_info": {
-    "n": 1920,
-    "po": 0.9896,
-    "pe": 0.9773,
-    "prev_a": 0.0063,
-    "prev_b": 0.0167,
-    "a11": 12,
-    "a00": 1888,
-    "a10": 0,
-    "a01": 20
+    "n": 20192,
+    "po": 0.9948,
+    "pe": 0.9941,
+    "prev_a": 0.0005,
+    "prev_b": 0.0054,
+    "a11": 7,
+    "a00": 20079,
+    "a10": 3,
+    "a01": 103
   },
   "per_entry": {
     "DS-COMP-01": {
       "category": "Complexity",
-      "kappa": null,
+      "kappa": 0.0,
       "info": {
-        "n": 120,
-        "po": 1.0,
-        "pe": 1.0,
+        "n": 1262,
+        "po": 0.9992,
+        "pe": 0.9992,
         "prev_a": 0.0,
-        "prev_b": 0.0,
+        "prev_b": 0.0008,
         "a11": 0,
-        "a00": 120,
+        "a00": 1261,
         "a10": 0,
-        "a01": 0
+        "a01": 1
       }
     },
     "DS-COMP-02": {
       "category": "Complexity",
       "kappa": null,
       "info": {
-        "n": 120,
+        "n": 1262,
         "po": 1.0,
         "pe": 1.0,
         "prev_a": 0.0,
         "prev_b": 0.0,
         "a11": 0,
-        "a00": 120,
+        "a00": 1262,
         "a10": 0,
         "a01": 0
       }
     },
     "DS-GRAPH-01": {
       "category": "Graphs",
-      "kappa": 0.0,
+      "kappa": null,
       "info": {
-        "n": 120,
-        "po": 0.9917,
-        "pe": 0.9917,
+        "n": 1262,
+        "po": 1.0,
+        "pe": 1.0,
         "prev_a": 0.0,
-        "prev_b": 0.0083,
+        "prev_b": 0.0,
         "a11": 0,
-        "a00": 119,
+        "a00": 1262,
         "a10": 0,
-        "a01": 1
+        "a01": 0
       }
     },
     "DS-GRAPH-02": {
       "category": "Graphs",
-      "kappa": 0.4872,
+      "kappa": null,
       "info": {
-        "n": 120,
-        "po": 0.9667,
-        "pe": 0.935,
-        "prev_a": 0.0167,
-        "prev_b": 0.05,
-        "a11": 2,
-        "a00": 114,
+        "n": 1262,
+        "po": 1.0,
+        "pe": 1.0,
+        "prev_a": 0.0,
+        "prev_b": 0.0,
+        "a11": 0,
+        "a00": 1262,
         "a10": 0,
-        "a01": 4
+        "a01": 0
       }
     },
     "DS-HASH-01": {
       "category": "Hash Tables",
-      "kappa": 1.0,
+      "kappa": null,
       "info": {
-        "n": 120,
+        "n": 1262,
         "po": 1.0,
-        "pe": 0.9835,
-        "prev_a": 0.0083,
-        "prev_b": 0.0083,
-        "a11": 1,
-        "a00": 119,
+        "pe": 1.0,
+        "prev_a": 0.0,
+        "prev_b": 0.0,
+        "a11": 0,
+        "a00": 1262,
         "a10": 0,
         "a01": 0
       }
@@ -97,163 +97,163 @@
       "category": "Hash Tables",
       "kappa": null,
       "info": {
-        "n": 120,
+        "n": 1262,
         "po": 1.0,
         "pe": 1.0,
         "prev_a": 0.0,
         "prev_b": 0.0,
         "a11": 0,
-        "a00": 120,
+        "a00": 1262,
         "a10": 0,
         "a01": 0
       }
     },
     "DS-LINK-01": {
       "category": "Linked Lists",
-      "kappa": 0.55,
+      "kappa": 0.0912,
       "info": {
-        "n": 120,
-        "po": 0.95,
-        "pe": 0.8889,
-        "prev_a": 0.0333,
-        "prev_b": 0.0833,
-        "a11": 4,
-        "a00": 110,
-        "a10": 0,
-        "a01": 6
+        "n": 1262,
+        "po": 0.9699,
+        "pe": 0.9669,
+        "prev_a": 0.0024,
+        "prev_b": 0.0309,
+        "a11": 2,
+        "a00": 1222,
+        "a10": 1,
+        "a01": 37
       }
     },
     "DS-LINK-02": {
       "category": "Linked Lists",
-      "kappa": 0.0,
+      "kappa": -0.0014,
       "info": {
-        "n": 120,
-        "po": 0.975,
-        "pe": 0.975,
-        "prev_a": 0.0,
-        "prev_b": 0.025,
+        "n": 1262,
+        "po": 0.9945,
+        "pe": 0.9945,
+        "prev_a": 0.0008,
+        "prev_b": 0.0048,
         "a11": 0,
-        "a00": 117,
-        "a10": 0,
-        "a01": 3
+        "a00": 1255,
+        "a10": 1,
+        "a01": 6
       }
     },
     "DS-LINK-03": {
       "category": "Linked Lists",
-      "kappa": 0.6552,
+      "kappa": 0.1715,
       "info": {
-        "n": 120,
-        "po": 0.975,
-        "pe": 0.9275,
-        "prev_a": 0.025,
-        "prev_b": 0.05,
-        "a11": 3,
-        "a00": 114,
+        "n": 1262,
+        "po": 0.9849,
+        "pe": 0.9818,
+        "prev_a": 0.0016,
+        "prev_b": 0.0166,
+        "a11": 2,
+        "a00": 1241,
         "a10": 0,
-        "a01": 3
+        "a01": 19
       }
     },
     "DS-SORT-01": {
       "category": "Sorting",
-      "kappa": 0.0,
+      "kappa": null,
       "info": {
-        "n": 120,
-        "po": 0.9917,
-        "pe": 0.9917,
+        "n": 1262,
+        "po": 1.0,
+        "pe": 1.0,
         "prev_a": 0.0,
-        "prev_b": 0.0083,
+        "prev_b": 0.0,
         "a11": 0,
-        "a00": 119,
+        "a00": 1262,
         "a10": 0,
-        "a01": 1
+        "a01": 0
       }
     },
     "DS-SORT-02": {
       "category": "Sorting",
       "kappa": null,
       "info": {
-        "n": 120,
+        "n": 1262,
         "po": 1.0,
         "pe": 1.0,
         "prev_a": 0.0,
         "prev_b": 0.0,
         "a11": 0,
-        "a00": 120,
+        "a00": 1262,
         "a10": 0,
         "a01": 0
       }
     },
     "DS-STACK-01": {
       "category": "Stacks & Queues",
-      "kappa": null,
+      "kappa": 0.0,
       "info": {
-        "n": 120,
-        "po": 1.0,
-        "pe": 1.0,
+        "n": 1262,
+        "po": 0.9976,
+        "pe": 0.9976,
         "prev_a": 0.0,
-        "prev_b": 0.0,
+        "prev_b": 0.0024,
         "a11": 0,
-        "a00": 120,
+        "a00": 1259,
         "a10": 0,
-        "a01": 0
+        "a01": 3
       }
     },
     "DS-STACK-02": {
       "category": "Stacks & Queues",
-      "kappa": null,
+      "kappa": 0.1645,
       "info": {
-        "n": 120,
-        "po": 1.0,
-        "pe": 1.0,
-        "prev_a": 0.0,
-        "prev_b": 0.0,
-        "a11": 0,
-        "a00": 120,
-        "a10": 0,
-        "a01": 0
+        "n": 1262,
+        "po": 0.9921,
+        "pe": 0.9905,
+        "prev_a": 0.0016,
+        "prev_b": 0.0079,
+        "a11": 1,
+        "a00": 1251,
+        "a10": 1,
+        "a01": 9
       }
     },
     "DS-TREE-01": {
       "category": "Trees",
-      "kappa": 0.4937,
+      "kappa": 0.1526,
       "info": {
-        "n": 120,
-        "po": 0.9833,
-        "pe": 0.9671,
-        "prev_a": 0.0083,
-        "prev_b": 0.025,
+        "n": 1262,
+        "po": 0.9913,
+        "pe": 0.9897,
+        "prev_a": 0.0008,
+        "prev_b": 0.0095,
         "a11": 1,
-        "a00": 117,
+        "a00": 1250,
         "a10": 0,
-        "a01": 2
+        "a01": 11
       }
     },
     "DS-TREE-02": {
       "category": "Trees",
+      "kappa": 0.1039,
+      "info": {
+        "n": 1262,
+        "po": 0.9865,
+        "pe": 0.985,
+        "prev_a": 0.0008,
+        "prev_b": 0.0143,
+        "a11": 1,
+        "a00": 1244,
+        "a10": 0,
+        "a01": 17
+      }
+    },
+    "DS-TREE-03": {
+      "category": "Trees",
       "kappa": null,
       "info": {
-        "n": 120,
+        "n": 1262,
         "po": 1.0,
         "pe": 1.0,
         "prev_a": 0.0,
         "prev_b": 0.0,
         "a11": 0,
-        "a00": 120,
-        "a10": 0,
-        "a01": 0
-      }
-    },
-    "DS-TREE-03": {
-      "category": "Trees",
-      "kappa": 1.0,
-      "info": {
-        "n": 120,
-        "po": 1.0,
-        "pe": 0.9835,
-        "prev_a": 0.0083,
-        "prev_b": 0.0083,
-        "a11": 1,
-        "a00": 119,
+        "a00": 1262,
         "a10": 0,
         "a01": 0
       }

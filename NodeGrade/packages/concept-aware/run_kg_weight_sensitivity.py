@@ -177,7 +177,7 @@ def run_sensitivity_analysis(dataset: str = "mohler"):
     print("\n" + "=" * 80)
     print("VERIFICATION AGAINST PAPER 1 CLAIMS")
     print("=" * 80)
-    print("\nClaimed values (paper_phase1_ieee.tex lines 612-617):")
+    print("\nClaimed values (ConceptGrade_FullPaper.tex lines 612-617):")
     print("  - kg_weight=0.01: 29.8% improvement")
     print("  - kg_weight=0.05: 32.4% improvement (default)")
     print("  - kg_weight=0.10: 31.2% improvement")

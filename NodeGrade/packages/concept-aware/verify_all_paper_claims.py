@@ -217,7 +217,7 @@ def main() -> int:
 
     # Paper text must actually state the real numbers, not just compute
     # them here -- verify Table 1 and Abstract literally contain them.
-    _p1_tex_early = (BASE / "docs" / "paper_phase1_ieee.tex").read_text()
+    _p1_tex_early = (BASE / "docs" / "ConceptGrade_FullPaper.tex").read_text()
     _p1_flat_early = re.sub(r"\s+", " ", _p1_tex_early)
     claim("Paper 1 Table 1 states real C5_fix MAE 1.1771", True,
           "1.1771" in _p1_flat_early, status=s)
@@ -311,7 +311,7 @@ def main() -> int:
           False, "We evaluate on the KG-aligned subset of the Mohler\ndataset ($n = 120$"
           in _p1_tex_early, status=s)
     claim("Paper 1: 'Tuning asymmetry' cites real 8.2% MAE reduction, not fabricated 32.4%/34.0%",
-          True, "The reported $8.2\\%$ real-data MAE" in _p1_flat_early, status=s)
+          True, "the reported $8.2\\%$ real-data MAE" in _p1_flat_early, status=s)
     claim("Paper 1 Conclusion states real human IRR (not 'remains future work')",
           True, "human IRR on the grading" in _p1_flat_early, status=s)
 
@@ -733,8 +733,8 @@ def main() -> int:
     claim("Paper 1 states Kaggle ASAG's acquisition path could not be reconstructed", True,
           "could not be reconstructed" in _p1_flat_early, status=s)
     claim("Paper 1 explicitly rejects LLM-generated replacement data for the provenance gap", True,
-          "concentrates\nrather than removes partiality" in _p1_tex_early or
-          "concentrates rather than removes partiality" in _p1_flat_early, status=s)
+          "concentrate bias\nrather than remove it" in _p1_tex_early or
+          "concentrate bias rather than remove it" in _p1_flat_early, status=s)
     claim("Paper 1 separates Claim A (extraction-level) from Claim B (generalization) for Kaggle ASAG", True,
           "Claim A" in _p1_flat_early and "Claim B" in _p1_flat_early, status=s)
     claim("Paper 1 does NOT claim Kaggle ASAG is confirmed fabricated (absence of evidence, not evidence of absence)", True,
@@ -863,11 +863,14 @@ def main() -> int:
     # ====================================================================
     with (BASE / "data" / "taxonomy_kappa_results.json").open() as f:
         kappa = json.load(f)
-    # 2026-06-15: distinctive-phrase construct-validity fix (Framework Fix #4)
-    # raised these from macro=0.2947/micro=0.3258 (fair) to the values below
-    # (moderate). Expectations updated to match; see compute_taxonomy_kappa.py.
-    claim("Taxonomy macro κ = 0.465", 0.4651, kappa["macro_kappa"], 0.005, status=s)
-    claim("Taxonomy micro κ = 0.541", 0.5413, kappa["micro_kappa_pooled"], 0.005, status=s)
+    # 2026-08-17: the previously-cached macro=0.4651/micro=0.5413 ("moderate")
+    # was computed before datasets/mohler_loader.py was switched to the real
+    # 1,262-sample data (2026-07-27); it was never recomputed after the
+    # switch and does not reproduce under any --n/--k-min combination tried.
+    # Corrected to the real-data re-run below ("slight" agreement per
+    # Landis & Koch); see REPRODUCIBILITY.md for the discrepancy record.
+    claim("Taxonomy macro κ = 0.085 (real)", 0.0853, kappa["macro_kappa"], 0.005, status=s)
+    claim("Taxonomy micro κ = 0.116 (real)", 0.1159, kappa["micro_kappa_pooled"], 0.005, status=s)
     claim("Taxonomy #entries = 16", 16, kappa["n_taxonomy_entries"], 0, status=s)
 
     # ====================================================================
@@ -1017,7 +1020,7 @@ def main() -> int:
     # 14. Verifier honesty: Paper 2 must NOT claim fine-tuning (the actual
     #     implementation is prompted LLM only — see conceptgrade/lrm_verifier.py)
     p2_text = (BASE / "docs" / "paper_phase2_vis2027.tex").read_text()
-    p1_text = (BASE / "docs" / "paper_phase1_ieee.tex").read_text()
+    p1_text = (BASE / "docs" / "ConceptGrade_FullPaper.tex").read_text()
     bad_phrases_p2 = [
         "fine-tuned using the Mohler",
         "augmented to $\\approx$2,107 instances",
@@ -1152,8 +1155,12 @@ def main() -> int:
     p1_text_flat = re.sub(r"\s+", " ", p1_text)
     n_bare_473 = p1_text_flat.count("$473/473$")
     n_paired_368 = p1_text_flat.count("368/368")
-    claim("Paper 1 mentions '368/368' (deduplicated Kaggle) at least 4x",
-          True, n_paired_368 >= 4, status=s)
+    # Threshold lowered from 4 to 2 after the redundant-mention trim pass
+    # (repeated appendix/correction-notice mentions removed); what actually
+    # matters is the pairing invariant checked immediately below, which
+    # still holds at every remaining occurrence.
+    claim("Paper 1 mentions '368/368' (deduplicated Kaggle) at least 2x",
+          True, n_paired_368 >= 2, status=s)
     # Every remaining "473/473" occurrence must appear within the same
     # ~120-char window as "368/368" or "pre-deduplication", i.e. it is
     # always immediately disclosed as the raw figure, never bare.
@@ -1193,17 +1200,20 @@ def main() -> int:
           "\\kappa \\geq 0.70" in p2_tex, status=s)
 
     # 22. Misconception heatmap κ cross-reference
-    # 2026-06-15: updated to 0.54 (moderate) after Framework Fix #4's
-    # distinctive-phrase construct-validity fix in Paper 1 §3.4; Paper 2's
-    # design-rationale citation was updated to match (was 0.33/fair).
-    claim("Paper 2 §3: misconception heatmap cites κ_micro = 0.54", True,
-          "\\kappa_{\\text{micro}} = 0.54" in p2_tex
-          or "$\\kappa_{\\text{micro}} = 0.54$" in p2_tex, status=s)
+    # 2026-08-17: corrected to 0.116 (slight agreement) after the taxonomy
+    # kappa correction (see REPRODUCIBILITY.md); Paper 2's design-rationale
+    # citation was updated to match (was 0.54/moderate, itself a stale
+    # pre-real-data number that was never recomputed).
+    claim("Paper 2 §3: misconception heatmap cites κ_micro = 0.12", True,
+          "\\kappa_{\\text{micro}} = 0.12" in p2_tex
+          or "$\\kappa_{\\text{micro}} = 0.12$" in p2_tex, status=s)
     claim("Paper 2 does NOT still cite stale κ_micro = 0.33", False,
           "\\kappa_{\\text{micro}} = 0.33" in p2_tex, status=s)
+    claim("Paper 2 does NOT still cite stale κ_micro = 0.54", False,
+          "\\kappa_{\\text{micro}} = 0.54" in p2_tex, status=s)
 
     # 23. No leftover false-model references in either paper
-    p1_tex = (BASE / "docs" / "paper_phase1_ieee.tex").read_text()
+    p1_tex = (BASE / "docs" / "ConceptGrade_FullPaper.tex").read_text()
     # 'Llama-3.3-70b' should not appear as our baseline (1 generic mention OK
     # but not '-3.3-70b baseline')
     bad_llama_count = p1_tex.count("Llama-3.3-70b")
@@ -1280,7 +1290,8 @@ def main() -> int:
     # in the repository.
     p1_kg_101 = "101 concepts" in p1_tex_flat or "101 domain concepts" in p1_tex_flat
     claim("Paper 1 claims 101 concepts", True, p1_kg_101, status=s)
-    p1_kg_138_primary = "101 domain concepts and 138 typed relationships" in p1_tex_flat
+    p1_kg_138_primary = ("101 domain concepts and 138 typed relationships" in p1_tex_flat
+                          or "101 concepts, 138 typed relationships" in p1_tex_flat)
     claim("Paper 1 abstract leads with 138 relationships (evaluated snapshot) as primary",
           True, p1_kg_138_primary, status=s)
     p1_kg_187_secondary = "187 relationships" in p1_tex_flat
@@ -1336,7 +1347,7 @@ def main() -> int:
     import os
     fig_pattern = _re.compile(r"\\includegraphics(?:\[[^\]]*\])?\{([^}]+)\}")
     for tex_path, paper_name in [
-        ("docs/paper_phase1_ieee.tex", "Paper 1"),
+        ("docs/ConceptGrade_FullPaper.tex", "Paper 1"),
         ("docs/paper_phase2_vis2027.tex", "Paper 2"),
     ]:
         with (BASE / tex_path).open() as f:
@@ -1354,7 +1365,7 @@ def main() -> int:
     # ====================================================================
     py_pattern = _re.compile(r"([a-zA-Z][a-zA-Z0-9_/\\]*\.py)")
     for tex_path, paper_name in [
-        ("docs/paper_phase1_ieee.tex", "Paper 1"),
+        ("docs/ConceptGrade_FullPaper.tex", "Paper 1"),
         ("docs/paper_phase2_vis2027.tex", "Paper 2"),
     ]:
         with (BASE / tex_path).open() as f:
@@ -1409,7 +1420,7 @@ def main() -> int:
     claim("Mohler ties: 213 ties have |err| > 1.0 (real)", 213, tied_err_gt_1, 0, status=s)
 
     # Paper 1 must mention the real tie count (604/658 split)
-    p1_text_now = (BASE / "docs" / "paper_phase1_ieee.tex").read_text()
+    p1_text_now = (BASE / "docs" / "ConceptGrade_FullPaper.tex").read_text()
     claim("Paper 1 mentions '604' ties (real tie composition)",
           True, "604" in p1_text_now, status=s)
 

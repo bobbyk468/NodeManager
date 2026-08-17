@@ -134,12 +134,19 @@ def run_demo():
     domain_graph = build_data_structures_graph()
     print(domain_graph.summary())
     
-    # Save the graph
+    # Save the graph. NOTE: this builder currently produces v1.1-expert
+    # (see knowledge_graph/ds_knowledge_graph.py version history). It must
+    # NEVER be saved to data/ds_knowledge_graph.json -- that path is the
+    # FROZEN v1.0-expert snapshot every evaluation script and Paper 1's
+    # reported numbers depend on (see REPRODUCIBILITY.md). Demo output goes
+    # to a clearly separate file instead.
     output_dir = os.path.join(os.path.dirname(__file__), "data")
     os.makedirs(output_dir, exist_ok=True)
-    graph_path = os.path.join(output_dir, "ds_knowledge_graph.json")
+    graph_path = os.path.join(output_dir, "ds_knowledge_graph_v1.1_demo_DO_NOT_USE_FOR_EVAL.json")
     domain_graph.save(graph_path)
     print(f"  Saved to: {graph_path}")
+    print("  (This is v1.1-expert, for demo purposes only -- NOT the frozen")
+    print("   v1.0-expert snapshot used for Paper 1's evaluation numbers.)")
 
     # Step 2: Initialize extractors
     print("\n[Step 2] Initializing concept extractor (Groq API + Llama-3.3-70B)...")

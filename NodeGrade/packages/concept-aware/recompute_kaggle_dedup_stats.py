@@ -3,7 +3,7 @@
 recompute_kaggle_dedup_stats.py — recompute Paper 1 Kaggle numbers on the
 dedupd sample set produced by Framework Fix #19.
 
-Paper 1 (docs/paper_phase1_ieee.tex) currently reports Kaggle ASAG on the
+Paper 1 (docs/ConceptGrade_FullPaper.tex) currently reports Kaggle ASAG on the
 full N=473 sample set. Fix #19 found 105 byte-identical duplicate records
 (each pair had matching human_score) — treating them as independent
 observations underestimates variance and biases significance downward.

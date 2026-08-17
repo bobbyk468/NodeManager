@@ -2,8 +2,19 @@
 ## Two Papers, One System: From Automated Grading to Visual Understanding
 
 **Prepared by:** Brahmaji Katragadda  
-**Date:** April 2026  
+**Date:** April 2026 (Paper 1 numbers refreshed August 2026)  
 **Audience:** Professor review / research discussion
+
+---
+
+**Note on this revision.** An earlier draft of Paper 1 (and this notes
+document) reported headline numbers computed on a fabricated 120-sample
+fixture, discovered and retracted mid-project. This document has been
+updated to report only the real, corrected results (Mohler et al. 2011,
+$n=1{,}262$ responses across 46 questions). The full incident record is
+in `REPRODUCIBILITY.md`; the corrected numbers below are weaker and more
+qualified than the originals, which is itself part of what I'd want to
+walk the professor through.
 
 ---
 
@@ -49,7 +60,7 @@ The core idea is simple: instead of comparing the student's answer directly to a
 Here is what the system does, step by step:
 
 **Layer 1 — Concept Extraction:**
-The student's free-text answer goes through a large language model (I used Llama-3.3-70b via Groq). The LLM's job is not to grade — it is to extract a structured list of concepts and relationships from the answer. For example, from Student B's "pile of dishes" answer, the LLM would extract: `stack`, `last-in-first-out`, `top`, `add-to-top`, `remove-from-top`. These become the nodes and edges of what I call the **Student Concept Graph**.
+The student's free-text answer goes through a large language model (`gemini-2.5-flash`, via the Google Generative AI batch API — the same model used everywhere else in the pipeline and for the baseline, so model choice never confounds the comparison). The LLM's job is not to grade — it is to extract a structured list of concepts and relationships from the answer. For example, from Student B's "pile of dishes" answer, the LLM would extract: `stack`, `last-in-first-out`, `top`, `add-to-top`, `remove-from-top`. These become the nodes and edges of what I call the **Student Concept Graph**. The reported configuration runs this extraction three times with self-consistency majority-voting.
 
 **Layer 2 — Knowledge Graph Comparison:**
 I manually built an expert **Domain Knowledge Graph (KG)** for Computer Science Data Structures. It has 101 concepts (like `stack`, `queue`, `binary_search_tree`, `merge_sort`) and 138 relationships between them (like *"stack has\_property LIFO"*, *"heap\_sort uses heap"*). The system compares the Student Concept Graph against this expert KG and computes three scores:
@@ -63,8 +74,8 @@ Using Bloom's Taxonomy (Remember → Understand → Apply → Analyze → Evalua
 **Layer 4 — Misconception Detection:**
 The system checks the student's concept graph against a taxonomy of 16 known CS misconceptions. For example, *"confusing LIFO with FIFO in a stack"* (DS-STACK-01) or *"thinking BST search is O(n²)"*. If detected, the student gets a flag and a specific remediation hint.
 
-**Layer 5 — Score Synthesis:**
-All four signals are combined with weights (concept coverage carries 25%, cosine similarity 10%, depth 20%, SOLO 20%, relationship accuracy 15%, completeness 10%) into a final score from 0 to 5.
+**Layer 5 — Score Synthesis and Verification:**
+The coverage/accuracy/integration scores and the depth scores are first combined into a deterministic KG-formula score ($s_{\text{kg}}$: 45% coverage + 35% accuracy + 20% integration, blended 60/40 with a Bloom's/SOLO depth score, then discounted by a misconception penalty). This is blended with a holistic, KG-evidence-informed LLM score at a 5%/95% weight — so $s_{\text{kg}}$ already has only a small mathematical say. That blended score is then passed to an independent LLM-as-judge **Verifier**, and in the deployed configuration the Verifier's own score entirely replaces it ($w=1.0$). I want to flag this plainly rather than bury it: **the KG-grounded formula score, on its own, turns out to be a substantially worse predictor than the zero-shot baseline** (see the ablation finding below). Almost all of ConceptGrade's real accuracy comes from the Verifier stage, not from the deterministic KG-comparison the system is named for.
 
 ### The Knowledge Graph — Why I Built It Manually
 
@@ -74,41 +85,41 @@ I want to be honest here: building the expert KG took significant effort. I did 
 
 ## How I Evaluated It
 
-**Dataset:** I used the Mohler et al. (2011) benchmark, which is the standard dataset for CS short-answer grading. It has 120 student answers across six data structures topics, each graded by two human annotators on a 0–5 scale.
+**Dataset:** I use the Mohler et al. (2011) benchmark, the standard dataset for CS short-answer grading. The full benchmark has 630 responses across 87 questions; I evaluate on the KG-aligned subset my expert Data Structures knowledge graph actually covers — 1,262 responses across 46 questions, each graded by two human annotators on a 0–5 scale, evaluated as one full sample (no held-out split; the pipeline's hyperparameters were fixed before I touched this data).
 
-**Comparison:** I compared ConceptGrade against the LLM zero-shot baseline — meaning asking the LLM directly "grade this answer from 0–5" without any concept extraction or KG comparison.
+**Comparison:** I compared ConceptGrade against an LLM zero-shot baseline using the *identical* underlying model (`gemini-2.5-flash`, same temperature, same rubric) — asking it directly "grade this answer from 0–5" with no concept extraction or KG comparison. Using the same model for both sides rules out model capability as a confound, but it does not by itself rule out a tuning-budget asymmetry: ConceptGrade's synthesis weights were tuned on a development split, and the baseline received no equivalent tuning. I disclose this openly in the paper's limitations rather than let the headline number imply a cleaner comparison than it is.
 
 **Results:**
 
 | What I Measured | LLM Baseline | ConceptGrade | Change |
 |-----------------|-------------|--------------|--------|
-| Mean Absolute Error (MAE) | 0.330 | 0.223 | **↓ 32.4%** |
-| Pearson correlation (r) | 0.9709 | 0.9820 | ↑ |
-| Quadratic Weighted Kappa | 0.9561 | 0.9750 | ↑ |
-| Statistical test (Wilcoxon) | — | **p = 0.0026** | Significant |
+| Mean Absolute Error (MAE) | 1.282 | 1.177 | **↓ 8.2%** (response-level $p<0.0001$) |
+| Pearson correlation (r) | 0.790 | 0.784 | **worse**, not better |
+| Quadratic Weighted Kappa | 0.501 | 0.524 | ↑ |
+| Question-clustered significance | — | $p = 0.111$ two-tailed / $0.056$ one-tailed | marginal, not clean |
 
-A 32.4% reduction in mean absolute error is meaningful in grading terms. If a student's true score is 3.0, the LLM baseline might give 2.67 on average; ConceptGrade gives 2.78. Across a class of 120 students, that matters.
+I want to be direct with the professor about how to read this table: an 8.2% MAE reduction is real and significant at the response level, but once responses are grouped by question (46 clusters, since answers to the same question aren't independent draws), the result only reaches one-tailed significance, and only 17 of 46 leave-one-question-out folds hold up. Pearson correlation is actually *worse* for ConceptGrade than for the plain baseline. This is a genuinely mixed, modest result — not the clean win an earlier, since-retracted version of this analysis reported.
 
-**The most interesting finding** came from the ablation study, where I removed each component one at a time and measured the drop. The single biggest contributor was Concept Coverage: removing it caused the QWK to fall from 0.721 to 0.305 — a drop of 0.416 points. This confirms the core hypothesis: knowing *which* concepts the student demonstrated is the most important signal for grading, more valuable than any other component.
+**The most important finding** came from a real-data 3-condition ablation, not from removing components one at a time. Isolating the deterministic, pre-verifier KG-formula score (`kg_score`) and comparing it against both the full pipeline and the zero-shot baseline shows: `kg_score` alone has MAE $= 2.397$ — **86.9% *worse* than the zero-shot baseline's $1.282$**, question-clustered $p<0.0001$. The full pipeline's accuracy (MAE $=1.177$) is recovered almost entirely by the Verifier stage, not by the knowledge-graph grounding the system is named for. This is the single most important thing I'd want the professor to take away from Paper 1: it's an honest architectural finding about *where the accuracy actually comes from*, and it complicates the paper's own framing.
 
-**Where does ConceptGrade help most?** On answers where students integrate multiple concepts (what SOLO calls Relational-level answers), ConceptGrade achieves a 70% error reduction compared to the baseline. On simple single-concept answers, both systems perform similarly. This makes sense: when a student writes a rich, connected answer, the graph structure matters and ConceptGrade captures it; when they write one sentence, there is not much structure to compare.
+I also compared against a call-budget-matched baseline (`C_LLM×7`, giving the baseline the same 7 LLM calls per response that the full ConceptGrade pipeline uses): ConceptGrade still wins by 4.4% MAE at the response level ($p=0.0053$), but that result is *not* significant once clustered by question ($p=0.4219$, winning only 25 of 46 questions — barely above chance).
 
 I also tested ConceptGrade on two other datasets:
-- **DigiKlausur** (646 neural network exam answers from Germany): significant improvement, p = 0.049
-- **Kaggle ASAG** (473 elementary science answers): not significant, p = 0.34
+- **DigiKlausur** (646 neural network exam answers from Germany): smaller but real improvement, 4.9% MAE reduction, $p = 0.049$
+- **Kaggle ASAG** (368 elementary science answers): no significant gain, $p = 0.702$ — concept extraction returns zero KG matches for 100% of these samples, because the KG's vocabulary doesn't cover elementary-science phrasing at all
 
-The Kaggle null result is not a failure — it tells me something important: KG-based grading works best when the domain has precise, technical vocabulary (CS, neural networks). When students write in informal everyday language (science for young students), the KG cannot anchor their words reliably. This defines the boundary of where my approach applies.
+The Kaggle null result is not a failure — it's diagnostic. It tells me KG-based grading works only when the domain vocabulary is actually covered by the knowledge graph (CS, neural networks); when students write in vocabulary the KG was never built for, there's nothing for the system to anchor to. That's the honest boundary of where this approach applies, and it's a boundary the effect size tracks cleanly across all three datasets (8.2% → 4.9% → 0.6%, roughly tracking domain overlap with the KG).
 
 ---
 
 ## What I Proved (Paper 1 Conclusion)
 
-1. A concept-aware grading system significantly outperforms LLM zero-shot grading on the standard CS benchmark (32.4% MAE reduction, p = 0.0026).
-2. Concept Coverage — knowing exactly which domain concepts the student demonstrated — is the single most important grading signal, more important than surface text similarity, cognitive level, or misconception detection.
-3. The system produces structured, actionable feedback ("You demonstrated: stack, LIFO. Missing: push_operation, pop_operation, time complexity") that no score-only system can provide.
-4. KG-based grading generalizes to adjacent domains (neural networks) but reaches its boundary at informal-language domains (elementary science).
+1. A concept-aware grading system gives a small, response-level-significant but question-level-fragile improvement over an identical-model LLM zero-shot baseline on real Mohler data (8.2% MAE reduction, $p<0.0001$ response-level / $p=0.056$ one-tailed question-clustered) — not the clean, strongly significant result an earlier, retracted analysis reported.
+2. That gain comes almost entirely from the Verifier's holistic LLM judgment, **not** from the deterministic KG-comparison score — which, tested alone, is 86.9% worse than the baseline. This is a real limitation of the current architecture, disclosed rather than hidden.
+3. The system produces structured, actionable feedback ("You demonstrated: stack, LIFO. Missing: push_operation, pop_operation, time complexity") that no score-only system can provide, independent of whether the numeric score itself beats the baseline by a wide margin.
+4. KG-based grading generalizes to adjacent domains (neural networks, smaller effect) but reaches a hard boundary at domains outside the KG's vocabulary (elementary science, no effect) — the effect size tracks how well the KG covers the domain.
 
-Paper 1 is complete. All data is cached, all results are verified, and the LaTeX manuscript is drafted.
+Paper 1's real-data results, the fabrication incident, and the full validation history are documented in `REPRODUCIBILITY.md`. The manuscript (`ConceptGrade_FullPaper.tex`) is drafted and compiles cleanly; I'd frame it to the professor as an honest, boundary-finding paper rather than a clean accuracy win.
 
 ---
 ---
@@ -250,7 +261,7 @@ Everything is built and tested:
 
 The relationship between the papers is important to state clearly for a professor:
 
-**Paper 1** answers the question: *Can a knowledge graph–driven system grade CS answers better than an LLM alone?* The answer is yes (p = 0.0026, 32.4% MAE reduction). This establishes that the underlying model is sound.
+**Paper 1** answers the question: *Can a knowledge graph–driven system grade CS answers better than an LLM alone, and where does that break down?* The answer is: a small, real, response-level-significant gain (8.2% MAE reduction, $p<0.0001$) that is only marginal once question-clustering is accounted for, and that comes mostly from the Verifier stage rather than the KG-grounding itself. This establishes what the system can and can't yet claim — not a clean "the model is sound" result.
 
 **Paper 2** answers a different question: *Given that the model is accurate, how do you get instructors to actually use and trust it?* The answer is: give them a visual interface that projects the model's reasoning onto their own domain knowledge, so they can audit it, understand it, and improve it.
 
@@ -267,19 +278,26 @@ This separation is intentional. ASAG accuracy and VA system design are different
 | Metric | Value |
 |--------|-------|
 | KG size (Data Structures) | 101 concepts, 138 relationships |
-| Benchmark size | 120 student answers (Mohler 2011) |
-| MAE reduction vs. LLM baseline | **32.4%** (p = 0.0026) |
-| Most important component | Concept Coverage (ΔQWK = −0.416 when removed) |
-| Best improvement area | Relational-level answers (**70% error reduction**) |
-| Cross-dataset: DigiKlausur (NN) | Significant (p = 0.049) |
-| Cross-dataset: Kaggle ASAG (Science) | Not significant (p = 0.34) — boundary condition |
+| Benchmark size (real, KG-aligned) | 1,262 responses, 46 questions (Mohler 2011) |
+| MAE reduction vs. LLM baseline | **8.2%** (response-level $p<0.0001$; question-clustered $p=0.111$ two-tailed / $0.056$ one-tailed) |
+| Pearson r vs. baseline | 0.784 vs. 0.790 — **worse**, not better |
+| Where the gain actually comes from | The Verifier stage; the deterministic KG-formula score alone is 86.9% *worse* than baseline |
+| Cross-dataset: DigiKlausur (NN) | Significant, smaller effect (4.9% MAE reduction, p = 0.049) |
+| Cross-dataset: Kaggle ASAG (Science) | Not significant (p = 0.702) — 0% KG concept matches, boundary condition |
+| Call-budget-matched comparison | ConceptGrade still wins response-level (+4.4%, p=0.0053), not question-clustered (p=0.4219) |
 | User study size (Paper 2) | N = 30 educators, 2 conditions |
 | Zero-grounding rate (DeepSeek-R1) | 97.7% of traces |
-| Combined validation tests passed | 64 / 65 (98.5%) |
+| Fabrication incident | Retracted; see `REPRODUCIBILITY.md` for the full record |
 
 ---
 
 # Questions I Expect From the Professor
+
+**Q: If the KG-formula score alone is worse than the baseline, what is the knowledge graph actually contributing?**
+A: Right now, less than the paper's title implies — this is the finding I'd lead with, not bury. The KG-comparison score feeds into the pipeline as evidence for the Verifier's holistic judgment (and produces the structured, per-concept feedback instructors see — Layer 2's output, not its numeric score, is what's useful downstream), but as a standalone predictor it's 86.9% worse than just asking the LLM directly. I see two honest paths forward: reframe the contribution around structured feedback and interpretability rather than raw accuracy, or invest in making the deterministic KG score itself more predictive before claiming an accuracy win from it.
+
+**Q: An earlier version of this work used fabricated data — what happened, and why should I trust the new numbers?**
+A: I found, during a routine reproducibility check, that some headline numbers had been computed on a fabricated 120-sample fixture instead of the real Mohler dataset. I retracted every affected claim rather than quietly replacing it, re-ran everything on the real 1,262-sample data, and kept the retracted material in the paper's appendix — labeled, not deleted — as part of the record. The new numbers are weaker and more heavily caveated than the originals, which is itself evidence they weren't picked to look good; the full incident timeline and verification scripts are in `REPRODUCIBILITY.md`.
 
 **Q: Why not just fine-tune an LLM on the grading dataset instead of building all this?**
 A: Fine-tuning can improve accuracy, but it makes the system even more opaque — you get a number with no explanation of *why*. My approach sacrifices some raw accuracy potential in exchange for interpretability and structured feedback. For educational applications, interpretability is not a nice-to-have; it is the whole point.

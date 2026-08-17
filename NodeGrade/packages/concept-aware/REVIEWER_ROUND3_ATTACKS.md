@@ -82,7 +82,7 @@
 
 ## ROUND 3 — DEVELOPER FIXES APPLIED ✅
 
-### Paper 1 changes (paper_phase1_ieee.tex, §4.1 Dataset and Evaluation Protocol):
+### Paper 1 changes (ConceptGrade_FullPaper.tex, §4.1 Dataset and Evaluation Protocol):
 1. **Scope of evaluation paragraph (new):** Acknowledged 120/630 = 19% subset as KG-aligned favorable conditions; framed all Mohler results as "performance under KG-aligned conditions"; pointed to cross-dataset generalization on DigiKlausur (high specificity) and Kaggle ASAG (low specificity).
 2. **Partition protocol clarification:** Stratification now explicitly preserves \emph{question proportions} (each question contributes the same proportional split — no question exclusively in dev or test).
 3. **Sample-size rationale (new):** Documented 120 as the maximal KG-aligned subset (no subsampling); reported post-hoc power $> 0.95$ at $\alpha=0.05$ for the primary Wilcoxon test (effect size $d \approx 0.83$).

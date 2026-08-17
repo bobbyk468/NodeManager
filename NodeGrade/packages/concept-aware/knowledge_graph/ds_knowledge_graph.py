@@ -8,13 +8,20 @@ Covers concepts typically assessed in the Mohler dataset.
 Version history:
   1.0-expert  Initial release: 101 concepts, 138 relationships.
               This is the snapshot used to compute the evaluation numbers
-              reported in Paper 1 (docs/paper_phase1_ieee.tex).
+              reported in Paper 1 (paper/main.tex, submission version;
+              full historical draft in docs/ConceptGrade_FullPaper.tex).
+              Frozen, unmodified copy: data/ds_knowledge_graph.json.
   1.1-expert  KG-completion pass (2026-06-15): wired 15 previously-isolated
               concepts and added operation-pair contrast edges (push/pop,
               enqueue/dequeue, fifo/lifo, etc). 101 concepts, 187
               relationships. NOT the snapshot the evaluation numbers in
               Paper 1 were computed against -- re-evaluation on this
               version is a documented open item (see paper Limitations).
+              This function (build_data_structures_graph) currently builds
+              THIS version. Never save its output to
+              data/ds_knowledge_graph.json -- that path must stay the
+              frozen 1.0-expert snapshot (see run_demo.py for the correct
+              pattern of saving live-builder output elsewhere).
 """
 
 from .ontology import Concept, Relationship, ConceptType as CT, RelationshipType as RT

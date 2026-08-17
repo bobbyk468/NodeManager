@@ -23,7 +23,7 @@ samples. The eval results JSON stores samples in question-block order, so the
 question identity of sample i is i // 12.
 
 Run:
-    python compute_clustered_significance.py [--eval data/mohler_eval_results.json]
+    python compute_clustered_significance.py [--eval archive/fabricated_fixtures/mohler_eval_results.json]
 
 Outputs all numbers used in the paper's statistical-significance section:
   - Response-level Wilcoxon (two-tailed + one-tailed)
@@ -183,9 +183,13 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--eval",
-        default="data/mohler_eval_results.json",
+        default="archive/fabricated_fixtures/mohler_eval_results.json",
         type=Path,
-        help="Path to Mohler eval results JSON.",
+        help="Path to Mohler eval results JSON. Default is the retracted "
+             "fabricated fixture (reproduces the historical/retracted "
+             "result intentionally); pass --eval data/mohler_real_eval_results.json "
+             "for real data, or use verify_all_paper_claims.py for the "
+             "authoritative real-data numbers.",
     )
     parser.add_argument("--n-per-question", type=int, default=12)
     parser.add_argument("--n-questions", type=int, default=10)

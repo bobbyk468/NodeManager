@@ -62,7 +62,7 @@ Create `/Users/brahmajikatragadda/Desktop/PHD/NodeGrade/NodeManager/NodeGrade/pa
 ## ISSUE #2 & #3: Paper 1 LaTeX — Algorithm Environment Errors
 
 **Severity:** CRITICAL (Paper won't compile)  
-**Location:** `docs/paper_phase1_ieee.tex` lines 740-757  
+**Location:** `docs/ConceptGrade_FullPaper.tex` lines 740-757  
 **Problem:**  
 ```latex
 \begin{algorithmic}
@@ -190,7 +190,7 @@ trace context, and editor contributions separately.
 ## ISSUE #7: Zero-Grounding Algorithm — Formatting Issues
 
 **Severity:** LOW (Compiles, but rendering may be awkward)  
-**Location:** `docs/paper_phase1_ieee.tex` lines 740-757  
+**Location:** `docs/ConceptGrade_FullPaper.tex` lines 740-757  
 **Problem:**  
 Algorithm block uses undefined commands; even after fixing `\INPUT`/`\OUTPUT`, the environment may have line-wrapping issues due to long variable names ($s\_tokens$, $a\_tokens$, $match\_ratio$).
 

@@ -19,17 +19,17 @@
 
 | Issue | File | Changes | Impact |
 |-------|------|---------|--------|
-| **Issue 1: Grounding Density** | paper_phase1_ieee.tex | Added measurement protocol + Algorithm 1 + Table with confidence intervals | Defends Kaggle ASAG null result with methodology |
-| **Issue 2: TRM Algorithm** | paper_phase1_ieee.tex | Added 3-phase algorithm subsection + time complexity analysis + benchmarks | Addresses NP-completeness concern (O(n) linear, not exponential) |
+| **Issue 1: Grounding Density** | ConceptGrade_FullPaper.tex | Added measurement protocol + Algorithm 1 + Table with confidence intervals | Defends Kaggle ASAG null result with methodology |
+| **Issue 2: TRM Algorithm** | ConceptGrade_FullPaper.tex | Added 3-phase algorithm subsection + time complexity analysis + benchmarks | Addresses NP-completeness concern (O(n) linear, not exponential) |
 | **Issue 5: Validation Gates** | VALIDATION_GATE_PROTOCOL.md (NEW) | Complete 1,200-line protocol + Python automation script | Pre-registration safeguard prevents researcher bias |
 
 ### ✅ MEDIUM SEVERITY (4 Issues)
 
 | Issue | File | Changes | Impact |
 |-------|------|---------|--------|
-| **Issue 4: Confidence Filtering** | pipeline.py + paper_phase1_ieee.tex | Added extraction_confidence_threshold parameter + filtering logic + documentation | Filters spurious concepts (confidence < 0.70 rejected) |
+| **Issue 4: Confidence Filtering** | pipeline.py + ConceptGrade_FullPaper.tex | Added extraction_confidence_threshold parameter + filtering logic + documentation | Filters spurious concepts (confidence < 0.70 rejected) |
 | **Issue 6: IRR Timeline** | QUALITATIVE_CODEBOOK.md | Added detailed IRR pilot schedule + decision tree + contingency procedures | Clear pre-commitment timeline (Aug 1-3 pilot, Aug 4-15 coding) |
-| **Issue 7: Weight Sensitivity** | paper_phase1_ieee.tex | Added grid search results table for α, β, γ weights | Justifies optimal weight selection (0.5, 0.3, 0.2) |
+| **Issue 7: Weight Sensitivity** | ConceptGrade_FullPaper.tex | Added grid search results table for α, β, γ weights | Justifies optimal weight selection (0.5, 0.3, 0.2) |
 | **Issue 8: Virtualization** | ScoreSamplesTable.tsx | Implemented Intersection Observer + visibility tracking + conditional rendering | Supports 2000+ samples without DOM thrashing |
 
 ---
@@ -37,7 +37,7 @@
 ## Files Modified
 
 ### Papers
-- ✅ `/docs/paper_phase1_ieee.tex` 
+- ✅ `/docs/ConceptGrade_FullPaper.tex` 
   - Added: Grounding Density measurement protocol + Algorithm 1
   - Added: TRM Algorithm subsection (3 phases)
   - Added: Ensemble Weight Selection with sensitivity table

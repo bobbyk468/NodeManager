@@ -75,7 +75,7 @@ def real_5_stronger_bert() -> dict:
     err_mpnet = np.abs(human - mpnet_score)
 
     # Compare against C5_fix on the same test indices
-    with (BASE / "data" / "mohler_eval_results.json").open() as f:
+    with (BASE / "archive" / "fabricated_fixtures" / "mohler_eval_results.json").open() as f:
         ev = json.load(f)
     results = ev["results"]
     test_indices = [i for i in range(len(results)) if (i % 12) >= 3]

@@ -99,7 +99,7 @@ With:
 
 **Effort:** 1 hour  
 **Files to Modify:**
-- `/docs/paper_phase1_ieee.tex` (lines 622-655)
+- `/docs/ConceptGrade_FullPaper.tex` (lines 622-655)
 
 ---
 
@@ -218,7 +218,7 @@ linear in graph sizes, not exponential.
 
 **Effort:** 30 minutes  
 **Files to Modify:**
-- `/docs/paper_phase1_ieee.tex` (add subsection before Discussion)
+- `/docs/ConceptGrade_FullPaper.tex` (add subsection before Discussion)
 
 ---
 
@@ -414,7 +414,7 @@ robust to threshold variation in the range [0.60, 0.80].
 **Effort:** 30 minutes  
 **Files to Modify:**
 - `/conceptgrade/pipeline.py` (add parameter, update `assess_student()`)
-- `/docs/paper_phase1_ieee.tex` (methodology section)
+- `/docs/ConceptGrade_FullPaper.tex` (methodology section)
 
 ---
 
@@ -867,7 +867,7 @@ weight selection and ablation results provides additional confidence in the desi
 
 **Effort:** 40 minutes  
 **Files to Modify:**
-- `/docs/paper_phase1_ieee.tex` (add subsection after line 620)
+- `/docs/ConceptGrade_FullPaper.tex` (add subsection after line 620)
 
 ---
 

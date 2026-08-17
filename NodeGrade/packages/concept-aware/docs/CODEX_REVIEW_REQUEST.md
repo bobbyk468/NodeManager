@@ -8,7 +8,7 @@
 
 ## 1. What to review
 
-**Primary artifact:** `docs/paper_phase1_ieee.tex` (LaTeX source, ~1,780 lines) or the compiled `docs/paper_phase1_ieee.pdf` (15 pages) — either is fine to work from.
+**Primary artifact:** `docs/ConceptGrade_FullPaper.tex` (LaTeX source, ~1,780 lines) or the compiled `docs/ConceptGrade_FullPaper.pdf` (15 pages) — either is fine to work from.
 
 **Paper:** *"ConceptGrade: A Knowledge Graph–Driven Framework for Concept-Aware Automated Short Answer Grading in Computer Science Education."*
 
@@ -54,8 +54,8 @@ The prior reviewer treated this as a required fix before acceptance (either re-r
 
 | What | Path |
 |---|---|
-| Paper LaTeX source | `docs/paper_phase1_ieee.tex` |
-| Compiled PDF | `docs/paper_phase1_ieee.pdf` |
+| Paper LaTeX source | `docs/ConceptGrade_FullPaper.tex` |
+| Compiled PDF | `docs/ConceptGrade_FullPaper.pdf` |
 | Plain-English guide to the whole project (non-technical) | `docs/PAPER1_PLAIN_ENGLISH_GUIDE.md` (also as `.docx` with embedded figures) |
 | Reproducibility map (per-claim → script) | `REPRODUCIBILITY.md` |
 | Expert knowledge graph source (current state — 186 edges) | `knowledge_graph/ds_knowledge_graph.py` |

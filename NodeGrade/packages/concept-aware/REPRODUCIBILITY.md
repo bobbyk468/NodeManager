@@ -6,6 +6,123 @@ Designed so a reviewer can verify any number in either paper in seconds.
 
 ---
 
+## For editors and reviewers — start here
+
+**In one paragraph:** during internal review on 2026-07-28, we discovered that
+every quantitative result in an earlier draft of Paper 1 (ConceptGrade) —
+including the headline Table 1 numbers — had been computed against a
+hand-authored, fully synthetic 120-sample fixture masquerading as the real
+Mohler et al. (2011) benchmark, not the real dataset. We found this
+ourselves, before any external review flagged it. We re-ran the full
+evaluation against the real, verified Mohler dataset (`nkazi/MohlerASAG` on
+HuggingFace, 1,262 responses across 46 KG-aligned questions), and every
+number in the current paper draft reflects that real-data re-evaluation. The
+real effect is smaller and more fragile than the fabricated data implied
+(8.2% MAE reduction vs. a fabricated 32.4%; see the "CRITICAL" section
+immediately below for the full incident record). Retracted material is kept,
+clearly labeled, in supplementary materials for the record — not deleted.
+
+**Open items relevant to Paper 1's submission** (as of this writing; not
+resolved, not claimed to be resolved elsewhere in this file):
+- `compute_real_fixes.py`'s REAL-1 check (bootstrap CI, non-LLM baselines)
+  has not been updated for real data — see the one-glance checklist near
+  the end of this file.
+- The `kg_weight` sensitivity sweep is explicitly unresolved (see "Offline
+  KG-grounding failure-mode analysis" below) — not claimed as solved by any
+  offline analysis performed so far.
+- Kaggle ASAG's dataset provenance could not be independently verified
+  despite a targeted audit; it is labeled provenance-unverified, not
+  authenticated, and is kept in the evaluation on that basis (see "Dataset
+  Provenance Audit" below).
+- The expert knowledge graph and misconception taxonomy were built by a
+  single author/research group; the machine-IRR self-check (κ ≈ 0.12 on
+  real data, "slight agreement" — see the correction below) is weak even
+  as a self-administered lower bound, not independent external validation.
+
+**Second real-data correction, found and fixed 2026-08-17: machine-IRR
+taxonomy kappa.** The paper's machine-IRR pilot for the misconception
+taxonomy was reported as pooled micro-averaged κ=0.541, macro-averaged
+κ=0.465 ("moderate agreement"), cached in `data/taxonomy_kappa_results.json`.
+Running the authoritative command from this file's own checklist
+(`compute_taxonomy_kappa.py --all`) live reproduced neither number: it gives
+micro κ=0.116, macro κ=0.085 ("slight agreement"). We tried every plausible
+`--n`/`--k-min` combination against the real 1,262-sample data and none
+reproduces 0.541/0.465. Root cause (high confidence, not proven by version
+control since this repo has no fine-grained history for these files):
+`misconception_detection/detector.py`'s distinctive-phrase fix is dated
+2026-06-15; `datasets/mohler_loader.py` was switched to the real,
+KG-aligned 1,262-sample data on 2026-07-27, after that fix — the cached
+0.541/0.465 was almost certainly computed before the loader switch and
+never recomputed afterward, the same failure pattern as the original
+Mohler-dataset fabrication, just undiscovered until this pass. **Paper 1
+now reports the real, weaker number (κ_micro=0.116, κ_micro=0.085,
+"slight agreement") in the Methodology, Limitations, and Conclusion,** in
+both `paper/main.tex` and `docs/ConceptGrade_FullPaper.tex`.
+`data/taxonomy_kappa_results.json` and `verify_all_paper_claims.py`'s
+expected values were both regenerated/updated to match; `verify_all_paper_claims.py`
+now passes 378/378 against the corrected numbers. This means the
+machine-IRR pilot no longer supports even a "lower bound on human-coder
+agreement" framing — it should be read as a taxonomy-authoring limitation,
+not partial validation.
+
+**Fixed during the 2026-08-17 publication-readiness pass:** `run_demo.py`
+built the live v1.1-expert KG builder (`knowledge_graph/ds_knowledge_graph.py`,
+currently 187 relationships) and saved its output directly to
+`data/ds_knowledge_graph.json` — the exact path every evaluation script and
+Paper 1's reported numbers treat as the FROZEN v1.0-expert snapshot (101
+concepts, 138 relationships). Running the demo would have silently
+overwritten the frozen snapshot with the wrong KG version. Fixed by
+redirecting the demo's output to a separate, clearly-named file
+(`data/ds_knowledge_graph_v1.1_demo_DO_NOT_USE_FOR_EVAL.json`); no other
+script writes to `data/ds_knowledge_graph.json`, confirmed by a full-repo
+grep. The frozen file's `version` field (`"1.0-expert"`) and stats
+(101 concepts / 138 relationships) were re-verified intact after the fix.
+
+**Quarantined 2026-08-17:** `data/mohler_eval_results.json` (the fabricated
+120-sample fixture) was moved to
+`archive/fabricated_fixtures/mohler_eval_results.json`, out of `data/`
+where it could be mistaken for a current data file. The 9 scripts that
+actively read it (`compute_real_fixes.py`, `compute_real_fixes_v2.py`,
+`run_budget_matched_baseline.py`, `compute_clustered_significance.py`,
+`validate_c5fix_prompt_fix.py`, `run_validation_budget.py`,
+`compute_human_irr_and_per_question.py`, `validate_fix1_mohler_c5fix.py`,
+and indirectly `run_lrm_ablation.py`) were updated to the new path (or, for
+`run_lrm_ablation.py`, left pointing at the now-empty old path, since its
+own fallback logic then correctly loads the real MohlerDataset instead —
+confirmed by direct test: it now loads all 1,262 real samples). This also
+surfaced a previously-unnoticed bug: `run_lrm_ablation.py`'s
+`load_mohler_samples()` *preferred* the fabricated fixture whenever it was
+present at `data/mohler_eval_results.json`, silently falling back to real
+data only if the fixture was absent — moving the fixture out of `data/`
+fixes this for good, not just for this session. `verify_all_paper_claims.py`
+still passes (379/379, one check added for a stale Paper 2 kappa citation
+caught in the same pass); `compute_solo_breakdown.py` and
+`compute_cross_dataset_significance.py` (real data) and
+`compute_clustered_significance.py` (legacy, default now points at the
+archived fixture) were all re-run end-to-end and reproduce identical
+numbers to before the move.
+
+**Note (not yet actioned, flagged for a future pass):** three other
+`data/*.json` files with `n=120` were noticed during this quarantine pass
+and look like they may also be fabricated-fixture-era caches:
+`ablation_component_results.json`, `exp2_final_aggregate.json`,
+`gemini_pro_kg_results.json`. Auditing and (if warranted) quarantining
+these was out of scope for this pass — see "Don't let scope creep turn a
+trim-and-restructure pass into a new experiment cycle" — and is left as an
+open item.
+
+This file also documents a second, unrelated incident (the LAG/long-answer
+evaluation retraction) that belongs to a separate paper track (Paper 3) and
+does not block Paper 1's submission — see "the LAG (long-answer) evaluation
+is retracted" below if relevant to that other paper.
+
+Last full verification run referenced in this file: 2026-07-28. Paper-level
+citation/table fixes made after that date (see the paper's own revision
+history) were citation-accuracy corrections, not data corrections, and do
+not change any number reported here.
+
+---
+
 ## CRITICAL: the "Mohler dataset" was fabricated; real data now collected (2026-07-28)
 
 **Every quantitative result in this project computed before 2026-07-28 —
@@ -821,12 +938,12 @@ distribution masked.
   would also survive the same correction -- it may or may not; we do not
   know yet.
 
-  **Fixed in both papers**: `paper_phase1_ieee.tex`
+  **Fixed in both papers**: `ConceptGrade_FullPaper.tex`
   (\S\ref{subsec:selfconsistency} rewritten with the correction
   prominently placed at the top of the subsection, not buried;
   Abstract, Introduction contribution (v), and Conclusion all updated
   to state the corrected, more qualified claim) and
-  `paper_phase1_ieee_standard.tex` (the condensed submission-format
+  `paper_phase1_short.tex` (the condensed submission-format
   paper, same corrections applied throughout: Abstract, contributions
   list, Results subsection, Conclusion). `verify_all_paper_claims.py`
   gained 11 new checks (section "2h"), including an explicit guard that
@@ -888,8 +1005,8 @@ distribution masked.
   Both papers updated with the complete, final two-dataset picture
   (Table~\ref{tab:faircontrol} in each): the self-consistency
   subsection, Abstract, Introduction contribution (v), and Conclusion
-  in `paper_phase1_ieee.tex`; the equivalent sections in
-  `paper_phase1_ieee_standard.tex`. `verify_all_paper_claims.py` gained
+  in `ConceptGrade_FullPaper.tex`; the equivalent sections in
+  `paper_phase1_short.tex`. `verify_all_paper_claims.py` gained
   14 more checks (section "2i"), including a correlation-reversal check
   independently recomputed from joined per-sample data rather than
   trusted from the run's printed output. **336/338 checks pass** (same
@@ -919,7 +1036,7 @@ flagged as "not yet integrated" as of the prior session checkpoint.
 
 **Now integrated**: added as a new subsection,
 "Statistical Model Sensitivity: Linear Mixed-Effects Reanalysis"
-(`docs/paper_phase1_ieee.tex`, immediately before §Ablation Study), reporting
+(`docs/ConceptGrade_FullPaper.tex`, immediately before §Ablation Study), reporting
 the full 6-comparison table and an honest discussion of the mixed verdict —
 Mohler's three comparisons all strengthen under the LMM (cluster-Wilcoxon
 n.s. → LMM $p\le0.0125$ throughout), while the DigiKlausur headline result
@@ -934,7 +1051,7 @@ from the subsection text; all pass. Paper recompiles clean (0 errors, 0
 undefined references, 23 pages — reflowed, not lengthened, since the new
 subsection displaced trailing whitespace elsewhere).
 
-**Also added** to the condensed `docs/paper_phase1_ieee_standard.tex`: a
+**Also added** to the condensed `docs/paper_phase1_short.tex`: a
 short "Statistical model sensitivity" paragraph in
 §Self-Consistency Ensembling stating the same mixed verdict in
 space-constrained form (Mohler strengthens, DigiKlausur headline result
@@ -1428,11 +1545,250 @@ paper-facing table.
 
 ---
 
+## CRITICAL: the LAG (long-answer) evaluation is retracted — test-set leakage + domain mismatch + unverifiable provenance (2026-07-31)
+
+**The existing "long-answer grading" (LAG) system's headline result —
+Pearson r = 0.967 on a 20-sample hand-crafted benchmark
+(`data/lag_evaluation_results.json`) — is retracted. It should not be
+cited, quoted, or built upon.**
+
+**Retraction rationale, per external GPT review (2026-07-31,
+`docs/PAPER3_LONGANSWER_REVIEW_REQUEST.md`) — the three problems found
+are NOT treated as equally disqualifying, and provenance is deliberately
+kept separate from the other two rather than folded into "this is
+fabrication-equivalent":**
+
+- **Test-set leakage → sufficient on its own to retract the performance
+  claim.** The verifier prompt was iteratively tuned against this exact
+  benchmark, then that same benchmark's score was reported as the result.
+  This invalidates r=0.967 as an estimate of generalization regardless of
+  where the data came from.
+- **Domain mismatch → independently serious, supports the retraction.**
+  The claimed contribution is KG-grounded grading, but the deterministic
+  KG-comparison layer is structurally inert for 60% of the benchmark —
+  substantially weakening any architectural conclusion drawn from it.
+- **Missing provenance → does NOT by itself justify retraction.** Per
+  this project's own three-tier standard established for Kaggle ASAG
+  (Verified / Unverified / Invalid — see "Dataset Provenance Audit"
+  below), an unresolved provenance question belongs in **Unverified**,
+  not **Invalid**. Treated on its own, missing provenance alone would
+  have warranted a caveat, not a retraction. Applying a stricter standard
+  here than was applied to Kaggle ASAG would be inconsistent.
+
+### What was found
+
+The LAG pipeline (`conceptgrade/lag_pipeline.py`), its benchmark
+(`data/lag_benchmark.json`), and its evaluation script
+(`run_lag_evaluation.py`) were all added in a single commit (`714282b`,
+2026-03-25) by an earlier session, before the research-integrity audits
+that caught the Mohler fixture.
+
+1. **No provenance (Unverified, not by itself disqualifying).**
+   `lag_benchmark.json` is a flat JSON list of 20 `{question,
+   reference_answer, student_answer, human_score}` records. There is no
+   generation script anywhere in git history, no annotator identity, no
+   rubric, no disclosure of how `student_answer` text or `human_score`
+   labels were produced. The file appears fully-formed in the same commit
+   that added the pipeline that scores it.
+
+2. **Domain mismatch — the KG cannot see 60% of the benchmark
+   (independently serious).** The 20 samples span 5 topics (4 samples
+   each): `binary_search_tree`, `hash_table`, `virtual_memory`,
+   `tcp_vs_udp`, `garbage_collection`. Checked directly against
+   `data/ds_knowledge_graph.json` (the same 101-concept Data Structures
+   graph used everywhere else in this project): only `binary_search_tree`
+   and `hash_table` have any matching concept IDs. `virtual_memory`,
+   `tcp_vs_udp`, and `garbage_collection` — 12 of the 20 samples — match
+   **zero** KG concepts. The deterministic KG-comparison layer, the core
+   claimed advantage of ConceptGrade over a plain LLM grader, is
+   structurally meaningless for those 12 samples.
+
+3. **Test-set leakage (sufficient on its own).** A same-day follow-up
+   commit (`a92d5d4`, "Fix LAG over-estimation bias") shows explicit
+   before/after metrics (`Before: Bias=+0.625, MAE=0.625 ... After:
+   Bias=+0.350, MAE=0.400`) from directly editing the verifier's prompt
+   (adding explicit score anchors) against this exact 20-sample set, then
+   wiring the tuned prompt into `run_lag_evaluation.py` as the default.
+   The system was calibrated on its test set, then that same test set's
+   score was reported as the result — invalidating r=0.967 as an unbiased
+   estimate independent of problems (1) and (2).
+
+### Verification
+
+- `git log --all --diff-filter=A -- data/lag_benchmark.json` → one commit,
+  no precursor generation script found anywhere in `git log --all
+  --pretty=format: --name-only | sort -u`.
+- Concept-ID overlap check: loaded `data/ds_knowledge_graph.json`,
+  matched each LAG benchmark topic string against all 101 concept IDs —
+  `virtual_memory`, `tcp`/`udp`, `garbage_collection` return zero matches;
+  `hash_table` and `binary_search_tree` (`bst` → `abstract_data_type`)
+  match.
+- `git show a92d5d4` — commit message itself states the before/after
+  tuning metrics on the same benchmark used for the final reported score.
+
+### Impact / what still needs doing
+
+**Not done yet (this pass is documentation-only, zero API spend):**
+- `docs/ConceptGrade_LongAnswer_Extension.md` should get a retraction
+  notice on its Section 8 "Expected Impact" table and its Section 12
+  comparison table — both already correctly hedge the numbers as
+  "(projected)", so the doc is not itself making a false claim, but it
+  should now also point at this retraction so a reader doesn't confuse
+  "projected" with "later measured and confirmed."
+- `data/lag_benchmark.json` / `data/lag_evaluation_results.json` are kept
+  in place for the record (not deleted), per this project's established
+  convention of retracting-not-deleting.
+A new long-answer validation was built from scratch (Paper 3 /
+"long-answer paper" track — see `[[project_paper3_longanswer]]` memory),
+with: disclosed provenance (author-written, explicitly labeled synthetic,
+matching how the DS misconception taxonomy is disclosed as
+hand-authored), only KG-covered topics, and a fixed prompt/config decided
+*before* looking at results (no post-hoc tuning against the eval set).
+Results below.
+
+---
+
+## Paper 3 pilot: long-answer grading (2026-07-31, first honest measurement)
+
+**Replaces** the retracted LAG evaluation above. Per external GPT review
+(`docs/PAPER3_LONGANSWER_REVIEW_REQUEST.md`), this pilot is explicitly
+framed as **hypothesis-driven stress testing of a predicted failure
+mode**, not a representative evaluation — the 4 misconception-containing
+samples were deliberately constructed to test whether the design doc's
+own predicted weakness ("subtle errors buried in the middle paragraphs...
+leading to under-detection," written before any measurement existed)
+actually occurs. That is a different, narrower experiment than estimating
+how often this happens on real, independently-written long answers, and
+the results below should not be read as the latter.
+
+**Scope disclosure (per review):** the same person designed the pipeline
+being tested, wrote the 8 answers, and assigned the target scores. This
+pilot should be read as **developer-authored functional validation**,
+not an estimate of educational grading performance on a representative
+population — that coupling is exactly why the numbers below are
+reported as descriptive observations, not inferential statistics (see
+below).
+
+### Method
+
+- `build_paper3_pilot_set.py` — 8 author-written (not real students, not
+  LLM-generated), multi-paragraph answers (71–258 words) spanning 6
+  topics, each checked against `data/ds_knowledge_graph.json` for KG
+  coverage before inclusion (the retracted set's exact failure point: 3/5
+  of its topics had zero KG overlap). 4 samples contain a deliberately
+  embedded misconception from the existing taxonomy (DS-TREE-01,
+  DS-HASH-01, DS-SORT-01, DS-STACK-01); 4 are clean, spanning shallow to
+  excellent. Each sample is tagged with an author-intended score
+  (0–5) **before** running the pipeline.
+- `run_paper3_pilot.py` — runs all 8 through `LongAnswerPipeline` with a
+  config fixed in the script header before any result was seen:
+  `model=gemini-2.5-flash, use_sure=True, use_cross_para=True`. The
+  verifier prompt is whatever `verifier.py`'s `mode='lag'` branch
+  currently contains — i.e., the prompt previously calibrated against the
+  now-retracted benchmark, reused as-is on this genuinely new data (not
+  re-tuned). Raw output: `data/paper3_longanswer/pilot_run_v1_results.json`.
+
+### Illustrative Pilot Observations (Not Performance Estimates)
+
+**No inferential statistical claims are made from the descriptive values
+below.** MAE, bias, and Pearson r are reported only because omitting them
+entirely would make the per-sample pattern harder to see, not as
+estimates of expected real-world performance — n=8 on
+developer-authored, hypothesis-targeted samples cannot support that kind
+of claim regardless of how it's phrased.
+
+| id | topic | target | actual | diff | misconception designed? | detected? |
+|---|---|---|---|---|---|---|
+| recursion_excellent | recursion | 4.75 | 3.96 | −0.79 | no | — |
+| queue_good_shallow_depth | queue | 3.25 | 3.46 | +0.21 | no | — |
+| linked_list_surface_level | linked_list | 2.00 | 3.68 | **+1.68** | no | — |
+| bst_tree_conflation | binary_search_tree | 2.25 | 3.35 | +1.10 | **yes** | **no** |
+| hash_table_complexity_misconception | hash_table | 3.25 | 3.21 | −0.04 | **yes** | **no** |
+| sorting_quicksort_mergesort_misconception | sorting | 3.00 | 3.88 | +0.88 | **yes** | **no** |
+| stack_queue_conflation_longform | stack | 1.25 | 2.40 | +1.15 | **yes** | yes (2 flagged) |
+| dynamic_array_excellent | array | 4.75 | 3.44 | **−1.31** | no | — |
+
+**MAE = 0.895, bias = +0.360 (net over-scoring), Pearson r = 0.592**
+against author-intended targets (n=8 — too small for a stable r estimate
+on its own; reported for completeness, not as a headline claim).
+
+**Misconception recall: 1/4 (25%).** Only the most literal restatement
+(`stack_queue_conflation_longform`, which directly says "stacks use FIFO
+order," near-identical in phrasing to the already-validated short-answer
+case) was caught. The three misconceptions requiring the reader to
+connect a claim to a fact stated *elsewhere in the same answer* — BST
+ordering claimed for general binary trees, hash tables claimed always
+O(1) two paragraphs after correctly explaining collisions, quicksort
+claimed always faster with no worst-case mention — were all missed.
+
+**Two independent problems visible in the same 8 samples:**
+1. **Excellent long answers are penalized.** Both hand-designed "excellent"
+   samples scored well below their intended range (recursion: 3.96 vs
+   4.75; dynamic array: 3.44 vs 4.75 — the largest single miss). Both
+   answers correctly explain amortized analysis / recursion-vs-iteration
+   tradeoffs unprompted, exactly the kind of unprompted depth the
+   short-answer system's Bloom's/SOLO layers are designed to reward.
+2. **Fluency is rewarded over correctness at length.** The shallow,
+   correct-but-thin `linked_list_surface_level` sample (target 2.0, meant
+   to score low on depth alone) scored 3.68 — higher than three of the
+   four misconception-containing samples. `bst_tree_conflation`, which
+   states the mathematically backwards claim that ordering holds for
+   *any* binary tree, scored 3.35 — above the honest shallow answer and
+   above its own 2.25 target — because the misconception went undetected
+   and the answer's fluent use of correct vocabulary (in-order traversal,
+   O(log n)) was rewarded regardless.
+
+### Why, mechanistically (consistent with the design doc's own predicted failure modes)
+
+`docs/ConceptGrade_LongAnswer_Extension.md` §2.5 predicted exactly this
+before any measurement existed: *"subtle errors buried in the middle
+paragraphs may be overshadowed by correct framing in the opening and
+closing, leading to under-detection."* All three missed misconceptions in
+this pilot are stated in a middle paragraph, immediately preceded or
+followed by correct, fluent technical content — the predicted failure
+mode, now measured rather than projected.
+
+### What this does and doesn't show
+
+**Claim, stated at the precision the evidence supports (per external
+review — "preliminary," "pilot," "evidence," not "demonstrates,"
+"proves," or "establishes"):**
+
+> The pilot provides preliminary evidence that distributed
+> misconceptions — ones requiring the reader to connect two non-adjacent
+> claims — are harder for the current architecture to detect than
+> explicit, locally-stated misconceptions.
+
+- **Does show:** on this specific hypothesis-driven stress test,
+  `LongAnswerPipeline` as currently implemented missed all 3 designed
+  non-adjacent misconceptions while catching the 1 locally-stated one,
+  and showed a directional tendency to under-score two deliberately
+  excellent answers while over-scoring a fluent-but-wrong one. This is
+  consistent with, but does not on its own establish, the predicted
+  mechanism generally — it is one reproducible run against one
+  small, targeted, developer-authored set.
+- **Does not show:** general long-answer performance at scale, prevalence
+  of this failure mode on independently-written (non-adversarial) long
+  answers, or anything about educational grading performance on a
+  representative population (n=8, author-written, one model, one config,
+  one run — no repeated sampling, no human inter-rater baseline, no
+  independent authorship of the test items). Any future write-up must
+  carry these caveats forward rather than generalizing from 8 samples.
+- **Publication status:** per external review, a negative result with a
+  demonstrated (if preliminary) mechanism is a legitimate, sufficient
+  basis for a Paper 3 contribution on its own — attempting a fix is
+  valuable future work, not a prerequisite. If a fix is attempted later,
+  it must be evaluated on a *new* set, never re-using these same 8
+  samples to both tune and report on (the exact mistake being corrected
+  here).
+
+---
+
 ## Embedded-Figure Audit (2026-07-31): a verification blind spot found and fixed
 
 While adding new figures for the algorithm-investigation and provenance
 content (user request), the six pre-existing embedded PNG figures in
-`docs/paper_phase1_ieee.tex` were inspected visually for the first time
+`docs/ConceptGrade_FullPaper.tex` were inspected visually for the first time
 this session. **This surfaced a real gap**: `verify_all_paper_claims.py`'s
 375 checks only `grep` the `.tex` **text** — they have never had any
 visibility into embedded image content, so a figure could silently
@@ -1507,18 +1863,52 @@ GEMINI_API_KEY=...
 
 ## Master verification command (~10 seconds, $0)
 
+**Read this before running the block below.** Not every script here operates
+on the real data. Two of them (`compute_clustered_significance.py`,
+`compute_human_irr_and_per_question.py`) still read the pre-2026-07-28
+fabricated-fixture file (`data/mohler_eval_results.json`, 120 samples) by
+default and were never migrated to the real dataset — their *default*
+output (n=120, 32.4% MAE reduction, etc.) is the **retracted** historical
+result, reproduced intentionally for the record, not the paper's current
+claim. Running them unflagged and comparing their printed numbers against
+the paper's real headline (8.2% MAE reduction, n=1,262) will look like a
+mismatch; it is not — it's two different, clearly-labeled datasets. The
+paper's real-data claims are independently verified by
+`verify_all_paper_claims.py`, which reads
+`data/mohler_real_eval_results.json` directly and is the authoritative
+check. `compute_clustered_significance.py` does support pointing at the
+real file via `--eval data/mohler_real_eval_results.json`, but its
+fixed-block clustering (`--n-per-question`/`--n-questions`) assumes a
+uniform responses-per-question count and cannot reproduce the paper's real,
+variably-sized 46-question clustering that way — use
+`verify_all_paper_claims.py` for the authoritative real-data
+question-clustered numbers instead.
+
+`compute_real_fixes.py` and `compute_real_fixes_v2.py` both currently crash
+(`ValueError: Array shapes are incompatible for broadcasting`, inside their
+Sentence-BERT / mpnet baseline Wilcoxon comparisons) when run as-is — this
+is the same REAL-1/REAL-3 not-yet-updated-for-real-data gap already flagged
+above, now confirmed by direct execution rather than only documented. Both
+load the real dataset successfully and fail only at the final significance
+test, where an array sized for the old n=90 fabricated test-split is
+compared against one sized for the real data. Treat their output as
+unavailable until fixed; do not rely on either for submission.
+
 ```bash
 .venv/bin/python -m pytest tests/ -q                          # 63/63 unit tests
-.venv/bin/python compute_clustered_significance.py            # Paper 1 §4.2
-.venv/bin/python compute_cross_dataset_significance.py        # Paper 1 §4.3 (Kaggle deduplicated)
-.venv/bin/python compute_solo_breakdown.py                    # Paper 1 §5
-.venv/bin/python compute_taxonomy_kappa.py --all              # Paper 1 §3.4
+.venv/bin/python compute_clustered_significance.py             # RETRACTED historical result (n=120) -- reproduces the record, not the paper's current claim; see note above
+.venv/bin/python compute_cross_dataset_significance.py        # Paper 1 §4.3 (Kaggle deduplicated) -- real data
+.venv/bin/python compute_solo_breakdown.py                    # Paper 1 §5 -- real data
+.venv/bin/python compute_taxonomy_kappa.py --all              # Paper 1 §3.4 -- real data
 .venv/bin/python smoke_run_mohler.py                          # pipeline smoke (cache hit)
-.venv/bin/python compute_real_fixes.py                        # Paper 1 §5 + Table 2 (n=90 test-split headline)
-.venv/bin/python compute_real_fixes_v2.py                     # Paper 1 §5 (cluster bootstrap + mpnet + BCa)
-.venv/bin/python compute_human_irr_and_per_question.py        # Paper 1 §5 + §7 (human IRR + per-question)
-.venv/bin/python recompute_kaggle_dedup_stats.py               # Paper 1 §4.3 (Kaggle N=473 -> 368)
-.venv/bin/python verify_all_paper_claims.py                   # cross-checks 219 paper claims against cached data
+.venv/bin/python compute_real_fixes.py                        # BROKEN on real data -- crashes in real_3(); see note above
+.venv/bin/python compute_real_fixes_v2.py                     # BROKEN on real data -- same crash as compute_real_fixes.py; see note above
+.venv/bin/python compute_human_irr_and_per_question.py        # RETRACTED historical result (n=120) -- reproduces the record, not the paper's current claim; see note above
+.venv/bin/python recompute_kaggle_dedup_stats.py               # Paper 1 §4.3 (Kaggle N=473 -> 368) -- real data
+.venv/bin/python compute_calibration_analysis.py              # Paper 1 subsec:calibration -- real data
+.venv/bin/python compute_kgweight_sensitivity_real.py         # Paper 1 §6 kg_weight sweep -- real data
+.venv/bin/python compute_lmm_reanalysis.py                    # Paper 1 LMM reanalysis -- real data
+.venv/bin/python verify_all_paper_claims.py                   # AUTHORITATIVE: cross-checks 378 paper claims against real cached data
 ```
 
 The last script (`verify_all_paper_claims.py`) is the **single-shot
@@ -1543,6 +1933,11 @@ Errors caught and fixed by this script (cumulative, all sessions) include:
 - KG relationship count: paper text vs. live builder vs. frozen
   evaluation-snapshot JSON now explicitly distinguished (138 evaluated /
   187 current; see "KG version disclosure" below)
+- Taxonomy κ cached file was regenerated with the wrong default `n` again
+  (same failure mode as the n=30→n=120 entry above) at some point after the
+  2026-07-27 real-data loader switch, and never re-run with `--all`
+  afterward; 0.541/0.465 (moderate) → 0.116/0.085 (slight), corrected
+  2026-08-17 — see the full discrepancy record above
 - Table 1 caption/values mismatch: caption claimed $n=90$, values were
   $n=120$ (2026-06-15, caught by independent review)
 - Cross-dataset pool computed on pre-deduplication Kaggle data (473
@@ -1820,8 +2215,8 @@ development subset used to tune synthesis weights).
 | Claim | Number | Script |
 |---|---|---|
 | Taxonomy entries | 16 | `misconception_detection/detector.py` (constant) |
-| Machine-IRR pilot $\kappa_{\text{micro}}$ | 0.541 | `compute_taxonomy_kappa.py --all` |
-| Machine-IRR pilot $\kappa_{\text{macro}}$ | 0.465 | same |
+| Machine-IRR pilot $\kappa_{\text{micro}}$ | 0.116 (real, corrected 2026-08-17) | `compute_taxonomy_kappa.py --all` |
+| Machine-IRR pilot $\kappa_{\text{macro}}$ | 0.085 (real, corrected 2026-08-17) | same |
 | Per-entry max ($\kappa$) | 1.00 (DS-HASH-01, DS-TREE-03) | same |
 | Per-entry substantial ($\kappa$) | 0.66 (DS-LINK-03) | same |
 
@@ -1946,7 +2341,7 @@ These are NOT reproducible in this repo without external action:
 [x] compute_cross_dataset_significance.py reproduces 2,276-unique-sample meta-analysis
     (real Mohler n=1,262 + DigiKlausur + Kaggle ASAG deduplicated: 473 -> 368)
 [x] compute_solo_breakdown.py reproduces per-SOLO MAE on all three datasets
-[x] compute_taxonomy_kappa.py reproduces taxonomy machine-IRR kappa (0.541/0.465)
+[x] compute_taxonomy_kappa.py --all reproduces taxonomy machine-IRR kappa (0.116/0.085, real, corrected 2026-08-17)
 [x] compute_validation_gate.py end-to-end runnable with synthetic sessions
 [x] smoke_run_mohler.py exercises the live pipeline (cache hit, $0 spend)
 [x] verify_all_paper_claims.py: 352/354 claims pass (2 pre-existing, unrelated

@@ -339,7 +339,7 @@ packages/concept-aware/docs/
 ├── PAPER2_REVIEW_DRAFT.md            ← This file
 ├── user_study_protocol_vis2027.md    ← Study execution guide
 ├── analysis_plan_qualitative.md      ← Qualitative analysis scheme
-├── paper_phase1_ieee.tex             ← Paper 1 (ML accuracy)
+├── ConceptGrade_FullPaper.tex             ← Paper 1 (ML accuracy)
 ├── paper_multidataset_table.tex      ← Supplementary ML results
 └── references.bib                     ← BibTeX (to be populated)
 ```

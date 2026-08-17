@@ -196,7 +196,7 @@ def real_3() -> dict:
 
     # Pull C5_fix and C_LLM predictions on the same test indices from the
     # cached eval JSON so the comparison is direct
-    with (BASE / "data" / "mohler_eval_results.json").open() as f:
+    with (BASE / "archive" / "fabricated_fixtures" / "mohler_eval_results.json").open() as f:
         ev = json.load(f)
     results = ev["results"]
     test_indices = [i for i in range(len(results)) if (i % 12) >= 3]

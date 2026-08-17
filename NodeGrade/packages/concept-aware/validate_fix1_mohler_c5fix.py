@@ -52,7 +52,7 @@ def main():
     from concept_matching import should_use_kg_evidence
 
     dataset = load_mohler_sample()
-    with (DATA / "mohler_eval_results.json").open() as f:
+    with (BASE / "archive" / "fabricated_fixtures" / "mohler_eval_results.json").open() as f:
         cached = json.load(f).get("results", [])
 
     # Loader has Q1 samples in descending score order [0..11], Q2 in [12..23], etc.

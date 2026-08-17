@@ -47,7 +47,7 @@ def main() -> int:
         "cohen_kappa": round(ck, 4),
     }
 
-    with (BASE / "data" / "mohler_eval_results.json").open() as f:
+    with (BASE / "archive" / "fabricated_fixtures" / "mohler_eval_results.json").open() as f:
         ev = json.load(f)
     res = ev["results"]
     per_q = []

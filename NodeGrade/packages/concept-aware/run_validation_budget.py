@@ -367,7 +367,7 @@ def phase3_error_archetypes(args, budget: BudgetTracker) -> dict:
 
     # Mohler in-domain failures (high discrepancy)
     mds = load_mohler_sample()
-    with (BASE / "data" / "mohler_eval_results.json").open() as f:
+    with (BASE / "archive" / "fabricated_fixtures" / "mohler_eval_results.json").open() as f:
         m_ev = json.load(f)["results"]
     m_paired = []
     for i, r in enumerate(m_ev):

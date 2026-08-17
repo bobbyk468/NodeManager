@@ -5,6 +5,19 @@
 **Status:** Design Proposal
 **Related:** ConceptGrade_Implementation_Report.md
 
+> **⚠ RETRACTION NOTICE (2026-07-31):** The one *measured* long-answer
+> result associated with this design doc's pipeline — a 20-sample
+> hand-crafted benchmark reporting Pearson r = 0.967
+> (`data/lag_evaluation_results.json`) — is retracted. It has unverifiable
+> provenance, 60% of its samples cover topics outside the knowledge
+> graph's scope, and its headline metric was measured *after* tuning the
+> grading prompt against that same benchmark (test-set leakage). Full
+> writeup: `REPRODUCIBILITY.md`, section "CRITICAL: the LAG (long-answer)
+> evaluation is retracted." The "(projected)" numbers elsewhere in this
+> document were never claimed as measured and are unaffected by this
+> retraction, but should still not be read as validated. A new long-answer
+> validation is being built from scratch under the "Paper 3" track.
+
 ---
 
 ## 0. Current State vs. Planned

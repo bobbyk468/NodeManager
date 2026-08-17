@@ -140,6 +140,6 @@ mkdir -p data/session_logs
 
 # 6. LaTeX compile
 cd docs
-pdflatex -interaction=nonstopmode paper_phase1_ieee.tex  # 10 pp, 1 sub-pixel warning
+pdflatex -interaction=nonstopmode ConceptGrade_FullPaper.tex  # 10 pp, 1 sub-pixel warning
 pdflatex -interaction=nonstopmode paper_phase2_vis2027.tex  # 14 pp, zero warnings
 ```

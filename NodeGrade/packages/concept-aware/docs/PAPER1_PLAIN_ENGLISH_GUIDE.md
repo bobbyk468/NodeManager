@@ -304,8 +304,8 @@ Three things this project set out to demonstrate, and what actually happened:
 
 | What | File |
 |---|---|
-| The full academic paper (LaTeX source) | `docs/paper_phase1_ieee.tex` |
-| The compiled paper PDF | `docs/paper_phase1_ieee.pdf` |
+| The full academic paper (LaTeX source) | `docs/ConceptGrade_FullPaper.tex` |
+| The compiled paper PDF | `docs/ConceptGrade_FullPaper.pdf` |
 | Architecture diagram (used above) | `docs/figures/fig1_architecture.png` |
 | All other result figures | `docs/figures/fig2` through `fig10` |
 | The expert knowledge graph definition | `knowledge_graph/ds_knowledge_graph.py` |

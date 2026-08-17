@@ -233,7 +233,7 @@ def run_live(resume: bool = True) -> int:
     from datasets.mohler_loader import load_mohler_sample
     dataset = load_mohler_sample()
 
-    with (DATA / "mohler_eval_results.json").open() as f:
+    with (BASE / "archive" / "fabricated_fixtures" / "mohler_eval_results.json").open() as f:
         cached = json.load(f)["results"]
 
     samples = _build_test_split_samples(dataset, cached)
@@ -315,7 +315,7 @@ def main() -> int:
     from datasets.mohler_loader import load_mohler_sample
     dataset = load_mohler_sample()
 
-    with (DATA / "mohler_eval_results.json").open() as f:
+    with (BASE / "archive" / "fabricated_fixtures" / "mohler_eval_results.json").open() as f:
         cached = json.load(f)["results"]
 
     matched = _build_test_split_samples(dataset, cached)

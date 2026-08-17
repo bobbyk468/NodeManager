@@ -246,7 +246,7 @@ python3 run_targeted_rescore.py
 
 ### 10.2 Full Paper Draft (NOT YET WRITTEN)
 
-The paper LaTeX file for Paper 1 is referenced as `paper_phase1_ieee.tex` in the docs but needs to be confirmed. A full draft covering all sections is required.
+The paper LaTeX file for Paper 1 is referenced as `ConceptGrade_FullPaper.tex` in the docs but needs to be confirmed. A full draft covering all sections is required.
 
 **Required sections:**
 
@@ -326,7 +326,7 @@ Paper 1 requires its own `.bib` file (separate from Paper 2's `references.bib`).
 ## 12. Pre-Submission Checklist
 
 - [ ] Renew Gemini API key → run targeted rescore (8 samples)
-- [ ] Verify current `paper_phase1_ieee.tex` exists and has correct IEEE template
+- [ ] Verify current `ConceptGrade_FullPaper.tex` exists and has correct IEEE template
 - [ ] Draft §1 Introduction (frame LLM opacity problem + KG as structural scaffold)
 - [ ] Draft §2 Related Work (ASAG history + LLM grading + KG education)
 - [ ] Draft §3 Pipeline description (5 stages + 3 extensions, formal notation)

@@ -11,7 +11,7 @@
 
 - [ ] **Distribute papers to advisor**
   - Status: Ready
-  - Papers: `paper_phase1_ieee.pdf`, `paper_phase2_vis2027.pdf`
+  - Papers: `ConceptGrade_FullPaper.pdf`, `paper_phase2_vis2027.pdf`
   - Action: Email both PDFs + `FINAL_READINESS_REPORT.txt`
   - Timeline: May 8
   - Owner: You
@@ -275,7 +275,7 @@
     - [ ] Paper 2: Recompile with new Figures 8-10 and Results section
   - Timeline: August 21-22
   - Owner: You
-  - Deliverable: Final `paper_phase1_ieee.pdf` and `paper_phase2_vis2027.pdf`
+  - Deliverable: Final `ConceptGrade_FullPaper.pdf` and `paper_phase2_vis2027.pdf`
 
 - [ ] **Submit Paper 1 to NLP/EdAI venue**
   - Status: Pending

@@ -26,15 +26,15 @@ def generate_diagnostic_candidates_chart():
     mae = [1.164, None, None, None, 1.614, 1.446, 1.471]
     # seed_ids / expanded MAE reported on a different (0-5 knowledge*5) basis
     # in round-2 data (2.254, 2.355) -- shown separately, flagged in figure.
-    colors = ["#2563eb", "#dc2626", "#dc2626", "#dc2626", "#dc2626", "#dc2626", "#dc2626"]
+    colors = ["#2a78d6", "#d03b3b", "#d03b3b", "#d03b3b", "#d03b3b", "#d03b3b", "#d03b3b"]
 
     fig, ax = plt.subplots(figsize=(10, 5.5))
     x = np.arange(len(labels))
     vals = [1.164, 2.254, 2.355, 1.384, 1.614, 1.446, 1.471]
     bars = ax.bar(x, vals, color=colors, width=0.62, edgecolor="white", linewidth=1)
-    bars[0].set_color("#2563eb")
+    bars[0].set_color("#2a78d6")
 
-    ax.axhline(y=1.164, color="#2563eb", linestyle="--", linewidth=1.4, alpha=0.7,
+    ax.axhline(y=1.164, color="#2a78d6", linestyle="--", linewidth=1.4, alpha=0.7,
                label="Baseline MAE = 1.164")
     ax.set_ylabel("Knowledge-component MAE (0–5 scale)", fontsize=11, fontweight="bold")
     ax.set_xticks(x)
@@ -59,7 +59,7 @@ def generate_diagnostic_candidates_chart():
 def generate_provenance_chart():
     datasets = ["Mohler\n2011", "DigiKlausur", "Kaggle ASAG"]
     statuses = ["Verified", "Verified", "Unverified"]
-    colors = {"Verified": "#059669", "Unverified": "#d97706"}
+    colors = {"Verified": "#0ca30c", "Unverified": "#fab219"}
     bar_colors = [colors[s] for s in statuses]
 
     fig, ax = plt.subplots(figsize=(7.5, 3.6))

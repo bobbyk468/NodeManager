@@ -1,0 +1,727 @@
+{
+  "meta": {
+    "framework": "ConceptGrade LongAnswerPipeline \u2014 Paper 3 pilot",
+    "model": "gemini-2.5-flash",
+    "use_sure": true,
+    "use_cross_para": true,
+    "n_samples": 8,
+    "total_elapsed_seconds": 115.82,
+    "timestamp": "2026-07-31T20:19:04.811275",
+    "note": "Config fixed before running; not tuned against this set. See REPRODUCIBILITY.md for the retracted prior LAG evaluation this replaces."
+  },
+  "results": [
+    {
+      "student_id": "recursion_excellent",
+      "question": "Explain how recursion works and discuss what is required for a recursive function to terminate correctly. Illustrate with an example.",
+      "segmentation": {
+        "strategy": "passthrough",
+        "n_segments": 1,
+        "total_words": 247,
+        "executive_summary": "",
+        "segments": [
+          {
+            "index": 1,
+            "label": "Full Answer",
+            "word_count": 247
+          }
+        ]
+      },
+      "segment_breakdown": [
+        {
+          "index": 1,
+          "label": "Full Answer",
+          "word_count": 247,
+          "score": 3.96,
+          "bloom": "Analyze",
+          "solo": "Relational",
+          "misconceptions": 0
+        }
+      ],
+      "aggregated": {
+        "final_score": 3.96,
+        "mean_segment_score": 3.96,
+        "segment_scores": [
+          3.96
+        ],
+        "inter_chunk_variance": 0.0,
+        "concepts": {
+          "covered": [
+            "recursion",
+            "algorithm",
+            "stack_overflow",
+            "iteration",
+            "tree_traversal",
+            "stack",
+            "memory_allocation"
+          ],
+          "missing": [],
+          "count": 7
+        },
+        "depth": {
+          "bloom_sequence": [
+            4
+          ],
+          "modal_level": 4,
+          "modal_label": "Analyze",
+          "ceiling_level": 4,
+          "ceiling_label": "Analyze",
+          "consistency_index": 1.0,
+          "trajectory": "rising",
+          "trajectory_description": "Depth builds toward conclusion"
+        },
+        "misconceptions": []
+      },
+      "feedback": {
+        "score": 3.96,
+        "one_line_summary": "A strong explanation of recursion, but could be enhanced by discussing advanced patterns and optimization techniques.",
+        "full_feedback": "Your explanation of recursion correctly identified its core mechanism and the critical role of the stack in managing function calls. You also accurately distinguished it from iteration and provided a relevant example.  While your primary explanation was thorough, you did not delve into more advanced recursive patterns or specific optimization techniques often associated with recursion, such as memoization or tail recursion.  Your analysis consistently demonstrated a solid understanding of how recursion operates, reaching an analytical level of cognitive depth.  To achieve a perfect score, you should expand your discussion to include these more advanced topics, demonstrating an understanding of their application and implications for performance and design.",
+        "tone_level": "rigorous",
+        "structured": {
+          "opening": "Your explanation of recursion correctly identified its core mechanism and the critical role of the stack in managing function calls. You also accurately distinguished it from iteration and provided a relevant example.",
+          "knowledge_gap_feedback": "While your primary explanation was thorough, you did not delve into more advanced recursive patterns or specific optimization techniques often associated with recursion, such as memoization or tail recursion.",
+          "accuracy_gap_feedback": "",
+          "depth_feedback": "Your analysis consistently demonstrated a solid understanding of how recursion operates, reaching an analytical level of cognitive depth.",
+          "closing": "To achieve a perfect score, you should expand your discussion to include these more advanced topics, demonstrating an understanding of their application and implications for performance and design."
+        }
+      },
+      "elapsed_seconds": 12.74,
+      "_pilot_meta": {
+        "id": "recursion_excellent",
+        "topic": "recursion",
+        "author_intended_tier": "excellent",
+        "author_intended_score_0to5": 4.75,
+        "designed_misconception": null,
+        "word_count": 247
+      }
+    },
+    {
+      "student_id": "queue_good_shallow_depth",
+      "question": "What is a queue and how does it order operations? Describe its main operations.",
+      "segmentation": {
+        "strategy": "passthrough",
+        "n_segments": 1,
+        "total_words": 111,
+        "executive_summary": "",
+        "segments": [
+          {
+            "index": 1,
+            "label": "Full Answer",
+            "word_count": 111
+          }
+        ]
+      },
+      "segment_breakdown": [
+        {
+          "index": 1,
+          "label": "Full Answer",
+          "word_count": 111,
+          "score": 3.46,
+          "bloom": "Understand",
+          "solo": "Relational",
+          "misconceptions": 0
+        }
+      ],
+      "aggregated": {
+        "final_score": 3.46,
+        "mean_segment_score": 3.46,
+        "segment_scores": [
+          3.46
+        ],
+        "inter_chunk_variance": 0.0,
+        "concepts": {
+          "covered": [
+            "queue",
+            "data_structure",
+            "fifo",
+            "enqueue",
+            "dequeue",
+            "o_1",
+            "time_complexity",
+            "linked_list",
+            "circular_queue",
+            "array"
+          ],
+          "missing": [],
+          "count": 10
+        },
+        "depth": {
+          "bloom_sequence": [
+            2
+          ],
+          "modal_level": 2,
+          "modal_label": "Understand",
+          "ceiling_level": 2,
+          "ceiling_label": "Understand",
+          "consistency_index": 1.0,
+          "trajectory": "rising",
+          "trajectory_description": "Depth builds toward conclusion"
+        },
+        "misconceptions": []
+      },
+      "feedback": {
+        "score": 3.46,
+        "one_line_summary": "A well-structured and accurate explanation of queues and their operations, demonstrating a good understanding of the topic.",
+        "full_feedback": "You provided a solid definition of a queue and correctly identified its core principle as FIFO. Your description of `enqueue` and `dequeue` operations was accurate, and you correctly noted their O(1) time complexity.  It's great that you covered all the primary concepts related to queues; there weren't any significant omissions in your explanation.  Your answer demonstrates a strong understanding of the 'what' regarding queues and their operations.  To elevate your response to the next level, try to delve deeper into the 'why.' For instance, you could explain why a linked list is a particularly suitable underlying structure for a queue, or why the O(1) complexity is so crucial for certain applications. This would demonstrate a more analytical approach.",
+        "tone_level": "constructive",
+        "structured": {
+          "opening": "You provided a solid definition of a queue and correctly identified its core principle as FIFO. Your description of `enqueue` and `dequeue` operations was accurate, and you correctly noted their O(1) time complexity.",
+          "knowledge_gap_feedback": "It's great that you covered all the primary concepts related to queues; there weren't any significant omissions in your explanation.",
+          "accuracy_gap_feedback": "",
+          "depth_feedback": "Your answer demonstrates a strong understanding of the 'what' regarding queues and their operations.",
+          "closing": "To elevate your response to the next level, try to delve deeper into the 'why.' For instance, you could explain why a linked list is a particularly suitable underlying structure for a queue, or why the O(1) complexity is so crucial for certain applications. This would demonstrate a more analytical approach."
+        }
+      },
+      "elapsed_seconds": 11.72,
+      "_pilot_meta": {
+        "id": "queue_good_shallow_depth",
+        "topic": "queue",
+        "author_intended_tier": "good_but_shallow",
+        "author_intended_score_0to5": 3.25,
+        "designed_misconception": null,
+        "word_count": 111
+      }
+    },
+    {
+      "student_id": "linked_list_surface_level",
+      "question": "What is a linked list and how is it different from an array?",
+      "segmentation": {
+        "strategy": "passthrough",
+        "n_segments": 1,
+        "total_words": 71,
+        "executive_summary": "",
+        "segments": [
+          {
+            "index": 1,
+            "label": "Full Answer",
+            "word_count": 71
+          }
+        ]
+      },
+      "segment_breakdown": [
+        {
+          "index": 1,
+          "label": "Full Answer",
+          "word_count": 71,
+          "score": 3.68,
+          "bloom": "Understand",
+          "solo": "Relational",
+          "misconceptions": 0
+        }
+      ],
+      "aggregated": {
+        "final_score": 3.68,
+        "mean_segment_score": 3.68,
+        "segment_scores": [
+          3.68
+        ],
+        "inter_chunk_variance": 0.0,
+        "concepts": {
+          "covered": [
+            "linked_list",
+            "data_structure",
+            "node",
+            "pointer",
+            "array",
+            "deletion",
+            "access",
+            "index"
+          ],
+          "missing": [],
+          "count": 8
+        },
+        "depth": {
+          "bloom_sequence": [
+            2
+          ],
+          "modal_level": 2,
+          "modal_label": "Understand",
+          "ceiling_level": 2,
+          "ceiling_label": "Understand",
+          "consistency_index": 1.0,
+          "trajectory": "rising",
+          "trajectory_description": "Depth builds toward conclusion"
+        },
+        "misconceptions": []
+      },
+      "feedback": {
+        "score": 3.68,
+        "one_line_summary": "A good foundational explanation of linked lists and arrays, but lacks the analytical depth required to explain the 'why' behind their differences and performance implications.",
+        "full_feedback": "You provided a solid foundational explanation of both linked lists and arrays, correctly identifying their core components like nodes, pointers, and indices. Your definitions were accurate and demonstrated a clear understanding of these fundamental data structures.  While your coverage of the primary concepts was thorough, you didn't delve into more advanced aspects such as the implications of cache performance for arrays versus linked lists, or specific use cases where one might be definitively preferred over the other beyond basic insertion/deletion.  Your response consistently operated at the 'understand' level, clearly describing what these structures are and how they differ.  To elevate your response to the next grade level, you need to move beyond mere description and engage in deeper analysis. Explain *why* these differences in structure lead to specific performance characteristics, or *why* certain operations are more efficient in one over the other, rather than just stating that they are.",
+        "tone_level": "rigorous",
+        "structured": {
+          "opening": "You provided a solid foundational explanation of both linked lists and arrays, correctly identifying their core components like nodes, pointers, and indices. Your definitions were accurate and demonstrated a clear understanding of these fundamental data structures.",
+          "knowledge_gap_feedback": "While your coverage of the primary concepts was thorough, you didn't delve into more advanced aspects such as the implications of cache performance for arrays versus linked lists, or specific use cases where one might be definitively preferred over the other beyond basic insertion/deletion.",
+          "accuracy_gap_feedback": "",
+          "depth_feedback": "Your response consistently operated at the 'understand' level, clearly describing what these structures are and how they differ.",
+          "closing": "To elevate your response to the next grade level, you need to move beyond mere description and engage in deeper analysis. Explain *why* these differences in structure lead to specific performance characteristics, or *why* certain operations are more efficient in one over the other, rather than just stating that they are."
+        }
+      },
+      "elapsed_seconds": 11.08,
+      "_pilot_meta": {
+        "id": "linked_list_surface_level",
+        "topic": "linked_list",
+        "author_intended_tier": "shallow",
+        "author_intended_score_0to5": 2.0,
+        "designed_misconception": null,
+        "word_count": 71
+      }
+    },
+    {
+      "student_id": "bst_tree_conflation",
+      "question": "What is a binary tree, and what additional property makes a binary tree a binary search tree?",
+      "segmentation": {
+        "strategy": "passthrough",
+        "n_segments": 1,
+        "total_words": 169,
+        "executive_summary": "",
+        "segments": [
+          {
+            "index": 1,
+            "label": "Full Answer",
+            "word_count": 169
+          }
+        ]
+      },
+      "segment_breakdown": [
+        {
+          "index": 1,
+          "label": "Full Answer",
+          "word_count": 169,
+          "score": 3.35,
+          "bloom": "Understand",
+          "solo": "Relational",
+          "misconceptions": 0
+        }
+      ],
+      "aggregated": {
+        "final_score": 3.35,
+        "mean_segment_score": 3.35,
+        "segment_scores": [
+          3.35
+        ],
+        "inter_chunk_variance": 0.0,
+        "concepts": {
+          "covered": [
+            "binary_tree",
+            "tree",
+            "data_structure",
+            "node",
+            "child",
+            "algorithm",
+            "recursion",
+            "subtree",
+            "binary_search_tree",
+            "searching",
+            "binary_search",
+            "o_log_n",
+            "array",
+            "tree_traversal",
+            "inorder",
+            "preorder",
+            "postorder",
+            "sorting"
+          ],
+          "missing": [],
+          "count": 18
+        },
+        "depth": {
+          "bloom_sequence": [
+            2
+          ],
+          "modal_level": 2,
+          "modal_label": "Understand",
+          "ceiling_level": 2,
+          "ceiling_label": "Understand",
+          "consistency_index": 1.0,
+          "trajectory": "rising",
+          "trajectory_description": "Depth builds toward conclusion"
+        },
+        "misconceptions": []
+      },
+      "feedback": {
+        "score": 3.35,
+        "one_line_summary": "A well-defined answer covering all essential concepts, but could benefit from deeper analytical reasoning to explain the 'why' behind the properties.",
+        "full_feedback": "You've provided a solid foundational understanding of binary trees and their properties. You correctly identified key components like nodes, children, and subtrees, demonstrating a good grasp of the basic definitions.  Your answer covered all the primary concepts expected for this question, which is excellent. There weren't any major topics you missed regarding the definitions themselves.  While your definitions are accurate, your answer primarily operates at the 'understand' level of cognitive depth.  To reach the next grade level, you should aim to incorporate more analysis. For instance, explain *why* the binary search tree property is so crucial for efficient searching, insertion, and deletion, rather than just stating what the property is. This would demonstrate a deeper understanding of the implications of these data structures.",
+        "tone_level": "constructive",
+        "structured": {
+          "opening": "You've provided a solid foundational understanding of binary trees and their properties. You correctly identified key components like nodes, children, and subtrees, demonstrating a good grasp of the basic definitions.",
+          "knowledge_gap_feedback": "Your answer covered all the primary concepts expected for this question, which is excellent. There weren't any major topics you missed regarding the definitions themselves.",
+          "accuracy_gap_feedback": "",
+          "depth_feedback": "While your definitions are accurate, your answer primarily operates at the 'understand' level of cognitive depth.",
+          "closing": "To reach the next grade level, you should aim to incorporate more analysis. For instance, explain *why* the binary search tree property is so crucial for efficient searching, insertion, and deletion, rather than just stating what the property is. This would demonstrate a deeper understanding of the implications of these data structures."
+        }
+      },
+      "elapsed_seconds": 17.71,
+      "_pilot_meta": {
+        "id": "bst_tree_conflation",
+        "topic": "binary_search_tree",
+        "author_intended_tier": "flawed_by_critical_misconception",
+        "author_intended_score_0to5": 2.25,
+        "designed_misconception": "DS-TREE-01: assumes all binary trees are binary search trees (claims the left/right ordering property holds for every binary tree, not just BSTs)",
+        "word_count": 169
+      }
+    },
+    {
+      "student_id": "hash_table_complexity_misconception",
+      "question": "Explain how a hash table works and discuss the time complexity of its main operations.",
+      "segmentation": {
+        "strategy": "passthrough",
+        "n_segments": 1,
+        "total_words": 174,
+        "executive_summary": "",
+        "segments": [
+          {
+            "index": 1,
+            "label": "Full Answer",
+            "word_count": 174
+          }
+        ]
+      },
+      "segment_breakdown": [
+        {
+          "index": 1,
+          "label": "Full Answer",
+          "word_count": 174,
+          "score": 3.21,
+          "bloom": "Understand",
+          "solo": "Relational",
+          "misconceptions": 0
+        }
+      ],
+      "aggregated": {
+        "final_score": 3.21,
+        "mean_segment_score": 3.21,
+        "segment_scores": [
+          3.21
+        ],
+        "inter_chunk_variance": 0.0,
+        "concepts": {
+          "covered": [
+            "hash_table",
+            "hash_function",
+            "array",
+            "o_1",
+            "linked_list",
+            "binary_search_tree",
+            "collision",
+            "chaining",
+            "open_addressing",
+            "time_complexity",
+            "big_o_notation"
+          ],
+          "missing": [],
+          "count": 11
+        },
+        "depth": {
+          "bloom_sequence": [
+            2
+          ],
+          "modal_level": 2,
+          "modal_label": "Understand",
+          "ceiling_level": 2,
+          "ceiling_label": "Understand",
+          "consistency_index": 1.0,
+          "trajectory": "rising",
+          "trajectory_description": "Depth builds toward conclusion"
+        },
+        "misconceptions": []
+      },
+      "feedback": {
+        "score": 3.21,
+        "one_line_summary": "A strong explanation of hash table mechanics and operations, demonstrating a clear understanding of the core concepts.",
+        "full_feedback": "You provided a solid explanation of how hash tables work, correctly identifying key components like hash functions, arrays, and the concept of collisions. Your discussion of chaining as a collision resolution strategy was also accurate and well-articulated.  It's impressive that you covered all the primary concepts related to hash tables without any significant omissions.  Your explanation consistently demonstrated a good understanding of the material.  To elevate your answer to the next grade level, focus on moving beyond just describing 'what' hash tables are and 'how' they work. For instance, you could analyze *why* certain design choices are made, such as *why* chaining is often preferred over open addressing in certain scenarios, or *why* a good hash function is critical for performance.",
+        "tone_level": "constructive",
+        "structured": {
+          "opening": "You provided a solid explanation of how hash tables work, correctly identifying key components like hash functions, arrays, and the concept of collisions. Your discussion of chaining as a collision resolution strategy was also accurate and well-articulated.",
+          "knowledge_gap_feedback": "It's impressive that you covered all the primary concepts related to hash tables without any significant omissions.",
+          "accuracy_gap_feedback": "",
+          "depth_feedback": "Your explanation consistently demonstrated a good understanding of the material.",
+          "closing": "To elevate your answer to the next grade level, focus on moving beyond just describing 'what' hash tables are and 'how' they work. For instance, you could analyze *why* certain design choices are made, such as *why* chaining is often preferred over open addressing in certain scenarios, or *why* a good hash function is critical for performance."
+        }
+      },
+      "elapsed_seconds": 19.28,
+      "_pilot_meta": {
+        "id": "hash_table_complexity_misconception",
+        "topic": "hash_table",
+        "author_intended_tier": "flawed_by_moderate_misconception",
+        "author_intended_score_0to5": 3.25,
+        "designed_misconception": "DS-HASH-01: claims hash table operations are always O(1), ignoring worst-case O(n) with many collisions",
+        "word_count": 174
+      }
+    },
+    {
+      "student_id": "sorting_quicksort_mergesort_misconception",
+      "question": "Compare quicksort and merge sort in terms of how they work and their performance characteristics.",
+      "segmentation": {
+        "strategy": "passthrough",
+        "n_segments": 1,
+        "total_words": 180,
+        "executive_summary": "",
+        "segments": [
+          {
+            "index": 1,
+            "label": "Full Answer",
+            "word_count": 180
+          }
+        ]
+      },
+      "segment_breakdown": [
+        {
+          "index": 1,
+          "label": "Full Answer",
+          "word_count": 180,
+          "score": 3.88,
+          "bloom": "Analyze",
+          "solo": "Relational",
+          "misconceptions": 0
+        }
+      ],
+      "aggregated": {
+        "final_score": 3.88,
+        "mean_segment_score": 3.88,
+        "segment_scores": [
+          3.88
+        ],
+        "inter_chunk_variance": 0.0,
+        "concepts": {
+          "covered": [
+            "quick_sort",
+            "merge_sort",
+            "divide_and_conquer",
+            "sorting",
+            "array",
+            "recursion",
+            "o_n_log_n",
+            "o_log_n",
+            "stack",
+            "algorithm"
+          ],
+          "missing": [],
+          "count": 10
+        },
+        "depth": {
+          "bloom_sequence": [
+            4
+          ],
+          "modal_level": 4,
+          "modal_label": "Analyze",
+          "ceiling_level": 4,
+          "ceiling_label": "Analyze",
+          "consistency_index": 1.0,
+          "trajectory": "rising",
+          "trajectory_description": "Depth builds toward conclusion"
+        },
+        "misconceptions": []
+      },
+      "feedback": {
+        "score": 3.88,
+        "one_line_summary": "A strong comparative analysis of quicksort and merge sort, accurately detailing their mechanisms and performance, but lacking depth in space complexity and stability considerations.",
+        "full_feedback": "You provided a solid comparison of quicksort and merge sort, correctly identifying their core mechanisms as divide-and-conquer algorithms and accurately stating their average-case time complexities. Your explanation of recursion in both algorithms was also well-articulated.  While your primary coverage was strong, you didn't delve into the practical implications of quicksort's in-place sorting versus merge sort's need for auxiliary space, nor did you discuss the stability characteristic of merge sort.  Your analysis consistently demonstrated a strong understanding of the algorithms' operational details and performance metrics.  To elevate your response, you should expand your comparison to include space complexity analysis and the concept of algorithmic stability, as these are critical distinguishing factors in practical applications. Additionally, a brief mention of quicksort's worst-case scenario and how it's mitigated would strengthen your answer.",
+        "tone_level": "rigorous",
+        "structured": {
+          "opening": "You provided a solid comparison of quicksort and merge sort, correctly identifying their core mechanisms as divide-and-conquer algorithms and accurately stating their average-case time complexities. Your explanation of recursion in both algorithms was also well-articulated.",
+          "knowledge_gap_feedback": "While your primary coverage was strong, you didn't delve into the practical implications of quicksort's in-place sorting versus merge sort's need for auxiliary space, nor did you discuss the stability characteristic of merge sort.",
+          "accuracy_gap_feedback": "",
+          "depth_feedback": "Your analysis consistently demonstrated a strong understanding of the algorithms' operational details and performance metrics.",
+          "closing": "To elevate your response, you should expand your comparison to include space complexity analysis and the concept of algorithmic stability, as these are critical distinguishing factors in practical applications. Additionally, a brief mention of quicksort's worst-case scenario and how it's mitigated would strengthen your answer."
+        }
+      },
+      "elapsed_seconds": 13.93,
+      "_pilot_meta": {
+        "id": "sorting_quicksort_mergesort_misconception",
+        "topic": "sorting",
+        "author_intended_tier": "flawed_by_moderate_misconception",
+        "author_intended_score_0to5": 3.0,
+        "designed_misconception": "DS-SORT-01: claims quicksort is always faster than merge sort, ignoring quicksort's O(n^2) worst case",
+        "word_count": 180
+      }
+    },
+    {
+      "student_id": "stack_queue_conflation_longform",
+      "question": "Compare how a stack and a queue order their elements, and give an example of when you would use each.",
+      "segmentation": {
+        "strategy": "passthrough",
+        "n_segments": 1,
+        "total_words": 199,
+        "executive_summary": "",
+        "segments": [
+          {
+            "index": 1,
+            "label": "Full Answer",
+            "word_count": 199
+          }
+        ]
+      },
+      "segment_breakdown": [
+        {
+          "index": 1,
+          "label": "Full Answer",
+          "word_count": 199,
+          "score": 2.6,
+          "bloom": "Analyze",
+          "solo": "Multistructural",
+          "misconceptions": 2
+        }
+      ],
+      "aggregated": {
+        "final_score": 2.4,
+        "mean_segment_score": 2.6,
+        "segment_scores": [
+          2.6
+        ],
+        "inter_chunk_variance": 0.0,
+        "concepts": {
+          "covered": [
+            "stack",
+            "queue",
+            "data_structure",
+            "fifo",
+            "enqueue",
+            "dequeue",
+            "push",
+            "pop",
+            "bfs",
+            "node",
+            "lifo"
+          ],
+          "missing": [],
+          "count": 11
+        },
+        "depth": {
+          "bloom_sequence": [
+            4
+          ],
+          "modal_level": 4,
+          "modal_label": "Analyze",
+          "ceiling_level": 4,
+          "ceiling_label": "Analyze",
+          "consistency_index": 1.0,
+          "trajectory": "rising",
+          "trajectory_description": "Depth builds toward conclusion"
+        },
+        "misconceptions": [
+          {
+            "concept": "stack",
+            "description": "A stack works the same way [as a queue], using FIFO ordering as well: the first element pushed onto the stack is the first one popped off.",
+            "severity": "isolated"
+          },
+          {
+            "concept": "stack_analogy",
+            "description": "A good analogy [for a stack] is a stack of plates in a cafeteria \u2014 the plate that was placed on the stack first is the one a customer would take first, since it's been sitting there the longest and everyone takes from the bottom of the pile over time.",
+            "severity": "isolated"
+          }
+        ]
+      },
+      "feedback": {
+        "score": 2.4,
+        "one_line_summary": "Good identification of core concepts and clear writing, but a key misconception about stack ordering needs correction to improve accuracy.",
+        "full_feedback": "You've done a good job identifying the core concepts of stacks and queues, including their fundamental operations like enqueue, dequeue, push, and pop. Your writing is clear and technically disciplined, which makes your explanations easy to follow.  You covered all the primary concepts related to stacks and queues, demonstrating a solid breadth of understanding for this question.  However, there's a significant misconception in your explanation of how a stack orders its elements. You incorrectly stated that a stack uses FIFO (First-In, First-Out) ordering, similar to a queue, and that the first element pushed is the first one popped. This is also reflected in your analogy of a stack of plates, where you suggest customers take plates from the bottom; in reality, a stack operates on a LIFO (Last-In, First-Out) principle, meaning the last item added is the first one removed.  Your analysis consistently reached a good level, demonstrating your ability to break down and compare these data structures.  To reach the next grade level, you need to correct your understanding of stack ordering. Focus on the LIFO principle for stacks and ensure your examples and analogies accurately reflect this behavior.",
+        "tone_level": "constructive",
+        "structured": {
+          "opening": "You've done a good job identifying the core concepts of stacks and queues, including their fundamental operations like enqueue, dequeue, push, and pop. Your writing is clear and technically disciplined, which makes your explanations easy to follow.",
+          "knowledge_gap_feedback": "You covered all the primary concepts related to stacks and queues, demonstrating a solid breadth of understanding for this question.",
+          "accuracy_gap_feedback": "However, there's a significant misconception in your explanation of how a stack orders its elements. You incorrectly stated that a stack uses FIFO (First-In, First-Out) ordering, similar to a queue, and that the first element pushed is the first one popped. This is also reflected in your analogy of a stack of plates, where you suggest customers take plates from the bottom; in reality, a stack operates on a LIFO (Last-In, First-Out) principle, meaning the last item added is the first one removed.",
+          "depth_feedback": "Your analysis consistently reached a good level, demonstrating your ability to break down and compare these data structures.",
+          "closing": "To reach the next grade level, you need to correct your understanding of stack ordering. Focus on the LIFO principle for stacks and ensure your examples and analogies accurately reflect this behavior."
+        }
+      },
+      "elapsed_seconds": 14.09,
+      "_pilot_meta": {
+        "id": "stack_queue_conflation_longform",
+        "topic": "stack",
+        "author_intended_tier": "flawed_by_critical_misconception_despite_fluency",
+        "author_intended_score_0to5": 1.25,
+        "designed_misconception": "DS-STACK-01: explicitly states stacks use FIFO order (should be LIFO) and invents an incorrect 'plates from the bottom' analogy to justify it",
+        "word_count": 199
+      }
+    },
+    {
+      "student_id": "dynamic_array_excellent",
+      "question": "Explain how a dynamic array (like a Python list or Java ArrayList) achieves resizable storage, and discuss the time complexity of appending an element.",
+      "segmentation": {
+        "strategy": "passthrough",
+        "n_segments": 1,
+        "total_words": 258,
+        "executive_summary": "",
+        "segments": [
+          {
+            "index": 1,
+            "label": "Full Answer",
+            "word_count": 258
+          }
+        ]
+      },
+      "segment_breakdown": [
+        {
+          "index": 1,
+          "label": "Full Answer",
+          "word_count": 258,
+          "score": 3.44,
+          "bloom": "Understand",
+          "solo": "Relational",
+          "misconceptions": 0
+        }
+      ],
+      "aggregated": {
+        "final_score": 3.44,
+        "mean_segment_score": 3.44,
+        "segment_scores": [
+          3.44
+        ],
+        "inter_chunk_variance": 0.0,
+        "concepts": {
+          "covered": [
+            "dynamic_array",
+            "array",
+            "insertion",
+            "o_1",
+            "o_n",
+            "time_complexity",
+            "linked_list",
+            "access",
+            "index",
+            "memory_allocation",
+            "big_o_notation"
+          ],
+          "missing": [],
+          "count": 11
+        },
+        "depth": {
+          "bloom_sequence": [
+            2
+          ],
+          "modal_level": 2,
+          "modal_label": "Understand",
+          "ceiling_level": 2,
+          "ceiling_label": "Understand",
+          "consistency_index": 1.0,
+          "trajectory": "rising",
+          "trajectory_description": "Depth builds toward conclusion"
+        },
+        "misconceptions": []
+      },
+      "feedback": {
+        "score": 3.44,
+        "one_line_summary": "A good explanation of dynamic arrays and their time complexity, demonstrating solid understanding but needing more analytical depth for a higher grade.",
+        "full_feedback": "You provided a solid explanation of dynamic arrays, correctly identifying key concepts like arrays, insertion, and time complexity. Your discussion of O(1) and O(N) operations was accurate and well-articulated.  You covered all the primary concepts expected for this question, demonstrating a good grasp of the topic's breadth.  Your explanation consistently demonstrated an 'Understand' level of cognitive depth, clearly defining concepts and their relationships.  To reach the next grade level, focus on moving beyond simply describing 'what' happens to explaining 'why' it happens. For instance, delve deeper into *why* amortized O(1) is achieved for appends, rather than just stating that it is.",
+        "tone_level": "constructive",
+        "structured": {
+          "opening": "You provided a solid explanation of dynamic arrays, correctly identifying key concepts like arrays, insertion, and time complexity. Your discussion of O(1) and O(N) operations was accurate and well-articulated.",
+          "knowledge_gap_feedback": "You covered all the primary concepts expected for this question, demonstrating a good grasp of the topic's breadth.",
+          "accuracy_gap_feedback": "",
+          "depth_feedback": "Your explanation consistently demonstrated an 'Understand' level of cognitive depth, clearly defining concepts and their relationships.",
+          "closing": "To reach the next grade level, focus on moving beyond simply describing 'what' happens to explaining 'why' it happens. For instance, delve deeper into *why* amortized O(1) is achieved for appends, rather than just stating that it is."
+        }
+      },
+      "elapsed_seconds": 14.93,
+      "_pilot_meta": {
+        "id": "dynamic_array_excellent",
+        "topic": "array",
+        "author_intended_tier": "excellent",
+        "author_intended_score_0to5": 4.75,
+        "designed_misconception": null,
+        "word_count": 258
+      }
+    }
+  ]
+}

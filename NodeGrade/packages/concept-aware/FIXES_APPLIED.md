@@ -37,7 +37,7 @@
 - **Verification:** ✅ Runs without errors
 
 ### 2. Paper 1 LaTeX Fixes (CRITICAL)
-- **Location:** `docs/paper_phase1_ieee.tex` (lines 740-757)
+- **Location:** `docs/ConceptGrade_FullPaper.tex` (lines 740-757)
 - **Changes:**
   - Replaced undefined `\INPUT` with `\Require`
   - Replaced undefined `\OUTPUT` with `\Ensure`

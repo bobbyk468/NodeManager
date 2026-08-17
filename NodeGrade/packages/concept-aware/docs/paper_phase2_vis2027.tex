@@ -413,10 +413,10 @@ in their answer (concept-coverage failure rate), a quantity directly derived
 from the graph-matching pipeline. This is distinct from---and a deliberate
 restriction relative to---a true \emph{misconception} heatmap, which would
 require reliable per-cell labels from the 16-entry CS misconception taxonomy.
-Our machine-IRR pilot on the taxonomy (Paper~1, \S3.4) found only moderate
-agreement ($\kappa_{\text{micro}} = 0.54$) between two heuristic coding
-channels, which we interpret as a lower bound on human reliability but as
-insufficient to support a top-level visualization. We therefore plot
+Our machine-IRR pilot on the taxonomy (Paper~1, \S3.4, corrected
+2026-08-17) found only slight agreement ($\kappa_{\text{micro}} = 0.12$)
+between two heuristic coding channels on real data, which is far too weak
+to support a top-level visualization. We therefore plot
 concept-coverage gaps (the higher-reliability signal) at the top level and
 expose misconception-taxonomy matches only as tooltips on the per-answer
 trace panel, where the instructor can adjudicate them against the underlying
@@ -435,7 +435,8 @@ students with the corresponding coverage gap.
   Color = fraction of students failing to demonstrate the concept; cells link
   to the per-answer trace panel. Misconception-taxonomy matches are surfaced
   only on the trace panel, not on this overview, because the taxonomy's
-  machine-IRR $\kappa$ is in the moderate-agreement range (see Paper~1, \S3.4).}
+  machine-IRR $\kappa$ is only in the slight-agreement range on real data
+  (see Paper~1, \S3.4).}
   \label{fig:heatmap_visual}
 \end{figure}
 
@@ -635,7 +636,7 @@ ConceptGrade shows a small, response-level-significant but question-level-fragil
 on the fabricated 120-sample fixture and is retracted.} We report a
 real-data replacement below. The intermediate ``+TRM, no verifier''
 condition (\texttt{kg\_score}) is reconstructed post-hoc from the exact
-\texttt{pipeline.py} scoring formula ($0.05\!\times\!$KG-formula $+$
+\texttt{conceptgrade/pipeline.py} scoring formula ($0.05\!\times\!$KG-formula $+$
 $0.95\!\times\!$holistic LLM score) applied to already-cached component
 scores (concept comparison, Bloom's/SOLO levels, misconceptions,
 holistic score) --- it is not an independent live re-run of the

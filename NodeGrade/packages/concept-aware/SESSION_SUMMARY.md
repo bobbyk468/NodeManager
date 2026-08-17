@@ -65,7 +65,7 @@ claims, single-dataset story, no reproducibility scaffolding.
 
 | File | Pages | Size | Compilation |
 |---|---|---|---|
-| `docs/paper_phase1_ieee.tex` | 12 | 846 KB PDF | 0 errors, 1 × 4.8 pt sub-pixel hbox warning |
+| `docs/ConceptGrade_FullPaper.tex` | 12 | 846 KB PDF | 0 errors, 1 × 4.8 pt sub-pixel hbox warning |
 | `docs/paper_phase2_vis2027.tex` | 14 | 1.34 MB PDF | 0 errors, 0 overfull warnings, bibtex clean |
 
 ---
@@ -117,7 +117,7 @@ cd packages/concept-aware
 .venv/bin/python compute_taxonomy_kappa.py --all              # ✓
 .venv/bin/python smoke_run_mohler.py                          # ✓ (cache hit)
 cd docs
-pdflatex -interaction=nonstopmode paper_phase1_ieee.tex       # 12 pp, clean
+pdflatex -interaction=nonstopmode ConceptGrade_FullPaper.tex       # 12 pp, clean
 pdflatex -interaction=nonstopmode paper_phase2_vis2027.tex    # 14 pp, clean
 bibtex paper_phase2_vis2027
 pdflatex -interaction=nonstopmode paper_phase2_vis2027.tex    # bib resolved

@@ -75,7 +75,7 @@ def main() -> int:
     from concept_matching import should_use_kg_evidence
 
     dataset = load_mohler_sample()
-    with (BASE / "data" / "mohler_eval_results.json").open() as f:
+    with (BASE / "archive" / "fabricated_fixtures" / "mohler_eval_results.json").open() as f:
         cached_eval = json.load(f)["results"]
 
     # Deterministically pick n samples spanning all 10 questions

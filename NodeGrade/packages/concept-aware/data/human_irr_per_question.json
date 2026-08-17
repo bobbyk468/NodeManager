@@ -1,14 +1,14 @@
 {
   "human_inter_rater": {
-    "n": 120,
-    "pearson_r": 0.9848,
-    "mean_abs_diff": 0.1667,
-    "max_abs_diff": 0.5,
-    "samples_exactly_agree": 80,
-    "samples_disagree_ge_1": 0,
-    "samples_disagree_ge_2": 0,
-    "qwk_quadratic": 0.9842,
-    "cohen_kappa": 0.6322
+    "n": 1262,
+    "pearson_r": 0.7833,
+    "mean_abs_diff": 0.9616,
+    "max_abs_diff": 10.0,
+    "samples_exactly_agree": 709,
+    "samples_disagree_ge_1": 545,
+    "samples_disagree_ge_2": 283,
+    "qwk_quadratic": 0.7986,
+    "cohen_kappa": 0.4056
   },
   "per_question": [
     {

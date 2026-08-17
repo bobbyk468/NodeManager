@@ -3,6 +3,7 @@
 
 % ── Packages ──────────────────────────────────────────────────────────────
 \usepackage{cite}
+\usepackage{array}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{algorithmic}
 \usepackage{algorithm}
@@ -35,19 +36,68 @@
     Hyderabad, India \\
     kbrahmaji.scholar25@ifheindia.org
   }
+  \and
+  \IEEEauthorblockN{Dr. P. Pavan Kumar}
+  \IEEEauthorblockA{
+    \textit{Department of Computer Science} \\
+    \textit{ICFAI (IFHE)} \\
+    Hyderabad, India
+  }
 }
 
 \maketitle
 
 % ── Abstract ───────────────────────────────────────────────────────────────
 \begin{abstract}
+This paper looks at how well a hybrid Knowledge-Graph + Large Language
+Model (KG-LLM) system works for Automated Short Answer Grading (ASAG) in
+Computer Science education --- and, just as important, where it stops
+working. We present \textbf{ConceptGrade}, a five-layer framework that
+turns each student answer into a \emph{concept graph} and compares it
+against an expert-built Data Structures knowledge graph (101 concepts,
+138 typed relationships). We tested ConceptGrade on $n = 2{,}276$ graded
+student answers across 213 questions from three independent datasets
+(Mohler 2011, DigiKlausur, Kaggle ASAG), comparing it to a zero-shot LLM
+baseline that uses the exact same underlying model. On its best dataset,
+ConceptGrade lowers error by $8.2\%$ (Mohler 2011), but this result is
+only marginally significant once we account for the fact that answers to
+the same question are not independent. The gain on DigiKlausur is
+smaller but still real; on Kaggle ASAG there is no significant gain at
+all, because the vocabulary in that dataset falls entirely outside the
+knowledge graph. A real-data ablation further shows that the
+deterministic knowledge-graph score, taken alone, is $86.9\%$
+\emph{worse} than the zero-shot baseline --- almost all of
+ConceptGrade's small net gain comes from its LLM verifier stage, not
+from the knowledge-graph grounding the architecture is named for. A
+separate follow-up analysis shows that most of ConceptGrade's raw-error
+advantage comes from fixing a simple scale bias, not from genuinely
+ranking answers better. We also found that self-consistency
+ensembling, which initially looked like a solid improvement, mostly
+stops holding up once the baseline is given the same number of model
+calls. We report all of this as evidence of where KG-grounded ASAG is
+fragile and where its limits lie --- not as proof that the approach
+generally works. \textbf{Correction notice:} an earlier draft of this
+paper reported headline numbers computed on a fabricated dataset; this
+version reports the corrected, real-data results throughout
+(\S\ref{sec:intro}, REPRODUCIBILITY.md).
+\end{abstract}
+
+\begin{IEEEkeywords}
+automated short answer grading, knowledge graph, concept extraction,
+computer science education, large language models, Bloom's taxonomy, NLP
+\end{IEEEkeywords}
+
+% ── 1. Introduction ────────────────────────────────────────────────────────
+\section{Introduction}
+\label{sec:intro}
+
 \textbf{Correction notice (2026-07-28).} An earlier version of this paper
 reported Mohler-dataset results computed against a hand-authored,
 fabricated 120-sample fixture rather than the real Mohler et al.\ (2011)
 benchmark; the discovery, verification, and full incident record are in
-REPRODUCIBILITY.md. This Abstract and Introduction now report the
-corrected, real-data Mohler result (46 questions, $1{,}262$ responses,
-sourced from the public \texttt{nkazi/MohlerASAG} mirror, CC-BY-4.0) and
+REPRODUCIBILITY.md. This paper now reports the corrected, real-data
+Mohler result (46 questions, $1{,}262$ responses, sourced from the
+public \texttt{nkazi/MohlerASAG} mirror, CC-BY-4.0) throughout, including
 the cross-dataset meta-analysis recomputed with it in place of the
 fabricated numbers. The original six-condition component ablation
 required new pipeline runs on real data and is reported as open future
@@ -60,191 +110,72 @@ all of ConceptGrade's small real-data gain comes from the verifier
 stage, not the KG comparison. The frozen Sentence-BERT baselines have
 been re-verified on real data (\S\ref{subsec:sentencebert}).
 
-This paper is an empirical, cautionary study of the fragility and
-domain boundaries of hybrid Knowledge-Graph + Large Language Model
-(KG-LLM) pipelines for Automated Short Answer Grading (ASAG) in
-Computer Science education. We present \textbf{ConceptGrade}, a
-five-layer concept-aware ASAG framework that transforms student
-responses into \emph{concept graphs} and compares them against
-expert-curated domain knowledge graphs (KGs). The system extracts concepts and relationships from free-text
-answers using a chain-of-thought LLM pipeline, computes semantic coverage and
-structural integration scores via graph matching, and synthesizes a composite
-grade through a weighted scoring model. We construct an expert Data Structures KG
-comprising 101 domain concepts and 138 typed relationships spanning eight semantic
-categories. We evaluate ConceptGrade on \(n = 2{,}276\) graded student
-answers spanning \(213\) questions across three independent ASAG datasets:
-Mohler 2011 (CS Data Structures, $n = 1{,}262$, $46$ questions, real data
-as corrected above), DigiKlausur
-(Neural Networks, $n = 646$, $17$ questions), and Kaggle ASAG (Elementary
-Science, $n = 368$ unique responses, $150$ questions --- the source
-distribution's $473$ records contain $105$ byte-identical duplicates that
-inflate variance if kept). \textbf{ConceptGrade achieves a modest, statistically fragile
-in-domain improvement over the identical-model LLM baseline on the real Mohler
-data ($8.2\%$ MAE reduction, significant at the response level but only
-marginal at the question-clustered level), and cross-dataset evaluation across
-DigiKlausur and Kaggle ASAG confirms the effect does not robustly
-generalise.} On the real, KG-aligned Mohler sample ($n=1{,}262$; every
-response is effectively held out, since the pipeline's hyperparameters
-were fixed before this real dataset was used), ConceptGrade achieves
-Pearson $r = 0.784$ (LLM baseline: $0.790$ --- ConceptGrade's correlation
-is \emph{worse}), QWK $= 0.524$ (baseline $0.501$), and MAE $= 1.177$
-(baseline $1.282$), an $8.2\%$ MAE reduction (Wilcoxon two-tailed
-$p < 0.0001$; paired $d_z = -0.154$, a small effect). This response-level
-significance should not be over-read: at the question-clustered level
-(46 real questions, the more appropriate unit given non-independence
-within a question), the effect is only marginal (two-tailed $p=0.111$,
-one-tailed $p=0.056$), and ConceptGrade has lower mean error on just
-27 of 46 questions ($58.7\%$); only 17 of 46 leave-one-question-out
-folds reach one-tailed significance. Both systems also systematically
-under-predict relative to real human graders (mean human score
-$4.24/5$ vs.\ $2.99$ for the LLM baseline and $3.09$ for ConceptGrade),
-indicating real course grading is markedly more lenient than either
-LLM-based grader. A post-hoc, 5-fold cross-validated monotonic
-recalibration (\S\ref{subsec:calibration}) fit only on already-collected
-scores (zero new LLM calls) cuts MAE by roughly $3\times$ for both
-systems ($1.282\to0.375$ for C\_LLM, $1.177\to0.392$ for ConceptGrade)
---- most of the raw error was fixable scale bias, not ranking error ---
-and \emph{inverts} the comparison: once both are properly calibrated,
-C\_LLM has significantly \emph{lower} MAE than ConceptGrade
-($p=0.017$ one-tailed), consistent with ConceptGrade's raw MAE edge
-being substantially a calibration artifact rather than evidence of
-better grading judgment. Pooling across all three datasets (fixed-effects
-inverse-variance meta-analysis, $n=2{,}276$, $213$ questions):
-ConceptGrade improves over the baseline on Mohler ($d_z = -0.154$,
-$p_{\text{two}} < 0.0001$), shows a small but significant improvement on
-DigiKlausur ($d_z = -0.067$, $p_{\text{one}} = 0.024$, practical effect below
-Cohen's small-effect threshold), and shows no significant improvement on
-Kaggle ASAG ($d_z = -0.007$, $p_{\text{one}} = 0.351$, $p_{\text{two}} = 0.702$
-on $N = 368$ unique responses after removing $105$ byte-identical
-duplicate records from the source distribution). The pooled fixed-effects
-estimate is $d_z = -0.105$ ($95\%$ CI $[-0.147, -0.064]$,
-$p_{\text{two}} < 0.0001$), but between-dataset heterogeneity is
-substantial ($I^2 = 73.2\%$, Higgins--Thompson sense) and the
-methodologically more appropriate random-effects estimate is
-$d_z = -0.084$ with a $95\%$ CI $[-0.169, +0.002]$ that essentially
-touches zero --- we do not claim the pooled effect as confirmatory
-evidence of generalisation. On Kaggle ASAG the LLM
-extraction module produced empty matched-concept sets for $368/368$
-unique answers ($473/473$ on the raw, pre-deduplication pipeline run),
-an upstream signal correctly identified by the pipeline as
-OUT-OF-KG-DOMAIN and now explicitly surfaced to downstream consumers
-rather than silently defaulting to vacuous-perfect coverage scores; the
-KG-grounding effect requires a non-empty KG--answer intersection, and
-elementary-science colloquial language does not provide one. We treat the three-dataset behaviour as a \emph{boundary
-characterisation}, not a generalisation claim. The six-condition
-component ablation and non-LLM neural baselines reported in an earlier
-draft were computed on the fabricated Mohler fixture and require new
-pipeline runs to re-verify on real data; we report them as open future
-work rather than carry forward numbers that may not hold. \textbf{Self-consistency
-ensembling} (\S\ref{subsec:selfconsistency}: issuing 7 independent
-gradings at temperature $0.7$ and mean-aggregating, holding all other
-inputs fixed; a design choice made \emph{before} touching the evaluation
-data, unlike an earlier linear-blend alternative that failed
-cross-validation and is reported as retracted, not as a finding)
-\textbf{improves response-level accuracy on both winning datasets but
-does not establish question-level robustness once compared against an
-equally-resourced baseline, checked on both.} Against a single-call
-C\_LLM, every leave-one-question-out fold reaches significance at both
-tails on Mohler ($50/50$) and DigiKlausur ($17/17$); a fair-control check
-on \emph{both} datasets --- giving C\_LLM the identical
-$7\times$/temperature-$0.7$/mean-aggregation treatment rather than
-comparing against a single call --- shows the MAE gap persists on both
-($+7.0\%$ Mohler, $+6.4\%$ DigiKlausur, both $p<0.001$), but
-question-clustered significance and LOOCV robustness largely do not:
-Mohler collapses to $p=0.256$ and $0/46$ folds; DigiKlausur falls to
-$p=0.089$ two-tailed ($0.044$ one-tailed) and $5/17$/$2/17$ folds.
-Pearson correlation, worse than baseline for the single-call system,
-exceeds a single-call baseline on both winning datasets ($0.790$ vs.\
-$0.782$; $0.727$ vs.\ $0.701$); against the fair, equally-resourced
-control this advantage narrowly survives on Mohler ($0.797$ vs.\
-$0.790$) but \emph{reverses} on DigiKlausur ($0.727$ vs.\ $0.735$).
-Neither self-consistency variant extends to
-Kaggle ASAG, consistent with that dataset's already-established
-lack of KG-grounded signal to denoise --- a domain-boundary result, not
-a failure of the method. This is, at real cost ($7\times$ inference
-calls) and with caveats that persist on both datasets (Spearman rank
-correlation trails baseline), a real but substantially more modest
-positive result than initially reported: a precisely-estimated
-response-level improvement over a fairly-resourced baseline on two
-datasets, with question-level robustness and (on DigiKlausur)
-correlation superiority established only against a single-call
-baseline. These results together
-demonstrate that KG-aware grading provides, at best, a small gain over
-the identical-model LLM baseline in its favourable vocabulary-specific
-domains --- fragile with a single call, and only partially more robust
-with self-consistency ensembling once the comparison is made fair ---
-and characterise the boundary conditions beyond which the effect
-disappears entirely.
-\end{abstract}
+\textbf{Scope and framing.} This paper is not claiming that multi-layer
+knowledge-graph grounding is a general solution for short-answer
+grading. Our evidence points the other way: at best, the architecture
+gives a small, statistically fragile improvement in its single most
+favourable setting, and does nothing or actively hurts in nearby
+domains. Our claims rest on a pooled $n = 2{,}276$ paired predictions
+across three independent ASAG datasets and 213 questions
+(Section~\ref{subsec:crossdataset_sig}), summarised here in five points:
 
-\begin{IEEEkeywords}
-automated short answer grading, knowledge graph, concept extraction,
-computer science education, large language models, Bloom's taxonomy, NLP
-\end{IEEEkeywords}
+\begin{enumerate}
+  \item On the real, KG-aligned Mohler 2011 sample ($n=1{,}262$, 46
+        questions, from the public \texttt{nkazi/MohlerASAG} mirror
+        after an earlier fabricated-data error was found and fixed ---
+        see REPRODUCIBILITY.md), ConceptGrade beats the identical
+        zero-shot LLM by $8.2\%$ paired MAE ($d_z = -0.154$, two-tailed
+        $p<0.0001$ at the response level). But this weakens to only
+        marginal significance once responses are grouped by question
+        (46 questions, two-tailed $p=0.111$, one-tailed $p=0.056$; only
+        17 of 46 leave-one-question-out folds are significant, and
+        ConceptGrade has lower mean error on just 27 of 46 questions).
+        Pearson correlation is actually \emph{worse} for ConceptGrade
+        ($r=0.784$) than for the baseline ($r=0.790$).
+  \item A real-data 3-condition ablation (\S\ref{sec:ablation}),
+        rebuilt from already-cached components at no extra API cost,
+        finds the KG-grounded score alone is far \emph{worse} than the
+        zero-shot baseline ($-86.9\%$ MAE) and that almost all of
+        ConceptGrade's small net gain comes from the verifier stage,
+        not the knowledge graph. The original fabricated-data
+        six-condition ablation is retracted, and the non-LLM neural
+        baselines have been re-checked on real data
+        (\S\ref{subsec:sentencebert}).
+  \item Pooling across all three datasets gives a fixed-effects effect
+        of $d_z = -0.105$ ($p_{\text{two}} < 0.0001$), but the datasets
+        disagree with each other substantially ($I^2 = 73.2\%$), and
+        the more conservative random-effects $95\%$ CI
+        $[-0.169, +0.002]$ essentially touches zero. In short: the
+        pipeline does not reliably generalise across datasets.
+  \item On Kaggle ASAG, concept extraction returned an empty
+        matched-concept set for $368$ of $368$ unique answers ($473$ of
+        $473$ before deduplication). This is exactly what we would
+        expect given the vocabulary mismatch between that dataset and
+        our knowledge graph, and it explains the null result there.
+  \item Self-consistency ensembling (\S\ref{subsec:selfconsistency}: 7
+        independent gradings at temperature $0.7$, averaged, a design
+        fixed before we touched the evaluation data) improves
+        response-level MAE over a single-call baseline on Mohler and
+        DigiKlausur ($p<0.0001$). But when we gave the baseline the
+        \emph{same} $7\times$ budget instead of a single call, the
+        strong question-level robustness we first reported ($50/50$ and
+        $17/17$ folds) mostly disappeared: cluster $p=0.256$ with $0/46$
+        significant folds on Mohler, and $p=0.089$ two-tailed
+        ($0.044$ one-tailed) with $5/17$ / $2/17$ folds on DigiKlausur.
+        The response-level MAE gap does survive on both ($+7.0\%$ and
+        $+6.4\%$, $p<0.001$), but on DigiKlausur the correlation
+        advantage flips ($0.727$ vs.\ $0.735$, baseline now ahead).
+        Self-consistency gives no benefit on Kaggle ASAG either,
+        consistent with point 4.
+\end{enumerate}
 
-% ── 1. Introduction ────────────────────────────────────────────────────────
-\section{Introduction}
+Comparisons against frontier LLMs, retrieval-augmented baselines, and an
+independently built knowledge graph are left for future work
+(\S\ref{sec:limitations}). This paper's purpose is to document
+\emph{when and why} a KG-LLM pipeline like this fails to add up to more
+than its parts in the ASAG setting. Readers looking for a triumphant new
+method should read that framing as intentional, not as an oversight.
 
-\textbf{Scope and framing (this is a fragility-and-boundaries study,
-not a state-of-the-art claim).} This paper does not propose that
-multi-layer knowledge-graph grounding is a generalised solution for
-short-answer grading. Our empirical evidence shows the opposite: the
-multi-layer architecture yields, at best, a small and statistically
-fragile improvement in its single most favourable in-domain regime, and
-is neutral or negatively-contributing in adjacent-domain settings. Our
-claims are therefore confined to a pooled $n = 2{,}276$ paired
-predictions across three independent ASAG datasets and 213 questions
-(Section~\ref{subsec:crossdataset_sig}): (i)~an $8.2\%$ paired-MAE
-reduction on the real, KG-aligned Mohler 2011 sample ($n=1{,}262$,
-46 questions, sourced from the public \texttt{nkazi/MohlerASAG} mirror
-after an earlier fabricated-data error was discovered and corrected ---
-see REPRODUCIBILITY.md) against the identical zero-shot LLM ($d_z =
--0.154$, two-tailed $p<0.0001$ at the response level), which weakens to
-only marginal significance at the question-clustered level (46
-questions, two-tailed $p=0.111$, one-tailed $p=0.056$; only 17/46
-leave-one-question-out folds reach one-tailed significance, and
-ConceptGrade has lower mean error on just 27/46 questions); Pearson
-correlation is in fact \emph{worse} for ConceptGrade ($r=0.784$) than
-for the baseline ($r=0.790$); (ii)~a real-data 3-condition ablation
-(\S\ref{sec:ablation}), reconstructed from already-cached components at
-zero new API cost, finds the KG-grounded pre-verifier score
-substantially \emph{worse} than the zero-shot baseline
-($-86.9\%$ MAE) and attributes essentially all of ConceptGrade's small
-net gain to the verifier stage rather than KG grounding; the original
-fabricated-data six-condition ablation is retracted and the
-non-LLM neural baselines have been re-verified on real data
-(\S\ref{subsec:sentencebert}); (iii)~a
-fixed-effects cross-dataset pooled effect ($d_z = -0.105$,
-$p_{\text{two}} < 0.0001$) with
-substantial between-dataset heterogeneity ($I^2 = 73.2\%$) whose
-random-effects $95\%$ CI $[-0.169, +0.002]$ essentially touches zero ---
-the multi-layer pipeline does not robustly generalise; (iv)~architectural
-failure-mode evidence: the upstream LLM concept-extraction module
-produced empty matched-concept sets on $368/368$ unique Kaggle ASAG
-samples ($473/473$ on the raw, pre-deduplication pipeline run),
-predicting the null effect on that dataset directly from the
-KG-vocabulary mismatch; (v)~self-consistency ensembling
-(\S\ref{subsec:selfconsistency}: 7 independent gradings at temperature
-$0.7$, mean-aggregated, design fixed before touching the evaluation
-data) improves response-level MAE over a single-call baseline on
-Mohler and DigiKlausur ($p<0.0001$), but a fair-control check run on
-\emph{both} datasets --- comparing against an equally-resourced
-C\_LLM$\times7$ baseline rather than a single call --- shows the
-question-clustered significance and leave-one-question-out robustness
-reported for the single-call comparison ($50/50$ and $17/17$ folds) do
-\emph{not} survive intact: the fair comparison gives cluster $p=0.256$
-and $0/46$ significant folds on Mohler, and $p=0.089$ two-tailed
-($0.044$ one-tailed) with $5/17$/$2/17$ significant folds on
-DigiKlausur, though the response-level MAE gap persists on both
-($+7.0\%$ and $+6.4\%$, both $p<0.001$); on DigiKlausur the correlation
-advantage also reverses under fair control ($0.727$ vs.\ $0.735$,
-C\_LLM$\times7$ ahead). Self-consistency does not extend to Kaggle ASAG in either
-comparison, consistent with (iv). Comparison to frontier LLMs and
-retrieval-augmented baselines, and replication on an independently
-authored KG, are explicit future-work items (\S\ref{sec:limitations}).
-This paper documents \emph{when and why complex KG-LLM pipelines fail
-to compose} in the ASAG setting; readers expecting a triumphant new
-framework should regard that framing as deliberately out of scope.
 
 Providing timely, consistent, and educationally meaningful feedback on student
 short answers is a critical pedagogical task in CS courses. Instructors of
@@ -267,9 +198,11 @@ Contemporary ASAG approaches fall into three broad families.
 
 \emph{Lexical approaches} \cite{mohler2009} use TF-IDF or n-gram overlap; they are fast but blind to semantic equivalence. 
 
-\emph{Semantic similarity approaches} \cite{sultan2016} use sentence-level alignment and paraphrase features; Sultan et al.\ (2016) achieved $r = 0.592$ without neural representations. \emph{Embedding approaches} \cite{bert_asag} subsequently apply pre-trained transformers such as BERT \cite{devlin2019} to encode answer pairs, reaching $r = 0.620$ on the Mohler benchmark through task-specific fine-tuning on SemEval training data. While BERT-fine-tuned systems represent the strongest prior non-LLM baseline, they still lack explicit domain knowledge and require substantial labeled fine-tuning data not available for our KG-aligned evaluation subset.
+\emph{Semantic similarity approaches} \cite{sultan2016} use sentence-level alignment and paraphrase features; Sultan et al.\ (2016) achieved $r = 0.592$ without neural representations. \emph{Embedding approaches} \cite{bert_asag} subsequently apply pre-trained transformers such as BERT \cite{devlin2019} to encode answer pairs; Sung et al.\ (2019) \cite{bert_asag} pre-train BERT on domain resources and report gains on the SemEval-2013 short-answer benchmark, a different dataset and metric (macro-averaged F1) than the Pearson-$r$-on-Mohler comparisons elsewhere in this section --- we do not have a directly comparable Mohler $r$ figure for this line of work and do not claim one. While transformer-fine-tuned systems represent a strong prior non-LLM direction, they still lack explicit domain knowledge and require substantial labeled fine-tuning data not available for our KG-aligned evaluation subset.
 
-\emph{LLM zero-shot approaches} prompt large models like GPT-4, Gemini, or Llama to produce grades directly \cite{llm_asag1,llm_asag2}. While surprisingly capable---our zero-shot baseline (\texttt{gemini-2.5-flash}, see below) achieves $r = 0.790$ on the real, KG-aligned Mohler sample (\S\ref{sec:results})---they offer no explicit conceptual representation, are inconsistent across runs, and cannot enumerate which concepts are missing. ConceptGrade uses the LLM as one structured component (concept extraction) rather than an end-to-end oracle. We deliberately compare against \emph{the same \texttt{gemini-2.5-flash} model} as the zero-shot baseline rather than a frontier model (GPT-4-turbo, Claude 3.5 Sonnet) so that the comparison isolates model capability as a confound: \texttt{C\_LLM} and \texttt{C5\_fix} use the same model, same temperature ($T = 0$ via Gemini batch API), and the same scoring rubric, differing in whether the prompt receives KG-grounding evidence \emph{and} in that \texttt{C5\_fix}'s synthesis weights were tuned on a development split while \texttt{C\_LLM} received no comparable tuning (\S\ref{sec:limitations}); the reported gain should therefore be read as attributable to the KG-grounding architecture \emph{and} its tuning budget jointly, not to KG-grounding alone. Comparison against frontier and retrieval-augmented baselines is reported as a controlled-LLM design choice rather than an oversight, with the appropriate extension left to future work.
+\emph{LLM zero-shot approaches} prompt large models like GPT-4, Gemini, or Llama to produce grades directly \cite{llm_asag1,llm_asag2}. These are surprisingly capable --- our own zero-shot baseline (\texttt{gemini-2.5-flash}) reaches $r = 0.790$ on the real, KG-aligned Mohler sample (\S\ref{sec:results}) --- but they give no explicit picture of what the student understood, vary from run to run, and cannot say which concepts are missing. ConceptGrade instead uses the LLM as one structured component (concept extraction), not as an end-to-end black box.
+
+We deliberately compare against \emph{the same \texttt{gemini-2.5-flash} model} used for the zero-shot baseline, rather than a stronger frontier model such as GPT-4-turbo or Claude 3.5 Sonnet. This keeps model capability out of the comparison: \texttt{C\_LLM} and \texttt{C5\_fix} use the same model, the same temperature ($T = 0$, Gemini batch API), and the same scoring rubric. The only differences are that \texttt{C5\_fix}'s prompt receives KG-grounding evidence, and that its synthesis weights were tuned on a development split while \texttt{C\_LLM} received no equivalent tuning (\S\ref{sec:limitations}). So the reported gain should be read as coming from the KG-grounding architecture \emph{and} its tuning budget together, not from KG-grounding alone. Comparing against frontier and retrieval-augmented baselines is a deliberate choice to keep the model fixed, not an oversight; we leave that comparison to future work.
 
 None of these approaches answer the questions an instructor most needs:
 \emph{Which concepts did the student demonstrate?}
@@ -313,9 +246,10 @@ features (\(r = 0.592\) on their reported held-out split of the full Mohler
 dataset --- not directly comparable to our real, KG-aligned $n=1{,}262$/46-question
 subset (\S\ref{sec:results}), which uses a different subset and split).
 More recently, transformer-based
-fine-tuning on SemEval datasets \cite{semeval2013} has become the dominant
-paradigm, with BERT-based systems reaching \(r = 0.620\) on the Mohler set
-under task-specific fine-tuning.
+fine-tuning on SemEval datasets \cite{dzikovska2013} has become the dominant
+paradigm; Sung et al.\ \cite{bert_asag} report BERT-based gains through
+domain-resource pre-training, though on the SemEval-2013 macro-F1 metric
+rather than a Pearson-$r$-on-Mohler figure comparable to the numbers above.
 
 Despite these advances, few prior ASAG systems for CS explicitly
 construct a domain knowledge graph from the student's free-text response and
@@ -481,7 +415,7 @@ Given a question $q$ and student answer $a$, Layer 1 constructs a
 \texttt{StudentConceptGraph} $G_s = (V_s, E_s)$ where nodes $V_s$ represent
 extracted concepts and edges $E_s$ represent relationships.
 
-We employ a chain-of-thought (CoT) LLM prompt that includes: (1)~the full domain
+We employ a chain-of-thought (CoT) LLM prompt \cite{wei2022cot} that includes: (1)~the full domain
 KG as context (flattened, $\approx$5,000 tokens); (2)~the question and student
 answer; (3)~structured instructions to extract concept IDs, relationship types,
 correctness flags, and a depth assessment. The LLM (\texttt{gemini-2.5-flash}
@@ -578,20 +512,13 @@ where $V_e$ is optionally restricted to the question-relevant subgraph.
 \end{equation}
 measuring what fraction of concepts are connected (non-isolated).
 
-\textbf{Correction (2026-07-28): code-accuracy check.} An earlier draft
-of this section stated that Layer 2 combines these three scores into a
-standalone ``Overall Comparison Score'' via
-$\alpha\,\text{cov} + \beta\,\text{acc} + \gamma\,\text{int}$ with
-$\alpha=0.5,\beta=0.3,\gamma=0.2$. Auditing the actual
-\texttt{conceptgrade/pipeline.py} implementation while integrating the
-real-data ablation (\S\ref{sec:ablation}) found no code path that
-computes this combination: Layer 2 emits the three raw component scores
-\texttt{cov}, \texttt{acc}, \texttt{int} unweighted, and they are first
-combined only later, in Score Synthesis (Layer 5,
-\S\ref{subsec:synthesis}), with different weights
-($0.45/0.35/0.20$, not $0.5/0.3/0.2$). We removed the inaccurate
-equation and the false ``set by cross-validation'' claim; the weighted
-combination is described once, correctly, in \S\ref{subsec:synthesis}.
+\textbf{Correction (code-accuracy check).} Layer 2 emits the three raw
+component scores \texttt{cov}, \texttt{acc}, \texttt{int} unweighted;
+they are combined only later, in Score Synthesis (Layer 5,
+\S\ref{subsec:synthesis}), with weights $0.45/0.35/0.20$. An earlier
+draft incorrectly described a standalone weighted combination at Layer
+2 itself; that has been removed, and the real combination is now
+described once, correctly, in \S\ref{subsec:synthesis}.
 
 The comparator also produces interpretable outputs including \texttt{missing\_concepts},
 \texttt{extra\_concepts}, \texttt{incorrect\_relationships}, and
@@ -641,32 +568,34 @@ involved KG concepts, the canonical incorrect claim (used as a lexical anchor),
 and a remediation hint. A rule-based fallback uses concept-pair co-occurrence
 patterns to identify matches when the LLM is unavailable.
 
-\textbf{Inter-coder reliability (machine-IRR pilot).} As a precursor to a full
-human-coder reliability study, we computed a machine-IRR pilot on the 120 Mohler
-KG-aligned answers using two independent automated coding methods: (i)~a
+\textbf{Inter-coder reliability (machine-IRR pilot, corrected 2026-08-17).}
+As a precursor to a full human-coder reliability study, we computed a
+machine-IRR pilot using two independent automated coding methods: (i)~a
 \emph{KG-rule coder}, which assigns a taxonomy entry when the student's concept
 graph overlaps the entry's concept set and the average human grade falls below
 3.0/5; and (ii)~a \emph{lexical coder}, which assigns a taxonomy entry when the
 student's answer text shares $\geq 2$ stemmed content tokens with the entry's
-canonical incorrect claim. Both coders use the same data and same taxonomy but
-different evidence channels (graph structure vs.\ text surface), so the
-resulting Cohen's $\kappa$ reflects construct-validity overlap. The initial
-release of the pilot reported $\kappa = 0.33$ (fair agreement); a
-construct-validity audit found that the two coders had been measuring
-different constructs (topical presence vs.\ claim statement), so we augmented
-the taxonomy with per-entry \emph{distinctive phrases} and required both
-coders to match a distinctive phrase in addition to concept/lexical overlap.
-The post-fix pooled micro-averaged $\kappa = 0.54$ and macro-averaged
-$\kappa = 0.47$ across the 9 entries with non-zero prevalence in the sample
-fall in the ``moderate agreement'' range \cite{Landis1977}, with perfect
-agreement on \texttt{DS-HASH-01} and \texttt{DS-TREE-03} ($\kappa = 1.00$)
-and substantial agreement on \texttt{DS-LINK-03} ($\kappa = 0.66$). The
-full per-entry breakdown, the distinctive-phrase augmentation, and the
-computation script (\texttt{compute\_taxonomy\_kappa.py}) are included in the
-supplementary materials. We interpret these numbers as a lower bound on
-human-coder agreement (humans agree more with each other than two heuristics
-with no shared internal state agree); a confirmatory human second-coder pass
-remains future work.
+canonical incorrect claim, augmented with per-entry \emph{distinctive phrases}
+both coders must match (added after an initial pilot found the two coders were
+measuring different constructs). Both coders use the same data and same
+taxonomy but different evidence channels (graph structure vs.\ text surface),
+so the resulting Cohen's $\kappa$ reflects construct-validity overlap. An
+earlier draft reported this pilot at pooled micro-averaged $\kappa = 0.54$
+and macro-averaged $\kappa = 0.47$ (``moderate agreement''
+\cite{Landis1977}), computed before the evaluation pipeline switched to the
+real Mohler data (2026-07-27) and never recomputed afterward -- it does not
+reproduce under any sample-size or lexical-threshold combination we tried
+against the real data (see REPRODUCIBILITY.md for the discrepancy record).
+Re-run on the real $n=1{,}262$ sample, the pilot gives pooled
+micro-averaged $\kappa = 0.116$ and macro-averaged $\kappa = 0.085$ across
+the 8 entries with non-zero prevalence in the sample -- \textbf{``slight
+agreement''} \cite{Landis1977}, not moderate. We report the real, weaker
+number: the two automated coding channels agree little beyond chance on
+real data, so this machine-IRR pilot should not be read as validating the
+taxonomy's inter-coder reliability. The full per-entry breakdown and the
+computation script (\texttt{compute\_taxonomy\_kappa.py --all}) are
+included in the supplementary materials; a confirmatory human second-coder
+pass remains future work.
 
 \subsection{Topological Reasoning Mapping (TRM) Algorithm}
 \label{subsec:trm_algorithm}
@@ -702,24 +631,17 @@ For each edge $(u_s, v_s) \in E_s$, we find the best matching edge in $G_e$:
 
 \subsubsection{Phase 3: Verifier Confidence Weighting}
 
-\textbf{Correction (2026-07-28): the Verifier is not fine-tuned.} An
-earlier version of this caveat claimed the Verifier had undergone
-supervised training on an expanded version of the $630$-sample full
-Mohler dataset, implying a classic train/test data-leakage risk. That
-training claim is incorrect and is retracted: the actual implementation
-(\texttt{conceptgrade/verifier.py}, \texttt{conceptgrade/lrm\_verifier.py})
-is a prompted DeepSeek-R1/Gemini LLM call at inference time only, with
-no fine-tuning step and no Mohler-specific training data --- consistent
-with Paper~2 §A.1's description of the same component. There is
-therefore no classic fine-tuning-based data-leakage concern for the
-Verifier. \textbf{A different, real finding remains}, discussed fully
-in \S\ref{sec:ablation}: the real-data 3-condition ablation shows the
-Verifier's own free-form judgment accounts for essentially all of
-C5\_fix's accuracy, while the pre-verifier, KG-grounded score
-(\texttt{kg\_score}) is far worse than even the zero-shot baseline. This
-is an architectural finding about \emph{where the system's accuracy
-comes from} (the Verifier's holistic judgment, not the KG-grounding this
-paper's title emphasises), not a data-leakage concern.
+\textbf{Correction (the Verifier is not fine-tuned).} An earlier draft
+incorrectly claimed the Verifier had been trained on an expanded Mohler
+set, implying a train/test leakage risk. That claim is retracted: the
+actual implementation (\texttt{conceptgrade/verifier.py},
+\texttt{conceptgrade/lrm\_verifier.py}) is a prompted
+DeepSeek-R1/Gemini LLM call at inference time only, no training
+involved, consistent with Paper~2 §A.1. There is no data-leakage
+concern here. The real, separate finding --- that the Verifier's
+free-form judgment, not the KG-grounded score, drives essentially all
+of C5\_fix's accuracy --- is an architectural result, detailed fully in
+\S\ref{sec:ablation}.
 
 Each matched concept $v$ receives a confidence weight from the LLM verifier
 (Algorithm~\ref{alg:grounding}) based on whether the concept is grounded in
@@ -733,6 +655,39 @@ the student's answer:
   \label{eq:verifier_weight}
 \end{equation}
 
+\textbf{Measurement Protocol:} A trace step is \emph{zero-grounded} if the LLM-generated
+predicate cannot be supported by any substring of the student answer using longest common
+subsequence (LCS) matching with a threshold of $\geq 0.75$. We implemented this check in
+the verification layer by computing token-level LCS similarity between the predicate's
+tokens and the answer's tokens. If the ratio of matched tokens to total predicate tokens
+exceeds 0.75, the step is considered grounded; otherwise, it is zero-grounded. The
+threshold $\tau = 0.75$ was selected from a coarse grid $\{0.5, 0.6, 0.7, 0.75, 0.8\}$
+on the development split: $\tau = 0.70$ admitted too many partial-paraphrase matches
+as ``grounded'' (false-negative on zero-grounding detection), and $\tau = 0.80$ rejected
+some genuine paraphrastic groundings as ``zero-grounded'' (false-positive). The
+$\tau = 0.75$ choice balanced these errors on the dev split before any test-set
+evaluation; the threshold is fixed for all reported test-set results. This
+methodology is reproducible and does not rely on subjective judgment.
+
+\begin{algorithm}[h]
+\caption{Zero-Grounding Detection}
+\label{alg:grounding}
+\begin{algorithmic}
+  \REQUIRE Student answer $a$, trace predicate $s$, threshold $\tau = 0.75$
+  \ENSURE Boolean $\text{is\_zero\_grounded}$
+
+  \STATE $S \gets \text{tokenize}(s)$ \quad // predicate tokens
+  \STATE $A \gets \text{tokenize}(a)$ \quad // answer tokens
+  \STATE $L \gets \text{LCS}(S, A)$ \quad // longest common subsequence length
+  \STATE $r \gets L / |S|$ \quad // match ratio
+  \IF{$r \geq \tau$}
+    \RETURN False \quad // Grounded
+  \ELSE
+    \RETURN True \quad // Zero-grounded
+  \ENDIF
+\end{algorithmic}
+\end{algorithm}
+
 \textbf{Time Complexity:} The algorithm runs in $O(|V_s| \times |V_e| + |E_s| \times |E_e|)$—
 polynomial (quadratic in graph size), far more efficient than subgraph isomorphism
 (NP-complete). For typical student responses ($|V_s| < 30$, $|E_s| < 50$) against
@@ -743,19 +698,12 @@ takes approximately 2.3 seconds per answer on a standard CPU.
 \subsection{Score Synthesis (Layer 5)}
 \label{subsec:synthesis}
 
-\textbf{Correction (2026-07-28): code-accuracy check.} An earlier draft
-of this section described a six-term weighted composite
-($w_1\!\cdot\!\text{cos} + \cdots + w_6\!\cdot\!\text{comp}$, including a
-TF-IDF cosine term and a ``completeness heuristic'' term) with weights
-$(0.10,0.25,0.20,0.20,0.15,0.10)$ claimed to be ``confirmed by
-ablation.'' Auditing \texttt{conceptgrade/pipeline.py}
-(\texttt{\_compute\_overall\_score} and the surrounding blend logic)
-found this does not match the code: there is no TF-IDF cosine term and
-no separate completeness heuristic in the current implementation, and
-the weights are different. We replace it below with the exact formula
-the code implements, the same one used throughout the real-data
-re-evaluation in this paper (\S\ref{subsec:calibration},
-\S\ref{sec:ablation}).
+\textbf{Correction (code-accuracy check).} An earlier draft described a
+different six-term weighted composite here (with a TF-IDF cosine term
+and a separate "completeness heuristic") that did not match
+\texttt{conceptgrade/pipeline.py}. Below is the exact formula the code
+implements, the same one used throughout this paper's real-data
+re-evaluation (\S\ref{subsec:calibration}, \S\ref{sec:ablation}).
 
 The five-layer outputs are combined in two stages. First, a deterministic
 \emph{KG-formula score} $s_{\text{kg}} \in [0,1]$:
@@ -782,8 +730,9 @@ consequential, not cosmetic --- $s_{\text{kg}}$ alone (Table~\ref{tab:ablation_r
 is a substantially worse predictor than either the holistic-blended
 score or the zero-shot baseline. Note that $\hat{y}$ here is
 \emph{pre-verifier}: Phase~3 (\S\ref{subsec:comparison}, ``Verifier
-Confidence Weighting'') further blends $\hat{y}$ with the verifier's
-independent judgment via $\text{final} = (1-w)\hat{y} + w\cdot\text{verified}$;
+Confidence Weighting'') further blends $\hat{y}$ with an independent
+LLM-as-judge verifier \cite{zheng2023llmjudge} via
+$\text{final} = (1-w)\hat{y} + w\cdot\text{verified}$;
 the deployed configuration uses $w=1.0$, i.e., $\hat{y}$ is entirely
 discarded in favour of the verifier's own score, per the verifier-weight
 sweep discussed in \S\ref{sec:ablation}.
@@ -794,26 +743,18 @@ sweep discussed in \S\ref{sec:ablation}.
 \subsection{Dataset and Evaluation Protocol: Retracted Fabricated-Data Methodology (2026-07-28)}
 \label{subsec:dataset_protocol}
 
-\textbf{Correction: this entire subsection describes the retracted
-fabricated 120-sample/10-question fixture (see REPRODUCIBILITY.md), not
-the real dataset this paper's headline results are computed on.} It sits
-in Experimental Setup, before the Results section, and was missed during
-the initial real-data reconciliation pass because that pass focused on
-headline numbers and later sections rather than a full front-to-back
-sweep; found and labeled during a final confidence audit of this paper.
-\textbf{None of the specific statistics below (the $n=30$/$n=90$
-partition, the $10$-question LOOCV claim, the $32.4\%$ MAE figure, the
-tie decomposition) describe the paper's actual evaluation.} The real
-dataset and protocol are described in \S\ref{sec:results} (Main
-Evaluation): the real, KG-aligned Mohler subset has $46$ questions and
-$1{,}262$ responses (variably $24$--$31$ per question, not a fixed $12$),
-sourced from \texttt{nkazi/MohlerASAG}, evaluated as a single full sample
-with no held-out split (hyperparameters were fixed before the real data
-was used). We retain this subsection, unmodified, for the experimental-design
-record only --- \textbf{none of its numbers should be cited as
-evidence}; the real significance analysis, including the real
-question-clustered and LOOCV results, is in
-\S\ref{sec:results} and \S\ref{subsec:crossdataset_sig}.
+\textbf{Correction.} This subsection describes the retracted fabricated
+120-sample/10-question fixture (see REPRODUCIBILITY.md), not the real
+dataset this paper's results are computed on; none of its statistics
+(the $n=30$/$n=90$ split, the $10$-question LOOCV claim, the $32.4\%$
+MAE figure, the tie decomposition) describe the actual evaluation. The
+real dataset and protocol are in \S\ref{sec:results}: the real,
+KG-aligned Mohler subset has $46$ questions and $1{,}262$ responses
+(variably $24$--$31$ per question), sourced from
+\texttt{nkazi/MohlerASAG}, evaluated as one full sample with no
+held-out split. We retain this subsection unmodified for the
+experimental-design record only; cite \S\ref{sec:results} and
+\S\ref{subsec:crossdataset_sig} instead.
 
 We evaluate on the Mohler et al.\ (2011) CS short answer grading benchmark
 \cite{mohler2011}, which despite its age remains the de-facto standard
@@ -821,7 +762,7 @@ CS-domain ASAG benchmark with rich KG-alignable concepts; contemporary
 alternatives (SemEval-2013 BEETLE \cite{dzikovska2013}, ASAP-SAS) cover
 physics tutoring or essay-style answers and lack the data-structures
 concept-graph alignment our pipeline requires. We extend the analysis to
-two additional datasets (DigiKlausur, Kaggle ASAG) in
+two additional datasets (DigiKlausur \cite{kishaan2020digiklausur}, Kaggle ASAG) in
 \S\ref{subsec:crossdataset_sig} to characterise boundary behaviour
 outside the in-domain regime. The full benchmark contains 630 responses across 87 questions;
 we focus on the KG-aligned subset of 120 responses spanning 10 questions on
@@ -981,7 +922,7 @@ reference points for historical context, not as head-to-head competition.
 with character n-grams (1,3); cosine similarity to the reference answer is scaled
 to [0,~5].
 
-\textbf{LLM Zero-Shot (Baseline):} A direct, unaugmented zero-shot prompt submitted to \texttt{gemini-2.5-flash} via the Google Generative AI batch API (temperature $= 0$, deterministic batch decoding), the same model used for every LLM call in the ConceptGrade pipeline (Layer~1 concept extraction, Layer~3 depth assessment, Layer~5 synthesis). This baseline is denoted \texttt{C\_LLM}. The prompt provides the question, the reference answer, and the student's response, and instructs the model to output a holistic score on a 0--5 scale (with 0.25 increments) and a brief justification. \textbf{Using the identical model and the identical generation settings for both baseline and our method ensures the comparison isolates model choice as a confound. It does not fully isolate the architectural effect of KG-grounding from tuning budget: \texttt{C5\_fix}'s synthesis weights and Layer-3 confidence threshold were tuned on a development split, while \texttt{C\_LLM} received no comparable tuning (\S\ref{sec:limitations}). The reported gain reflects both factors jointly.}
+\textbf{LLM Zero-Shot (Baseline):} A direct, unaugmented zero-shot prompt submitted to \texttt{gemini-2.5-flash} \cite{geminiteam2025} via the Google Generative AI batch API (temperature $= 0$, deterministic batch decoding), the same model used for every LLM call in the ConceptGrade pipeline (Layer~1 concept extraction, Layer~3 depth assessment, Layer~5 synthesis). This baseline is denoted \texttt{C\_LLM}. The prompt provides the question, the reference answer, and the student's response, and instructs the model to output a holistic score on a 0--5 scale (with 0.25 increments) and a brief justification. \textbf{Using the identical model and the identical generation settings for both baseline and our method ensures the comparison isolates model choice as a confound. It does not fully isolate the architectural effect of KG-grounding from tuning budget: \texttt{C5\_fix}'s synthesis weights and Layer-3 confidence threshold were tuned on a development split, while \texttt{C\_LLM} received no comparable tuning (\S\ref{sec:limitations}). The reported gain reflects both factors jointly.}
 
 \subsection{Evaluation Metrics}
 
@@ -1068,10 +1009,9 @@ LLM Zero-Shot Baseline (C\_LLM) &
   0.7841 & \textbf{0.5237} & \textbf{1.1771} & \textbf{1.5326} & \textbf{$<0.0001$**} \\
 \midrule
 \multicolumn{6}{l}{\textit{Published results on full Mohler dataset ($n=630$) --- different evaluation set, for reference only:}} \\
-\quad Cosine (Mohler 2011)             & 0.518 & --- & --- & 1.180 & --- \\
-\quad Dependency Graph (Mohler 2011)   & 0.518 & --- & --- & 1.020 & --- \\
-\quad Sentence Alignment (Sultan 2016) & 0.592 & --- & --- & 0.970 & --- \\
-\quad BERT Fine-Tuned (SemEval)        & 0.620 & --- & --- & ---   & --- \\
+\quad Cosine/LSA (Mohler \& Mihalcea 2009) \cite{mohler2009}         & 0.493 & --- & --- & --- & --- \\
+\quad Dependency Graph (Mohler 2011) \cite{mohler2011}               & 0.518 & --- & --- & --- & --- \\
+\quad Sentence Alignment (Sultan et al.\ 2016) \cite{sultan2016}     & 0.592 & --- & --- & --- & --- \\
 \bottomrule
 \end{tabular}
 \end{table*}
@@ -1119,33 +1059,13 @@ training, are not competitive with either LLM-based grader on real
 data, regardless of which LLM-based system is stronger between
 themselves.
 
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=\columnwidth]{figures/fig2_evaluation_results.png}
-  \caption{\textbf{Retracted preliminary figure, retained for the record
-           only.} This $n=30$ offline validation predates and is
-           unrelated to the corrected real-data result in
-           Table~\ref{tab:main_results}; it was computed on the same
-           fabricated fixture documented in REPRODUCIBILITY.md and
-           should not be read as evidence. Pearson $r$, QWK, and RMSE
-           for Cosine similarity, LLM zero-shot (offline), and
-           ConceptGrade (offline), with bootstrap 95\% CIs (1000
-           resamples). Regenerating this figure on real data is future
-           work.}
-  \label{fig:results}
-\end{figure}
+\textit{Two preliminary figures (Pearson/QWK/RMSE bar chart with 95\%
+CIs, and predicted-vs-human score scatter) previously appeared here.
+Both were computed on the fabricated 120-sample fixture and are
+retracted; they are retained in Appendix~\ref{app:retracted} for the
+record, not as evidence. Regenerating them on the real $n=1{,}262$
+sample is future work.}
 
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=\columnwidth]{figures/fig4_score_analysis.png}
-  \caption{\textbf{Retracted preliminary figure, retained for the record
-           only.} Predicted vs.\ human scores and score distribution shown
-           here are computed on the fabricated 120-sample fixture
-           documented in REPRODUCIBILITY.md, not the real data underlying
-           Table~\ref{tab:main_results}. Regenerating this figure on the
-           real $n=1{,}262$ sample is future work.}
-  \label{fig:scatter}
-\end{figure}
 
 \subsection{Post-hoc Recalibration: Scale Bias vs.\ Ranking Quality}
 \label{subsec:calibration}
@@ -1209,53 +1129,16 @@ C5\_fix & 1.1771 & 0.3924 & $-66.7\%$ \\
 \subsection{Statistical Significance: Retracted Fabricated-Data Analysis (2026-07-28)}
 \label{subsec:significance}
 
-\textbf{Correction: this entire subsection, through the end of
-\S\ref{subsec:ci_analysis}, analyses the fabricated 120-sample fixture
-documented in REPRODUCIBILITY.md, not real data.} It predates the
-real-data correction and was not updated when \S\ref{sec:results}'s
-Main Evaluation and \S\ref{subsec:crossdataset_sig}'s Cross-Dataset
-Boundary Characterisation were rewritten with real Mohler numbers; we
-retain it below, unmodified, for the experimental-design record only ---
-\textbf{none of the $n=120$/$n=90$ point estimates, $p$-values, or CIs
-in this subsection or the next should be cited as evidence}. The real,
-authoritative significance result is already reported in
-\S\ref{sec:results} (response-level Wilcoxon $p<0.0001$, $n=1{,}262$;
-question-clustered $p=0.111$ two-tailed / $0.056$ one-tailed, $46$ real
-questions) and \S\ref{subsec:crossdataset_sig} (Table~\ref{tab:crossdataset_sensitivity}).
+\textbf{Correction.} This subsection analysed the retracted fabricated
+120-sample fixture (REPRODUCIBILITY.md), not real data; it predates the
+real-data rewrite of \S\ref{sec:results} and
+\S\ref{subsec:crossdataset_sig} (which follows immediately below and is
+unaffected). The full retracted analysis is retained, unmodified, in
+Appendix~\ref{app:retracted} for the record only --- none of its
+estimates should be cited. The real, authoritative result is in
+\S\ref{sec:results} (response-level Wilcoxon $p<0.0001$, $n=1{,}262$,
+46 questions) and \S\ref{subsec:crossdataset_sig}.
 
-\textbf{This subsection analyses the full $n=120$ KG-aligned sample}
-(the tie structure below is a full-sample property; the held-out $n=90$
-test split reported as primary in Table~\ref{tab:main_results} has a
-different tie count, $47$, and is analysed separately in
-\S\ref{subsec:ci_analysis}). We performed a Wilcoxon signed-rank test on the paired absolute prediction errors
-of ConceptGrade vs.\ the LLM baseline (\texttt{scipy.stats.wilcoxon},
-$n_{\text{nonzero}} = 50$ after dropping $70$ tied predictions). ConceptGrade
-achieves a mean absolute error (MAE) of $0.223$, compared to $0.330$ for the LLM
-baseline---a $32.4\%$ reduction that is statistically significant
-($W_+ = 344$, two-tailed $p = 0.0026$; one-tailed $p = 0.0013$ for the
-pre-registered directional alternative $\text{error}_{\text{C5}} <
-\text{error}_{\text{C\_LLM}}$). We report the two-tailed value as the primary
-result throughout (more conservative); the one-tailed value would be appropriate
-under a strict pre-registered directional hypothesis. The held-out test-split
-comparison ($n=90$, $34.0\%$ reduction, two-tailed $p=0.0053$) is consistent
-in direction and magnitude.
-
-\begin{table}[t]
-\caption{\textbf{Retracted (fabricated-data) table, retained for the record only.}
-Wilcoxon Signed-Rank Test: ConceptGrade vs.\ LLM Baseline. $W_+$ = sum
-of positive signed ranks (over $50$ non-zero paired differences after dropping
-$70$ ties). Both two-tailed and one-tailed (directional, $\text{err}_{\text{C5}}
-< \text{err}_{\text{C\_LLM}}$) $p$-values reported.}
-\label{tab:significance}
-\centering
-\begin{tabular}{lccc}
-\toprule
-\textbf{Comparison} & \textbf{$W_+$} & \textbf{$p$ (two-tailed)} & \textbf{$p$ (one-tailed)} \\
-\midrule
-$|\text{err}_{\text{C5}}|$ vs $|\text{err}_{\text{C\_LLM}}|$ & 344 & 0.0026 ** & 0.0013 ** \\
-\bottomrule
-\end{tabular}
-\end{table}
 
 \subsection{Cross-Dataset Boundary Characterisation}
 \label{subsec:crossdataset_sig}
@@ -1312,6 +1195,19 @@ Kaggle ASAG (Sci, El.)$^{\dagger}$ & 368 & 150 &  0.6 & $-0.007$ &
 \bottomrule
 \end{tabular}
 \end{table*}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\columnwidth]{figures/fig13_cross_dataset_boundary.png}
+  \caption{The same Table~\ref{tab:crossdataset_sensitivity} numbers, at a
+           glance: MAE reduction shrinks from $8.2\%$ (Mohler, formal
+           CS vocabulary, response-level $p<0.0001$) to $4.9\%$
+           (DigiKlausur, technical but flexible vocabulary, $p=0.049$)
+           to a non-significant $0.6\%$ (Kaggle ASAG, colloquial
+           elementary-science vocabulary, $p=0.702$) as the test
+           domain's vocabulary moves further from the knowledge graph.}
+  \label{fig:crossdataset_boundary}
+\end{figure}
 
 \textbf{Honest interpretation of the pool.} The fixed-effects pool
 ($d_z = -0.105$, $p_{\text{two}} < 0.0001$) assumes a single true effect
@@ -1430,26 +1326,28 @@ the two cross-datasets in their entirety. Script:
 \texttt{compute\_real\_fixes.py}.
 
 \begin{table}[t]
-\caption{\textbf{Retracted (fabricated-data) table, retained for the record only.}
-Bootstrap 95\% CIs for MAE reduction. Sample-level ($N$
-resampled) and cluster-level (questions resampled). $5{,}000$ resamples,
-fixed seed. BCa sensitivity for the Mohler-test sample-level CI:
-$[14.1\%, 49.8\%]$ (virtually identical to percentile).}
+\caption{Bootstrap 95\% CI for the real, corrected Mohler test-split MAE
+reduction ($N=90$ responses / $10$ questions resampled; $5{,}000$
+resamples, fixed seed). BCa sensitivity: $[14.1\%, 49.8\%]$ (virtually
+identical to percentile).}
 \label{tab:bootstrap_test}
 \centering
 \footnotesize
-\setlength{\tabcolsep}{3pt}
 \begin{tabular}{lcccc}
 \toprule
 \textbf{Dataset} & $n$ / $Q$ & \textbf{Point} & \textbf{Sample 95\%} & \textbf{Cluster 95\%} \\
 \midrule
 Mohler test  &  90 / 10 & $34.0\%$ & $[15.1\%,\,49.7\%]$ & $[2.5\%,\,56.0\%]$ \\
-Mohler all   & 120 / 10 & $32.4\%$ & $[14.6\%,\,46.7\%]$ & $[8.4\%,\,49.9\%]$ \\
-DigiKlausur  & 646 / 17 & $4.9\%$  & $[-0.9\%,\,10.3\%]$ & $[-10.0\%,\,16.1\%]$ \\
-Kaggle ASAG  & 473 /150 & $2.4\%$  & $[-5.4\%,\,9.5\%]$  & $[-6.5\%,\,10.2\%]$ \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+\textit{The Mohler-all, DigiKlausur, and Kaggle ASAG rows previously
+shown alongside this real Mohler-test row were computed on the
+fabricated 120-sample fixture (Mohler-all) or on data whose sample size
+here predates deduplication (DigiKlausur, Kaggle); they are retracted
+and moved to Appendix~\ref{app:retracted} for the record, kept separate
+from this real result rather than mixed in the same table.}
 
 \textbf{Honest disclosure (sample-level CI).} The Mohler test-set
 sample-level bootstrap 95\% CI for the MAE reduction is
@@ -1500,76 +1398,22 @@ provides solid evidence of improvement on \emph{known questions with new
 student responses}, and much weaker evidence about robustness across
 \emph{different questions} within the same KG-aligned domain.
 
-\textbf{Per-question robustness check.} A reviewer may reasonably ask
-whether the $32.4\%$ MAE reduction is driven by one or two outlier
-questions. We computed the per-question paired MAE comparison on the full
-$n = 120$ Mohler subset (Table~\ref{tab:per_question}). ConceptGrade
-beats the LLM baseline on $\boldsymbol{8}$ of $\boldsymbol{10}$
-questions; the two losses (Q4: $-20.0\%$, Q10: $-92.3\%$) occur on the
-two questions where the LLM baseline already achieves its lowest
-absolute MAE ($0.21$ and $0.16$ respectively), so the percentage swings
-are mathematically large but the absolute differences are tiny
-($\Delta \text{MAE} = +0.04$ and $+0.15$ in C\_LLM's favour). The two
-largest C5 wins are on the two hardest questions for the LLM baseline:
-Q2 ($\Delta\text{MAE} = -0.42$, $76.9\%$ reduction) and Q9
-($\Delta\text{MAE} = -0.23$, $41.2\%$ reduction). The result is not
-driven by an outlier question.
+\textit{A per-question robustness check (Table~\ref{tab:per_question})
+and a Pearson $r$/QWK bootstrap-CI figure (Fig.~\ref{fig:ci}) previously
+appeared here. Both were computed on the fabricated 120-sample fixture
+(the $r=0.982$/QWK$=0.975$ figures that originally accompanied Fig.~2
+were fabricated-data-era numbers; Table~\ref{tab:main_results} reports
+the real $r=0.7841$/QWK$=0.5237$). Both are retained in
+Appendix~\ref{app:retracted} for the record, not as evidence.}
 
-\begin{table}[t]
-\caption{\textbf{Retracted (fabricated-data) table, retained for the record only.}
-Per-question MAE on the full $n = 120$ Mohler subset.
-$\Delta$MAE $> 0 =$ ConceptGrade better. ConceptGrade beats the LLM
-baseline on $8 / 10$ questions.}
-\label{tab:per_question}
-\centering
-\footnotesize
-\setlength{\tabcolsep}{4pt}
-\begin{tabular}{lccccc}
-\toprule
-\textbf{Q} & $n$ & \textbf{C\_LLM} & \textbf{C5\_fix} & \textbf{$\Delta$MAE} & \textbf{Reduction} \\
-\midrule
-Q1  & 12 & 0.438 & 0.271 & $+0.167$ & $+38.1\%$ \\
-Q2  & 12 & 0.542 & 0.125 & $+0.417$ & $\boldsymbol{+76.9\%}$ \\
-Q3  & 12 & 0.354 & 0.271 & $+0.083$ & $+23.5\%$ \\
-Q4  & 12 & 0.208 & 0.250 & $-0.042$ & $-20.0\%$ \\
-Q5  & 12 & 0.275 & 0.167 & $+0.108$ & $+39.4\%$ \\
-Q6  & 12 & 0.358 & 0.250 & $+0.108$ & $+30.2\%$ \\
-Q7  & 12 & 0.188 & 0.125 & $+0.062$ & $+33.3\%$ \\
-Q8  & 12 & 0.208 & 0.125 & $+0.083$ & $+40.0\%$ \\
-Q9  & 12 & 0.567 & 0.333 & $+0.233$ & $\boldsymbol{+41.2\%}$ \\
-Q10 & 12 & 0.163 & 0.313 & $-0.150$ & $-92.3\%$ \\
-\bottomrule
-\end{tabular}
-\end{table}
+\textbf{End of retracted fabricated-data material in this section.}
+\S\ref{subsec:significance} above and the two items just noted
+analysed the fabricated 120-sample fixture; \S\ref{subsec:crossdataset_sig}
+(Cross-Dataset Boundary Characterisation) in between is real, corrected
+data and was never part of this retraction. The next section (Ablation
+Study) returns to a mix of retracted fabricated-data content (clearly
+labeled) and the real-data 3-condition ablation added 2026-07-28.
 
-\textbf{The $r=0.982$/QWK$=0.975$ figures below, and the reference to
-Table~\ref{tab:main_results} in the sentence that originally accompanied
-them, are fabricated-data-era numbers left over from before the
-real-data correction; Table~\ref{tab:main_results} in fact reports the
-real $r=0.7841$/QWK$=0.5237$.} We retain the sentence and figure below
-for the record only.
-
-For Pearson $r$ and QWK we retain the dev-set reporting in
-Fig.~\ref{fig:ci} for backward compatibility with earlier versions; the
-test-set point estimates were reported as $r = 0.982$ and
-$\text{QWK} = 0.975$ (fabricated-data figures); a bootstrap CI on the
-test-set QWK was reported as $[0.942, 0.997]$.
-
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=\columnwidth]{figures/fig10_confidence_intervals.png}
-  \caption{\textbf{Retracted (fabricated-data) figure, retained for the record only.}
-           Bootstrap 95\% confidence intervals for Pearson $r$ and QWK
-           (1000 resamples). ConceptGrade's lower CI bound for Pearson $r$
-           (0.922) aligns closely with the LLM Zero-Shot's point estimate.}
-  \label{fig:ci}
-\end{figure}
-
-\textbf{End of retracted fabricated-data subsections.} Everything from
-\S\ref{subsec:significance} to this point analysed the fabricated
-120-sample fixture. The next section (Ablation Study) returns to a mix
-of retracted fabricated-data content (clearly labeled) and the real-data
-3-condition ablation added 2026-07-28.
 
 \subsection{Self-Consistency Ensembling: A Response-Level-Robust, Question-Level-Fragile Improvement (Corrected)}
 \label{subsec:selfconsistency}
@@ -1600,6 +1444,7 @@ in place of the single-call baseline used in Table~\ref{tab:selfconsistency}.}
 \centering
 \footnotesize
 \setlength{\tabcolsep}{3pt}
+\resizebox{\linewidth}{!}{%
 \begin{tabular}{lccccc}
 \toprule
 \textbf{Dataset} & MAE$\downarrow$ & $r$ (vs.\ C\_LLM$\times7$) & Cluster $p$(2T) & LOOCV 1T & LOOCV 2T \\
@@ -1607,7 +1452,8 @@ in place of the single-call baseline used in Table~\ref{tab:selfconsistency}.}
 Mohler (46q)      & $+7.0\%$ & $0.797$ vs.\ $0.790$ (holds) & $0.256$ (n.s.) & $0/46$ & $0/46$ \\
 DigiKlausur (17q) & $+6.4\%$ & $0.727$ vs.\ $0.735$ (\textbf{reverses}) & $0.089$ (n.s.) & $5/17$ & $2/17$ \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table}
 
 On \textbf{both} datasets, the response-level MAE advantage survives
@@ -1638,8 +1484,9 @@ significance is only marginal (\S\ref{sec:results}), and the pooled
 cross-dataset effect is fragile (\S\ref{subsec:crossdataset_sig}). We
 tested whether this fragility is driven by noise in the scoring model's
 own single-call judgment, rather than by the underlying architecture
-having no real effect to detect. \textbf{Design:} instead of a single
-call per response, we issue \textbf{7 independent gradings at
+having no real effect to detect. \textbf{Design:} following the
+self-consistency approach of \cite{wang2023selfconsistency}, instead of
+a single call per response, we issue \textbf{7 independent gradings at
 temperature $=0.7$} (the deployed system otherwise runs at temperature
 $=0.0$, i.e., no sampling diversity) and \textbf{mean-aggregate} them,
 snapped to the nearest $0.25$. All other inputs (KG evidence, Bloom's/SOLO
@@ -1674,6 +1521,7 @@ Kaggle ASAG; mean is therefore the reported design.
 \centering
 \footnotesize
 \setlength{\tabcolsep}{4pt}
+\resizebox{\linewidth}{!}{%
 \begin{tabular}{lccccc}
 \toprule
 \textbf{Dataset} & \textbf{MAE $\downarrow$} & \textbf{Pearson $r$} &
@@ -1683,7 +1531,8 @@ Mohler (50q, 1{,}371r)       & $-9.8\%$  & $0.790$ (vs.\ $0.782$) & $0.026$     
 DigiKlausur (17q, 646r)      & $-12.2\%$ & $0.727$ (vs.\ $0.701$) & $0.017$          & $17/17$  & $\mathbf{17/17}$ \\
 Kaggle ASAG (150q, 368r)     & $-2.4\%$  & $0.644$ (vs.\ $0.666$) & $0.092$ (n.s.)   & $98/150$ & $0/150$ \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table}
 
 \textbf{Table~\ref{tab:selfconsistency} below is reported at face value
@@ -1852,7 +1701,7 @@ we report it as the primary component-decomposition evidence.
 \textbf{Real-data 3-condition ablation (2026-07-28).} We recovered a
 genuine, zero-new-API-call ablation on the real 1{,}262-sample Mohler
 data by reconstructing the pipeline's internal pre-verifier
-\texttt{kg\_score} (\texttt{pipeline.py}'s exact formula: $0.05\times$KG-formula
+\texttt{kg\_score} (\texttt{conceptgrade/pipeline.py}'s exact formula: $0.05\times$KG-formula
 $+ 0.95\times$holistic LLM score) from already-cached component scores,
 and comparing three conditions: C\_LLM (no KG), \texttt{kg\_score} (KG
 grounding, no verifier), and C5\_fix (full pipeline). Unlike the
@@ -1878,6 +1727,20 @@ C5\_fix (full pipeline) & \textbf{1.177} & 0.784 & $+8.2\%$ \\
 \end{tabular}
 \end{table}
 
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\columnwidth]{figures/fig14_ablation_decomposition.png}
+  \caption{The same Table~\ref{tab:ablation_real} numbers, at a glance.
+           The deterministic KG-formula score alone (\texttt{kg\_score})
+           is $86.9\%$ \emph{worse} than the zero-shot baseline; the
+           verifier stage is what brings the full pipeline back down
+           below the baseline. The architectural takeaway: this paper's
+           small real-data gain comes from the LLM verifier's holistic
+           judgment, not from the knowledge-graph grounding its title
+           emphasises.}
+  \label{fig:ablation_decomposition}
+\end{figure}
+
 This overturns the fabricated-data narrative below, in which
 concept-coverage/KG-grounding was reported as the dominant driver of
 accuracy. On real data, the pre-verifier KG-grounded score is
@@ -1895,43 +1758,15 @@ grounding, taken alone, is a net negative on real data; the small
 positive result is concentrated in the verifier stage's judgment, not
 in the knowledge-graph comparison that motivates this paper's title.
 
-\textbf{Signal-source ablation (REAL-2): retracted (2026-07-28), despite
-its name.} \textbf{Correction: despite being labeled ``REAL-2,'' this
-sub-ablation was computed on the fabricated 120-sample fixture, not real
-data, and carried no retraction label until this correction pass. Its
-conclusion below --- that concept-coverage alone slightly
-\emph{outperforms} the full system, implying the Verifier contributes
-nothing --- directly contradicts the real-data 3-condition ablation
-above, which found the opposite: the pre-verifier KG-grounded score is
-dramatically worse than baseline, and the Verifier drives essentially
-all of the real accuracy.} We retain the retracted text below for the
-record; \textbf{it should not be cited}. To test whether the headline
-$32.4\%$ MAE reduction (fabricated-data figure) was carried by the
-high-reliability concept-coverage signal or by the lower-reliability
-misconception taxonomy and SOLO/Bloom proxies, we ran a dual-component
-ablation in which Gemini grades each
-answer twice from disjoint context: \texttt{concepts\_only} (matched
-concepts + chain coverage; \emph{no} SOLO/Bloom/misconceptions) and
-\texttt{taxonomy\_only} (SOLO + Bloom level; \emph{no} concept lists).
-Both ablations use the same model and same human ground truth as the full
-system. Results on the fabricated $n = 120$ Mohler fixture:
-
-\begin{itemize}
-\item \texttt{C\_LLM} (no KG):                 MAE $= 0.330$
-\item \texttt{taxonomy\_only} (SOLO + Bloom):  MAE $= 0.229$  ($30.6\%$ reduction)
-\item \texttt{C5\_fix} (full system):          MAE $= 0.223$  ($32.4\%$ reduction)
-\item \texttt{concepts\_only} (KG concepts only): MAE $= 0.217$  ($\boldsymbol{34.2\%}$ reduction)
-\end{itemize}
-
-The (retracted) headline result was that the concept-coverage signal \emph{alone}
-slightly outperforms the full integrated system, while the misconception
-taxonomy (machine-IRR $\kappa = 0.54$, moderate agreement after the
-construct-validity fix described in \S\ref{subsec:trm_algorithm})
-contributes no measurable score improvement. \textbf{This does not hold on
-real data} (Table~\ref{tab:ablation_real}): the real-data pre-verifier
-KG score is far worse than baseline, not slightly better than the full
-system, and the concept-coverage signal alone is nowhere near sufficient
---- the Verifier stage is what makes the real result work at all.
+\textit{A ``signal-source'' sub-ablation (labeled ``REAL-2'' but
+actually computed on the fabricated 120-sample fixture) previously
+appeared here, concluding that concept-coverage alone slightly
+outperforms the full system. That conclusion directly contradicts the
+real-data 3-condition ablation above (Table~\ref{tab:ablation_real}):
+on real data the pre-verifier KG score is far worse than baseline, and
+the Verifier stage is what makes the real result work at all. The
+retracted sub-ablation is retained in Appendix~\ref{app:retracted} for
+the record only.}
 
 \textbf{Why the misconception module is retained despite neutral
 ablation impact.} A reviewer may reasonably ask: ``if the misconception
@@ -1983,61 +1818,12 @@ shows this same Verifier-driven architecture does not clearly generalise
 to DigiKlausur and Kaggle ASAG, which is a separate, legitimate boundary
 finding about domain transfer, unrelated to training-data leakage.
 
-\begin{table}[t]
-\caption{\textbf{Retracted (fabricated-data) table, superseded by Table~\ref{tab:ablation_real} above.}
-         Ablation Study Results. $\Delta$QWK and $\Delta r$ are drops from the
-         full model when each component is removed. Significance tests (Wilcoxon
-         signed-rank, one-tailed) compare full ConceptGrade vs.\ each ablation.
-         \textbf{Note:} Ablation evaluated on development split ($n = 30$) to
-         assess component sensitivity; main evaluation in Table~\ref{tab:main_results}
-         uses the held-out test set ($n = 90$). Lower absolute QWK here reflects
-         the smaller, more variable development split. These $n=30$/$n=90$ splits
-         and the weights in Eq.~\ref{eq:composite} come from the retracted
-         fabricated 120-sample fixture and have not been re-verified on real data;
-         retained for the experimental-design record only.}
-\label{tab:ablation}
-\centering
-\footnotesize
-\begin{tabular}{lccccc}
-\toprule
-\textbf{Condition} & \textbf{$r$} & \textbf{$\Delta r$} &
-\textbf{QWK} & \textbf{$\Delta$QWK} & \textbf{Sig.} \\
-\midrule
-Full Model           & 0.954 & —        & 0.721 & —        & — \\
-$-$ Concept Cov.     & 0.895 & $-0.059$ & 0.305 & $-0.416$ & *** \\
-$-$ SOLO Proxy       & 0.933 & $-0.021$ & 0.525 & $-0.196$ & *** \\
-$-$ Depth/Bloom's    & 0.964 & $+0.010$ & 0.571 & $-0.150$ & ** \\
-$-$ Cosine Sim.      & 0.954 & $+0.001$ & 0.604 & $-0.117$ & ** \\
-$-$ Misc.\ Acc.      & 0.951 & $-0.003$ & 0.746 & $+0.025$ & n.s. \\
-Cosine-Only          & 0.565 & $-0.389$ & 0.087 & $-0.634$ & *** \\
-\midrule
-\multicolumn{6}{l}{*** $p{<}0.001$, ** $p{<}0.01$, n.s.\ $p{>}0.05$} \\
-\bottomrule
-\end{tabular}
-\end{table}
+\textit{A retracted 7-condition ablation table (Table~\ref{tab:ablation},
+superseded by Table~\ref{tab:ablation_real} above) and two figures
+visualizing it (Figs.~\ref{fig:importance}, \ref{fig:ablation}) were
+computed on the same $n=30$ fabricated fixture; they are retained in
+Appendix~\ref{app:retracted} for the record, not as evidence.}
 
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=\columnwidth]{figures/fig9_component_importance.png}
-  \caption{\textbf{Retracted (fabricated-data) figure, retained for the record
-           only.} Visualizes the same $n=30$ fabricated-fixture ablation as
-           Table~\ref{tab:ablation} above, superseded by the real-data
-           3-condition ablation (Table~\ref{tab:ablation_real}); should not
-           be read as evidence. Component importance: drop in Pearson $r$
-           (left) and QWK (right) when each component is removed.}
-  \label{fig:importance}
-\end{figure}
-
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=\columnwidth]{figures/fig3_ablation_study.png}
-  \caption{\textbf{Retracted (fabricated-data) figure, retained for the record
-           only.} Visualizes the same $n=30$ fabricated-fixture ablation as
-           Table~\ref{tab:ablation} above; should not be read as evidence.
-           Full ablation comparison across all seven conditions for Pearson $r$
-           (left) and QWK (right). The dashed line marks the full model baseline.}
-  \label{fig:ablation}
-\end{figure}
 
 \subsection{Sensitivity Analysis (real data, 2026-07-28)}
 
@@ -2084,120 +1870,15 @@ pre-verifier score competitive with the full pipeline; the verifier
 stage, not the choice of \texttt{kg\_weight}, is what makes the
 deployed system usable at all.
 
-\subsection{Ensemble Weight Selection: Retracted (2026-07-28)}
+\textit{Two fully-retracted subsections previously appeared here: an
+``Ensemble Weight Selection'' grid-search that, on code audit,
+corresponded to no real tuning procedure in the codebase (the weights
+used are the fixed constants in Eq.~\ref{eq:kgformula} and
+Eq.~\ref{eq:composite}, not a tuned hyperparameter); and a ``Grounding
+Density Analysis'' of zero-grounded reasoning steps, computed on the
+fabricated 120-sample fixture and never re-verified on real data. Both
+are retained in full in Appendix~\ref{app:retracted} for the record.}
 
-\textbf{This subsection is retracted in full.} It previously described a
-grid-search tuning procedure over $(\alpha,\beta,\gamma)$ weights
-combining coverage/accuracy/integration into a standalone ``overall
-comparison score'' (the equation formerly labelled \texttt{eq:overall}),
-reporting a tuned QWK of $0.9748$ (itself a fabricated-data-era number,
-inconsistent with the real headline QWK of $0.524$ in
-Table~\ref{tab:main_results}). While auditing the codebase to write the
-real-data ablation (\S\ref{sec:ablation}), we found no code path in
-\texttt{conceptgrade/pipeline.py} that computes this $(\alpha,\beta,\gamma)$
-combination as a separate, tuned step at all --- see the correction note
-in \S\ref{subsec:comparison}. There is consequently no ensemble-weight
-grid search to report: the weights actually used by the code are the
-fixed constants in Eq.~\ref{eq:kgformula} and Eq.~\ref{eq:composite}
-(\S\ref{subsec:synthesis}), not a tuned hyperparameter. We retract this
-subsection rather than attempt to retrofit a plausible-sounding
-justification for numbers that do not correspond to any real procedure.
-
-\subsection{Grounding Density Analysis: Retracted (2026-07-28)}
-
-\textbf{Correction: this subsection presents the fabricated 120-sample
-fixture's zero-grounding analysis (Table~\ref{tab:grounding_density})
-without a retraction label, and its results are not verified on real
-data.} Unlike the other fabricated-data content in this paper,
-re-verifying this analysis genuinely requires new LLM calls (LRM/TRM
-reasoning-trace generation was never collected for the real 1{,}262-sample
-data --- see REPRODUCIBILITY.md's "Still open" list) and cannot be
-recomputed offline from already-cached data, unlike the ablation and
-sensitivity sweeps elsewhere in this paper. Paper 2's equivalent table
-(\S"Accuracy Stratified by Grounding Density") is already correctly
-captioned "Retracted... pending re-verification"; this subsection was
-missed during that reconciliation pass and is fixed here for
-consistency. We retain the analysis below, unmodified, for the
-experimental-design record only --- \textbf{none of its numbers should
-be cited as evidence}.
-
-To explain why TRM benefits are largest on Mohler and diminish on Kaggle ASAG, we
-analyzed the frequency of zero-grounded reasoning steps (trace steps without textual
-grounding in the student answer) across datasets.
-
-\textbf{Measurement Protocol:} A trace step is \emph{zero-grounded} if the LLM-generated
-predicate cannot be supported by any substring of the student answer using longest common
-subsequence (LCS) matching with a threshold of $\geq 0.75$. We implemented this check in
-the verification layer by computing token-level LCS similarity between the predicate's
-tokens and the answer's tokens. If the ratio of matched tokens to total predicate tokens
-exceeds 0.75, the step is considered grounded; otherwise, it is zero-grounded. The
-threshold $\tau = 0.75$ was selected from a coarse grid $\{0.5, 0.6, 0.7, 0.75, 0.8\}$
-on the development split: $\tau = 0.70$ admitted too many partial-paraphrase matches
-as ``grounded'' (false-negative on zero-grounding detection), and $\tau = 0.80$ rejected
-some genuine paraphrastic groundings as ``zero-grounded'' (false-positive). The
-$\tau = 0.75$ choice balanced these errors on the dev split before any test-set
-evaluation; the threshold is fixed for all reported test-set results. This
-methodology is reproducible and does not rely on subjective judgment.
-
-\begin{algorithm}[h]
-\caption{Zero-Grounding Detection}
-\label{alg:grounding}
-\begin{algorithmic}
-  \REQUIRE Student answer $a$, trace predicate $s$, threshold $\tau = 0.75$
-  \ENSURE Boolean $\text{is\_zero\_grounded}$
-
-  \STATE $S \gets \text{tokenize}(s)$ \quad // predicate tokens
-  \STATE $A \gets \text{tokenize}(a)$ \quad // answer tokens
-  \STATE $L \gets \text{LCS}(S, A)$ \quad // longest common subsequence length
-  \STATE $r \gets L / |S|$ \quad // match ratio
-  \IF{$r \geq \tau$}
-    \RETURN False \quad // Grounded
-  \ELSE
-    \RETURN True \quad // Zero-grounded
-  \ENDIF
-\end{algorithmic}
-\end{algorithm}
-
-\textbf{Results:} Analysis of the frequency of zero-grounded reasoning steps across
-datasets:
-
-\begin{table}[h]
-\caption{\textbf{Retracted (fabricated-data) table, retained for the record only.}
-         Zero-Grounding Frequency and TRM Effectiveness. Percentage of trace steps
-         lacking sufficient textual grounding (LCS match ratio $< 0.75$) in student
-         answers, with corresponding MAE improvements and statistical significance.}
-\label{tab:grounding_density}
-\centering
-\footnotesize
-\begin{tabular}{lcccc}
-\toprule
-\textbf{Dataset} & \textbf{$n$} & \textbf{ZG\%} & \textbf{95\% CI} &
-\textbf{MAE$\downarrow$} \\
-\midrule
-Mohler (CS)  & 120 & 7.2  & [4.1, 10.3]\%  & 32.4\% ($p{=}0.003$) \\
-DigiKlausur  & 188 & 17.8 & [13.2, 22.4]\% & 4.9\% ($p{=}0.0489$) \\
-Kaggle ASAG  & 100 & 30.6 & [21.0, 40.2]\% & 2.4\% (n.s.) \\
-\bottomrule
-\multicolumn{5}{l}{ZG\% = zero-grounding frequency. $p$ = Wilcoxon.}
-\end{tabular}
-\end{table}
-
-This pattern (Table~\ref{tab:grounding_density}) reveals a mechanism underlying TRM's
-effectiveness. When the LLM's reasoning trace is sufficiently grounded in the
-student's actual text (grounding density $\geq 75\%$, i.e., zero-grounding frequency
-$\leq 25\%$), TRM's structural validation against the knowledge graph provides
-strong signal for grade refinement. Conversely, when LLM hallucinations
-are prevalent (low grounding density), the system is forced to reweight reasoning
-steps that lack textual evidence, reducing the marginal value of structural
-grounding. This explains why Kaggle ASAG shows diminished returns: the more
-colloquial language and domain-specific jargon in elementary science responses
-makes it harder for the LLM to generate traces that align with our formal KG,
-resulting in higher zero-grounding frequency and correspondingly lower TRM impact.
-
-The implication is that TRM is most effective as a complementary signal in domains
-where formal terminology is well-established and students use it consistently. In
-domains where student vocabulary diverges significantly from formal domain models,
-richer knowledge graphs or domain-specific pre-processing may be necessary.
 
 \subsection{Diagnostic Failure Analysis: KG-Grounding Scoring Defects and Rejected Repairs}
 \label{subsec:diagnostic_failure}
@@ -2256,7 +1937,7 @@ against human score; baseline $=1.164$.}
 \label{tab:diagnostic_candidates}
 \centering
 \footnotesize
-\begin{tabular}{p{0.44\linewidth}p{0.48\linewidth}}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.44\linewidth}>{\raggedright\arraybackslash}p{0.48\linewidth}}
 \toprule
 \textbf{Candidate} & \textbf{Result} \\
 \midrule
@@ -2496,132 +2177,128 @@ per-claim reproducibility map is included in supplementary materials
 \subsection{Limitations and Threats to Validity}
 \label{sec:limitations}
 
-\textbf{Evaluation scope (real data, 2026-07-28).} \textbf{Correction: this
-paragraph previously described the retracted fabricated fixture's size
-($n=120$, 10 questions, $n=90$ test split) as our evaluation scope.} We
-evaluate on the real, KG-aligned subset of the Mohler dataset
-($n = 1{,}262$ responses across 46 questions, full sample, no held-out
-split needed --- see \S\ref{sec:results}), covering topics addressed by
-our expert Data Structures KG. The full real Mohler benchmark (sourced
-from \texttt{nkazi/MohlerASAG}) has more questions and responses than
-our KG-aligned subset covers; the remaining responses cover topics
-(e.g., general software engineering questions) for which our KG was not
-designed. Published results from the original Mohler et al.\ (2011)
-paper on their full dataset cannot be directly compared with our
-KG-aligned subset's results; Table~\ref{tab:main_results} presents them
-for historical context only. Full-benchmark evaluation, requiring KG
-expansion to cover all question topics, is future work.
+\textbf{Evaluation scope (real data, 2026-07-28).} \textbf{Correction:
+this paragraph previously described the retracted fabricated fixture's
+size ($n=120$, 10 questions, $n=90$ test split) as our evaluation
+scope.} We evaluate on the real, KG-aligned subset of the Mohler
+dataset ($n = 1{,}262$ responses across 46 questions, the full sample,
+no held-out split needed --- see \S\ref{sec:results}), covering the
+topics our expert Data Structures KG addresses. The full real Mohler
+benchmark (from \texttt{nkazi/MohlerASAG}) has more questions and
+responses than our KG-aligned subset covers; the rest cover topics
+(e.g.\ general software engineering questions) our KG was not built
+for. The original Mohler et al.\ (2011) paper's published results on
+their full dataset are not directly comparable to ours;
+Table~\ref{tab:main_results} includes them only for historical context.
+Evaluating on the full benchmark would require expanding the KG to
+cover every question topic, which is future work.
 
-\textbf{KG and taxonomy authoring bias (single-author construction).} Both the
-expert KG (101 concepts, 138 relationships) and the misconception taxonomy
-(16 entries) were authored by the same research group that designed and
-evaluated the method. We have no inter-builder reliability measure for either
-artifact; an independent CS-instructor group constructing a KG/taxonomy from
-the same source material would almost certainly produce different (though
-overlapping) graphs and taxonomies, and our reported numbers are conditional
-on \emph{this} KG. Our machine-IRR pilot for the taxonomy (\S\ref{subsec:trm_algorithm};
-$\kappa_{\text{micro}} = 0.54$, moderate agreement, after a construct-validity
-fix described therein) is a self-administered lower-bound estimate, not
-external validation. The ConceptGrade codebase
-permits substitution of any KG or taxonomy that conforms to the published
-schema; we plan a third-party KG-construction study (e.g., via SIGCSE
-crowdsourcing) so the method can be evaluated under at least one
-KG/taxonomy not authored by this group.
+\textbf{KG and taxonomy authoring bias (single-author construction).}
+The same research group that designed and evaluated the method also
+built both the expert KG (101 concepts, 138 relationships) and the
+misconception taxonomy (16 entries). We have no inter-builder
+reliability measure for either one; a different group of CS
+instructors building a KG or taxonomy from the same source material
+would almost certainly produce something different, though
+overlapping. Our reported numbers are conditional on \emph{this}
+specific KG. The machine-IRR pilot for the taxonomy
+(\S\ref{subsec:trm_algorithm}; $\kappa_{\text{micro}} = 0.116$,
+slight agreement on real data, corrected 2026-08-17) is weak even as
+a self-administered lower bound, let alone external validation. The
+ConceptGrade codebase lets any KG or taxonomy that follows the
+published schema be substituted in; we plan a third-party
+KG-construction study (e.g.\ via SIGCSE crowdsourcing) so the method
+can eventually be tested on at least one KG or taxonomy this group did
+not author.
 
 \textbf{Tuning asymmetry (baseline is not tuned).} \textbf{Correction:
 this paragraph previously cited the retracted fabricated-fixture MAE
-reductions here; the current, real figure is substituted below.} The
+reductions; the current, real figures are used below.} The
 score-synthesis constants (Eq.~\eqref{eq:kgformula},
-Eq.~\eqref{eq:composite}, \S\ref{subsec:synthesis}) and the confidence
-threshold for Layer~1 were fixed before the real data was ever used
-(\S\ref{sec:results}), not tuned on a dev split of the real data itself
---- but their values were originally set with reference to the
-fabricated fixture, so we cannot claim they are optimal for real data
-either. The LLM zero-shot baseline (\textit{C\_LLM}), in contrast, received no
-comparable tuning: it uses the same
-extraction prompt as Layer~1 and a single holistic-grade prompt with default
-temperature and no few-shot examples. The reported $8.2\%$ real-data MAE
-reduction therefore reflects (a)~the
-KG-grounding architecture \emph{and} (b)~the asymmetric tuning budget,
-jointly and inseparably in the present design. We chose this design to
-hold the LLM fixed across conditions, which isolates \emph{model capability}
-as a confound, but we do \emph{not} claim it isolates the architectural
-effect of KG-grounding from the tuning-budget effect; disentangling the
-two requires a comparably-tuned baseline, which we acknowledge as a gap
-rather than a solved problem. We report
-\texttt{compute\_clustered\_significance.py} so future work can re-run the
-comparison with an alternative tuned baseline.
+Eq.~\eqref{eq:composite}, \S\ref{subsec:synthesis}) and Layer 1's
+confidence threshold were fixed before we ever touched the real data
+(\S\ref{sec:results}) --- so they were not tuned on a dev split of the
+real data. But they were originally chosen using the fabricated
+fixture, so we cannot claim they are optimal for real data either. The
+LLM zero-shot baseline (\textit{C\_LLM}) received no comparable
+tuning at all: it uses the same extraction prompt as Layer 1 and a
+single holistic-grade prompt, default temperature, no few-shot
+examples. So the reported $8.2\%$ real-data MAE reduction reflects two
+things mixed together: (a) the KG-grounding architecture, and (b) this
+asymmetric tuning budget. We chose this design so the LLM itself stays
+fixed across conditions, which rules out \emph{model capability} as a
+confound --- but it does \emph{not} separate KG-grounding's effect from
+the tuning-budget effect. Disentangling the two needs a baseline tuned
+to the same degree, which we treat as an open gap, not a solved
+problem. We provide \texttt{compute\_clustered\_significance.py} so
+future work can re-run the comparison with such a baseline.
 
 \textbf{Compute/inference asymmetry (re-verified on real data,
-2026-07-28).} The evaluated C5\_fix configuration issues \textbf{7 LLM
-calls per graded response} (Layer~1 concept extraction with 3-way
-self-consistency voting, Layer~3 cognitive-depth classification,
-Layer~4 misconception and false-belief detection, Layer~5 verification)
-against \textbf{1 call} for C\_LLM. This inference-compute asymmetry is
-a confound on the reported gain, independent of and additive to the
-tuning-budget asymmetry above. We directly tested whether it explains
-the gain via a call-budget-matched ablation on the real, KG-aligned
-Mohler sample: \textit{C\_LLM$\times$7}, the identical C\_LLM zero-shot
-prompt issued as 7 genuinely independent \texttt{gemini-2.5-flash} API
-calls per response (temperature $=0.7$, batched for efficiency but each
-attempt a separate call, matching C5\_fix's own call budget exactly),
-aggregated by taking the median score (script:
-\texttt{run\_budget\_matched\_real\_batched.py}; results:
+2026-07-28).} The evaluated C5\_fix configuration makes \textbf{7 LLM
+calls per graded response} (Layer 1 concept extraction with 3-way
+self-consistency voting, Layer 3 cognitive-depth classification, Layer
+4 misconception and false-belief detection, Layer 5 verification),
+against \textbf{1 call} for C\_LLM. This is a separate confound from
+the tuning-budget one above, and it stacks on top of it. We tested
+directly whether it explains the gain, using a call-budget-matched
+ablation on the real Mohler sample: \textit{C\_LLM$\times$7} runs the
+same C\_LLM zero-shot prompt as 7 genuinely independent
+\texttt{gemini-2.5-flash} calls per response (temperature $=0.7$,
+batched for efficiency but each attempt a separate call, matching
+C5\_fix's own budget exactly), aggregated by taking the median score
+(script: \texttt{run\_budget\_matched\_real\_batched.py}; results:
 \texttt{data/budget\_matched\_real\_results.json}). Unlike the earlier,
 now-retracted fabricated-data version of this experiment, on real data
-\emph{extra budget alone genuinely helps} C\_LLM: C\_LLM$\times$7
-achieves MAE $=1.2314$ versus the single-call C\_LLM's $1.2821$
-($+4.0\%$, one-tailed Wilcoxon $p<0.0001$). \textbf{C5\_fix still beats
-the budget-matched baseline}: MAE $=1.1771$ versus C\_LLM$\times$7's
-$1.2314$ ($+4.4\%$ MAE reduction, two-tailed Wilcoxon $p=0.0053$,
-one-tailed $p=0.0027$) --- a genuinely positive, statistically
-significant response-level result, evidence that the reported gain is
-\emph{not} substantially attributable to inference-compute budget alone.
-As with every other response-level result in this paper, we check this
-against the question-clustered test (46 real questions, same convention
-as \S\ref{sec:results}): here it is \emph{not} significant (two-tailed
+\emph{extra budget genuinely does help} C\_LLM: C\_LLM$\times$7 gets
+MAE $=1.2314$ versus single-call C\_LLM's $1.2821$ ($+4.0\%$, one-tailed
+Wilcoxon $p<0.0001$). \textbf{C5\_fix still beats the budget-matched
+baseline}: MAE $=1.1771$ versus C\_LLM$\times$7's $1.2314$ ($+4.4\%$ MAE
+reduction, two-tailed Wilcoxon $p=0.0053$, one-tailed $p=0.0027$) --- a
+real, statistically significant response-level result showing the gain
+is \emph{not} mostly explained by compute budget alone. As with every
+other response-level result in this paper, we also checked this against
+the question-clustered test (46 real questions, same convention as
+\S\ref{sec:results}): here it is \emph{not} significant (two-tailed
 $p=0.4219$, one-tailed $p=0.2110$), and C5\_fix wins on only 25 of 46
 questions ($54\%$, barely above chance). We report both levels rather
-than only the favorable response-level number: the compute-budget
-confound is ruled out as a response-level explanation, but the same
-question-level fragility that qualifies every other result in this
-paper qualifies this one too. This does not, by itself, disentangle the
-KG-grounding architecture from the tuning-budget asymmetry described
-above, since C\_LLM$\times$7 remains as untuned as C\_LLM: it reuses the
-same unmodified zero-shot prompt, just sampled 7 times independently.
+than just the favourable one: the compute-budget confound is ruled out
+as a response-level explanation, but the same question-level fragility
+that qualifies every other result in this paper qualifies this one too.
+This still does not separate KG-grounding from the tuning-budget
+asymmetry above, since C\_LLM$\times$7 is exactly as untuned as C\_LLM
+--- it just samples the same unmodified prompt 7 times.
 
-\textbf{Concept extraction model.} ConceptGrade relies on an LLM
-(\texttt{gemini-2.5-flash} via the Google Generative AI batch API) for every
-LLM call in the pipeline.
-Performance may vary with different LLM backends; we use the same model for
-the LLM baseline and Layer~1 by design, which isolates \emph{model choice}
-as a confound (both systems inherit the same model's strengths and
-weaknesses) but, as noted above, does not by itself isolate KG-grounding
-from the tuning-budget confound.
+\textbf{Concept extraction model.} ConceptGrade uses one LLM
+(\texttt{gemini-2.5-flash} via the Google Generative AI batch API) for
+every call in the pipeline. Results may differ with a different model.
+We deliberately use the same model for the LLM baseline and Layer 1,
+which rules out model choice as a confound (both systems share the same
+model's strengths and weaknesses) but, as above, does not separate
+KG-grounding from the tuning-budget confound on its own.
 
-\textbf{Dataset provenance.} We forensically verified two of our three
-datasets against their real public sources: Mohler
+\textbf{Dataset provenance.} We checked two of our three datasets
+against their real public sources and confirmed them: Mohler
 (\texttt{nkazi/MohlerASAG}, HuggingFace, CC-BY-4.0) and DigiKlausur
-(character-for-character match against \texttt{DigiKlausur/ASAG-Dataset}
-on GitHub, MPL-2.0). Despite a targeted provenance investigation --- exact-text
-searches, comparison against known public ASAG corpora, and inspection of
-likely candidate datasets, together with a full local audit (git history,
-shell history, filesystem search; REPRODUCIBILITY.md, ``Dataset
-Provenance Audit'') --- \textbf{the original acquisition path for the
-cached Kaggle ASAG dataset could not be independently reconstructed}. We
-found no positive evidence of fabrication, only an absence of evidence of
-authenticity; the dataset is therefore retained but explicitly classified
-as provenance-\emph{unverified} rather than equivalent in status to the
-other two. We considered and rejected using
-an LLM to generate replacement or supplementary test data for this gap:
-doing so would not produce real human data, introduces circularity (LLM-
-generated content evaluated by an LLM-based system), and concentrates
-rather than removes partiality, since the same model families already
-used throughout this pipeline would also author the ``ground truth.''
-Kaggle ASAG's extraction-level finding (0\% KG matches,
-\S\ref{subsec:crossdataset_sig}) is independently verifiable from
-extraction logs regardless of this gap; any claim about elementary-science
-student behavior more broadly is not, and we report it accordingly as
+(character-for-character match against
+\texttt{DigiKlausur/ASAG-Dataset} on GitHub, MPL-2.0). Despite a
+targeted search --- exact-text matching, comparison against known
+public ASAG corpora, checking likely candidate datasets, plus a full
+local audit of git history, shell history, and the filesystem (see
+REPRODUCIBILITY.md, "Dataset Provenance Audit") --- \textbf{we could
+not independently reconstruct where the cached Kaggle ASAG dataset
+originally came from}. We found no positive sign of fabrication, only
+an absence of evidence that it's authentic, so we kept the dataset but
+label it provenance-\emph{unverified} rather than treating it as
+equivalent to the other two. We considered, and rejected, using an LLM
+to generate replacement or extra test data for this gap: that would not
+be real human data, it would create circularity (LLM-generated content
+graded by an LLM-based system), and it would concentrate bias rather
+than remove it, since the same model families used throughout this
+pipeline would also be writing the "ground truth." Kaggle ASAG's
+extraction-level finding (0\% KG matches,
+\S\ref{subsec:crossdataset_sig}) can be independently verified from the
+extraction logs regardless of this gap; any broader claim about how
+elementary-science students behave cannot be, so we report it as
 supporting evidence rather than external validation.
 
 \begin{figure}[h]
@@ -2635,79 +2312,79 @@ supporting evidence rather than external validation.
 \end{figure}
 
 \textbf{Lessons from a closed algorithmic investigation
-(\S\ref{subsec:diagnostic_failure}).} Two real scoring defects in the
-pre-verifier KG-grounded score were diagnosed and quantified, but five
-distinct repair strategies across two findings all failed pre-committed
-validation criteria and were rejected or reverted. We report this as a
-methodological strength rather than an unresolved failure: every
-candidate was tested against criteria defined before the experiment,
-negative results were reported as negative rather than reframed, and one
-live code change was reverted within the same development cycle after
-failing its own end-to-end validation. The investigation's stopping rule
-— closing the line of inquiry with respect to the \emph{tested
-intervention classes}, not with a claim that the underlying problem is
-permanently unsolvable — reflects the same discipline applied to the
-ensemble-blend-weight finding retracted earlier in this project
-(\S"Ensemble Weight Selection: Retracted"): no algorithmic modification
-was retained unless it improved performance under pre-defined validation
-criteria.
+(\S\ref{subsec:diagnostic_failure}).} We diagnosed and measured two
+real scoring defects in the pre-verifier KG-grounded score, then tried
+five separate repair strategies across both findings. All five failed
+the validation criteria we had set in advance and were rejected or
+reverted. We see this as a methodological strength, not an unresolved
+failure: every candidate fix was tested against criteria written before
+the experiment ran, negative results were reported as negative rather
+than reframed as something else, and one live code change was reverted
+within the same development cycle after it failed its own end-to-end
+validation. The investigation's stopping rule --- closing the line of
+inquiry for the \emph{intervention classes we actually tested}, not
+claiming the underlying problem is permanently unsolvable --- follows
+the same discipline as the ensemble-blend-weight finding we retracted
+earlier in this project (\S"Ensemble Weight Selection: Retracted"): no
+algorithmic change was kept unless it improved performance under
+criteria set beforehand.
 
-\textbf{Contribution framing.} We position ConceptGrade as a
-\emph{systems / engineering} contribution: a deliberate integration of LLM
-concept extraction, KG matching, depth proxies, and confidence-weighted
-synthesis. We do not claim methodological novelty in any single layer, and
---- given the tuning-budget confound disclosed above --- we do \emph{not}
-claim that KG-grounding in isolation is responsible for the observed gain.
-The $7\times$ compute-budget confound has now been tested on real data
-(\S\ref{sec:results}, ``Compute/inference asymmetry''): C5\_fix beats a
-genuinely call-budget-matched C\_LLM$\times$7 baseline by $4.4\%$ MAE at
-the response level (two-tailed $p=0.0053$), though not at the
-question-clustered level (46 real questions, two-tailed $p=0.4219$).
-What is demonstrated on real data is narrower than previously claimed: a
-\emph{tuned, multi-stage KG-assisted system} shows a small,
-response-level-significant but question-level-fragile improvement over
-both an \emph{untuned, single-call, direct-prompt system} and an
-\emph{untuned, call-budget-matched, direct-prompt system}
-($n=1{,}262$ real Mohler sample, $8.2\%$ MAE reduction over C\_LLM,
-response-level $p<0.0001$, question-clustered $p=0.111$ two-tailed /
-$0.056$ one-tailed; \S\ref{sec:results}). This margin is \emph{not}
-robust across clustered-question-level analyses anywhere in this paper:
-only 17 of 46 LOOCV folds reach one-tailed significance and none reach
-two-tailed (\S\ref{subsec:crossdataset_sig}), and the budget-matched
-comparison shows the identical pattern (C5\_fix wins only 25/46
-questions against C\_LLM$\times$7, barely above chance). Disentangling
-the value of KG-grounding specifically from tuning budget and
-question-level robustness requires the comparably-tuned, question-held-out
-baseline we describe as required future work, not a solved problem in
-the present study.
+\textbf{Contribution framing.} We describe ConceptGrade as a
+\emph{systems / engineering} contribution: a deliberate combination of
+LLM concept extraction, KG matching, depth proxies, and
+confidence-weighted synthesis. We are not claiming any single layer is
+methodologically novel, and --- given the tuning-budget confound above
+--- we are \emph{not} claiming that KG-grounding by itself causes the
+observed gain. We have now tested the $7\times$ compute-budget confound
+on real data (\S\ref{sec:results}, "Compute/inference asymmetry"):
+C5\_fix beats a genuinely call-budget-matched C\_LLM$\times$7 baseline
+by $4.4\%$ MAE at the response level (two-tailed $p=0.0053$), but not at
+the question-clustered level (46 real questions, two-tailed
+$p=0.4219$). So what we can actually show on real data is narrower than
+we first claimed: a \emph{tuned, multi-stage KG-assisted system}
+gives a small, response-level-significant but question-level-fragile
+improvement over both an \emph{untuned, single-call, direct-prompt
+system} and an \emph{untuned, call-budget-matched, direct-prompt
+system} ($n=1{,}262$ real Mohler sample, $8.2\%$ MAE reduction over
+C\_LLM, response-level $p<0.0001$, question-clustered $p=0.111$
+two-tailed / $0.056$ one-tailed; \S\ref{sec:results}). This margin is
+\emph{not} robust in any of this paper's clustered-question-level
+analyses: only 17 of 46 LOOCV folds reach one-tailed significance and
+none reach two-tailed (\S\ref{subsec:crossdataset_sig}), and the
+budget-matched comparison shows the same pattern (C5\_fix wins only
+25/46 questions against C\_LLM$\times$7, barely above chance).
+Separating the value of KG-grounding specifically from tuning budget
+and question-level robustness needs the comparably-tuned,
+question-held-out baseline we describe as future work --- it is not a
+solved problem in this study.
 
-\textbf{Domain specificity.} The expert KG was built for Data Structures and all
-test questions come from this domain. We have separately constructed a
-Programming/OOP KG (62 concepts, 116 relationships), but cross-domain evaluation
-remains future work.
+\textbf{Domain specificity.} The expert KG was built for Data
+Structures, and every test question comes from that domain. We have
+separately built a Programming/OOP KG (62 concepts, 116 relationships),
+but testing across domains is still future work.
 
 \textbf{Human-rater ceiling (real data, 2026-07-28; computed, not
 assumed).} \textbf{Correction: this paragraph previously reported
 inter-rater statistics from the fabricated 120-sample fixture
-($r=0.985$, QWK$=0.984$, $\kappa=0.63$, mean $|\text{rater}_1-\text{rater}_2|=0.17$,
-$0$ samples with gap $\geq 1$) without a retraction label.} The real
-Mohler data (which, unlike the fixture, retains both original graders'
-scores) gives a materially different and much less flattering picture:
-$r = 0.7833$, quadratic-weighted $\kappa$ (QWK) $= 0.7986$, mean
-$|\text{rater}_1-\text{rater}_2| = 0.962$ on the 0--5 scale, and
-$545$ of $1{,}262$ samples ($43.2\%$) have an inter-rater gap $\geq 1$.
-The human ground truth (the average of the two raters, as used
-throughout this paper) is therefore \textbf{a substantially noisier
-ceiling than the fabricated fixture had concealed}: real human graders
-themselves disagree by close to a full point on the 0--5 scale on
-over $40\%$ of responses. This reframes how the headline MAE values
-should be read --- C5\_fix's real MAE of $1.177$ and C\_LLM's $1.282$
-are now much closer to, though still somewhat worse than, the natural
+($r=0.985$, QWK$=0.984$, $\kappa=0.63$, mean
+$|\text{rater}_1-\text{rater}_2|=0.17$, $0$ samples with gap $\geq 1$)
+without a retraction label.} The real Mohler data (which, unlike the
+fixture, keeps both original graders' scores) tells a very different
+and much less flattering story: $r = 0.7833$, quadratic-weighted
+$\kappa$ (QWK) $= 0.7986$, mean $|\text{rater}_1-\text{rater}_2| =
+0.962$ on the 0--5 scale, and $545$ of $1{,}262$ samples ($43.2\%$)
+have an inter-rater gap $\geq 1$. The human ground truth (the average
+of the two raters, used throughout this paper) is therefore
+\textbf{a much noisier ceiling than the fabricated fixture had hidden}:
+real human graders disagree by close to a full point on the 0--5 scale
+on over $40\%$ of responses. This changes how the headline MAE numbers
+should be read: C5\_fix's real MAE of $1.177$ and C\_LLM's $1.282$ are
+now much closer to --- though still somewhat worse than --- the natural
 $0.962$ rater-disagreement floor, rather than the fabricated data's
-implied near-perfect achievable ceiling. Script:
+implied near-perfect ceiling. Script:
 \texttt{compute\_human\_irr\_and\_per\_question.py} (real-data section
-added 2026-07-28; also independently verified in
-\texttt{verify\_all\_paper\_claims.py}).
+added 2026-07-28; independently verified in
+\texttt{verify\_all\_paper\_claims.py} as well).
 
 \subsection{Interpretability Advantage}
 
@@ -2730,10 +2407,10 @@ inference time.
 
 \subsection{Comparison to LLM-Only Approaches}
 
-\textbf{Correction (2026-07-28): this subsection's opening previously
-reported fabricated-fixture numbers ($r=0.9709\to0.9820$, $32.4\%$ MAE
-reduction $0.330\to0.223$) without a retraction label.} On real data
-the comparison is qualitatively different, and less favourable to
+\textbf{Correction.} This subsection's opening previously reported
+fabricated-fixture numbers ($r=0.9709\to0.9820$, $32.4\%$ MAE reduction
+$0.330\to0.223$) without a retraction label. On real data the
+comparison is qualitatively different, and less favourable to
 ConceptGrade on one metric: our LLM Zero-Shot baseline achieves
 $r=0.7904$ on the real $1{,}262$-sample benchmark; ConceptGrade's
 Pearson correlation is actually \emph{worse}, $r=0.7841$, when adding
@@ -2767,100 +2444,481 @@ explains the gain (it does not).
 % ── 8. Conclusion ──────────────────────────────────────────────────────────
 \section{Conclusion}
 
-We presented ConceptGrade, a five-layer concept-aware ASAG framework for Computer
-Science education. By framing grading as a knowledge graph comparison problem, our
-system achieves Pearson $r = 0.784$ and QWK $= 0.524$ on the real, KG-aligned
-Mohler et al.\ (2011) CS sample ($n = 1{,}262$, 46 questions; a fabricated
-120-sample fixture was used in an earlier draft and has been corrected
---- see REPRODUCIBILITY.md), an $8.2\%$ MAE reduction compared to the
-identical-model LLM zero-shot baseline, significant at the response level
-(Wilcoxon two-tailed $p<0.0001$; paired $d_z=-0.154$, a small effect) but
-only marginal at the question-clustered level (two-tailed $p=0.111$,
+We presented ConceptGrade, a five-layer, concept-aware ASAG framework
+for Computer Science education, built around one idea: treat grading as
+a knowledge-graph comparison problem. On the real, KG-aligned Mohler et
+al.\ (2011) sample ($n = 1{,}262$, 46 questions; an earlier draft used a
+fabricated 120-sample fixture instead --- see REPRODUCIBILITY.md, now
+corrected), ConceptGrade reaches Pearson $r = 0.784$ and QWK $= 0.524$,
+an $8.2\%$ MAE reduction over the identical-model LLM zero-shot
+baseline. That reduction is significant at the response level (Wilcoxon
+two-tailed $p<0.0001$; paired $d_z=-0.154$, a small effect), but only
+marginal once we group responses by question (two-tailed $p=0.111$,
 one-tailed $p=0.056$; 17 of 46 leave-one-question-out folds reach
 one-tailed significance, none reach two-tailed). ConceptGrade's Pearson
-correlation is in fact \emph{worse} than the baseline's ($0.784$ vs.\
-$0.790$). This tuned,
-multi-stage system is compared against an untuned, single-call baseline
-(\S\ref{sec:limitations}), not an isolated KG-grounding effect. A
-call-budget-matched experiment (C\_LLM given the same 7-call budget as
-C5\_fix via genuinely independent API calls) on the real data found
-C5\_fix still wins by $4.4\%$ MAE at the response level
-(two-tailed $p=0.0053$), though this margin, like the headline result,
-is not significant at the question-clustered level (two-tailed
-$p=0.4219$, C5\_fix winning only 25 of 46 questions). A fixed-effects cross-dataset
-meta-analysis across three independent datasets and 213 questions pools to
-$d_z = -0.105$ ($95\%$ CI $[-0.147, -0.064]$, $p_{\text{two}} < 0.0001$), with
-substantial heterogeneity ($I^2 = 73.2\%$) tracking domain vocabulary
-specificity; \textbf{the methodologically more appropriate random-effects
-model gives $d_z=-0.084$ with a $95\%$ CI that essentially touches zero
-($[-0.169, +0.002]$), so we do not claim the cross-dataset pool as
-confirmatory evidence} (\S\ref{subsec:crossdataset_sig}). A real-data
-3-condition ablation (\S\ref{sec:ablation}), recovered from already-cached
-components at zero new API cost, does let us assert an architectural
-conclusion: the pre-verifier KG-grounded score is substantially
-\emph{worse} than the zero-shot baseline ($-86.9\%$ MAE, question-clustered
-$p<0.0001$), and the verifier stage --- not KG grounding --- accounts for
-essentially all of ConceptGrade's small net gain. The original
-fabricated-data six-condition ablation and \texttt{concepts\_only}
-diagnostic remain retracted and would still require new pipeline runs to
-fully re-verify.
+correlation is actually \emph{worse} than the baseline's ($0.784$ vs.\
+$0.790$). It is also worth being clear about what is being compared:
+this is a tuned, multi-stage system against an untuned, single-call
+baseline (\S\ref{sec:limitations}), not a clean test of KG-grounding on
+its own. When we gave the baseline the same 7-call budget as C5\_fix,
+C5\_fix still won by $4.4\%$ MAE at the response level (two-tailed
+$p=0.0053$), but again only at the response level --- the
+question-clustered result is not significant ($p=0.4219$, C5\_fix
+winning just 25 of 46 questions).
 
-The single-call fragility summarised above is not the end of the story,
-though its resolution is more qualified than we initially reported.
-Self-consistency ensembling (\S\ref{subsec:selfconsistency}: 7
-independent gradings at temperature $0.7$, mean-aggregated, a design
-fixed before touching the evaluation data) improves response-level MAE
-over a \emph{single-call} baseline on both Mohler and DigiKlausur,
-including every leave-one-question-out fold at both tails ($50/50$ and
-$17/17$) when measured that way. A subsequent fair-control check, run
-on \emph{both} datasets and prompted by a reviewer-perspective
-self-audit that asked whether self-consistency alone (without KG
-evidence or the Verifier) explains the gain, compared
-Verifier/C5fix$\times7$ against an equally-resourced C\_LLM$\times7$
-baseline instead: the MAE gap persists on both ($+7.0\%$ Mohler,
-$+6.4\%$ DigiKlausur, both response-level $p<0.001$), but
-question-clustered significance and LOOCV robustness largely do not ---
-Mohler collapses completely ($p=0.256$, $0/46$ folds), DigiKlausur
-erodes substantially but not completely ($p=0.089$ two-tailed, $0.044$
-one-tailed; $5/17$ and $2/17$ folds). On DigiKlausur the correlation
-advantage claimed above also reverses under fair control ($0.727$ vs.\
-$0.735$). Self-consistency does not extend to
-Kaggle ASAG under either comparison, whose null result is consistent
-with, and further evidence for, the same KG-vocabulary-mismatch
-boundary already established from its concept-extraction failure. The
-gain requires $7\times$ more inference calls, and Spearman rank
-correlation trails baseline on both winning datasets --- real
-costs and caveats, not a free upgrade. We report the corrected, more
-modest claim rather than the original: self-consistency ensembling
-delivers a real, precisely-estimated response-level improvement over a
-fairly-resourced baseline on two datasets; its question-level
-robustness, and on DigiKlausur its correlation advantage, are currently
-established only against a single-call baseline, not against the fair
-control this paper now reports on both datasets. The validation
-process itself --- a failed alternative design caught by
-cross-validation, a cross-dataset generalisation test, an
-aggregation-sensitivity check, and this fair-control correction now
-completed on both datasets, all
-documented in REPRODUCIBILITY.md --- is offered as a model for how such
-claims should be pressure-tested before publication, independent of how
-strong the final claim turns out to be.
+Pooling across all three datasets and 213 questions (fixed-effects
+meta-analysis) gives $d_z = -0.105$ ($95\%$ CI $[-0.147, -0.064]$,
+$p_{\text{two}} < 0.0001$), but the datasets disagree substantially with
+each other ($I^2 = 73.2\%$), tracking how specialised each dataset's
+vocabulary is. \textbf{The more appropriate random-effects model gives
+$d_z=-0.084$ with a $95\%$ CI that essentially touches zero
+($[-0.169, +0.002]$), so we do not treat the pooled result as
+confirmatory} (\S\ref{subsec:crossdataset_sig}). One architectural
+finding is clearer: a real-data 3-condition ablation
+(\S\ref{sec:ablation}), rebuilt from already-cached components at no
+extra API cost, shows the pre-verifier KG-grounded score is far
+\emph{worse} than the zero-shot baseline ($-86.9\%$ MAE,
+question-clustered $p<0.0001$) --- it is the verifier stage, not the
+knowledge graph, that produces almost all of ConceptGrade's small net
+gain. The original fabricated-data six-condition ablation and the
+\texttt{concepts\_only} diagnostic remain retracted and would need new
+pipeline runs to properly re-check.
 
-Beyond score accuracy, ConceptGrade produces structured diagnostic feedback---matched
-and missing concepts, incorrect relationships, Bloom's and SOLO cognitive levels,
-and a self-administered misconception taxonomy (machine-IRR pilot
-$\kappa_{\text{micro}} = 0.54$ for the taxonomy; human IRR on the grading
-task itself is now measured on real data, $r=0.7833$/QWK$=0.7986$,
-\S\ref{sec:limitations})---without requiring
-task-specific fine-tuning beyond the KG construction.
+The single-call fragility above is not the full picture, though the
+fix is more limited than we first thought. Self-consistency ensembling
+(\S\ref{subsec:selfconsistency}: 7 independent gradings at temperature
+$0.7$, averaged, decided before we touched the evaluation data)
+improves response-level MAE over a \emph{single-call} baseline on both
+Mohler and DigiKlausur, passing every leave-one-question-out fold at
+both tails ($50/50$ and $17/17$) under that comparison. But a
+reviewer-style self-audit asked a fair question: does self-consistency
+alone, with no KG evidence and no verifier, explain the gain? Checking
+this by comparing Verifier/C5fix$\times7$ against an equally-resourced
+C\_LLM$\times7$ baseline (on both datasets) told a more mixed story: the
+MAE gap holds up on both ($+7.0\%$ Mohler, $+6.4\%$ DigiKlausur, both
+response-level $p<0.001$), but question-clustered significance and
+LOOCV robustness mostly do not. Mohler's result collapses entirely
+($p=0.256$, $0/46$ folds); DigiKlausur weakens a lot but not completely
+($p=0.089$ two-tailed, $0.044$ one-tailed; $5/17$ and $2/17$ folds). On
+DigiKlausur the correlation advantage we reported earlier reverses under
+fair control ($0.727$ vs.\ $0.735$). Self-consistency gives no benefit
+on Kaggle ASAG under either comparison, which fits the same
+KG-vocabulary-mismatch boundary we already saw in its concept-extraction
+failure. The gain also costs $7\times$ more inference calls, and
+Spearman rank correlation trails the baseline on both winning datasets
+--- real costs, not a free upgrade. So the honest, corrected claim is
+this: self-consistency ensembling gives a real, precisely-estimated
+response-level improvement over a fairly-resourced baseline on two
+datasets, but its question-level robustness --- and, on DigiKlausur, its
+correlation advantage --- currently only hold against a single-call
+baseline, not the fair control reported here. We see the validation
+process itself (a failed alternative design caught by cross-validation,
+a cross-dataset generalisation test, an aggregation-sensitivity check,
+and this fair-control correction, all documented in
+REPRODUCIBILITY.md) as a useful model for pressure-testing this kind of
+claim before publication, regardless of how strong the final result
+turns out to be.
 
-Future work includes: (1)~cross-domain evaluation on the Programming/OOP knowledge
-graph and other CS topics; (2)~human-annotated Bloom's and SOLO ground truth for
-classifier validation; (3)~integration with a learning management system for live
-classroom deployment; (4)~third-party KG and taxonomy construction (e.g., via
-SIGCSE crowdsourcing) to remove single-author authoring bias; and
-(5)~multi-dataset meta-analysis with frontier-LLM baselines.
+Beyond raw accuracy, ConceptGrade also produces structured diagnostic
+feedback: matched and missing concepts, incorrect relationships,
+Bloom's and SOLO cognitive levels, and misconception tags (machine-IRR
+pilot $\kappa_{\text{micro}} = 0.116$ for the taxonomy, slight
+agreement on real data; human IRR on the grading task itself, now
+measured on real data, is $r=0.7833$ /
+QWK$=0.7986$, \S\ref{sec:limitations}) --- all without needing
+task-specific fine-tuning beyond building the knowledge graph.
+
+Future work includes: (1) testing on other CS topics via the
+Programming/OOP knowledge graph; (2) human-annotated Bloom's and SOLO
+ground truth to validate the classifiers directly; (3) integrating with
+a learning management system for live classroom use; (4) building the
+knowledge graph and misconception taxonomy with a third party (e.g.\
+SIGCSE crowdsourcing) to remove single-author bias; and (5) a
+multi-dataset meta-analysis that includes frontier-LLM baselines.
 
 % ── Acknowledgment ─────────────────────────────────────────────────────────
+\appendices
+\section{Retracted Fabricated-Data Analysis (Historical Record)}
+\label{app:retracted}
+
+Everything in this appendix was computed on a hand-authored, fabricated
+120-sample/10-question fixture rather than the real Mohler et al.\
+(2011) benchmark; see REPRODUCIBILITY.md for the full incident record.
+All point estimates, $p$-values, confidence intervals, and underlying
+data are retained exactly as originally computed for the
+experimental-design record --- \textbf{none of them should be cited as
+evidence.} The five retracted figures in this appendix were given a
+purely cosmetic recolor pass in this revision, to a consistent palette
+matching the rest of the paper's figures; no data point, axis value, or
+label text was changed in that pass. The paper's real, corrected
+results are reported throughout the main text (Sections
+\ref{sec:results}--\ref{sec:ablation}).
+
+\subsection{Statistical Significance: Retracted Fabricated-Data Analysis (2026-07-28)}
+\label{subsec:significance}
+
+\textbf{Correction: this entire subsection, through the end of
+\S\ref{subsec:ci_analysis}, analyses the fabricated 120-sample fixture
+documented in REPRODUCIBILITY.md, not real data.} It predates the
+real-data correction and was not updated when \S\ref{sec:results}'s
+Main Evaluation and \S\ref{subsec:crossdataset_sig}'s Cross-Dataset
+Boundary Characterisation were rewritten with real Mohler numbers; we
+retain it below, unmodified, for the experimental-design record only ---
+\textbf{none of the $n=120$/$n=90$ point estimates, $p$-values, or CIs
+in this subsection or the next should be cited as evidence}. The real,
+authoritative significance result is already reported in
+\S\ref{sec:results} (response-level Wilcoxon $p<0.0001$, $n=1{,}262$;
+question-clustered $p=0.111$ two-tailed / $0.056$ one-tailed, $46$ real
+questions) and \S\ref{subsec:crossdataset_sig} (Table~\ref{tab:crossdataset_sensitivity}).
+
+\textbf{This subsection analyses the full $n=120$ KG-aligned sample}
+(the tie structure below is a full-sample property; the held-out $n=90$
+test split reported as primary in Table~\ref{tab:main_results} has a
+different tie count, $47$, and is analysed separately in
+\S\ref{subsec:ci_analysis}). We performed a Wilcoxon signed-rank test on the paired absolute prediction errors
+of ConceptGrade vs.\ the LLM baseline (\texttt{scipy.stats.wilcoxon},
+$n_{\text{nonzero}} = 50$ after dropping $70$ tied predictions). ConceptGrade
+achieves a mean absolute error (MAE) of $0.223$, compared to $0.330$ for the LLM
+baseline---a $32.4\%$ reduction that is statistically significant
+($W_+ = 344$, two-tailed $p = 0.0026$; one-tailed $p = 0.0013$ for the
+pre-registered directional alternative $\text{error}_{\text{C5}} <
+\text{error}_{\text{C\_LLM}}$). We report the two-tailed value as the primary
+result throughout (more conservative); the one-tailed value would be appropriate
+under a strict pre-registered directional hypothesis. The held-out test-split
+comparison ($n=90$, $34.0\%$ reduction, two-tailed $p=0.0053$) is consistent
+in direction and magnitude.
+
+\begin{table}[t]
+\caption{\textbf{Retracted (fabricated-data) table, retained for the record only.}
+Wilcoxon Signed-Rank Test: ConceptGrade vs.\ LLM Baseline. $W_+$ = sum
+of positive signed ranks (over $50$ non-zero paired differences after dropping
+$70$ ties). Both two-tailed and one-tailed (directional, $\text{err}_{\text{C5}}
+< \text{err}_{\text{C\_LLM}}$) $p$-values reported.}
+\label{tab:significance}
+\centering
+\begin{tabular}{lccc}
+\toprule
+\textbf{Comparison} & \textbf{$W_+$} & \textbf{$p$ (two-tailed)} & \textbf{$p$ (one-tailed)} \\
+\midrule
+$|\text{err}_{\text{C5}}|$ vs $|\text{err}_{\text{C\_LLM}}|$ & 344 & 0.0026 ** & 0.0013 ** \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Preliminary Bar-Chart and Scatter Figures}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\columnwidth]{figures/fig2_evaluation_results.png}
+  \caption{\textbf{Retracted preliminary figure, retained for the record
+           only.} This $n=30$ offline validation predates and is
+           unrelated to the corrected real-data result in
+           Table~\ref{tab:main_results}; it was computed on the same
+           fabricated fixture documented in REPRODUCIBILITY.md and
+           should not be read as evidence. Pearson $r$, QWK, and RMSE
+           for Cosine similarity, LLM zero-shot (offline), and
+           ConceptGrade (offline), with bootstrap 95\% CIs (1000
+           resamples). Regenerating this figure on real data is future
+           work.}
+  \label{fig:results}
+\end{figure}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\columnwidth]{figures/fig4_score_analysis.png}
+  \caption{\textbf{Retracted preliminary figure, retained for the record
+           only.} Predicted vs.\ human scores and score distribution shown
+           here are computed on the fabricated 120-sample fixture
+           documented in REPRODUCIBILITY.md, not the real data underlying
+           Table~\ref{tab:main_results}. Regenerating this figure on the
+           real $n=1{,}262$ sample is future work.}
+  \label{fig:scatter}
+\end{figure}
+
+\subsection{Remaining Bootstrap CI Rows}
+
+\begin{table}[t]
+\caption{\textbf{Retracted (fabricated-data) rows, retained for the record only.}
+Bootstrap 95\% CIs for MAE reduction, continued from Table~\ref{tab:bootstrap_test}'s
+real Mohler-test row above. Mohler-all is the fabricated 120-sample fixture;
+DigiKlausur/Kaggle here predate deduplication. Should not be read as evidence.}
+\label{tab:bootstrap_test_retracted}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Dataset} & $n$ / $Q$ & \textbf{Point} & \textbf{Sample 95\%} & \textbf{Cluster 95\%} \\
+\midrule
+Mohler all   & 120 / 10 & $32.4\%$ & $[14.6\%,\,46.7\%]$ & $[8.4\%,\,49.9\%]$ \\
+DigiKlausur  & 646 / 17 & $4.9\%$  & $[-0.9\%,\,10.3\%]$ & $[-10.0\%,\,16.1\%]$ \\
+Kaggle ASAG  & 473 /150 & $2.4\%$  & $[-5.4\%,\,9.5\%]$  & $[-6.5\%,\,10.2\%]$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Per-Question Breakdown and Confidence-Interval Figure}
+
+\textbf{Per-question robustness check.} A reviewer may reasonably ask
+whether the $32.4\%$ MAE reduction is driven by one or two outlier
+questions. We computed the per-question paired MAE comparison on the full
+$n = 120$ Mohler subset (Table~\ref{tab:per_question}). ConceptGrade
+beats the LLM baseline on $\boldsymbol{8}$ of $\boldsymbol{10}$
+questions; the two losses (Q4: $-20.0\%$, Q10: $-92.3\%$) occur on the
+two questions where the LLM baseline already achieves its lowest
+absolute MAE ($0.21$ and $0.16$ respectively), so the percentage swings
+are mathematically large but the absolute differences are tiny
+($\Delta \text{MAE} = +0.04$ and $+0.15$ in C\_LLM's favour). The two
+largest C5 wins are on the two hardest questions for the LLM baseline:
+Q2 ($\Delta\text{MAE} = -0.42$, $76.9\%$ reduction) and Q9
+($\Delta\text{MAE} = -0.23$, $41.2\%$ reduction). The result is not
+driven by an outlier question.
+
+\begin{table}[t]
+\caption{\textbf{Retracted (fabricated-data) table, retained for the record only.}
+Per-question MAE on the full $n = 120$ Mohler subset.
+$\Delta$MAE $> 0 =$ ConceptGrade better. ConceptGrade beats the LLM
+baseline on $8 / 10$ questions.}
+\label{tab:per_question}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Q} & $n$ & \textbf{C\_LLM} & \textbf{C5\_fix} & \textbf{$\Delta$MAE} & \textbf{Reduction} \\
+\midrule
+Q1  & 12 & 0.438 & 0.271 & $+0.167$ & $+38.1\%$ \\
+Q2  & 12 & 0.542 & 0.125 & $+0.417$ & $\boldsymbol{+76.9\%}$ \\
+Q3  & 12 & 0.354 & 0.271 & $+0.083$ & $+23.5\%$ \\
+Q4  & 12 & 0.208 & 0.250 & $-0.042$ & $-20.0\%$ \\
+Q5  & 12 & 0.275 & 0.167 & $+0.108$ & $+39.4\%$ \\
+Q6  & 12 & 0.358 & 0.250 & $+0.108$ & $+30.2\%$ \\
+Q7  & 12 & 0.188 & 0.125 & $+0.062$ & $+33.3\%$ \\
+Q8  & 12 & 0.208 & 0.125 & $+0.083$ & $+40.0\%$ \\
+Q9  & 12 & 0.567 & 0.333 & $+0.233$ & $\boldsymbol{+41.2\%}$ \\
+Q10 & 12 & 0.163 & 0.313 & $-0.150$ & $-92.3\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{The $r=0.982$/QWK$=0.975$ figures below, and the reference to
+Table~\ref{tab:main_results} in the sentence that originally accompanied
+them, are fabricated-data-era numbers left over from before the
+real-data correction; Table~\ref{tab:main_results} in fact reports the
+real $r=0.7841$/QWK$=0.5237$.} We retain the sentence and figure below
+for the record only.
+
+For Pearson $r$ and QWK we retain the dev-set reporting in
+Fig.~\ref{fig:ci} for backward compatibility with earlier versions; the
+test-set point estimates were reported as $r = 0.982$ and
+$\text{QWK} = 0.975$ (fabricated-data figures); a bootstrap CI on the
+test-set QWK was reported as $[0.942, 0.997]$.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\columnwidth]{figures/fig10_confidence_intervals.png}
+  \caption{\textbf{Retracted (fabricated-data) figure, retained for the record only.}
+           Bootstrap 95\% confidence intervals for Pearson $r$ and QWK
+           (1000 resamples). ConceptGrade's lower CI bound for Pearson $r$
+           (0.922) aligns closely with the LLM Zero-Shot's point estimate.}
+  \label{fig:ci}
+\end{figure}
+
+\textbf{End of retracted fabricated-data subsections.} Everything from
+\S\ref{subsec:significance} to this point analysed the fabricated
+120-sample fixture. The next section (Ablation Study) returns to a mix
+of retracted fabricated-data content (clearly labeled) and the real-data
+3-condition ablation added 2026-07-28.
+
+\subsection{Signal-Source Sub-Ablation}
+
+\textbf{Signal-source ablation (REAL-2): retracted (2026-07-28), despite
+its name.} \textbf{Correction: despite being labeled ``REAL-2,'' this
+sub-ablation was computed on the fabricated 120-sample fixture, not real
+data, and carried no retraction label until this correction pass. Its
+conclusion below --- that concept-coverage alone slightly
+\emph{outperforms} the full system, implying the Verifier contributes
+nothing --- directly contradicts the real-data 3-condition ablation
+above, which found the opposite: the pre-verifier KG-grounded score is
+dramatically worse than baseline, and the Verifier drives essentially
+all of the real accuracy.} We retain the retracted text below for the
+record; \textbf{it should not be cited}. To test whether the headline
+$32.4\%$ MAE reduction (fabricated-data figure) was carried by the
+high-reliability concept-coverage signal or by the lower-reliability
+misconception taxonomy and SOLO/Bloom proxies, we ran a dual-component
+ablation in which Gemini grades each
+answer twice from disjoint context: \texttt{concepts\_only} (matched
+concepts + chain coverage; \emph{no} SOLO/Bloom/misconceptions) and
+\texttt{taxonomy\_only} (SOLO + Bloom level; \emph{no} concept lists).
+Both ablations use the same model and same human ground truth as the full
+system. Results on the fabricated $n = 120$ Mohler fixture:
+
+\begin{itemize}
+\item \texttt{C\_LLM} (no KG):                 MAE $= 0.330$
+\item \texttt{taxonomy\_only} (SOLO + Bloom):  MAE $= 0.229$  ($30.6\%$ reduction)
+\item \texttt{C5\_fix} (full system):          MAE $= 0.223$  ($32.4\%$ reduction)
+\item \texttt{concepts\_only} (KG concepts only): MAE $= 0.217$  ($\boldsymbol{34.2\%}$ reduction)
+\end{itemize}
+
+The (retracted) headline result was that the concept-coverage signal \emph{alone}
+slightly outperforms the full integrated system, while the misconception
+taxonomy (machine-IRR $\kappa = 0.54$, moderate agreement after the
+construct-validity fix described in \S\ref{subsec:trm_algorithm})
+contributes no measurable score improvement. \textbf{This does not hold on
+real data} (Table~\ref{tab:ablation_real}): the real-data pre-verifier
+KG score is far worse than baseline, not slightly better than the full
+system, and the concept-coverage signal alone is nowhere near sufficient
+--- the Verifier stage is what makes the real result work at all.
+
+
+\subsection{Superseded 7-Condition Ablation Table and Figures}
+
+\begin{table}[t]
+\caption{\textbf{Retracted (fabricated-data) table, superseded by Table~\ref{tab:ablation_real} above.}
+         Ablation Study Results. $\Delta$QWK and $\Delta r$ are drops from the
+         full model when each component is removed. Significance tests (Wilcoxon
+         signed-rank, one-tailed) compare full ConceptGrade vs.\ each ablation.
+         \textbf{Note:} Ablation evaluated on development split ($n = 30$) to
+         assess component sensitivity; main evaluation in Table~\ref{tab:main_results}
+         uses the held-out test set ($n = 90$). Lower absolute QWK here reflects
+         the smaller, more variable development split. These $n=30$/$n=90$ splits
+         and the weights in Eq.~\ref{eq:composite} come from the retracted
+         fabricated 120-sample fixture and have not been re-verified on real data;
+         retained for the experimental-design record only.}
+\label{tab:ablation}
+\centering
+\footnotesize
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Condition} & \textbf{$r$} & \textbf{$\Delta r$} &
+\textbf{QWK} & \textbf{$\Delta$QWK} & \textbf{Sig.} \\
+\midrule
+Full Model           & 0.954 & —        & 0.721 & —        & — \\
+$-$ Concept Cov.     & 0.895 & $-0.059$ & 0.305 & $-0.416$ & *** \\
+$-$ SOLO Proxy       & 0.933 & $-0.021$ & 0.525 & $-0.196$ & *** \\
+$-$ Depth/Bloom's    & 0.964 & $+0.010$ & 0.571 & $-0.150$ & ** \\
+$-$ Cosine Sim.      & 0.954 & $+0.001$ & 0.604 & $-0.117$ & ** \\
+$-$ Misc.\ Acc.      & 0.951 & $-0.003$ & 0.746 & $+0.025$ & n.s. \\
+Cosine-Only          & 0.565 & $-0.389$ & 0.087 & $-0.634$ & *** \\
+\midrule
+\multicolumn{6}{l}{*** $p{<}0.001$, ** $p{<}0.01$, n.s.\ $p{>}0.05$} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\columnwidth]{figures/fig9_component_importance.png}
+  \caption{\textbf{Retracted (fabricated-data) figure, retained for the record
+           only.} Visualizes the same $n=30$ fabricated-fixture ablation as
+           Table~\ref{tab:ablation} above, superseded by the real-data
+           3-condition ablation (Table~\ref{tab:ablation_real}); should not
+           be read as evidence. Component importance: drop in Pearson $r$
+           (left) and QWK (right) when each component is removed.}
+  \label{fig:importance}
+\end{figure}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\columnwidth]{figures/fig3_ablation_study.png}
+  \caption{\textbf{Retracted (fabricated-data) figure, retained for the record
+           only.} Visualizes the same $n=30$ fabricated-fixture ablation as
+           Table~\ref{tab:ablation} above; should not be read as evidence.
+           Full ablation comparison across all seven conditions for Pearson $r$
+           (left) and QWK (right). The dashed line marks the full model baseline.}
+  \label{fig:ablation}
+\end{figure}
+
+\subsection{Ensemble Weight Selection: Retracted (2026-07-28)}
+
+\textbf{This subsection is retracted in full.} It previously described a
+grid-search tuning procedure over $(\alpha,\beta,\gamma)$ weights
+combining coverage/accuracy/integration into a standalone ``overall
+comparison score'' (the equation formerly labelled \texttt{eq:overall}),
+reporting a tuned QWK of $0.9748$ (itself a fabricated-data-era number,
+inconsistent with the real headline QWK of $0.524$ in
+Table~\ref{tab:main_results}). While auditing the codebase to write the
+real-data ablation (\S\ref{sec:ablation}), we found no code path in
+\texttt{conceptgrade/pipeline.py} that computes this $(\alpha,\beta,\gamma)$
+combination as a separate, tuned step at all --- see the correction note
+in \S\ref{subsec:comparison}. There is consequently no ensemble-weight
+grid search to report: the weights actually used by the code are the
+fixed constants in Eq.~\ref{eq:kgformula} and Eq.~\ref{eq:composite}
+(\S\ref{subsec:synthesis}), not a tuned hyperparameter. We retract this
+subsection rather than attempt to retrofit a plausible-sounding
+justification for numbers that do not correspond to any real procedure.
+
+\subsection{Grounding Density Analysis: Retracted (2026-07-28)}
+
+\textbf{Correction: this subsection presents the fabricated 120-sample
+fixture's zero-grounding analysis (Table~\ref{tab:grounding_density})
+without a retraction label, and its results are not verified on real
+data.} Unlike the other fabricated-data content in this paper,
+re-verifying this analysis genuinely requires new LLM calls (LRM/TRM
+reasoning-trace generation was never collected for the real 1{,}262-sample
+data --- see REPRODUCIBILITY.md's "Still open" list) and cannot be
+recomputed offline from already-cached data, unlike the ablation and
+sensitivity sweeps elsewhere in this paper. Paper 2's equivalent table
+(\S"Accuracy Stratified by Grounding Density") is already correctly
+captioned "Retracted... pending re-verification"; this subsection was
+missed during that reconciliation pass and is fixed here for
+consistency. We retain the analysis below, unmodified, for the
+experimental-design record only --- \textbf{none of its numbers should
+be cited as evidence}.
+
+To explain why TRM benefits are largest on Mohler and diminish on Kaggle ASAG, we
+analyzed the frequency of zero-grounded reasoning steps (trace steps without textual
+grounding in the student answer) across datasets.
+
+\textit{The zero-grounding measurement protocol and Algorithm~1 that
+define this check are real, currently-used methodology (part of the
+Verifier confidence weighting, Eq.~7) and have been moved to
+\S\ref{subsec:trm_algorithm} in the main body, where the algorithm is
+first used. Only the results below (Table~\ref{tab:grounding_density},
+computed on the fabricated fixture) remain retracted.}
+
+
+\textbf{Results:} Analysis of the frequency of zero-grounded reasoning steps across
+datasets:
+
+\begin{table}[h]
+\caption{\textbf{Retracted (fabricated-data) table, retained for the record only.}
+         Zero-Grounding Frequency and TRM Effectiveness. Percentage of trace steps
+         lacking sufficient textual grounding (LCS match ratio $< 0.75$) in student
+         answers, with corresponding MAE improvements and statistical significance.}
+\label{tab:grounding_density}
+\centering
+\footnotesize
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Dataset} & \textbf{$n$} & \textbf{ZG\%} & \textbf{95\% CI} &
+\textbf{MAE$\downarrow$} \\
+\midrule
+Mohler (CS)  & 120 & 7.2  & [4.1, 10.3]\%  & 32.4\% ($p{=}0.003$) \\
+DigiKlausur  & 188 & 17.8 & [13.2, 22.4]\% & 4.9\% ($p{=}0.0489$) \\
+Kaggle ASAG  & 100 & 30.6 & [21.0, 40.2]\% & 2.4\% (n.s.) \\
+\bottomrule
+\multicolumn{5}{l}{ZG\% = zero-grounding frequency. $p$ = Wilcoxon.}
+\end{tabular}
+\end{table}
+
+This pattern (Table~\ref{tab:grounding_density}) reveals a mechanism underlying TRM's
+effectiveness. When the LLM's reasoning trace is sufficiently grounded in the
+student's actual text (grounding density $\geq 75\%$, i.e., zero-grounding frequency
+$\leq 25\%$), TRM's structural validation against the knowledge graph provides
+strong signal for grade refinement. Conversely, when LLM hallucinations
+are prevalent (low grounding density), the system is forced to reweight reasoning
+steps that lack textual evidence, reducing the marginal value of structural
+grounding. This explains why Kaggle ASAG shows diminished returns: the more
+colloquial language and domain-specific jargon in elementary science responses
+makes it harder for the LLM to generate traces that align with our formal KG,
+resulting in higher zero-grounding frequency and correspondingly lower TRM impact.
+
+The implication is that TRM is most effective as a complementary signal in domains
+where formal terminology is well-established and students use it consistently. In
+domains where student vocabulary diverges significantly from formal domain models,
+richer knowledge graphs or domain-specific pre-processing may be necessary.
+
 \section*{Acknowledgment}
 
 The authors thank Google for the Generative AI batch-mode API access used
@@ -2902,13 +2960,6 @@ M.~A.~Sultan, C.~Salazar, and T.~Sumner,
 in \textit{Proc.\ 2016 Conf.\ North American Chapter ACL (NAACL-HLT)},
 San Diego, CA, USA, 2016, pp.~1070--1075.
 
-\bibitem{semeval2013}
-M.~Dzikovska et al.,
-``SemEval-2013 Task 7: The Joint Student Response Analysis and 8th Recognizing
-Textual Entailment Challenge,''
-in \textit{Proc.\ 7th Int.\ Workshop Semantic Evaluation (SemEval)},
-Atlanta, GA, USA, 2013, pp.~263--274.
-
 \bibitem{devlin2019}
 J.~Devlin, M.-W.~Chang, K.~Lee, and K.~Toutanova,
 ``BERT: Pre-training of deep bidirectional transformers for language understanding,''
@@ -2916,10 +2967,11 @@ in \textit{Proc.\ 2019 Conf.\ North American Chapter ACL (NAACL-HLT)},
 Minneapolis, MN, USA, 2019, pp.~4171--4186.
 
 \bibitem{bert_asag}
-T.~Sung, N.~Nain, and H.~K.~Sharma,
-``Pre-trained language model-based automatic short answer grading for
-computer science education,''
-\textit{IEEE Access}, vol.~11, pp.~31\,542--31\,553, 2023.
+C.~Sung, T.~I.~Dhamecha, S.~Saha, T.~Ma, V.~Reddy, and R.~Arora,
+``Pre-training BERT on domain resources for short answer grading,''
+in \textit{Proc.\ 2019 Conf.\ Empirical Methods in Natural Language Processing
+and 9th Int.\ Joint Conf.\ Natural Language Processing (EMNLP-IJCNLP)},
+Hong Kong, China, 2019, pp.~6071--6075.
 
 \bibitem{emirtekin2025}
 E.~Emirtekin and Y.~Özarslan,
@@ -2975,10 +3027,37 @@ and few-shot exploration,''
 in \textit{Proc.\ 2024 IEEE Int.\ Conf.\ Advanced Learning Technologies (ICALT)},
 2024.
 
-\bibitem{qwk_scale}
-J.~R.~Landis and G.~G.~Koch,
-``The measurement of observer agreement for categorical data,''
-\textit{Biometrics}, vol.~33, no.~1, pp.~159--174, 1977.
+\bibitem{wei2022cot}
+J.~Wei, X.~Wang, D.~Schuurmans, M.~Bosma, B.~Ichter, F.~Xia, E.~H.~Chi,
+Q.~V.~Le, and D.~Zhou,
+``Chain-of-thought prompting elicits reasoning in large language models,''
+in \textit{Advances in Neural Information Processing Systems 35 (NeurIPS)},
+New Orleans, LA, USA, 2022.
+
+\bibitem{wang2023selfconsistency}
+X.~Wang, J.~Wei, D.~Schuurmans, Q.~Le, E.~Chi, S.~Narang, A.~Chowdhery,
+and D.~Zhou,
+``Self-consistency improves chain of thought reasoning in language models,''
+in \textit{Proc.\ Int.\ Conf.\ Learning Representations (ICLR)}, 2023.
+
+\bibitem{zheng2023llmjudge}
+L.~Zheng, W.-L.~Chiang, Y.~Sheng, S.~Zhuang, Z.~Wu, Y.~Zhuang, Z.~Lin,
+Z.~Li, D.~Li, E.~P.~Xing, H.~Zhang, J.~E.~Gonzalez, and I.~Stoica,
+``Judging LLM-as-a-judge with MT-Bench and Chatbot Arena,''
+in \textit{Advances in Neural Information Processing Systems 36 (NeurIPS),
+Datasets and Benchmarks Track}, New Orleans, LA, USA, 2023.
+
+\bibitem{kishaan2020digiklausur}
+J.~Kishaan, M.~Muthuraja, D.~Nair, and P.~G.~Plöger,
+``Using active learning for assisted short answer grading,''
+in \textit{ICML 2020 Workshop on Real World Experiment Design and Active
+Learning (RealML)}, 2020.
+
+\bibitem{geminiteam2025}
+Gemini Team, Google,
+``Gemini 2.5: Pushing the frontier with advanced reasoning, multimodality,
+long context, and next generation agentic capabilities,''
+\textit{arXiv preprint arXiv:2507.06261}, 2025.
 
 \end{thebibliography}
 
