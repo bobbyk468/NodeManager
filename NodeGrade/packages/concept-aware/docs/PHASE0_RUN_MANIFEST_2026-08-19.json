@@ -1,37 +1,180 @@
 {
   "phase": "Phase 0 integrity work",
-  "generated": "2026-08-19 (fourth review round correction pass)",
-  "pinned_commit": "e4cffa7",
-  "note": "pinned_commit values on individual configs point to e4cffa7 (the Phase 0 integrity commit), NOT to the commit that added this manifest -- a commit cannot record its own not-yet-computed hash. Fourth review round fix: config identity fields (name/description/pinned_commit) are now tracked SEPARATELY from each config semantic_fingerprint -- re-pinning a config no longer changes its semantic fingerprint or any cache key built from it (see conceptgrade/configs.py config_fingerprint() vs config_identity()).",
+  "generated": "2026-08-19 (fifth review round -- self-reference-free provenance)",
+  "code_commit": "1135005f4ee7879fd7a00d356e7a77b69a02c98f",
+  "code_commit_short": "1135005",
+  "code_commit_tree_hash": "ea22afa73117ff525c6701d33e198c19249b5be3",
+  "note": "code_commit/code_commit_tree_hash identify the commit this manifest describes -- read directly from `git rev-parse HEAD` at generation time, against a verified-clean working tree. This manifest file is committed SEPARATELY, as the immediate next commit after code_commit, containing only this file. verify_investigation_integrity.py's check_manifest_provenance() independently re-derives the manifest commit's actual parent and tree hash from git history and fails unless both match what's recorded here -- see conceptgrade/configs.py's module docstring 'Commit provenance' section for why a per-config pinned_commit field (the prior approach) could never work.",
   "configs": {
     "evaluated_mohler_gemini": {
       "name": "evaluated_mohler_gemini",
       "description": "What actually produced this project's reported Mohler evaluation numbers -- matches run_real_eval_phaseA_signals.py's SelfConsistentExtractor(n_runs=3, min_votes=2, inter_run_delay=1.0) and run_real_eval_phaseB_batched.py's LLMVerifier(verifier_weight=1.0) exactly. Gemini 2.5 Flash backbone, self-consistency ON, verifier at weight=1.0 with the Finding-5 GENERIC skepticism prompt (NOT the unvalidated targeted variant -- see REPRODUCIBILITY.md Finding 6), frozen v1.0-expert KG (loaded from data/ds_knowledge_graph.json, NOT the live v1.1-expert builder). Use this config, not DEPLOYED_SAG_GEMINI, to reproduce or extend the Mohler evaluation --DEPLOYED_SAG_GEMINI has use_self_consistency=False and does NOT match what was actually run.",
-      "pinned_commit": "e4cffa7",
       "semantic_fingerprint": "0592a6f0766699fe43db0de0ae2690c9c9bfcb1c9b2ff3d4a85c4430bed4a8aa"
     },
     "deployed_sag_gemini": {
       "name": "deployed_sag_gemini",
       "description": "RUNTIME/DEFAULT configuration -- what a fresh pipeline gets with self-consistency OFF (matching ConceptGradePipeline's own class default, 3x cheaper per response than EVALUATED_MOHLER_GEMINI). 2026-08-19, fourth review round: this config does NOT match what produced this project's reported Mohler evaluation numbers -- see EVALUATED_MOHLER_GEMINI above for that. Verifier at weight=1.0 with the Finding-5 GENERIC skepticism prompt (NOT the unvalidated targeted variant -- see REPRODUCIBILITY.md Finding 6), frozen v1.0-expert KG (loaded from data/ds_knowledge_graph.json, NOT the live v1.1-expert builder).",
-      "pinned_commit": "e4cffa7",
       "semantic_fingerprint": "62f0f6a4c81de4f41c6f0e34c5bf57d858e7eddf75e6f8ba227a5d8801ef39c8"
     },
     "c1_baseline_no_extensions": {
       "name": "c1_baseline_no_extensions",
       "description": "Ablation-study baseline: no self-consistency, no confidence weighting, no LLM verifier -- pure KG-formula scoring. This is the config the un-extended C1 ablation condition should use explicitly, rather than relying on ConceptGradePipeline's class defaults (which changed 2026-08-18 to match the DEPLOYED config above, not this baseline -- see REPRODUCIBILITY.md Finding 4).",
-      "pinned_commit": "e4cffa7",
       "semantic_fingerprint": "466c42eccd4f1eabcb8f339a529956aceffcfc559f7eeddf7c31ded8f7161ef8"
     }
   },
-  "regression_suites_at_pin_time": {
-    "verify_all_paper_claims.py": "PASS: all 379 claims verified against cached data",
-    "test_pipeline_integrity.py": "PASS: all integrity regression checks passed",
-    "test_relationship_direction.py": "PASS: all relationship-direction regression checks passed",
-    "verify_investigation_integrity.py": "PASS: all investigation-integrity checks passed"
+  "test_commands": [
+    "python3 verify_all_paper_claims.py",
+    "python3 test_pipeline_integrity.py",
+    "python3 test_relationship_direction.py",
+    "python3 verify_investigation_integrity.py"
+  ],
+  "environment": {
+    "python_version": "3.14.2",
+    "platform": "darwin",
+    "packages": {
+      "numpy": "2.4.2",
+      "scipy": "1.17.1",
+      "sklearn": "1.8.0"
+    }
   },
-  "known_open_items_not_blocking_this_pin": [
-    "Raw LLM batch-job caches (data/*_batches/) excluded from the Phase 0 commits pending separate privacy/size/provenance review.",
-    "Dataset redistribution rights for committed Phase-A JSON files (complete student answers from the Mohler dataset) not yet confirmed -- see the fourth review round note; do not push until resolved.",
-    "All configs pinned_commit points to e4cffa7 (an earlier commit), not the commit that adds this manifest -- see note above."
-  ]
+  "restricted_artifacts": {
+    "data/claude_pipeline_phaseA_batches": {
+      "reason": "raw_batch_cache",
+      "exists": true,
+      "type": "directory",
+      "file_count": 3,
+      "total_bytes": 75912,
+      "composite_sha256": "d6c3204edf889b856ff0b45090ce7b69864b235a6a5ec2b0e1f8e62ce3e6ebaa"
+    },
+    "data/claude_pipeline_phaseA_signals.json": {
+      "reason": "student_answer_text",
+      "exists": true,
+      "type": "file",
+      "sha256": "2eada1ecd16fcd61a97e91d672c5658ae4f561c0d9b40db837b8bae750884eaf"
+    },
+    "data/deepseek_pipeline_phaseA_batches": {
+      "reason": "raw_batch_cache",
+      "exists": true,
+      "type": "directory",
+      "file_count": 36,
+      "total_bytes": 1587444,
+      "composite_sha256": "431e16f9ed0c8ddff3a540ab624fc294d681ad64d524221f71b4cac90af6864d"
+    },
+    "data/deepseek_pipeline_phaseA_signals.json": {
+      "reason": "student_answer_text",
+      "exists": true,
+      "type": "file",
+      "sha256": "41faabd0a5e97a809bbeb60cc52965b39047072b9e8a66e7dd781825e65ff8c4"
+    },
+    "data/deepseek_pipeline_phaseB_batches": {
+      "reason": "raw_batch_cache",
+      "exists": true,
+      "type": "directory",
+      "file_count": 24,
+      "total_bytes": 138112,
+      "composite_sha256": "53c3405b01483fa8e896857b5ca9e08ae6d3021b10e8a0cb0b297ddfb5398bdb"
+    },
+    "data/deepseek_pipeline_phaseB_batches_pilot20": {
+      "reason": "raw_batch_cache",
+      "exists": true,
+      "type": "directory",
+      "file_count": 2,
+      "total_bytes": 9399,
+      "composite_sha256": "6413075b98a8745b598a1769afb4dc41793fb8de3c2bb7cad751f5d728a80573"
+    },
+    "data/deepseek_verifier_ablation_batches": {
+      "reason": "raw_batch_cache",
+      "exists": true,
+      "type": "directory",
+      "file_count": 6,
+      "total_bytes": 19651,
+      "composite_sha256": "9bbbac746a92f2a09a8b608627671a381a7fd9b4cb535ba4af1e9cca7d82f2ed"
+    },
+    "data/deepseek_verifier_skeptical_batches": {
+      "reason": "raw_batch_cache",
+      "exists": true,
+      "type": "directory",
+      "file_count": 12,
+      "total_bytes": 38774,
+      "composite_sha256": "302c9270d23f2444ec7f8a49ca533674aa9cb9e1d06e0824c58d8c26bb732114"
+    },
+    "data/gpt_pipeline_phaseA_batches": {
+      "reason": "raw_batch_cache",
+      "exists": true,
+      "type": "directory",
+      "file_count": 36,
+      "total_bytes": 1686742,
+      "composite_sha256": "30790b755a720c8b823dd2528ac9cc86cf4f2efeaa24dcc12a0c98c2e79c4a12"
+    },
+    "data/gpt_pipeline_phaseA_signals.json": {
+      "reason": "student_answer_text",
+      "exists": true,
+      "type": "file",
+      "sha256": "5a38ee188332786c579c9872180a7bd12f80249fca448c26107259ff1b944b4a"
+    },
+    "data/gpt_pipeline_phaseB_batches": {
+      "reason": "raw_batch_cache",
+      "exists": true,
+      "type": "directory",
+      "file_count": 24,
+      "total_bytes": 132050,
+      "composite_sha256": "ac59f875ecf6b1e45e692754ce558def607a0f1f95f22ee24702c8e792b1570c"
+    },
+    "data/gpt_pipeline_phaseB_batches_pilot20": {
+      "reason": "raw_batch_cache",
+      "exists": true,
+      "type": "directory",
+      "file_count": 2,
+      "total_bytes": 8691,
+      "composite_sha256": "7d3570fc42c9f39a65ff5e4f3a670d1b06ca8c0cff658dddde8eaae2da18307f"
+    },
+    "data/gpt_verifier_ablation_batches": {
+      "reason": "raw_batch_cache",
+      "exists": true,
+      "type": "directory",
+      "file_count": 6,
+      "total_bytes": 16465,
+      "composite_sha256": "c4db01d67ffb36162e644eb009fcd9b4eccf04198cc04917432feedd578d06d2"
+    },
+    "data/gpt_verifier_skeptical_batches": {
+      "reason": "raw_batch_cache",
+      "exists": true,
+      "type": "directory",
+      "file_count": 12,
+      "total_bytes": 32976,
+      "composite_sha256": "a5e369649f79afb382ff5e3d86c18d7c0921aa3ba0eb23c9c8926876d7fc47c7"
+    },
+    "data/mohler_real_verifier_corrected_cov_batches": {
+      "reason": "raw_batch_cache",
+      "exists": true,
+      "type": "directory",
+      "file_count": 46,
+      "total_bytes": 156165,
+      "composite_sha256": "293077e348af004b9c36f360145feb01aa1de0431fa55fadb8022ad23ce53bec"
+    },
+    "data/mohler_real_verifier_evidence_removed_batches": {
+      "reason": "raw_batch_cache",
+      "exists": true,
+      "type": "directory",
+      "file_count": 51,
+      "total_bytes": 162085,
+      "composite_sha256": "803b9f563dedf9bc4a460f4f2466f9e7877a9d88a5bd2abca5b56f1cce18aef4"
+    },
+    "data/mohler_real_verifier_skeptical_batches": {
+      "reason": "raw_batch_cache",
+      "exists": true,
+      "type": "directory",
+      "file_count": 51,
+      "total_bytes": 162085,
+      "composite_sha256": "fa538923eb69062ef84aa67a9f06610900f708b9ae59a487fef234ea996125f1"
+    },
+    "data/mohler_real_verifier_targeted_batches": {
+      "reason": "raw_batch_cache",
+      "exists": true,
+      "type": "directory",
+      "file_count": 51,
+      "total_bytes": 162085,
+      "composite_sha256": "d5ce87b0504c0f6ef0dca32c770dbeeae2a104773e2becb9f62dc25c892a6bdb"
+    }
+  }
 }
