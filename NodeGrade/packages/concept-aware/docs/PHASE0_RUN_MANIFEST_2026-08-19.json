@@ -1,9 +1,9 @@
 {
   "phase": "Phase 0 integrity work",
   "generated": "2026-08-19 (fifth review round -- self-reference-free provenance)",
-  "code_commit": "1135005f4ee7879fd7a00d356e7a77b69a02c98f",
-  "code_commit_short": "1135005",
-  "code_commit_tree_hash": "ea22afa73117ff525c6701d33e198c19249b5be3",
+  "code_commit": "dda8a684deec87dc2b4e1c9549f64a86d0eec381",
+  "code_commit_short": "dda8a68",
+  "code_commit_tree_hash": "15e90af9c65713e896ca864d13fbbbdfa0f844c9",
   "note": "code_commit/code_commit_tree_hash identify the commit this manifest describes -- read directly from `git rev-parse HEAD` at generation time, against a verified-clean working tree. This manifest file is committed SEPARATELY, as the immediate next commit after code_commit, containing only this file. verify_investigation_integrity.py's check_manifest_provenance() independently re-derives the manifest commit's actual parent and tree hash from git history and fails unless both match what's recorded here -- see conceptgrade/configs.py's module docstring 'Commit provenance' section for why a per-config pinned_commit field (the prior approach) could never work.",
   "configs": {
     "evaluated_mohler_gemini": {
@@ -13,7 +13,7 @@
     },
     "deployed_sag_gemini": {
       "name": "deployed_sag_gemini",
-      "description": "RUNTIME/DEFAULT configuration -- what a fresh pipeline gets with self-consistency OFF (matching ConceptGradePipeline's own class default, 3x cheaper per response than EVALUATED_MOHLER_GEMINI). 2026-08-19, fourth review round: this config does NOT match what produced this project's reported Mohler evaluation numbers -- see EVALUATED_MOHLER_GEMINI above for that. Verifier at weight=1.0 with the Finding-5 GENERIC skepticism prompt (NOT the unvalidated targeted variant -- see REPRODUCIBILITY.md Finding 6), frozen v1.0-expert KG (loaded from data/ds_knowledge_graph.json, NOT the live v1.1-expert builder).",
+      "description": "RUNTIME/DEFAULT configuration -- what a fresh pipeline gets with self-consistency OFF (matching ConceptGradePipeline's own class default: two fewer extraction calls than EVALUATED_MOHLER_GEMINI per response, not a measured 3x reduction in total cost -- the pipeline still makes several other LLM calls regardless of this flag). 2026-08-19, fourth review round: this config does NOT match what produced this project's reported Mohler evaluation numbers -- see EVALUATED_MOHLER_GEMINI above for that. Verifier at weight=1.0 with the Finding-5 GENERIC skepticism prompt (NOT the unvalidated targeted variant -- see REPRODUCIBILITY.md Finding 6), frozen v1.0-expert KG (loaded from data/ds_knowledge_graph.json, NOT the live v1.1-expert builder).",
       "semantic_fingerprint": "62f0f6a4c81de4f41c6f0e34c5bf57d858e7eddf75e6f8ba227a5d8801ef39c8"
     },
     "c1_baseline_no_extensions": {
