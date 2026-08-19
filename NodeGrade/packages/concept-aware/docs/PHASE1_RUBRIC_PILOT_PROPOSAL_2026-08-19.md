@@ -1,10 +1,16 @@
-# Phase 1 Rubric-Anchored Pilot — Scoped Proposal (Not Implemented)
+# Phase 1 Rubric-Anchored Pilot — Scoped Proposal (Approved, Not Started)
 
-**Status**: proposal only. Nothing in this document has been built. This
-exists to scope the work and get sign-off on the stop gate *before* any
-of it is implemented, per `docs/CONCEPTGRADE_RECOVERY_PLAN_2026-08-19.md`'s
-phased plan and the explicit instruction that adopting that plan as a
-roadmap is not the same as committing to implement it immediately.
+**Status (updated 2026-08-19)**: **Approved as scoped** — 4 arms (no
+rubric, direct rubric LLM, flat proposition scorer, rubric graph
+scorer), unseen question families, dual annotation with adjudication,
+matched compute, cluster-level-CI stop gate, feasibility-only framing.
+Nothing in this document has been built and no data has been collected.
+This document exists to scope the work and record sign-off on the stop
+gate *before* any of it is implemented, per
+`docs/CONCEPTGRADE_RECOVERY_PLAN_2026-08-19.md`'s phased plan. Approval
+of this scope is not the same as authorization to begin data collection
+or expert labor commitments -- those require a separate, explicit
+go-ahead per milestone (see Section 8, added below).
 
 > ⚠️ **Feasibility only, not confirmatory (revised 2026-08-19, second
 > review round)**: at 5-10 question families this pilot is a feasibility
@@ -229,3 +235,46 @@ Frozen *external* validation (recovery plan Phase 3), the full feedback/
 human-review study (Phase 4), and any production deployment decision are
 all downstream of this pilot's stop-gate outcome and are not being
 scoped here. This document covers Phase 1 only.
+
+## 8. Milestone 1 status: family selection blocked, not started (2026-08-19)
+
+Attempted the autonomous part of milestone 1 (select 5-10 eligible
+question families from an existing untouched dataset) before any expert
+rubric authoring. **Result: neither existing dataset has any eligible
+family left.**
+
+- **DigiKlausur** (`data/digiklausur_dataset.json`, MPL-2.0, confirmed
+  real via forensic verification): 17 unique questions total. All 17 are
+  already consumed by `compute_cross_dataset_significance.py`'s reported
+  Paper 1 cross-dataset meta-analysis (REPRODUCIBILITY.md, "DigiKlausur
+  cluster structure | 17 x 38 = 646"). Zero families remain untouched by
+  this project's reported claims.
+- **Kaggle ASAG** (`data/kaggle_asag_dataset.json`): same problem --
+  fully consumed by the same cross-dataset analysis (368/473 deduplicated
+  samples, all questions reported) -- **plus** its own provenance is
+  separately unresolved (`docs/DATASET_PROVENANCE_REVIEW_REQUEST.md`:
+  not confirmed real, not confirmed fabricated). Even setting the
+  reuse problem aside, sourcing new pilot data from an
+  authenticity-unresolved dataset would stack two open verification
+  problems on top of each other.
+
+This is exactly the scenario Section 2 anticipated ("or a small
+newly-collected set if neither has enough untouched, labelable
+material") -- it is not a surprise, but it does mean **milestone 1
+cannot proceed with either existing project dataset**. Using a
+DigiKlausur or Kaggle ASAG family anyway, on the reasoning that it's
+merely "unseen by rubric-authoring" even though it's already reported
+in a headline cross-dataset claim, would repeat the exact kind of
+same-dataset reuse this project has spent this whole review cycle
+correcting -- not a shortcut worth taking to save time.
+
+**What this means practically**: sourcing 5-10 genuinely untouched
+question families requires either (a) a new, independently-verified
+public ASAG dataset with clean provenance and clean licensing that this
+project has never touched, or (b) newly-collected data (real student
+responses to new or existing course questions, with appropriate
+consent/IRB considerations if applicable). Both require a human decision
+-- which source, and under what constraints -- that a coding agent
+should not make unilaterally. **Milestone 1 is blocked pending that
+decision; no candidate families have been selected, and no rubric
+authoring has started.**

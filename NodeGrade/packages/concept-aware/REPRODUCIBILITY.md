@@ -1,5 +1,28 @@
 # Reproducibility Guide — ConceptGrade (Paper 1 + Paper 2)
 
+> ## Current project claim (2026-08-19, governance review)
+>
+> **Retired**: "ConceptGrade beats LLM grading" / "ConceptGrade's
+> architecture beats zero-shot LLM grading." This framing is no longer
+> the project's claim, regardless of what any earlier draft, section
+> heading, or summary elsewhere in this file says.
+>
+> **Current claim**: The current KG-composite architecture does not
+> improve scoring over a well-calibrated LLM verifier. Future work tests
+> whether rubric-anchored claim tracing improves scoring or diagnostics
+> — see `docs/PHASE1_RUBRIC_PILOT_PROPOSAL_2026-08-19.md`, approved as a
+> feasibility-only pilot, not yet started.
+>
+> This is the authoritative statement of the project's claim. Findings
+> 1-6 below are the evidence trail that led here (in short: the numeric
+> KG-formula composite adds no value, confirmed across 3 backbones and
+> multiple dependent sensitivity checks; what actually works is a raw
+> LLM verifier judgment, which is architecture-light, not
+> KG-structure-heavy; every attempt to extract value from graph
+> structure specifically either added nothing or actively hurt). Read
+> the rest of this document for that evidence, not for a different
+> headline claim.
+
 This file maps every quantitative claim in either paper to the script that
 produces it, the cached input it reads, and the exact command to re-run it.
 Designed so a reviewer can verify any number in either paper in seconds.

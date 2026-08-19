@@ -14,6 +14,15 @@ This repository backs two papers:
 - **Paper 2** (`docs/paper_phase2_vis2027.tex`) — the visual-analytics
   dashboard and educator user study.
 
+## Current project claim (2026-08-19)
+
+**"ConceptGrade beats LLM grading" is retired as the project's claim.**
+Current claim: the current KG-composite architecture does not improve
+scoring over a well-calibrated LLM verifier. Future work tests whether
+rubric-anchored claim tracing improves scoring or diagnostics — see
+`docs/PHASE1_RUBRIC_PILOT_PROPOSAL_2026-08-19.md` (approved, feasibility-only,
+not yet started). Full evidence trail: **[REPRODUCIBILITY.md](REPRODUCIBILITY.md)**.
+
 ## Important: read this before trusting any number in Paper 1
 
 An earlier draft of Paper 1 reported results computed against a
