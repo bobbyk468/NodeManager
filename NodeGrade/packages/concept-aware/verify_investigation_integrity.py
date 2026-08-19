@@ -308,6 +308,30 @@ def check_manifest_provenance():
         )
         return
 
+    # 2026-08-19, sixth review round: the manifest-introducing commit
+    # must be the CURRENT HEAD, not just some commit somewhere in
+    # history. Without this, any later commit (even one that changes
+    # this very verification script, as commit cd0e14b did) silently
+    # leaves the manifest describing a stale, non-HEAD state while every
+    # other check here still passes -- the parent/tree-hash checks below
+    # only validate the manifest commit's OWN parent, never whether the
+    # manifest commit is still the tip of the branch. This is the check
+    # that makes Phase 0 verification correctly FAIL after any future
+    # substantive commit, until a fresh manifest is generated and
+    # committed on top of it.
+    try:
+        head = _git("rev-parse", "HEAD")
+    except Exception as e:
+        check("could not determine current HEAD", False, str(e))
+        return
+    check(
+        f"manifest commit ({manifest_commit[:12]}) IS current HEAD ({head[:12]}) "
+        f"-- the manifest must describe the tip of the branch, not a past commit",
+        manifest_commit == head,
+        f"manifest_commit={manifest_commit!r} HEAD={head!r} -- if these differ, "
+        f"regenerate and commit a fresh manifest before trusting this check",
+    )
+
     try:
         actual_parent = _git("rev-parse", f"{manifest_commit}^")
         actual_parent_tree = _git("rev-parse", f"{actual_parent}^{{tree}}")

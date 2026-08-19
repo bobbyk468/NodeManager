@@ -66,11 +66,16 @@ Three configs are provided as concrete named presets:
   - DEPLOYED_SAG_GEMINI: the RUNTIME/DEFAULT configuration -- what a
     fresh pipeline construction gets with no self-consistency (matching
     ConceptGradePipeline's own class default, use_self_consistency=False,
-    which is 3x cheaper per response). This is NOT what produced the
-    reported evaluation numbers -- see EVALUATED_MOHLER_GEMINI above for
-    that. Kept as a distinct config because a cheaper, no-self-consistency
-    runtime path is a legitimate deployment choice, just not the one this
-    project's own headline numbers were measured under.
+    which uses one extraction call instead of three -- NOT "3x cheaper
+    per response" overall, corrected 2026-08-19: the pipeline still makes
+    several other LLM calls -- misconception/false-belief detection,
+    cognitive-depth classification, the verifier -- so the total-cost
+    ratio is smaller than 3x and hasn't been measured here). This is NOT
+    what produced the reported evaluation numbers -- see
+    EVALUATED_MOHLER_GEMINI above for that. Kept as a distinct config
+    because a cheaper, no-self-consistency runtime path is a legitimate
+    deployment choice, just not the one this project's own headline
+    numbers were measured under.
   - C1_BASELINE_NO_EXTENSIONS: the pre-extensions ablation baseline
     (no self-consistency, no confidence weighting, no verifier) -- for
     ablation studies that specifically need the un-extended pipeline,
@@ -387,8 +392,10 @@ DEPLOYED_SAG_GEMINI = PipelineConfig(
     description=(
         "RUNTIME/DEFAULT configuration -- what a fresh pipeline gets with "
         "self-consistency OFF (matching ConceptGradePipeline's own class "
-        "default, 3x cheaper per response than EVALUATED_MOHLER_GEMINI). "
-        "2026-08-19, fourth review round: this config does NOT match what "
+        "default: two fewer extraction calls than EVALUATED_MOHLER_GEMINI "
+        "per response, not a measured 3x reduction in total cost -- the "
+        "pipeline still makes several other LLM calls regardless of this "
+        "flag). 2026-08-19, fourth review round: this config does NOT match what "
         "produced this project's reported Mohler evaluation numbers -- see "
         "EVALUATED_MOHLER_GEMINI above for that. Verifier at weight=1.0 "
         "with the Finding-5 GENERIC skepticism prompt (NOT the unvalidated "
