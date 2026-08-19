@@ -226,23 +226,27 @@ def test_cache_key_sensitivity():
             f"fingerprints={fingerprints}",
         )
 
-    # 2026-08-19, fourth review round: config_fingerprint() must NOT change
-    # when only pinned_commit/name/description change -- those are
-    # provenance/identity metadata, not semantic configuration. The prior
-    # version hashed pinned_commit too, so commit 7dc6085 (which only
-    # re-pinned two configs) silently changed every cache key built from
-    # them, contradicting its own commit message's "only metadata, no
-    # pipeline behavior" claim. This is the regression test for that bug.
-    from dataclasses import replace
+    # 2026-08-19, fifth review round: PipelineConfig no longer has a
+    # pinned_commit field at all -- it was removed entirely rather than
+    # merely excluded from the fingerprint, because a per-config commit
+    # pin can never correctly reference the commit that records it (a
+    # commit cannot contain its own not-yet-computed hash). This is the
+    # regression test that the field stays gone -- if it's ever
+    # reintroduced, this fails loudly rather than silently reopening the
+    # self-reference cycle.
+    from dataclasses import replace, fields as _dc_fields
     from conceptgrade.configs import DEPLOYED_SAG_GEMINI, config_fingerprint
-    base_fp = config_fingerprint(DEPLOYED_SAG_GEMINI)
-    repinned_fp = config_fingerprint(replace(DEPLOYED_SAG_GEMINI, pinned_commit="deadbeef"))
+    field_names = {f.name for f in _dc_fields(DEPLOYED_SAG_GEMINI)}
     check(
-        "config_fingerprint is UNCHANGED when only pinned_commit changes "
-        "(re-pinning a config to a new commit must not invalidate caches "
-        "built under it -- pinned_commit is provenance, not semantics)",
-        base_fp == repinned_fp,
+        "PipelineConfig has NO pinned_commit field (commit provenance lives "
+        "only in the run manifest, never in the config itself)",
+        "pinned_commit" not in field_names,
+        f"fields={sorted(field_names)}",
     )
+
+    # config_fingerprint() must NOT change when only name/description
+    # change -- those are identity metadata, not semantic configuration.
+    base_fp = config_fingerprint(DEPLOYED_SAG_GEMINI)
     renamed_fp = config_fingerprint(replace(DEPLOYED_SAG_GEMINI, name="x", description="y"))
     check(
         "config_fingerprint is UNCHANGED when only name/description change",

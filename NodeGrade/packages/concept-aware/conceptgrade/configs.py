@@ -34,15 +34,22 @@ computes:
   - `verifier_prompt_version_sag` is checked against the live
     `conceptgrade.verifier.VERIFIER_PROMPT_VERSION_SAG` constant (as in
     the first version of this module).
-  - `pinned_commit` is a FIXED string recorded once, at authoring time,
-    NOT recomputed dynamically on every import (the first version's
-    `default_factory` did this, which meant "the same named config"
-    silently reported a different commit on every subsequent commit --
-    defeating the point of pinning). `check_provenance()` compares the
-    pinned value against the CURRENT live commit/dirty-state and reports
-    (does not silently ignore) any mismatch; `build_pipeline()` calls it
-    and prints a warning (does not raise -- a mismatch is expected and
-    fine during active development, but must never be silent).
+
+Commit provenance (2026-08-19, fifth review round -- removes a
+self-reference cycle): `PipelineConfig` previously carried its own
+`pinned_commit` field, fixed at authoring time. That field could never
+correctly reference the commit that RECORDS a pin -- a commit cannot
+contain its own not-yet-computed hash -- and every attempt to "fix" it
+by re-pinning to a newer commit was itself a new commit, needing a new
+pin, forever one commit behind. `pinned_commit` is REMOVED from
+`PipelineConfig` entirely. Commit provenance now lives ONLY in
+`docs/PHASE0_RUN_MANIFEST_2026-08-19.json`, which is generated to
+reference an already-existing PARENT commit's exact SHA and tree hash,
+then committed itself as a separate, metadata-only commit on top --
+never referencing its own hash. `verify_investigation_integrity.py`
+fails unless the manifest's recorded code commit is genuinely the
+manifest commit's parent and the tree hash matches (see that script and
+`generate_phase0_manifest.py`).
 
 Three configs are provided as concrete named presets:
   - EVALUATED_MOHLER_GEMINI: what actually produced this project's
@@ -78,17 +85,18 @@ pipeline from, not a record of everything that was tried.
 Fingerprinting (2026-08-19, fourth review round -- corrects a real bug):
 `config_fingerprint()` hashes only the SEMANTIC fields that affect what
 a pipeline actually computes or what a cache key should distinguish --
-it explicitly EXCLUDES `name`, `description`, and `pinned_commit`. The
-previous version hashed every field including `pinned_commit`, which
-meant re-pinning a config to a new commit (pure provenance metadata,
-changes nothing about how the pipeline runs) silently changed its cache
-fingerprint and therefore every cache key built from it -- an unrelated
-commit-tracking edit was invalidating caches as if it were a real
-configuration change. `pinned_commit`/commit provenance now lives only
-in the run manifest (docs/PHASE0_RUN_MANIFEST_2026-08-19.json) and
-`check_provenance()`'s comparison against live git state -- never in the
-semantic fingerprint that feeds `pipeline.config_fingerprint` or any
-cache key.
+it explicitly EXCLUDES `name` and `description` (previously also
+`pinned_commit`, before that field was removed entirely -- see the
+"Commit provenance" section above). A prior version hashed every field
+including `pinned_commit`, which meant re-pinning a config to a new
+commit (pure provenance metadata, changes nothing about how the
+pipeline runs) silently changed its cache fingerprint and therefore
+every cache key built from it -- an unrelated commit-tracking edit was
+invalidating caches as if it were a real configuration change. Commit
+provenance now lives ONLY in the run manifest
+(docs/PHASE0_RUN_MANIFEST_2026-08-19.json) -- never in `PipelineConfig`
+itself, never in the semantic fingerprint that feeds
+`pipeline.config_fingerprint` or any cache key.
 """
 from __future__ import annotations
 
@@ -109,8 +117,7 @@ class ConfigProvenanceError(Exception):
 
 def _live_git_state() -> tuple[str, bool]:
     """(current short commit SHA, is_dirty) for the CURRENTLY checked-out
-    tree, evaluated fresh at call time (unlike PipelineConfig.pinned_commit,
-    which is a fixed value recorded once). Never raises -- returns
+    tree, evaluated fresh at call time. Never raises -- returns
     ("unknown", True) if git isn't available."""
     try:
         sha = subprocess.run(
@@ -174,41 +181,41 @@ class PipelineConfig:
     calibration_path: Optional[str] = None
     calibration_domain: str = ""
 
-    # Provenance: FIXED at authoring time, not recomputed dynamically.
-    # A config with pinned_commit="unpinned" has deliberately not been
-    # pinned yet (e.g. authored mid-session before a commit exists) --
-    # check_provenance() treats that as informational, not an error.
-    pinned_commit: str = "unpinned"
+    # No pinned_commit field here -- deliberately (2026-08-19, fifth
+    # review round). A per-config commit pin can never correctly
+    # reference the commit that records the pin, since that commit's
+    # hash doesn't exist yet when the pin is written -- see the module
+    # docstring's "Commit provenance" section. Commit provenance is
+    # tracked exclusively in docs/PHASE0_RUN_MANIFEST_2026-08-19.json,
+    # which references an already-existing parent commit and is itself
+    # committed as a separate, later, metadata-only commit.
 
 
 # Fields deliberately excluded from the SEMANTIC config fingerprint --
-# none of these change what the pipeline computes or what a cache entry
-# means, so none of them may affect config_fingerprint() (2026-08-19,
-# fourth review round; see module docstring's "Fingerprinting" section
-# for why this matters -- a prior version hashed pinned_commit too,
-# which meant re-pinning a config to a new commit silently changed every
-# cache key built from it).
-_NON_SEMANTIC_FIELDS = frozenset({"name", "description", "pinned_commit"})
+# neither changes what the pipeline computes or what a cache entry
+# means, so neither may affect config_fingerprint() (2026-08-19, fourth
+# review round; see module docstring's "Fingerprinting" section).
+_NON_SEMANTIC_FIELDS = frozenset({"name", "description"})
 
 
 def config_fingerprint(config: PipelineConfig) -> str:
     """Canonical hash of this config's SEMANTIC fields only -- every
-    declared field EXCEPT `name`, `description`, and `pinned_commit`
-    (see `_NON_SEMANTIC_FIELDS`). This is the "complete named
-    configuration fingerprint" that build_pipeline() stamps onto the
-    resulting pipeline (as `pipeline.config_fingerprint`) and that
-    pipeline.py's cache keys fold in when a pipeline was built from a
-    named config -- so a config field this module doesn't (yet)
-    individually enforce at build time, but which still describes the
-    run (e.g. `calibration_domain`), is still reflected in what gets
-    cached under it. Two configs with identical semantic flags but a
-    different `name`/`description` get the SAME fingerprint (by design
-    -- they'd produce identical pipeline behavior and should share a
-    cache), and any edit to a semantic field changes the fingerprint
-    automatically -- no separate version constant to remember to bump.
+    declared field EXCEPT `name` and `description` (see
+    `_NON_SEMANTIC_FIELDS`). This is the "complete named configuration
+    fingerprint" that build_pipeline() stamps onto the resulting
+    pipeline (as `pipeline.config_fingerprint`) and that pipeline.py's
+    cache keys fold in when a pipeline was built from a named config --
+    so a config field this module doesn't (yet) individually enforce at
+    build time, but which still describes the run (e.g.
+    `calibration_domain`), is still reflected in what gets cached under
+    it. Two configs with identical semantic flags but a different
+    `name`/`description` get the SAME fingerprint (by design -- they'd
+    produce identical pipeline behavior and should share a cache), and
+    any edit to a semantic field changes the fingerprint automatically
+    -- no separate version constant to remember to bump.
 
-    Provenance (which commit a config is pinned to) is deliberately NOT
-    part of this hash -- see config_identity() and
+    Commit provenance is not, and has never been, part of this hash or
+    of `PipelineConfig` at all -- see config_identity() and
     docs/PHASE0_RUN_MANIFEST_2026-08-19.json for where commit provenance
     is actually tracked."""
     from dataclasses import asdict
@@ -218,43 +225,35 @@ def config_fingerprint(config: PipelineConfig) -> str:
 
 
 def config_identity(config: PipelineConfig) -> dict:
-    """Provenance-only view of a config: name, description, pinned_commit,
-    and its semantic fingerprint -- for the run manifest and human-facing
-    reporting, NEVER for cache keys (config_fingerprint() above is what
-    cache keys use, and it excludes these fields on purpose)."""
+    """Human-facing view of a config: name, description, and its semantic
+    fingerprint -- for the run manifest and reporting, NEVER for cache
+    keys (config_fingerprint() above is what cache keys use). Contains
+    no commit information -- PipelineConfig carries none; see the module
+    docstring's "Commit provenance" section for why and where commit
+    pinning actually lives (docs/PHASE0_RUN_MANIFEST_2026-08-19.json)."""
     return {
         "name": config.name,
         "description": config.description,
-        "pinned_commit": config.pinned_commit,
         "semantic_fingerprint": config_fingerprint(config),
     }
 
 
-def check_provenance(config: PipelineConfig) -> list[str]:
-    """Returns a list of human-readable warnings (empty = clean) comparing
-    `config.pinned_commit` against the CURRENTLY checked-out commit/dirty
-    state. Never raises, never silently returns nothing to check --
-    callers (build_pipeline, verify_investigation_integrity.py) are
-    responsible for surfacing the returned warnings."""
+def check_working_tree() -> list[str]:
+    """Returns a list of human-readable warnings (empty = clean) about the
+    CURRENTLY checked-out working tree -- currently just whether it has
+    uncommitted changes. Never raises. Takes no config argument (2026-08-19,
+    fifth review round: this used to compare a config's now-removed
+    pinned_commit field against live git state; that comparison is gone
+    along with the field -- commit provenance is checked once, against
+    the run manifest, not per-config; see
+    verify_investigation_integrity.py)."""
     warnings = []
-    live_sha, live_dirty = _live_git_state()
-    if config.pinned_commit == "unpinned":
-        warnings.append(
-            f"config {config.name!r} has no pinned_commit -- provenance "
-            f"cannot be checked against a known-good commit"
-        )
-    elif config.pinned_commit != live_sha:
-        warnings.append(
-            f"config {config.name!r} is pinned to commit "
-            f"{config.pinned_commit!r} but the working tree is currently "
-            f"at {live_sha!r} -- results produced now are NOT necessarily "
-            f"what this config originally described"
-        )
+    _live_sha, live_dirty = _live_git_state()
     if live_dirty:
         warnings.append(
-            f"working tree has uncommitted changes -- even a matching "
-            f"pinned_commit does not guarantee the code matches what ran "
-            f"when config {config.name!r} was authored"
+            "working tree has uncommitted changes -- a pipeline built "
+            "now may not match what any pinned commit in the run "
+            "manifest describes"
         )
     return warnings
 
@@ -263,10 +262,10 @@ def build_pipeline(config: PipelineConfig, api_key: str, strict_kg: bool = True)
     """Construct a ConceptGradePipeline from a named config, enforcing
     (not merely recording) verifier_prompt_version_sag, KG version, and
     provider/model consistency. Raises ConfigProvenanceError on any
-    mismatch among those three. Provenance (pinned_commit vs. live git
-    state) is checked and printed as warnings, not raised -- a mismatch
-    there is common and expected during active development, but must
-    never be silent (see check_provenance())."""
+    mismatch among those three. A dirty working tree is checked and
+    printed as a warning, not raised -- common and expected during
+    active development, but must never be silent (see
+    check_working_tree())."""
     from conceptgrade.pipeline import ConceptGradePipeline
     from conceptgrade.verifier import VERIFIER_PROMPT_VERSION_SAG
     from conceptgrade.llm_client import detect_provider
@@ -318,7 +317,7 @@ def build_pipeline(config: PipelineConfig, api_key: str, strict_kg: bool = True)
                 f"points to."
             )
 
-    for w in check_provenance(config):
+    for w in check_working_tree():
         print(f"[configs] WARNING: {w}")
 
     kwargs = dict(
@@ -381,7 +380,6 @@ EVALUATED_MOHLER_GEMINI = PipelineConfig(
     extraction_confidence_threshold=0.70,
     calibration_path=None,  # per-deployment: pass the domain-matched calibration explicitly
     calibration_domain="mohler_data_structures",
-    pinned_commit="e4cffa7",  # Phase 0 integrity commit -- see docs/PHASE0_RUN_MANIFEST_2026-08-19.json
 )
 
 DEPLOYED_SAG_GEMINI = PipelineConfig(
@@ -411,7 +409,6 @@ DEPLOYED_SAG_GEMINI = PipelineConfig(
     extraction_confidence_threshold=0.70,
     calibration_path=None,  # per-deployment: pass the domain-matched calibration explicitly
     calibration_domain="mohler_data_structures",
-    pinned_commit="e4cffa7",  # Phase 0 integrity commit -- see docs/PHASE0_RUN_MANIFEST_2026-08-19.json
 )
 
 C1_BASELINE_NO_EXTENSIONS = PipelineConfig(
@@ -437,7 +434,6 @@ C1_BASELINE_NO_EXTENSIONS = PipelineConfig(
     extraction_confidence_threshold=0.70,
     calibration_path=None,
     calibration_domain="",
-    pinned_commit="e4cffa7",  # Phase 0 integrity commit -- see docs/PHASE0_RUN_MANIFEST_2026-08-19.json
 )
 
 REGISTRY: dict[str, PipelineConfig] = {

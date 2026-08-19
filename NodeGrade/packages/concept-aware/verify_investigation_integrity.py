@@ -21,9 +21,14 @@ against cached data) -- this checks that:
      silently drift from what the cached data actually says.
   4. Required cached artifacts referenced by REPRODUCIBILITY.md Findings
      4-6 actually exist on disk.
+  5. docs/PHASE0_RUN_MANIFEST_2026-08-19.json's recorded code_commit and
+     code_commit_tree_hash are genuinely correct -- independently
+     re-derived from git history, not trusted from the manifest's own
+     claims. Fails (not warns) on any mismatch, and fails if the
+     manifest commit touches anything besides the manifest file itself.
 
-Zero API calls -- everything here is either a pure Python check or reads
-already-cached JSON.
+Zero API calls -- everything here is either a pure Python check, a `git`
+subprocess call, or reads already-cached JSON.
 
 Run:
     python3 verify_investigation_integrity.py
@@ -54,7 +59,7 @@ def section(title: str):
 
 def check_configs():
     section("1. Named config registry (conceptgrade/configs.py)")
-    from conceptgrade.configs import REGISTRY, build_pipeline, ConfigProvenanceError, check_provenance
+    from conceptgrade.configs import REGISTRY, build_pipeline, ConfigProvenanceError, check_working_tree
     for name, config in REGISTRY.items():
         try:
             p = build_pipeline(config, api_key="dummy-not-used")
@@ -79,9 +84,15 @@ def check_configs():
         except ConfigProvenanceError as e:
             check(f"config {name!r} builds without prompt/KG/provider drift", False, str(e))
             continue
-        warnings = check_provenance(config)
-        for w in warnings:
-            print(f"    [info] config {name!r}: {w}")
+    # Working-tree dirty-state is a single, global check now (2026-08-19,
+    # fifth review round) -- PipelineConfig no longer carries a
+    # pinned_commit field to compare per-config (see conceptgrade/configs.py
+    # module docstring's "Commit provenance" section for why: a per-config
+    # commit pin could never correctly reference the commit that records
+    # it). Commit provenance itself is checked in check_manifest_provenance()
+    # below, against docs/PHASE0_RUN_MANIFEST_2026-08-19.json.
+    for w in check_working_tree():
+        print(f"    [info] {w}")
 
 
 def check_calibration_artifacts():
@@ -255,11 +266,112 @@ def check_required_artifacts():
         check(f"data/{name} exists", (DATA / name).exists())
 
 
+def _git(*args: str) -> str:
+    import subprocess
+    return subprocess.run(
+        ["git", *args], cwd=BASE, capture_output=True, text=True, check=True,
+    ).stdout.strip()
+
+
+def check_manifest_provenance():
+    """5. docs/PHASE0_RUN_MANIFEST_2026-08-19.json's recorded code_commit/
+    code_commit_tree_hash must be genuinely correct -- not just present.
+    2026-08-19, fifth review round: a prior manifest recorded
+    pinned_commit values that were stale by the time the manifest itself
+    was committed (a commit can't reference its own not-yet-computed
+    hash), and this was never caught because provenance mismatches were
+    only ever WARNINGS, never failures. This check independently
+    re-derives, from git history alone (never trusting the manifest's own
+    claims), which commit actually introduced/last touched the manifest
+    file, what that commit's PARENT actually is, and what that parent's
+    tree hash actually is -- then FAILS if the manifest's recorded values
+    don't match. No tolerance, no warning-only fallback."""
+    section("5. Manifest commit provenance (docs/PHASE0_RUN_MANIFEST_2026-08-19.json)")
+    manifest_path = BASE / "docs" / "PHASE0_RUN_MANIFEST_2026-08-19.json"
+    manifest_rel = "docs/PHASE0_RUN_MANIFEST_2026-08-19.json"
+    if not manifest_path.exists():
+        check("manifest file exists", False)
+        return
+    manifest = json.loads(manifest_path.read_text())
+
+    try:
+        manifest_commit = _git("log", "-1", "--format=%H", "--", manifest_rel)
+    except Exception as e:
+        check("could not determine the commit that introduced/touched the manifest", False, str(e))
+        return
+    if not manifest_commit:
+        check(
+            "manifest file has an introducing commit in git history",
+            False,
+            "the manifest exists on disk but git log finds no commit touching it "
+            "-- it may be uncommitted; commit it (alone) before verifying",
+        )
+        return
+
+    try:
+        actual_parent = _git("rev-parse", f"{manifest_commit}^")
+        actual_parent_tree = _git("rev-parse", f"{actual_parent}^{{tree}}")
+    except Exception as e:
+        check("manifest-introducing commit has a resolvable parent", False, str(e))
+        return
+
+    check(
+        f"manifest's recorded code_commit ({manifest.get('code_commit', '')[:12]}) "
+        f"IS the manifest commit's actual parent ({actual_parent[:12]})",
+        manifest.get("code_commit") == actual_parent,
+        f"recorded={manifest.get('code_commit')!r} actual_parent={actual_parent!r}",
+    )
+    check(
+        f"manifest's recorded code_commit_tree_hash "
+        f"({manifest.get('code_commit_tree_hash', '')[:12]}) matches the parent "
+        f"commit's ACTUAL tree hash ({actual_parent_tree[:12]})",
+        manifest.get("code_commit_tree_hash") == actual_parent_tree,
+        f"recorded={manifest.get('code_commit_tree_hash')!r} actual={actual_parent_tree!r}",
+    )
+
+    # Metadata-only: the manifest commit should touch nothing else.
+    try:
+        changed_files = _git(
+            "show", "--format=", "--name-only", manifest_commit
+        ).splitlines()
+    except Exception:
+        changed_files = None
+    if changed_files is not None:
+        check(
+            f"manifest commit ({manifest_commit[:12]}) is metadata-only "
+            f"(touches only {manifest_rel})",
+            changed_files == [manifest_rel],
+            f"actually touched: {changed_files}",
+        )
+
+    # Restricted-artifact fingerprints, if the manifest recorded any:
+    # re-verify the ones that still exist locally haven't silently
+    # changed since the manifest was generated (doesn't fail on artifacts
+    # that are absent locally -- they're gitignored/untracked by design,
+    # not everyone will have them checked out).
+    restricted = manifest.get("restricted_artifacts", {})
+    if restricted:
+        from generate_phase0_manifest import _fingerprint_artifact
+        for rel_path, recorded in restricted.items():
+            if not recorded.get("exists"):
+                continue
+            current = _fingerprint_artifact(rel_path)
+            if not current.get("exists"):
+                continue  # not present locally -- fine, not a failure
+            key = "sha256" if current.get("type") == "file" else "composite_sha256"
+            check(
+                f"restricted artifact {rel_path!r} content hash unchanged since manifest generation",
+                current.get(key) == recorded.get(key),
+                f"recorded={recorded.get(key)!r} current={current.get(key)!r}",
+            )
+
+
 def main() -> int:
     check_configs()
     check_calibration_artifacts()
     check_headline_numbers()
     check_required_artifacts()
+    check_manifest_provenance()
 
     print()
     if FAILURES:

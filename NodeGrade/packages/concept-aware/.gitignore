@@ -1,3 +1,48 @@
 .venv/
 __pycache__/
 data/gemini_scoring_cache/
+
+# Restricted artifacts (2026-08-19, fifth review round) -- excluded from
+# Phase 0's commits (see REPRODUCIBILITY.md Finding 6 and
+# docs/PHASE0_RUN_MANIFEST_2026-08-19.json's restricted_artifacts
+# section for the hashes/reasons). Listed explicitly, not by wildcard,
+# so this file is itself an auditable record of what's excluded and
+# why -- a bare `data/*_batches/` pattern would also have silently
+# hidden future additions from `git status`, making it too easy to lose
+# track of what's actually being kept out. Two categories:
+#
+#   (a) Raw LLM batch-job caches: per-call request/response JSON dumps.
+#       Not needed for reproducibility -- every regression script reads
+#       the aggregated *_eval_results.json / *_signals.json / *_verifier_*.json
+#       files instead. Excluded pending a size/provenance review, not a
+#       privacy one (they typically embed the same student-answer text
+#       as (b), which is the sharper concern).
+#   (b) Phase-A signal files containing complete, verbatim Mohler
+#       dataset student answer text. Excluded because this project has
+#       not confirmed the Mohler dataset's license permits
+#       redistributing that text. NOTE: data/mohler_real_phaseA_signals.json
+#       and data/mohler_real_extension_phaseA_signals.json contain the
+#       same category of data and are ALREADY tracked and already
+#       pushed to origin/main (commit d21b568, predates this review) --
+#       that is a separate, already-public exposure this .gitignore
+#       entry does not and cannot retroactively fix; remediating it
+#       requires a separate, explicit decision about remote history
+#       (see REPRODUCIBILITY.md Finding 6).
+data/claude_pipeline_phaseA_batches/
+data/claude_pipeline_phaseA_signals.json
+data/deepseek_pipeline_phaseA_batches/
+data/deepseek_pipeline_phaseA_signals.json
+data/deepseek_pipeline_phaseB_batches/
+data/deepseek_pipeline_phaseB_batches_pilot20/
+data/deepseek_verifier_ablation_batches/
+data/deepseek_verifier_skeptical_batches/
+data/gpt_pipeline_phaseA_batches/
+data/gpt_pipeline_phaseA_signals.json
+data/gpt_pipeline_phaseB_batches/
+data/gpt_pipeline_phaseB_batches_pilot20/
+data/gpt_verifier_ablation_batches/
+data/gpt_verifier_skeptical_batches/
+data/mohler_real_verifier_corrected_cov_batches/
+data/mohler_real_verifier_evidence_removed_batches/
+data/mohler_real_verifier_skeptical_batches/
+data/mohler_real_verifier_targeted_batches/
