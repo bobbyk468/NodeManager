@@ -330,6 +330,12 @@ def check_manifest_provenance():
     )
 
     # Metadata-only: the manifest commit should touch nothing else.
+    # `git show --name-only` reports paths relative to the repo ROOT
+    # (this is a monorepo -- packages/concept-aware/ is a subdirectory),
+    # while manifest_rel above is relative to BASE (this package's own
+    # directory) and happens to still resolve correctly as a `git log`
+    # pathspec because `cwd=BASE`. The two path forms aren't the same
+    # string, so compare by SUFFIX, not equality.
     try:
         changed_files = _git(
             "show", "--format=", "--name-only", manifest_commit
@@ -340,7 +346,7 @@ def check_manifest_provenance():
         check(
             f"manifest commit ({manifest_commit[:12]}) is metadata-only "
             f"(touches only {manifest_rel})",
-            changed_files == [manifest_rel],
+            len(changed_files) == 1 and changed_files[0].endswith(manifest_rel),
             f"actually touched: {changed_files}",
         )
 
