@@ -1,0 +1,26 @@
+{
+  "comparison": "deepseek_pipeline_vs_deepseek_zeroshot",
+  "n": 298,
+  "mae_zeroshot": 1.1073825503355705,
+  "mae_pipeline": 1.3338926174496644,
+  "mae_reduction_pct": -20.454545454545443,
+  "mae_reduction_ci95": [
+    -30.333647798742128,
+    -11.52784725533262
+  ],
+  "pearson_r_zeroshot": 0.7877720106889032,
+  "pearson_r_pipeline": 0.7661109444607996,
+  "response_level": {
+    "p_two_tailed": 5.044657500369734e-06,
+    "p_one_tailed": 0.9999974776712498,
+    "d_z": -0.27167343372761854,
+    "n": 298
+  },
+  "question_clustered": {
+    "p_two_tailed": 0.0537109375,
+    "p_one_tailed": 0.97314453125,
+    "n_questions": 11,
+    "wins": 2
+  },
+  "preregistered_verdict": "FAIL"
+}

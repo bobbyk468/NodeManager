@@ -67,6 +67,16 @@ Your task:
 
 Return ONLY valid JSON."""
 
+# Bumped whenever VERIFIER_USER/VERIFIER_SYSTEM's content changes in a way
+# that could shift the raw score distribution -- e.g. the skepticism
+# instruction added in Finding 5 (REPRODUCIBILITY.md) moved DeepSeek's MAE
+# by ~20%. Any conceptgrade/calibration.py Calibration fit against raw
+# verifier scores is tied to the prompt version it was fit under; a
+# calibration fit under an older version should not be silently reused
+# after a prompt change (see calibration.py's check_compatible()) -- that
+# exact mistake is what motivated adding this constant.
+VERIFIER_PROMPT_VERSION_SAG = "sag_v2_skepticism_2026-08-18"
+
 VERIFIER_SYSTEM = """You are an expert Computer Science educator grading a student's short answer.
 
 Your task: Compare the student answer to the reference answer and assign a score from 0.0 to 5.0.
@@ -100,6 +110,17 @@ REFERENCE ANSWER (expert answer — defines 5.0):
 
 STUDENT ANSWER:
 {student_answer}
+
+IMPORTANT — the KNOWLEDGE GRAPH EVIDENCE below was extracted automatically
+by a separate, imperfect system. It can be incomplete, wrong, or
+misleading (e.g. a listed "covered concept" may not actually reflect
+correct understanding; a "missing" concept may have been expressed in
+different words the extractor missed; a flagged misconception may be a
+false positive). Treat it as a second opinion, not ground truth:
+independently read the STUDENT ANSWER yourself first, form your own
+judgment of what the student actually demonstrated, and only use the KG
+evidence to double-check or catch something you may have missed — never
+let it override your own direct reading of the student's actual words.
 
 KNOWLEDGE GRAPH EVIDENCE:
 - Concepts the student demonstrated: {covered_concepts}

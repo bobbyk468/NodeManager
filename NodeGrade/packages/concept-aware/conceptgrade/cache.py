@@ -13,6 +13,30 @@ import hashlib
 import json
 import os
 
+# Bumped whenever the cache KEY CONSTRUCTION SCHEME itself changes (e.g.
+# switching from enumerating individual flags to hashing a canonical
+# evidence payload, 2026-08-19) -- so a scheme change can't accidentally
+# collide with, or be confused with, keys built under the old scheme. Not
+# the same thing as VERIFIER_PROMPT_VERSION_SAG or a KG version: this is
+# about how the cache KEY ITSELF is built, not about what's being cached.
+CACHE_SCHEMA_VERSION = "v2_canonical_evidence_hash_2026-08-19"
+
+
+def canonical_hash(obj) -> str:
+    """Deterministic SHA-256 hex digest of any JSON-serializable object,
+    independent of key insertion order (sort_keys=True). Used to fold an
+    entire upstream evidence payload (comparison_result, misconceptions,
+    blooms, solo, ...) into a cache key without having to enumerate every
+    individual field that might change it -- see REPRODUCIBILITY.md
+    Finding 6's cache-invalidation fix: enumerating flags one at a time
+    (verifier_weight, use_confidence_weighting, ...) missed several real
+    ones (KG version, the actual comparison_result content, Bloom's/SOLO,
+    misconceptions, use_sure_verifier) and would have missed the next one
+    too (e.g. the relationship-direction fix, which changes
+    comparison_result's VALUES without changing any flag)."""
+    canonical = json.dumps(obj, sort_keys=True, default=str)
+    return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
+
 
 class ResponseCache:
     """

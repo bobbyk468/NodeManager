@@ -1,0 +1,3008 @@
+{
+  "dataset": "mohler_real_kg_aligned",
+  "model": "deepseek/deepseek-chat-v3.1",
+  "n": 300,
+  "n_complete": 298,
+  "results": [
+    {
+      "id": "E03.Q06.A00",
+      "qid": "E03.Q06",
+      "human_score": 5.0,
+      "deepseek_c5_score": 2.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9667
+    },
+    {
+      "id": "E03.Q06.A01",
+      "qid": "E03.Q06",
+      "human_score": 2.5,
+      "deepseek_c5_score": 0.5,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 2,
+      "concept_coverage": 0.8467
+    },
+    {
+      "id": "E03.Q06.A02",
+      "qid": "E03.Q06",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q06.A03",
+      "qid": "E03.Q06",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q06.A04",
+      "qid": "E03.Q06",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q06.A05",
+      "qid": "E03.Q06",
+      "human_score": 4.0,
+      "deepseek_c5_score": 2.5,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9667
+    },
+    {
+      "id": "E03.Q06.A06",
+      "qid": "E03.Q06",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q06.A07",
+      "qid": "E03.Q06",
+      "human_score": 4.5,
+      "deepseek_c5_score": 2.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9
+    },
+    {
+      "id": "E03.Q06.A08",
+      "qid": "E03.Q06",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q06.A09",
+      "qid": "E03.Q06",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q06.A10",
+      "qid": "E03.Q06",
+      "human_score": 4.5,
+      "deepseek_c5_score": 2.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q06.A11",
+      "qid": "E03.Q06",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q06.A12",
+      "qid": "E03.Q06",
+      "human_score": 4.0,
+      "deepseek_c5_score": 2.0,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9667
+    },
+    {
+      "id": "E03.Q06.A13",
+      "qid": "E03.Q06",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q06.A14",
+      "qid": "E03.Q06",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q06.A15",
+      "qid": "E03.Q06",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q06.A16",
+      "qid": "E03.Q06",
+      "human_score": 5.0,
+      "deepseek_c5_score": 2.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q06.A17",
+      "qid": "E03.Q06",
+      "human_score": 3.5,
+      "deepseek_c5_score": 1.0,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9333
+    },
+    {
+      "id": "E03.Q06.A18",
+      "qid": "E03.Q06",
+      "human_score": 4.5,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q06.A19",
+      "qid": "E03.Q06",
+      "human_score": 3.5,
+      "deepseek_c5_score": 2.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q06.A20",
+      "qid": "E03.Q06",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q06.A21",
+      "qid": "E03.Q06",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q06.A22",
+      "qid": "E03.Q06",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q06.A23",
+      "qid": "E03.Q06",
+      "human_score": 4.5,
+      "deepseek_c5_score": 2.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q06.A24",
+      "qid": "E03.Q06",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q06.A25",
+      "qid": "E03.Q06",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q06.A26",
+      "qid": "E03.Q06",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q06.A27",
+      "qid": "E03.Q06",
+      "human_score": 5.0,
+      "deepseek_c5_score": 3.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q06.A28",
+      "qid": "E03.Q06",
+      "human_score": 5.0,
+      "deepseek_c5_score": 2.0,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q06.A29",
+      "qid": "E03.Q06",
+      "human_score": 5.0,
+      "deepseek_c5_score": 3.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q06.A30",
+      "qid": "E03.Q06",
+      "human_score": 3.0,
+      "deepseek_c5_score": 0.5,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q07.A00",
+      "qid": "E03.Q07",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q07.A01",
+      "qid": "E03.Q07",
+      "human_score": 2.0,
+      "deepseek_c5_score": 0.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 2,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q07.A02",
+      "qid": "E03.Q07",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.0,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q07.A03",
+      "qid": "E03.Q07",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 4,
+      "solo_level": 5,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q07.A04",
+      "qid": "E03.Q07",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q07.A05",
+      "qid": "E03.Q07",
+      "human_score": 5.0,
+      "deepseek_c5_score": 3.5,
+      "blooms_level": 4,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q07.A06",
+      "qid": "E03.Q07",
+      "human_score": 4.0,
+      "deepseek_c5_score": 4.0,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q07.A07",
+      "qid": "E03.Q07",
+      "human_score": 3.0,
+      "deepseek_c5_score": 0.5,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q07.A08",
+      "qid": "E03.Q07",
+      "human_score": 4.5,
+      "deepseek_c5_score": 4.0,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q07.A09",
+      "qid": "E03.Q07",
+      "human_score": 3.5,
+      "deepseek_c5_score": 4.0,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q07.A10",
+      "qid": "E03.Q07",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q07.A11",
+      "qid": "E03.Q07",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q07.A12",
+      "qid": "E03.Q07",
+      "human_score": 0.0,
+      "deepseek_c5_score": 0.0,
+      "blooms_level": 1,
+      "solo_level": 1,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E03.Q07.A13",
+      "qid": "E03.Q07",
+      "human_score": 3.0,
+      "deepseek_c5_score": 0.5,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 2,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q07.A14",
+      "qid": "E03.Q07",
+      "human_score": 3.5,
+      "deepseek_c5_score": 4.0,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q07.A15",
+      "qid": "E03.Q07",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 4,
+      "solo_level": 5,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9344
+    },
+    {
+      "id": "E03.Q07.A16",
+      "qid": "E03.Q07",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.0,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q07.A17",
+      "qid": "E03.Q07",
+      "human_score": 2.0,
+      "deepseek_c5_score": 2.0,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q07.A18",
+      "qid": "E03.Q07",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.0,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q07.A19",
+      "qid": "E03.Q07",
+      "human_score": 5.0,
+      "deepseek_c5_score": 3.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 1,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q07.A20",
+      "qid": "E03.Q07",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 1,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q07.A21",
+      "qid": "E03.Q07",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 2,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q07.A22",
+      "qid": "E03.Q07",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 1,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q07.A23",
+      "qid": "E03.Q07",
+      "human_score": 5.0,
+      "deepseek_c5_score": 3.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 2,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q07.A24",
+      "qid": "E03.Q07",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 1,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q07.A25",
+      "qid": "E03.Q07",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 2,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q07.A26",
+      "qid": "E03.Q07",
+      "human_score": 3.5,
+      "deepseek_c5_score": 2.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 2,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q07.A27",
+      "qid": "E03.Q07",
+      "human_score": 5.0,
+      "deepseek_c5_score": 3.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 2,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q07.A28",
+      "qid": "E03.Q07",
+      "human_score": 5.0,
+      "deepseek_c5_score": 3.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 2,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E03.Q07.A29",
+      "qid": "E03.Q07",
+      "human_score": 3.0,
+      "deepseek_c5_score": 1.5,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 2,
+      "concept_coverage": 0.9642
+    },
+    {
+      "id": "E03.Q07.A30",
+      "qid": "E03.Q07",
+      "human_score": 3.5,
+      "deepseek_c5_score": 2.0,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 2,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E04.Q01.A00",
+      "qid": "E04.Q01",
+      "human_score": 4.0,
+      "deepseek_c5_score": 3.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E04.Q01.A01",
+      "qid": "E04.Q01",
+      "human_score": 4.0,
+      "deepseek_c5_score": 2.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 2,
+      "concept_coverage": 0.8878
+    },
+    {
+      "id": "E04.Q01.A02",
+      "qid": "E04.Q01",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E04.Q01.A03",
+      "qid": "E04.Q01",
+      "human_score": 3.0,
+      "deepseek_c5_score": 1.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 2,
+      "concept_coverage": 0.9272
+    },
+    {
+      "id": "E04.Q01.A04",
+      "qid": "E04.Q01",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E04.Q01.A05",
+      "qid": "E04.Q01",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E04.Q01.A06",
+      "qid": "E04.Q01",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E04.Q01.A07",
+      "qid": "E04.Q01",
+      "human_score": 2.5,
+      "deepseek_c5_score": 1.5,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9
+    },
+    {
+      "id": "E04.Q01.A08",
+      "qid": "E04.Q01",
+      "human_score": 4.0,
+      "deepseek_c5_score": 3.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E04.Q01.A09",
+      "qid": "E04.Q01",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E04.Q01.A10",
+      "qid": "E04.Q01",
+      "human_score": 3.5,
+      "deepseek_c5_score": 2.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9333
+    },
+    {
+      "id": "E04.Q01.A11",
+      "qid": "E04.Q01",
+      "human_score": 4.0,
+      "deepseek_c5_score": 1.5,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8667
+    },
+    {
+      "id": "E04.Q01.A12",
+      "qid": "E04.Q01",
+      "human_score": 4.5,
+      "deepseek_c5_score": 4.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E04.Q01.A13",
+      "qid": "E04.Q01",
+      "human_score": 2.5,
+      "deepseek_c5_score": 0.5,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8667
+    },
+    {
+      "id": "E04.Q01.A14",
+      "qid": "E04.Q01",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.5,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9333
+    },
+    {
+      "id": "E04.Q01.A15",
+      "qid": "E04.Q01",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 3,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9667
+    },
+    {
+      "id": "E04.Q01.A16",
+      "qid": "E04.Q01",
+      "human_score": 4.5,
+      "deepseek_c5_score": 1.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9
+    },
+    {
+      "id": "E04.Q01.A17",
+      "qid": "E04.Q01",
+      "human_score": 5.0,
+      "deepseek_c5_score": 3.5,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9
+    },
+    {
+      "id": "E04.Q01.A18",
+      "qid": "E04.Q01",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 3,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9667
+    },
+    {
+      "id": "E04.Q01.A19",
+      "qid": "E04.Q01",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.0,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9333
+    },
+    {
+      "id": "E04.Q01.A20",
+      "qid": "E04.Q01",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.5,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9333
+    },
+    {
+      "id": "E04.Q01.A21",
+      "qid": "E04.Q01",
+      "human_score": 4.0,
+      "deepseek_c5_score": 2.5,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9
+    },
+    {
+      "id": "E04.Q01.A22",
+      "qid": "E04.Q01",
+      "human_score": 3.0,
+      "deepseek_c5_score": 1.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8333
+    },
+    {
+      "id": "E04.Q01.A23",
+      "qid": "E04.Q01",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 3,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9667
+    },
+    {
+      "id": "E04.Q01.A24",
+      "qid": "E04.Q01",
+      "human_score": 4.5,
+      "deepseek_c5_score": 3.5,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9
+    },
+    {
+      "id": "E04.Q01.A25",
+      "qid": "E04.Q01",
+      "human_score": 5.0,
+      "deepseek_c5_score": 3.5,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9333
+    },
+    {
+      "id": "E04.Q01.A26",
+      "qid": "E04.Q01",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.5,
+      "blooms_level": 3,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9667
+    },
+    {
+      "id": "E04.Q01.A27",
+      "qid": "E04.Q01",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.0,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9333
+    },
+    {
+      "id": "E04.Q01.A28",
+      "qid": "E04.Q01",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.0,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9333
+    },
+    {
+      "id": "E04.Q01.A29",
+      "qid": "E04.Q01",
+      "human_score": 4.0,
+      "deepseek_c5_score": 0.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.7
+    },
+    {
+      "id": "E04.Q02.A00",
+      "qid": "E04.Q02",
+      "human_score": 2.5,
+      "deepseek_c5_score": 0.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8667
+    },
+    {
+      "id": "E04.Q02.A01",
+      "qid": "E04.Q02",
+      "human_score": 3.0,
+      "deepseek_c5_score": 0.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8667
+    },
+    {
+      "id": "E04.Q02.A02",
+      "qid": "E04.Q02",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.5,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9333
+    },
+    {
+      "id": "E04.Q02.A03",
+      "qid": "E04.Q02",
+      "human_score": 5.0,
+      "deepseek_c5_score": 3.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9
+    },
+    {
+      "id": "E04.Q02.A04",
+      "qid": "E04.Q02",
+      "human_score": 2.5,
+      "deepseek_c5_score": 0.5,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8333
+    },
+    {
+      "id": "E04.Q02.A05",
+      "qid": "E04.Q02",
+      "human_score": 2.0,
+      "deepseek_c5_score": 0.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9
+    },
+    {
+      "id": "E04.Q02.A06",
+      "qid": "E04.Q02",
+      "human_score": 3.5,
+      "deepseek_c5_score": 3.5,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9333
+    },
+    {
+      "id": "E04.Q02.A07",
+      "qid": "E04.Q02",
+      "human_score": 4.0,
+      "deepseek_c5_score": 0.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8667
+    },
+    {
+      "id": "E04.Q02.A08",
+      "qid": "E04.Q02",
+      "human_score": 3.5,
+      "deepseek_c5_score": 0.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9
+    },
+    {
+      "id": "E04.Q02.A09",
+      "qid": "E04.Q02",
+      "human_score": 5.0,
+      "deepseek_c5_score": 0.0,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9
+    },
+    {
+      "id": "E04.Q02.A10",
+      "qid": "E04.Q02",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9
+    },
+    {
+      "id": "E04.Q02.A11",
+      "qid": "E04.Q02",
+      "human_score": 3.0,
+      "deepseek_c5_score": 0.0,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9
+    },
+    {
+      "id": "E04.Q02.A12",
+      "qid": "E04.Q02",
+      "human_score": 4.0,
+      "deepseek_c5_score": 0.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9
+    },
+    {
+      "id": "E04.Q02.A13",
+      "qid": "E04.Q02",
+      "human_score": 3.5,
+      "deepseek_c5_score": 0.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9
+    },
+    {
+      "id": "E04.Q02.A14",
+      "qid": "E04.Q02",
+      "human_score": 4.0,
+      "deepseek_c5_score": 3.0,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9
+    },
+    {
+      "id": "E04.Q02.A15",
+      "qid": "E04.Q02",
+      "human_score": 5.0,
+      "deepseek_c5_score": 2.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9
+    },
+    {
+      "id": "E04.Q02.A16",
+      "qid": "E04.Q02",
+      "human_score": 3.0,
+      "deepseek_c5_score": 0.0,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9
+    },
+    {
+      "id": "E04.Q02.A17",
+      "qid": "E04.Q02",
+      "human_score": 4.0,
+      "deepseek_c5_score": 0.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9
+    },
+    {
+      "id": "E04.Q02.A18",
+      "qid": "E04.Q02",
+      "human_score": 2.0,
+      "deepseek_c5_score": 0.0,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8667
+    },
+    {
+      "id": "E04.Q02.A19",
+      "qid": "E04.Q02",
+      "human_score": 5.0,
+      "deepseek_c5_score": 3.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9
+    },
+    {
+      "id": "E04.Q02.A20",
+      "qid": "E04.Q02",
+      "human_score": 2.5,
+      "deepseek_c5_score": 0.0,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9
+    },
+    {
+      "id": "E04.Q02.A21",
+      "qid": "E04.Q02",
+      "human_score": 4.0,
+      "deepseek_c5_score": 0.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9
+    },
+    {
+      "id": "E04.Q02.A22",
+      "qid": "E04.Q02",
+      "human_score": 3.5,
+      "deepseek_c5_score": 0.0,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9
+    },
+    {
+      "id": "E04.Q02.A23",
+      "qid": "E04.Q02",
+      "human_score": 3.5,
+      "deepseek_c5_score": 0.0,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9
+    },
+    {
+      "id": "E04.Q02.A24",
+      "qid": "E04.Q02",
+      "human_score": 1.5,
+      "deepseek_c5_score": 0.0,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 1,
+      "concept_coverage": 0.9
+    },
+    {
+      "id": "E04.Q02.A25",
+      "qid": "E04.Q02",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9
+    },
+    {
+      "id": "E04.Q02.A26",
+      "qid": "E04.Q02",
+      "human_score": 4.0,
+      "deepseek_c5_score": 0.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9
+    },
+    {
+      "id": "E04.Q02.A27",
+      "qid": "E04.Q02",
+      "human_score": 2.5,
+      "deepseek_c5_score": 0.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9
+    },
+    {
+      "id": "E04.Q02.A28",
+      "qid": "E04.Q02",
+      "human_score": 3.5,
+      "deepseek_c5_score": 0.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9
+    },
+    {
+      "id": "E04.Q02.A29",
+      "qid": "E04.Q02",
+      "human_score": 2.5,
+      "deepseek_c5_score": 0.0,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8667
+    },
+    {
+      "id": "E04.Q03.A00",
+      "qid": "E04.Q03",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A01",
+      "qid": "E04.Q03",
+      "human_score": 4.5,
+      "deepseek_c5_score": 4.0,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A02",
+      "qid": "E04.Q03",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A03",
+      "qid": "E04.Q03",
+      "human_score": 5.0,
+      "deepseek_c5_score": 2.5,
+      "blooms_level": 1,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A04",
+      "qid": "E04.Q03",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A05",
+      "qid": "E04.Q03",
+      "human_score": 4.0,
+      "deepseek_c5_score": 0.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A06",
+      "qid": "E04.Q03",
+      "human_score": 3.5,
+      "deepseek_c5_score": 2.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A07",
+      "qid": "E04.Q03",
+      "human_score": 3.5,
+      "deepseek_c5_score": 0.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A08",
+      "qid": "E04.Q03",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A09",
+      "qid": "E04.Q03",
+      "human_score": 4.0,
+      "deepseek_c5_score": 0.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A10",
+      "qid": "E04.Q03",
+      "human_score": 5.0,
+      "deepseek_c5_score": 2.5,
+      "blooms_level": 1,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A11",
+      "qid": "E04.Q03",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A12",
+      "qid": "E04.Q03",
+      "human_score": 3.0,
+      "deepseek_c5_score": 0.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A13",
+      "qid": "E04.Q03",
+      "human_score": 3.0,
+      "deepseek_c5_score": 0.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A14",
+      "qid": "E04.Q03",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A15",
+      "qid": "E04.Q03",
+      "human_score": 5.0,
+      "deepseek_c5_score": 2.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A16",
+      "qid": "E04.Q03",
+      "human_score": 2.0,
+      "deepseek_c5_score": 0.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A17",
+      "qid": "E04.Q03",
+      "human_score": 5.0,
+      "deepseek_c5_score": 2.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A18",
+      "qid": "E04.Q03",
+      "human_score": 4.0,
+      "deepseek_c5_score": 0.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A19",
+      "qid": "E04.Q03",
+      "human_score": 5.0,
+      "deepseek_c5_score": 2.5,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A20",
+      "qid": "E04.Q03",
+      "human_score": 4.0,
+      "deepseek_c5_score": 0.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A21",
+      "qid": "E04.Q03",
+      "human_score": 5.0,
+      "deepseek_c5_score": 2.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A22",
+      "qid": "E04.Q03",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A23",
+      "qid": "E04.Q03",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A24",
+      "qid": "E04.Q03",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A25",
+      "qid": "E04.Q03",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A26",
+      "qid": "E04.Q03",
+      "human_score": 4.0,
+      "deepseek_c5_score": 0.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A27",
+      "qid": "E04.Q03",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A28",
+      "qid": "E04.Q03",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A29",
+      "qid": "E04.Q03",
+      "human_score": 2.5,
+      "deepseek_c5_score": 0.0,
+      "blooms_level": 1,
+      "solo_level": 1,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q04.A00",
+      "qid": "E04.Q04",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9722
+    },
+    {
+      "id": "E04.Q04.A01",
+      "qid": "E04.Q04",
+      "human_score": 4.0,
+      "deepseek_c5_score": 1.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 2,
+      "concept_coverage": 0.9166
+    },
+    {
+      "id": "E04.Q04.A02",
+      "qid": "E04.Q04",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9722
+    },
+    {
+      "id": "E04.Q04.A03",
+      "qid": "E04.Q04",
+      "human_score": 4.0,
+      "deepseek_c5_score": 4.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9722
+    },
+    {
+      "id": "E04.Q04.A04",
+      "qid": "E04.Q04",
+      "human_score": 4.0,
+      "deepseek_c5_score": 1.5,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9259
+    },
+    {
+      "id": "E04.Q04.A05",
+      "qid": "E04.Q04",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9629
+    },
+    {
+      "id": "E04.Q04.A06",
+      "qid": "E04.Q04",
+      "human_score": 4.5,
+      "deepseek_c5_score": 4.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9629
+    },
+    {
+      "id": "E04.Q04.A07",
+      "qid": "E04.Q04",
+      "human_score": 3.0,
+      "deepseek_c5_score": 1.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 2,
+      "concept_coverage": 0.9257
+    },
+    {
+      "id": "E04.Q04.A08",
+      "qid": "E04.Q04",
+      "human_score": 5.0,
+      "deepseek_c5_score": 3.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9629
+    },
+    {
+      "id": "E04.Q04.A09",
+      "qid": "E04.Q04",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9722
+    },
+    {
+      "id": "E04.Q04.A10",
+      "qid": "E04.Q04",
+      "human_score": 4.5,
+      "deepseek_c5_score": 3.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9629
+    },
+    {
+      "id": "E04.Q04.A11",
+      "qid": "E04.Q04",
+      "human_score": 4.5,
+      "deepseek_c5_score": 3.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9722
+    },
+    {
+      "id": "E04.Q04.A12",
+      "qid": "E04.Q04",
+      "human_score": 3.0,
+      "deepseek_c5_score": 1.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E04.Q04.A13",
+      "qid": "E04.Q04",
+      "human_score": 4.0,
+      "deepseek_c5_score": 1.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9537
+    },
+    {
+      "id": "E04.Q04.A14",
+      "qid": "E04.Q04",
+      "human_score": 3.0,
+      "deepseek_c5_score": 0.0,
+      "blooms_level": 1,
+      "solo_level": 1,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q04.A15",
+      "qid": "E04.Q04",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9722
+    },
+    {
+      "id": "E04.Q04.A16",
+      "qid": "E04.Q04",
+      "human_score": 3.0,
+      "deepseek_c5_score": 1.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 3,
+      "concept_coverage": 0.8804
+    },
+    {
+      "id": "E04.Q04.A17",
+      "qid": "E04.Q04",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9722
+    },
+    {
+      "id": "E04.Q04.A18",
+      "qid": "E04.Q04",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9722
+    },
+    {
+      "id": "E04.Q04.A19",
+      "qid": "E04.Q04",
+      "human_score": 5.0,
+      "deepseek_c5_score": 3.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9722
+    },
+    {
+      "id": "E04.Q04.A20",
+      "qid": "E04.Q04",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9722
+    },
+    {
+      "id": "E04.Q04.A21",
+      "qid": "E04.Q04",
+      "human_score": 4.5,
+      "deepseek_c5_score": 2.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9629
+    },
+    {
+      "id": "E04.Q04.A22",
+      "qid": "E04.Q04",
+      "human_score": 3.5,
+      "deepseek_c5_score": 1.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E04.Q04.A23",
+      "qid": "E04.Q04",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9574
+    },
+    {
+      "id": "E04.Q04.A24",
+      "qid": "E04.Q04",
+      "human_score": 0.0,
+      "deepseek_c5_score": 0.0,
+      "blooms_level": 1,
+      "solo_level": 1,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q04.A25",
+      "qid": "E04.Q04",
+      "human_score": 5.0,
+      "deepseek_c5_score": 3.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9389
+    },
+    {
+      "id": "E04.Q04.A26",
+      "qid": "E04.Q04",
+      "human_score": 3.0,
+      "deepseek_c5_score": 0.5,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 1,
+      "concept_coverage": 0.9111
+    },
+    {
+      "id": "E04.Q04.A27",
+      "qid": "E04.Q04",
+      "human_score": 5.0,
+      "deepseek_c5_score": 2.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9296
+    },
+    {
+      "id": "E04.Q04.A28",
+      "qid": "E04.Q04",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9574
+    },
+    {
+      "id": "E04.Q04.A29",
+      "qid": "E04.Q04",
+      "human_score": 3.0,
+      "deepseek_c5_score": 0.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 2,
+      "concept_coverage": 0.9008
+    },
+    {
+      "id": "E04.Q05.A00",
+      "qid": "E04.Q05",
+      "human_score": 2.5,
+      "deepseek_c5_score": 0.5,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9667
+    },
+    {
+      "id": "E04.Q05.A01",
+      "qid": "E04.Q05",
+      "human_score": 3.5,
+      "deepseek_c5_score": 0.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9667
+    },
+    {
+      "id": "E04.Q05.A02",
+      "qid": "E04.Q05",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9667
+    },
+    {
+      "id": "E04.Q05.A03",
+      "qid": "E04.Q05",
+      "human_score": 3.5,
+      "deepseek_c5_score": 0.5,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9667
+    },
+    {
+      "id": "E04.Q05.A04",
+      "qid": "E04.Q05",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9667
+    },
+    {
+      "id": "E04.Q05.A05",
+      "qid": "E04.Q05",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9667
+    },
+    {
+      "id": "E04.Q05.A06",
+      "qid": "E04.Q05",
+      "human_score": 3.5,
+      "deepseek_c5_score": 0.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9667
+    },
+    {
+      "id": "E04.Q05.A07",
+      "qid": "E04.Q05",
+      "human_score": 2.0,
+      "deepseek_c5_score": 0.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.95
+    },
+    {
+      "id": "E04.Q05.A08",
+      "qid": "E04.Q05",
+      "human_score": 4.0,
+      "deepseek_c5_score": 1.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9667
+    },
+    {
+      "id": "E04.Q05.A09",
+      "qid": "E04.Q05",
+      "human_score": 4.5,
+      "deepseek_c5_score": 4.5,
+      "blooms_level": 3,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9667
+    },
+    {
+      "id": "E04.Q05.A10",
+      "qid": "E04.Q05",
+      "human_score": 4.5,
+      "deepseek_c5_score": 4.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9667
+    },
+    {
+      "id": "E04.Q05.A11",
+      "qid": "E04.Q05",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8
+    },
+    {
+      "id": "E04.Q05.A12",
+      "qid": "E04.Q05",
+      "human_score": 2.5,
+      "deepseek_c5_score": 0.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9667
+    },
+    {
+      "id": "E04.Q05.A13",
+      "qid": "E04.Q05",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9667
+    },
+    {
+      "id": "E04.Q05.A14",
+      "qid": "E04.Q05",
+      "human_score": 2.0,
+      "deepseek_c5_score": 0.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9667
+    },
+    {
+      "id": "E04.Q05.A15",
+      "qid": "E04.Q05",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9667
+    },
+    {
+      "id": "E04.Q05.A16",
+      "qid": "E04.Q05",
+      "human_score": 3.5,
+      "deepseek_c5_score": 0.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9667
+    },
+    {
+      "id": "E04.Q05.A17",
+      "qid": "E04.Q05",
+      "human_score": 3.0,
+      "deepseek_c5_score": null,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9667
+    },
+    {
+      "id": "E04.Q05.A18",
+      "qid": "E04.Q05",
+      "human_score": 2.0,
+      "deepseek_c5_score": 0.0,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9
+    },
+    {
+      "id": "E04.Q05.A19",
+      "qid": "E04.Q05",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9
+    },
+    {
+      "id": "E04.Q05.A20",
+      "qid": "E04.Q05",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9
+    },
+    {
+      "id": "E04.Q05.A21",
+      "qid": "E04.Q05",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9
+    },
+    {
+      "id": "E04.Q05.A22",
+      "qid": "E04.Q05",
+      "human_score": 3.0,
+      "deepseek_c5_score": 4.5,
+      "blooms_level": 3,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9
+    },
+    {
+      "id": "E04.Q05.A23",
+      "qid": "E04.Q05",
+      "human_score": 4.5,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9
+    },
+    {
+      "id": "E04.Q05.A24",
+      "qid": "E04.Q05",
+      "human_score": 0.0,
+      "deepseek_c5_score": 0.0,
+      "blooms_level": 1,
+      "solo_level": 1,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q05.A25",
+      "qid": "E04.Q05",
+      "human_score": 2.0,
+      "deepseek_c5_score": 1.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8667
+    },
+    {
+      "id": "E04.Q05.A26",
+      "qid": "E04.Q05",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9
+    },
+    {
+      "id": "E04.Q05.A27",
+      "qid": "E04.Q05",
+      "human_score": 2.5,
+      "deepseek_c5_score": 0.5,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8667
+    },
+    {
+      "id": "E04.Q05.A28",
+      "qid": "E04.Q05",
+      "human_score": 4.5,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9
+    },
+    {
+      "id": "E04.Q05.A29",
+      "qid": "E04.Q05",
+      "human_score": 3.5,
+      "deepseek_c5_score": 0.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8889
+    },
+    {
+      "id": "E05.Q01.A00",
+      "qid": "E05.Q01",
+      "human_score": 3.0,
+      "deepseek_c5_score": 1.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8606
+    },
+    {
+      "id": "E05.Q01.A01",
+      "qid": "E05.Q01",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9166
+    },
+    {
+      "id": "E05.Q01.A02",
+      "qid": "E05.Q01",
+      "human_score": 3.5,
+      "deepseek_c5_score": 3.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8044
+    },
+    {
+      "id": "E05.Q01.A03",
+      "qid": "E05.Q01",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8542
+    },
+    {
+      "id": "E05.Q01.A04",
+      "qid": "E05.Q01",
+      "human_score": 2.0,
+      "deepseek_c5_score": 1.0,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8667
+    },
+    {
+      "id": "E05.Q01.A05",
+      "qid": "E05.Q01",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8559
+    },
+    {
+      "id": "E05.Q01.A06",
+      "qid": "E05.Q01",
+      "human_score": 4.5,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8822
+    },
+    {
+      "id": "E05.Q01.A07",
+      "qid": "E05.Q01",
+      "human_score": 4.5,
+      "deepseek_c5_score": 2.5,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8167
+    },
+    {
+      "id": "E05.Q01.A08",
+      "qid": "E05.Q01",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8427
+    },
+    {
+      "id": "E05.Q01.A09",
+      "qid": "E05.Q01",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8594
+    },
+    {
+      "id": "E05.Q01.A10",
+      "qid": "E05.Q01",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8941
+    },
+    {
+      "id": "E05.Q01.A11",
+      "qid": "E05.Q01",
+      "human_score": 3.0,
+      "deepseek_c5_score": null,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.7667
+    },
+    {
+      "id": "E05.Q01.A12",
+      "qid": "E05.Q01",
+      "human_score": 3.0,
+      "deepseek_c5_score": 3.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.7833
+    },
+    {
+      "id": "E05.Q01.A13",
+      "qid": "E05.Q01",
+      "human_score": 4.5,
+      "deepseek_c5_score": 3.0,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8659
+    },
+    {
+      "id": "E05.Q01.A14",
+      "qid": "E05.Q01",
+      "human_score": 4.5,
+      "deepseek_c5_score": 4.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9114
+    },
+    {
+      "id": "E05.Q01.A15",
+      "qid": "E05.Q01",
+      "human_score": 4.0,
+      "deepseek_c5_score": 3.0,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8561
+    },
+    {
+      "id": "E05.Q01.A16",
+      "qid": "E05.Q01",
+      "human_score": 3.5,
+      "deepseek_c5_score": 3.0,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.925
+    },
+    {
+      "id": "E05.Q01.A17",
+      "qid": "E05.Q01",
+      "human_score": 3.0,
+      "deepseek_c5_score": 4.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9333
+    },
+    {
+      "id": "E05.Q01.A18",
+      "qid": "E05.Q01",
+      "human_score": 4.0,
+      "deepseek_c5_score": 3.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9513
+    },
+    {
+      "id": "E05.Q01.A19",
+      "qid": "E05.Q01",
+      "human_score": 4.5,
+      "deepseek_c5_score": 4.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9172
+    },
+    {
+      "id": "E05.Q01.A20",
+      "qid": "E05.Q01",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9514
+    },
+    {
+      "id": "E05.Q01.A21",
+      "qid": "E05.Q01",
+      "human_score": 4.0,
+      "deepseek_c5_score": 2.5,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9432
+    },
+    {
+      "id": "E05.Q01.A22",
+      "qid": "E05.Q01",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9348
+    },
+    {
+      "id": "E05.Q01.A23",
+      "qid": "E05.Q01",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8871
+    },
+    {
+      "id": "E05.Q01.A24",
+      "qid": "E05.Q01",
+      "human_score": 4.0,
+      "deepseek_c5_score": 2.5,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9
+    },
+    {
+      "id": "E05.Q01.A25",
+      "qid": "E05.Q01",
+      "human_score": 4.5,
+      "deepseek_c5_score": 4.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9166
+    },
+    {
+      "id": "E05.Q01.A26",
+      "qid": "E05.Q01",
+      "human_score": 5.0,
+      "deepseek_c5_score": 3.0,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9333
+    },
+    {
+      "id": "E05.Q01.A27",
+      "qid": "E05.Q01",
+      "human_score": 4.0,
+      "deepseek_c5_score": 3.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9457
+    },
+    {
+      "id": "E05.Q02.A00",
+      "qid": "E05.Q02",
+      "human_score": 5.0,
+      "deepseek_c5_score": 3.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9458
+    },
+    {
+      "id": "E05.Q02.A01",
+      "qid": "E05.Q02",
+      "human_score": 4.5,
+      "deepseek_c5_score": 3.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9458
+    },
+    {
+      "id": "E05.Q02.A02",
+      "qid": "E05.Q02",
+      "human_score": 5.0,
+      "deepseek_c5_score": 2.5,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9667
+    },
+    {
+      "id": "E05.Q02.A03",
+      "qid": "E05.Q02",
+      "human_score": 5.0,
+      "deepseek_c5_score": 3.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9458
+    },
+    {
+      "id": "E05.Q02.A04",
+      "qid": "E05.Q02",
+      "human_score": 4.5,
+      "deepseek_c5_score": 2.5,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9667
+    },
+    {
+      "id": "E05.Q02.A05",
+      "qid": "E05.Q02",
+      "human_score": 4.5,
+      "deepseek_c5_score": 3.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9667
+    },
+    {
+      "id": "E05.Q02.A06",
+      "qid": "E05.Q02",
+      "human_score": 5.0,
+      "deepseek_c5_score": 3.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9458
+    },
+    {
+      "id": "E05.Q02.A07",
+      "qid": "E05.Q02",
+      "human_score": 5.0,
+      "deepseek_c5_score": 2.5,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9667
+    },
+    {
+      "id": "E05.Q02.A08",
+      "qid": "E05.Q02",
+      "human_score": 5.0,
+      "deepseek_c5_score": 3.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9458
+    },
+    {
+      "id": "E05.Q02.A09",
+      "qid": "E05.Q02",
+      "human_score": 3.5,
+      "deepseek_c5_score": 2.0,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8958
+    },
+    {
+      "id": "E05.Q02.A10",
+      "qid": "E05.Q02",
+      "human_score": 4.5,
+      "deepseek_c5_score": 4.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8978
+    },
+    {
+      "id": "E05.Q02.A11",
+      "qid": "E05.Q02",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9375
+    },
+    {
+      "id": "E05.Q02.A12",
+      "qid": "E05.Q02",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9375
+    },
+    {
+      "id": "E05.Q02.A13",
+      "qid": "E05.Q02",
+      "human_score": 4.5,
+      "deepseek_c5_score": 2.0,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8
+    },
+    {
+      "id": "E05.Q02.A14",
+      "qid": "E05.Q02",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8978
+    },
+    {
+      "id": "E05.Q02.A15",
+      "qid": "E05.Q02",
+      "human_score": 4.5,
+      "deepseek_c5_score": 2.5,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9333
+    },
+    {
+      "id": "E05.Q02.A16",
+      "qid": "E05.Q02",
+      "human_score": 5.0,
+      "deepseek_c5_score": 3.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8458
+    },
+    {
+      "id": "E05.Q02.A17",
+      "qid": "E05.Q02",
+      "human_score": 4.5,
+      "deepseek_c5_score": 4.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9875
+    },
+    {
+      "id": "E05.Q02.A18",
+      "qid": "E05.Q02",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E05.Q02.A19",
+      "qid": "E05.Q02",
+      "human_score": 4.5,
+      "deepseek_c5_score": 4.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9872
+    },
+    {
+      "id": "E05.Q02.A20",
+      "qid": "E05.Q02",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9375
+    },
+    {
+      "id": "E05.Q02.A21",
+      "qid": "E05.Q02",
+      "human_score": 4.5,
+      "deepseek_c5_score": 2.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8375
+    },
+    {
+      "id": "E05.Q02.A22",
+      "qid": "E05.Q02",
+      "human_score": 4.5,
+      "deepseek_c5_score": 3.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.925
+    },
+    {
+      "id": "E05.Q02.A23",
+      "qid": "E05.Q02",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E05.Q02.A24",
+      "qid": "E05.Q02",
+      "human_score": 3.5,
+      "deepseek_c5_score": 2.0,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8
+    },
+    {
+      "id": "E05.Q02.A25",
+      "qid": "E05.Q02",
+      "human_score": 4.5,
+      "deepseek_c5_score": 4.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9
+    },
+    {
+      "id": "E05.Q02.A26",
+      "qid": "E05.Q02",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9375
+    },
+    {
+      "id": "E05.Q02.A27",
+      "qid": "E05.Q02",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9375
+    },
+    {
+      "id": "E05.Q03.A00",
+      "qid": "E05.Q03",
+      "human_score": 3.5,
+      "deepseek_c5_score": 2.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 2,
+      "concept_coverage": 0.8616
+    },
+    {
+      "id": "E05.Q03.A01",
+      "qid": "E05.Q03",
+      "human_score": 4.5,
+      "deepseek_c5_score": 4.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9798
+    },
+    {
+      "id": "E05.Q03.A02",
+      "qid": "E05.Q03",
+      "human_score": 3.0,
+      "deepseek_c5_score": 3.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9394
+    },
+    {
+      "id": "E05.Q03.A03",
+      "qid": "E05.Q03",
+      "human_score": 4.0,
+      "deepseek_c5_score": 3.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9343
+    },
+    {
+      "id": "E05.Q03.A04",
+      "qid": "E05.Q03",
+      "human_score": 2.0,
+      "deepseek_c5_score": 1.5,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.7333
+    },
+    {
+      "id": "E05.Q03.A05",
+      "qid": "E05.Q03",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9737
+    },
+    {
+      "id": "E05.Q03.A06",
+      "qid": "E05.Q03",
+      "human_score": 3.5,
+      "deepseek_c5_score": 1.0,
+      "blooms_level": 1,
+      "solo_level": 1,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E05.Q03.A07",
+      "qid": "E05.Q03",
+      "human_score": 4.0,
+      "deepseek_c5_score": 2.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9667
+    },
+    {
+      "id": "E05.Q03.A08",
+      "qid": "E05.Q03",
+      "human_score": 5.0,
+      "deepseek_c5_score": 5.0,
+      "blooms_level": 3,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9569
+    },
+    {
+      "id": "E05.Q03.A09",
+      "qid": "E05.Q03",
+      "human_score": 3.0,
+      "deepseek_c5_score": 1.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.975
+    },
+    {
+      "id": "E05.Q03.A10",
+      "qid": "E05.Q03",
+      "human_score": 4.0,
+      "deepseek_c5_score": 2.5,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.975
+    },
+    {
+      "id": "E05.Q03.A11",
+      "qid": "E05.Q03",
+      "human_score": 3.5,
+      "deepseek_c5_score": 1.0,
+      "blooms_level": 1,
+      "solo_level": 1,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E05.Q03.A12",
+      "qid": "E05.Q03",
+      "human_score": 4.5,
+      "deepseek_c5_score": 4.0,
+      "blooms_level": 3,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.975
+    },
+    {
+      "id": "E05.Q03.A13",
+      "qid": "E05.Q03",
+      "human_score": 4.0,
+      "deepseek_c5_score": 0.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9641
+    },
+    {
+      "id": "E05.Q03.A14",
+      "qid": "E05.Q03",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.5,
+      "blooms_level": 3,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.975
+    },
+    {
+      "id": "E05.Q03.A15",
+      "qid": "E05.Q03",
+      "human_score": 2.5,
+      "deepseek_c5_score": 0.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.975
+    },
+    {
+      "id": "E05.Q03.A16",
+      "qid": "E05.Q03",
+      "human_score": 3.0,
+      "deepseek_c5_score": 2.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.975
+    },
+    {
+      "id": "E05.Q03.A17",
+      "qid": "E05.Q03",
+      "human_score": 4.5,
+      "deepseek_c5_score": 2.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9569
+    },
+    {
+      "id": "E05.Q03.A18",
+      "qid": "E05.Q03",
+      "human_score": 3.0,
+      "deepseek_c5_score": 0.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.975
+    },
+    {
+      "id": "E05.Q03.A19",
+      "qid": "E05.Q03",
+      "human_score": 3.5,
+      "deepseek_c5_score": 1.0,
+      "blooms_level": 1,
+      "solo_level": 1,
+      "total_misconceptions": 0,
+      "concept_coverage": 1.0
+    },
+    {
+      "id": "E05.Q03.A20",
+      "qid": "E05.Q03",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.975
+    },
+    {
+      "id": "E05.Q03.A21",
+      "qid": "E05.Q03",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.975
+    },
+    {
+      "id": "E05.Q03.A22",
+      "qid": "E05.Q03",
+      "human_score": 3.5,
+      "deepseek_c5_score": 1.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9569
+    },
+    {
+      "id": "E05.Q03.A23",
+      "qid": "E05.Q03",
+      "human_score": 4.5,
+      "deepseek_c5_score": 4.0,
+      "blooms_level": 3,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.975
+    },
+    {
+      "id": "E05.Q03.A24",
+      "qid": "E05.Q03",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.975
+    },
+    {
+      "id": "E05.Q03.A25",
+      "qid": "E05.Q03",
+      "human_score": 2.5,
+      "deepseek_c5_score": 0.5,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.975
+    },
+    {
+      "id": "E05.Q03.A26",
+      "qid": "E05.Q03",
+      "human_score": 4.0,
+      "deepseek_c5_score": 2.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.975
+    },
+    {
+      "id": "E05.Q03.A27",
+      "qid": "E05.Q03",
+      "human_score": 2.5,
+      "deepseek_c5_score": 0.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.975
+    },
+    {
+      "id": "E05.Q04.A00",
+      "qid": "E05.Q04",
+      "human_score": 5.0,
+      "deepseek_c5_score": 3.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 2,
+      "concept_coverage": 0.9548
+    },
+    {
+      "id": "E05.Q04.A01",
+      "qid": "E05.Q04",
+      "human_score": 5.0,
+      "deepseek_c5_score": 4.5,
+      "blooms_level": 3,
+      "solo_level": 4,
+      "total_misconceptions": 1,
+      "concept_coverage": 0.9667
+    },
+    {
+      "id": "E05.Q04.A02",
+      "qid": "E05.Q04",
+      "human_score": 5.0,
+      "deepseek_c5_score": 2.5,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 2,
+      "concept_coverage": 0.95
+    },
+    {
+      "id": "E05.Q04.A03",
+      "qid": "E05.Q04",
+      "human_score": 2.0,
+      "deepseek_c5_score": 0.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 2,
+      "concept_coverage": 0.9469
+    }
+  ]
+}

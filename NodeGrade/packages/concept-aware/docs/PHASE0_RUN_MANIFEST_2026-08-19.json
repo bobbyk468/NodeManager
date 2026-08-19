@@ -1,0 +1,30 @@
+{
+  "phase": "Phase 0 integrity work",
+  "generated": "2026-08-19",
+  "pinned_commit": "e4cffa7",
+  "note": "This commit is the parent of the commit that adds this manifest and the pinned_commit values themselves (a commit cannot pin its own not-yet-computed hash). e4cffa7 is the substantive, reviewed Phase 0 commit -- the manifest-adding commit on top of it changes only metadata (pinned_commit strings, this file), no pipeline behavior.",
+  "configs": {
+    "deployed_sag_gemini": {
+      "fingerprint": "7407bb960815e5a18b33e081c1124db1dd20f6615535f723b04d194d09643843",
+      "model": "gemini-2.5-flash",
+      "kg_version": "1.0-expert",
+      "verifier_prompt_version_sag": "sag_v2_skepticism_2026-08-18"
+    },
+    "c1_baseline_no_extensions": {
+      "fingerprint": "aca522bfaad82030d800a1cdb57b4c977ee9a7a3ef181d0871382db386863658",
+      "model": "gemini-2.5-flash",
+      "kg_version": "1.0-expert",
+      "verifier_prompt_version_sag": "sag_v2_skepticism_2026-08-18"
+    }
+  },
+  "regression_suites_at_pin_time": {
+    "verify_all_paper_claims.py": "PASS: all 379 claims verified against cached data",
+    "test_pipeline_integrity.py": "PASS: all integrity regression checks passed",
+    "test_relationship_direction.py": "PASS: all relationship-direction regression checks passed",
+    "verify_investigation_integrity.py": "PASS: all investigation-integrity checks passed"
+  },
+  "known_open_items_not_blocking_this_pin": [
+    "Raw LLM batch-job caches (data/*_batches/) excluded from the Phase 0 commit pending separate privacy/size/provenance review.",
+    "Both configs pinned_commit points to e4cffa7 (the parent of the commit that added this manifest), not this commit itself -- see note above."
+  ]
+}

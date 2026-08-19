@@ -1,0 +1,38 @@
+{
+  "mohler->digiklausur": {
+    "mae_none": 1.1261609907120742,
+    "mae_transferred": 1.2978215112499953,
+    "mae_indomain_ceiling": 1.1650117653333176,
+    "pct_vs_none": -15.242982304810592
+  },
+  "mohler->kaggle": {
+    "mae_none": 1.141304347826087,
+    "mae_transferred": 1.5737442518086173,
+    "mae_indomain_ceiling": 1.1166075547730259,
+    "pct_vs_none": -37.88997253942171
+  },
+  "digiklausur->mohler": {
+    "mae_none": 1.1770998415213947,
+    "mae_transferred": 0.9120318779059863,
+    "mae_indomain_ceiling": 0.4263404439079123,
+    "pct_vs_none": 22.518732418892316
+  },
+  "digiklausur->kaggle": {
+    "mae_none": 1.141304347826087,
+    "mae_transferred": 1.2236418378920029,
+    "mae_indomain_ceiling": 1.1166075547730259,
+    "pct_vs_none": -7.2143324629183505
+  },
+  "kaggle->mohler": {
+    "mae_none": 1.1770998415213947,
+    "mae_transferred": 1.573710527606519,
+    "mae_indomain_ceiling": 0.4263404439079123,
+    "pct_vs_none": -33.69388662668643
+  },
+  "kaggle->digiklausur": {
+    "mae_none": 1.1261609907120742,
+    "mae_transferred": 1.384381794969446,
+    "mae_indomain_ceiling": 1.1650117653333176,
+    "pct_vs_none": -22.92929753268208
+  }
+}

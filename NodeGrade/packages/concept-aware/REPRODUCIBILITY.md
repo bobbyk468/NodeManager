@@ -1387,13 +1387,608 @@ description; a precise "+0.45/−0.35 cancellation" narrative is a plausible
 but unproven hypothesis, not a demonstrated fact, and should not be cited
 as more than that in any paper draft.
 
-**Final status, all three findings:**
+### Finding 4 — the numeric composite formula does not improve on LLM judgment alone, confirmed on two frontier backbones; the real gain is per-(domain,backbone) calibration (2026-08-18, ~$10 in real OpenRouter API spend + zero-cost offline analysis; includes a same-day self-correction after an external review caught a confound in the first calibration-transfer test)
+
+> **⚠️ 2026-08-19 CORRECTION (see Finding 6 for the full account)**: this
+> finding's title and body originally also claimed "most remaining error
+> is irreducible human-rater noise," based on an r≈0.844 reliability
+> "ceiling" computed below. **That specific claim is retracted** — the
+> underlying calculation was circular (see the marked block inside this
+> finding, and Finding 6). Everything else in this finding (the numeric
+> composite formula adding no value, confirmed on two backbones; the
+> calibration-transfer results, later further corrected by Finding 6)
+> stands.
+
+**Context**: a follow-on investigation, months after Findings 1-3 closed,
+prompted by re-testing whether ConceptGrade's full pipeline — not just the
+raw KG-formula score in isolation — beats plain zero-shot LLM grading when
+the pipeline's own backbone is swapped from Gemini to a frontier model
+(OpenAI GPT-5.6-terra, DeepSeek-chat-v3.1, via OpenRouter). This tests a
+different question than Findings 1-3: not "is the KG-formula metric
+internally valid," but "does the deployed, verifier_weight=1.0 architecture
+actually add value over the backbone's own zero-shot judgment, and does
+that hold across models."
+
+**Option A — backbone swap** (`run_frontier_pipeline_phaseA/B_batched.py`,
+n=300 real Mohler samples on GPT-5.6-terra, n=298-300 on DeepSeek-chat-v3.1,
+full pipeline at the deployed verifier_weight=1.0): on **both** backbones,
+the full pipeline underperforms that same backbone's own zero-shot
+judgment — GPT: MAE 0.9217→0.9775 (+6.1% worse, response-level p=0.04,
+question-clustered p=0.15 not significant); DeepSeek: MAE 1.1074→1.3339
+(+20.5% worse, p=5×10⁻⁶). Neither backbone's pre-registered success
+criterion (beat zero-shot at both response-level AND question-clustered,
+p<0.05) was met. `compute_pipeline_backbone_significance.py`.
+
+**Option C — cross-validated weight tuning** (`compute_pipeline_weight_tuning.py`,
+same samples): 5-fold cross-validation sweeping the verifier_weight blend
+(0.0-1.0) selects w=1.0 in every single fold, on both backbones — i.e.
+tuning re-derives "don't blend the KG composite in at any weight" as
+already optimal. No held-out fold improves on the untuned w=1.0 result.
+
+**Option B — learned reweighting, done carefully** (`compute_pipeline_learned_reweighting.py`,
+`compute_pipeline_diagnostic_stepwise.py`): a naive first pass (ridge
+regression on all raw sub-scores + verifier score, leave-one-question-out
+CV) appeared to show a 47% MAE improvement — this was a confound, not a
+finding. Recalibrating the RAW verified_score ALONE (intercept+scale
+affine, zero extra features) already explains nearly all of it (MAE
+0.9775→0.3854), and recalibrating RAW zero-shot the same way shows a
+comparable gain (0.9217→0.4313) — the "improvement" was a generic
+affine-recalibration artifact available to any raw 0-5 LLM score, not
+evidence the architecture adds value. Caught by testing the same
+treatment on the control condition before accepting the result, per this
+project's standing practice (cf. the ensemble-blend retraction, Findings
+2/3's five rejected repairs). The FAIR, controlled comparison (both sides
+recalibrated identically): on GPT, the verifier alone beats zero-shot
+alone by 10.6% (p=5×10⁻⁹). On DeepSeek, this does **NOT** replicate —
+recalibrated zero-shot (0.4353) is marginally *better* than recalibrated
+verifier alone (0.4610); only a small ensemble of the two together shows
+a borderline edge (+4.2%, p=0.048). Stepwise diagnostic (individual
+signals and pairwise combinations, both backbones): adding any of the raw
+KG sub-scores (`concept_coverage`, `relationship_accuracy`,
+`integration_quality`, the fixed-weight composite) to zero-shot or to the
+verifier score never helps and usually hurts; only the verifier's own
+score reliably helps. All 10 features combined is worse than the verifier
+alone on both backbones (overfitting on noise).
+
+**External review** (`ask_gpt_architecture_review.py`, one live GPT-5.6-terra
+call, full problem statement + proposed solution): independently confirmed
+the composite-formula diagnosis but flagged that "symbolic fusion is
+unsalvageable" over-generalizes (it's this feature set/fusion style, not
+symbolic scoring as a class); recommended NOT claiming the GPT-only
+evidence-augmentation result as model-independent, since DeepSeek didn't
+replicate it; and recommended testing calibration transfer empirically
+rather than assuming a single global or purely per-deployment scheme.
+
+**Calibration transfer, tested rather than assumed** (zero new API calls,
+reusing cached scores): `compute_hierarchical_calibration.py` — a
+calibration fit entirely on DeepSeek's Mohler data, applied unmodified to
+GPT's Mohler data, beat both local-only and local+prior shrinkage
+calibration at every tested local-sample size (n=10,20,30,50; 200
+random-split repeats each) — calibration transfers well **across
+backbones on the same dataset**. `compute_crossdataset_calibration_transfer.py`
+— using Gemini's cached C5_fix scores across all three evaluated datasets
+(Mohler n=1262, DigiKlausur n=646, Kaggle ASAG n=368, one backbone held
+fixed): calibration transfer **hurt in 5 of 6 dataset-pair directions**,
+up to 38% worse MAE — calibration does **not** transfer across
+datasets/domains on the same backbone.
+
+**What's live in the source, first pass**:
+- `conceptgrade/pipeline.py`'s `ConceptGradePipeline.__init__` defaults
+  changed from `use_llm_verifier=False, verifier_weight=0.25` to
+  `use_llm_verifier=True, verifier_weight=1.0` — the class defaults now
+  match the only configuration ever actually reported, instead of silently
+  reproducing the pre-Finding-4 architecture for any caller that didn't
+  know to override them (`run_phase3_demo.py` was one such caller).
+- The `holistic_score` LLM call (`_run_llm_holistic_score`, one full extra
+  API call per graded answer) is now skipped whenever a verifier is
+  configured at `verifier_weight=1.0`, since its output is passed into a
+  blend formula that provably discards it at that weight — pure wasted
+  cost/latency, not a scoring difference.
+- `conceptgrade/calibration.py` (new, later revised — see below): affine
+  fit/apply/save/load.
+
+#### Correction (same day, 2026-08-18): the cross-backbone calibration-transfer claim above did not survive a properly controlled re-test
+
+An external GPT review of this exact writeup (before publication anywhere)
+caught a real confound: the cross-backbone transfer test compared a
+"prior" calibration fit on **all 298** of DeepSeek's samples against a
+"local" GPT calibration fit on only **10-50** samples — an inherent,
+uncontrolled sample-size advantage for the prior that had nothing to do
+with whether backbone transfer itself works. The review also flagged that
+the pooled GPT+DeepSeek production calibration had never been validated
+against backbone-specific alternatives on held-out data, despite GPT and
+DeepSeek visibly showing different calibration behavior in the underlying
+results.
+
+**Properly controlled re-test** (`compute_controlled_calibration_transfer.py`):
+matched calibration-set sizes across every method, both transfer
+directions, a shrinkage-strength sweep (τ∈{5,10,20,50,100}) instead of one
+hard-coded value, 95% CIs over 200 repeats. Result: transfer is
+**asymmetric, not a general backbone-independent property**.
+DeepSeek→GPT transfer holds up — a DeepSeek-fit prior (or a
+prior-weighted shrinkage blend) beats local-only calibration at every
+tested sample size, matching the original (confounded) test's direction.
+**GPT→DeepSeek transfer does not** — applying a GPT-fit calibration to
+DeepSeek's scores was *worse* than local-only calibration at every tested
+sample size; the best-performing method there was local-only or a
+shrinkage blend that puts little weight on the GPT prior.
+
+**Direct pooled-vs-backbone-specific test** (500 resamples, 70/30
+train/held-out split, 95% CIs): a calibration pooled across GPT+DeepSeek
+data, evaluated on backbone-specific held-out sets, showed the same
+asymmetry as a real, non-overlapping-CI effect — pooling *slightly helped*
+GPT (MAE 0.3786→0.3673) but *measurably hurt* DeepSeek (MAE 0.4469→0.4635).
+There is no single pooled artifact that is simply better for both
+backbones; using one is a real trade-off, not a free universal win.
+
+**What changed in the source as a result**:
+- The single pooled `data/calibration_mohler_data_structures.json` was
+  **retracted and deleted**. Replaced with two backbone-specific
+  artifacts: `data/calibration_mohler_data_structures_gpt.json` (a=0.4690,
+  b=2.6400, n=300) and `data/calibration_mohler_data_structures_deepseek.json`
+  (a=0.4370, b=2.9249, n=298).
+- `conceptgrade/calibration.py`'s `Calibration` dataclass now has a
+  **required** `fit_backbone` field alongside `domain`, and a
+  `check_compatible(domain, backbone, strict=True)` method that raises
+  `IncompatibleCalibrationError` by default (or returns `False` if
+  `strict=False`) on either mismatch — never silently applies a
+  calibration to a domain or backbone it wasn't validated for. This is
+  the code-level fix for exactly the mistake the pooled-calibration test
+  caught.
+- `ConceptGradePipeline` gained a `domain: str = ""` constructor arg and a
+  `calibration_status` field on `StudentAssessment`
+  (`"uncalibrated"` / `"calibrated"` / `"incompatible"`). A configured
+  calibration is checked against the pipeline's own `domain` and `model`
+  before being applied; on mismatch it fails closed to the raw score
+  (`calibration_status="incompatible"`) rather than producing a
+  plausible-looking but unvalidated number.
+
+**Corrected practical rule**: fit and store one calibration per
+**(dataset/domain, backbone)** pair. Do not pool across backbones by
+default, and do not assume a calibration transfers to a different
+backbone without testing that specific direction — "transfers well" was a
+property of one tested direction (DeepSeek→GPT), not of calibration
+transfer in general.
+
+#### Addition (same day) — RETRACTED 2026-08-19: an invalid inter-rater reliability "ceiling," computed from Mohler's two individual grader scores
+
+> **⚠️ RETRACTED IN FULL 2026-08-19 (see Finding 6).** Everything in this
+> subsection, as originally written, is preserved below UNCHANGED for the
+> record, but should NOT be cited or relied on. The scale-recovery step
+> (`score_avg / mean(grader_1, grader_2)`) derives a per-row correction
+> from the same two values whose disagreement is then measured — this is
+> circular, not independent scale recovery, and the "sanity check" that
+> it reproduces `score_avg` exactly is tautological (true by construction).
+> The r≈0.844 figure is not a validated ceiling. A correlation estimate
+> also does not establish an irreducible MAE floor regardless of how it's
+> computed. See Finding 6 for the corrected position: some inter-rater
+> disagreement genuinely exists in this dataset (the raw MAE=0.78, r=0.554
+> numbers below are real), but this investigation does not have a
+> trustworthy estimate of how much remaining model-vs-human error that
+> explains.
+
+The frozen Mohler dataset retains both original annotators' scores
+(`score_grader_1`, `score_grader_2`, from which `score_avg` — used
+throughout this project as "human_score" — is computed), not just the
+average. Individual questions in the source Mohler release use different
+raw point scales (grader scores as high as 10 appear for some questions,
+1-5 for others); each row's own scale factor is recoverable from
+`score_avg / mean(grader_1, grader_2)` and was used to put both graders'
+scores on the common 0-5 scale before computing agreement (sanity-checked:
+the mean of the two normalized scores reproduces `score_avg` to within
+floating-point error on all 1,262 samples).
+
+~~**Result**: the two human graders agree with each other at only **r=0.554**
+(MAE=0.78 on the 0-5 scale). Via the Spearman-Brown prediction formula,
+this implies the 2-rater average's reliability as an estimate of the "true"
+underlying score is ≈0.713, meaning **the theoretical maximum correlation
+any model could ever achieve against this averaged target is r≈0.844** —
+not 1.0, purely from irreducible inter-rater noise. The raw, uncalibrated
+GPT verifier score already achieves r=0.824 against the averaged human
+score — **97.6% of that theoretical ceiling**.~~ **(retracted -- the
+r=0.554/MAE=0.78 raw disagreement numbers are real; the r≈0.844 "ceiling"
+and "97.6% of ceiling" derivations from them are not valid, see box above)**
+
+~~**Correct interpretation, stated carefully to avoid a serious overclaim**:
+this does NOT mean the model exceeds human-level grading. It's compared
+against the *average* of two raters, which is inherently less noisy than
+any single rater alone — an advantage a lone new human grader wouldn't
+have either. What it does mean, honestly: **most of the remaining MAE in
+every comparison in this Finding is irreducible human-label noise, not
+model error.** Percent differences between configurations (Option A's
+"6-20% worse," the calibrated verifier's "10.6% better") should be read
+against a ceiling of r≈0.84, not r=1.0 — there is very little real
+headroom left to chase with further architecture changes.~~ **(retracted
+in full -- see box above; no part of this paragraph's "irreducible noise"
+conclusion should be cited)**
+
+**Honest, narrower claim going forward** (supersedes any framing of this
+as "ConceptGrade's KG-comparison architecture beats zero-shot LLM
+grading," which the evidence above does not support, AND supersedes the
+first-pass "calibration is portable across backbones" claim, which the
+controlled re-test above showed is at best direction-specific, not
+general): the numeric KG-comparison composite formula adds no value and
+should not be used for scoring — confirmed on two backbones, on top of
+Findings 2/3's five repair attempts on the same underlying dataset
+(related sensitivity checks, not independent replications -- see
+Finding 6). Post-hoc affine recalibration is a real improvement over raw
+verifier scores on the samples tested, but must be fit per (dataset/
+domain, backbone) pair — it is not a free, universal transform, and the
+codebase now enforces that via `check_compatible()` rather than merely
+documenting it. ~~Most of the remaining disagreement between any
+configuration tested and human scores is consistent with irreducible
+inter-rater noise (ceiling r≈0.84 on Mohler), not a defect a further
+architecture change would fix.~~ **(retracted 2026-08-19 -- see the boxed
+note earlier in this finding and Finding 6; no reliability-ceiling claim
+in this project should be treated as established)** Whether
+evidence-in-context specifically (as opposed to a generic
+stronger-judging-prompt effect) causes the small further edge seen on GPT
+is an open question, deliberately left untested — resolving it needs a new,
+controlled ablation call (verifier prompt template held constant, KG
+evidence toggled on/off) that was judged not worth the additional spend
+given the effect is backbone-specific and not the claim being carried
+forward.
+
+### Finding 5 — KG evidence-in-context HURTS DeepSeek's verifier in a controlled within-sample ablation (not just "doesn't help"); a one-sentence skepticism instruction offsets it on DeepSeek with no measured cost to GPT (2026-08-18, ~$1 in real OpenRouter API spend)
+
+> **2026-08-19 precision note (see Finding 6)**: "causal" below refers
+> specifically to the 3-condition ablation's own internal design (prompt
+> template held fixed, only evidence toggled -- a legitimate way to
+> isolate evidence content from prompt wording *within that sample*).
+> It is not a claim that this generalizes beyond the convenience-subset
+> samples tested (first ~5-11 questions in dataset order, not a random
+> or representative sample -- see Finding 6's convenience-subset
+> disclosure). The word "validated" in this finding's original status
+> line has been corrected to avoid overstating how representative that
+> validation is.
+
+Finding 4 left open whether KG-evidence-in-context (as opposed to a
+generic richer-prompt effect) causally helps the verifier, deliberately
+untested at the time because resolving it needed fresh API spend for an
+effect that hadn't replicated on DeepSeek. This finding closes that gap.
+
+**The ablation** (`run_verifier_evidence_ablation.py`, n=150 per backbone,
+identical samples across conditions): three conditions holding the
+verifier's own system prompt and scoring instructions fixed — zero-shot
+(different prompt entirely, no evidence, existing baseline), bare-verifier
+(verifier's own prompt/instructions, KG evidence block removed), and
+full-verifier (verifier's own prompt, KG evidence included, the existing
+deployed condition). This isolates "evidence content" from "prompt
+template," which comparing zero-shot to the full verifier alone cannot do.
+
+**Result — the effect is causal, and on DeepSeek it's actively harmful,
+not merely absent**: on DeepSeek, full-verifier (with evidence) MAE=1.426
+vs. bare-verifier (identical prompt, no evidence) MAE=1.148 — a **24.3%
+degradation from adding evidence, p=0.0005**. The prompt-template effect
+alone (bare-verifier vs. zero-shot, both with no evidence) was negligible
+on both backbones (GPT: -4.4%, p=0.42; DeepSeek: +0.6%, p=0.76) — so it
+really is the evidence content causing this, not just a longer or more
+structured prompt. On GPT, the same comparison (full vs. bare) showed a
+positive but only marginally significant effect at this smaller n=150,
+raw-score comparison (+4.8%, p=0.10) — consistent in direction with
+Finding 4's larger, recalibrated, n=300 result (+10.6%, p<0.001), just
+less powered here.
+
+**The fix, tested rather than assumed**
+(`run_verifier_skeptical_evidence_test.py`): a single instruction added to
+the verifier's user prompt, immediately before the KG evidence block,
+telling the verifier the evidence is machine-extracted and fallible, to
+read the student answer independently first, and to use the evidence only
+as a cross-check — never to let it override its own direct reading.
+Nothing else about the prompt or evidence content changed.
+
+- **DeepSeek**: MAE 1.418→1.140 (**+19.7%, p=1.8×10⁻⁷**) — recovers
+  essentially all of the harm; skeptical-evidence is no longer
+  significantly different from having no evidence at all (p=0.76 vs.
+  bare-verifier), i.e. the fix eliminates the damage, though it does not
+  yet demonstrate the evidence provides a net benefit on this backbone.
+- **GPT**: MAE 0.833→0.837, r 0.850→0.853 — statistically indistinguishable
+  from the original full-evidence condition (p=0.87). No downside.
+
+**What's live in the source as a result**: `conceptgrade/verifier.py`'s
+`VERIFIER_USER` template (SAG mode) now includes this skepticism
+instruction ahead of the KNOWLEDGE GRAPH EVIDENCE block by default —
+validated on two backbones, helps one substantially, costs nothing on the
+other. `VERIFIER_USER_LAG` (long-answer mode) was NOT changed; this fix
+was only tested in SAG mode, and the LAG pipeline has its own separate,
+already-documented reliability problems (see the LAG retraction elsewhere
+in this file) that this finding doesn't address.
+
+**Honest scope of this finding**: this validates *that* trusting KG
+evidence uncritically was the mechanism behind DeepSeek's degradation, and
+that a cheap prompt fix removes it. It does not establish that KG evidence
+provides a net *benefit* on DeepSeek (the fix is "do no harm," not yet
+"do good" there) or that this specific wording is optimal — only that it
+is safe and substantially better than the unguarded version actually
+deployed until this finding.
+
+**Immediate follow-up, same day: the prompt change made the existing
+calibration artifacts stale, and that failure mode is now checked for.**
+The skepticism instruction shifted DeepSeek's raw verifier MAE by ~20% —
+which means `data/calibration_mohler_data_structures_{gpt,deepseek}.json`,
+fit under the pre-Finding-5 prompt, no longer described the deployed
+verifier's actual behavior. Both were refit against full-sample
+(GPT n=300, DeepSeek n=298) scores generated under the new prompt.
+`conceptgrade/verifier.py` gained a `VERIFIER_PROMPT_VERSION_SAG` constant
+(`"sag_v2_skepticism_2026-08-18"`), and `Calibration.check_compatible()`
+now checks it alongside domain and backbone (skipped only when either side
+leaves it unset, never treated as an automatic match) — `pipeline.py`
+passes the live constant on every calibration check. This closes the exact
+gap that let a stale calibration go undetected: a future verifier-prompt
+change will now fail the compatibility check by default instead of
+silently applying an outdated affine transform.
+
+### Finding 6 — external architectural review (2026-08-19): several Finding 4/5 claims were overclaimed or mislabeled; production is generic skepticism, not targeted; a rubric-anchored redesign is proposed as a separate research track
+
+An independent review of this whole investigation (full text:
+`docs/CONCEPTGRADE_RECOVERY_PLAN_2026-08-19.md`; the readable narrative
+version of everything below: `docs/INVESTIGATION_REPORT_2026-08-18.md`,
+corrected 2026-08-19) confirmed the core Finding 4 diagnosis (the numeric
+composite formula adds no value) but identified several real errors in
+how the follow-on evidence-presentation experiments were reported:
+
+- **Targeted skepticism was never merged into `conceptgrade/verifier.py`
+  and should not have been described as production.** It was tested as
+  a standalone script (`run_gemini_targeted_skepticism_full.py`, which
+  explicitly documents it does not modify `verifier.py`) and scored best
+  of 5 exploratory evidence-presentation variants on the full 46-question
+  Mohler set -- but it did not beat zero-shot: no statistically
+  significant difference was detected (p=0.094; this is not an
+  equivalence claim), so it failed its own pre-declared adoption bar.
+  **What's actually live in production is the GENERIC skepticism
+  instruction** (Finding 5's original fix).
+  > ⚠️ **2026-08-19, third review round: p=0.094 was flagged as
+  > unreproducible, then successfully resolved.** A second-review-round
+  > recomputation of this comparison directly on raw (uncalibrated)
+  > `cllm_score`/targeted scores gave p=0.0155 -- a materially different
+  > number, on the wrong basis, whose qualitative direction even pointed
+  > the opposite way. `compute_targeted_skepticism_loqo.py` (new)
+  > resolved this by applying this project's own established
+  > LOQO-recalibration protocol (leave-one-question-out, intercept+scale
+  > via Ridge, nested alpha selection -- the same protocol already used
+  > in `compute_pipeline_diagnostic_stepwise.py` and
+  > `compute_clustered_significance.py`, just not previously saved as a
+  > script for *this* comparison) to the same cached data
+  > (`data/mohler_real_eval_results.json`,
+  > `data/mohler_real_verifier_targeted.json`). That reproduces the
+  > documented MAE pair **exactly** (0.4142 -> 0.4220) and the p-value to
+  > within 0.001 (0.0945 vs. 0.094) -- so p=0.094 is **not** retracted;
+  > it is now a reproducible, scripted result.
+  >
+  > **A real gap this reproduction surfaced, and now discloses rather
+  > than hides**: p=0.094 is the *response-level* Wilcoxon statistic on
+  > data that is clustered by question (1,262 responses / 46 questions).
+  > The question-*clustered* version of the identical comparison (mean
+  > absolute error per question, then Wilcoxon across the 46 question
+  > means) gives **p=0.386** -- far weaker, and further from significance
+  > in either direction. Elsewhere in this project (e.g. Paper 1's
+  > primary statistic, `compute_clustered_significance.py`), the
+  > question-clustered test is treated as primary specifically because
+  > responses to the same question aren't independent; the response-level
+  > test overstates precision when read as if it were. This finding's
+  > original "did not beat zero-shot, p=0.094" conclusion happens to be
+  > directionally unaffected either way (targeted skepticism doesn't beat
+  > zero-shot under either test), but the specific p-value cited was
+  > computed on the less conservative of the two tests without disclosing
+  > that. Both numbers, and this gap, are now checked by
+  > `verify_investigation_integrity.py` so this can't silently regress.
+- The GPT/DeepSeek cross-backbone comparison table was mislabeled as
+  "targeted skepticism" when both backbones were tested with the generic
+  variant -- targeted skepticism was tested on Gemini only.
+- The "97.6% of the human-rater reliability ceiling, most remaining error
+  is irreducible noise" claim (part of Finding 4's write-up) is
+  **retracted**: the per-question scale factor used to normalize the two
+  graders' raw scores was derived from `score_avg / mean(grader_1,
+  grader_2)` -- i.e. from the same two values whose disagreement was then
+  measured. This is circular, not independently validated scale
+  recovery, and a correlation ceiling doesn't establish an irreducible
+  MAE floor regardless. Some inter-rater disagreement genuinely exists in
+  this dataset (raw MAE=0.78, r=0.554 between the two graders), but this
+  investigation does not have a trustworthy estimate of how much
+  remaining model-vs-human error it explains.
+- All 5 evidence-presentation variants (generic/targeted skepticism,
+  evidence removal, corrected coverage, and the pre-Finding-5 baseline)
+  were developed and ranked on the same repeatedly-reused 46-question
+  Mohler set -- selecting the best-ranked variant and reporting its own
+  performance on that data is model-selection bias, not confirmation.
+  None of the 5 should be read as validated without a held-out
+  confirmation on unseen question families.
+- The GPT/DeepSeek 300/298-sample subsets and the 150-sample evidence
+  ablation are convenience slices (first N responses in a
+  question-grouped file -- the first 11 or 5 questions only), not random
+  question samples; the calibration-transfer "controlled" re-test is
+  still not response-ID- or question-disjoint between source and target.
+
+**What's live in the source as a result of this finding**:
+`conceptgrade/pipeline.py`'s `assess_class()` gained a `reference_answer`
+parameter it was previously silently dropping (a real, independent bug
+this review also caught -- every class-graded assessment was scored
+without a reference answer regardless of caller intent). Corrections to
+both this file and `docs/INVESTIGATION_REPORT_2026-08-18.md` are dated
+2026-08-19 and marked inline rather than silently rewritten, per this
+project's standing practice of disclosing corrections rather than erasing
+the record of what was originally claimed.
+
+**Decision on scope, per the reviewer's own recommended phasing, adopted
+as-is**: finish "Phase 0" integrity work (cache-key/provenance
+versioning, reference-answer propagation regression tests, immutable
+named experiment configurations) on the current codebase before treating
+the reviewer's proposed "Rubric-Anchored Claim Trace" redesign as a
+separate, larger research track requiring its own scoped pilot (5-10
+unseen question families, expert-authored rubric propositions,
+criterion-level human labels) -- not an immediate implementation
+commitment. Explicitly NOT done reflexively as part of this finding:
+targeted skepticism was NOT retroactively merged (it didn't earn it);
+`use_self_consistency`'s default was NOT flipped to `True` merely to
+match prior documentation (that would silently change cost/behavior --
+the fix is correcting the documentation and adding named configurations
+instead); chain_coverage was NOT added to `ConfidenceWeightedComparator`
+(the metric itself remains unvalidated -- confirmed empirically that it
+already degrades gracefully to "not computed" rather than showing a
+misleading number, so no prompt change was needed there, only a
+documentation-precision fix).
+
+**Additional Phase 0 integrity fixes made under this finding, each
+verified against `verify_all_paper_claims.py` (still 379/379 after every
+one -- none of them retroactively change any already-reported number,
+since those were all computed from cached data, not live re-execution)**:
+
+- `conceptgrade/pipeline.py`'s `assess_class()` gained a `reference_answer`
+  parameter it was previously silently dropping (every class-graded
+  assessment was scored without a reference answer, regardless of what
+  the caller passed). Regression test: `test_pipeline_integrity.py`.
+- Cache keys (`conceptgrade/pipeline.py`'s `llm_key`/`ver_key`) previously
+  omitted `reference_answer`, the extraction confidence threshold, KG
+  `(domain, version)`, and `VERIFIER_PROMPT_VERSION_SAG` -- meaning a
+  changed reference answer, extraction threshold, KG rebuild, or verifier
+  prompt version could all silently reuse a stale cached result. All four
+  are now folded into both cache keys.
+  > ⚠️ **2026-08-19, second review round: this fix was still incomplete.**
+  > A second, more detailed review of the code (not just the report)
+  > found the `ver_key` design above still omitted `use_sure_verifier`,
+  > the comparator implementation choice, and -- critically -- the actual
+  > *content* of the upstream evidence (`comparison_result`, Bloom's,
+  > SOLO, misconceptions). That last gap meant a code-level fix to the
+  > comparator (e.g. the relationship-direction fix immediately below)
+  > could change what the verifier *should* see without changing any
+  > cache-key flag, so a stale verifier result could still be served.
+  > Per the reviewer's explicit recommendation ("hash a canonical
+  > upstream evidence payload plus a versioned configuration
+  > fingerprint"), `ver_key` was redesigned around two new primitives in
+  > `conceptgrade/cache.py`: `CACHE_SCHEMA_VERSION` (versions the cache
+  > *key construction scheme* itself, independent of prompt/KG/config
+  > versions) and `canonical_hash(obj)` (a deterministic SHA-256 of
+  > `json.dumps(obj, sort_keys=True)`). `ver_key` is now built from a
+  > `config_fingerprint` string (schema version, self-consistency,
+  > confidence-weighting, `use_sure_verifier`, verifier weight, prompt
+  > version, KG domain+version, comparator class name) combined with
+  > `canonical_hash({"comparison": ..., "blooms": ..., "solo": ...,
+  > "misconceptions": ...})` -- so *any* change to the evidence content
+  > invalidates the cache, not just a change to a flag someone remembered
+  > to enumerate. Regression test: `test_pipeline_integrity.py`'s
+  > `test_cache_key_sensitivity()`, which now explicitly asserts the key
+  > changes when `comparison_result` values change with no config flag
+  > changing (the exact relationship-direction-fix scenario), and when
+  > misconceptions or Bloom's content changes.
+  >
+  > ⚠️ **2026-08-19, third review round: `llm_key` (extraction +
+  > cognitive-depth + misconception/false-belief calls) had the same gap
+  > `ver_key` did, just not yet fixed.** It versioned the self-consistency
+  > flag and extraction threshold, but not the actual prompt text sent to
+  > any of those three LLM calls, nor `sc_n_runs`/`sc_min_votes` (which
+  > change what "self-consistency" means without changing the on/off
+  > flag), nor the complete declared configuration when the pipeline was
+  > built from a named `PipelineConfig`. Fixed the same way as `ver_key`:
+  > `llm_key` now folds in `canonical_hash()` of the four prompt-pair
+  > constants (`CONCEPT_EXTRACTION_{SYSTEM,USER}`,
+  > `COGNITIVE_DEPTH_{SYSTEM,USER}`,
+  > `MISCONCEPTION_ANALYSIS_{SYSTEM,USER}`, `FALSE_BELIEF_{SYSTEM,USER}`)
+  > -- any edit to any of them changes the hash automatically, no version
+  > constant to remember to bump -- plus `sc_n_runs`/`sc_min_votes`
+  > (now stored as pipeline attributes; previously only local constructor
+  > parameters, not even accessible after `__init__`). `conceptgrade/
+  > configs.py` gained a `config_fingerprint(config)` function
+  > (`canonical_hash` of every declared `PipelineConfig` field);
+  > `build_pipeline()` stamps the result onto the built pipeline as
+  > `pipeline.config_fingerprint`/`pipeline.config_name`, and both
+  > `llm_key` and `ver_key` fold it in (falling back to `"none"` for
+  > pipelines built directly, not via a named config, so the attribute is
+  > always defined rather than raising `AttributeError`). Regression
+  > test: `test_pipeline_integrity.py`'s `test_cache_key_sensitivity()`,
+  > which asserts `llm_key` changes for each of these independently, and
+  > that two different named configs produce two different fingerprints.
+  Regression test: `test_pipeline_integrity.py`.
+- `graph_comparison/comparator.py`'s `_verify_relationship()` and
+  `_find_correct_relation()` previously accepted BOTH edge directions for
+  EVERY relationship type, even though only `contrasts_with` is genuinely
+  symmetric -- a student claiming the reverse of a directed fact (e.g.
+  "hash_table prerequisite_for array" when the KG says the opposite) was
+  scored as correct. Now direction-aware via a
+  `_SYMMETRIC_RELATION_TYPES` allowlist (currently just `contrasts_with`);
+  a new `_find_any_relation_between()` helper distinguishes "known
+  relation, stated backwards" (now correctly flagged as an incorrect/
+  misconception case) from "genuinely no known relation between this
+  pair" (still treated as a plausible new connection, unchanged).
+  Regression test: `test_relationship_direction.py` (the first version of
+  this fix passed its direct unit tests but failed the end-to-end scoring
+  test, which caught a real cascading bug in the surrounding
+  `_compute_relationship_accuracy()` logic before it shipped).
+  **Per explicit instruction, this fix is NOT folded into any
+  already-reported result or treated as validated production behavior --
+  it changes what `relationship_accuracy` scores mean, and any score
+  computed with it is a new configuration requiring its own
+  re-evaluation, not a drop-in correction to existing numbers.**
+- `conceptgrade/configs.py` (new): immutable, named `PipelineConfig`
+  presets (`DEPLOYED_SAG_GEMINI`, `C1_BASELINE_NO_EXTENSIONS`) recording
+  every input shown to silently change results in this project's history
+  -- model/provider, prompt versions, KG identity, self-consistency,
+  comparator, calibration, extraction threshold.
+  `build_pipeline(config, api_key)` asserts the config's recorded
+  verifier-prompt version matches the live code before constructing a
+  pipeline, refusing to run a stale config rather than silently using it.
+  > ⚠️ **2026-08-19, second review round: the first version of this file
+  > declared fields it did not enforce.** `DEPLOYED_SAG_GEMINI` declared
+  > `kg_version="1.0"`, but `build_pipeline()` never actually loaded or
+  > checked a KG against that value -- it fell through to
+  > `ConceptGradePipeline`'s default, which (confirmed by reading
+  > `knowledge_graph/ds_knowledge_graph.py`) *always* builds
+  > `version="1.1-expert"`, never `"1.0"`. `provider` was recorded but
+  > never checked against `model`. And the git commit/dirty-state fields
+  > used `default_factory`, so they were recomputed at every import --
+  > meaning "the same named config" silently reported a different commit
+  > after every subsequent commit, defeating the point of pinning.
+  > Rewritten so declared fields are enforced, not decorative:
+  > `kg_version` now defaults to `"1.0-expert"` and pairs with a new
+  > `kg_snapshot_path` field (default `data/ds_knowledge_graph.json`,
+  > the frozen KG snapshot, not the live v1.1-expert builder);
+  > `build_pipeline(config, api_key, strict_kg=True)` loads that snapshot
+  > via `DomainKnowledgeGraph.load()` and raises `ConfigProvenanceError`
+  > if its `.version` doesn't match `config.kg_version`, if
+  > `kg_snapshot_path` is `None` under `strict_kg`, or if
+  > `detect_provider(config.model) != config.provider`. The dynamic
+  > `code_commit`/`code_dirty` fields were removed in favor of a fixed
+  > `pinned_commit: str = "unpinned"` field (does not change on its own)
+  > plus a separate `check_provenance(config)` function that compares the
+  > pinned commit against the live git state and returns warnings (never
+  > raises -- provenance drift is reported, not fatal, since most configs
+  > in this project were never actually pinned to a commit). Regression
+  > test: `test_pipeline_integrity.py`'s `test_named_config_enforcement()`,
+  > which builds every registered config and confirms three failure modes
+  > (wrong KG version, missing snapshot path, wrong provider) are rejected
+  > rather than silently built.
+- `verify_investigation_integrity.py` (new): single-command check that
+  (1) every registered named config still builds without prompt/KG/
+  provider drift, independently re-verified against the built pipeline's
+  actual `domain_graph.version` and detected provider (not just trusting
+  `build_pipeline()`'s internal raise), (2) both calibration artifacts'
+  recorded prompt version matches live code EXACTLY (a missing/empty
+  version now fails, it no longer silently passes), (3) Finding 5/6's
+  most load-bearing numbers re-derive from cached data via exact
+  statistical recomputation against tight tolerances (paired Wilcoxon
+  p-values, not loose sanity bands), (4) every artifact these findings
+  cite actually exists on disk. Complements (does not replace)
+  `verify_all_paper_claims.py`, which checks the PAPER's numbers
+  specifically.
+- `compute_targeted_skepticism_loqo.py` (new): scripted, reproducible
+  recomputation of Finding 6's "MAE 0.4142->0.4220, p=0.094"
+  targeted-skepticism-vs-zero-shot comparison, using this project's own
+  established LOQO-recalibration protocol. Written specifically because
+  that comparison had never been saved as a reusable script and a
+  raw-scale recomputation attempt gave a materially different (and
+  wrong-direction) result -- see the retraction/resolution note under
+  Finding 6 above. `verify_investigation_integrity.py` now runs this
+  script and fails if the reproduction ever stops holding.
+
+**Final status, all six findings:**
 
 | Finding | Status | What's live in the source |
 |---|---|---|
 | Finding 1 (tokenization bug) | **Fixed, merged, regression-validated** | `concept_extraction/extractor.py`'s `_build_question_ontology()` |
 | Finding 2 (relationship_accuracy=0.0-by-design side effect) | **Diagnosed, documented, NOT fixed** | Unchanged; no live code modification |
 | Finding 3 (concept_coverage self-referential vacuity) | **Diagnosed, documented, NOT fixed** (3 automated ground-truth candidates + exclusion/renormalization + neutral-prior all evidence-rejected) | `coverage_validated` diagnostic flag only (`graph_comparison/comparator.py`, `confidence_weighted_comparator.py`); scoring formula unchanged |
+| Finding 4 (composite formula adds no value on 2 more backbones; calibration helps but must be fit per domain+backbone, not pooled) | **Diagnosed, documented, architecture updated, self-corrected same-day** -- see Finding 6 for a further retraction of this finding's reliability-ceiling claim | `conceptgrade/pipeline.py` defaults + skipped redundant LLM call + `domain`/`calibration_status`; `conceptgrade/calibration.py` with `check_compatible()`; `data/calibration_mohler_data_structures_{gpt,deepseek}.json` |
+| Finding 5 (KG evidence hurts DeepSeek's verifier in a controlled within-sample ablation; a GENERIC skepticism instruction offsets it with no measured cost to GPT) | **Diagnosed, fixed on convenience-subset samples -- NOT confirmed on a representative/held-out sample** | `conceptgrade/verifier.py`'s `VERIFIER_USER` (SAG mode only) |
+| Finding 6 (external review: targeted skepticism was never production, reliability-ceiling claim retracted, dataset-reuse/convenience-subset/calibration-leakage caveats disclosed; recovery plan adopted as roadmap) | **Corrections applied to reports; Phase 0 integrity fixes in progress; Phase 1+ scoped as a separate future research track, not committed** | `conceptgrade/pipeline.py`'s `assess_class()` reference-answer fix; `docs/CONCEPTGRADE_RECOVERY_PLAN_2026-08-19.md` (roadmap); this file and `docs/INVESTIGATION_REPORT_2026-08-18.md` corrected in place |
 
 One clarification on why the buggy formula is being left in place, phrased
 carefully per ChatGPT's caution rather than as an endorsement of its
@@ -1407,19 +2002,40 @@ underperforms the baseline for two identified, evidenced reasons, and
 straightforward repairs to either or both do not improve it under any
 tested intervention.
 
-**Net read**: three findings, in decreasing order of confidence and
-increasing order of scope. Finding 1 (implementation bug) is fixed, merged,
-and regression-validated — recovers part, not most, of the KG-grounded
-score's overall gap vs.\ C\_LLM. Finding 2 (scoring-policy side effect) is
-correctly diagnosed but its fix is unsafe to merge until Finding 3 is
-addressed. Finding 3 (metric vacuity) is the most foundational of the
-three — it undermines the validity of `concept_coverage` on 35% of
-in-domain samples, though only ~1.6% of the full dataset shows a visibly
-bad outcome from it today — but requires a real design decision, not a
-quick patch. None of the three closes the full MAE gap on its own,
-consistent with the existing paper conclusion that the Verifier — not raw
-KG-grounding — remains
-the primary source of the architecture's measured gain. **Not yet
+**Net read**: four findings. Finding 1 (implementation bug) is fixed,
+merged, and regression-validated — recovers part, not most, of the
+KG-grounded score's overall gap vs.\ C\_LLM. Finding 2 (scoring-policy side
+effect) is correctly diagnosed but its fix is unsafe to merge until
+Finding 3 is addressed. Finding 3 (metric vacuity) is the most foundational
+of the original three — it undermines the validity of `concept_coverage`
+on 35% of in-domain samples, though only ~1.6% of the full dataset shows a
+visibly bad outcome from it today — but requires a real design decision,
+not a quick patch. Finding 4, discovered four weeks later on two entirely
+different backbones, arrived at the same conclusion Findings 2/3 already
+reached via a completely different method (backbone swap + cross-
+validated tuning + learned reweighting, rather than formula-repair
+attempts). ~~an eighth, ninth, and tenth independent confirmation~~
+**(corrected 2026-08-19, see Finding 6: three more tests using a
+different method than Findings 2/3, but reusing the same reused Mohler
+dataset that Findings 5/6's own evidence-presentation variants were later
+selected on -- these are dependent sensitivity checks sharing a data
+source, not independent replications in the sense that term usually
+implies. Genuine independent replication requires untouched question
+families, exams, datasets, or graders -- see Finding 6 and the Phase 1
+proposal.)** that the numeric composite doesn't help. ~~this time with
+the added, model-independent finding that calibration ... is what
+actually closes most of the score-agreement gap~~ **(the "closes most of
+the score-agreement gap" language relied on the retracted reliability-
+ceiling claim -- see Finding 6; calibration remains a real, validated
+per-configuration improvement, just not quantified against a trustworthy
+"how much of the gap is closeable" baseline).**
+None of the four findings closes the full MAE gap via the composite formula
+on its own; the honest, current-best account of where this architecture's
+value comes from is: the LLM Verifier's holistic judgment, informed by KG
+evidence as prompt context (not as a blended number), properly calibrated
+— not raw KG-grounding, and not any specific backbone model. **Finding 4's
+architecture changes are live in the source (`conceptgrade/pipeline.py`,
+`conceptgrade/calibration.py`); none of the four findings' framing is yet
 integrated into either paper.**
 
 ---
@@ -2387,6 +3003,22 @@ These are NOT reproducible in this repo without external action:
   `data/mohler_lrm_traces.json`.
 - Verifier fine-tuning procedure: described in Paper 2 §A.2 but not run
   end-to-end in this session.
+
+## Mohler is frozen for prompt/architecture DEVELOPMENT (2026-08-19, Finding 6)
+
+The real Mohler dataset has now been used repeatedly to develop, test,
+and rank prompt and architecture variants (Findings 4-6): the numeric
+formula's five repair attempts, the backbone-swap/CV-tuning/learned-
+reweighting round, and all five evidence-presentation variants in
+Finding 5/6. Any further exploratory work on this same dataset should be
+labeled exploratory, not confirmatory, in whatever it produces --
+selecting a best-performing variant and reporting its own score on the
+same data it was selected against is model-selection bias, not
+validation, regardless of how principled the variant's motivation was.
+A genuine confirmation of anything found via this dataset requires
+unseen question families, a different dataset, or both -- see
+`docs/CONCEPTGRADE_RECOVERY_PLAN_2026-08-19.md`'s Phase 3 (frozen
+external validation) for the intended path to that.
 
 ---
 

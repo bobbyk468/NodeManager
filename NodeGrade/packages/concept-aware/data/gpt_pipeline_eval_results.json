@@ -1,0 +1,3008 @@
+{
+  "dataset": "mohler_real_kg_aligned",
+  "model": "openai/gpt-5.6-terra",
+  "n": 300,
+  "n_complete": 300,
+  "results": [
+    {
+      "id": "E03.Q06.A00",
+      "qid": "E03.Q06",
+      "human_score": 5.0,
+      "gpt_c5_score": 4.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8501
+    },
+    {
+      "id": "E03.Q06.A01",
+      "qid": "E03.Q06",
+      "human_score": 2.5,
+      "gpt_c5_score": 1.0,
+      "blooms_level": 1,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.85
+    },
+    {
+      "id": "E03.Q06.A02",
+      "qid": "E03.Q06",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9733
+    },
+    {
+      "id": "E03.Q06.A03",
+      "qid": "E03.Q06",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9216
+    },
+    {
+      "id": "E03.Q06.A04",
+      "qid": "E03.Q06",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9733
+    },
+    {
+      "id": "E03.Q06.A05",
+      "qid": "E03.Q06",
+      "human_score": 4.0,
+      "gpt_c5_score": 2.5,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8533
+    },
+    {
+      "id": "E03.Q06.A06",
+      "qid": "E03.Q06",
+      "human_score": 5.0,
+      "gpt_c5_score": 4.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.97
+    },
+    {
+      "id": "E03.Q06.A07",
+      "qid": "E03.Q06",
+      "human_score": 4.5,
+      "gpt_c5_score": 4.5,
+      "blooms_level": 1,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8567
+    },
+    {
+      "id": "E03.Q06.A08",
+      "qid": "E03.Q06",
+      "human_score": 5.0,
+      "gpt_c5_score": 3.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.96
+    },
+    {
+      "id": "E03.Q06.A09",
+      "qid": "E03.Q06",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9567
+    },
+    {
+      "id": "E03.Q06.A10",
+      "qid": "E03.Q06",
+      "human_score": 4.5,
+      "gpt_c5_score": 2.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9367
+    },
+    {
+      "id": "E03.Q06.A11",
+      "qid": "E03.Q06",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9733
+    },
+    {
+      "id": "E03.Q06.A12",
+      "qid": "E03.Q06",
+      "human_score": 4.0,
+      "gpt_c5_score": 2.5,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8467
+    },
+    {
+      "id": "E03.Q06.A13",
+      "qid": "E03.Q06",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9733
+    },
+    {
+      "id": "E03.Q06.A14",
+      "qid": "E03.Q06",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9767
+    },
+    {
+      "id": "E03.Q06.A15",
+      "qid": "E03.Q06",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9767
+    },
+    {
+      "id": "E03.Q06.A16",
+      "qid": "E03.Q06",
+      "human_score": 5.0,
+      "gpt_c5_score": 4.5,
+      "blooms_level": 1,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.93
+    },
+    {
+      "id": "E03.Q06.A17",
+      "qid": "E03.Q06",
+      "human_score": 3.5,
+      "gpt_c5_score": 1.5,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E03.Q06.A18",
+      "qid": "E03.Q06",
+      "human_score": 4.5,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9767
+    },
+    {
+      "id": "E03.Q06.A19",
+      "qid": "E03.Q06",
+      "human_score": 3.5,
+      "gpt_c5_score": 2.5,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9
+    },
+    {
+      "id": "E03.Q06.A20",
+      "qid": "E03.Q06",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9733
+    },
+    {
+      "id": "E03.Q06.A21",
+      "qid": "E03.Q06",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9733
+    },
+    {
+      "id": "E03.Q06.A22",
+      "qid": "E03.Q06",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9733
+    },
+    {
+      "id": "E03.Q06.A23",
+      "qid": "E03.Q06",
+      "human_score": 4.5,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9567
+    },
+    {
+      "id": "E03.Q06.A24",
+      "qid": "E03.Q06",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9733
+    },
+    {
+      "id": "E03.Q06.A25",
+      "qid": "E03.Q06",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.98
+    },
+    {
+      "id": "E03.Q06.A26",
+      "qid": "E03.Q06",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.98
+    },
+    {
+      "id": "E03.Q06.A27",
+      "qid": "E03.Q06",
+      "human_score": 5.0,
+      "gpt_c5_score": 4.5,
+      "blooms_level": 1,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9633
+    },
+    {
+      "id": "E03.Q06.A28",
+      "qid": "E03.Q06",
+      "human_score": 5.0,
+      "gpt_c5_score": 3.0,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9467
+    },
+    {
+      "id": "E03.Q06.A29",
+      "qid": "E03.Q06",
+      "human_score": 5.0,
+      "gpt_c5_score": 4.5,
+      "blooms_level": 1,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9767
+    },
+    {
+      "id": "E03.Q06.A30",
+      "qid": "E03.Q06",
+      "human_score": 3.0,
+      "gpt_c5_score": 1.0,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.99
+    },
+    {
+      "id": "E03.Q07.A00",
+      "qid": "E03.Q07",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 4,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9851
+    },
+    {
+      "id": "E03.Q07.A01",
+      "qid": "E03.Q07",
+      "human_score": 2.0,
+      "gpt_c5_score": 1.0,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 2,
+      "concept_coverage": 0.9748
+    },
+    {
+      "id": "E03.Q07.A02",
+      "qid": "E03.Q07",
+      "human_score": 5.0,
+      "gpt_c5_score": 3.5,
+      "blooms_level": 4,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.99
+    },
+    {
+      "id": "E03.Q07.A03",
+      "qid": "E03.Q07",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.99
+    },
+    {
+      "id": "E03.Q07.A04",
+      "qid": "E03.Q07",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 4,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.99
+    },
+    {
+      "id": "E03.Q07.A05",
+      "qid": "E03.Q07",
+      "human_score": 5.0,
+      "gpt_c5_score": 3.0,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 2,
+      "concept_coverage": 0.9891
+    },
+    {
+      "id": "E03.Q07.A06",
+      "qid": "E03.Q07",
+      "human_score": 4.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 4,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9736
+    },
+    {
+      "id": "E03.Q07.A07",
+      "qid": "E03.Q07",
+      "human_score": 3.0,
+      "gpt_c5_score": 1.5,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 1,
+      "concept_coverage": 0.9867
+    },
+    {
+      "id": "E03.Q07.A08",
+      "qid": "E03.Q07",
+      "human_score": 4.5,
+      "gpt_c5_score": 3.5,
+      "blooms_level": 4,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.98
+    },
+    {
+      "id": "E03.Q07.A09",
+      "qid": "E03.Q07",
+      "human_score": 3.5,
+      "gpt_c5_score": 3.5,
+      "blooms_level": 4,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9767
+    },
+    {
+      "id": "E03.Q07.A10",
+      "qid": "E03.Q07",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 4,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.99
+    },
+    {
+      "id": "E03.Q07.A11",
+      "qid": "E03.Q07",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 4,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.99
+    },
+    {
+      "id": "E03.Q07.A12",
+      "qid": "E03.Q07",
+      "human_score": 0.0,
+      "gpt_c5_score": 0.0,
+      "blooms_level": 1,
+      "solo_level": 1,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E03.Q07.A13",
+      "qid": "E03.Q07",
+      "human_score": 3.0,
+      "gpt_c5_score": 1.5,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 1,
+      "concept_coverage": 0.9867
+    },
+    {
+      "id": "E03.Q07.A14",
+      "qid": "E03.Q07",
+      "human_score": 3.5,
+      "gpt_c5_score": 3.5,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 1,
+      "concept_coverage": 0.9867
+    },
+    {
+      "id": "E03.Q07.A15",
+      "qid": "E03.Q07",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9233
+    },
+    {
+      "id": "E03.Q07.A16",
+      "qid": "E03.Q07",
+      "human_score": 5.0,
+      "gpt_c5_score": 3.5,
+      "blooms_level": 4,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9769
+    },
+    {
+      "id": "E03.Q07.A17",
+      "qid": "E03.Q07",
+      "human_score": 2.0,
+      "gpt_c5_score": 2.5,
+      "blooms_level": 4,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9867
+    },
+    {
+      "id": "E03.Q07.A18",
+      "qid": "E03.Q07",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 4,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9867
+    },
+    {
+      "id": "E03.Q07.A19",
+      "qid": "E03.Q07",
+      "human_score": 5.0,
+      "gpt_c5_score": 3.5,
+      "blooms_level": 4,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9867
+    },
+    {
+      "id": "E03.Q07.A20",
+      "qid": "E03.Q07",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 4,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9867
+    },
+    {
+      "id": "E03.Q07.A21",
+      "qid": "E03.Q07",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 4,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9867
+    },
+    {
+      "id": "E03.Q07.A22",
+      "qid": "E03.Q07",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 4,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9867
+    },
+    {
+      "id": "E03.Q07.A23",
+      "qid": "E03.Q07",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.98
+    },
+    {
+      "id": "E03.Q07.A24",
+      "qid": "E03.Q07",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9867
+    },
+    {
+      "id": "E03.Q07.A25",
+      "qid": "E03.Q07",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 4,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9867
+    },
+    {
+      "id": "E03.Q07.A26",
+      "qid": "E03.Q07",
+      "human_score": 3.5,
+      "gpt_c5_score": 3.5,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.984
+    },
+    {
+      "id": "E03.Q07.A27",
+      "qid": "E03.Q07",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 4,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9767
+    },
+    {
+      "id": "E03.Q07.A28",
+      "qid": "E03.Q07",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 4,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.94
+    },
+    {
+      "id": "E03.Q07.A29",
+      "qid": "E03.Q07",
+      "human_score": 3.0,
+      "gpt_c5_score": 2.0,
+      "blooms_level": 4,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.977
+    },
+    {
+      "id": "E03.Q07.A30",
+      "qid": "E03.Q07",
+      "human_score": 3.5,
+      "gpt_c5_score": 3.0,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9867
+    },
+    {
+      "id": "E04.Q01.A00",
+      "qid": "E04.Q01",
+      "human_score": 4.0,
+      "gpt_c5_score": 2.5,
+      "blooms_level": 1,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.99
+    },
+    {
+      "id": "E04.Q01.A01",
+      "qid": "E04.Q01",
+      "human_score": 4.0,
+      "gpt_c5_score": 4.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9623
+    },
+    {
+      "id": "E04.Q01.A02",
+      "qid": "E04.Q01",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.99
+    },
+    {
+      "id": "E04.Q01.A03",
+      "qid": "E04.Q01",
+      "human_score": 3.0,
+      "gpt_c5_score": 0.5,
+      "blooms_level": 1,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.926
+    },
+    {
+      "id": "E04.Q01.A04",
+      "qid": "E04.Q01",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.99
+    },
+    {
+      "id": "E04.Q01.A05",
+      "qid": "E04.Q01",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.99
+    },
+    {
+      "id": "E04.Q01.A06",
+      "qid": "E04.Q01",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.99
+    },
+    {
+      "id": "E04.Q01.A07",
+      "qid": "E04.Q01",
+      "human_score": 2.5,
+      "gpt_c5_score": 1.0,
+      "blooms_level": 1,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8254
+    },
+    {
+      "id": "E04.Q01.A08",
+      "qid": "E04.Q01",
+      "human_score": 4.0,
+      "gpt_c5_score": 2.5,
+      "blooms_level": 1,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.99
+    },
+    {
+      "id": "E04.Q01.A09",
+      "qid": "E04.Q01",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.99
+    },
+    {
+      "id": "E04.Q01.A10",
+      "qid": "E04.Q01",
+      "human_score": 3.5,
+      "gpt_c5_score": 2.5,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.97
+    },
+    {
+      "id": "E04.Q01.A11",
+      "qid": "E04.Q01",
+      "human_score": 4.0,
+      "gpt_c5_score": 0.5,
+      "blooms_level": 1,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8
+    },
+    {
+      "id": "E04.Q01.A12",
+      "qid": "E04.Q01",
+      "human_score": 4.5,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.99
+    },
+    {
+      "id": "E04.Q01.A13",
+      "qid": "E04.Q01",
+      "human_score": 2.5,
+      "gpt_c5_score": 1.0,
+      "blooms_level": 1,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.86
+    },
+    {
+      "id": "E04.Q01.A14",
+      "qid": "E04.Q01",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9433
+    },
+    {
+      "id": "E04.Q01.A15",
+      "qid": "E04.Q01",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 3,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9833
+    },
+    {
+      "id": "E04.Q01.A16",
+      "qid": "E04.Q01",
+      "human_score": 4.5,
+      "gpt_c5_score": 2.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.91
+    },
+    {
+      "id": "E04.Q01.A17",
+      "qid": "E04.Q01",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9467
+    },
+    {
+      "id": "E04.Q01.A18",
+      "qid": "E04.Q01",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 3,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9833
+    },
+    {
+      "id": "E04.Q01.A19",
+      "qid": "E04.Q01",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9567
+    },
+    {
+      "id": "E04.Q01.A20",
+      "qid": "E04.Q01",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9533
+    },
+    {
+      "id": "E04.Q01.A21",
+      "qid": "E04.Q01",
+      "human_score": 4.0,
+      "gpt_c5_score": 2.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9233
+    },
+    {
+      "id": "E04.Q01.A22",
+      "qid": "E04.Q01",
+      "human_score": 3.0,
+      "gpt_c5_score": 1.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8233
+    },
+    {
+      "id": "E04.Q01.A23",
+      "qid": "E04.Q01",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 3,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9833
+    },
+    {
+      "id": "E04.Q01.A24",
+      "qid": "E04.Q01",
+      "human_score": 4.5,
+      "gpt_c5_score": 3.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.96
+    },
+    {
+      "id": "E04.Q01.A25",
+      "qid": "E04.Q01",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9667
+    },
+    {
+      "id": "E04.Q01.A26",
+      "qid": "E04.Q01",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 3,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9833
+    },
+    {
+      "id": "E04.Q01.A27",
+      "qid": "E04.Q01",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9433
+    },
+    {
+      "id": "E04.Q01.A28",
+      "qid": "E04.Q01",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.98
+    },
+    {
+      "id": "E04.Q01.A29",
+      "qid": "E04.Q01",
+      "human_score": 4.0,
+      "gpt_c5_score": 0.5,
+      "blooms_level": 1,
+      "solo_level": 1,
+      "total_misconceptions": 2,
+      "concept_coverage": 0.9159
+    },
+    {
+      "id": "E04.Q02.A00",
+      "qid": "E04.Q02",
+      "human_score": 2.5,
+      "gpt_c5_score": 0.5,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9533
+    },
+    {
+      "id": "E04.Q02.A01",
+      "qid": "E04.Q02",
+      "human_score": 3.0,
+      "gpt_c5_score": 0.5,
+      "blooms_level": 4,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.93
+    },
+    {
+      "id": "E04.Q02.A02",
+      "qid": "E04.Q02",
+      "human_score": 5.0,
+      "gpt_c5_score": 4.5,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.97
+    },
+    {
+      "id": "E04.Q02.A03",
+      "qid": "E04.Q02",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9433
+    },
+    {
+      "id": "E04.Q02.A04",
+      "qid": "E04.Q02",
+      "human_score": 2.5,
+      "gpt_c5_score": 1.0,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9133
+    },
+    {
+      "id": "E04.Q02.A05",
+      "qid": "E04.Q02",
+      "human_score": 2.0,
+      "gpt_c5_score": 0.5,
+      "blooms_level": 4,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9633
+    },
+    {
+      "id": "E04.Q02.A06",
+      "qid": "E04.Q02",
+      "human_score": 3.5,
+      "gpt_c5_score": 1.0,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9467
+    },
+    {
+      "id": "E04.Q02.A07",
+      "qid": "E04.Q02",
+      "human_score": 4.0,
+      "gpt_c5_score": 1.0,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8291
+    },
+    {
+      "id": "E04.Q02.A08",
+      "qid": "E04.Q02",
+      "human_score": 3.5,
+      "gpt_c5_score": 1.0,
+      "blooms_level": 4,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9367
+    },
+    {
+      "id": "E04.Q02.A09",
+      "qid": "E04.Q02",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.94
+    },
+    {
+      "id": "E04.Q02.A10",
+      "qid": "E04.Q02",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 4,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9267
+    },
+    {
+      "id": "E04.Q02.A11",
+      "qid": "E04.Q02",
+      "human_score": 3.0,
+      "gpt_c5_score": 1.0,
+      "blooms_level": 4,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9233
+    },
+    {
+      "id": "E04.Q02.A12",
+      "qid": "E04.Q02",
+      "human_score": 4.0,
+      "gpt_c5_score": 1.0,
+      "blooms_level": 4,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9633
+    },
+    {
+      "id": "E04.Q02.A13",
+      "qid": "E04.Q02",
+      "human_score": 3.5,
+      "gpt_c5_score": 1.0,
+      "blooms_level": 4,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8967
+    },
+    {
+      "id": "E04.Q02.A14",
+      "qid": "E04.Q02",
+      "human_score": 4.0,
+      "gpt_c5_score": 2.0,
+      "blooms_level": 1,
+      "solo_level": 1,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8067
+    },
+    {
+      "id": "E04.Q02.A15",
+      "qid": "E04.Q02",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 4,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9433
+    },
+    {
+      "id": "E04.Q02.A16",
+      "qid": "E04.Q02",
+      "human_score": 3.0,
+      "gpt_c5_score": 1.0,
+      "blooms_level": 4,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9233
+    },
+    {
+      "id": "E04.Q02.A17",
+      "qid": "E04.Q02",
+      "human_score": 4.0,
+      "gpt_c5_score": 1.0,
+      "blooms_level": 4,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9633
+    },
+    {
+      "id": "E04.Q02.A18",
+      "qid": "E04.Q02",
+      "human_score": 2.0,
+      "gpt_c5_score": 1.0,
+      "blooms_level": 4,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9611
+    },
+    {
+      "id": "E04.Q02.A19",
+      "qid": "E04.Q02",
+      "human_score": 5.0,
+      "gpt_c5_score": 4.5,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9533
+    },
+    {
+      "id": "E04.Q02.A20",
+      "qid": "E04.Q02",
+      "human_score": 2.5,
+      "gpt_c5_score": 1.0,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9333
+    },
+    {
+      "id": "E04.Q02.A21",
+      "qid": "E04.Q02",
+      "human_score": 4.0,
+      "gpt_c5_score": 1.0,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.95
+    },
+    {
+      "id": "E04.Q02.A22",
+      "qid": "E04.Q02",
+      "human_score": 3.5,
+      "gpt_c5_score": 0.5,
+      "blooms_level": 1,
+      "solo_level": 1,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.94
+    },
+    {
+      "id": "E04.Q02.A23",
+      "qid": "E04.Q02",
+      "human_score": 3.5,
+      "gpt_c5_score": 1.5,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9567
+    },
+    {
+      "id": "E04.Q02.A24",
+      "qid": "E04.Q02",
+      "human_score": 1.5,
+      "gpt_c5_score": 0.5,
+      "blooms_level": 4,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.88
+    },
+    {
+      "id": "E04.Q02.A25",
+      "qid": "E04.Q02",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 4,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9433
+    },
+    {
+      "id": "E04.Q02.A26",
+      "qid": "E04.Q02",
+      "human_score": 4.0,
+      "gpt_c5_score": 1.0,
+      "blooms_level": 4,
+      "solo_level": 2,
+      "total_misconceptions": 1,
+      "concept_coverage": 0.8908
+    },
+    {
+      "id": "E04.Q02.A27",
+      "qid": "E04.Q02",
+      "human_score": 2.5,
+      "gpt_c5_score": 0.5,
+      "blooms_level": 4,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.94
+    },
+    {
+      "id": "E04.Q02.A28",
+      "qid": "E04.Q02",
+      "human_score": 3.5,
+      "gpt_c5_score": 1.5,
+      "blooms_level": 4,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8333
+    },
+    {
+      "id": "E04.Q02.A29",
+      "qid": "E04.Q02",
+      "human_score": 2.5,
+      "gpt_c5_score": 1.0,
+      "blooms_level": 4,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9711
+    },
+    {
+      "id": "E04.Q03.A00",
+      "qid": "E04.Q03",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A01",
+      "qid": "E04.Q03",
+      "human_score": 4.5,
+      "gpt_c5_score": 3.75,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A02",
+      "qid": "E04.Q03",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A03",
+      "qid": "E04.Q03",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A04",
+      "qid": "E04.Q03",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A05",
+      "qid": "E04.Q03",
+      "human_score": 4.0,
+      "gpt_c5_score": 2.25,
+      "blooms_level": 3,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A06",
+      "qid": "E04.Q03",
+      "human_score": 3.5,
+      "gpt_c5_score": 3.0,
+      "blooms_level": 3,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A07",
+      "qid": "E04.Q03",
+      "human_score": 3.5,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A08",
+      "qid": "E04.Q03",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A09",
+      "qid": "E04.Q03",
+      "human_score": 4.0,
+      "gpt_c5_score": 2.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A10",
+      "qid": "E04.Q03",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A11",
+      "qid": "E04.Q03",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A12",
+      "qid": "E04.Q03",
+      "human_score": 3.0,
+      "gpt_c5_score": 1.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A13",
+      "qid": "E04.Q03",
+      "human_score": 3.0,
+      "gpt_c5_score": 2.25,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A14",
+      "qid": "E04.Q03",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A15",
+      "qid": "E04.Q03",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 3,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A16",
+      "qid": "E04.Q03",
+      "human_score": 2.0,
+      "gpt_c5_score": 0.5,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A17",
+      "qid": "E04.Q03",
+      "human_score": 5.0,
+      "gpt_c5_score": 4.25,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A18",
+      "qid": "E04.Q03",
+      "human_score": 4.0,
+      "gpt_c5_score": 2.5,
+      "blooms_level": 3,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A19",
+      "qid": "E04.Q03",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A20",
+      "qid": "E04.Q03",
+      "human_score": 4.0,
+      "gpt_c5_score": 2.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A21",
+      "qid": "E04.Q03",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A22",
+      "qid": "E04.Q03",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A23",
+      "qid": "E04.Q03",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A24",
+      "qid": "E04.Q03",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A25",
+      "qid": "E04.Q03",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A26",
+      "qid": "E04.Q03",
+      "human_score": 4.0,
+      "gpt_c5_score": 3.0,
+      "blooms_level": 3,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A27",
+      "qid": "E04.Q03",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A28",
+      "qid": "E04.Q03",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q03.A29",
+      "qid": "E04.Q03",
+      "human_score": 2.5,
+      "gpt_c5_score": 0.0,
+      "blooms_level": 2,
+      "solo_level": 1,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q04.A00",
+      "qid": "E04.Q04",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9366
+    },
+    {
+      "id": "E04.Q04.A01",
+      "qid": "E04.Q04",
+      "human_score": 4.0,
+      "gpt_c5_score": 0.0,
+      "blooms_level": 1,
+      "solo_level": 1,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8653
+    },
+    {
+      "id": "E04.Q04.A02",
+      "qid": "E04.Q04",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9552
+    },
+    {
+      "id": "E04.Q04.A03",
+      "qid": "E04.Q04",
+      "human_score": 4.0,
+      "gpt_c5_score": 2.0,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9489
+    },
+    {
+      "id": "E04.Q04.A04",
+      "qid": "E04.Q04",
+      "human_score": 4.0,
+      "gpt_c5_score": 0.5,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9767
+    },
+    {
+      "id": "E04.Q04.A05",
+      "qid": "E04.Q04",
+      "human_score": 5.0,
+      "gpt_c5_score": 4.5,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.952
+    },
+    {
+      "id": "E04.Q04.A06",
+      "qid": "E04.Q04",
+      "human_score": 4.5,
+      "gpt_c5_score": 3.0,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9427
+    },
+    {
+      "id": "E04.Q04.A07",
+      "qid": "E04.Q04",
+      "human_score": 3.0,
+      "gpt_c5_score": 0.0,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 1,
+      "concept_coverage": 0.8692
+    },
+    {
+      "id": "E04.Q04.A08",
+      "qid": "E04.Q04",
+      "human_score": 5.0,
+      "gpt_c5_score": 3.0,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9359
+    },
+    {
+      "id": "E04.Q04.A09",
+      "qid": "E04.Q04",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9756
+    },
+    {
+      "id": "E04.Q04.A10",
+      "qid": "E04.Q04",
+      "human_score": 4.5,
+      "gpt_c5_score": 1.0,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8789
+    },
+    {
+      "id": "E04.Q04.A11",
+      "qid": "E04.Q04",
+      "human_score": 4.5,
+      "gpt_c5_score": 1.0,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.942
+    },
+    {
+      "id": "E04.Q04.A12",
+      "qid": "E04.Q04",
+      "human_score": 3.0,
+      "gpt_c5_score": 0.5,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q04.A13",
+      "qid": "E04.Q04",
+      "human_score": 4.0,
+      "gpt_c5_score": 0.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 1,
+      "concept_coverage": 0.9068
+    },
+    {
+      "id": "E04.Q04.A14",
+      "qid": "E04.Q04",
+      "human_score": 3.0,
+      "gpt_c5_score": 0.0,
+      "blooms_level": 1,
+      "solo_level": 1,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q04.A15",
+      "qid": "E04.Q04",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9784
+    },
+    {
+      "id": "E04.Q04.A16",
+      "qid": "E04.Q04",
+      "human_score": 3.0,
+      "gpt_c5_score": 0.0,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 2,
+      "concept_coverage": 0.8729
+    },
+    {
+      "id": "E04.Q04.A17",
+      "qid": "E04.Q04",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9582
+    },
+    {
+      "id": "E04.Q04.A18",
+      "qid": "E04.Q04",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9746
+    },
+    {
+      "id": "E04.Q04.A19",
+      "qid": "E04.Q04",
+      "human_score": 5.0,
+      "gpt_c5_score": 4.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9076
+    },
+    {
+      "id": "E04.Q04.A20",
+      "qid": "E04.Q04",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9709
+    },
+    {
+      "id": "E04.Q04.A21",
+      "qid": "E04.Q04",
+      "human_score": 4.5,
+      "gpt_c5_score": 3.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9492
+    },
+    {
+      "id": "E04.Q04.A22",
+      "qid": "E04.Q04",
+      "human_score": 3.5,
+      "gpt_c5_score": 0.5,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.96
+    },
+    {
+      "id": "E04.Q04.A23",
+      "qid": "E04.Q04",
+      "human_score": 5.0,
+      "gpt_c5_score": 4.0,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9592
+    },
+    {
+      "id": "E04.Q04.A24",
+      "qid": "E04.Q04",
+      "human_score": 0.0,
+      "gpt_c5_score": 0.0,
+      "blooms_level": 1,
+      "solo_level": 1,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q04.A25",
+      "qid": "E04.Q04",
+      "human_score": 5.0,
+      "gpt_c5_score": 4.5,
+      "blooms_level": 1,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9241
+    },
+    {
+      "id": "E04.Q04.A26",
+      "qid": "E04.Q04",
+      "human_score": 3.0,
+      "gpt_c5_score": 0.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8991
+    },
+    {
+      "id": "E04.Q04.A27",
+      "qid": "E04.Q04",
+      "human_score": 5.0,
+      "gpt_c5_score": 3.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9298
+    },
+    {
+      "id": "E04.Q04.A28",
+      "qid": "E04.Q04",
+      "human_score": 5.0,
+      "gpt_c5_score": 4.0,
+      "blooms_level": 4,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9709
+    },
+    {
+      "id": "E04.Q04.A29",
+      "qid": "E04.Q04",
+      "human_score": 3.0,
+      "gpt_c5_score": 0.5,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9066
+    },
+    {
+      "id": "E04.Q05.A00",
+      "qid": "E04.Q05",
+      "human_score": 2.5,
+      "gpt_c5_score": 0.5,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.88
+    },
+    {
+      "id": "E04.Q05.A01",
+      "qid": "E04.Q05",
+      "human_score": 3.5,
+      "gpt_c5_score": 1.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.82
+    },
+    {
+      "id": "E04.Q05.A02",
+      "qid": "E04.Q05",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9733
+    },
+    {
+      "id": "E04.Q05.A03",
+      "qid": "E04.Q05",
+      "human_score": 3.5,
+      "gpt_c5_score": 0.5,
+      "blooms_level": 1,
+      "solo_level": 1,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.93
+    },
+    {
+      "id": "E04.Q05.A04",
+      "qid": "E04.Q05",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.97
+    },
+    {
+      "id": "E04.Q05.A05",
+      "qid": "E04.Q05",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9
+    },
+    {
+      "id": "E04.Q05.A06",
+      "qid": "E04.Q05",
+      "human_score": 3.5,
+      "gpt_c5_score": 1.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.84
+    },
+    {
+      "id": "E04.Q05.A07",
+      "qid": "E04.Q05",
+      "human_score": 2.0,
+      "gpt_c5_score": 0.5,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.835
+    },
+    {
+      "id": "E04.Q05.A08",
+      "qid": "E04.Q05",
+      "human_score": 4.0,
+      "gpt_c5_score": 3.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9767
+    },
+    {
+      "id": "E04.Q05.A09",
+      "qid": "E04.Q05",
+      "human_score": 4.5,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 3,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.99
+    },
+    {
+      "id": "E04.Q05.A10",
+      "qid": "E04.Q05",
+      "human_score": 4.5,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9278
+    },
+    {
+      "id": "E04.Q05.A11",
+      "qid": "E04.Q05",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.915
+    },
+    {
+      "id": "E04.Q05.A12",
+      "qid": "E04.Q05",
+      "human_score": 2.5,
+      "gpt_c5_score": 1.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8
+    },
+    {
+      "id": "E04.Q05.A13",
+      "qid": "E04.Q05",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.975
+    },
+    {
+      "id": "E04.Q05.A14",
+      "qid": "E04.Q05",
+      "human_score": 2.0,
+      "gpt_c5_score": 0.5,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.91
+    },
+    {
+      "id": "E04.Q05.A15",
+      "qid": "E04.Q05",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9566
+    },
+    {
+      "id": "E04.Q05.A16",
+      "qid": "E04.Q05",
+      "human_score": 3.5,
+      "gpt_c5_score": 1.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.905
+    },
+    {
+      "id": "E04.Q05.A17",
+      "qid": "E04.Q05",
+      "human_score": 3.0,
+      "gpt_c5_score": 1.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.97
+    },
+    {
+      "id": "E04.Q05.A18",
+      "qid": "E04.Q05",
+      "human_score": 2.0,
+      "gpt_c5_score": 0.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9233
+    },
+    {
+      "id": "E04.Q05.A19",
+      "qid": "E04.Q05",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.92
+    },
+    {
+      "id": "E04.Q05.A20",
+      "qid": "E04.Q05",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.92
+    },
+    {
+      "id": "E04.Q05.A21",
+      "qid": "E04.Q05",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.92
+    },
+    {
+      "id": "E04.Q05.A22",
+      "qid": "E04.Q05",
+      "human_score": 3.0,
+      "gpt_c5_score": 0.0,
+      "blooms_level": 3,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9467
+    },
+    {
+      "id": "E04.Q05.A23",
+      "qid": "E04.Q05",
+      "human_score": 4.5,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9167
+    },
+    {
+      "id": "E04.Q05.A24",
+      "qid": "E04.Q05",
+      "human_score": 0.0,
+      "gpt_c5_score": 0.0,
+      "blooms_level": 1,
+      "solo_level": 1,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q05.A25",
+      "qid": "E04.Q05",
+      "human_score": 2.0,
+      "gpt_c5_score": 0.5,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E04.Q05.A26",
+      "qid": "E04.Q05",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.92
+    },
+    {
+      "id": "E04.Q05.A27",
+      "qid": "E04.Q05",
+      "human_score": 2.5,
+      "gpt_c5_score": 0.5,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.7
+    },
+    {
+      "id": "E04.Q05.A28",
+      "qid": "E04.Q05",
+      "human_score": 4.5,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9
+    },
+    {
+      "id": "E04.Q05.A29",
+      "qid": "E04.Q05",
+      "human_score": 3.5,
+      "gpt_c5_score": 0.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9678
+    },
+    {
+      "id": "E05.Q01.A00",
+      "qid": "E05.Q01",
+      "human_score": 3.0,
+      "gpt_c5_score": 0.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 1,
+      "concept_coverage": 0.8712
+    },
+    {
+      "id": "E05.Q01.A01",
+      "qid": "E05.Q01",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9604
+    },
+    {
+      "id": "E05.Q01.A02",
+      "qid": "E05.Q01",
+      "human_score": 3.5,
+      "gpt_c5_score": 2.5,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9286
+    },
+    {
+      "id": "E05.Q01.A03",
+      "qid": "E05.Q01",
+      "human_score": 5.0,
+      "gpt_c5_score": 4.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9315
+    },
+    {
+      "id": "E05.Q01.A04",
+      "qid": "E05.Q01",
+      "human_score": 2.0,
+      "gpt_c5_score": 0.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 1,
+      "concept_coverage": 0.8711
+    },
+    {
+      "id": "E05.Q01.A05",
+      "qid": "E05.Q01",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9559
+    },
+    {
+      "id": "E05.Q01.A06",
+      "qid": "E05.Q01",
+      "human_score": 4.5,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9682
+    },
+    {
+      "id": "E05.Q01.A07",
+      "qid": "E05.Q01",
+      "human_score": 4.5,
+      "gpt_c5_score": 3.5,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8462
+    },
+    {
+      "id": "E05.Q01.A08",
+      "qid": "E05.Q01",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.954
+    },
+    {
+      "id": "E05.Q01.A09",
+      "qid": "E05.Q01",
+      "human_score": 5.0,
+      "gpt_c5_score": 3.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9561
+    },
+    {
+      "id": "E05.Q01.A10",
+      "qid": "E05.Q01",
+      "human_score": 5.0,
+      "gpt_c5_score": 4.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9589
+    },
+    {
+      "id": "E05.Q01.A11",
+      "qid": "E05.Q01",
+      "human_score": 3.0,
+      "gpt_c5_score": 1.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.7737
+    },
+    {
+      "id": "E05.Q01.A12",
+      "qid": "E05.Q01",
+      "human_score": 3.0,
+      "gpt_c5_score": 3.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.91
+    },
+    {
+      "id": "E05.Q01.A13",
+      "qid": "E05.Q01",
+      "human_score": 4.5,
+      "gpt_c5_score": 2.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9035
+    },
+    {
+      "id": "E05.Q01.A14",
+      "qid": "E05.Q01",
+      "human_score": 4.5,
+      "gpt_c5_score": 4.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9508
+    },
+    {
+      "id": "E05.Q01.A15",
+      "qid": "E05.Q01",
+      "human_score": 4.0,
+      "gpt_c5_score": 3.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8239
+    },
+    {
+      "id": "E05.Q01.A16",
+      "qid": "E05.Q01",
+      "human_score": 3.5,
+      "gpt_c5_score": 3.75,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9549
+    },
+    {
+      "id": "E05.Q01.A17",
+      "qid": "E05.Q01",
+      "human_score": 3.0,
+      "gpt_c5_score": 4.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9439
+    },
+    {
+      "id": "E05.Q01.A18",
+      "qid": "E05.Q01",
+      "human_score": 4.0,
+      "gpt_c5_score": 3.25,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9675
+    },
+    {
+      "id": "E05.Q01.A19",
+      "qid": "E05.Q01",
+      "human_score": 4.5,
+      "gpt_c5_score": 3.75,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9432
+    },
+    {
+      "id": "E05.Q01.A20",
+      "qid": "E05.Q01",
+      "human_score": 5.0,
+      "gpt_c5_score": 4.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8921
+    },
+    {
+      "id": "E05.Q01.A21",
+      "qid": "E05.Q01",
+      "human_score": 4.0,
+      "gpt_c5_score": 2.75,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9263
+    },
+    {
+      "id": "E05.Q01.A22",
+      "qid": "E05.Q01",
+      "human_score": 5.0,
+      "gpt_c5_score": 4.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9666
+    },
+    {
+      "id": "E05.Q01.A23",
+      "qid": "E05.Q01",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8952
+    },
+    {
+      "id": "E05.Q01.A24",
+      "qid": "E05.Q01",
+      "human_score": 4.0,
+      "gpt_c5_score": 2.25,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8883
+    },
+    {
+      "id": "E05.Q01.A25",
+      "qid": "E05.Q01",
+      "human_score": 4.5,
+      "gpt_c5_score": 4.75,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9684
+    },
+    {
+      "id": "E05.Q01.A26",
+      "qid": "E05.Q01",
+      "human_score": 5.0,
+      "gpt_c5_score": 4.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9404
+    },
+    {
+      "id": "E05.Q01.A27",
+      "qid": "E05.Q01",
+      "human_score": 4.0,
+      "gpt_c5_score": 3.25,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.981
+    },
+    {
+      "id": "E05.Q02.A00",
+      "qid": "E05.Q02",
+      "human_score": 5.0,
+      "gpt_c5_score": 4.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9423
+    },
+    {
+      "id": "E05.Q02.A01",
+      "qid": "E05.Q02",
+      "human_score": 4.5,
+      "gpt_c5_score": 4.75,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9745
+    },
+    {
+      "id": "E05.Q02.A02",
+      "qid": "E05.Q02",
+      "human_score": 5.0,
+      "gpt_c5_score": 2.5,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8512
+    },
+    {
+      "id": "E05.Q02.A03",
+      "qid": "E05.Q02",
+      "human_score": 5.0,
+      "gpt_c5_score": 4.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9594
+    },
+    {
+      "id": "E05.Q02.A04",
+      "qid": "E05.Q02",
+      "human_score": 4.5,
+      "gpt_c5_score": 4.25,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9371
+    },
+    {
+      "id": "E05.Q02.A05",
+      "qid": "E05.Q02",
+      "human_score": 4.5,
+      "gpt_c5_score": 4.25,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9693
+    },
+    {
+      "id": "E05.Q02.A06",
+      "qid": "E05.Q02",
+      "human_score": 5.0,
+      "gpt_c5_score": 2.75,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9572
+    },
+    {
+      "id": "E05.Q02.A07",
+      "qid": "E05.Q02",
+      "human_score": 5.0,
+      "gpt_c5_score": 4.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9048
+    },
+    {
+      "id": "E05.Q02.A08",
+      "qid": "E05.Q02",
+      "human_score": 5.0,
+      "gpt_c5_score": 4.75,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9784
+    },
+    {
+      "id": "E05.Q02.A09",
+      "qid": "E05.Q02",
+      "human_score": 3.5,
+      "gpt_c5_score": 1.5,
+      "blooms_level": 2,
+      "solo_level": 1,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.899
+    },
+    {
+      "id": "E05.Q02.A10",
+      "qid": "E05.Q02",
+      "human_score": 4.5,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8983
+    },
+    {
+      "id": "E05.Q02.A11",
+      "qid": "E05.Q02",
+      "human_score": 5.0,
+      "gpt_c5_score": 4.75,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9758
+    },
+    {
+      "id": "E05.Q02.A12",
+      "qid": "E05.Q02",
+      "human_score": 5.0,
+      "gpt_c5_score": 4.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8758
+    },
+    {
+      "id": "E05.Q02.A13",
+      "qid": "E05.Q02",
+      "human_score": 4.5,
+      "gpt_c5_score": 2.5,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.82
+    },
+    {
+      "id": "E05.Q02.A14",
+      "qid": "E05.Q02",
+      "human_score": 5.0,
+      "gpt_c5_score": 4.75,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9098
+    },
+    {
+      "id": "E05.Q02.A15",
+      "qid": "E05.Q02",
+      "human_score": 4.5,
+      "gpt_c5_score": 2.5,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8833
+    },
+    {
+      "id": "E05.Q02.A16",
+      "qid": "E05.Q02",
+      "human_score": 5.0,
+      "gpt_c5_score": 3.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.7904
+    },
+    {
+      "id": "E05.Q02.A17",
+      "qid": "E05.Q02",
+      "human_score": 4.5,
+      "gpt_c5_score": 4.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9767
+    },
+    {
+      "id": "E05.Q02.A18",
+      "qid": "E05.Q02",
+      "human_score": 5.0,
+      "gpt_c5_score": 4.75,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9879
+    },
+    {
+      "id": "E05.Q02.A19",
+      "qid": "E05.Q02",
+      "human_score": 4.5,
+      "gpt_c5_score": 4.75,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.953
+    },
+    {
+      "id": "E05.Q02.A20",
+      "qid": "E05.Q02",
+      "human_score": 5.0,
+      "gpt_c5_score": 4.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8842
+    },
+    {
+      "id": "E05.Q02.A21",
+      "qid": "E05.Q02",
+      "human_score": 4.5,
+      "gpt_c5_score": 2.25,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.821
+    },
+    {
+      "id": "E05.Q02.A22",
+      "qid": "E05.Q02",
+      "human_score": 4.5,
+      "gpt_c5_score": 4.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.956
+    },
+    {
+      "id": "E05.Q02.A23",
+      "qid": "E05.Q02",
+      "human_score": 5.0,
+      "gpt_c5_score": 4.75,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9879
+    },
+    {
+      "id": "E05.Q02.A24",
+      "qid": "E05.Q02",
+      "human_score": 3.5,
+      "gpt_c5_score": 4.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8738
+    },
+    {
+      "id": "E05.Q02.A25",
+      "qid": "E05.Q02",
+      "human_score": 4.5,
+      "gpt_c5_score": 4.75,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8971
+    },
+    {
+      "id": "E05.Q02.A26",
+      "qid": "E05.Q02",
+      "human_score": 5.0,
+      "gpt_c5_score": 4.75,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8942
+    },
+    {
+      "id": "E05.Q02.A27",
+      "qid": "E05.Q02",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8962
+    },
+    {
+      "id": "E05.Q03.A00",
+      "qid": "E05.Q03",
+      "human_score": 3.5,
+      "gpt_c5_score": 2.0,
+      "blooms_level": 1,
+      "solo_level": 3,
+      "total_misconceptions": 3,
+      "concept_coverage": 0.8954
+    },
+    {
+      "id": "E05.Q03.A01",
+      "qid": "E05.Q03",
+      "human_score": 4.5,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9779
+    },
+    {
+      "id": "E05.Q03.A02",
+      "qid": "E05.Q03",
+      "human_score": 3.0,
+      "gpt_c5_score": 2.0,
+      "blooms_level": 1,
+      "solo_level": 3,
+      "total_misconceptions": 1,
+      "concept_coverage": 0.8813
+    },
+    {
+      "id": "E05.Q03.A03",
+      "qid": "E05.Q03",
+      "human_score": 4.0,
+      "gpt_c5_score": 2.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9255
+    },
+    {
+      "id": "E05.Q03.A04",
+      "qid": "E05.Q03",
+      "human_score": 2.0,
+      "gpt_c5_score": 0.5,
+      "blooms_level": 1,
+      "solo_level": 1,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.0
+    },
+    {
+      "id": "E05.Q03.A05",
+      "qid": "E05.Q03",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9617
+    },
+    {
+      "id": "E05.Q03.A06",
+      "qid": "E05.Q03",
+      "human_score": 3.5,
+      "gpt_c5_score": 2.25,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.705
+    },
+    {
+      "id": "E05.Q03.A07",
+      "qid": "E05.Q03",
+      "human_score": 4.0,
+      "gpt_c5_score": 4.5,
+      "blooms_level": 1,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.96
+    },
+    {
+      "id": "E05.Q03.A08",
+      "qid": "E05.Q03",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9625
+    },
+    {
+      "id": "E05.Q03.A09",
+      "qid": "E05.Q03",
+      "human_score": 3.0,
+      "gpt_c5_score": 2.5,
+      "blooms_level": 1,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9466
+    },
+    {
+      "id": "E05.Q03.A10",
+      "qid": "E05.Q03",
+      "human_score": 4.0,
+      "gpt_c5_score": 2.5,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8167
+    },
+    {
+      "id": "E05.Q03.A11",
+      "qid": "E05.Q03",
+      "human_score": 3.5,
+      "gpt_c5_score": 2.5,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.7667
+    },
+    {
+      "id": "E05.Q03.A12",
+      "qid": "E05.Q03",
+      "human_score": 4.5,
+      "gpt_c5_score": 4.5,
+      "blooms_level": 1,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8969
+    },
+    {
+      "id": "E05.Q03.A13",
+      "qid": "E05.Q03",
+      "human_score": 4.0,
+      "gpt_c5_score": 0.5,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9124
+    },
+    {
+      "id": "E05.Q03.A14",
+      "qid": "E05.Q03",
+      "human_score": 5.0,
+      "gpt_c5_score": 4.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9171
+    },
+    {
+      "id": "E05.Q03.A15",
+      "qid": "E05.Q03",
+      "human_score": 2.5,
+      "gpt_c5_score": 0.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.7663
+    },
+    {
+      "id": "E05.Q03.A16",
+      "qid": "E05.Q03",
+      "human_score": 3.0,
+      "gpt_c5_score": 2.0,
+      "blooms_level": 1,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.84
+    },
+    {
+      "id": "E05.Q03.A17",
+      "qid": "E05.Q03",
+      "human_score": 4.5,
+      "gpt_c5_score": 4.5,
+      "blooms_level": 1,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9676
+    },
+    {
+      "id": "E05.Q03.A18",
+      "qid": "E05.Q03",
+      "human_score": 3.0,
+      "gpt_c5_score": 0.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 2,
+      "concept_coverage": 0.9088
+    },
+    {
+      "id": "E05.Q03.A19",
+      "qid": "E05.Q03",
+      "human_score": 3.5,
+      "gpt_c5_score": 2.5,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8
+    },
+    {
+      "id": "E05.Q03.A20",
+      "qid": "E05.Q03",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9075
+    },
+    {
+      "id": "E05.Q03.A21",
+      "qid": "E05.Q03",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9123
+    },
+    {
+      "id": "E05.Q03.A22",
+      "qid": "E05.Q03",
+      "human_score": 3.5,
+      "gpt_c5_score": 2.5,
+      "blooms_level": 1,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9657
+    },
+    {
+      "id": "E05.Q03.A23",
+      "qid": "E05.Q03",
+      "human_score": 4.5,
+      "gpt_c5_score": 4.5,
+      "blooms_level": 1,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9483
+    },
+    {
+      "id": "E05.Q03.A24",
+      "qid": "E05.Q03",
+      "human_score": 5.0,
+      "gpt_c5_score": 5.0,
+      "blooms_level": 1,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9516
+    },
+    {
+      "id": "E05.Q03.A25",
+      "qid": "E05.Q03",
+      "human_score": 2.5,
+      "gpt_c5_score": 0.5,
+      "blooms_level": 2,
+      "solo_level": 2,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8441
+    },
+    {
+      "id": "E05.Q03.A26",
+      "qid": "E05.Q03",
+      "human_score": 4.0,
+      "gpt_c5_score": 4.5,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.9102
+    },
+    {
+      "id": "E05.Q03.A27",
+      "qid": "E05.Q03",
+      "human_score": 2.5,
+      "gpt_c5_score": 0.5,
+      "blooms_level": 2,
+      "solo_level": 3,
+      "total_misconceptions": 0,
+      "concept_coverage": 0.8537
+    },
+    {
+      "id": "E05.Q04.A00",
+      "qid": "E05.Q04",
+      "human_score": 5.0,
+      "gpt_c5_score": 3.0,
+      "blooms_level": 2,
+      "solo_level": 4,
+      "total_misconceptions": 1,
+      "concept_coverage": 0.9817
+    },
+    {
+      "id": "E05.Q04.A01",
+      "qid": "E05.Q04",
+      "human_score": 5.0,
+      "gpt_c5_score": 2.5,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 1,
+      "concept_coverage": 0.9513
+    },
+    {
+      "id": "E05.Q04.A02",
+      "qid": "E05.Q04",
+      "human_score": 5.0,
+      "gpt_c5_score": 2.0,
+      "blooms_level": 1,
+      "solo_level": 2,
+      "total_misconceptions": 2,
+      "concept_coverage": 0.9534
+    },
+    {
+      "id": "E05.Q04.A03",
+      "qid": "E05.Q04",
+      "human_score": 2.0,
+      "gpt_c5_score": 0.0,
+      "blooms_level": 1,
+      "solo_level": 1,
+      "total_misconceptions": 2,
+      "concept_coverage": 0.9899
+    }
+  ]
+}

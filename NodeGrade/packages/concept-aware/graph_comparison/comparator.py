@@ -501,7 +501,7 @@ class KnowledgeGraphComparator:
                     rel.source_id, rel.target_id
                 )
                 if correct_rel:
-                    # Wrong relationship type
+                    # Wrong relationship type (same direction, different type)
                     misconception = MisconceptionReport(
                         source_concept=rel.source_id,
                         target_concept=rel.target_id,
@@ -511,9 +511,35 @@ class KnowledgeGraphComparator:
                         severity="moderate"
                     )
                     incorrect.append(misconception)
+                    continue
+
+                # Fix (2026-08-19, external review): _find_correct_relation is
+                # now direction-aware, so it returns None for a reversed
+                # directed claim (see comparator's _SYMMETRIC_RELATION_TYPES
+                # note). That does NOT mean the concept pair is unknown to the
+                # KG -- check for ANY relation between the pair, in either
+                # direction, before treating this as a novel/plausible
+                # connection. A reversed directed claim is a known error
+                # ("you have the direction backwards"), not an insight.
+                reversed_rel = self._find_any_relation_between(rel.source_id, rel.target_id)
+                if reversed_rel:
+                    misconception = MisconceptionReport(
+                        source_concept=rel.source_id,
+                        target_concept=rel.target_id,
+                        student_relation=rel.relation_type,
+                        correct_relation=reversed_rel,
+                        explanation=(
+                            f"Student stated '{rel.relation_type}' from {rel.source_id} to "
+                            f"{rel.target_id}, but the actual relationship runs the other way: "
+                            f"'{reversed_rel}' from {rel.target_id} to {rel.source_id}"
+                        ),
+                        severity="moderate",
+                    )
+                    incorrect.append(misconception)
                 else:
-                    # No known relationship between these concepts
-                    # This might be an insightful connection or a misconception
+                    # No known relationship between these concepts, in either
+                    # direction. This might be an insightful connection or a
+                    # misconception.
                     correct.append({
                         "source": rel.source_id,
                         "target": rel.target_id,
@@ -526,6 +552,21 @@ class KnowledgeGraphComparator:
         accuracy = len(correct) / total if total > 0 else 1.0
         return accuracy, correct, incorrect
 
+    # Fix (2026-08-19, external review, REPRODUCIBILITY.md Finding 6): the
+    # reverse-direction check below previously applied to EVERY relation
+    # type unconditionally, even though the comment claimed it was "also
+    # valid for symmetric contrasts_with" -- only CONTRASTS_WITH is
+    # actually symmetric (BFS contrasts_with DFS == DFS contrasts_with
+    # BFS). Every other type is directed: "array prerequisite_for
+    # hash_table" does NOT mean "hash_table prerequisite_for array", but
+    # the old code accepted both as correct. This is a genuine scoring/
+    # evidence change, not a cosmetic fix -- per the review's explicit
+    # instruction, it is NOT folded into any already-reported result.
+    # Any score or evidence produced with this fix is a new, separate
+    # configuration that has not been re-evaluated against the rest of
+    # this project's cached results.
+    _SYMMETRIC_RELATION_TYPES = frozenset({"contrasts_with"})
+
     def _verify_relationship(
         self, source_id: str, target_id: str, relation_type: str
     ) -> bool:
@@ -534,15 +575,19 @@ class KnowledgeGraphComparator:
         Uses the authoritative _relationships list instead of the NetworkX
         graph to handle concepts with multiple edge types to the same target
         (e.g. binary_search→array exists as both USES and OPERATES_ON).
+
+        Direction matters for every relation type except the ones listed
+        in _SYMMETRIC_RELATION_TYPES (currently only contrasts_with).
         """
+        symmetric = relation_type in self._SYMMETRIC_RELATION_TYPES
         for rel in self.domain_graph.get_all_relationships():
             if rel.relation_type.value != relation_type:
                 continue
             # Forward direction
             if rel.source_id == source_id and rel.target_id == target_id:
                 return True
-            # Reverse direction (also valid for symmetric contrasts_with)
-            if rel.source_id == target_id and rel.target_id == source_id:
+            # Reverse direction -- ONLY valid for symmetric relation types.
+            if symmetric and rel.source_id == target_id and rel.target_id == source_id:
                 return True
         return False
 
@@ -552,7 +597,31 @@ class KnowledgeGraphComparator:
         """Find the correct relationship type(s) between two concepts.
 
         Returns the first match from the authoritative _relationships list.
+        Direction-aware: a reverse-direction match is only returned for
+        symmetric relation types (see _SYMMETRIC_RELATION_TYPES); for a
+        directed type, a reverse-direction edge is a DIFFERENT claim, not
+        the same one restated, so it is not offered as "the correct
+        relation" for a student who got the direction backwards.
         """
+        for rel in self.domain_graph.get_all_relationships():
+            if rel.source_id == source_id and rel.target_id == target_id:
+                return rel.relation_type.value
+            if (rel.relation_type.value in self._SYMMETRIC_RELATION_TYPES
+                    and rel.source_id == target_id and rel.target_id == source_id):
+                return rel.relation_type.value
+        return None
+
+    def _find_any_relation_between(
+        self, source_id: str, target_id: str
+    ) -> Optional[str]:
+        """Find ANY relation between this concept pair, in either
+        direction, regardless of type. Used only to distinguish "this
+        pair has a known relation, just stated backwards or as the
+        wrong type" (an error) from "this pair has no known relation at
+        all" (possibly a novel, plausible connection) -- see the
+        2026-08-19 fix in _compute_relationship_accuracy. Unlike
+        _find_correct_relation, direction is deliberately ignored here:
+        the point is existence, not correctness of the specific claim."""
         for rel in self.domain_graph.get_all_relationships():
             if (rel.source_id == source_id and rel.target_id == target_id) or \
                (rel.source_id == target_id and rel.target_id == source_id):

@@ -1,0 +1,155 @@
+{
+  "n": 300,
+  "n_questions": 11,
+  "raw_correlations": {
+    "concept_coverage": {
+      "pearson_r": 0.18214730176373758,
+      "spearman_rho": 0.3021750637416829
+    },
+    "relationship_accuracy": {
+      "pearson_r": 0.1771124485872542,
+      "spearman_rho": 0.1280529888992077
+    },
+    "integration_quality": {
+      "pearson_r": 0.04101018409843219,
+      "spearman_rho": 0.02696296906483461
+    },
+    "blooms_normalized": {
+      "pearson_r": 0.06669814270478074,
+      "spearman_rho": 0.11078962694098346
+    },
+    "solo_normalized": {
+      "pearson_r": 0.4298431397565343,
+      "spearman_rho": 0.36769380241549987
+    },
+    "n_misconceptions": {
+      "pearson_r": -0.17003208091223126,
+      "spearman_rho": -0.18751709173172174
+    },
+    "misc_penalty": {
+      "pearson_r": -0.17082863201525023,
+      "spearman_rho": -0.1878515991535715
+    },
+    "kg_formula_composite": {
+      "pearson_r": 0.28582947943749176,
+      "spearman_rho": 0.24991336766949565
+    },
+    "verified_score": {
+      "pearson_r": 0.8241289548679473,
+      "spearman_rho": 0.8300017714004181
+    },
+    "zeroshot": {
+      "pearson_r": 0.8003719537129554,
+      "spearman_rho": 0.8042328649846109
+    }
+  },
+  "single_signal_recalibrated_mae": {
+    "concept_coverage": 1.0545618693978724,
+    "relationship_accuracy": 0.8426173308156926,
+    "integration_quality": 0.8632108307735468,
+    "blooms_normalized": 0.8713810145174913,
+    "solo_normalized": 0.7478097261268071,
+    "n_misconceptions": 0.8329212086719029,
+    "misc_penalty": 0.834494641733152,
+    "kg_formula_composite": 0.8595201389164832,
+    "verified_score": 0.3854201239280683,
+    "zeroshot": 0.4312561442514552
+  },
+  "pair_vs_zeroshot": [
+    {
+      "signal": "concept_coverage",
+      "mae": 0.5040522751663588,
+      "pct_vs_zeroshot": -16.88002174235873,
+      "p": 0.052881096449285396,
+      "flag": "hurts"
+    },
+    {
+      "signal": "relationship_accuracy",
+      "mae": 0.4412270846069494,
+      "pct_vs_zeroshot": -2.312069170121878,
+      "p": 0.00046325012267969996,
+      "flag": "hurts"
+    },
+    {
+      "signal": "integration_quality",
+      "mae": 0.4335421373118378,
+      "pct_vs_zeroshot": -0.5300777950307234,
+      "p": 0.27377158686550684,
+      "flag": "hurts"
+    },
+    {
+      "signal": "blooms_normalized",
+      "mae": 0.4265989822191147,
+      "pct_vs_zeroshot": 1.0799062446806629,
+      "p": 0.5779876333997305,
+      "flag": "~tie"
+    },
+    {
+      "signal": "solo_normalized",
+      "mae": 0.4334723442220901,
+      "pct_vs_zeroshot": -0.5138941207392205,
+      "p": 0.9562448328701747,
+      "flag": "hurts"
+    },
+    {
+      "signal": "n_misconceptions",
+      "mae": 0.4314660012143541,
+      "pct_vs_zeroshot": -0.048661790839672626,
+      "p": 0.5750058000146177,
+      "flag": "hurts"
+    },
+    {
+      "signal": "misc_penalty",
+      "mae": 0.43231137256286006,
+      "pct_vs_zeroshot": -0.24468713674478965,
+      "p": 0.3653456406364094,
+      "flag": "hurts"
+    },
+    {
+      "signal": "kg_formula_composite",
+      "mae": 0.4434254222437783,
+      "pct_vs_zeroshot": -2.8218213594256585,
+      "p": 0.7347383440455328,
+      "flag": "hurts"
+    },
+    {
+      "signal": "verified_score",
+      "mae": 0.3918688479309455,
+      "pct_vs_zeroshot": 9.133155978305064,
+      "p": 1.7283095066759716e-08,
+      "flag": "HELPS"
+    }
+  ],
+  "targeted_combinations": {
+    "zeroshot + verified_score": {
+      "mae": 0.3918688479309455,
+      "pct_vs_zeroshot": 9.133155978305064,
+      "p": 1.7283095066759716e-08
+    },
+    "zeroshot + n_misconceptions": {
+      "mae": 0.4314660012143541,
+      "pct_vs_zeroshot": -0.048661790839672626,
+      "p": 0.5750058000146177
+    },
+    "zeroshot + verified_score + n_misconceptions": {
+      "mae": 0.3930672886328574,
+      "pct_vs_zeroshot": 8.85526064443288,
+      "p": 7.066743576686199e-08
+    },
+    "verified_score + n_misconceptions": {
+      "mae": 0.3856689686798122,
+      "pct_vs_zeroshot": 10.570788655259644,
+      "p": 2.1731429285370878e-08
+    },
+    "zeroshot + kg_formula_composite": {
+      "mae": 0.4434254222437783,
+      "pct_vs_zeroshot": -2.8218213594256585,
+      "p": 0.7347383440455328
+    },
+    "all_10_features": {
+      "mae": 0.4833017148517711,
+      "pct_vs_zeroshot": -12.068366165693249,
+      "p": 0.10631090264884563
+    }
+  }
+}

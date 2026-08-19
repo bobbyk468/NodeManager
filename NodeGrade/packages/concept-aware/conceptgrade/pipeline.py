@@ -70,6 +70,20 @@ class StudentAssessment:
     # Extension 3: LLM Verifier (optional)
     verifier: dict = field(default_factory=dict)
 
+    # Post-hoc recalibration (optional, see conceptgrade/calibration.py).
+    # Additive field, NOT a replacement for overall_score -- overall_score
+    # keeps its existing 0-1 scale/meaning everywhere else in the codebase.
+    # calibrated_score_0to5 is only populated when calibration_status is
+    # "calibrated"; None for "uncalibrated" or "incompatible".
+    calibrated_score_0to5: float | None = None
+    # "uncalibrated" (no calibration_path given), "calibrated" (applied --
+    # domain and backbone matched what the calibration was fit for), or
+    # "incompatible" (a calibration_path was given but its domain/backbone
+    # didn't match this pipeline instance -- see calibration.py's
+    # check_compatible(); this fails closed to raw score, never silently
+    # applies a mismatched calibration).
+    calibration_status: str = "uncalibrated"
+
     def to_dict(self) -> dict:
         d = {
             "student_id": self.student_id,
@@ -83,9 +97,12 @@ class StudentAssessment:
             "misconceptions": self.misconceptions,
             "overall_score": round(self.overall_score, 4),
             "depth_category": self.depth_category,
+            "calibration_status": self.calibration_status,
         }
         if self.verifier:
             d["verifier"] = self.verifier
+        if self.calibrated_score_0to5 is not None:
+            d["calibrated_score_0to5"] = round(self.calibrated_score_0to5, 4)
         return d
 
 
@@ -167,9 +184,9 @@ class ConceptGradePipeline:
         # ── Research Extensions ───────────────────────────────────────────
         use_self_consistency: bool = False,
         use_confidence_weighting: bool = True,
-        use_llm_verifier: bool = False,
+        use_llm_verifier: bool = True,
         use_sure_verifier: bool = False,
-        verifier_weight: float = 0.25,
+        verifier_weight: float = 1.0,
         sc_n_runs: int = 3,
         sc_min_votes: int = 2,
         sc_inter_run_delay: float = 0.0,
@@ -180,6 +197,9 @@ class ConceptGradePipeline:
         holistic_weight: float = 0.95,
         # ── Extraction confidence filtering ──────────────────────────────
         extraction_confidence_threshold: float = 0.70,
+        # ── Post-hoc recalibration (optional; see conceptgrade/calibration.py) ──
+        calibration_path: Optional[str] = None,
+        domain: str = "",
     ):
         """
         Initialize the ConceptGrade pipeline.
@@ -191,8 +211,25 @@ class ConceptGradePipeline:
             rate_limit_delay             : Seconds between API calls for rate limiting
             use_self_consistency         : Ext-1 — majority-vote extraction (3 LLM calls)
             use_confidence_weighting     : Ext-2 — weight coverage by extraction confidence
-            use_llm_verifier             : Ext-3 — LLM judge post-scoring
-            verifier_weight              : Blend weight for verifier (0=KG only, 1=LLM only)
+            use_llm_verifier             : Ext-3 — LLM judge post-scoring. Defaults to True:
+                                           the numeric KG-formula composite (kg_weight/
+                                           holistic_weight blend below) has been evidenced,
+                                           across 8 independent tests spanning two investigation
+                                           rounds (fixed-formula repairs on 1,156 real Gemini-
+                                           backed samples; backbone swap, cross-validated weight
+                                           tuning, and learned reweighting on 298-300 samples
+                                           each on GPT-5.6-terra and DeepSeek-chat-v3.1), to add
+                                           no measurable value as a scoring input, and to
+                                           actively hurt when blended in. See
+                                           REPRODUCIBILITY.md, "Finding 4 — the numeric
+                                           composite formula does not improve on LLM judgment
+                                           alone". Set False only for ablation configurations
+                                           that deliberately test the pre-Finding-4 architecture.
+            verifier_weight              : Blend weight for verifier (0=KG only, 1=LLM only).
+                                           Defaults to 1.0 for the same reason: every value
+                                           tested below 1.0, including the cross-validated
+                                           optimum, was at best equal to, usually worse than,
+                                           w=1.0.
             sc_n_runs                    : Number of self-consistency runs
             sc_min_votes                 : Minimum votes to accept a concept
             use_hierarchical_kg          : Split domain KG into primary/secondary tiers and
@@ -213,6 +250,20 @@ class ConceptGradePipeline:
         self.use_llm_verifier        = use_llm_verifier
         self.use_sure_verifier       = use_sure_verifier
         self.use_hierarchical_kg     = use_hierarchical_kg
+        # sc_n_runs/sc_min_votes change what "self-consistency" actually
+        # means (majority-vote threshold, number of extraction runs) --
+        # stored so the llm_key can fold them in, not just the on/off flag.
+        self.sc_n_runs               = sc_n_runs
+        self.sc_min_votes            = sc_min_votes
+
+        # Set by conceptgrade.configs.build_pipeline() when this pipeline
+        # was constructed from a named PipelineConfig; None for pipelines
+        # constructed directly (e.g. ad hoc scripts, tests). When present,
+        # cache keys fold this in so the complete declared configuration
+        # -- not just the flags build_pipeline() individually enforces --
+        # is reflected in what gets cached.
+        self.config_name = None
+        self.config_fingerprint = None
 
         # Score blending weights (for ablation studies)
         self.kg_weight = kg_weight
@@ -220,6 +271,23 @@ class ConceptGradePipeline:
 
         # Extraction confidence filtering
         self.extraction_confidence_threshold = extraction_confidence_threshold
+
+        # Post-hoc recalibration (optional). Loaded once at construction,
+        # not re-fit per assessment -- see conceptgrade/calibration.py for
+        # the fitting procedure. `domain` identifies this pipeline
+        # instance's dataset/subject; it's checked against the loaded
+        # calibration's own domain AND fit_backbone (== `model` above)
+        # before ever applying it -- a calibration fit for a different
+        # domain or backbone is refused (calibration_status="incompatible",
+        # falls back to the raw score) rather than silently applied. See
+        # calibration.py's module docstring for why backbone match can't
+        # be skipped: transfer across backbones turned out asymmetric, not
+        # a safe general rule.
+        self.domain = domain
+        self.calibration = None
+        if calibration_path is not None:
+            from conceptgrade.calibration import load as _load_calibration
+            self.calibration = _load_calibration(calibration_path)
 
         # Validate weight parameters sum to ~1.0
         weight_sum = kg_weight + holistic_weight
@@ -310,6 +378,37 @@ class ConceptGradePipeline:
             This is purely algorithmic (no tokens), so it's cheap.
           - Verifier cache  keyed by `sc + cw` — only runs when enabled.
           Result: C3 reuses C1's LLM cache; C5 reuses C2's, cutting ~60% of tokens.
+
+        Cache keys also fold in every input that can change what a cached
+        value actually means (2026-08-19, per external review): the
+        `reference_answer` (previously omitted entirely -- a call with a
+        different reference answer would silently reuse a stale
+        `holistic_score`/verifier result computed for a DIFFERENT
+        reference), the extraction confidence threshold, and the domain
+        KG's own `(domain, version)` identity (extraction prompts embed
+        KG-derived ontology; a KG rebuild should not silently reuse an
+        old KG's cached extraction). The verifier cache additionally
+        includes `VERIFIER_PROMPT_VERSION_SAG` -- this is what should have
+        caught the Finding-5 prompt change invalidating old cached
+        verifier scores, and didn't, because the version wasn't in the
+        key at the time.
+
+        2026-08-19, third review round: `llm_key` covers three LLM calls
+        (extraction, cognitive-depth classification, misconception/
+        false-belief detection), but previously only versioned the
+        self-consistency flag and threshold -- not the actual prompt text
+        each of those calls sends, nor the self-consistency vote
+        parameters. A prompt edit to any of extractor.py,
+        cognitive_depth_classifier.py, or misconception_detection/
+        detector.py would silently reuse stale cached output, the same
+        class of bug the ver_key canonical-hash redesign fixed for the
+        verifier. Rather than hand-maintain a version constant per prompt
+        (easy to forget to bump), `llm_key` now hashes the actual prompt
+        template strings via `canonical_hash` -- any edit to any of them
+        changes the hash automatically. `sc_n_runs`/`sc_min_votes` are
+        also folded in: they change what "self-consistency" means
+        (how many extraction runs, how many votes to accept a concept)
+        without changing the `use_self_consistency` flag itself.
         """
         result = StudentAssessment(
             student_id=student_id,
@@ -319,9 +418,32 @@ class ConceptGradePipeline:
         )
 
         # ── LLM cache (extraction + cognitive depth + misconceptions) ───────
-        # Keyed by `sc` only: CW is algorithmic, verifier is a separate step.
+        from conceptgrade.cache import CACHE_SCHEMA_VERSION, canonical_hash
+        from concept_extraction.extractor import CONCEPT_EXTRACTION_SYSTEM, CONCEPT_EXTRACTION_USER
+        from cognitive_depth.cognitive_depth_classifier import COGNITIVE_DEPTH_SYSTEM, COGNITIVE_DEPTH_USER
+        from misconception_detection.detector import (
+            MISCONCEPTION_ANALYSIS_SYSTEM, MISCONCEPTION_ANALYSIS_USER,
+            FALSE_BELIEF_SYSTEM, FALSE_BELIEF_USER,
+        )
+        prompt_hash = canonical_hash({
+            "extraction_system": CONCEPT_EXTRACTION_SYSTEM,
+            "extraction_user": CONCEPT_EXTRACTION_USER,
+            "depth_system": COGNITIVE_DEPTH_SYSTEM,
+            "depth_user": COGNITIVE_DEPTH_USER,
+            "misconception_system": MISCONCEPTION_ANALYSIS_SYSTEM,
+            "misconception_user": MISCONCEPTION_ANALYSIS_USER,
+            "false_belief_system": FALSE_BELIEF_SYSTEM,
+            "false_belief_user": FALSE_BELIEF_USER,
+        })
         llm_key = self.cache.key(
-            f"llm_sc{int(self.use_self_consistency)}", self.model, question, answer
+            f"llm_{CACHE_SCHEMA_VERSION}"
+            f"_sc{int(self.use_self_consistency)}"
+            f"_screns{self.sc_n_runs}_scmv{self.sc_min_votes}"
+            f"_ect{self.extraction_confidence_threshold}"
+            f"_kg{self.domain_graph.domain}v{self.domain_graph.version}"
+            f"_prompts{prompt_hash}"
+            f"_cfg{self.config_fingerprint or 'none'}",
+            self.model, question, answer, reference_answer,
         )
         concept_graph_obj = None
 
@@ -487,16 +609,26 @@ class ConceptGradePipeline:
         kg_score = self._compute_overall_score(result)
 
         # LLM holistic scoring — anchored to Bloom's bands (mirrors TypeScript Stage 4).
-        # Cached with the main LLM key so it's only computed once per student per config.
+        # Skipped entirely when a verifier is configured at verifier_weight=1.0 (the
+        # deployed default for every reported result in this project): the verifier's
+        # blend formula is final = (1-verifier_weight)*kg_score + verifier_weight*verified,
+        # which at w=1.0 provably discards kg_score -- and kg_score is exactly
+        # (kg_weight*KG-formula + holistic_weight*holistic_score), so holistic_score's
+        # contribution is discarded too. Computing it anyway would cost one full extra
+        # LLM call per graded answer for a value that mathematically cannot affect the
+        # final score. See REPRODUCIBILITY.md for the ablation evidence (8 independent
+        # tests across two backbones) that motivated standardizing on verifier_weight=1.0.
+        skip_holistic = self.verifier is not None and getattr(self.verifier, "verifier_weight", None) == 1.0
         holistic_score: float | None = None
-        if llm_key in self.cache:
-            holistic_score = self.cache.get(llm_key).get("holistic_score", None)
+        if not skip_holistic:
+            if llm_key in self.cache:
+                holistic_score = self.cache.get(llm_key).get("holistic_score", None)
 
-        if holistic_score is None:
-            holistic_score = self._run_llm_holistic_score(question, answer, result, reference_answer)
-            cached_entry = self.cache.get(llm_key) or {}
-            cached_entry["holistic_score"] = holistic_score
-            self.cache.set(llm_key, cached_entry)
+            if holistic_score is None:
+                holistic_score = self._run_llm_holistic_score(question, answer, result, reference_answer)
+                cached_entry = self.cache.get(llm_key) or {}
+                cached_entry["holistic_score"] = holistic_score
+                self.cache.set(llm_key, cached_entry)
 
         # Blend: kg_weight * KG formula + holistic_weight * LLM holistic.
         # Default: 5% KG formula + 95% LLM holistic.
@@ -506,15 +638,48 @@ class ConceptGradePipeline:
         # Verifier (C4/C5) overrides this score downstream with full KG+reference evidence.
         # For ablation: set kg_weight=0.50, holistic_weight=0.50 (50/50 blend) or
         # kg_weight=1.0, holistic_weight=0.0 (pure KG) to test weighting sensitivity.
-        result.overall_score  = min(1.0, max(0.0, self.kg_weight * kg_score + self.holistic_weight * holistic_score))
+        # When holistic_score was skipped (verifier_weight=1.0), this placeholder is
+        # itself about to be discarded by the verifier blend -- kg_score alone stands
+        # in so result.overall_score always has a well-defined value up to that point.
+        result.overall_score = (min(1.0, max(0.0, self.kg_weight * kg_score + self.holistic_weight * holistic_score))
+                                 if holistic_score is not None else kg_score)
         result.depth_category = self._categorize_depth(result)
 
         # ── Extension 3: LLM Verifier  (LLM call 4, cached separately) ─────
         if self.verifier is not None:
+            from conceptgrade.verifier import VERIFIER_PROMPT_VERSION_SAG
+            from conceptgrade.cache import CACHE_SCHEMA_VERSION, canonical_hash
+            # Configuration fingerprint: every flag that changes HOW the
+            # verifier is called (not what evidence it sees -- that's the
+            # canonical hash below).
+            config_fingerprint = (
+                f"verifier_{CACHE_SCHEMA_VERSION}"
+                f"_sc{int(self.use_self_consistency)}"
+                f"_cw{int(self.use_confidence_weighting)}"
+                f"_sure{int(self.use_sure_verifier)}"
+                f"_vw{self.verifier.verifier_weight}"
+                f"_promptver{VERIFIER_PROMPT_VERSION_SAG}"
+                f"_kg{self.domain_graph.domain}v{self.domain_graph.version}"
+                f"_comparator{type(self.comparator).__name__}"
+                f"_cfg{self.config_fingerprint or 'none'}"
+            )
+            # Canonical evidence hash: the ACTUAL content the verifier's
+            # prompt is built from. Hashing the payload itself (rather than
+            # enumerating flags) means a change to comparator VALUES with no
+            # flag change -- e.g. the 2026-08-19 relationship-direction fix,
+            # which changes what comparison_result contains without
+            # changing any config flag -- still invalidates stale cache
+            # entries automatically, without needing this cache key to be
+            # updated every time comparator internals change.
+            evidence_hash = canonical_hash({
+                "comparison": result.comparison,
+                "blooms": result.blooms,
+                "solo": result.solo,
+                "misconceptions": result.misconceptions,
+            })
             ver_key = self.cache.key(
-                f"verifier_sc{int(self.use_self_consistency)}"
-                f"_cw{int(self.use_confidence_weighting)}",
-                self.model, question, answer,
+                config_fingerprint, self.model, question, answer,
+                reference_answer, evidence_hash,
             )
             if ver_key in self.cache:
                 result.verifier = self.cache.get(ver_key)
@@ -552,20 +717,48 @@ class ConceptGradePipeline:
                         raise
                     result.verifier = {"error": err}
 
+        if self.calibration is not None:
+            from conceptgrade.verifier import VERIFIER_PROMPT_VERSION_SAG
+            if self.calibration.check_compatible(domain=self.domain, backbone=self.model,
+                                                  verifier_prompt_version=VERIFIER_PROMPT_VERSION_SAG,
+                                                  strict=False):
+                # overall_score is 0-1 scale everywhere else in this codebase;
+                # the calibration was fit on 0-5 scale scores (matching how
+                # human_score/verified_score are reported in every eval script
+                # and cached result file), so convert at the boundary rather
+                # than change overall_score's scale/meaning.
+                result.calibrated_score_0to5 = self.calibration.apply(result.overall_score * 5.0)
+                result.calibration_status = "calibrated"
+            else:
+                # Fail closed: a calibration was configured but doesn't match
+                # this pipeline's domain/backbone -- fall back to the raw
+                # score rather than silently apply an unvalidated transform.
+                # See calibration.py's module docstring: this exact failure
+                # mode (assuming a calibration "just transfers") was caught
+                # by a properly controlled re-test.
+                result.calibration_status = "incompatible"
+
         return result
 
     def assess_class(
         self,
         question: str,
         student_answers: dict[str, str],
+        reference_answer: str = "",
     ) -> list[StudentAssessment]:
         """
         Assess an entire class of student responses.
-        
+
         Args:
             question: The assessment question
             student_answers: {student_id: answer_text}
-            
+            reference_answer: Expert reference answer, passed through to
+                every assess_student() call. Previously silently dropped
+                here -- assess_student() defaults to "" (rendered as
+                "(not provided)" in the verifier prompt) when omitted, so
+                every class-graded assessment was scored without a
+                reference answer regardless of what the caller intended.
+
         Returns:
             List of StudentAssessment objects
         """
@@ -576,7 +769,7 @@ class ConceptGradePipeline:
         student_items = list(student_answers.items())
 
         def _assess(sid: str, ans: str) -> StudentAssessment:
-            return self.assess_student(sid, question, ans)
+            return self.assess_student(sid, question, ans, reference_answer=reference_answer)
 
         with ThreadPoolExecutor(max_workers=3) as pool:
             futures = {

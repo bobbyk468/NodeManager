@@ -1,0 +1,46 @@
+{
+  "n": 300,
+  "n_questions": 11,
+  "mae_zeroshot_raw": 0.9216666666666666,
+  "mae_w1_raw": 0.9775,
+  "mae_zeroshot_recalibrated": 0.4312561442514552,
+  "mae_w1_recalibrated": 0.3854201239280683,
+  "mae_full_learned_model": 0.4890675759206128,
+  "pct_fair_pipeline_vs_zeroshot": 10.628490963982884,
+  "p_fair": 5.260175004011186e-09,
+  "pct_kg_subscores_vs_recal_only": -26.892070641305803,
+  "p_kg_subscores": 0.04974282013145538,
+  "fold_alphas": [
+    10.0,
+    10.0,
+    10.0,
+    30.0,
+    0.01,
+    0.01,
+    0.01,
+    10.0,
+    10.0,
+    10.0,
+    3.0
+  ],
+  "avg_coefficients": {
+    "concept_coverage": 0.06807551488105444,
+    "relationship_accuracy": 0.0017346255566580723,
+    "integration_quality": 0.08083148424525216,
+    "blooms_normalized": 0.007962578519928667,
+    "solo_normalized": 0.016599783202361565,
+    "misc_penalty": -0.011219922107630991,
+    "verified_score": 0.7961062605848063
+  },
+  "std_coefficients": {
+    "concept_coverage": 0.04463131171205379,
+    "relationship_accuracy": 0.01725501144509626,
+    "integration_quality": 0.016844800620080914,
+    "blooms_normalized": 0.012176726468042295,
+    "solo_normalized": 0.022910163635305115,
+    "misc_penalty": 0.011279013918297807,
+    "verified_score": 0.04200729312336396
+  },
+  "verdict": "recalibrated pipeline beats recalibrated zero-shot",
+  "kg_subscore_verdict": "raw KG sub-scores add NO value beyond recalibration (confirms Findings 2/3)"
+}

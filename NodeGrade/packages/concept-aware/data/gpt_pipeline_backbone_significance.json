@@ -1,0 +1,26 @@
+{
+  "comparison": "gpt_pipeline_vs_gpt_zeroshot",
+  "n": 300,
+  "mae_zeroshot": 0.9216666666666666,
+  "mae_pipeline": 0.9775,
+  "mae_reduction_pct": -6.0578661844484705,
+  "mae_reduction_ci95": [
+    -11.513811178987416,
+    -0.7679180887371964
+  ],
+  "pearson_r_zeroshot": 0.8003719537129554,
+  "pearson_r_pipeline": 0.8241289548679473,
+  "response_level": {
+    "p_two_tailed": 0.03998398311389625,
+    "p_one_tailed": 0.9800080084430519,
+    "d_z": -0.13452898756656323,
+    "n": 300
+  },
+  "question_clustered": {
+    "p_two_tailed": 0.1474609375,
+    "p_one_tailed": 0.92626953125,
+    "n_questions": 11,
+    "wins": 2
+  },
+  "preregistered_verdict": "FAIL"
+}

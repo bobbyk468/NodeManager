@@ -1,0 +1,32 @@
+{
+  "n": 300,
+  "mae_zeroshot": 0.9216666666666666,
+  "mae_w1_option_a": 0.9775,
+  "fold_best_w": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+  ],
+  "fold_heldout_mae_tuned": [
+    0.9375,
+    1.1333333333333333,
+    0.9708333333333333,
+    1.0791666666666666,
+    0.7666666666666667
+  ],
+  "fold_heldout_mae_w1": [
+    0.9375,
+    1.1333333333333333,
+    0.9708333333333333,
+    1.0791666666666666,
+    0.7666666666666667
+  ],
+  "cv_mae_tuned": 0.9775,
+  "cv_mae_w1": 0.9775,
+  "tuned_vs_zeroshot_pct": -6.0578661844484705,
+  "tuned_vs_w1_pct": 0.0,
+  "p_tuned_vs_w1_foldpaired": null,
+  "verdict_vs_zeroshot": "still worse than zero-shot"
+}

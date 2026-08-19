@@ -1,0 +1,37 @@
+{
+  "prior_coef_from_deepseek": [
+    0.43703115063916476,
+    2.9249114141714125
+  ],
+  "shrinkage_k": 20,
+  "results": {
+    "10": {
+      "n_local": 10,
+      "none": 0.9769353448275863,
+      "local_only": 0.4258098993946413,
+      "prior_only_crossbackbone": 0.36638283052762205,
+      "shrinkage": 0.3714428570827203
+    },
+    "20": {
+      "n_local": 20,
+      "none": 0.9755401785714285,
+      "local_only": 0.4026770298552782,
+      "prior_only_crossbackbone": 0.365498165151174,
+      "shrinkage": 0.3722793134382669
+    },
+    "30": {
+      "n_local": 30,
+      "none": 0.9770138888888888,
+      "local_only": 0.3950248345743714,
+      "prior_only_crossbackbone": 0.3652452014543697,
+      "shrinkage": 0.3731846561375491
+    },
+    "50": {
+      "n_local": 50,
+      "none": 0.97914,
+      "local_only": 0.3902120959177324,
+      "prior_only_crossbackbone": 0.3674946705891481,
+      "shrinkage": 0.3762056721942229
+    }
+  }
+}

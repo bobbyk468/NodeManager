@@ -1,0 +1,10 @@
+{
+  "a": 0.4679128963936252,
+  "b": 2.746850903169209,
+  "domain": "mohler_data_structures",
+  "fit_backbone": "deepseek/deepseek-chat-v3.1",
+  "n_fit": 298,
+  "rubric_id": "",
+  "verifier_prompt_version": "sag_v2_skepticism_2026-08-18",
+  "fit_date": "2026-08-18"
+}
