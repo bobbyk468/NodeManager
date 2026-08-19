@@ -403,11 +403,17 @@ comparison also mixed populations inconsistently across different parts
 of this investigation (the ceiling used all 46 questions; several
 model-correlation numbers elsewhere used an 11-question subset).
 
-**Corrected position**: some inter-rater disagreement clearly exists in
-this dataset (the raw MAE=0.78, r=0.554 figures are real, even if the
-downstream "ceiling" derivation is not trustworthy), so *some* portion of
-remaining model-vs-human error is plausibly irreducible -- but this
-investigation does not have a rigorous estimate of how much. Establishing
+**Corrected position** (further corrected 2026-08-19, fourth review
+round): some inter-rater disagreement clearly exists in this dataset,
+but the specific MAE=0.78/r=0.554 figures previously cited for it are
+NOT clean or independent of the retracted derivation -- both graders'
+scores were put on the common 0-5 scale using the same disputed
+`score_avg / mean(grader_1, grader_2)` per-row factor before those
+numbers were computed, so they carry the identical circularity the
+"ceiling" derivation is retracted for. *Some* portion of remaining
+model-vs-human error is still plausibly irreducible, but this
+investigation does not have a rigorous, non-circular estimate of how
+much -- not even the raw disagreement figures. Establishing
 one would require question-level scale metadata recovered independently
 of the grader scores themselves (not derived from them), and ideally a
 proper generalizability/ICC analysis with question and rater random
@@ -715,8 +721,8 @@ or needs re-deriving.
 | `compute_crossdataset_calibration_transfer.py` | Cross-dataset transfer test (5.7) |
 | `compute_controlled_calibration_transfer.py` | Calibration transfer round 2 -- corrected (5.7) |
 | `ask_gpt_final_design_review.py` | Second external review call (5.8) |
-| `run_verifier_evidence_ablation.py` | Causal evidence ablation, GPT/DeepSeek n=150 (5.10) |
-| `run_verifier_skeptical_evidence_test.py` | Generic skepticism fix test/validation, GPT/DeepSeek (5.11), later extended to full n |
+| `run_verifier_evidence_ablation.py` | Evidence ablation (within-sample, controlled prompt-template), GPT/DeepSeek n=150 (5.10) |
+| `run_verifier_skeptical_evidence_test.py` | Generic skepticism fix, tested (not "validated") on GPT/DeepSeek (5.11), later extended to full n |
 | `ask_gpt_next_steps.py` | Third external consult (question-coverage power, DeepSeek tie) |
 | `run_gemini_skeptical_verifier_full.py` | Generic skepticism, Gemini full-dataset re-verification (5.12) |
 | `run_gemini_targeted_skepticism_full.py` | Targeted skepticism, Gemini full-dataset (5.13) -- exploratory only; its own docstring states it does not modify `verifier.py`, and it was correctly not merged since it didn't beat zero-shot |
@@ -736,10 +742,15 @@ experiment's cached responses.
 **The one claim in this document that survives independent, careful
 re-checking**: the original numeric KG-comparison composite scoring
 formula provides no benefit and should not be used for scoring --
-confirmed across 3 backbones (Gemini, GPT, DeepSeek) and 8+ independent
-tests (5 formula-repair attempts in an earlier investigation round, plus
-backbone-swap, CV-tuning, and learned-reweighting this session). This
-part is not in dispute from the 2026-08-19 review.
+observed consistently across 3 backbones (Gemini, GPT, DeepSeek) and 8+
+related sensitivity checks (5 formula-repair attempts in an earlier
+investigation round, plus backbone-swap, CV-tuning, and
+learned-reweighting this session), all against the same underlying
+Mohler dataset and therefore dependent, not independent, confirmations
+(see REPRODUCIBILITY.md Finding 6 on why repeated tests against one
+reused dataset don't accumulate as independent evidence). This part is
+not in dispute from the 2026-08-19 review, but should be read as one
+well-corroborated observation, not 8+ separate pieces of evidence.
 
 **Everything downstream of that needs to be read more cautiously than
 the original version of this document presented it.** The generic

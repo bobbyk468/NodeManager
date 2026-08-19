@@ -190,13 +190,15 @@ def check_headline_numbers():
     # requires the reproduction to still hold, rather than tolerating a
     # discrepancy with an alpha-guard workaround.
     #
-    # Important caveat this reproduction surfaced and that REPRODUCIBILITY.md
-    # now discloses: p=0.094 is the RESPONSE-level statistic on clustered
-    # (46-question) data -- the question-CLUSTERED version of the identical
-    # comparison gives p=0.386, far weaker. The documented "no significant
-    # difference detected" claim was computed on the less conservative of
-    # the two tests. Both numbers are
-    # asserted below so this gap can never again silently disappear.
+    # Note (corrected 2026-08-19, fourth review round): the response-level
+    # (p=0.094) vs. question-clustered (p=0.39) distinction was NOT a
+    # newly discovered methodological gap -- both numbers were already
+    # disclosed side by side in REPRODUCIBILITY.md Finding 6 and docs/
+    # INVESTIGATION_REPORT_2026-08-18.md Section 5.13 before this script
+    # existed. This is a reproducibility repair (a runnable, checkable
+    # script for a result the report already stated correctly), not a
+    # correction to the report's claims. Both p-values are asserted below
+    # to the tight tolerance compute_targeted_skepticism_loqo.py now uses.
     import subprocess
     result = subprocess.run(
         ["python3", str(BASE / "compute_targeted_skepticism_loqo.py")],
@@ -211,18 +213,22 @@ def check_headline_numbers():
             r["reproduced_within_tolerance"] is True,
             f"mae_zs={r['loqo_recalibrated_mae_zeroshot']:.4f} "
             f"mae_tgt={r['loqo_recalibrated_mae_targeted']:.4f} "
-            f"p_response={r['wilcoxon_p_response_level']:.4f} "
+            f"p_response={r['wilcoxon_p_response_level']:.5f} "
+            f"p_clustered={r['wilcoxon_p_question_clustered']:.5f} "
             f"(documented: mae_zs={r['documented_mae_zeroshot']} "
-            f"mae_tgt={r['documented_mae_targeted']} p={r['documented_p']}) "
-            f"-- UNREPRODUCIBLE: retract p=0.094 from all documents, do not "
-            f"loosen this check to make it pass",
+            f"mae_tgt={r['documented_mae_targeted']} "
+            f"p_response={r['documented_p_response']} "
+            f"p_clustered={r['documented_p_clustered']}) "
+            f"-- UNREPRODUCIBLE: retract p=0.094/p=0.39 from all documents, "
+            f"do not loosen this check to make it pass",
         )
         print(
-            f"    [info] Finding 6: response-level p={r['wilcoxon_p_response_level']:.4f} "
-            f"(matches documented 0.094) vs. question-clustered "
-            f"p={r['wilcoxon_p_question_clustered']:.4f} (far weaker) -- the documented "
-            f"'no significant difference detected' claim used the less conservative "
-            f"test; both are disclosed in REPRODUCIBILITY.md Finding 6."
+            f"    [info] Finding 6: response-level p={r['wilcoxon_p_response_level']:.5f} "
+            f"and question-clustered p={r['wilcoxon_p_question_clustered']:.5f} both "
+            f"reproduced exactly -- both were already disclosed side by side in "
+            f"REPRODUCIBILITY.md Finding 6; this is a reproducibility repair "
+            f"(a runnable script for a result the report already stated), not a "
+            f"newly discovered methodological gap."
         )
     else:
         check(

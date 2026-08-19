@@ -226,6 +226,34 @@ def test_cache_key_sensitivity():
             f"fingerprints={fingerprints}",
         )
 
+    # 2026-08-19, fourth review round: config_fingerprint() must NOT change
+    # when only pinned_commit/name/description change -- those are
+    # provenance/identity metadata, not semantic configuration. The prior
+    # version hashed pinned_commit too, so commit 7dc6085 (which only
+    # re-pinned two configs) silently changed every cache key built from
+    # them, contradicting its own commit message's "only metadata, no
+    # pipeline behavior" claim. This is the regression test for that bug.
+    from dataclasses import replace
+    from conceptgrade.configs import DEPLOYED_SAG_GEMINI, config_fingerprint
+    base_fp = config_fingerprint(DEPLOYED_SAG_GEMINI)
+    repinned_fp = config_fingerprint(replace(DEPLOYED_SAG_GEMINI, pinned_commit="deadbeef"))
+    check(
+        "config_fingerprint is UNCHANGED when only pinned_commit changes "
+        "(re-pinning a config to a new commit must not invalidate caches "
+        "built under it -- pinned_commit is provenance, not semantics)",
+        base_fp == repinned_fp,
+    )
+    renamed_fp = config_fingerprint(replace(DEPLOYED_SAG_GEMINI, name="x", description="y"))
+    check(
+        "config_fingerprint is UNCHANGED when only name/description change",
+        base_fp == renamed_fp,
+    )
+    sc_changed_fp = config_fingerprint(replace(DEPLOYED_SAG_GEMINI, sc_n_runs=99))
+    check(
+        "config_fingerprint DOES change when a semantic field (sc_n_runs) changes",
+        base_fp != sc_changed_fp,
+    )
+
 
 def test_named_config_enforcement():
     print("\n=== conceptgrade/configs.py: declared fields are enforced, not decorative ===")

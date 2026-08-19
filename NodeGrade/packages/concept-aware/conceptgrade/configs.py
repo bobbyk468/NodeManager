@@ -44,10 +44,26 @@ computes:
     and prints a warning (does not raise -- a mismatch is expected and
     fine during active development, but must never be silent).
 
-Two configs are provided as concrete named presets:
-  - DEPLOYED_SAG_GEMINI: what this project's evaluation results actually
-    use (Gemini 2.5 Flash, generic Finding-5 skepticism, verifier_weight=1.0,
-    frozen v1.0-expert KG).
+Three configs are provided as concrete named presets:
+  - EVALUATED_MOHLER_GEMINI: what actually produced this project's
+    reported Mohler evaluation numbers -- Gemini 2.5 Flash,
+    self-consistency ON (3 runs, min 2 votes, 1.0s inter-run delay,
+    matching run_real_eval_phaseA_signals.py exactly), generic
+    Finding-5 skepticism, verifier_weight=1.0, frozen v1.0-expert KG.
+    2026-08-19, fourth review round: a prior version of this module had
+    NO config that actually matched the evaluated system --
+    DEPLOYED_SAG_GEMINI recorded use_self_consistency=False while the
+    real eval script used SelfConsistentExtractor. Use this config, not
+    DEPLOYED_SAG_GEMINI, when reproducing or extending the Mohler
+    evaluation.
+  - DEPLOYED_SAG_GEMINI: the RUNTIME/DEFAULT configuration -- what a
+    fresh pipeline construction gets with no self-consistency (matching
+    ConceptGradePipeline's own class default, use_self_consistency=False,
+    which is 3x cheaper per response). This is NOT what produced the
+    reported evaluation numbers -- see EVALUATED_MOHLER_GEMINI above for
+    that. Kept as a distinct config because a cheaper, no-self-consistency
+    runtime path is a legitimate deployment choice, just not the one this
+    project's own headline numbers were measured under.
   - C1_BASELINE_NO_EXTENSIONS: the pre-extensions ablation baseline
     (no self-consistency, no confidence weighting, no verifier) -- for
     ablation studies that specifically need the un-extended pipeline,
@@ -58,6 +74,21 @@ Do NOT add a config here for targeted skepticism or any other
 unvalidated experimental variant (REPRODUCIBILITY.md Finding 6) --
 configs in this registry are meant to be things it's safe to build a
 pipeline from, not a record of everything that was tried.
+
+Fingerprinting (2026-08-19, fourth review round -- corrects a real bug):
+`config_fingerprint()` hashes only the SEMANTIC fields that affect what
+a pipeline actually computes or what a cache key should distinguish --
+it explicitly EXCLUDES `name`, `description`, and `pinned_commit`. The
+previous version hashed every field including `pinned_commit`, which
+meant re-pinning a config to a new commit (pure provenance metadata,
+changes nothing about how the pipeline runs) silently changed its cache
+fingerprint and therefore every cache key built from it -- an unrelated
+commit-tracking edit was invalidating caches as if it were a real
+configuration change. `pinned_commit`/commit provenance now lives only
+in the run manifest (docs/PHASE0_RUN_MANIFEST_2026-08-19.json) and
+`check_provenance()`'s comparison against live git state -- never in the
+semantic fingerprint that feeds `pipeline.config_fingerprint` or any
+cache key.
 """
 from __future__ import annotations
 
@@ -117,6 +148,17 @@ class PipelineConfig:
     use_sure_verifier: bool = False
     use_hierarchical_kg: bool = False
 
+    # Self-consistency parameters -- only meaningful when
+    # use_self_consistency=True, but always recorded (not just the on/off
+    # flag) so a config fully describes what "self-consistency" means for
+    # it. 2026-08-19, fourth review round: added because DEPLOYED_SAG_GEMINI
+    # previously had no way to record these at all, which hid the fact
+    # that it didn't match the actually-evaluated system (see
+    # EVALUATED_MOHLER_GEMINI below).
+    sc_n_runs: int = 3
+    sc_min_votes: int = 2
+    sc_inter_run_delay: float = 0.0
+
     # KG identity -- kg_snapshot_path is loaded and its version checked
     # against kg_version at build time. A config with kg_version set but
     # kg_snapshot_path=None cannot be built (fails loudly rather than
@@ -139,22 +181,53 @@ class PipelineConfig:
     pinned_commit: str = "unpinned"
 
 
+# Fields deliberately excluded from the SEMANTIC config fingerprint --
+# none of these change what the pipeline computes or what a cache entry
+# means, so none of them may affect config_fingerprint() (2026-08-19,
+# fourth review round; see module docstring's "Fingerprinting" section
+# for why this matters -- a prior version hashed pinned_commit too,
+# which meant re-pinning a config to a new commit silently changed every
+# cache key built from it).
+_NON_SEMANTIC_FIELDS = frozenset({"name", "description", "pinned_commit"})
+
+
 def config_fingerprint(config: PipelineConfig) -> str:
-    """Canonical hash of every declared field on this config (2026-08-19,
-    third review round). This is the "complete named configuration
-    fingerprint" that build_pipeline() stamps onto the resulting pipeline
-    (as `pipeline.config_fingerprint`) and that pipeline.py's cache keys
-    fold in when a pipeline was built from a named config -- so a config
-    field this module doesn't (yet) individually enforce at build time,
-    but which still describes the run (e.g. `description`, `calibration_domain`),
-    is still reflected in what gets cached under it. Two configs with
-    identical individual flags but a different `name`/`description` get
-    different fingerprints, and any edit to a config's fields changes its
-    fingerprint automatically -- no separate version constant to remember
-    to bump."""
+    """Canonical hash of this config's SEMANTIC fields only -- every
+    declared field EXCEPT `name`, `description`, and `pinned_commit`
+    (see `_NON_SEMANTIC_FIELDS`). This is the "complete named
+    configuration fingerprint" that build_pipeline() stamps onto the
+    resulting pipeline (as `pipeline.config_fingerprint`) and that
+    pipeline.py's cache keys fold in when a pipeline was built from a
+    named config -- so a config field this module doesn't (yet)
+    individually enforce at build time, but which still describes the
+    run (e.g. `calibration_domain`), is still reflected in what gets
+    cached under it. Two configs with identical semantic flags but a
+    different `name`/`description` get the SAME fingerprint (by design
+    -- they'd produce identical pipeline behavior and should share a
+    cache), and any edit to a semantic field changes the fingerprint
+    automatically -- no separate version constant to remember to bump.
+
+    Provenance (which commit a config is pinned to) is deliberately NOT
+    part of this hash -- see config_identity() and
+    docs/PHASE0_RUN_MANIFEST_2026-08-19.json for where commit provenance
+    is actually tracked."""
     from dataclasses import asdict
     from conceptgrade.cache import canonical_hash
-    return canonical_hash(asdict(config))
+    semantic = {k: v for k, v in asdict(config).items() if k not in _NON_SEMANTIC_FIELDS}
+    return canonical_hash(semantic)
+
+
+def config_identity(config: PipelineConfig) -> dict:
+    """Provenance-only view of a config: name, description, pinned_commit,
+    and its semantic fingerprint -- for the run manifest and human-facing
+    reporting, NEVER for cache keys (config_fingerprint() above is what
+    cache keys use, and it excludes these fields on purpose)."""
+    return {
+        "name": config.name,
+        "description": config.description,
+        "pinned_commit": config.pinned_commit,
+        "semantic_fingerprint": config_fingerprint(config),
+    }
 
 
 def check_provenance(config: PipelineConfig) -> list[str]:
@@ -256,6 +329,9 @@ def build_pipeline(config: PipelineConfig, api_key: str, strict_kg: bool = True)
         use_llm_verifier=config.use_llm_verifier,
         use_sure_verifier=config.use_sure_verifier,
         verifier_weight=config.verifier_weight,
+        sc_n_runs=config.sc_n_runs,
+        sc_min_votes=config.sc_min_votes,
+        sc_inter_run_delay=config.sc_inter_run_delay,
         use_hierarchical_kg=config.use_hierarchical_kg,
         extraction_confidence_threshold=config.extraction_confidence_threshold,
         domain=config.calibration_domain,
@@ -273,15 +349,54 @@ def build_pipeline(config: PipelineConfig, api_key: str, strict_kg: bool = True)
     return pipeline
 
 
-DEPLOYED_SAG_GEMINI = PipelineConfig(
-    name="deployed_sag_gemini",
+EVALUATED_MOHLER_GEMINI = PipelineConfig(
+    name="evaluated_mohler_gemini",
     description=(
-        "This project's actual deployed/evaluated configuration for SAG "
-        "(short-answer) grading: Gemini 2.5 Flash backbone, verifier at "
+        "What actually produced this project's reported Mohler evaluation "
+        "numbers -- matches run_real_eval_phaseA_signals.py's "
+        "SelfConsistentExtractor(n_runs=3, min_votes=2, inter_run_delay=1.0) "
+        "and run_real_eval_phaseB_batched.py's LLMVerifier(verifier_weight=1.0) "
+        "exactly. Gemini 2.5 Flash backbone, self-consistency ON, verifier at "
         "weight=1.0 with the Finding-5 GENERIC skepticism prompt (NOT the "
         "unvalidated targeted variant -- see REPRODUCIBILITY.md Finding 6), "
         "frozen v1.0-expert KG (loaded from data/ds_knowledge_graph.json, "
-        "NOT the live v1.1-expert builder)."
+        "NOT the live v1.1-expert builder). Use this config, not "
+        "DEPLOYED_SAG_GEMINI, to reproduce or extend the Mohler evaluation --"
+        "DEPLOYED_SAG_GEMINI has use_self_consistency=False and does NOT "
+        "match what was actually run."
+    ),
+    model="gemini-2.5-flash",
+    provider="google",
+    verifier_prompt_version_sag="sag_v2_skepticism_2026-08-18",
+    use_self_consistency=True,
+    use_confidence_weighting=True,
+    use_llm_verifier=True,
+    verifier_weight=1.0,
+    sc_n_runs=3,
+    sc_min_votes=2,
+    sc_inter_run_delay=1.0,
+    kg_domain="data_structures",
+    kg_version="1.0-expert",
+    kg_snapshot_path="data/ds_knowledge_graph.json",
+    extraction_confidence_threshold=0.70,
+    calibration_path=None,  # per-deployment: pass the domain-matched calibration explicitly
+    calibration_domain="mohler_data_structures",
+    pinned_commit="e4cffa7",  # Phase 0 integrity commit -- see docs/PHASE0_RUN_MANIFEST_2026-08-19.json
+)
+
+DEPLOYED_SAG_GEMINI = PipelineConfig(
+    name="deployed_sag_gemini",
+    description=(
+        "RUNTIME/DEFAULT configuration -- what a fresh pipeline gets with "
+        "self-consistency OFF (matching ConceptGradePipeline's own class "
+        "default, 3x cheaper per response than EVALUATED_MOHLER_GEMINI). "
+        "2026-08-19, fourth review round: this config does NOT match what "
+        "produced this project's reported Mohler evaluation numbers -- see "
+        "EVALUATED_MOHLER_GEMINI above for that. Verifier at weight=1.0 "
+        "with the Finding-5 GENERIC skepticism prompt (NOT the unvalidated "
+        "targeted variant -- see REPRODUCIBILITY.md Finding 6), frozen "
+        "v1.0-expert KG (loaded from data/ds_knowledge_graph.json, NOT the "
+        "live v1.1-expert builder)."
     ),
     model="gemini-2.5-flash",
     provider="google",
@@ -326,5 +441,5 @@ C1_BASELINE_NO_EXTENSIONS = PipelineConfig(
 )
 
 REGISTRY: dict[str, PipelineConfig] = {
-    c.name: c for c in [DEPLOYED_SAG_GEMINI, C1_BASELINE_NO_EXTENSIONS]
+    c.name: c for c in [EVALUATED_MOHLER_GEMINI, DEPLOYED_SAG_GEMINI, C1_BASELINE_NO_EXTENSIONS]
 }

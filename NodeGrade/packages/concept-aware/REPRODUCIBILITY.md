@@ -1562,10 +1562,12 @@ transfer in general.
 > The r≈0.844 figure is not a validated ceiling. A correlation estimate
 > also does not establish an irreducible MAE floor regardless of how it's
 > computed. See Finding 6 for the corrected position: some inter-rater
-> disagreement genuinely exists in this dataset (the raw MAE=0.78, r=0.554
-> numbers below are real), but this investigation does not have a
-> trustworthy estimate of how much remaining model-vs-human error that
-> explains.
+> disagreement genuinely exists in this dataset, but the raw MAE=0.78/
+> r=0.554 numbers below were computed using the same disputed scale
+> factor and are NOT a clean, independent measurement either (corrected
+> 2026-08-19, fourth review round) -- this investigation does not have a
+> trustworthy, non-circular estimate of how much remaining
+> model-vs-human error is irreducible.
 
 The frozen Mohler dataset retains both original annotators' scores
 (`score_grader_1`, `score_grader_2`, from which `score_avg` — used
@@ -1585,9 +1587,19 @@ underlying score is ≈0.713, meaning **the theoretical maximum correlation
 any model could ever achieve against this averaged target is r≈0.844** —
 not 1.0, purely from irreducible inter-rater noise. The raw, uncalibrated
 GPT verifier score already achieves r=0.824 against the averaged human
-score — **97.6% of that theoretical ceiling**.~~ **(retracted -- the
-r=0.554/MAE=0.78 raw disagreement numbers are real; the r≈0.844 "ceiling"
-and "97.6% of ceiling" derivations from them are not valid, see box above)**
+score — **97.6% of that theoretical ceiling**.~~ **(retracted -- see box
+above. Correction, fourth review round: an earlier version of this note
+called the r=0.554/MAE=0.78 raw disagreement numbers "real" as if they
+were independent of the retracted derivation. They are not fully
+independent: per the scale-recovery description above, both graders'
+scores were put on the common 0-5 scale using the SAME
+`score_avg / mean(grader_1, grader_2)` per-row factor before r=0.554/
+MAE=0.78 were computed -- the same circular step the ceiling derivation
+is retracted for. These two numbers therefore carry the same
+normalization dependency and should not be cited as clean, independently
+verified figures either; treat the entire measurement chain in this
+finding as needing the question-level-scale-metadata redo described
+below, not just the ceiling arithmetic on top of it.)**
 
 ~~**Correct interpretation, stated carefully to avoid a serious overclaim**:
 this does NOT mean the model exceeds human-level grading. It's compared
@@ -1751,27 +1763,32 @@ how the follow-on evidence-presentation experiments were reported:
   > script for *this* comparison) to the same cached data
   > (`data/mohler_real_eval_results.json`,
   > `data/mohler_real_verifier_targeted.json`). That reproduces the
-  > documented MAE pair **exactly** (0.4142 -> 0.4220) and the p-value to
-  > within 0.001 (0.0945 vs. 0.094) -- so p=0.094 is **not** retracted;
-  > it is now a reproducible, scripted result.
+  > documented MAE pair **exactly** (0.4142 -> 0.4220) and both p-values
+  > to within 0.001 (response-level 0.09446, question-clustered 0.38559,
+  > both matching to 4-5 significant figures) -- so p=0.094 is **not**
+  > retracted; it is now a reproducible, scripted result.
   >
-  > **A real gap this reproduction surfaced, and now discloses rather
-  > than hides**: p=0.094 is the *response-level* Wilcoxon statistic on
-  > data that is clustered by question (1,262 responses / 46 questions).
-  > The question-*clustered* version of the identical comparison (mean
-  > absolute error per question, then Wilcoxon across the 46 question
-  > means) gives **p=0.386** -- far weaker, and further from significance
-  > in either direction. Elsewhere in this project (e.g. Paper 1's
-  > primary statistic, `compute_clustered_significance.py`), the
-  > question-clustered test is treated as primary specifically because
-  > responses to the same question aren't independent; the response-level
-  > test overstates precision when read as if it were. This finding's
-  > original "did not beat zero-shot, p=0.094" conclusion happens to be
-  > directionally unaffected either way (targeted skepticism doesn't beat
-  > zero-shot under either test), but the specific p-value cited was
-  > computed on the less conservative of the two tests without disclosing
-  > that. Both numbers, and this gap, are now checked by
-  > `verify_investigation_integrity.py` so this can't silently regress.
+  > **Correction (fourth review round): this was a reproducibility
+  > repair, not a newly discovered methodological gap.** An earlier
+  > version of this note characterized the response-level (p=0.094) vs.
+  > question-clustered (p=0.39) distinction as something this
+  > reproduction "surfaced" and that the report hadn't disclosed -- that
+  > was wrong. Both numbers were already stated side by side in this
+  > finding's original text below (response-level p=0.094, question-
+  > clustered p=0.39, 21/46) and in `docs/INVESTIGATION_REPORT_2026-08-18.md`
+  > Section 5.13, before `compute_targeted_skepticism_loqo.py` existed.
+  > What this reproduction actually did was write down runnable, checked
+  > code for a result the report had already reported correctly and
+  > completely -- it did not find or fix an undisclosed gap. Elsewhere in
+  > this project (e.g. Paper 1's primary statistic,
+  > `compute_clustered_significance.py`), the question-clustered test is
+  > treated as primary specifically because responses to the same
+  > question aren't independent; readers should weight p=0.39 (question-
+  > clustered) over p=0.094 (response-level) for that reason, but that is
+  > a reading note about which of two disclosed numbers to trust more, not
+  > a correction to what was disclosed. Both numbers are checked by
+  > `verify_investigation_integrity.py` to a tight tolerance so neither
+  > can silently drift.
 - The GPT/DeepSeek cross-backbone comparison table was mislabeled as
   "targeted skepticism" when both backbones were tested with the generic
   variant -- targeted skepticism was tested on Gemini only.
@@ -1783,8 +1800,12 @@ how the follow-on evidence-presentation experiments were reported:
   measured. This is circular, not independently validated scale
   recovery, and a correlation ceiling doesn't establish an irreducible
   MAE floor regardless. Some inter-rater disagreement genuinely exists in
-  this dataset (raw MAE=0.78, r=0.554 between the two graders), but this
-  investigation does not have a trustworthy estimate of how much
+  this dataset, but the specific figures previously cited for it
+  (raw MAE=0.78, r=0.554 between the two graders) were computed using
+  that same disputed per-row scale factor and so carry the same
+  normalization dependency as the retracted ceiling -- they are not a
+  clean, independent measurement (corrected 2026-08-19, fourth review
+  round). This investigation does not have a trustworthy estimate of how much
   remaining model-vs-human error it explains.
 - All 5 evidence-presentation variants (generic/targeted skepticism,
   evidence removal, corrected coverage, and the pre-Finding-5 baseline)
@@ -1956,6 +1977,41 @@ since those were all computed from cached data, not live re-execution)**:
   > which builds every registered config and confirms three failure modes
   > (wrong KG version, missing snapshot path, wrong provider) are rejected
   > rather than silently built.
+  > ⚠️ **2026-08-19, fourth review round: two further bugs in this file,
+  > both now fixed.**
+  > 1. **`DEPLOYED_SAG_GEMINI` misrepresented the evaluated system.** It
+  >    declared `use_self_consistency=False`, but the script that actually
+  >    produced this project's reported Mohler evaluation numbers
+  >    (`run_real_eval_phaseA_signals.py`) used
+  >    `SelfConsistentExtractor(n_runs=3, min_votes=2,
+  >    inter_run_delay=1.0)` -- self-consistency ON. `PipelineConfig`
+  >    gained `sc_n_runs`/`sc_min_votes`/`sc_inter_run_delay` fields (it
+  >    previously had no way to even record these), and a new
+  >    `EVALUATED_MOHLER_GEMINI` config was added that matches the
+  >    evaluated system exactly. `DEPLOYED_SAG_GEMINI` is kept as a
+  >    distinct, honestly-described RUNTIME/DEFAULT config (self-
+  >    consistency off, matching `ConceptGradePipeline`'s own class
+  >    default) -- its description no longer claims it matches the
+  >    evaluation.
+  > 2. **`config_fingerprint()` hashed `pinned_commit`, so re-pinning a
+  >    config changed its cache fingerprint.** Commit `7dc6085` re-pinned
+  >    both configs' `pinned_commit` from `"unpinned"` to `"e4cffa7"` --
+  >    pure provenance metadata -- but because the fingerprint hashed
+  >    every dataclass field including `pinned_commit`, that edit changed
+  >    `config_fingerprint()`'s output and therefore every cache key
+  >    (`llm_key`/`ver_key`) built from these configs. That commit's own
+  >    message claimed it changed "only metadata, no pipeline behavior,"
+  >    which was false. Fixed: `config_fingerprint()` now excludes `name`,
+  >    `description`, and `pinned_commit` (see `_NON_SEMANTIC_FIELDS`) --
+  >    only fields that actually affect what the pipeline computes feed
+  >    the semantic fingerprint. A new `config_identity()` function
+  >    returns the provenance-only view (name/description/pinned_commit/
+  >    fingerprint) for the run manifest, kept strictly separate from the
+  >    hash cache keys use. Regression test:
+  >    `test_pipeline_integrity.py`'s `test_cache_key_sensitivity()`,
+  >    which now asserts `config_fingerprint` is unchanged when only
+  >    `pinned_commit`/`name`/`description` change, and does change when a
+  >    semantic field does.
 - `verify_investigation_integrity.py` (new): single-command check that
   (1) every registered named config still builds without prompt/KG/
   provider drift, independently re-verified against the built pipeline's
@@ -1970,14 +2026,18 @@ since those were all computed from cached data, not live re-execution)**:
   `verify_all_paper_claims.py`, which checks the PAPER's numbers
   specifically.
 - `compute_targeted_skepticism_loqo.py` (new): scripted, reproducible
-  recomputation of Finding 6's "MAE 0.4142->0.4220, p=0.094"
-  targeted-skepticism-vs-zero-shot comparison, using this project's own
-  established LOQO-recalibration protocol. Written specifically because
-  that comparison had never been saved as a reusable script and a
-  raw-scale recomputation attempt gave a materially different (and
-  wrong-direction) result -- see the retraction/resolution note under
-  Finding 6 above. `verify_investigation_integrity.py` now runs this
-  script and fails if the reproduction ever stops holding.
+  recomputation of Finding 6's "MAE 0.4142->0.4220, response-level
+  p=0.094, question-clustered p=0.39" targeted-skepticism-vs-zero-shot
+  comparison, using this project's own established LOQO-recalibration
+  protocol. Written specifically because that comparison had never been
+  saved as a reusable script and a raw-scale (non-LOQO) recomputation
+  attempt gave a materially different, wrong-basis result -- see the
+  resolution note under Finding 6 above (this was a reproducibility
+  repair for an already-correctly-disclosed result, not a retraction or
+  a newly discovered gap). Requires BOTH p-values to match their
+  documented values to +/-0.001 and both MAE values to +/-0.0001;
+  `verify_investigation_integrity.py` runs this script and fails if the
+  reproduction ever stops holding.
 
 **Final status, all six findings:**
 

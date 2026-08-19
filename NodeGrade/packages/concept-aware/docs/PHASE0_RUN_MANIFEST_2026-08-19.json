@@ -1,20 +1,26 @@
 {
   "phase": "Phase 0 integrity work",
-  "generated": "2026-08-19",
+  "generated": "2026-08-19 (fourth review round correction pass)",
   "pinned_commit": "e4cffa7",
-  "note": "This commit is the parent of the commit that adds this manifest and the pinned_commit values themselves (a commit cannot pin its own not-yet-computed hash). e4cffa7 is the substantive, reviewed Phase 0 commit -- the manifest-adding commit on top of it changes only metadata (pinned_commit strings, this file), no pipeline behavior.",
+  "note": "pinned_commit values on individual configs point to e4cffa7 (the Phase 0 integrity commit), NOT to the commit that added this manifest -- a commit cannot record its own not-yet-computed hash. Fourth review round fix: config identity fields (name/description/pinned_commit) are now tracked SEPARATELY from each config semantic_fingerprint -- re-pinning a config no longer changes its semantic fingerprint or any cache key built from it (see conceptgrade/configs.py config_fingerprint() vs config_identity()).",
   "configs": {
+    "evaluated_mohler_gemini": {
+      "name": "evaluated_mohler_gemini",
+      "description": "What actually produced this project's reported Mohler evaluation numbers -- matches run_real_eval_phaseA_signals.py's SelfConsistentExtractor(n_runs=3, min_votes=2, inter_run_delay=1.0) and run_real_eval_phaseB_batched.py's LLMVerifier(verifier_weight=1.0) exactly. Gemini 2.5 Flash backbone, self-consistency ON, verifier at weight=1.0 with the Finding-5 GENERIC skepticism prompt (NOT the unvalidated targeted variant -- see REPRODUCIBILITY.md Finding 6), frozen v1.0-expert KG (loaded from data/ds_knowledge_graph.json, NOT the live v1.1-expert builder). Use this config, not DEPLOYED_SAG_GEMINI, to reproduce or extend the Mohler evaluation --DEPLOYED_SAG_GEMINI has use_self_consistency=False and does NOT match what was actually run.",
+      "pinned_commit": "e4cffa7",
+      "semantic_fingerprint": "0592a6f0766699fe43db0de0ae2690c9c9bfcb1c9b2ff3d4a85c4430bed4a8aa"
+    },
     "deployed_sag_gemini": {
-      "fingerprint": "7407bb960815e5a18b33e081c1124db1dd20f6615535f723b04d194d09643843",
-      "model": "gemini-2.5-flash",
-      "kg_version": "1.0-expert",
-      "verifier_prompt_version_sag": "sag_v2_skepticism_2026-08-18"
+      "name": "deployed_sag_gemini",
+      "description": "RUNTIME/DEFAULT configuration -- what a fresh pipeline gets with self-consistency OFF (matching ConceptGradePipeline's own class default, 3x cheaper per response than EVALUATED_MOHLER_GEMINI). 2026-08-19, fourth review round: this config does NOT match what produced this project's reported Mohler evaluation numbers -- see EVALUATED_MOHLER_GEMINI above for that. Verifier at weight=1.0 with the Finding-5 GENERIC skepticism prompt (NOT the unvalidated targeted variant -- see REPRODUCIBILITY.md Finding 6), frozen v1.0-expert KG (loaded from data/ds_knowledge_graph.json, NOT the live v1.1-expert builder).",
+      "pinned_commit": "e4cffa7",
+      "semantic_fingerprint": "62f0f6a4c81de4f41c6f0e34c5bf57d858e7eddf75e6f8ba227a5d8801ef39c8"
     },
     "c1_baseline_no_extensions": {
-      "fingerprint": "aca522bfaad82030d800a1cdb57b4c977ee9a7a3ef181d0871382db386863658",
-      "model": "gemini-2.5-flash",
-      "kg_version": "1.0-expert",
-      "verifier_prompt_version_sag": "sag_v2_skepticism_2026-08-18"
+      "name": "c1_baseline_no_extensions",
+      "description": "Ablation-study baseline: no self-consistency, no confidence weighting, no LLM verifier -- pure KG-formula scoring. This is the config the un-extended C1 ablation condition should use explicitly, rather than relying on ConceptGradePipeline's class defaults (which changed 2026-08-18 to match the DEPLOYED config above, not this baseline -- see REPRODUCIBILITY.md Finding 4).",
+      "pinned_commit": "e4cffa7",
+      "semantic_fingerprint": "466c42eccd4f1eabcb8f339a529956aceffcfc559f7eeddf7c31ded8f7161ef8"
     }
   },
   "regression_suites_at_pin_time": {
@@ -24,7 +30,8 @@
     "verify_investigation_integrity.py": "PASS: all investigation-integrity checks passed"
   },
   "known_open_items_not_blocking_this_pin": [
-    "Raw LLM batch-job caches (data/*_batches/) excluded from the Phase 0 commit pending separate privacy/size/provenance review.",
-    "Both configs pinned_commit points to e4cffa7 (the parent of the commit that added this manifest), not this commit itself -- see note above."
+    "Raw LLM batch-job caches (data/*_batches/) excluded from the Phase 0 commits pending separate privacy/size/provenance review.",
+    "Dataset redistribution rights for committed Phase-A JSON files (complete student answers from the Mohler dataset) not yet confirmed -- see the fourth review round note; do not push until resolved.",
+    "All configs pinned_commit points to e4cffa7 (an earlier commit), not the commit that adds this manifest -- see note above."
   ]
 }

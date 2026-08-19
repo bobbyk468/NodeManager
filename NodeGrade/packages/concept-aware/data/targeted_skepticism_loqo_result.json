@@ -7,6 +7,7 @@
   "wilcoxon_p_question_clustered": 0.3855928365038608,
   "documented_mae_zeroshot": 0.4142,
   "documented_mae_targeted": 0.422,
-  "documented_p": 0.094,
+  "documented_p_response": 0.09446,
+  "documented_p_clustered": 0.38559,
   "reproduced_within_tolerance": true
 }

@@ -8,23 +8,32 @@ protocol (see compute_pipeline_diagnostic_stepwise.py, compute_clustered_
 significance.py: leave-one-question-out, intercept+scale via Ridge, nested
 alpha selection on the training folds only).
 
-Why this script exists (2026-08-19, third review round): a second-review
-pass found that verify_investigation_integrity.py's recomputation of this
-comparison on RAW (uncalibrated) scores gave p=0.0155, not the documented
-p=0.094 -- and worse, the RAW-scale result points the OPPOSITE direction
-(targeted appears to beat zero-shot on the raw scale, when the documented
-claim is "did not beat zero-shot"). No saved script reproduces the exact
-0.4142/0.4220/p=0.094 numbers; they were evidently computed ad hoc and not
-preserved as reproducible code. This script is a best-effort reconstruction
-using the SAME recalibration methodology already established elsewhere in
-this codebase, run against the same cached data
+Why this script exists (2026-08-19, third/fourth review rounds): a
+second-review pass found that verify_investigation_integrity.py's
+recomputation of this comparison on RAW (uncalibrated) scores gave
+p=0.0155, on the wrong basis (not LOQO-recalibrated). No saved script
+reproduced the documented 0.4142/0.4220/p=0.094/p=0.39 numbers -- this
+is a REPRODUCIBILITY REPAIR (writing down code that recovers a result
+the report had already disclosed correctly), not the discovery of a new
+methodological gap: REPRODUCIBILITY.md's Finding 6 and docs/
+INVESTIGATION_REPORT_2026-08-18.md Section 5.13 both already reported
+response-level p=0.094 AND question-clustered p=0.39 side by side before
+this script existed. This script just makes that specific recomputation
+runnable and checkable against exact expected values, using the SAME
+LOQO-recalibration methodology already established elsewhere in this
+codebase, run against the same cached data
 (data/mohler_real_eval_results.json, data/mohler_real_verifier_targeted.json).
 
-Verdict is printed and written to data/targeted_skepticism_loqo_result.json.
-If the reproduced numbers do not match the documented ones to a tight
-tolerance, treat p=0.094 (and the "0.4142->0.4220" MAE pair) as
-UNREPRODUCIBLE and retract them -- do not keep citing an unreproducible
-statistic. See REPRODUCIBILITY.md Finding 6 for the retraction record.
+The check below requires BOTH the response-level AND question-clustered
+p-values to match their specific documented values (0.09446 / 0.38559)
+to a tight tolerance (MAE +/-0.0001, p +/-0.001) -- not either-or, and
+not the looser +/-0.01/+/-0.02 tolerances an earlier version of this
+script used. Verdict is printed and written to
+data/targeted_skepticism_loqo_result.json. If the reproduced numbers do
+not match to this tolerance, treat p=0.094 (and the "0.4142->0.4220" MAE
+pair) as UNREPRODUCIBLE and retract them -- do not keep citing an
+unreproducible statistic. See REPRODUCIBILITY.md Finding 6 for the
+retraction record.
 
 Run:
     python3 compute_targeted_skepticism_loqo.py
@@ -45,13 +54,19 @@ DATA = BASE / "data"
 ALPHA_GRID = [0.01, 0.03, 0.1, 0.3, 1.0, 3.0, 10.0, 30.0, 100.0]
 
 # Documented values this script is trying to reproduce (REPRODUCIBILITY.md
-# Finding 6 / docs/INVESTIGATION_REPORT_2026-08-18.md Section 5.13, table
-# row "Targeted skepticism ... -1.9%, p=0.094").
+# Finding 6 / docs/INVESTIGATION_REPORT_2026-08-18.md Section 5.13: "MAE
+# 0.4142->0.4220 ... response-level p=0.094 ... question-clustered p=0.39
+# (21/46)"). Both p-values were already disclosed in the original report;
+# this script reproduces both, to the precision this LOQO protocol
+# actually produces (2026-08-19, fourth review round -- tightened from
+# +/-0.01 MAE / +/-0.02 p, and from an either-response-or-clustered OR
+# check to requiring both specific values).
 DOCUMENTED_MAE_ZS = 0.4142
 DOCUMENTED_MAE_TGT = 0.4220
-DOCUMENTED_P = 0.094
-TOLERANCE_MAE = 0.01
-TOLERANCE_P = 0.02
+DOCUMENTED_P_RESPONSE = 0.09446
+DOCUMENTED_P_CLUSTERED = 0.38559
+TOLERANCE_MAE = 0.0001
+TOLERANCE_P = 0.001
 
 
 def inner_select_alpha(X_train, y_train, groups_train) -> float:
@@ -134,11 +149,20 @@ def main() -> int:
 
     mae_zs_matches = bool(abs(mae_zs - DOCUMENTED_MAE_ZS) < TOLERANCE_MAE)
     mae_tgt_matches = bool(abs(mae_tgt - DOCUMENTED_MAE_TGT) < TOLERANCE_MAE)
-    p_matches = bool((abs(p_response - DOCUMENTED_P) < TOLERANCE_P) or (abs(p_clustered - DOCUMENTED_P) < TOLERANCE_P))
-    reproduced = bool(mae_zs_matches and mae_tgt_matches and p_matches)
+    p_response_matches = bool(abs(p_response - DOCUMENTED_P_RESPONSE) < TOLERANCE_P)
+    p_clustered_matches = bool(abs(p_clustered - DOCUMENTED_P_CLUSTERED) < TOLERANCE_P)
+    reproduced = bool(mae_zs_matches and mae_tgt_matches and p_response_matches and p_clustered_matches)
 
-    print(f"\nDocumented: MAE zero-shot={DOCUMENTED_MAE_ZS} MAE targeted={DOCUMENTED_MAE_TGT} p={DOCUMENTED_P}")
-    print(f"Reproduced within tolerance (MAE +/-{TOLERANCE_MAE}, p +/-{TOLERANCE_P})? {reproduced}")
+    print(
+        f"\nDocumented: MAE zero-shot={DOCUMENTED_MAE_ZS} MAE targeted={DOCUMENTED_MAE_TGT} "
+        f"p_response={DOCUMENTED_P_RESPONSE} p_clustered={DOCUMENTED_P_CLUSTERED}"
+    )
+    print(f"Reproduced within tolerance (MAE +/-{TOLERANCE_MAE}, p +/-{TOLERANCE_P}, BOTH p-values required)? {reproduced}")
+    if not reproduced:
+        print(
+            f"  mae_zs_matches={mae_zs_matches} mae_tgt_matches={mae_tgt_matches} "
+            f"p_response_matches={p_response_matches} p_clustered_matches={p_clustered_matches}"
+        )
     if not reproduced:
         print(
             "\nVERDICT: NOT REPRODUCED. This project's own established LOQO-"
@@ -158,7 +182,8 @@ def main() -> int:
         "wilcoxon_p_question_clustered": float(p_clustered),
         "documented_mae_zeroshot": DOCUMENTED_MAE_ZS,
         "documented_mae_targeted": DOCUMENTED_MAE_TGT,
-        "documented_p": DOCUMENTED_P,
+        "documented_p_response": DOCUMENTED_P_RESPONSE,
+        "documented_p_clustered": DOCUMENTED_P_CLUSTERED,
         "reproduced_within_tolerance": reproduced,
     }
     out_path = DATA / "targeted_skepticism_loqo_result.json"
