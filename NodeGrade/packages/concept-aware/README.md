@@ -102,7 +102,29 @@ REPRODUCIBILITY.md explains in more detail:
 
 ## License / data
 
-Mohler dataset: `nkazi/MohlerASAG` mirror, CC-BY-4.0. DigiKlausur dataset:
-`DigiKlausur/ASAG-Dataset`, MPL-2.0. See REPRODUCIBILITY.md for the
-Kaggle ASAG provenance note (acquisition path unverified, kept in the
-evaluation as provenance-unverified, not authenticated).
+**Mohler dataset** (`data/mohler_real/`, and every `*_phaseA_signals.json`/
+`*_eval_results.json`/etc. derived from it): sourced from the
+`nkazi/MohlerASAG` mirror on Hugging Face
+(https://huggingface.co/datasets/nkazi/MohlerASAG), licensed **CC-BY-4.0**
+(license confirmed directly against the Hugging Face dataset page,
+2026-08-19). CC-BY-4.0 permits redistribution and derivative works of the
+underlying student responses, with attribution. Attribution:
+
+> Mohler, M., & Mihalcea, R. (2011). Learning to Grade Short Answer
+> Questions using Semantic Similarity Measures and Dependency Graph
+> Alignments. *Proceedings of the 49th Annual Meeting of the Association
+> for Computational Linguistics: Human Language Technologies*, Portland,
+> Oregon. Data accessed via the `nkazi/MohlerASAG` processed mirror on
+> Hugging Face (https://huggingface.co/datasets/nkazi/MohlerASAG), per
+> that repository's citation request.
+
+See `data/mohler_real/PROVENANCE.md` for the full download/selection
+record.
+
+**DigiKlausur dataset**: `DigiKlausur/ASAG-Dataset`, MPL-2.0.
+
+**Kaggle ASAG dataset**: see REPRODUCIBILITY.md and
+`docs/DATASET_PROVENANCE_REVIEW_REQUEST.md` for the provenance note
+(acquisition path unverified, kept in the evaluation as
+provenance-unverified, not authenticated -- a separate, still-open
+question from the resolved Mohler licensing question above).
