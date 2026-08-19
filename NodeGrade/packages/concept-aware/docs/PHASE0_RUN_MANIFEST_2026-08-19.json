@@ -1,9 +1,9 @@
 {
   "phase": "Phase 0 integrity work",
   "generated": "2026-08-19 (fifth review round -- self-reference-free provenance)",
-  "code_commit": "dda8a684deec87dc2b4e1c9549f64a86d0eec381",
-  "code_commit_short": "dda8a68",
-  "code_commit_tree_hash": "15e90af9c65713e896ca864d13fbbbdfa0f844c9",
+  "code_commit": "da4bc26f416673aa9cd5921e1547919127cbb2b5",
+  "code_commit_short": "da4bc26",
+  "code_commit_tree_hash": "e3dd0b2bc706c89658482ff9de3d642454bf8065",
   "note": "code_commit/code_commit_tree_hash identify the commit this manifest describes -- read directly from `git rev-parse HEAD` at generation time, against a verified-clean working tree. This manifest file is committed SEPARATELY, as the immediate next commit after code_commit, containing only this file. verify_investigation_integrity.py's check_manifest_provenance() independently re-derives the manifest commit's actual parent and tree hash from git history and fails unless both match what's recorded here -- see conceptgrade/configs.py's module docstring 'Commit provenance' section for why a per-config pinned_commit field (the prior approach) could never work.",
   "configs": {
     "evaluated_mohler_gemini": {
